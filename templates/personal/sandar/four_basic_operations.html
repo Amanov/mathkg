@@ -1,0 +1,632 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  body{
+    margin-left: 200px;
+    /* margin-top: 40px ; */
+     
+  }
+  .mainshadow{
+    box-shadow: 0 0 20px rgb(13, 167, 255);   
+  }
+  h1 {
+  display: flex;
+  align-items: center;
+}
+
+h1::after {
+  content: '';
+  flex: 1;
+  margin-left: 1.5rem;
+  
+  height: 8px;
+  background-color:rgb(13, 167, 255);
+}
+h1::before{
+  content: '      ';
+  flex: 1;
+  margin-right: 1.5rem;
+  height: 8px;
+  background-color:rgb(13, 167, 255);
+  
+}
+.zoom {
+   padding: 5px; 
+  /* background-color: green; */
+  transition: transform  .3s; /* Animation */
+   /* width: 200px;
+  height: 200px;  */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+h3{
+  display: inline-block !important;
+}
+.custom_border{
+  border: 3px solid rgb(34, 133 , 195);
+  border-radius: 10px; 
+  padding:5%;
+ 
+}
+.overflow-wrap {
+  overflow-wrap: break-word;
+}
+</style>
+
+<div class="container">
+  <div class="position-relative p-5 text-center" >
+    <h1>Амалдардын тартиби</h1> 
+    <hr style="margin:20px;">
+    <div class="row align-items-md-stretch custom_border" style="background-color: bisque;" >
+      <h1 >Сабакка даяр презентациялар</h1> 
+           
+      <div class=" col-md-4">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-center overflow-wrap">Сабактын демонстрациясы</h2>
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          <!-- for restriction from download -->
+          {% if user.is_authenticated %}
+             <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
+          {% else %}
+            <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+            <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>
+          {% endif %}
+            </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!---End of presentation sections-->
+      <hr style="margin:20px;">
+      <!---Second sections-->
+      <div class="col-md-10">
+        <div class="h-100 rounded-1">                
+          <div class="d-flex flex-column text-center overflow-wrap">
+            <h1> Тактада чагылдыруу үчүн суроолор</h1> 
+          </div>
+        </div>
+      </div>
+      <!-- Beginning of ABC -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary "">
+          <h2 class="fw-bold">ABC</h2>
+          
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+           <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Two-Way-Tables-Worksheet-E-A5.pdf' %}">PPT</a>   
+           {% else %}
+           <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+           <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}          
+          </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of ABC  -->
+      <hr style="margin:20px;">
+
+      <!-- beginning of 1234 -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold">1234</h2>
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>    
+          {% else %}
+          <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+           <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}   
+        </div>
+        </div>  
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      
+      <!--End of second sections-->
+      <hr style="margin:20px;">
+      <!---worksheets sections--> 
+      <div class="col-md-10">
+        <div class="h-100 rounded-1">                
+          <div class="d-flex flex-column text-center overflow-wrap">
+            <h1 class="text-uppercase">сабакка даяр иш барактар</h1> 
+          </div>
+        </div>
+      </div>
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
+          <h2 class="fw-bold text-uppercase">цифралык табышмак</h2>
+          
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
+
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of digital puzzle section -->
+      <hr style="margin:20px;">
+      <!-- spot the mistake -->
+      <div class="col-md-12 col-lg-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
+          <h2 class="fw-bold text-uppercase " >Катаны тап</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           <button class="btn btn-outline-primary" type="button">PPT</button>
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of spot the mistake -->
+      <hr style="margin:20px;">
+      <!-- True or False Maze /Туура же Ката лабиринт -->
+      <div class="col-md-12 col-lg-4 ">
+        <div class="h-100 p-5 bg-body-tertiary  text-center overflow-wrap">
+          <h2 class="fw-bold text-uppercase " >Туура же Ката лабиринт</h2>
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
+              <br>
+              <h3>A4</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a><br>
+              <h3>A5</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a><br>
+              <h3>PDF A6</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Two-Way-Tables-Worksheet-E-A5.pdf' %}">PPT</a><br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of True or False maze -->
+      <hr style="margin:20px;">
+      <!-- Extra Worksheets 1-->
+      <div class="col-md-12 col-lg-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h2 class="fw-bold text-uppercase " >тема боюнча кэндумдор 1</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- End of extra worksheets 1-->
+      <hr style="margin:20px;">
+
+      <!-- Extra Worksheets 2 -->
+      <div class="col-md-12 col-lg-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h2 class="fw-bold text-uppercase" >тема боюнча кэндумдор 2</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Worksheet 2 -->
+          
+      <!--End of Worksheet  sections-->
+
+      <hr style="margin:20px;">
+      <!-- Activities -->
+      <div class="col-md-10">
+        <div class="h-100 rounded-1">                
+          <div class="d-flex flex-column text-center overflow-wrap">
+            <h1 class="text-uppercase">сабак учурундагы активдүүлүк</h1> 
+          </div>
+        </div>
+      </div>
+
+    
+    
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap">карта сорттоо</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of digital puzzle section -->
+      <hr style="margin:20px;">
+      <!-- spot the mistake -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Тарсия курак</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           <button class="btn btn-outline-primary" type="button">PPT</button>
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of spot the mistake -->
+      <hr style="margin:20px;">
+      <!-- True or False Maze /Туура же Ката лабиринт -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Салыштыруу</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      
+      <hr style="margin:20px;">
+      
+      <!-- end of activities -->
+      <!-- teacher-led activities -->
+      <div class="col-md-10">
+        <div class="h-100 rounded-1">                
+          <div class="d-flex flex-column">
+            <h1 class="text-uppercase">мугалим жетектеген кондумдор</h1> 
+          </div>
+        </div>
+      </div>
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary "">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бинго</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of digital puzzle section -->
+      <hr style="margin:20px;">
+      <!-- spot the mistake -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >пенальтилер сериясы</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           <button class="btn btn-outline-primary" type="button">PPT</button>
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of spot the mistake -->
+      <hr style="margin:20px;">
+      <!-- True or False Maze /Туура же Ката лабиринт -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h1 class="fw-bold text-uppercase" >Аткылоо оюну</h1>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+
+      <!-- end  -->
+      <hr style="margin:20px;">
+
+      <!-- beginning -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
+          <h1 class="fw-bold text-uppercase" >Мага көрсөт</h1>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end -->
+      <!-- end of teacher led activities -->
+      <hr style="margin:20px;">
+      <!-- Exam Questions -->
+
+      <div class="col-md-10">
+        <div class="h-100 rounded-1">                
+          <div class="d-flex flex-column text-center overflow-wrap">
+            <h1 class="text-uppercase">Экзамен суроолору</h1> 
+          </div>
+        </div>
+      </div>
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap">ПИЗА</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- PISA -->
+      <hr style="margin:20px;">
+      <!-- ort -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >ЖРТ</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           <button class="btn btn-outline-primary" type="button">PPT</button>
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of spot the mistake -->
+      
+      <hr style="margin:20px;">
+      <!-- True or False Maze /Туура же Ката лабиринт -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Куболук</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+
+      <!-- end  -->
+      <hr style="margin:20px;">
+      <!-- beginning -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Аттестат</h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+
+              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
+             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
+              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end -->
+      <!-- End of exam questions -->
+
+      
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
