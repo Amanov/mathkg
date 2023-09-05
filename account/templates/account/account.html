@@ -2,6 +2,11 @@
 
 {% block content %}
 <style>
+  body{
+    margin-left: 200px;
+    /* margin-top: 40px ; */
+     
+  }
 .form-signin {
         max-width: 330px;
         padding: 15px;
@@ -26,22 +31,30 @@
 .h3{
         text-align: center;
     }
-
+ 
 </style>
 
 <!--END of the Styling-->
 
 <!--beggining of the form-->
-<form class="form-signin m-auto" method ="post"> {% csrf_token %}
+<form class="form-signin m-auto" method ="post"> 
+  {% csrf_token %}
 
-    <h1 class="h3 mb-3 fw-normal" >Account</h1> 
+    <h1 class="h3 mb-3 fw-normal" >Колдонуучунун аккаунту</h1> 
+    
+    <label for="email">
+       <h4>name@example.com</h4>
+    </label>
+    <div class="form-floating">      
+      <input type="text" id="email" class="form-control" name="email"  value="{{account.initial.email}}" >
+    </div>
+    <label for="username">
+      <h4>Колдонуучунун аты </h4>
+    </label>
+    <div class="form-floating">
+      <input type="text" class="form-control" name="username" id="floatingUsername" value="{{account_form.initial.username}}">
+    </div>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" value="{{account.initial.email}}" >
-    </div>
-    <div class="form-floating">
-      <input type="text" class="form-control" name="username" id="floatingUsername" placeholder="Username" value="{{account_form.initial.username}}">
-    </div>
     <!--Catching errors here -->
     {%for field in account_form%}
         <p>
@@ -69,7 +82,7 @@
         <p style="color:green; text-align:center;">{{success_message}}</p>
     {% endif %}
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Save Changes</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Өзгөрүүлөрдү сактоо</button>
     
 </form>
 

@@ -3,26 +3,13 @@
 {% block content %}
 
 <style>
-    body{
-    margin-left: 250px;
-    /* margin-top: 40px ; */
-     
-  }
-  @media (max-width: 600px) {
-  body {
-    width: 100%; /* Remove any padding that might affect the full width */
-    padding: 0;
-    margin: 0;
-  }
-}
 .form-signin {
     max-width: 600px;
     padding: 15px;
     background-color:rgb(34, 133, 195);
     position: relative;
-    margin-left: 250px;
     width: 100%;
-    height: 700px;
+    height: 70%;
 }
 
 .form-signin .form-floating:focus-within {
@@ -56,13 +43,13 @@ h3 {
 }
 
 .form-control:focus::placeholder {
-    color: rgb(218, 14, 14) ;
+    color: rgb(83, 74, 74) ;
 }
 
 .mainshadow {
     box-shadow: 0 0 20px rgb(13, 167, 255);
 }
-/* a:link, a:visited {
+a:link, a:visited {
   background-color: white;
   color: black;
   border: 2px solid green;
@@ -76,7 +63,7 @@ h3 {
 a:hover, a:active {
   background-color: green;
   color: white;
-} */
+}
 </style>
 
 <!--END of the Styling-->
@@ -86,12 +73,18 @@ a:hover, a:active {
     <form class="form-signin m-auto mainshadow" method="post" action="{% url 'register' %}">       
 
         {% csrf_token %}
-        <h1 class="h3 mb-3 fw-normal">Аккаунтту каттаңыз</h1>
+        <h1 class="h3 mb-3 fw-normal">Мектеп жазылуусу</h1>
+        <h3>Мектепке жазылуу 3000 сом турат жана бир календарлык жыл мүмкүнчүлүгүн камсыз кылат.
+        Бир колдонуучу аты жана сырсөз бүт мектеп колдонуу үчүн берилет.</h3>
         {% csrf_token %}
         <!-- Email input -->
+        <br>
         <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="name@example.com" required autofocus>
-            <!-- <label for="inputEmail">Email address</label> -->
+            <input type="text" class="form-control" name="name" id="inputUsername"  placeholder="Сиздин атыңыз:" autofocus> </h2>
+        </div>
+        <!--email for school-->
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="inputEmail"  placeholder="Каттоо эсебинин электрондук почта дареги" autofocus> </h2>
         </div>
 
         <!-- Username input -->
@@ -159,12 +152,7 @@ a:hover, a:active {
         <button class="w-100 btn btn-lg btn-primary" type="submit" style="margin-top: 50px;">катталуу</button>
     </form>
 </div>
-<!-- Display success message if registration is successful -->
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-{% endif %}
+
 
 
 {% endblock content %}

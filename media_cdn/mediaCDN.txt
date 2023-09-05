@@ -1,0 +1,3 @@
+for testing the media cdn
+
+empty files are hidden
