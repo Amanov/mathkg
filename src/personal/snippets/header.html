@@ -1,0 +1,1592 @@
+
+
+{% load static %}
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xNvA+05/j+g4x1jKdW13BuQJzahMNLM57l9nF5+YZp5v5JikkwzCw0zhMxMf0+kJGSZMg6U/R9XU9+os8uYQyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+  /* General Styles */
+  body {
+    min-height: 100%;
+    /* font-family: 'Open Sans', 'Helvetica', 'sans-serif', 'Lato', 'Calibri', 'Arial' ; */
+  }
+
+  html {
+    height: 100%;    
+    text-align: left;
+  }
+
+  /* Main Content */
+  main {
+    margin-left: 200px;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    transition: margin-left 0.3s ease;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top:110px;
+    height: 100%;
+    width: auto;
+    z-index:1;
+    background-color: #fff;
+    transition: transform 0.3 ease;
+    /* transition: translation(-100%); */
+    
+  }
+  /* Trying to make vertical menu toggle menu */
+  .sidebar.show{
+      transform: translateX(0);
+  }
+  .sidebar a {
+    display: block;
+  }
+ 
+  .navbar {
+      z-index: 1;
+    }
+
+    .navbar+.navbar {
+       z-index: 80;
+       top:58px;
+    }
+    .navbar-toggler {  
+         margin-left: 90% !important;
+         
+    }
+    
+    @media (max-width: 600px) {
+    /* Hide the dropdown items */
+    .dropdown-menu {
+      display: none;
+    }
+    /* .form-control, .btn-success[type="submit"] {
+      display: none;
+    } */
+    #searchForm{
+      display: none;
+    }
+    #kaitalooDropdown {
+      display: none;
+    }
+    #starterDropdown{
+      display: none;
+    }
+    .navbar-toggler{
+      transform: translateY(-25x);
+    }
+  }
+
+    
+  /* Box Element */
+  .box {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 160px;
+    height: 40px;
+    overflow-wrap: break-word;
+  }
+
+  /* Dropdown Menu */
+  .dropdown-menu li {
+    position: relative;
+    background-color: #008fff;
+    text-align: center;
+    font-size: 14px;
+    border: 2px solid #45adff;
+    padding: 0;
+    margin: 0;
+    z-index: 99999 !important;
+    position:relative;
+  }
+
+  .dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    overflow: visible;
+    left: 100%;
+    top: -7px;
+    padding: 0;
+    max-height: 200px;
+  }
+
+  .dropdown-menu .dropdown-submenu-rigth {
+    right: auto;
+    left: 100%;
+  }
+
+
+  .dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+    }
+
+    /* sliding menu and submenus */
+ 
+    /*  */
+
+  /* Button */
+  button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 220px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0;
+  }
+
+  /* Display Account */
+  .DisplayAccount {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #9a1818;
+  }
+  /* @media screen {
+  body {
+    color: green;
+  }
+  
+
+
+/* Hamburger menu icon */
+.hamburger-menu {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 80px;
+    left: 30px;
+    
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Modified toggle bar style */
+.bar {
+
+    width: 25px;
+    height: 2.7px;
+    background-color: rgb(15,60,88);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Added style for toggle bar when menu is active */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 5px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -5px);
+}
+
+
+  main {
+    margin-left: 0; /* Remove the margin */
+    width: 100%; /* Expand the main content area */
+    padding-left: 0; /* Remove any padding that was used to make space for the sidebar */
+  }
+
+  /* Adjust main content when sidebar is shown*/
+  main.sidebar-shown {
+    width: calc(-100px -100px); /* Adjust width to accommodate the sidebar */
+  }   
+  @media (max-width: 600px) {
+
+    .col-auto.col-md-3 {
+           display:block;  /*<!---Here how to show the menu from side--> */
+        }
+
+        /* Show the hamburger menu container */
+        .col-auto.d-md-none {
+          display: block;
+        }  
+       
+    /* Hide the entire navigation section */
+
+      .hamburger-menu {
+        display: block; /* Show the hamburger icon */
+        transform: translateY(-65px);
+        border: 3px solid rgb(15,60,88);
+        border-radius: 10px ;
+        padding-left:  10px;
+       
+      }
+
+      .sidebar{
+        /* display: none !important; */
+        transform: translateX(-100%);
+        z-index: 1;
+        display: block;
+        position:fixed;
+             
+      }
+      .sidebar.show{
+        transform: translateX(0);
+        z-index: 2;
+        
+        
+      }
+      .sidebar a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+        /* color: #333; */
+       
+    }
+  }
+  
+
+  /* Style to prevent scrolling when the sidebar is open */
+.no-scroll {
+    overflow: hidden;
+}
+/*Here I want to make sliding menu when there is resizing of the screen*/
+
+.ml-menu {
+	background-color:#9e1847;
+	width:100%;
+}
+
+a {
+	display:block;
+	padding: 15px 20px;
+	position:relative;
+	color:white;
+	text-decoration:none;
+  
+  
+  width: 220px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 1.5rem;
+}
+
+
+.ml-back {
+	background-color:rgba(0,0,0,0.1);
+}
+
+.ml-submenu {
+	background-color:#9e1847;
+	position:absolute;
+	top:0;
+	transition:right .25s ease-in;
+	right:-100%;
+	width:100%;
+
+}
+
+.ml-submenu.open {
+	right:0;
+	z-index:2;
+}
+
+.ml-has-submenu {
+	position:relative;
+	&::after {
+		content:' ';
+		position:absolute;
+		right:10px;
+	}
+}
+
+.ml-back a {
+	&::before {
+		content:' ';
+		display:inline-block;
+		margin-right:10px;
+	}
+}
+#topMenu{
+   width: 160px;
+   height: 40px;
+}
+@media (max-width: 600px){
+    #topMenu{
+      display: inline;
+      width: 130px;
+      height: 40px;
+      margin-left: 10px;
+    }  
+}
+#accountTop{
+  
+  width: 160px;
+  height: 40px;
+  
+}
+@media (max-width:600px){
+  #accountTop{
+    display: inline;
+    width: 130px;
+    height: 40px;
+    /* margin-left: 10px;     */
+   }
+}
+
+
+/* End of the resizing view slide menu */
+</style>
+<!-- HEADER -->
+<!-- To create a responsive menu at the top -->
+
+<nav class="navbar navbar-expand-lg py-3 fixed-top bg-img" aria-label="Tenth navbar example" style="background-color: rgb(34, 133, 195);">
+  <div class="container">
+    <!-- <a class="navbar-brand" href="#"> -->
+      <!-- Add your branding/logo here -->
+    <!--</a>-->
+    <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle box" href="#" id="starterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Starter
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="starterDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle box" href="#" id="kaitalooDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Кайталоо
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="kaitalooDropdown">
+            <li><a class="dropdown-item" href="#">kaitaloo</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" id="searchForm">
+          <form class="d-flex " >
+            <input class="form-control me-2" type="search" placeholder="Издөө" aria-label="Search" style="width: 200px;">
+            <button class="btn btn-success" type="submit" style="width: 40%;"><i class="fa fa-fw fa-search"></i></button>
+          </form>
+        </li>
+        <li class="nav-item">
+          {% if request.user.is_authenticated %}
+          <a class="btn btn-success mx-2 " id="topMenu" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red"></i> Башкы бет</a> 
+          
+          <a class="btn btn-success mx-2" id="topMenu" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i> Чыгуу</a>
+         
+          {% else %}
+          <a class="btn btn-success mx-2"id="topMenu"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
+          <a class="btn btn-success mx-2" id="topMenu" href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
+          <a class="btn btn-success mx-2"  id="topMenu" href="{% url 'register' %}"><i class="fa fa-user-plus" style="font-size:24px; color:red;" aria-hidden="true"></i>
+            Катталуу</a>
+          {% endif %}
+        <!-- </li>
+        <li class="nav-item"> -->
+          {% if request.user.is_authenticated %}
+          <!-- <a class="btn btn-success mx-2" >Менин Баракчам</a> -->
+          <a href="{% url 'account' %}" class="btn btn-success mx-2 " id="accountTop">
+            <i class="fa fa-user" style="font-size:24px;color:red;"> </i>  {{ request.user.username }}
+          </a>
+          
+          {% endif %}
+        </li>      
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End of responsive menu HEADER -->
+
+<!-- Beginning of vertical menu  -->
+<!-- <nav class="navbar navbar-expand-lg py-3  " aria-label="Tenth navbar example" > -->
+ 
+ <div class="container "  style="padding-top: 80px; ">
+  <div class="hamburger-menu" style="width: 50px; height: 40px; ">
+    <div class="bar"></div >   <!----Here can make as a bar again with help of div-->
+    <div class="bar"> </div > 
+    <div class="bar"> </div > 
+  </div>
+  <div class="row flex-nowrap sidebar bg-body-tertiary " > 
+    
+    <!-- Hamburger Menu Container -->
+    <div class="col-12 d-md-none">
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedMenu" aria-controls="collapsedMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button> -->
+      <div class="collapse" id="collapsedMenu">
+        <ul class="nav flex-column">
+          <!-- ... your hamburger menu items ... -->
+        </ul>
+      </div>
+    </div>
+      
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0  "  >
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100 ms-auto">
+                
+              <ul class="nav navbar-nav flex-column ms-auto mb-sm-auto mb-0 align-items-center align-items-sm-start " id="menu" id="hamburger-icon" >
+                  <li>
+                    <!-- Sandar/Numbers  -->
+                    <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3  flex-column flex-shrink-0 ml-has-submenu"  >
+                      <a class="btn  btn-lg  btn-outline-primary align-items-center text-uppercase dropdown-toggle dropdown-toggle-split mx-2" data-bs-toggle="dropdown" aria-expanded="false"><i class='fa fa-calculator' style="font-size:24px; "></i>Сандар                 
+                      </a>
+                      <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropend</span>
+                      </button> -->
+                      <!-- <hr style="border-bottom: 5px solid blue;"> -->
+                      <!-- first-level submenu -->
+                      <ul class="dropdown-menu ml-submenu " style="padding: 0; ">
+                        <!-- Dropdown  menu links -->
+                        <li class="ml-back">
+                          <a class="btn btn-primary text-uppercase ml-has-submenu" href="#" style="margin: 0;">Амалдар &rang; </a>
+                          <!-- <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropend</span>
+                          </button> -->
+                          <!-- second level submenu -->
+                          <ul class="dropdown-menu dropdown-submenu ml-menu" >
+                            <li class="ml-back">
+                              <a class="dropdown-item text-uppercase btn btn-success"  href="{% url 'four_basic_operations' %}" style="margin: 0;">4 Amal</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase text-uppercase" href="{% url 'directed_numbers' %}" style="margin: 0;">терс сандар</a>
+                            </li>
+
+                            <li>
+                              <a class="dropdown-item text-uppercase text-uppercase" href="{% url 'all_operations' %}" style="margin: 0;">Баардык Амалдар</a>
+                            </li>
+
+                          </ul>
+                        </li>
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;" >Ондуктар &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="{% url 'onedigitarithmetics' %}" style="margin: 0;">Арифметика: 1 орундуу</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Багытталган сандар &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>  
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Эквиваленттүүлүк</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">баалоо жана тегеректөө &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">факторлор, эселиктер жана жай сандар &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">бөлчөктөр &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">индекстер жана сурддор &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">бүтүн сандар &rang;</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">ченем бирдиктер </a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <!--  -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">стандарттык түрү</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </li>
+                      <!--  -->
+                      <li>
+                        <a class="btn btn-primary text-uppercase" style="margin: 0;">эсептөө үчүн кэбэйтуу эрежеси</a>
+                        <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                          <li>
+                            <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </li>
+                    <!--  -->
+                    <li>
+                      <a class="btn btn-primary text-uppercase" style="margin: 0;">Калькуляторду колдонуу </a>
+                      <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                        <li>
+                          <a class="dropdown-item text-uppercase" href="#">Positive numbers</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </li>                 <!--  -->
+                        <!--  -->
+                      </ul>
+                    </div>
+                  </li>
+                  <!-- End of Sandar/Numbers -->
+                  <!-- <div class="b-example-divider"></div> -->
+                  <!-- Proportion/ propostia -->
+                  <li>
+                    <li>
+                      <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
+                        <button type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-percent " style="font-size:24px;" ></i>Пропорция               
+                          
+                        </button>
+                        <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle Dropend</span>
+                        </button> -->
+                        <ul class="dropdown-menu" style="padding:0;">
+                          <!-- Dropdown  menu links -->
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Курама чаралар </a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">түз жана тескери пропорция </a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                          
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">графиктер </a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                            
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">пайыз: эсептегич</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">пайыз: без калькулятора</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">катышы</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">реалдуу жашоодо пропорцияны колдонуу</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+
+                          </li>   
+                        </ul>
+                      </div>
+                      
+                    </li>
+                    <!-- end of Proportion/ propostia -->
+                    <!-- <div class="b-example-divider"></div> -->
+                    <!-- beginning of algebra/algfebra -->
+                    <li>
+                      <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
+                        <button type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2" data-bs-toggle="dropdown" aria-expanded="false"><i class='fa fa-superscript' style="font-size:24px;">  </i>Алгебра                
+                          
+                        </button>
+                        <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle Dropend</span>
+                        </button> -->
+                        <ul class="dropdown-menu text-uppercase" style="padding:0;">
+                          <!-- Dropdown  menu links -->
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Алгебрага киришүү</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Теңдемелер: Сызыктуу</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Теңдемелер: Квадраттык</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Синхрондук теңдемелер</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Функциялар</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Графика: абстракт</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Графиктер: Кунумдук турмуш</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">барабарсыздыктар</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Манипуляции</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li> 
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Ырааттуулук</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Орун алмаштыруу</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <!-- end of algebra -->
+                    <!-- <div class="b-example-divider"></div> -->
+                  <!-- Begiining of geometry -->
+                    <li>
+                      <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
+                        <button type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2" data-bs-toggle="dropdown" aria-expanded="false"><i class='fa fa-cube	' style='font-size:24px'></i> Геометрия                 
+                          
+                        </button>
+                        <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle Dropend</span>
+                        </button> -->
+                        <ul class="dropdown-menu" style="padding:0;">
+                          <!-- Dropdown  menu links -->
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">БУРЧТАР</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">аянт жана периметр</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                          
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">багыттоолор</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                           <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">классификация жана лексика</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">геометрикалык конструкция</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">координаттар</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+                            
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">геометриялык өлчөө</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Пифагор</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Окшоштук</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">трансформациялар</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Тригонометрия</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Векторлор</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+                          <li>
+                            <a class="btn btn-primary text-uppercase" style="margin: 0;">Көлөм жана буюм бетинин аянты</a>
+                            <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 4</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#">Submenu item 5</a>
+                              </li>
+                            </ul>
+                          </li>
+
+
+
+                        </ul>                        
+                      </div>                      
+                    </li>                 
+                  <!-- end of geometry-->
+                  <!-- <div class="b-example-divider"></div> -->
+                  <!-- Beginnning of Data -->
+                  <li>
+                    <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
+                      <button type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-line-chart" style="font-size:24px;"></i> Дата                 
+                        
+                      </button>
+                      <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropend</span>
+                      </button> -->
+                      <ul class="dropdown-menu" style="padding:0;">
+                        <!-- Dropdown  menu links -->
+                        <li>
+                          <button type="button" class="btn  btn-primary text-uppercase">Анализдөө               
+                        
+                          </button>
+                          <!-- <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropend</span>
+                          </button> -->
+                          <ul class="dropdown-menu dropdown-submenu">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">4 Амал</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Баардык Амалдар</a>
+                            </li>
+
+                          </ul>
+                        </li>
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Маалыматтарды чогултуу</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>  
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">маалымат жыштыктары</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li> 
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Берилиштерди чагылдыруу</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        
+                        
+
+                      </ul>                        
+                    </div>                      
+                  </li> 
+                  <!-- end of Data -->
+                  <!-- <div class="b-example-divider"></div> -->
+                  <!-- Beginning of probability -->
+                  <li>
+                    <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
+                      <button type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2" data-bs-toggle="dropdown" aria-expanded="false">Ыктымалдуулук 
+                      </button>
+                      <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropend</span>
+                      </button> -->
+                      <ul class="dropdown-menu" style="padding: 0;">
+                        <!-- Dropdown  menu links -->
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Бир окуянын ыктымалдыгы</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">бир нече окуялардын ыктымалдыгы</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>   
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">жыштык дарак диаграммасы</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Ыктымалдуулук дарак диаграммасы</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Эки тараптуу таблицалар</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Венн диаграммалары</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a class="btn btn-primary text-uppercase" style="margin: 0;">Аралаш ыктымалдык</a>
+                          <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#" style="margin: 0;">Positive numbers</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item text-uppercase" href="#">Submenu item 2</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 4</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Submenu item 5</a>
+                            </li>
+                          </ul>
+                        </li>
+                        
+
+                      </ul>                        
+                    </div>                      
+                  </li>
+                                   
+                </li>
+                
+              </ul>
+                 
+      </div> -->
+    
+    </div>
+  
+  </div>
+</div> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+/* global bootstrap: false */
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const hamburgerMenu = document.querySelector('.hamburger-menu');
+//     const sidebar = document.querySelector('.sidebar');
+
+//     hamburgerMenu.addEventListener('click', function () {
+//         sidebar.classList.toggle('show');
+//     });
+// });
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    hamburgerMenu.addEventListener('click', function () {
+        sidebar.classList.toggle('show');
+        if (sidebar.classList.contains('show')) {
+            document.body.classList.add('no-scroll'); // Prevent scrolling when menu is open
+        } else {
+            document.body.classList.remove('no-scroll'); // Enable scrolling when menu is closed
+        }
+    });
+});
+
+// This part of the JavaScript it for sliding menu 
+$('.ml-has-submenu').on('click', function(e){
+	$(this).next().addClass('open');
+});
+
+$('.ml-back a').on('click', function(e){
+	$(this).closest('.ml-submenu').removeClass('open');
+});
+
+// End of the sliding menu
+
+</script>
