@@ -5,7 +5,7 @@
 {% block content %}
 <style>
   body{
-    margin-left: 200px;
+    margin-left: 250px;
     /* margin-top: 40px ; */
      
   }
@@ -15,6 +15,7 @@
   h1 {
   display: flex;
   align-items: center;
+  font-size:3vw;
 }
 
 h1::after {
@@ -43,10 +44,11 @@ h1::before{
 }
 
 .zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 h3{
   display: inline-block !important;
+  font-size:2vw;
 }
 .custom_border{
   border: 3px solid rgb(34, 133 , 195);
@@ -57,6 +59,21 @@ h3{
 .overflow-wrap {
   overflow-wrap: break-word;
 }
+@media (max-width: 600px) {
+  body {
+    width: 100%; /* Remove any padding that might affect the full width */
+    padding: 0;
+    margin: 0;
+  }
+}
+.anchorNew{
+  width: 70px;
+  height: 40px;
+  padding-top:10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 </style>
 
 <div class="container">
@@ -64,11 +81,11 @@ h3{
     <h1>Амалдардын тартиби</h1> 
     <hr style="margin:20px;">
     <div class="row align-items-md-stretch custom_border" style="background-color: bisque;" >
-      <h1 >Сабакка даяр презентациялар</h1> 
+      <h1>Сабакка даяр презентациялар</h1> 
            
       <div class=" col-md-4">
         <div class="h-100 p-5 bg-body-tertiary ">
-          <h2 class="fw-bold text-center overflow-wrap">Сабактын демонстрациясы</h2>
+          <h2 class="fw-bold text-center overflow-wrap">Сабактын көрсөтүү - түшүндүрүү</h2>
         </div>
       </div>
 
@@ -76,17 +93,17 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
           <!-- for restriction from download -->
           {% if user.is_authenticated %}
-             <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
+             <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-Amal-intro.pptx' %}">PPT</a><hr>
           {% else %}
             <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
-            <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>
+            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
           {% endif %}
             </div>
       </div>      
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-sabakTushunduruu-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -102,25 +119,25 @@ h3{
       </div>
       <!-- Beginning of ABC -->
       <div class="col-md-4 ">
-        <div class="h-100 p-5 bg-body-tertiary "">
-          <h2 class="fw-bold">ABC</h2>
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase ">жеңил, орто,<br> оор</h2>
           
         </div>
       </div>
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-           <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Two-Way-Tables-Worksheet-E-A5.pdf' %}">PPT</a>   
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-JenilOrtoOor.pptx' %}">PPT</a> <hr>  
            {% else %}
            <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
-           <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+           <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
           {% endif %}          
           </div>
       </div>      
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-JenilOrtoOor-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -136,17 +153,17 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>    
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-1234.pptx' %}">PPT</a> <hr>    
           {% else %}
           <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
-           <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+           <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
           {% endif %}   
         </div>
         </div>  
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-1234-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -164,21 +181,28 @@ h3{
       <!-- digital puzzle section -->
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
-          <h2 class="fw-bold text-uppercase">цифралык табышмак</h2>
+          <h2 class="fw-bold text-uppercase"> цифралык табышмак </h2>
+          <h5 class="text-uppercase">3 деңгээлде</h5>
           
         </div>
       </div>
 
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-          <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
-
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-sandyk-bashkatyrma.pptx' %}">PPT</a><hr>
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-sandyk-bashkatyrmaA6.pptx' %}">A6 PDF</a>
+          {% else %}
+          <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+                     <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+                             
+          {% endif %} 
         </div>
       </div>      
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-sandyk-bashkatyrma-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -194,13 +218,22 @@ h3{
 
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           <button class="btn btn-outline-primary" type="button">PPT</button>
+           <!-- <button class="btn btn-outline-primary" type="button">PPT</button> -->
+           {% if user.is_authenticated %}
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-Amal-katanytapTarsia.pptx' %}">PPT</a><br><hr>
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-Amal-katanytapTarsiaA4.pdf' %}"> A4 PDF</a> <hr>
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-Amal-katanytapTarsiaA5.pdf' %}">A5 PDF</a>
+          </h2>
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+           <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %} 
         </div>
       </div>      
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-katanytapTarsiaKurak.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -214,21 +247,26 @@ h3{
       </div>
       <!-- middle buttons -->
       <div class="col-md-4 ">
-        <div class="h-100 p-5 bg-body-tertiary " >
-           
+        <div class="h-100 p-5 bg-body-tertiary " >           
               <!-- here we have to work  -->
-              <a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a>
-              <br>
-              <h3>A4</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a><br>
-              <h3>A5</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Testing.ppt' %}">PPT</a><br>
-              <h3>PDF A6</h3><a class="btn btn-outline-primary" href="{% url 'download_file' file_name='Two-Way-Tables-Worksheet-E-A5.pdf' %}">PPT</a><br>           
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-tuuraKataLabirinth.pptx' %}">PPT</a><hr>
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-tuuraKataLabirinthA4.pdf' %}">A4 PDF</a><hr>
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-tuuraKataLabirinthA5.pdf' %}">A5 PPT</a><hr>
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-tuuraKataLabirinthA6.pdf' %}">A6 PDF</a>   
+              
+              {% else %}
+              <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        
         </div>
       </div>
       <!-- A4 -->
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-TuuraKataLabirinth-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -246,18 +284,20 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            
               <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-kondumA.pptx' %}">PPT</a><hr>
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='4-amal-kondumAA5.pdf' %}"> A5 PDF</a> 
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}                         
         </div>
       </div>
       <!-- A4 -->
       <div class="col-md-4">
           <div class="h-100 rounded-1">                
             <div class="d-flex flex-column  zoom">
-                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/GraphIllustration.png' %}" alt="mathKG" style="border-radius:3%;" >
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/4-amal-KondumA-Screenshot.png' %}" alt="mathKG" style="border-radius:3%;" >
             </div>
           </div>
       </div>
@@ -276,11 +316,17 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            
               <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+              {% if user.is_authenticated %}
+               <a class="btn btn-outline-primary anchorNew"  type="button">PPT</a> <hr>
+               
+                <a class="btn btn-outline-primary anchorNew" type="button" >A 4PDF</a> <hr>
+                <a class="btn btn-outline-primary anchorNew" type="button" >A5 PDF</a><hr>
+                <a class="btn btn-outline-primary anchorNew" type="button">A6 PDF</a>
+               
+               {% else %}
+	              <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+                <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}        
         </div>
       </div>
       <!-- A4 -->
@@ -318,11 +364,17 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
            
-              <!-- here we have to work  -->
-              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+              
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>
+              <a class="btn btn-outline-primary anchorNew" type="button" >A4 PDF</a> <hr>
+              <a class="btn btn-outline-primary anchorNew" type="button" >A5 PDF</a><hr>
+              <a class="btn btn-outline-primary anchorNew" type="button">A6 PDF</a>
+              </h2>
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
         </div>
       </div>     
       <div class="col-md-4">
@@ -344,7 +396,17 @@ h3{
 
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           <button class="btn btn-outline-primary" type="button">PPT</button>
+
+           {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>
+               <a class="btn btn-outline-primary anchorNew" type="button" >A4 PDF</a><hr>
+               <a class="btn btn-outline-primary anchorNew" type="button" >A5 PDF</a>
+              
+              
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
         </div>
       </div>      
       <div class="col-md-4">
@@ -367,12 +429,16 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
            
-              <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>
+          <a class="btn btn-outline-primary anchorNew" type="button" >A4 PDF</a><hr>
+          <a class="btn btn-outline-primary anchorNew" type="button" >A5 PDF</a>
+          
+          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
         </div>
       </div>
       <!-- A4 -->
@@ -397,7 +463,7 @@ h3{
       </div>
       <!-- digital puzzle section -->
       <div class="col-md-4 ">
-        <div class="h-100 p-5 bg-body-tertiary "">
+        <div class="h-100 p-5 bg-body-tertiary ">
           <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бинго</h2>
           <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
         </div>
@@ -407,10 +473,13 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            
               <!-- here we have to work  -->
-              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>
+                          
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
         </div>
       </div>     
       <div class="col-md-4">
@@ -432,7 +501,13 @@ h3{
 
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           <button class="btn btn-outline-primary" type="button">PPT</button>
+
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %} 
         </div>
       </div>      
       <div class="col-md-4">
@@ -454,13 +529,12 @@ h3{
       <!-- middle buttons -->
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           
-              <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
         </div>
       </div>
       <!-- A4 -->
@@ -485,13 +559,12 @@ h3{
       <!-- middle buttons -->
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           
-              <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
         </div>
       </div>
       <!-- A4 -->
@@ -525,11 +598,12 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
            
-              <!-- here we have to work  -->
-              <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-              <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}          
         </div>
       </div>     
       <div class="col-md-4">
@@ -551,7 +625,12 @@ h3{
 
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
-           <button class="btn btn-outline-primary" type="button">PPT</button>
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}
         </div>
       </div>      
       <div class="col-md-4">
@@ -575,12 +654,12 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
            
-              <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
         </div>
       </div>
       <!-- A4 -->
@@ -605,12 +684,12 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
            
-              <!-- here we have to work  -->
-              <h3">         </h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-
-              <h3>A4</h3> <a class="btn btn-outline-primary" type="button" >PPT</a> <br>
-             <h3>A5</h3> <a class="btn btn-outline-primary" type="button" >PPT</a><br>
-              <h3>A6</h3>  <a class="btn btn-outline-primary" type="button">PPT</a> <br>           
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" type="button" >PPT</a> <hr>          
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
         </div>
       </div>
       <!-- A4 -->

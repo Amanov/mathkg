@@ -1,17 +1,16 @@
 <style type="text/css">
     .footer{
-        min-height: 10px;
+        min-height: 5px;
         border-top: 8px solid rgb(13, 167, 255);
         
         /* new css */
-        position: static;
+        position: relative;
+        font-size: medium;
+        color: blueviolet;
         
-    }
-    
-    
+
         
-   
-    
+    }   
 
 
       .bd-placeholder-img {
@@ -22,11 +21,7 @@
         user-select: none;
       }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+      
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
@@ -50,34 +45,31 @@
         -webkit-overflow-scrolling: touch;
       }
 
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-      /* .bd-mode-toggle {
+      
+      
+      @media (max-width: 600px) {
+        #footerSmall{
+          margin-left: 60px;
+          
+          padding: 90px;
+          /* background-color: brown; */
+          text-align: center;
+          align-items: center;
+          font-size: 1.2rem;
+         justify-content: center;
         
-      } */
+        }
+      }
+    
 </style>
 
 <!--Footer-->
 
 <p class="footer"></p>
-<div class="container-fluid ">
+<div class="container-fluid" >
     <footer class="py-5 " >
-      <div class="row">
-        <div class="col-6 col-md-2 mb-3 invisible">
+      <div class="row ">
+        <!-- <div class="col-6 col-md-2 mb-3 invisible">
           <h5 >Section</h5>
           <ul class="nav flex-column ">
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
@@ -86,43 +78,39 @@
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
           </ul>
-        </div>
+        </div> -->
   
-        <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        <div class="col-md-3 " id="footerSmall" style="font-size: 24px; margin-left: 60px; padding: 30px; align-items: center; ">
+          <!-- <h5>Section</h5> -->
+          <ul class="nav flex-column" style="margin-left: 30px;">
+            <li class="nav-item mb-3"><a href="#" class=" nav-link text-body-secondary">Сайттагы жанылыктар</a></li><hr>
+            <li class="nav-item mb-3"><a href="#" class=" nav-link text-body-secondary">mathKG сайты жөнүндө кыскача</a></li><hr>
+            <li class="nav-item mb-5"><a href="#" class=" nav-link text-body-secondary">Мугалимдер mathKG жөнүндө эмне дешет?</a></li><hr>
+            <li class="nav-item mb-3"><a href="#" class=" nav-link text-body-secondary">Шарттар жана жоболор</a></li>
           </ul>
         </div>
   
-        <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        <div class="col-md-3" id="footerSmall" style=" font-size: 24px;margin-left: 60px; padding: 30px; align-items: center;">
+        <ul class="nav flex-column" style="margin-left: 30px;">
+            <li class="nav-item mb-2 " ><a href="#" class="nav-link text-body-secondary overflow-wrap" >Пикир билдирүү үчүн формасы</a></li><hr>
           </ul>
         </div>
-  
-        <div class="col-md-5 offset-md-1 mb-3">
-          <form>
-            <h5>Subscribe to our newsletter</h5>
-            <p>Monthly digest of what's new and exciting from us.</p>
-            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-              <label for="newsletter1" class="visually-hidden">Email address</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-primary" type="button">Subscribe</button>
-            </div>
-          </form>
+        
+        <div class="col-md-3 " id="footerSmall" style="font-size: 24px;margin-left: 60px; padding: 30px;align-items: center;">
+          <ul class="nav flex-column" style="margin-left: 30px;" >          
+            <li class="nav-item mb-2 "><a href="#" class="nav-link  text-body-secondary" >Мени менен байланыш:<hr>mathtrainer2023@gmail.com</a></li>
+          </ul>           
         </div>
-      </div>
+      </div>      
 <!--Endof footer-->
+  </footer>
+</div>
+<hr>
+<div style="text-align: center; " >
+  &copy; 2023-<script type="text/javascript">document.write(new Date().getFullYear());</script> MathKG 
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
 
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</script>
+
