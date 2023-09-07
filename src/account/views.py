@@ -15,7 +15,7 @@ def registration_view(request):
             
             # Perform manual activation steps
             # For example, send an activation email
-            activation_link = "https://yourwebsite.com/activate/?user_id={}".format(user.id)
+            activation_link = "https://http://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
                 user.username, activation_link)
             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
