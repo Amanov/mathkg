@@ -397,9 +397,9 @@ a {
           <a class="btn btn-success mx-2" id="topMenu" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i> Чыгуу</a>
          
           {% else %}
-          <a class="btn btn-success mx-2"id="topMenu"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
-          <a class="btn btn-success mx-2" id="topMenu" href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
-          <a class="btn btn-success mx-2"  id="topMenu" href="{% url 'register' %}"><i class="fa fa-user-plus" style="font-size:24px; color:red;" aria-hidden="true"></i>
+          <a class="btn btn-success mx-2 topMenu"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
+          <a class="btn btn-success mx-2 topMenu"  href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
+          <a class="btn btn-success mx-2 topMenu"   href="{% url 'register' %}"><i class="fa fa-user-plus" style="font-size:24px; color:red;" aria-hidden="true"></i>
             Катталуу</a>
           {% endif %}
         <!-- </li>
