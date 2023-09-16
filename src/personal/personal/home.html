@@ -90,21 +90,168 @@ a:hover, a:active {
   color: white;
 } */
 
-@media (max-width: 600px) {
-  body {
-    width: 100%; /* Remove any padding that might affect the full width */
+
+
+  /* here I want to target all the screens */
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
     padding: 0;
     margin: 0;
   }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+  body ,.container{
+     /* width: 100%; Remove any padding that might affect the full width  */
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
 }
 
-/* h1, h2, h3 {
-  max-width: 100%; /* Prevent text overflow on small screens */
-*/
-.container-fluid {
-  min-height: 100vh;
-}
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+  body ,.container{
+      /*Remove any padding that might affect the full width  */  
+    padding: 0;
+    margin: 1%;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
 
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Large devices (desktops, less than 1200px) */
+
+/* End of screen target */
+
+
+.container{
+  width: 90%;
+  max-width: 600px;
+}
+  
 </style>
 
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
