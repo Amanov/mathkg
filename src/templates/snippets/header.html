@@ -1,12 +1,15 @@
 
 
 {% load static %}
+<<<<<<< HEAD
 
 
 <link href="http://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xNvA+05/j+g4x1jKdW13BuQJzahMNLM57l9nF5+YZp5v5JikkwzCw0zhMxMf0+kJGSZMg6U/R9XU9+os8uYQyQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
+=======
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css" integrity="sha512-KOWhIs2d8WrPgR4lTaFgxI35LLOp5PRki/DxQvb7mlP29YZ5iJ5v8tiLWF7JLk5nDBlgPP1gHzw96cZ77oD7zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.css" integrity="sha512-ESK1vT1m7NYUq7h7moDOb4+MwsXn/19LSt1AnIPjSWRdkS1gnF9IVg5v/KZHCMN6K6sapd0OkkcSpOeYlwABeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,7 +72,11 @@
 
 
     /* @media (max-width: 600px) {
+<<<<<<< HEAD
     /* Hide the dropdown items */
+=======
+    /* Hide the dropdown items 
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
     .dropdown-menu {
       display: none;
     }
@@ -90,9 +97,15 @@
     }
   } */
 
+<<<<<<< HEAD
   /* // X-Small devices (portrait phones, less than 576px) */ 
  @media (max-width: 575.98px) {
     .dropdown-menu {
+=======
+  /* // X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .dropdown-menu {
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
       display: none;
     }
     
@@ -119,7 +132,11 @@
    
     #searchForm{
       display: none;
+<<<<<<< HEAD
       /* background-color: #ccc; */
+=======
+      background-color: #ccc;
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
     }
     #kaitalooDropdown {
       display: none;
@@ -140,6 +157,7 @@
     }
     
     #searchForm{
+<<<<<<< HEAD
       display: none;
     }
     #kaitalooDropdown {
@@ -147,6 +165,15 @@
     }
     #starterDropdown{
       display: none;
+=======
+      display: inline-block;
+    }
+    #kaitalooDropdown {
+      display: inline-block;
+    }
+    #starterDropdown{
+      display: inline-flexbox;
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
     }
     .navbar-toggler{
       transform: translateY(-25x);
@@ -286,7 +313,11 @@
     width: calc(-100px -100px); /* Adjust width to accommodate the sidebar */
   }   
 
+<<<<<<< HEAD
   /* here I want to target all the screens for sidemenu*/
+=======
+  /* here I want to target all the screens */
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
 
 /* X-Small devices (portrait phones, less than 576px) */
    @media (max-width: 575.98px){
@@ -391,6 +422,7 @@
         /* color: #333; */
        
     }
+<<<<<<< HEAD
     .mymenuSize{
       font-size: 14px;
       transform: translateX(-85px);
@@ -401,6 +433,53 @@
         /* transform: translateX(-85px); */
       }
     
+=======
+  }
+  /* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+  .col-auto.col-md-3 {
+           display:block;  /*<!---Here how to show the menu from side--> */
+        }
+
+        /* Show the hamburger menu container */
+        .col-auto.d-md-none {
+          display: block;
+        }  
+       
+    /* Hide the entire navigation section */
+
+      .hamburger-menu {
+        display: block; /* Show the hamburger icon */
+        transform: translateY(-65px);
+        border: 3px solid rgb(15,60,88);
+        border-radius: 10px ;
+        padding-left:  10px;
+       
+      }
+
+      .sidebar{
+        /* display: none !important; */
+        transform: translateX(-100%);
+        z-index: 1;
+        display: block;
+        position:fixed;
+             
+      }
+      .sidebar.show{
+        transform: translateX(0);
+        z-index: 2;
+        
+        
+      }
+      .sidebar a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+        /* color: #333; */
+       
+    }
+ }
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
 
  /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) { 
@@ -430,8 +509,11 @@
         z-index: 1;
         display: block;
         position:fixed;
+<<<<<<< HEAD
         width: 150px;
 
+=======
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
              
       }
       .sidebar.show{
@@ -445,6 +527,7 @@
         padding: 5px;
         text-decoration: none;
         /* color: #333; */
+<<<<<<< HEAD
       }
       .mymenuSize{
         font-size: 14px;
@@ -457,6 +540,11 @@
       }
  }
 }
+=======
+       
+    }
+ }
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
  /* // Large devices (desktops, less than 1200px) */
   /* End of screen target */
 
@@ -479,7 +567,11 @@ a {
 	text-decoration: none; 
   /* width: 220px;
   height: 40px; */
+<<<<<<< HEAD
   /* font-size: 18px; */
+=======
+  font-size: 18px;
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
   line-height: 1.5rem;
   /* background-color: #008fff; */
 }
@@ -495,8 +587,12 @@ a {
 	transition:right .25s ease-in;
   top:0;
 	right:-100%;
+<<<<<<< HEAD
 	width:100%; */
   /* font-size: 14px; */
+=======
+	width:100%;
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
   padding: 0;
 
 }
@@ -561,8 +657,11 @@ a {
   /* width: 200px; */
   text-transform: uppercase;
 
+<<<<<<< HEAD
 }
 
+=======
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
 /* End of the resizing view slide menu */
 </style>
 <!-- HEADER -->
@@ -606,6 +705,7 @@ a {
         </li>
         <li class="nav-item">
           {% if request.user.is_authenticated %}
+<<<<<<< HEAD
           <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red"></i> Башкы бет</a> 
           
           <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i> Чыгуу</a>
@@ -614,13 +714,27 @@ a {
           <a class="btn btn-success mx-2 topMenu text-uppercase"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
           <a class="btn btn-success mx-2 topMenu text-uppercase"  href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
           <a class="btn btn-success mx-2 topMenu text-uppercase"  href="{% url 'register' %}"><i class="fa fa-user-plus" style="font-size:24px; color:red;" ></i>
+=======
+          <a class="btn btn-success mx-2 topMenu" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red"></i> Башкы бет</a> 
+          
+          <a class="btn btn-success mx-2 topMenu" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i> Чыгуу</a>
+         
+          {% else %}
+          <a class="btn btn-success mx-2 topMenu"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
+          <a class="btn btn-success mx-2 topMenu"  href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
+          <a class="btn btn-success mx-2 topMenu"   href="{% url 'register' %}"><i class="fa fa-user-plus" style="font-size:24px; color:red;" aria-hidden="true"></i>
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
             Катталуу</a>
           {% endif %}
         <!-- </li>
         <li class="nav-item"> -->
           {% if request.user.is_authenticated %}
           <!-- <a class="btn btn-success mx-2" >Менин Баракчам</a> -->
+<<<<<<< HEAD
           <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'account' %}">
+=======
+          <a href="{% url 'account' %}" class="btn btn-success mx-2 topMenu" id="accountTop">
+>>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
             <i class="fa fa-user" style="font-size:24px;color:red;"> </i>  {{ request.user.username }}
           </a>          
           {% endif %}
