@@ -21,14 +21,14 @@
   }
 
   html {
-    height: 100%;    
+    height: 100%;
     text-align: left;
   }
 .container{
   width: 100%;
 }
 
-  
+
 
   /* Sidebar */
   .sidebar {
@@ -42,7 +42,7 @@
     transition: transform 0.3 ease;
     /* transition: translation(-100%); */
     margin: 0;
-    
+
   }
   /* Trying to make vertical menu toggle menu */
   .sidebar.show{
@@ -51,7 +51,7 @@
   .sidebar a {
     display: block;
   }
- 
+
   .navbar {
       z-index: 1;
     }
@@ -60,9 +60,9 @@
        z-index: 80;
        top:58px;
     }
-    .navbar-toggler {  
+    .navbar-toggler {
          margin-left: 90% !important;
-         
+
     }
     /* Here is top toggle menu targeting for different screen size */
 
@@ -75,7 +75,7 @@
     }
     /* .form-control, .btn-success[type="submit"] {
       display: none;
-    } 
+    }
     #searchForm{
       display: none;
     }
@@ -90,12 +90,12 @@
     }
   } */
 
-  /* // X-Small devices (portrait phones, less than 576px) */ 
+  /* // X-Small devices (portrait phones, less than 576px) */
  @media (max-width: 575.98px) {
     .dropdown-menu {
       display: none;
     }
-    
+
     #searchForm{
       display: none;
     }
@@ -109,14 +109,14 @@
       transform: translateY(-25x);
     }
   }
- 
+
 
 /* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   .dropdown-menu {
       display: none;
     }
-   
+
     #searchForm{
       display: none;
       /* background-color: #ccc; */
@@ -131,14 +131,14 @@
       transform: translateY(-25x);
     }
   }
- 
+
 
 /* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) { 
+@media (max-width: 991.98px) {
   .dropdown-menu {
       display: none;
     }
-    
+
     #searchForm{
       display: none;
     }
@@ -158,7 +158,7 @@
 
 
 /* End of the targetiing screen size */
-    
+
   /* Box Element */
   .box {
     border-radius: 5px;
@@ -211,7 +211,7 @@
     }
 
     /* sliding menu and submenus */
- 
+
     /*  */
 
   /* Button */
@@ -239,7 +239,7 @@
   body {
     color: green;
   }
-  
+
 
 
 /* Hamburger menu icon */
@@ -247,7 +247,7 @@
     display: none; /* Hide by default */
     position: fixed;
     top: 80px;
-    left: 30px;    
+    left: 30px;
     cursor: pointer;
     z-index: 2;
 }
@@ -284,7 +284,7 @@
   /* Adjust main content when sidebar is shown*/
   main.sidebar-shown {
     width: calc(-100px -100px); /* Adjust width to accommodate the sidebar */
-  }   
+  }
 
   /* here I want to target all the screens for sidemenu*/
 
@@ -298,8 +298,8 @@
         /* Show the hamburger menu container */
         .col-auto.d-md-none {
           display: block;
-        }  
-       
+        }
+
     /* Hide the entire navigation section */
 
       .hamburger-menu {
@@ -308,7 +308,7 @@
         border: 3px solid rgb(15,60,88);
         border-radius: 10px ;
         padding-left:  10px;
-       
+
       }
 
       .sidebar{
@@ -322,8 +322,8 @@
       .sidebar.show{
         transform: translateX(0);
         z-index: 2;
-        
-        
+
+
       }
       .sidebar a {
         display: block;
@@ -335,7 +335,7 @@
       .mymenuSize{
           font-size: 14px;
           transform: translateX(-85px);
-        
+
       }
       .subMenuAdj{
         font-style: normal;
@@ -344,10 +344,10 @@
         /* transform: translateX(-85px); */
       }
  }
-    
-  
+
+
   /* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) { 
+@media (max-width: 767.98px) {
   .col-auto.col-md-3 {
            display:block;  /*<!---Here how to show the menu from side--> */
         }
@@ -355,8 +355,8 @@
         /* Show the hamburger menu container */
         .col-auto.d-md-none {
           display: block;
-        }  
-       
+        }
+
     /* Hide the entire navigation section */
 
       .hamburger-menu {
@@ -365,7 +365,7 @@
         border: 3px solid rgb(15,60,88);
         border-radius: 10px ;
         padding-left:  10px;
-       
+
       }
 
       .sidebar{
@@ -376,20 +376,20 @@
         position:fixed;
         width: 150px;
 
-             
+
       }
       .sidebar.show{
         transform: translateX(0);
         z-index: 2;
-        
-        
+
+
       }
       .sidebar a {
         display: block;
         padding: 5px;
         text-decoration: none;
         /* color: #333; */
-       
+
     }
     .mymenuSize{
       font-size: 14px;
@@ -400,10 +400,10 @@
         text-transform: lowercase;
         /* transform: translateX(-85px); */
       }
-    
+
 
  /* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) { 
+@media (max-width: 991.98px) {
   .col-auto.col-md-3 {
            display:block;  /*<!---Here how to show the menu from side--> */
         }
@@ -411,8 +411,8 @@
         /* Show the hamburger menu container */
         .col-auto.d-md-none {
           display: block;
-        }  
-       
+        }
+
     /* Hide the entire navigation section */
 
       .hamburger-menu {
@@ -421,7 +421,7 @@
         border: 3px solid rgb(15,60,88);
         border-radius: 10px ;
         padding-left:  10px;
-       
+
       }
 
       .sidebar{
@@ -432,13 +432,13 @@
         position:fixed;
         width: 150px;
 
-             
+
       }
       .sidebar.show{
         transform: translateX(0);
         z-index: 2;
-        
-        
+
+
       }
       .sidebar a {
         display: block;
@@ -476,7 +476,7 @@ a {
 	/* padding: 15px 20px  50px; */
   position:relative;
 	color:white;
-	text-decoration: none; 
+	text-decoration: none;
   /* width: 220px;
   height: 40px; */
   /* font-size: 18px; */
@@ -527,7 +527,7 @@ a {
    height: 40px;
    display: inline;
    /* padding: 5px; */
-   
+
 }
 @media (max-width: 600px){
     #topMenu{
@@ -535,13 +535,13 @@ a {
       width: 130px;
       height: 40px;
       margin-left: 10px;
-    }  
+    }
 }
 /* #accountTop{
-  
+
   width: 160px;
   height: 40px;
-  
+
 } */
 @media (max-width:600px){
   #accountTop{
@@ -552,8 +552,8 @@ a {
    }
 }
 .mymenuSize{
-     width: 220px; 
-     font-size:24px; 
+     width: 220px;
+     font-size:24px;
 }
 
 .subMenuAdj{
@@ -606,10 +606,10 @@ a {
         </li>
         <li class="nav-item">
           {% if request.user.is_authenticated %}
-          <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red"></i> Башкы бет</a> 
-          
+          <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red"></i> Башкы бет</a>
+
           <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="font-size:24px;color:red"></i> Чыгуу</a>
-         
+
           {% else %}
           <a class="btn btn-success mx-2 topMenu text-uppercase"  href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="font-size:24px;color:red;"></i> Башкы бет</a>
           <a class="btn btn-success mx-2 topMenu text-uppercase"  href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="font-size:24px;color:red;"></i>Кирүү</a>
@@ -622,9 +622,9 @@ a {
           <!-- <a class="btn btn-success mx-2" >Менин Баракчам</a> -->
           <a class="btn btn-success mx-2 topMenu text-uppercase" href="{% url 'account' %}">
             <i class="fa fa-user" style="font-size:24px;color:red;"> </i>  {{ request.user.username }}
-          </a>          
+          </a>
           {% endif %}
-        </li>      
+        </li>
       </ul>
     </div>
   </div>
@@ -633,15 +633,15 @@ a {
 
 <!-- Beginning of vertical menu  -->
 <!-- <nav class="navbar navbar-expand-lg py-3  " aria-label="Tenth navbar example" > -->
- 
+
  <div class="container "  style="padding-top: 80px; ">
   <div class="hamburger-menu" style="width: 50px; height: 40px; ">
     <div class="bar"></div >   <!----Here can make as a bar again with help of div-->
-    <div class="bar"> </div > 
-    <div class="bar"> </div > 
+    <div class="bar"> </div >
+    <div class="bar"> </div >
   </div>
-  <div class="row flex-nowrap sidebar bg-body-tertiary " > 
-    
+  <div class="row flex-nowrap sidebar bg-body-tertiary " >
+
     <!-- Hamburger Menu Container -->
     <div class="col-12 d-md-none">
       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedMenu" aria-controls="collapsedMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -653,14 +653,14 @@ a {
         </ul>
       </div>
     </div>
-      
+
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 "  >
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100 ms-auto">                
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2  min-vh-100 ms-auto">
               <ul class="nav navbar-nav flex-column ms-auto mb-sm-auto mb-0 align-items-center align-items-sm-start ml-menu " id="menu" id="hamburger-icon" >
                   <li>
                     <!-- Sandar/Numbers  -->
                     <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3  flex-column flex-shrink-0 "  >
-                      <a class="btn btn-sm  btn-outline-primary align-items-center text-uppercase dropdown-toggle dropdown-toggle-split mx-2 mymenuSize " data-bs-toggle="dropdown" aria-expanded="false" ><i class='fa fa-calculator' aria-hidden="true"> &nbsp;</i>Сандар                 
+                      <a class="btn btn-sm  btn-outline-primary align-items-center text-uppercase dropdown-toggle dropdown-toggle-split mx-2 mymenuSize " data-bs-toggle="dropdown" aria-expanded="false" ><i class='fa fa-calculator' aria-hidden="true"> &nbsp;</i>Сандар
                       </a>
                       <ul class="dropdown-menu ml-submenu "  >
                         <!-- Dropdown  menu links -->
@@ -718,7 +718,7 @@ a {
                               <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
                             </li>
                           </ul>
-                        </li>  
+                        </li>
                         <!--  -->
                         <li>
                           <a class="btn btn-primary text-uppercase" style="margin: 0;">Эквиваленттүүлүк</a>
@@ -935,8 +935,8 @@ a {
                   <li>
                     <li>
                       <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
-                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fa fa-percent " aria-hidden="true">&nbsp;</i>Пропорция               
-                          
+                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fa fa-percent " aria-hidden="true">&nbsp;</i>Пропорция
+
                         </a>
                         <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                           <span class="visually-hidden">Toggle Dropend</span>
@@ -977,7 +977,7 @@ a {
                               </li>
                             </ul>
                           </li>
-                          
+
                           <li>
                             <a class="btn btn-primary text-uppercase" style="margin: 0;">графиктер </a>
                             <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
@@ -995,7 +995,7 @@ a {
                               </li>
                             </ul>
                           </li>
-                            
+
                           <li>
                             <a class="btn btn-primary text-uppercase" style="margin: 0;">пайыз: эсептегич</a>
                             <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
@@ -1069,18 +1069,18 @@ a {
                           </li>
 
 
-                          </li>   
+                          </li>
                         </ul>
                       </div>
-                      
+
                     </li>
                     <!-- end of Proportion/ propostia -->
                     <!-- <div class="b-example-divider"></div> -->
                     <!-- beginning of algebra/algfebra -->
                     <li>
                       <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
-                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class='fa fa-superscript' aria-hidden="true">&nbsp;  </i>Алгебра                
-                          
+                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class='fa fa-superscript' aria-hidden="true">&nbsp;  </i>Алгебра
+
                         </a>
                         <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                           <span class="visually-hidden">Toggle Dropend</span>
@@ -1243,7 +1243,7 @@ a {
                               <li>
                                 <a class="dropdown-item text-uppercase" href="#">Submenu item 4</a>
                               </li>
-                              <li> 
+                              <li>
                                 <a class="dropdown-item text-uppercase" href="#">Submenu item 5</a>
                               </li>
                             </ul>
@@ -1292,8 +1292,8 @@ a {
                   <!-- Begiining of geometry -->
                     <li>
                       <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
-                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false"  ><i class="fa fa-cube" aria-hidden="true">&nbsp;</i> Геометрия                 
-                          
+                        <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false"  ><i class="fa fa-cube" aria-hidden="true">&nbsp;</i> Геометрия
+
                         </a>
                         <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                           <span class="visually-hidden">Toggle Dropend</span>
@@ -1335,7 +1335,7 @@ a {
                               </li>
                             </ul>
                           </li>
-                          
+
                           <li>
                             <a class="btn btn-primary text-uppercase" style="margin: 0;">багыттоолор</a>
                             <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
@@ -1407,7 +1407,7 @@ a {
                               </li>
                             </ul>
                           </li>
-                            
+
                           <li>
                             <a class="btn btn-primary text-uppercase" style="margin: 0;">геометриялык өлчөө</a>
                             <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
@@ -1536,16 +1536,16 @@ a {
 
 
 
-                        </ul>                        
-                      </div>                      
-                    </li>                 
+                        </ul>
+                      </div>
+                    </li>
                   <!-- end of geometry-->
                   <!-- <div class="b-example-divider"></div> -->
                   <!-- Beginnning of Data -->
                   <li>
                     <div class="btn-group  dropend d-flex gap-1 justify-content-center py-3">
-                      <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fa fa-line-chart" aria-hidden="true" >&nbsp;</i> Дата                 
-                        
+                      <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false" ><i class="fa fa-line-chart" aria-hidden="true" >&nbsp;</i> Дата
+
                       </a>
                       <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropend</span>
@@ -1553,8 +1553,8 @@ a {
                       <ul class="dropdown-menu" style="padding:0;">
                         <!-- Dropdown  menu links -->
                         <li>
-                          <button type="button" class="btn  btn-primary text-uppercase">Анализдөө               
-                        
+                          <button type="button" class="btn  btn-primary text-uppercase">Анализдөө
+
                           </button>
                           <!-- <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="visually-hidden">Toggle Dropend</span>
@@ -1585,7 +1585,7 @@ a {
                               <a class="dropdown-item" href="#">Submenu item 5</a>
                             </li>
                           </ul>
-                        </li>  
+                        </li>
 
                         <li>
                           <a class="btn btn-primary text-uppercase" style="margin: 0;">маалымат жыштыктары</a>
@@ -1603,7 +1603,7 @@ a {
                               <a class="dropdown-item" href="#">Submenu item 5</a>
                             </li>
                           </ul>
-                        </li> 
+                        </li>
 
                         <li>
                           <a class="btn btn-primary text-uppercase" style="margin: 0;">Берилиштерди чагылдыруу</a>
@@ -1622,18 +1622,18 @@ a {
                             </li>
                           </ul>
                         </li>
-                        
-                        
 
-                      </ul>                        
-                    </div>                      
-                  </li> 
+
+
+                      </ul>
+                    </div>
+                  </li>
                   <!-- end of Data -->
                   <!-- <div class="b-example-divider"></div> -->
                   <!-- Beginning of probability -->
                   <li>
                     <div class="btn-group  dropend d-flex gap-3 justify-content-center py-3">
-                      <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false">Ыктымалдуулук 
+                      <a type="button" class="btn btn-lg  btn-outline-primary  align-items-center  dropdown-toggle dropdown-toggle-split text-uppercase mx-2 mymenuSize" data-bs-toggle="dropdown" aria-expanded="false">Ыктымалдуулук
                       </a>
                       <!-- <button type="button" class="btn btn-secondary button1 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropend</span>
@@ -1674,7 +1674,7 @@ a {
                               <a class="dropdown-item" href="#">Submenu item 5</a>
                             </li>
                           </ul>
-                        </li>   
+                        </li>
 
                         <li>
                           <a class="btn btn-primary text-uppercase" style="margin: 0;">жыштык дарак диаграммасы</a>
@@ -1729,7 +1729,7 @@ a {
                             </li>
                           </ul>
                         </li>
-                        
+
 
                         <li>
                           <a class="btn btn-primary text-uppercase" style="margin: 0;">Венн диаграммалары</a>
@@ -1766,22 +1766,22 @@ a {
                             </li>
                           </ul>
                         </li>
-                        
 
-                      </ul>                        
-                    </div>                      
+
+                      </ul>
+                    </div>
                   </li>
-                                   
+
                 </li>
-                
+
               </ul>
-                 
-      </div> 
-    
+
+      </div>
+
     </div>
-  
+
   </div>
-</div> 
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -1799,7 +1799,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// This part of the JavaScript it for sliding menu 
+// This part of the JavaScript it for sliding menu
 $('.ml-has-submenu').on('click', function(e){
 	$(this).next().addClass('open');
 });
