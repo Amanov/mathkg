@@ -2,12 +2,12 @@ from django.shortcuts import render
 from account.models import Account
 from .models import pdfFile
 
-#from chatgpt 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.http import HttpResponse, Http404
 from django.conf import settings
 import os
+
 #rest framework permissions
 
 # for downlaoding files
@@ -22,8 +22,7 @@ def home_screen_view(request):
 
        #first way of passing variable into html
        context ={}
-       
-       
+
 
        # context['some_string'] = "this is some string that i'am passing to the view"
        # context['some_number'] = 876432837
@@ -45,7 +44,7 @@ def home_screen_view(request):
        # questions =Question.objects.all()
        # context['questions']=questions
 
-       #quering users 
+       #quering users
        accounts =Account.objects.all()
        context['accounts'] = accounts,
 
@@ -53,7 +52,13 @@ def home_screen_view(request):
 
        return render(request,"personal/home.html",context)
 
-#creating views for sandar pages
+
+
+# view for success
+def success_view(request):
+       return render(request, "personal/sandar/SuccessMessage.html",{})  #  success message view
+
+# creating views for sandar pages
 def four_basic_operations_view(request):
        return render(request,"personal/sandar/four_basic_operations.html",{})
 
@@ -68,17 +73,14 @@ def onedigitarithmetics_view(request):
        return render(request,"personal/onduktar/onedigitarithmetics.html",{})
 
 
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
-from django.conf import settings
-import os
+
 
 @login_required
 def download_file(request, file_name):
     # Check if the user is authenticated before allowing file download
     if request.method == 'GET':
         file_path = os.path.join(settings.MEDIA_ROOT, file_name)  # Assuming the file is stored in the media root directory
-        
+
         if os.path.exists(file_path):
             with open(file_path, 'rb') as file:
                 response = HttpResponse(file.read(), content_type='application/vnd.ms-powerpoint')

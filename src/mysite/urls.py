@@ -23,12 +23,12 @@ from django.conf.urls.static import static
 
 from mysite import download_file
 
-# Accessing folders in media 
+# Accessing folders in media
 
 
 
 
-# 
+#
 from personal.views import (
     home_screen_view,
     #more views
@@ -36,6 +36,7 @@ from personal.views import (
     directed_numbers_view,
     all_operations_view,
     onedigitarithmetics_view,
+    success_view,
     )
 
 from account.views import (
@@ -49,19 +50,27 @@ from account.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
     path('', home_screen_view, name='home'),
+    path('home/', home_screen_view, name='home'), #root
     path('register/', registration_view, name='register'),
     path('registerSchool/', registerSchool_view, name='registerSchool'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_view, name='login'),
     path('account/', account_view, name='account'),
 
+
+
+    path('', include('django.contrib.auth.urls')),
+
+
+
     #REST FRAMEWORK URLS
 
     path('api/account',include('account.api.urls','account_api')),
 
     #link paths to the sandar pages
+    path('SuccessMessage/', success_view, name='SuccessMessage'),
+
     path('four_basic_operations/',four_basic_operations_view, name='four_basic_operations'),
     path('directed_numbers/',directed_numbers_view, name='directed_numbers'),
     path('all_operations',all_operations_view, name='all_operations'),
@@ -71,11 +80,11 @@ urlpatterns = [
     # here i am trying to add other urls to go a link
     path('download/<str:file_name>/', download_file, name='download_file'),
     # path('four-operations/', views.four_operations, name='four_operations'),
-    
+
     #password recovering
     #path('account/', include('django.contrib.auth.urls')), it will give an error interfere with to others
     path('password_change/done/',auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),
-    
+
     path('password_change/',auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), name='password_change'),
 
     path('password_reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
@@ -88,7 +97,6 @@ urlpatterns = [
 
     # trying to link html file
     #  path('operations/',operations_view,name='fourOperation.html'),
-
 
 ]
 if settings.DEBUG:

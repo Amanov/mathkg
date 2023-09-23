@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %} Башкы бет {%endblock%}
 
 {% load static %}
 
@@ -63,51 +64,176 @@ hr{
     text-align: center;
     
     }
-    /* @media (max-width: 600px) {
-    /* Adjust styles for smaller screens */
-    /* .custom-card {
-        max-width: 20%; /* Take up full width on smaller screens */
-        /* padding: 2px; /* Increase padding for better spacing */
-        /* margin: 0; Reset margin for proper alignment */ */ */
-    /* } */ */
-/* } */
+   
   .custom-card h2 {
     margin: 0;
   }
-  /* a:link, a:visited {
-  background-color: white;
-  color: black;
-  border: 2px solid green;
-  border-radius: 20px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
 
-a:hover, a:active {
-  background-color: green;
-  color: white;
-} */
+  /* here I want to target all the screens */
 
-@media (max-width: 600px) {
-  body {
-    width: 100%; /* Remove any padding that might affect the full width */
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
     padding: 0;
     margin: 0;
   }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
 }
+}
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+  body ,.container{
+     /* width: 100%; Remove any padding that might affect the full width  */
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+  body ,.container{
+      /*Remove any padding that might affect the full width  */  
+    padding: 0;
+    margin: 1%;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Large devices (desktops, less than 1200px) */
+
+/* End of screen target */
 
 /* h1, h2, h3 {
   max-width: 100%; /* Prevent text overflow on small screens */
 */
-.container-fluid {
-  min-height: 100vh;
+.container{
+  width: 90%;
+  max-width: 600px;
 }
 
 </style>
 
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+<div class="container d-flex flex-column justify-content-center align-items-center">
   <div class="position-relative p-5 text-center" >
     <h1>Математика мугалимдери үчүн даяр материалдар</h1> 
     <hr>
@@ -143,36 +269,56 @@ a:hover, a:active {
       
       <!---Second sections-->
       <hr>
-      <div class="container-fluid">
-        <div class="col-md-12 custom_border" style="background-color: springgreen;">
+      <div class="container">
+        <!-- <div class="col-md-12 custom_border" style="background-color: springgreen;">
           <div class="h-100 rounded-1">
             <div class="d-flex flex-column text-left overflow-wrap">
               <h3 class="fw-bold" >Эсиңизде болсун, педагог катары таасириңиз муундарды калыптандырат. 
                 Таасирлүү мугалимдердин бири болунуз</h3>
             </div>
           </div>
-        </div>
+        </div> -->
       
       <!-- registration buttons -->
       {% if user.is_authenticated %}
        <!-- User is logged in, hide registration links -->
       {% else %}
       <!-- <div class="container-fluid"  > -->
-        <br>
-        <div class="row" >
-          <div class="col-md-4 col-sm-6" style="margin-left:15%; margin-top: 5%;border: 3px solid blue;border-radius: 6px;" >
-            <div class="custom-card" style="border-radius: 30px; margin: 30px;">
-              <div class="h-50 p-0 bg-body-tertiary">
-                 <a href="{% url 'register' %}"><h2 class="text-decoration-none">жеке катталуу <br> 1000 сом</h2></a>
+        <hr>
+        <div class=" mb-3 text-center" >
+          <div class="col" >
+            <div class="card mb-4 rounded-3 shadow-sm" >
+              <div class="card-header py-3" >
+                <h2 class="my-0 fw-normal">Катталыңыз</h2>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title pricing-card-title">1000 с<small class="text-body-secondary fw-light">/жылына</small></h2>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Презентациялар бекер</li>
+                  <li>көнүгүүлөр бекер</li>
+                  <li>электрондук почта колдоо</li>
+                  <!-- <li>Help center access</li> extra help can be addedd-->
+                </ul>
+                <a href="{% url 'register' %}" type="button" class=" btn btn-lg btn-primary">Катталыңыз</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-sm-6"   style="padding: 0%;margin-left:15%;margin-top: 5%;border: 3px solid blue;border-radius: 6px;">
-            <div class=" custom-card" style="border-radius: 30px; margin: 30px;">
-              <div class="h-50 p-0 bg-body-tertiary">
-                <a href="{% url 'registerSchool' %}"><h2 class="text-decoration-none">мектеп катталуу<br> 3000 сом</h2></a>
+          <div class="col">
+            <!-- <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h2 class="my-0 fw-normal">Мектепти каттаңыз</h2>
               </div>
-            </div>
+              <div class="card-body">
+                <h2 class="card-title pricing-card-title">3000 c<small class="text-body-secondary fw-light">/mo</small></h2>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Презентациялар бекер</li>
+                  <li>көнүгүүлөр бекер</li>
+                  <li>3 мугалим </li>
+                  <!-- <li>Help center access</li> 
+                </ul>
+                <a href="{% url 'registerSchool' %}" type="button" class="w-100 btn btn-lg btn-primary">Катталыңыз</a>
+              </div>
+            </div> -->
           </div>
         </div>
       <!-- </div> -->
