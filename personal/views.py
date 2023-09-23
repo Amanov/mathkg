@@ -21,8 +21,7 @@ def home_screen_view(request):
        # print(request.headers)
 
        #first way of passing variable into html
-       context ={}
-       
+       context ={}   
        
 
        # context['some_string'] = "this is some string that i'am passing to the view"
@@ -53,7 +52,13 @@ def home_screen_view(request):
 
        return render(request,"personal/home.html",context)
 
-#creating views for sandar pages
+
+
+# view for success
+def success_view(request):
+       return render(request, "personal/sandar/SuccessMessage.html",{})  #  success message view
+
+# creating views for sandar pages
 def four_basic_operations_view(request):
        return render(request,"personal/sandar/four_basic_operations.html",{})
 

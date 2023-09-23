@@ -3,14 +3,16 @@ from django.contrib.auth import login, authenticate,logout
 from account.forms import RegistrationForm,AccountAuthenticationForm,AccountUpdateForm
 from django.core.mail import send_mail
 from .models import Account
+from django.contrib import messages
 
+from .forms import RegistrationForm
 
 # Create your views here.
 #User registration 
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() :    
             user = form.save()
             
             # Perform manual activation steps
@@ -23,15 +25,24 @@ def registration_view(request):
             # Display a success message to the user
             # Redirect to a thank you or activation pending page
             # ...
-            messages.success(request, 'Registration is successful. Please wait for activation.')
-            return redirect('home')
+
+            # login(request, user)
+
+            messages.success(request, "Registration is successful. Please for activation")
+            # print("Success")
+            return redirect('SuccessMessage')
     else:
         form = RegistrationForm()
-    
-    # Render the registration form template
+        print("failure")
+        
+     # Render the registration form template
     context = {'form': form}
     return render(request, 'account/register.html', context)
 #
+#register success
+
+
+
 
 #School  registration 
 def registerSchool_view(request):
@@ -42,7 +53,7 @@ def registerSchool_view(request):
             
             # Perform manual activation steps
             # For example, send an activation email
-            activation_link = "https://yourwebsite.com/activate/?user_id={}".format(user.id)
+            activation_link = "https://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
                 user.username, activation_link)
             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
@@ -51,7 +62,7 @@ def registerSchool_view(request):
             # Redirect to a thank you or activation pending page
             # ...
             messages.success(request, 'Registration is successful. Please wait for activation.')
-            return redirect('home')
+            return redirect('SuccessMessage')
     else:
         form = RegistrationForm()
     
@@ -62,36 +73,31 @@ def registerSchool_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 
 #User Login
-
 def login_view(request):
-
-    context ={}
-
-    user = request.user
-    if user.is_authenticated:
-        return redirect("home")
-    
-    if request.POST:
+    if request.method == 'POST':
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
-            email=request.POST['email']
-            password = request.POST['password']
-            user = authenticate(email=email,password=password)
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(request, email=email, password=password)
 
-            if user:
-                login(request,user)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Login successful!')  # Add a success message
                 return redirect("home")
-            
+            else:
+                messages.error(request, 'Invalid email or password.')  # Add an error message
     else:
-        form =AccountAuthenticationForm()
+        form = AccountAuthenticationForm()
 
-    context['login_form'] = form
-    return render(request, 'account/login.html',context)
+    context = {'form': form}
+    return render(request, 'account/login.html', context)
+
 
 #account update
 def account_view(request):

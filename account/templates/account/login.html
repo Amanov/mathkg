@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
+{% block title %} Кирүү {%endblock%}
+
 {% load static %}
 
+{% load crispy_forms_tags %}
+
+
 {% block content %}
+
 <!--beginning of the Styling-->
 <style>
   body{
-    margin-left: 200px;
+    margin-left: 25%;
     /* margin-top: 40px ; */
      
   }
@@ -16,156 +22,100 @@
     margin: 0;
   }
 }
-  .mainshadow{
+ .mainshadow{
     box-shadow: 0 0 20px rgb(13, 167, 255);    
   }
 
     
   
   .form-signin {
-    max-width: 600px;
+    /* max-width: 600px; */
     padding: 15px;
-    background-color:rgb(34, 133, 195);
+    /* background-color:rgb(34, 133, 195); */
     position: relative;
     width: 100%;
     height: auto;
-    font-size: 36px;
     
+}
+.container{
+  width: 100%;
+}
+
+
+
+.h3{
+  text-align: center;
+} 
+
+/*- Here is from bootstrap-*/
+html,
+body {
+  height: 100%;
+}
+
+body {  
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 2%;
 }
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
-
 }
 
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  font-size: 36px;
 }
 
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  font-size: 36px;
-}
-.h3{
-        text-align: center;
-    } 
-
-    /* a:link, a:visited {
-  background-color: white;
-  color: black;
-  border: 2px solid green;
-  border-radius: 20px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
 }
 
-a:hover, a:active {
-  background-color: green;
-  color: white;
-}  */
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     
 
+/*--End of bootstrap --*/
 </style>
 
 <!--END of the Styling-->
-
-
-
-
-<!--beginning of the Styling-->
-<style>
-  /* Your existing CSS styles here */
-</style>
-
-<!--END of the Styling-->
-
 <!--beggining of the form-->
 <div class="container justify-content-center align-items-center">
-  
-  <form class="form-signin m-auto mainshadow" method="post" action="{% url 'login' %}">{% csrf_token %}
+  <form class="form-signin m-auto mainshadow" name="login" method="post"  action="{% url 'login' %}" >
+    {% csrf_token %}  {{form|crispy}} 
     
-    
-    <h1 class="h3 mb-3 fw-normal" style="color: bisque;">Вебсайтка кирүү</h1>
-    
-    <div class="form-floating" style="margin: 30px;">
-      <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" required>
-    </div>
-    <div class="form-floating" style="margin: 30px;">
-      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" required>
-    </div>
+    <!-- <p>Do not have an account ? Create one <a href="{% url 'register'%}">here</a></p> -->
 
-    <!-- Display form errors -->
-    {% for field in login_form %}
-      {% for error in field.errors %}
-        <p style="color: rgb(14, 213, 130)">{{ error }}</p>
-      {% endfor %}
-    {% endfor %}
     
-    <!-- Display non-field errors -->
-    {% if login_form.non_field_errors %}
-      <div style="color: rgb(90, 3, 3);">
-        <p>{{ login_form.non_field_errors }}</p>
-      </div>
-    {% endif %}
+    <button class="w-100 btn btn-lg btn-success" type="submit">Вебсайтка кирүү</button>
     
-    <button class="w-100 btn btn-lg btn-success" type="submit" style="width: 300px; height: 40px;">Вебсайтка кирүү</button>
-    <div class="d-flex flex-column"> 
-      <a class="w-100 btn btn-success anchorNew" href="{% url 'password_reset' %}"><h6>менин сырсөзүмдү кайра коюу</h6></a>
-    </div>
   </form>
+  <div class="d-flex flex-column align-items-center" style="width: 30%; margin-left: 30%; margin-top: 10%; margin-bottom: 10%;"> 
+      <a class=" btn btn-danger" href="{% url 'password_reset' %}" ><h6>менин сырсөзүмдү кайра коюу</h6></a>
+    </div>
 </div>
 
-<!-- Add this script at the end of your template, after including jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('.ml-has-submenu').on('click', function(e) {
-      $(this).next().addClass('open');
-    });
-
-    // Function to show a success popup after form submission
-    function showSuccessPopup(message) {
-      // Create a modal or use an alert, modify as needed
-      // Here, I'm using a simple JavaScript alert
-      alert(message);
-    }
-
-    // Handle form submission
-    $('form').on('submit', function(event) {
-      event.preventDefault(); // Prevent the default form submission
-      
-      // Perform an AJAX request to submit the form
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        success: function(response) {
-          // Assuming the server sends a 'success' message on successful login
-          if (response.status === 'success') {
-            // Redirect the user to the main page
-            window.location.href = '/main-page/';
-          } else {
-            // Handle other responses or errors
-          }
-        },
-        error: function(xhr, errmsg, err) {
-          // Handle errors
-        }
-      });
-    });
-
-    // Show the success popup when the main page loads
-    if (window.location.pathname === '/main-page/') {
-      showSuccessPopup('Login successful! Welcome to the main page.');
-    }
-  });
-</script>
 
 {% endblock content %}
 

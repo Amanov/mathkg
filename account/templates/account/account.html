@@ -1,16 +1,64 @@
 {% extends 'base.html' %}
+{% block title %} Менин Баракчам {%endblock%}
+{% load static %}
 
+{% load crispy_forms_tags %}
 {% block content %}
 <style>
-  body{
-    margin-left: 200px;
+ body{
+    margin-left: 25%;
     /* margin-top: 40px ; */
      
   }
+  @media (max-width: 600px) {
+  body {
+    width: 100%; /* Remove any padding that might affect the full width */
+    padding: 0;
+    margin: 0;
+  }
+}
+ .mainshadow{
+    box-shadow: 0 0 20px rgb(13, 167, 255);    
+  }
+
+    
+  
+  .form-signin {
+    /* max-width: 600px; */
+    padding: 15px;
+    /* background-color:rgb(34, 133, 195); */
+    position: relative;
+    width: 100%;
+    height: auto;
+    
+}
+.container{
+  width: 100%;
+}
+
+
+
+.h3{
+  text-align: center;
+} 
+
+/*- Here is from bootstrap-*/
+html,
+body {
+  height: 100%;
+}
+
+body {  
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+}
+
 .form-signin {
-        max-width: 330px;
-        padding: 15px;
-       
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 2%;
 }
 
 .form-signin .form-floating:focus-within {
@@ -18,19 +66,31 @@
 }
 
 .form-signin input[type="email"] {
-  margin-bottom: 10px;
+  margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="username"] {
+.form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.h3{
-        text-align: center;
-    }
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     
+
  
 </style>
 
@@ -38,7 +98,7 @@
 
 <!--beggining of the form-->
 <form class="form-signin m-auto" method ="post"> 
-  {% csrf_token %}
+  {% csrf_token %} {{form|crispy}}
 
     <h1 class="h3 mb-3 fw-normal" >Колдонуучунун аккаунту</h1> 
     

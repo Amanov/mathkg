@@ -36,6 +36,7 @@ from personal.views import (
     directed_numbers_view,
     all_operations_view,
     onedigitarithmetics_view,
+    success_view,
     )
 
 from account.views import (
@@ -48,20 +49,28 @@ from account.views import (
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    
+    path('admin/', admin.site.urls),    
     path('', home_screen_view, name='home'),
+    path('home/', home_screen_view, name='home'), #root
     path('register/', registration_view, name='register'),
     path('registerSchool/', registerSchool_view, name='registerSchool'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_view, name='login'),
     path('account/', account_view, name='account'),
 
+    
+
+    path('', include('django.contrib.auth.urls')),
+
+    
+
     #REST FRAMEWORK URLS
 
     path('api/account',include('account.api.urls','account_api')),
 
     #link paths to the sandar pages
+    path('SuccessMessage/', success_view, name='SuccessMessage'),
+
     path('four_basic_operations/',four_basic_operations_view, name='four_basic_operations'),
     path('directed_numbers/',directed_numbers_view, name='directed_numbers'),
     path('all_operations',all_operations_view, name='all_operations'),
@@ -88,7 +97,6 @@ urlpatterns = [
 
     # trying to link html file
     #  path('operations/',operations_view,name='fourOperation.html'),
-
 
 ]
 if settings.DEBUG:
