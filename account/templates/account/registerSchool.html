@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% block title %} Мектепти Каттоо {%endblock%}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<style>
+     body{
+    margin-left: 25%;
+    /* margin-top: 40px ; */
+     
+  }
+  @media (max-width: 600px) {
+  body {
+    width: 100%; /* Remove any padding that might affect the full width */
+    padding: 0;
+    margin: 0;
+  }
+}
+.form-signin {
+    /* max-width: 600px; */
+    padding: 15px;
+    /* background-color:rgb(34, 133, 195); */
+    position: relative;
+    width: 100%;
+    border-radius: 2%;
+   
+}
+
+.mainshadow {
+    box-shadow: 0 0 20px rgb(13, 167, 255);
+}
+
+/*- Here is from bootstrap-*/
+html,
+body {
+  height: 90%;
+  
+}
+
+body {  
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+}
+
+.form-signin {
+  max-width: 600px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (max-width: 600px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+    }
+}
+.container{
+  width: 100%;
+}
+@media (max-width:600px){
+    body{
+       width: 100% ;
+    }
+}
+/*--End of bootstrap --*/
+</style>
+
+<!--END of the Styling-->
+
+<!--Beginning of the form-->
+<div class="container justify-content-center align-items-center"> {% csrf_token %} 
+
+    <form class="form-signin m-auto mainshadow" method="post" action="{% url 'register' %}">       
+
+        {% csrf_token %} {{form|crispy}}
+        <h1 class="h3 mb-3 fw-normal">Мектеп жазылуусу</h1>
+        <!-- <h3>Мектепке жазылуу 3000 сом турат жана бир календарлык жыл мүмкүнчүлүгүн камсыз кылат.
+        Бир колдонуучу аты жана сырсөз бүт мектеп колдонуу үчүн берилет.</h3> -->
+        <!-- {% csrf_token %} -->
+        <!-- Email input -->
+        
+        <div class="form-floating">
+            <input type="text" class="form-control" name="name" id="inputUsername"  placeholder="Сиздин атыңыз:" autofocus> </h2>
+            <label for="inputUsername">Сиздин атыңыз:</label>
+        </div>
+        <!--email for school-->
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="inputEmail"  placeholder="Каттоо эсебинин электрондук почта дареги" autofocus> </h2>
+            <label for="inputUsername">Каттоо эсебинин электрондук почта дареги</label>
+        </div>
+
+        <!-- Username input -->
+        <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Логин" required>
+            <label for="inputUsername">Логин</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-floating" >
+            <input type="password" class="form-control" name="password1" id="inputPassword1" placeholder="Сырсөз" required>
+            <label for="inputPassword1">Сырсөз</label>
+        </div>
+
+        <!-- Confirm password input -->
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password2" id="inputPassword2" placeholder="Сырсөздү ыраста" required>
+            <label for="inputPassword2">Сырсөздү ыраста</label>
+        </div>
+
+        <!-- Additional information for future analysis region, school name -->
+        <div class="form-floating">
+            <input type="text" class="form-control" name="region" id="inputRegion" placeholder="Аймак" required>
+            <label for="inputRegion">Аймак</label>
+        </div>
+
+        <!-- School information -->
+        <div class="form-floating">
+            <input type="text" class="form-control" name="schoolname" id="inputSchoolName" placeholder="Мектептин аталышы" required>
+            <label for="inputSchoolNaame">Мектептин аталышы</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="mainUser" placeholder="Негизги колдонуучунун электрондук почта дареги" required>
+            <label for="inputSchoolNaame">Негизги колдонуучунун электрондук почта дареги</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="FirstUser" placeholder="Биринчи колдонуучунун электрондук почта дареги" required>
+            <label for="inputSchoolNaame">Биринчи колдонуучунун электрондук почта дареги</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="SecondUser" placeholder="Экинчи колдонуучунун электрондук почта дареги" required>
+            <label for="inputSchoolNaame">Экинчи колдонуучунун электрондук почта дареги</label>
+        </div>
+
+        <!-- Catching errors here -->
+        <!-- Catching errors and displaying help text -->
+                {% for field in registration_form %}
+                {% if field.errors %}
+                    <p style="color: red;">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+                {% if field.help_text %}
+                    <p style="color: rgb(243, 186, 14);">
+                        {% if field.name == 'email' %}
+                            <span class="help-text">Электрондук почта дарегиңизди жазыңыз.</span>
+                        {% elif field.name == 'username' %}
+                            <span class="help-text">Колдонуучу атыңызды жазыңыз.</span>
+                        {% elif field.name == 'password1' %}
+                            <span class="help-text">Сырсөзүңүздү жазыңыз (кеминде 8 белги).</span>
+                        {% elif field.name == 'password2' %}
+                            <span class="help-text">Сырсөзүңүздү ырастаңыз.</span>
+                        {% elif field.name == 'region' %}
+                            <span class="help-text">Аймагыңызды жазыңыз</span>
+                        {% elif field.name == 'schoolname' %}
+                            <span class="help-text">Мектептин атын жазыңыз..</span>
+                        {% else %}
+                            {{ field.help_text }}
+                        {% endif %}
+                    </p>
+                {% endif %}
+                {% endfor %}
+
+
+        <a class="w-100 btn btn-lg btn-primary" type="submit" >катталуу</a>
+    </form>
+</div>
+
+
+{% endblock content %}
+

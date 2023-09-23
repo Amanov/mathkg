@@ -1,0 +1,9 @@
+{% if user.is_authenticated %}
+
+
+{% else %}
+	<h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+{% endif %} 
+
+

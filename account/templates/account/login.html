@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %} Кирүү {%endblock%}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<!--beginning of the Styling-->
+<style>
+  body{
+    margin-left: 25%;
+    /* margin-top: 40px ; */
+     
+  }
+  @media (max-width: 600px) {
+  body {
+    width: 100%; /* Remove any padding that might affect the full width */
+    padding: 0;
+    margin: 0;
+  }
+}
+ .mainshadow{
+    box-shadow: 0 0 20px rgb(13, 167, 255);    
+  }
+
+    
+  
+  .form-signin {
+    /* max-width: 600px; */
+    padding: 15px;
+    /* background-color:rgb(34, 133, 195); */
+    position: relative;
+    width: 100%;
+    height: auto;
+    
+}
+.container{
+  width: 100%;
+}
+
+
+
+.h3{
+  text-align: center;
+} 
+
+/*- Here is from bootstrap-*/
+html,
+body {
+  height: 100%;
+}
+
+body {  
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: #f5f5f5; */
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 2%;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     
+
+/*--End of bootstrap --*/
+</style>
+
+<!--END of the Styling-->
+<!--beggining of the form-->
+<div class="container justify-content-center align-items-center">
+  <form class="form-signin m-auto mainshadow" name="login" method="post"  action="{% url 'login' %}" >
+    {% csrf_token %}  {{form|crispy}} 
+    
+    <!-- <p>Do not have an account ? Create one <a href="{% url 'register'%}">here</a></p> -->
+
+    
+    <button class="w-100 btn btn-lg btn-success" type="submit">Вебсайтка кирүү</button>
+    
+  </form>
+  <div class="d-flex flex-column align-items-center" style="width: 30%; margin-left: 30%; margin-top: 10%; margin-bottom: 10%;"> 
+      <a class=" btn btn-danger" href="{% url 'password_reset' %}" ><h6>менин сырсөзүмдү кайра коюу</h6></a>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+

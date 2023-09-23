@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %} Катталуу {%endblock%}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+    body{
+    margin-left: 25%;
+    /* margin-top: 40px ; */
+     
+  }
+  @media (max-width: 600px) {
+  body {
+    width: 100%; /* Remove any padding that might affect the full width */
+    padding: 0;
+    margin: 0;
+  }
+}
+.form-signin {
+    /* max-width: 600px; */
+    padding: 15px;
+    /* background-color:rgb(34, 133, 195); */
+    position: relative;    
+    width: 100%;    
+    border-radius: 2%;
+}
+
+.mainshadow {
+    box-shadow: 0 0 20px rgb(13, 167, 255);
+}
+/*- Here is from bootstrap-*/
+html,
+body {
+  height: 100%;
+}
+
+body {  
+  align-items: center;
+  padding-top: 40px;
+  /* padding-bottom: 40px; */
+  /* background-color: #f5f5f5; */
+}
+
+.form-signin {
+  max-width: 600px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+}
+.container{
+  width: 100%;
+}
+
+/*--End of bootstrap --*/
+</style>
+
+<!--END of the Styling-->
+
+<!--Beginning of the form-->
+<div class="container justify-content-center align-items-center" >      
+    <form class="form-signin m-auto mainshadow" name="registration" method="post" action="{% url 'register' %}"> 
+        {% csrf_token %}  {{form|crispy}}  
+       
+        <button class="w-100 btn btn-lg btn-success text-uppercase" type="submit" >Катталуу</button>
+    </form>
+    <div style="margin-bottom: 100px;"></div>
+</div>
+<!-- Display success message if registration is successful -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+
+{% endblock content %}
+
