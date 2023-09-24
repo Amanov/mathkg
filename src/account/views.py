@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate,logout
 from account.forms import RegistrationForm,AccountAuthenticationForm,AccountUpdateForm
@@ -146,7 +146,6 @@ def activation_view(request):
         # For example, display an activation failure message or redirect to an error page
         messages.error(request, 'Invalid activation link.')
         return redirect('activation_failure')  # Redirect to the activation failure page
-=======
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate,logout
 from account.forms import RegistrationForm,AccountAuthenticationForm,AccountUpdateForm
@@ -155,20 +154,20 @@ from .models import Account
 
 
 # Create your views here.
-#User registration 
+#User registration
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
+
             # Perform manual activation steps
             # For example, send an activation email
             activation_link = "https://http://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
                 user.username, activation_link)
             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
-            
+
             # Display a success message to the user
             # Redirect to a thank you or activation pending page
             # ...
@@ -176,26 +175,26 @@ def registration_view(request):
             return redirect('home')
     else:
         form = RegistrationForm()
-    
+
     # Render the registration form template
     context = {'form': form}
     return render(request, 'account/register.html', context)
 #
 
-#School  registration 
+#School  registration
 def registerSchool_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
+
             # Perform manual activation steps
             # For example, send an activation email
             activation_link = "https://yourwebsite.com/activate/?user_id={}".format(user.id)
             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
                 user.username, activation_link)
             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
-            
+
             # Display a success message to the user
             # Redirect to a thank you or activation pending page
             # ...
@@ -203,7 +202,7 @@ def registerSchool_view(request):
             return redirect('home')
     else:
         form = RegistrationForm()
-    
+
     # Render the registration form template
     context = {'form': form}
     return render(request, 'account/registerSchool.html', context)
@@ -224,7 +223,7 @@ def login_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect("home")
-    
+
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -235,7 +234,7 @@ def login_view(request):
             if user:
                 login(request,user)
                 return redirect("home")
-            
+
     else:
         form =AccountAuthenticationForm()
 
@@ -244,10 +243,10 @@ def login_view(request):
 
 #account update
 def account_view(request):
-    
+
     if not request.user.is_authenticated:
         return redirect("login")
-    
+
     context = {}
 
     if request.POST:
@@ -266,7 +265,7 @@ def account_view(request):
                 "username": request.user.username,
             }
         )
-    
+
     context['account_form'] = form
     return render(request,'account/account.html',context)
 
@@ -288,4 +287,4 @@ def activation_view(request):
         # For example, display an activation failure message or redirect to an error page
         messages.error(request, 'Invalid activation link.')
         return redirect('activation_failure')  # Redirect to the activation failure page
->>>>>>> 8a78dcb18cd8a1d35fe22d53258398e3b6492ea3
+
