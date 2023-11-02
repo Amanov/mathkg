@@ -6,22 +6,28 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from datetime import datetime
 
-#registration of user working code
-class RegistrationForm(UserCreationForm):
+from django.contrib.auth.forms import AuthenticationForm
 
+from account.models import Account
+
+
+#registration of user working code
+
+
+class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Бардык жарактуу электрондук почта дареги')
-    date_of_birth =forms.DateField(widget=forms.DateInput(attrs={'type':'date','max':datetime.now().date()}))
+    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type':'date','max':datetime.now().date()}))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.form_method="GET"
-        self.helper.add_input(Submit('submit','Submit'))
+        self.helper.form_method = "GET"
+        self.helper.add_input(Submit('submit', 'Submit'))
         # Help text
-        self.helper['username'].help_text='Колдонуучунун атын тандаңыз'
-        self.fields['password1'].help_text='Сырсөзүңүз башка жеке маалыматыңызга өтө окшош болбошу керек.Сырсөзүңүз кеминде 8 белгиден турушу керек.Сырсөзүңүз көп колдонулган сырсөз болушу мүмкүн эмес.Сырсөзүңүз толугу менен сандык болбошу керек.'
-        self.fields['password2'].help_text="Текшерүү үчүн мурункудай эле паролду тастыктаңыз."
-        self.fields['date_of_birth'].help_text ="Туулга кунунуз"
+        self.helper['username'].help_text = 'Колдонуучунун атын тандаңыз'
+        self.fields['password1'].help_text = 'Сырсөзүңүз башка жеке маалыматыңызга өтө окшош болбошу керек.Сырсөзүңүз кеминде 8 белгиден турушу керек.Сырсөзүңүз көп колдонулган сырсөз болушу мүмкүн эмес.Сырсөзүңүз толугу менен сандык болбошу керек.'
+        self.fields['password2'].help_text = "Текшерүү үчүн мурункудай эле паролду тастыктаңыз."
+        self.fields['date_of_birth'].help_text = "Туулга кунунуз"
         # Label name customization
         self.fields['email'].label = "Электрондук почта"
         self.fields['username'].label = "Колдонуучунун аты"
@@ -29,21 +35,21 @@ class RegistrationForm(UserCreationForm):
         self.fields['password2'].label = "Сырсөз Тастыктаңыз"
         self.fields['date_of_birth'].label = "Туулган жылыңыз"
 
-
-        
-
-
-
     class Meta:
         model = Account
-        fields = ("email","username","password1","password2","date_of_birth")
+        fields = ("email", "username", "password1", "password2", "date_of_birth")
       
         help_texts = {
-           
             'username': 'Колдонуучунун атын тандаңыз ',
-            
         }
+
+
+
         
+
+
+
+    
 
 # Here we have customized crispy
 # class RegistrationForm(forms.Form):
@@ -73,11 +79,12 @@ class RegistrationForm(UserCreationForm):
 #Login of user
 class AccountAuthenticationForm(forms.ModelForm):
     
-    email = forms.EmailField(label="Электрондук почта",max_length=60, help_text='Жарактуу электрондук почта дареги')
+    email = forms.EmailField(label="Электрондук почта",max_length=60, help_text='Катталган электрондук почта дарегиниз')
 
-    password = forms.CharField(label='Сырсөз', widget=forms.PasswordInput,help_text='Сиздин паролуңуз')
+    password = forms.CharField(label='Сырсөз', widget=forms.PasswordInput,help_text='Катталууда жазган паролуңуз')
 
     
+        
 
     class Meta:
         model =Account
@@ -91,6 +98,11 @@ class AccountAuthenticationForm(forms.ModelForm):
                 raise forms.ValidationError('Кирүү жараксыз же админ сиздин аккаунтуңуз активдештирилген эмес, админге кайрылыңыз ')
             
 #Account[user info] Update 
+
+# here we want to update authentification
+
+
+
 
 class AccountUpdateForm(forms.ModelForm):
 

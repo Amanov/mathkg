@@ -44,31 +44,31 @@ def registration_view(request):
 
 
 
-#School  registration 
-def registerSchool_view(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+# #School  registration 
+# def registerSchool_view(request):
+#     if request.method == 'POST':
+#         form = RegistrationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
             
-            # Perform manual activation steps
-            # For example, send an activation email
-            activation_link = "https://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
-            message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
-                user.username, activation_link)
-            send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
+#             # Perform manual activation steps
+#             # For example, send an activation email
+#             activation_link = "https://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
+#             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
+#                 user.username, activation_link)
+#             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
             
-            # Display a success message to the user
-            # Redirect to a thank you or activation pending page
-            # ...
-            messages.success(request, 'Registration is successful. Please wait for activation.')
-            return redirect('SuccessMessage')
-    else:
-        form = RegistrationForm()
+#             # Display a success message to the user
+#             # Redirect to a thank you or activation pending page
+#             # ...
+#             messages.success(request, 'Registration is successful. Please wait for activation.')
+#             return redirect('SuccessMessage')
+#     else:
+#         form = RegistrationForm()
     
-    # Render the registration form template
-    context = {'form': form}
-    return render(request, 'account/registerSchool.html', context)
+#     # Render the registration form template
+#     context = {'form': form}
+#     return render(request, 'account/registerSchool.html', context)
 
 
 def logout_view(request):

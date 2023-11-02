@@ -41,7 +41,7 @@ from personal.views import (
 
 from account.views import (
     registration_view,
-    registerSchool_view,
+    # registerSchool_view,
     logout_view,
     login_view,
     account_view,
@@ -53,15 +53,16 @@ urlpatterns = [
     path('', home_screen_view, name='home'),
     path('home/', home_screen_view, name='home'), #root
     path('register/', registration_view, name='register'),
-    path('registerSchool/', registerSchool_view, name='registerSchool'),
+    # path('registerSchool/', registerSchool_view, name='registerSchool'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_view, name='login'),
+    path('', include('django.contrib.auth.urls')),
+
     path('account/', account_view, name='account'),
 
     
 
-    path('', include('django.contrib.auth.urls')),
-
+   
     
 
     #REST FRAMEWORK URLS
