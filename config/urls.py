@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from config import download_file
+# from config import download_file
 
 from apps.resources.models import Resource
 
@@ -130,7 +130,7 @@ urlpatterns = [
     path('resources/', resources_view, name='resources'),
 
     # Old download (keep until you remove it from templates)
-    path('download/<str:file_name>/', download_file, name='download_file'),
+    # path('download/<str:file_name>/', download_file, name='download_file'),
 
     # Password management
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),
