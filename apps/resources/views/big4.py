@@ -1,19 +1,51 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template.loader import render_to_string
-from weasyprint import HTML
 from datetime import datetime
 import random
+
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.template.loader import render_to_string
+
 
 # ====================== HELPER FUNCTIONS ======================
 def number_to_words(num):
     """Convert number to words (used in questions)"""
     if num == 0:
         return "zero"
-    ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-            "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-    tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
-    
+    ones = [
+        "",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen",
+    ]
+    tens = [
+        "",
+        "",
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "sixty",
+        "seventy",
+        "eighty",
+        "ninety",
+    ]
+
     words = ""
     n = abs(round(num))
     if n >= 1000:
@@ -36,7 +68,7 @@ def number_to_words(num):
 
 
 def create_challenge_data(level, difficulty):
-    """Ported logic from your JavaScript"""
+    """Ported logic from JavaScript"""
     if level == "7":
         if difficulty == 1:
             target = random.randint(10, 99)
@@ -65,10 +97,18 @@ def create_challenge_data(level, difficulty):
             "target": target,
             "questions": [
                 {"id": 1, "text": q1_text, "answer": q1_ans},
-                {"id": 2, "text": "Write the number in words", "answer": number_to_words(target)},
+                {
+                    "id": 2,
+                    "text": "Write the number in words",
+                    "answer": number_to_words(target),
+                },
                 {"id": 3, "text": prop_q, "answer": prop_a},
-                {"id": 4, "text": f"Multiply the number by {mult}", "answer": target * mult}
-            ]
+                {
+                    "id": 4,
+                    "text": f"Multiply the number by {mult}",
+                    "answer": target * mult,
+                },
+            ],
         }
 
     elif level == "8":
@@ -76,11 +116,27 @@ def create_challenge_data(level, difficulty):
         return {
             "target": target,
             "questions": [
-                {"id": 1, "text": f"Add {random.randint(50, 300)}", "answer": target + 150},
-                {"id": 2, "text": "Find 25% of the number", "answer": target // 4},
-                {"id": 3, "text": "Divide the number by 10", "answer": target // 10},
-                {"id": 4, "text": "Write the number in words", "answer": number_to_words(target)}
-            ]
+                {
+                    "id": 1,
+                    "text": f"Add {random.randint(50, 300)}",
+                    "answer": target + 150,
+                },
+                {
+                    "id": 2,
+                    "text": "Find 25% of the number",
+                    "answer": target // 4,
+                },
+                {
+                    "id": 3,
+                    "text": "Divide the number by 10",
+                    "answer": target // 10,
+                },
+                {
+                    "id": 4,
+                    "text": "Write the number in words",
+                    "answer": number_to_words(target),
+                },
+            ],
         }
     else:  # Year 9
         target = round(random.uniform(10.0, 89.9), 2)
@@ -88,23 +144,35 @@ def create_challenge_data(level, difficulty):
             "target": target,
             "questions": [
                 {"id": 1, "text": "Add 4.5", "answer": round(target + 4.5, 2)},
-                {"id": 2, "text": "Multiply by 0.2", "answer": round(target * 0.2, 3)},
-                {"id": 3, "text": "Round to 2 decimal places", "answer": round(target, 2)},
-                {"id": 4, "text": "Increase by 15%", "answer": round(target * 1.15, 2)}
-            ]
+                {
+                    "id": 2,
+                    "text": "Multiply by 0.2",
+                    "answer": round(target * 0.2, 3),
+                },
+                {
+                    "id": 3,
+                    "text": "Round to 2 decimal places",
+                    "answer": round(target, 2),
+                },
+                {
+                    "id": 4,
+                    "text": "Increase by 15%",
+                    "answer": round(target * 1.15, 2),
+                },
+            ],
         }
 
 
 # ====================== MAIN VIEW ======================
 def big4_view(request):
-    from weasyprint import HTML  # Import here inside the view
-    
     # PDF Download
-    if request.GET.get('pdf') == '1':
-        level = request.GET.get('level', '7')
-        count = int(request.GET.get('count', 1))
-        progressive = request.GET.get('progressive') == '1'
-        difficulty = int(request.GET.get('difficulty', 1))
+    if request.GET.get("pdf") == "1":
+        from weasyprint import HTML  # Lazy import inside the view
+
+        level = request.GET.get("level", "7")
+        count = int(request.GET.get("count", 1))
+        progressive = request.GET.get("progressive") == "1"
+        difficulty = int(request.GET.get("difficulty", 1))
 
         sheets = []
         curr_diff = difficulty
@@ -114,26 +182,21 @@ def big4_view(request):
             sheets.append(create_challenge_data(level, curr_diff))
 
         context = {
-            'level': level,
-            'sheets': sheets,
-            'today': datetime.now().strftime("%d %B %Y"),
+            "level": level,
+            "sheets": sheets,
+            "today": datetime.now().strftime("%d %B %Y"),
         }
 
-        html_string = render_to_string('interactive/big4_print.html', context)
+        html_string = render_to_string("interactive/big4_print.html", context)
+        pdf = HTML(
+            string=html_string, base_url=request.build_absolute_uri("/")
+        ).write_pdf()
 
-        pdf = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()
-
-        response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="Big4_Worksheet_Year{level}.pdf"'
+        response = HttpResponse(pdf, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            f'attachment; filename="Big4_Worksheet_Year{level}.pdf"'
+        )
         return response
 
-    # Normal page
-    return render(request, 'interactive/big4.html', {})
-
-
-# Remove 'from weasyprint import HTML' from the top of the file
-
-# def big4_view(request):
-#     from weasyprint import HTML  # Import here inside the view
-    
-    
+    # Normal page render
+    return render(request, "interactive/big4.html", {})
