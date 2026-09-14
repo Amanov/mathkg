@@ -32,3 +32,4 @@ weasyprint==69.0
 wheel==0.44.0
 zopfli==0.4.2
 zstandard==0.25.0
+whitenoise==6.12.0
