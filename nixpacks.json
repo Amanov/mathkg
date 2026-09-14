@@ -1,9 +1,10 @@
 {
-    "providers": ["python"],
-    "pkgs": [
-      "pango",
-      "fontconfig",
-      "gdk-pixbuf",
-      "libffi"
-    ]
-  }
+  "providers": ["python"],
+  "pkgs": [
+    "glib",
+    "pango",
+    "fontconfig",
+    "gdk-pixbuf",
+    "libffi"
+  ]
+}
