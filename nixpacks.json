@@ -1,0 +1,9 @@
+{
+    "providers": ["python"],
+    "pkgs": [
+      "pango",
+      "fontconfig",
+      "gdk-pixbuf",
+      "libffi"
+    ]
+  }
