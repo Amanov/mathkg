@@ -1,0 +1,325 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Big 4 Number Challenge - Modern Edition{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<style>
+    #big4-app-container {
+        font-family: 'Fredoka', sans-serif;
+        background-color: #f8fafc;
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 30px 30px;
+        min-height: 100vh;
+        padding-top: 135px; 
+    }
+
+    @media (max-width: 991.98px) {
+        #big4-app-container { padding-top: 155px; }
+    }
+
+    .question-card {
+        border-radius: 1.25rem;
+        border: 3px solid #f1f5f9;
+        transition: all 0.2s ease;
+        background: #ffffff;
+    }
+    
+    .question-card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    .target-number-box {
+        border: 4px dashed #94a3b8;
+        background: #ffffff;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+
+    .answer-reveal {
+        max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-8px);
+        transition: all 0.35s ease;
+    }
+    .answer-reveal.active {
+        max-height: 120px; opacity: 1; transform: translateY(0);
+    }
+
+    .color-0 { background-color: #ffe4e6; color: #e11d48; border: 2px solid #fda4af; }
+    .color-1 { background-color: #e0f2fe; color: #0284c7; border: 2px solid #7dd3fc; }
+    .color-2 { background-color: #dcfce7; color: #16a34a; border: 2px solid #86efac; }
+    .color-3 { background-color: #f3e8ff; color: #9333ea; border: 2px solid #d8b4fe; }
+
+    /* PDF Styles */
+    #pdf-clone {
+        position: absolute !important;
+        left: -99999px !important;
+        top: 0;
+        width: 210mm !important;
+        padding: 15mm !important;
+        background: #ffffff !important;
+        font-family: 'Fredoka', sans-serif !important;
+        box-sizing: border-box;
+        line-height: 1.6;
+    }
+
+    #pdf-clone .pdf-sheet-break { page-break-after: always; margin-bottom: 30px; }
+
+    #pdf-clone .question-card {
+        page-break-inside: avoid;
+        border: 3px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    #pdf-clone input {
+        border: 0 !important;
+        border-bottom: 3px dashed #64748b !important;
+        background: transparent !important;
+        width: 100% !important;
+        font-size: 1.15rem;
+        padding: 10px 0;
+    }
+</style>
+
+<div id="big4-app-container">
+    <!-- Header -->
+    <header class="control-panel shadow-sm p-3 d-flex flex-wrap justify-content-between align-items-center gap-3 border-bottom border-primary border-4 rounded-4 mx-auto w-100 mb-2" style="max-width: 950px;">
+        <div>
+            <h1 class="fs-3 fw-bold text-primary mb-0"><i class="bi bi-calculator-fill me-2"></i>The Big 4 Challenge</h1>
+        </div>
+        
+        <div class="d-flex align-items-center flex-wrap gap-3 bg-white p-2 rounded-pill shadow-sm border">
+            <select id="curriculumLevel" class="form-select form-select-sm fw-bold border-0 bg-transparent shadow-none" onchange="generateChallenge()">
+                <option value="7">Year 7</option>
+                <option value="8">Year 8</option>
+                <option value="9">Year 9</option>
+            </select>
+            <span id="difficultyBadge" class="badge bg-success rounded-pill px-3 py-2 fs-6 shadow-sm">Easy</span>
+            
+            <button onclick="levelUp()" class="btn btn-warning btn-sm rounded-pill fw-bold">Level Up</button>
+            <button onclick="generateChallenge()" class="btn btn-primary btn-sm rounded-pill fw-bold">Next Challenge</button>
+        </div>
+    </header>
+
+    <main class="flex-grow-1 d-flex flex-column align-items-center p-4 gap-4">
+        <div class="text-center mb-4 w-100">
+            <h2 class="fs-5 fw-bold text-primary opacity-75">Today's Target Number</h2>
+            <div id="targetNumberDisplay" class="display-1 fw-bold text-dark target-number-box py-4 px-5 rounded-5 d-inline-block">--</div>
+        </div>
+
+        <div class="container-fluid" style="max-width: 950px;">
+            <div id="questionsGrid"></div>
+        </div>
+
+        <!-- Worksheet Generator -->
+        <div class="card shadow border-0 rounded-4 mt-5 w-100 mx-auto" style="max-width: 950px;">
+            <div class="card-header bg-dark text-white fw-bold">
+                <i class="bi bi-printer-fill text-warning"></i> Batch Worksheet Generator
+            </div>
+            <div class="card-body p-5">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <label class="fw-bold fs-5">Number of Pages:</label>
+                            <input type="number" id="batchCount" value="1" min="1" max="20" class="form-control text-center fw-bold" style="width: 110px;">
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="progDiffCheck">
+                            <label class="form-check-label fw-bold">Progressive Difficulty</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <button onclick="downloadBatchPDF()" class="btn btn-danger fw-bold p-4 shadow rounded-4 w-100" style="min-height: 110px; background: linear-gradient(135deg, #ef4444, #b91c1c);">
+                            <i class="bi bi-file-earmark-pdf-fill fs-2"></i><br>
+                            Download Worksheet
+                            <small id="downloadStatusText" class="d-block text-white-50 mt-1">Clean printer-friendly PDF</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="pdf-clone"></div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+    let currentDifficulty = 1;
+
+    function createChallengeData(level, difficulty) {
+        let target = 0;
+        let questions = [];
+
+        if (level === "7") {
+            target = difficulty === 1 ? Math.floor(Math.random()*90)+10 :
+                     difficulty === 2 ? Math.floor(Math.random()*900)+100 : 
+                     Math.floor(Math.random()*9000)+1000;
+            const addSub = Math.floor(Math.random()*60)+10;
+            const isAdd = Math.random() > 0.5;
+            questions = [
+                { id: 1, text: isAdd ? `Add ${addSub}` : `Subtract ${addSub}`, answer: (isAdd ? target + addSub : target - addSub) },
+                { id: 2, text: "Write the number in words", answer: numberToWords(target) },
+                { id: 3, text: "Even or Odd?", answer: target % 2 === 0 ? "Even" : "Odd" },
+                { id: 4, text: "Multiply by 10", answer: (target * 10).toLocaleString() }
+            ];
+        } else if (level === "8") {
+            target = Math.floor(Math.random()*800)+200;
+            questions = [
+                { id: 1, text: "Add 250", answer: (target + 250).toLocaleString() },
+                { id: 2, text: "Find 20% of the number", answer: Math.round(target * 0.2).toLocaleString() },
+                { id: 3, text: "Divide by 8", answer: (target / 8).toLocaleString() },
+                { id: 4, text: "Write in words", answer: numberToWords(target) }
+            ];
+        } else {
+            target = parseFloat((Math.random()*40 + 15).toFixed(2));
+            questions = [
+                { id: 1, text: "Add 8.5", answer: (target + 8.5).toFixed(2) },
+                { id: 2, text: "Multiply by 0.75", answer: (target * 0.75).toFixed(2) },
+                { id: 3, text: "Round to nearest whole number", answer: Math.round(target) },
+                { id: 4, text: "Write in words", answer: numberToWords(Math.round(target)) }
+            ];
+        }
+        return { targetNumber: target, questions: questions };
+    }
+
+    function buildQuestionsHTML(questions) {
+        let html = '<div class="row g-4">';
+        questions.forEach((q, i) => {
+            if (i === 2) html += '</div><div class="row g-4">';
+            const color = `color-${i % 4}`;
+            html += `
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 question-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex gap-3 mb-4">
+                                <div class="${color} rounded-circle d-flex justify-content-center align-items-center fw-bold flex-shrink-0" style="width:50px;height:50px;font-size:1.5rem;">
+                                    ${q.id}
+                                </div>
+                                <h5 class="fw-bold pt-2">${q.text}</h5>
+                            </div>
+                            <input type="text" class="form-control form-control-lg mb-3" placeholder="Your answer...">
+                            <button onclick="revealAnswer(${q.id})" class="btn btn-link text-secondary">Reveal Answer</button>
+                            <div id="q${q.id}-answer" class="answer-reveal mt-3 p-3 bg-light rounded-4 text-center fw-bold">${q.answer}</div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+        html += '</div>';
+        return html;
+    }
+
+    function generateChallenge() {
+        const level = document.getElementById('curriculumLevel').value;
+        const data = createChallengeData(level, currentDifficulty);
+        document.getElementById('targetNumberDisplay').innerText = data.targetNumber;
+        document.getElementById('questionsGrid').innerHTML = buildQuestionsHTML(data.questions);
+    }
+
+    function revealAnswer(id) {
+        document.getElementById(`q${id}-answer`).classList.add('active');
+    }
+
+    function levelUp() {
+        currentDifficulty = (currentDifficulty % 3) + 1;
+        const badge = document.getElementById('difficultyBadge');
+        badge.className = `badge rounded-pill px-3 py-2 fs-6 shadow-sm ${currentDifficulty===1 ? 'bg-success' : currentDifficulty===2 ? 'bg-warning text-dark' : 'bg-danger'}`;
+        badge.textContent = currentDifficulty===1 ? "Easy" : currentDifficulty===2 ? "Medium" : "Hard";
+        generateChallenge();
+    }
+
+    async function downloadBatchPDF() {
+        const statusText = document.getElementById('downloadStatusText');
+        statusText.textContent = "Generating PDF...";
+
+        try {
+            const level = document.getElementById('curriculumLevel').value;
+            const count = parseInt(document.getElementById('batchCount').value) || 1;
+            const progressive = document.getElementById('progDiffCheck').checked;
+
+            const pdfClone = document.getElementById('pdf-clone');
+            pdfClone.innerHTML = '';
+
+            const opt = {
+                margin: 12,
+                filename: `Big4_Challenge_Year${level}.pdf`,
+                image: { type: 'jpeg', quality: 0.95 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    allowTaint: true
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css'] }
+            };
+
+            for (let i = 0; i < count; i++) {
+                const diff = progressive ? Math.min(currentDifficulty + i, 3) : currentDifficulty;
+                const data = createChallengeData(level, diff);
+
+                const sheetHTML = `
+                    <div class="pdf-sheet-break">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:30px; border-bottom:3px solid #1e40af; padding-bottom:15px;">
+                            <div>
+                                <h1 style="margin:0; font-size:28px; color:#1e40af;">The Big 4 Challenge</h1>
+                                <p style="margin:5px 0 0; color:#475569;">Year ${level} • Level ${diff}</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <strong>Page ${i+1}</strong>
+                            </div>
+                        </div>
+                        <div style="text-align:center; margin:35px 0;">
+                            <div style="display:inline-block; border:5px dashed #64748b; padding:20px 50px; font-size:3.8rem; font-weight:700; background:#f8fafc;">
+                                ${data.targetNumber}
+                            </div>
+                        </div>
+                        ${data.questions.map((q, idx) => `
+                            <div class="question-card">
+                                <div style="display:flex; gap:18px; align-items:flex-start;">
+                                    <div class="color-${idx%4}" style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.6rem;flex-shrink:0;">
+                                        ${q.id}
+                                    </div>
+                                    <div style="flex:1;">
+                                        <h5 style="margin-bottom:12px;">${q.text}</h5>
+                                        <input type="text" placeholder="Write your answer here...">
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>`;
+
+                pdfClone.innerHTML += sheetHTML;
+            }
+
+            await html2pdf().set(opt).from(pdfClone).save();
+            statusText.textContent = "✅ Download Complete!";
+
+        } catch (err) {
+            console.error("PDF Generation Error:", err);
+            statusText.textContent = "❌ Failed - Check Console";
+        }
+
+        setTimeout(() => {
+            statusText.textContent = "Clean printer-friendly PDF";
+        }, 4000);
+    }
+
+    function numberToWords(n) {
+        return n.toString(); // Improve this function later if needed
+    }
+
+    window.onload = generateChallenge;
+</script>
+
+{% endblock %}

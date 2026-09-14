@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+{% block title %}Катталуу Ийгиликтүү{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  body {
+    background: linear-gradient(135deg, #f5f9ff, #eef6ff);
+  }
+
+  .success-card {
+    max-width: 650px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    background: rgb(242, 246, 243);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .success-icon {
+    font-size: 60px;
+    color: #a7284c;
+  }
+
+  .success-title {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: hwb(144 8% 28%);
+  }
+
+  .success-text {
+    color: hwb(150 5% 95%);
+    line-height: 1.6;
+  }
+
+  .info-box {
+    background: #f8fbff;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .btn-custom {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 576px) {
+    .success-card {
+      padding: 25px 20px;
+    }
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; margin-top: 10%;">
+
+  <div class="success-card text-center">
+
+    <!-- ✅ Icon -->
+    <div class="success-icon mb-3 " style="color: #28a745;">
+      ✔
+    </div>
+
+    <!-- ✅ Title -->
+    <h1 class="success-title mb-3">
+      Катталуу ийгиликтүү аяктады
+    </h1>
+
+    <!-- ✅ Description -->
+    <p class="success-text mb-4">
+      Аккаунтуңуз түзүлдү. Азыр администратор текшерип, активдештирет.
+    </p>
+
+    <!-- ✅ Info Box -->
+    <div class="info-box text-start mb-4">
+      <p class="mb-2">
+        Активдештирүү үчүн төмөнкү маалыматтарды жөнөтүңүз:
+      </p>
+
+      <ul class="mb-2">
+        <li>Электрондук дарегиңиз</li>
+        <li>Телефон номериңиз</li>
+        <li>Төлөм талонунун сүрөтү</li>
+      </ul>
+
+      <p class="mb-0">
+        📧 <b>mathematicskgz@gmail.com</b>
+      </p>
+    </div>
+
+    <!-- ✅ Buttons -->
+    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+
+      <a href="{% url 'home' %}" 
+         class="btn btn-primary btn-custom">
+         Башкы бетке кайтуу
+      </a>
+
+      <a href="#" 
+         class="btn btn-outline-secondary btn-custom">
+         Көбүрөөк маалымат
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

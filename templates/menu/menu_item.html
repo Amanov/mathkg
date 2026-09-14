@@ -1,0 +1,31 @@
+<li class="{% if item.children.all %}dropdown-submenu{% endif %}">
+
+    {% if item.url_name %}
+        <a href="{% url item.url_name %}"
+           class="menu-item">
+
+            {{ item.title }}
+        </a>
+    {% else %}
+        <a class="menu-item has-arrow">
+
+            {{ item.title }}
+
+        </a>
+    {% endif %}
+
+    {% if item.children.all %}
+
+        <ul class="dropdown-menu">
+
+            {% for child in item.children.all %}
+
+                {% include "menu/menu_item.html" with item=child %}
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+</li>

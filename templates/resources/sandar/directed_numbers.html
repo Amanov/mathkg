@@ -1,0 +1,159 @@
+{% extends 'base/base.html' %}
+
+
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+<style type="text/css">
+  .mainshadow {
+    box-shadow: 0 0 20px rgb(13, 167, 255);   
+  }
+  h1, h3 {
+    display: flex;
+    align-items: center;
+  
+  }
+  .zoom {
+    padding: 5px;
+    transition: transform .3s;
+    margin: 0 auto;
+  }
+  .zoom:hover {
+    transform: scale(1.5);
+  }
+  .custom_border {
+    border: 3px solid rgb(34, 133, 195);
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  hr {
+    margin: 20px;
+    visibility: hidden;
+  }
+  .anchorNew {
+    width: 70px;
+    height: 40px;
+    padding-top: 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 991.98px) {
+    body, .container { padding: 0; margin: 1%; }
+    .hamburger-menu { display: block; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.show { transform: translateX(0); }
+  }
+</style>
+
+<div class="container d-flex flex-column justify-content-center align-items-center">
+  <div class="position-relative p-5 text-center" style="margin-top: 10%;">
+    <h1 style="font-size: 3rem; color: #333; text-align: center;">
+      Терс сандар - Багытталган сандар
+    </h1>
+
+    <div class="row align-items-md-stretch custom_border" style="background-color: bisque;">
+
+      <!-- ==================== КӨРСӨТМӨ СУРООЛОРУ ==================== -->
+      <h1 >Көрсөтмө суроолору</h1>
+
+      <!-- Жеңил, Орто, Оор -->
+      <div class="col-md-4">
+        <div class="h-100 p-5  ">
+          <h2 class="fw-bold text-uppercase">жеңил, орто,<br>оор</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-5  ">
+          {% if user.is_authenticated %}
+          {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenJenilOrtoOOR.pptx' %}
+                {% if r %}
+                    <a class="btn btn-outline-primary anchorNew" 
+                      href="{% url 'download_resource' pk=r.id %}">PPT</a>
+                {% endif %}
+            {% endwith %}
+          {% else %}
+            <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
+            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 rounded-1">
+          <div class="d-flex flex-column zoom">
+            {% with img=res|get_item:'4-amal-BagyttalganSandarJenilOrtoOor-Screenshot.png' %}
+              <img class="img-fluid mx-auto mainshadow" 
+                   src="{% if img and img.image %}{{ img.image.url }}{% else %}{% static 'img/4-amal-BagyttalganSandarJenilOrtoOor-Screenshot.png' %}{% endif %}"
+                   alt="Screenshot" style="border-radius:3%;">
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+
+      <hr class="col-12" style="visibility: hidden; margin:20px;">
+
+      <!-- 1234 -->
+      <div class="col-md-4">
+        <div class="h-100 p-5  ">
+          <h2 class="fw-bold">1234</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-5  ">
+          {% if user.is_authenticated %}
+            {% with r=res|get_item:'4-Amal-BagyttalganSandarMenen1234.pptx' %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>
+            {% endwith %}
+          {% else %}
+            <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
+            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 rounded-1">
+          <div class="d-flex flex-column zoom">
+            <img class="img-fluid mx-auto mainshadow" 
+                 src="{% static 'img/4-amal-BagyttalganSandar1234-Screenshot.png' %}" 
+                 alt="Screenshot" style="border-radius:3%;">
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== ИШ БАРАКТАР ==================== -->
+      <h1 class="col-12 text-uppercase">Сабакка даяр иш барактар</h1>
+
+      <!-- Төрт катар -->
+      <div class="col-md-4">
+        <div class="h-100 p-5   text-center">
+          <h2 class="fw-bold text-uppercase">Төрт катар</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-5  ">
+          {% if user.is_authenticated %}
+            {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenKataryMNTort.pptx' %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endwith %}<br>
+            <!-- Add other PDFs similarly -->
+          {% else %}
+            <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
+            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 rounded-1">
+          <div class="d-flex flex-column zoom">
+            <img class="img-fluid mx-auto mainshadow" 
+                 src="{% static 'img/4-amal-BagyttalganSandatKatarMNTort-Screenshot.png' %}" 
+                 alt="Screenshot" style="border-radius:3%;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue the same pattern for other sections (Катаны тап, Лабиринт, etc.) -->
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

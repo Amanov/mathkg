@@ -1,0 +1,44 @@
+@media(max-width:600px) {
+
+    .box {
+        display: none;
+    }
+
+    #topMenu {
+        width: 130px;
+        margin-left: 10px;
+    }
+
+    #accountTop {
+        width: 40%;
+    }
+
+    .mymenuSize {
+        font-size: 14px;
+    }
+
+    .subMenuAdj {
+        width: 80px;
+        text-transform: lowercase;
+    }
+}
+
+@media(max-width:991.98px) {
+
+    .hamburger-menu {
+        display: block;
+        transform: translateY(-65px);
+        border: 3px solid rgb(15,60,88);
+        border-radius: 10px;
+        padding-left: 10px;
+    }
+
+    .navbar-nav {
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .menu-btn {
+        background-color: rgba(255,255,255,.1);
+    }
+}

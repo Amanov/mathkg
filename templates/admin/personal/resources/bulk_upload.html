@@ -1,0 +1,20 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+<h2>Bulk Upload Resources</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+        <label>Category:</label>
+        <select name="category">
+            {% for value, label in categories %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>Files:</label>
+        <input type="file" name="files" multiple>
+    </p>
+    <button type="submit" class="default">Upload All</button>
+</form>
+{% endblock %}

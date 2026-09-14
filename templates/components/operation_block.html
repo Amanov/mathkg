@@ -1,0 +1,59 @@
+{% load static %}
+{% load custom_tags %}
+
+<div class="row mb-4">
+
+    <!-- TITLE -->
+    <div class="col-md-4">
+        <div class="h-100 p-5 text-center overflow-wrap">
+            <h3 class="fw-bold text-uppercase">{{ block.title }}</h3>
+            {% if block.subtitle %}<h6>{{ block.subtitle }}</h6>{% endif %}
+        </div>
+    </div>
+
+    <!-- DOWNLOAD -->
+    <div class="col-md-4">
+        <div class="h-100 p-5">
+            {% if user.is_authenticated %}
+                {% for file in block.files %}
+                    {% with r=res|get_item:file %}
+                        {% if r %}
+                            <a class="btn btn-outline-primary anchorNew mb-2"
+                               href="{% url 'download_resource' pk=r.id %}">
+                                {% if 'pptx' in file %}PPT
+                                {% else %}{{ file|slice:"-4:"|upper }}{% endif %}
+                            </a><br>
+                        {% else %}
+                            <small style="color: red;">Not found: {{ file }}</small>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            {% else %}
+                <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+                <a class="btn btn-primary anchorNew" href="{% url 'register' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="col-md-4">
+        <div class="h-100 rounded-1">
+            <div class="d-flex flex-column zoom">
+                {% with first_file=block.files.0 %}
+                    {% with r=res|get_item:first_file %}
+                        {% if r and r.image %}
+                            <img class="img-fluid mx-auto mainshadow"
+                                 src="{{ r.image.url }}"
+                                 alt="{{ r.title }}" style="border-radius:3%;">
+                        {% else %}
+                            <img class="img-fluid mx-auto mainshadow"
+                                 src="{% static block.fallback_image %}"
+                                 alt="{{ block.title }}" style="border-radius:3%;">
+                        {% endif %}
+                    {% endwith %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+
+</div>

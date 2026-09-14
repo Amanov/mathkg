@@ -1,0 +1,309 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .dash {
+    padding: 2rem 1.5rem;
+    margin-top: 80px;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .topbar h1 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .topbar a {
+    font-size: 13px;
+    padding: 6px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .stat {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 500;
+  }
+  .stat-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .section {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 500;
+  }
+  .badge-blue {
+    background: #ddeeff;
+    color: #1a4a7a;
+  }
+  .badge-green {
+    background: #ddf0dd;
+    color: #1a4a1a;
+  }
+  .badge-amber {
+    background: #fff0cc;
+    color: #7a4a00;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    color: #888;
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tr:hover td {
+    background: #fafafa;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 500;
+  }
+  .pill-on {
+    background: #ddf0dd;
+    color: #1a4a1a;
+  }
+  .pill-off {
+    background: #f0f0f0;
+    color: #888;
+  }
+  .edit-btn {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  .dl-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dl-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #b5d4f4;
+  }
+</style>
+
+<div class="dash">
+  <div class="topbar">
+    <h1>Dashboard</h1>
+    <a href="/admin/personal/resource/add/">+ Add resource</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Total files</div>
+      <div class="stat-value">{{ total_resources }}</div>
+      <div class="stat-sub">across 3 categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Active</div>
+      <div class="stat-value">{{ active_resources }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total downloads</div>
+      <div class="stat-value">{{ total_downloads }}</div>
+      <div class="stat-sub">all time</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Presentations
+      <span class="badge badge-blue">{{ presentations.count }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Downloads</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in presentations %}
+        <tr>
+          <td style="color: #aaa">{{ r.id }}</td>
+          <td>{{ r.title }}</td>
+          <td>
+            <div class="dl-bar-wrap">
+              <div
+                class="dl-bar"
+                style="width: {{ r.download_count|default:0 }}px; max-width: 80px;"
+              ></div>
+              {{ r.download_count }}
+            </div>
+          </td>
+          <td>
+            <span
+              class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
+              >{% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+            >
+          </td>
+          <td>
+            <a
+              class="edit-btn"
+              href="/admin/personal/resource/{{ r.id }}/change/"
+              >Edit</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Worksheets <span class="badge badge-green">{{ worksheets.count }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Downloads</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in worksheets %}
+        <tr>
+          <td style="color: #aaa">{{ r.id }}</td>
+          <td>{{ r.title }}</td>
+          <td>
+            <div class="dl-bar-wrap">
+              <div
+                class="dl-bar"
+                style="width:{{r.download_count}}px; max-width:80px;"
+              ></div>
+              {{ r.download_count }}
+            </div>
+          </td>
+          
+            <span
+              class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
+            >
+              {% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+            >
+          </td>
+          <td>
+            <a
+              class="edit-btn"
+              href="/admin/personal/resource/{{ r.id }}/change/"
+              >Edit</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Activities <span class="badge badge-amber">{{ activities.count }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Downloads</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in activities %}
+        <tr>
+          <td style="color: #aaa">{{ r.id }}</td>
+          <td>{{ r.title }}</td>
+          <td>
+            <div class="dl-bar-wrap">
+              <div
+                class="dl-bar"
+                style="width:{{ r.download_count }}px; max-width:80px;"
+              ></div>
+              {{ r.download_count }}
+            </div>
+          </td>
+          <td>
+            <span
+              class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
+              >{% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+            >
+          </td>
+          <td>
+            <a
+              class="edit-btn"
+              href="/admin/personal/resource/{{ r.id }}/change/"
+              >Edit</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

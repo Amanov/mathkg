@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ky" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Амалдарды аткаруу тартиби — Интерактивдүү Сабак</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for gorgeous vectors and icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PptxGenJS Library for PPTX Generation -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS/libs/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS/dist/pptxgen.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc; /* Crisp light mode background */
+            color: #0f172a; /* Dark, highly readable text */
+        }
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .math-font {
+            font-family: 'Space Grotesk', monospace;
+            letter-spacing: 0.05em;
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .glow-green {
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.4);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+        }
+        /* Hide scrollbar for slick UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col overflow-hidden select-none" id="main-body">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex-shrink-0 flex items-center justify-between z-10 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-200">
+                <i class="fa-solid fa-calculator text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-sm md:text-base font-extrabold tracking-tight heading-font text-slate-900">
+                    Амалдарды Аткаруу Тартиби
+                </h1>
+                <p class="text-[10px] md:text-xs text-slate-500">Интерактивдүү Сабак жана Смарт-доска куралы</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2 md:space-x-3">
+            <!-- Fullscreen Toggle Button -->
+            <button onclick="toggleFullScreen()" id="btn-fullscreen" class="p-2.5 bg-slate-50 hover:bg-slate-200 text-slate-600 hover:text-slate-900 rounded-xl transition-all border border-slate-200 flex items-center justify-center" title="Толук экран (Смарт-доска үчүн)">
+                <i class="fa-solid fa-expand text-sm"></i>
+            </button>
+            
+            <!-- Download PPTX Button -->
+            <button onclick="downloadPPTX()" class="p-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl transition-all border border-indigo-200 flex items-center space-x-2" title="Презентацияны көчүрүп алуу">
+                <i class="fa-solid fa-file-powerpoint text-sm"></i>
+                <span class="text-xs font-bold hidden sm:inline">PPTX жүктөө</span>
+            </button>
+
+            <!-- Reset Button -->
+            <button onclick="resetWholeLesson()" class="p-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-800 rounded-xl transition-all border border-rose-200" title="Сабакты башынан баштоо">
+                <i class="fa-solid fa-arrow-rotate-left text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        
+        <!-- Left Side: Interactive Slide Show Arena -->
+        <section class="w-full lg:w-3/5 h-1/2 lg:h-full p-4 lg:p-6 bg-slate-50 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200 overflow-y-auto no-scrollbar relative">
+            
+            <!-- Dynamic Slide Display Area -->
+            <div class="flex-1 flex flex-col justify-center items-center py-4">
+                
+                <!-- SLIDE 1: THE BIG DEBATE -->
+                <div id="slide-1" class="w-full max-w-2xl space-y-6">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-black uppercase text-emerald-600 tracking-widest">Слайд 1: КИРИШҮҮ ДЕБАТЫ</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold heading-font text-slate-900">Кимдин эсептөөсү туура?</h2>
+                        <p class="text-sm text-slate-600">Эсептөөгө көңүл буруп, каармандарды тандап, алардын логикасын көрүңүз.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 md:gap-6 pt-4">
+                        <!-- Alien Card -->
+                        <div id="alien-card" onclick="selectDebater('alien')" class="cursor-pointer bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-emerald-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group shadow-sm">
+                            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span class="text-[9px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full border border-slate-200">Тандоо</span>
+                            </div>
+                            <div class="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100 mb-3 animate-float">
+                                <svg class="w-16 h-16 text-emerald-500" viewBox="0 0 64 64" fill="currentColor">
+                                    <path d="M32 8C19.8 8 10 17.8 10 30c0 10.6 8 19.4 18.2 21.6v4.4c0 1.1.9 2 2 2h3.6c1.1 0 2-.9 2-2v-4.4C46 49.4 54 40.6 54 30c0-12.2-9.8-22-22-22zm-6 26c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm12 0c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zM32 14c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2s2 .9 2 2v8c0 1.1-.9 2-2 2z"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs text-slate-500 font-bold uppercase">Келгиндин ою</span>
+                            <div class="text-2xl md:text-3xl font-black text-emerald-600 math-font mt-1">2 + 3 &times; 5 = 25</div>
+                            <p class="text-[11px] md:text-xs text-slate-600 mt-2 leading-tight">"Мен солдон оңго карай биринчи коштум, анан көбөйттүм!"</p>
+                        </div>
+
+                        <!-- Human Student Card -->
+                        <div id="student-card" onclick="selectDebater('student')" class="cursor-pointer bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-indigo-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group shadow-sm">
+                            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span class="text-[9px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full border border-slate-200">Тандоо</span>
+                            </div>
+                            <div class="w-24 h-24 bg-indigo-50 rounded-full flex items-center justify-center border border-indigo-100 mb-3 animate-float" style="animation-delay: 1.5s;">
+                                <svg class="w-16 h-16 text-indigo-500" viewBox="0 0 64 64" fill="currentColor">
+                                    <path d="M32 12c6.6 0 12 5.4 12 12s-5.4 12-12 12-12-5.4-12-12 5.4-12 12-12zm0 28c11 0 20 9 20 20H12c0-11 9-20 20-20z"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs text-slate-500 font-bold uppercase">Окуучунун ою</span>
+                            <div class="text-2xl md:text-3xl font-black text-indigo-600 math-font mt-1">2 + 3 &times; 5 = 17</div>
+                            <p class="text-[11px] md:text-xs text-slate-600 mt-2 leading-tight">"Математикалык эреже боюнча, кошуудан мурун көбөйтүү керек!"</p>
+                        </div>
+                    </div>
+
+                    <!-- Live Dialogue feedback box -->
+                    <div id="debate-feedback" class="bg-white p-4 rounded-xl border border-slate-200 text-center text-sm text-slate-700 font-medium leading-relaxed min-h-[50px] flex items-center justify-center shadow-sm">
+                        Келгинди же Окуучуну басып көрүңүз! Кимдин жообу туура экенин аныктаңыз.
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: ALIEN vs HUMAN RULE COMPARE -->
+                <div id="slide-2" class="w-full max-w-2xl space-y-6 hidden">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-black uppercase text-emerald-600 tracking-widest">Слайд 2: ЭРЕЖЕЛЕРДИ САЛЫШТЫРУУ</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold heading-font text-slate-900">Келгиндин Эрежеси каршы Биздин Эреже</h2>
+                        <p class="text-sm text-slate-600">Эки башка эреже менен эсептегенде кандай айырмачылык болот?</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-12 gap-2 bg-white p-3 md:p-4 rounded-xl border border-slate-200 text-xs items-center shadow-sm">
+                            <div class="col-span-4 font-extrabold text-slate-900 text-base md:text-lg text-center math-font">4 + 3 &times; 2</div>
+                            <div class="col-span-4 bg-emerald-50 text-emerald-700 border border-emerald-200 p-2 rounded-lg text-center">
+                                <div class="text-[9px] text-emerald-600/80 uppercase font-bold mb-1">Келгин</div>
+                                <strong class="text-lg">14</strong>
+                            </div>
+                            <div class="col-span-4 bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded-lg text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-indigo-100 opacity-20"></div>
+                                <div class="text-[9px] text-indigo-600/80 uppercase font-bold mb-1 relative z-10">Биз (Туура)</div>
+                                <strong class="text-lg relative z-10">10</strong>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-2 bg-white p-3 md:p-4 rounded-xl border border-slate-200 text-xs items-center shadow-sm">
+                            <div class="col-span-4 font-extrabold text-slate-900 text-base md:text-lg text-center math-font">8 - 4 &divide; 2</div>
+                            <div class="col-span-4 bg-emerald-50 text-emerald-700 border border-emerald-200 p-2 rounded-lg text-center">
+                                <div class="text-[9px] text-emerald-600/80 uppercase font-bold mb-1">Келгин</div>
+                                <strong class="text-lg">2</strong>
+                            </div>
+                            <div class="col-span-4 bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded-lg text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-indigo-100 opacity-20"></div>
+                                <div class="text-[9px] text-indigo-600/80 uppercase font-bold mb-1 relative z-10">Биз (Туура)</div>
+                                <strong class="text-lg relative z-10">6</strong>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-2 bg-white p-3 md:p-4 rounded-xl border border-slate-200 text-xs items-center shadow-sm">
+                            <div class="col-span-4 font-extrabold text-slate-900 text-base md:text-lg text-center math-font">5 &times; 5 + 2</div>
+                            <div class="col-span-4 bg-emerald-50 text-emerald-700 border border-emerald-200 p-2 rounded-lg text-center">
+                                <div class="text-[9px] text-emerald-600/80 uppercase font-bold mb-1">Келгин</div>
+                                <strong class="text-lg">35</strong>
+                            </div>
+                            <div class="col-span-4 bg-indigo-50 text-indigo-700 border border-indigo-200 p-2 rounded-lg text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-indigo-100 opacity-20"></div>
+                                <div class="text-[9px] text-indigo-600/80 uppercase font-bold mb-1 relative z-10">Биз (Туура)</div>
+                                <strong class="text-lg relative z-10">27</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-sm text-slate-800 leading-relaxed text-center shadow-sm font-medium">
+                        💡 Математикада жүздөгөн жылдар бою эрежелер бардыгына бирдей түшүнүктүү болушу үчүн атайын иштелип чыккан! Кайда барсак да, бир гана туура жооп чыгышы керек.
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: WHY IT MATTERS & MNEMONICS -->
+                <div id="slide-3" class="w-full max-w-2xl space-y-6 hidden">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-black uppercase text-emerald-600 tracking-widest">Слайд 3: АМАЛДАРДЫН ТАРТИБИ</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold heading-font text-slate-900">Артыкчылыктар Пирамидасы</h2>
+                        <p class="text-sm text-slate-600">Амалдар кайсыл катар менен аткарыларын оңой жаттап алыңыз!</p>
+                    </div>
+
+                    <!-- Mnemonic Pyramid Design -->
+                    <div class="flex flex-col items-center space-y-2.5">
+                        <div class="w-full max-w-sm bg-gradient-to-r from-rose-500 to-pink-500 text-white p-3.5 rounded-xl text-center shadow-md font-bold text-base md:text-lg transform hover:scale-105 transition-all">
+                            1. ( Кашаанын ичиндеги амалдар )
+                        </div>
+                        <div class="h-3 w-1.5 bg-slate-300 rounded-full"></div>
+                        
+                        <div class="w-11/12 max-w-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white p-3.5 rounded-xl text-center shadow-md font-bold text-base md:text-lg transform hover:scale-105 transition-all">
+                            2. x&sup2; Даражалар
+                        </div>
+                        <div class="h-3 w-1.5 bg-slate-300 rounded-full"></div>
+                        
+                        <div class="w-10/12 max-w-sm bg-gradient-to-r from-indigo-500 to-blue-500 text-white p-3.5 rounded-xl text-center shadow-md font-bold text-base md:text-lg transform hover:scale-105 transition-all">
+                            3. Көбөйтүү (&times;) жана Бөлүү (&divide;) <span class="text-[11px] block opacity-90 font-medium text-indigo-50 mt-0.5">(солдон оңго карай)</span>
+                        </div>
+                        <div class="h-3 w-1.5 bg-slate-300 rounded-full"></div>
+                        
+                        <div class="w-9/12 max-w-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white p-3.5 rounded-xl text-center shadow-md font-bold text-base md:text-lg transform hover:scale-105 transition-all">
+                            4. Кошуу (+) жана Кемитүү (-) <span class="text-[11px] block opacity-90 font-medium text-emerald-50 mt-0.5">(солдон оңго карай)</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-100 border border-slate-200 p-5 rounded-2xl text-center space-y-2 shadow-sm">
+                        <span class="text-xs font-black uppercase text-slate-500 tracking-wider">Оңой эстеп калуу үчүн формула:</span>
+                        <div class="text-4xl font-black text-indigo-700 tracking-widest heading-font py-1">КДБККК</div>
+                        <p class="text-sm text-slate-700 font-medium">
+                            <strong>К</strong>ашаа &bull; 
+                            <strong>Д</strong>аража &bull; 
+                            <strong>Б</strong>өлүү &bull; 
+                            <strong>К</strong>өбөйтүү &bull; 
+                            <strong>К</strong>ошуу &bull; 
+                            <strong>К</strong>емитүү
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4: STEP-BY-STEP CALCULATION ENGINE -->
+                <div id="slide-4" class="w-full max-w-2xl space-y-6 hidden">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-black uppercase text-emerald-600 tracking-widest">Слайд 4: ДЕМОНСТРАЦИЯ</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold heading-font text-slate-900">Кадам-кадам эсептеп көрүү</h2>
+                        <p class="text-sm text-slate-600">Эрежелердин иштөөсүн байкап, кийинки кадамды басыңыз.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-5 shadow-sm">
+                        <div class="flex justify-between items-center text-xs md:text-sm">
+                            <span class="text-slate-500 font-bold uppercase tracking-wide">Мисал туюнтулушу:</span>
+                            <span id="demo-math-title" class="px-3 py-1 bg-indigo-50 text-indigo-700 font-bold rounded-lg border border-indigo-100">№ 1: Кашаасыз туюнтма</span>
+                        </div>
+
+                        <!-- Active math showcase -->
+                        <div class="bg-slate-50 py-8 px-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center space-y-4">
+                            <div id="demo-active-expression" class="text-3xl md:text-4xl font-extrabold tracking-widest math-font text-slate-900 text-center">
+                                6 + 5 &times; 3
+                            </div>
+                            <div id="demo-explanation-tag" class="text-sm text-indigo-700 font-bold bg-indigo-100 px-4 py-1.5 rounded-full text-center">
+                                Көбөйтүүнү биринчи аткарабыз: 5 &times; 3 = 15
+                            </div>
+                        </div>
+
+                        <!-- Step indicator dots -->
+                        <div class="flex justify-center space-x-2" id="demo-steps-indicator">
+                            <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-slate-200"></span>
+                            <span class="w-3 h-3 rounded-full bg-slate-200"></span>
+                        </div>
+
+                        <!-- Small selector matrix -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[13px] pt-3">
+                            <button onclick="loadDemoProblem(1)" class="p-2.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-bold border border-slate-300 math-font">6 + 5 &times; 3</button>
+                            <button onclick="loadDemoProblem(2)" class="p-2.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-bold border border-slate-300 math-font">(8 + 6) &divide; 2</button>
+                            <button onclick="loadDemoProblem(3)" class="p-2.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-bold border border-slate-300 math-font">8 + 7 &times; 2 - 6</button>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button id="btn-next-demo-step" onclick="nextDemoStep()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-extrabold transition-all shadow-md flex items-center space-x-2">
+                            <span>Кийинки кадамды көрсөтүү</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SLIDE 5: CLASSROOM PRACTICE OVERVIEW -->
+                <div id="slide-5" class="w-full max-w-2xl space-y-6 hidden">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-black uppercase text-emerald-600 tracking-widest">Слайд 5: ӨЗ АЛДЫНЧА ИШТӨӨ</span>
+                        <h2 class="text-xl md:text-3xl font-extrabold heading-font text-slate-900">Көнүгүүлөр топтому</h2>
+                        <p class="text-sm text-slate-600">Мисалдар жеңилден кыйынга карай тизилген. Оң тараптагы панелден жоопторду текшерип, упай топтоңуз.</p>
+                    </div>
+
+                    <!-- Static layout of all questions for whiteboard viewing -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-h-[400px] overflow-y-auto pr-2 space-y-6">
+                        
+                        <!-- Level 1 -->
+                        <div class="space-y-3">
+                            <div class="text-xs font-bold text-emerald-600 uppercase border-b border-emerald-100 pb-1.5 flex items-center"><i class="fa-solid fa-leaf mr-2"></i>1-Деңгээл: Жеңил (Атомардык)</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-slate-800 math-font">
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">A) 4 + 2 &times; 3 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">B) 10 - 4 &divide; 2 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">C) 5 &times; 3 + 4 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">D) 12 &divide; 3 - 1 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">E) 2 + 4 &times; 5 = ?</div>
+                            </div>
+                        </div>
+
+                        <!-- Level 2 -->
+                        <div class="space-y-3">
+                            <div class="text-xs font-bold text-amber-600 uppercase border-b border-amber-100 pb-1.5 flex items-center"><i class="fa-solid fa-code-branch mr-2"></i>2-Деңгээл: Орто (Суб-Тизмек)</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-slate-800 math-font">
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">F) (4 + 2) &times; 3 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">G) (10 - 4) &divide; 2 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">H) 6 + 4 &times; 2 - 5 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">I) 15 &divide; (3 + 2) &times; 4 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">J) 8 + (7 - 2) &times; 3 = ?</div>
+                            </div>
+                        </div>
+
+                        <!-- Level 3 -->
+                        <div class="space-y-3">
+                            <div class="text-xs font-bold text-rose-600 uppercase border-b border-rose-100 pb-1.5 flex items-center"><i class="fa-solid fa-layer-group mr-2"></i>3-Деңгээл: Кыйын (Толук Тизмек)</div>
+                            <div class="grid grid-cols-1 gap-3 text-sm font-medium text-slate-800 math-font">
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">K) 2 &times; (3 + 4) - 10 &divide; 2 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">L) 18 &divide; 3 &times; 2 + (5 - 1) = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">M) 5 + 4 &times; 3 &divide; 2 - 1 = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">N) (10 + 2) &divide; 4 &times; (5 - 2) = ?</div>
+                                <div class="bg-slate-50 p-2.5 rounded border border-slate-200">O) 20 - 2 &times; (4 + 6 &divide; 2) = ?</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 text-xs md:text-sm text-slate-700 text-center font-medium shadow-sm">
+                        Оң жактагы панелди колдонуп жоопторду киргизиңиз. Көйгөй жаралса: <strong>mathematicskgz@gmail.com</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Carousel Slide Controller Footer -->
+            <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur rounded-2xl border border-slate-200 flex items-center justify-between p-3 shadow-sm z-20">
+                <button id="btn-slide-prev" onclick="changeSlide(-1)" class="text-xs md:text-sm px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl border border-slate-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center space-x-2 font-bold" disabled>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Артка</span>
+                </button>
+                <div class="text-xs md:text-sm text-slate-600 font-extrabold uppercase tracking-widest bg-slate-50 px-4 py-1.5 rounded-lg border border-slate-100" id="slide-tracker">
+                    Слайд 1 / 5
+                </div>
+                <button id="btn-slide-next" onclick="changeSlide(1)" class="text-xs md:text-sm px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-md flex items-center space-x-2">
+                    <span>Кийинки</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Right Side: Interactive Real-time Test Sandbox -->
+        <section class="w-full lg:w-2/5 h-1/2 lg:h-full bg-white border-l border-slate-200 flex flex-col overflow-hidden shadow-[-4px_0_15px_rgba(0,0,0,0.02)] z-10">
+            
+            <!-- Assessment Header Panel -->
+            <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex-shrink-0">
+                <span class="text-[10px] uppercase tracking-widest text-emerald-600 font-black">Интерактивдүү текшерүүчү</span>
+                <h2 class="text-base font-extrabold text-slate-900 mt-0.5">Тапшырмаларды текшериңиз</h2>
+            </div>
+
+            <!-- Scrollable Test Blocks -->
+            <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-5 no-scrollbar bg-slate-50/50">
+                
+                <p class="text-xs md:text-sm text-slate-600 font-medium leading-relaxed bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                    Бош кутучага сан жазып, жашыл баскычты басып, билимиңизди дароо текшериңиз!
+                </p>
+
+                <div class="space-y-6">
+                    <!-- Easy Level Grid -->
+                    <div class="space-y-3">
+                        <div class="text-[11px] font-extrabold text-emerald-600 uppercase border-b border-emerald-200 pb-1.5 tracking-wider">1-Деңгээл (Атомдор)</div>
+                        
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-emerald-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">A)</span>4 + 2 &times; 3</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-a" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <button onclick="checkDrill('a', 10)" class="w-8 h-8 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-a" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-emerald-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">B)</span>10 - 4 &divide; 2</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-b" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <button onclick="checkDrill('b', 8)" class="w-8 h-8 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-b" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-emerald-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">C)</span>5 &times; 3 + 4</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-c" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <button onclick="checkDrill('c', 19)" class="w-8 h-8 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-c" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-emerald-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">D)</span>12 &divide; 3 - 1</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-d" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <button onclick="checkDrill('d', 3)" class="w-8 h-8 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-d" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-emerald-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">E)</span>2 + 4 &times; 5</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-e" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <button onclick="checkDrill('e', 22)" class="w-8 h-8 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-e" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medium Level Grid -->
+                    <div class="space-y-3 pt-2">
+                        <div class="text-[11px] font-extrabold text-amber-600 uppercase border-b border-amber-200 pb-1.5 tracking-wider">2-Деңгээл (Суб-Тизмек)</div>
+                        
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-amber-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">F)</span>(4 + 2) &times; 3</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-f" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <button onclick="checkDrill('f', 18)" class="w-8 h-8 flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-f" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-amber-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">G)</span>(10 - 4) &divide; 2</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-g" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <button onclick="checkDrill('g', 3)" class="w-8 h-8 flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-g" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-amber-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">H)</span>6 + 4 &times; 2 - 5</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-h" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <button onclick="checkDrill('h', 9)" class="w-8 h-8 flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-h" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-amber-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">I)</span>15 &divide; (3 + 2) &times; 4</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-i" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <button onclick="checkDrill('i', 12)" class="w-8 h-8 flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-i" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-amber-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">J)</span>8 + (7 - 2) &times; 3</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-j" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <button onclick="checkDrill('j', 23)" class="w-8 h-8 flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-j" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hard Level Grid -->
+                    <div class="space-y-3 pt-2">
+                        <div class="text-[11px] font-extrabold text-rose-600 uppercase border-b border-rose-200 pb-1.5 tracking-wider">3-Деңгээл (Толук Тизмек)</div>
+                        
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-rose-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">K)</span>2 &times; (3 + 4) - 10 &divide; 2</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-k" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                                <button onclick="checkDrill('k', 9)" class="w-8 h-8 flex items-center justify-center bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-k" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-rose-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">L)</span>18 &divide; 3 &times; 2 + (5 - 1)</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-l" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                                <button onclick="checkDrill('l', 16)" class="w-8 h-8 flex items-center justify-center bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-l" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-rose-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">M)</span>5 + 4 &times; 3 &divide; 2 - 1</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-m" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                                <button onclick="checkDrill('m', 10)" class="w-8 h-8 flex items-center justify-center bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-m" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-rose-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">N)</span>(10 + 2) &divide; 4 &times; (5 - 2)</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-n" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                                <button onclick="checkDrill('n', 9)" class="w-8 h-8 flex items-center justify-center bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-n" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex justify-between items-center gap-2 shadow-sm transition-all hover:border-rose-300">
+                            <div class="text-sm md:text-base font-extrabold text-slate-900 math-font"><span class="text-slate-400 font-bold mr-1.5 text-xs">O)</span>20 - 2 &times; (4 + 6 &divide; 2)</div>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" id="ans-o" placeholder="Жооп" class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 font-bold focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                                <button onclick="checkDrill('o', 6)" class="w-8 h-8 flex items-center justify-center bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-all shadow-sm"><i class="fa-solid fa-check"></i></button>
+                                <span id="badge-o" class="hidden text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Score / Badge sticky tracker -->
+            <div class="p-4 bg-white border-t border-slate-200 flex items-center justify-between text-xs flex-shrink-0 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+                <span class="text-slate-600 font-bold">Сиздин ийгилигиңиз:</span>
+                <div class="flex items-center space-x-3">
+                    <span id="score-text" class="font-extrabold text-emerald-600">0 / 15 маселе чечилди</span>
+                    <div class="w-24 bg-slate-100 border border-slate-200 h-3 rounded-full overflow-hidden">
+                        <div id="score-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Global Message Popup / Toast system -->
+    <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <script>
+        const state = {
+            currentSlide: 1,
+            totalSlides: 5,
+            score: 0,
+            solvedDrills: {},
+            demoProblemIndex: 1,
+            demoProblemStep: 0,
+            demoProblems: {
+                1: {
+                    title: "№ 1: Кашаасыз көбөйтүү менен кошуу",
+                    steps: [
+                        { expr: "6 + 5 &times; 3", desc: "Көбөйтүүнү биринчи аткарабыз: 5 &times; 3 = 15" },
+                        { expr: "6 + 15", desc: "Эми кошууну аткарабыз: 6 + 15 = 21" },
+                        { expr: "21", desc: "Жообу: 21 (Бул туура эсептөө жолу!)" }
+                    ]
+                },
+                2: {
+                    title: "№ 2: Кашаасы бар бөлүү",
+                    steps: [
+                        { expr: "(8 + 6) &divide; 2", desc: "Кашаанын ичиндеги амалды биринчи аткарабыз: 8 + 6 = 14" },
+                        { expr: "14 &divide; 2", desc: "Эми бөлүүнү аткарабыз: 14 &divide; 2 = 7" },
+                        { expr: "7", desc: "Жообу: 7" }
+                    ]
+                },
+                3: {
+                    title: "№ 3: Үч амалдуу туюнтма",
+                    steps: [
+                        { expr: "8 + 7 &times; 2 - 6", desc: "Биринчи көбөйтүүнү аткарабыз: 7 &times; 2 = 14" },
+                        { expr: "8 + 14 - 6", desc: "Эми солдон оңго карай кошууну аткарабыз: 8 + 14 = 22" },
+                        { expr: "22 - 6", desc: "Аягында кемитип жообун табабыз: 22 - 6 = 16" },
+                        { expr: "16", desc: "Жообу: 16" }
+                    ]
+                }
+            }
+        };
+
+        // Slide change controller
+        function changeSlide(direction) {
+            const nextSlide = state.currentSlide + direction;
+            if (nextSlide >= 1 && nextSlide <= state.totalSlides) {
+                document.getElementById(`slide-${state.currentSlide}`).classList.add('hidden');
+                state.currentSlide = nextSlide;
+                document.getElementById(`slide-${state.currentSlide}`).classList.remove('hidden');
+                updateSlideUI();
+            }
+        }
+
+        function updateSlideUI() {
+            const btnPrev = document.getElementById('btn-slide-prev');
+            const btnNext = document.getElementById('btn-slide-next');
+            
+            btnPrev.disabled = state.currentSlide === 1;
+            
+            if (state.currentSlide === state.totalSlides) {
+                btnNext.querySelector('span').textContent = 'Аягы';
+                btnNext.disabled = true;
+                btnNext.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnNext.querySelector('span').textContent = 'Кийинки';
+                btnNext.disabled = false;
+                btnNext.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            document.getElementById('slide-tracker').textContent = `Слайд ${state.currentSlide} / ${state.totalSlides}`;
+
+            if (state.currentSlide === 4) {
+                loadDemoProblem(state.demoProblemIndex);
+            }
+        }
+
+        // Slide 1 Debate Interactive selectors
+        function selectDebater(debater) {
+            const alienCard = document.getElementById('alien-card');
+            const studentCard = document.getElementById('student-card');
+            const feedbackBox = document.getElementById('debate-feedback');
+
+            if (debater === 'alien') {
+                alienCard.className = "cursor-pointer bg-emerald-50 border-2 border-emerald-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group glow-green";
+                studentCard.className = "cursor-pointer bg-white border-2 border-slate-200 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden opacity-50 shadow-sm";
+                
+                feedbackBox.innerHTML = `
+                    <div class="text-rose-600 font-extrabold text-center">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> 
+                        Келгин ката эсептеди! Ал кошууну биринчи аткарып, 2+3 = 5, анан 5 &times; 5 = 25 чыгарды. Бул туура эмес!
+                    </div>
+                `;
+                showToast("Келгин адашты! Математика эрежесин кайталайлы.", "warning");
+            } else {
+                studentCard.className = "cursor-pointer bg-indigo-50 border-2 border-indigo-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group glow-indigo";
+                alienCard.className = "cursor-pointer bg-white border-2 border-slate-200 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden opacity-50 shadow-sm";
+                
+                feedbackBox.innerHTML = `
+                    <div class="text-emerald-600 font-extrabold text-center">
+                        <i class="fa-solid fa-circle-check mr-1"></i> 
+                        Окуучу туура эсептеди! Анткени көбөйтүү ар дайым кошуудан мурун аткарылат: 3 &times; 5 = 15, андан кийин 2 + 15 = 17 келип чыгат!
+                    </div>
+                `;
+                showToast("Туура! Окуучу математикалык тартипти мыкты билет.", "success");
+            }
+        }
+
+        // Slide 4 Live Demo System controller
+        function loadDemoProblem(index) {
+            state.demoProblemIndex = index;
+            state.demoProblemStep = 0;
+            updateDemoProblemUI();
+        }
+
+        function updateDemoProblemUI() {
+            const problem = state.demoProblems[state.demoProblemIndex];
+            const currentStepData = problem.steps[state.demoProblemStep];
+
+            document.getElementById('demo-math-title').textContent = problem.title;
+            document.getElementById('demo-active-expression').innerHTML = currentStepData.expr;
+            document.getElementById('demo-explanation-tag').innerHTML = currentStepData.desc;
+
+            const dotsContainer = document.getElementById('demo-steps-indicator');
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < problem.steps.length; i++) {
+                const dot = document.createElement('span');
+                dot.className = `w-3 h-3 rounded-full transition-colors ${i === state.demoProblemStep ? 'bg-indigo-500' : 'bg-slate-200 border border-slate-300'}`;
+                dotsContainer.appendChild(dot);
+            }
+
+            const btn = document.getElementById('btn-next-demo-step');
+            if (state.demoProblemStep === problem.steps.length - 1) {
+                btn.querySelector('span').textContent = "Кайрадан баштоо";
+            } else {
+                btn.querySelector('span').textContent = "Кийинки кадамды көрсөтүү";
+            }
+        }
+
+        function nextDemoStep() {
+            const problem = state.demoProblems[state.demoProblemIndex];
+            if (state.demoProblemStep === problem.steps.length - 1) {
+                state.demoProblemStep = 0;
+            } else {
+                state.demoProblemStep++;
+            }
+            updateDemoProblemUI();
+        }
+
+        // Drill Checker Logic
+        function checkDrill(problemId, correctAnswer) {
+            const inputField = document.getElementById(`ans-${problemId}`);
+            const badge = document.getElementById(`badge-${problemId}`);
+            const val = parseInt(inputField.value);
+
+            if (isNaN(val)) {
+                showToast("Сураныч, бош кутучага жообун сан менен жазыңыз!", "warning");
+                return;
+            }
+
+            if (val === correctAnswer) {
+                badge.className = "inline-flex text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-700 border border-emerald-200";
+                badge.textContent = "Туура!";
+                badge.classList.remove('hidden');
+                inputField.className = "w-16 bg-emerald-50 border border-emerald-400 rounded-lg px-2 py-1.5 text-xs text-center text-emerald-800 font-bold focus:outline-none";
+                
+                if (!state.solvedDrills[problemId]) {
+                    state.solvedDrills[problemId] = true;
+                    state.score++;
+                    updateScoreTracker();
+                    showToast(`Жооп туура! Азаматсыз.`, "success");
+                }
+            } else {
+                badge.className = "inline-flex text-[10px] px-2 py-0.5 rounded-full font-bold bg-rose-100 text-rose-700 border border-rose-200";
+                badge.textContent = "Ката";
+                badge.classList.remove('hidden');
+                inputField.className = "w-16 bg-rose-50 border border-rose-400 rounded-lg px-2 py-1.5 text-xs text-center text-rose-800 focus:outline-none font-bold";
+                showToast("Ката жооп! Амалдардын тартиби боюнча эрежени карап кайра текшериңиз.", "error");
+            }
+        }
+
+        function updateScoreTracker() {
+            document.getElementById('score-text').textContent = `${state.score} / 15 маселе чечилди`;
+            const percentage = (state.score / 15) * 100;
+            document.getElementById('score-bar').style.width = `${percentage}%`;
+
+            if (state.score === 15) {
+                showToast("🏆 Бардык маселени туура чыгардыңыз! Амалдар тартибин мыкты өздөштүрдүңүз!", "success");
+            }
+        }
+
+        function resetWholeLesson() {
+            state.currentSlide = 1;
+            state.score = 0;
+            state.solvedDrills = {};
+            state.demoProblemIndex = 1;
+            state.demoProblemStep = 0;
+
+            for (let i = 1; i <= state.totalSlides; i++) {
+                document.getElementById(`slide-${i}`).classList.add('hidden');
+            }
+            document.getElementById('slide-1').classList.remove('hidden');
+            updateSlideUI();
+
+            document.getElementById('alien-card').className = "cursor-pointer bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-emerald-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group shadow-sm";
+            document.getElementById('student-card').className = "cursor-pointer bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-indigo-400 p-5 rounded-2xl flex flex-col items-center justify-between text-center transition-all duration-300 relative overflow-hidden group shadow-sm";
+            document.getElementById('debate-feedback').textContent = "Келгинди же Окуучуну басып көрүңүз! Кимдин жообу туура экенин аныктаңыз.";
+
+            const ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
+            ids.forEach(id => {
+                const input = document.getElementById(`ans-${id}`);
+                input.value = '';
+                input.className = "w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs text-center text-slate-900 focus:ring-2 focus:ring-emerald-500 focus:outline-none";
+                document.getElementById(`badge-${id}`).classList.add('hidden');
+            });
+
+            updateScoreTracker();
+            showToast("Ийгиликтүү! Сабактын бардык баракчалары баштапкы абалга келтирилди.", "success");
+        }
+
+        // --- FULLSCREEN LOGIC ---
+        function toggleFullScreen() {
+            const body = document.documentElement;
+            const btnIcon = document.querySelector('#btn-fullscreen i');
+            
+            if (!document.fullscreenElement) {
+                body.requestFullscreen().then(() => {
+                    btnIcon.classList.remove('fa-expand');
+                    btnIcon.classList.add('fa-compress');
+                }).catch(err => {
+                    showToast(`Экранды толуктоодо ката кетти: ${err.message}`, "error");
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    btnIcon.classList.add('fa-expand');
+                    btnIcon.classList.remove('fa-compress');
+                });
+            }
+        }
+        
+        // Listen for ESC key exits
+        document.addEventListener('fullscreenchange', () => {
+            const btnIcon = document.querySelector('#btn-fullscreen i');
+            if (!document.fullscreenElement) {
+                btnIcon.classList.add('fa-expand');
+                btnIcon.classList.remove('fa-compress');
+            }
+        });
+
+        // --- PPTX GENERATOR LOGIC ---
+        async function downloadPPTX() {
+            showToast("Презентация даярдалууда (PPTX)...", "info");
+            
+            try {
+                let pptx = new PptxGenJS();
+                pptx.layout = 'LAYOUT_16x9';
+
+                // Slide 1: Title
+                let slide1 = pptx.addSlide();
+                slide1.background = { color: "F8FAFC" };
+                slide1.addText("Амалдарды Аткаруу Тартиби", { x: 0.5, y: 2, w: '90%', fontSize: 44, bold: true, color: "0F172A", align: "center", fontFace: "Arial" });
+                slide1.addText("Интерактивдүү Сабак жана Көнүгүүлөр", { x: 0.5, y: 3.2, w: '90%', fontSize: 24, color: "64748B", align: "center", fontFace: "Arial" });
+
+                // Slide 2: Rules Mnemonic
+                let slide2 = pptx.addSlide();
+                slide2.background = { color: "F8FAFC" };
+                slide2.addText("Амалдардын Тартиби (КДБККК)", { x: 0.5, y: 0.5, w: '90%', fontSize: 36, bold: true, color: "0F172A", fontFace: "Arial" });
+                slide2.addText([
+                    { text: "1. Кашаанын ичиндеги амалдар", options: { bullet: true } },
+                    { text: "2. Даражалар", options: { bullet: true } },
+                    { text: "3. Көбөйтүү (×) жана Бөлүү (÷) ", options: { bullet: true } },
+                    { text: "   (солдон оңго карай)", options: { fontSize: 22, color: "64748B", indentLevel: 1 } },
+                    { text: "4. Кошуу (+) жана Кемитүү (-)", options: { bullet: true } },
+                    { text: "   (солдон оңго карай)", options: { fontSize: 22, color: "64748B", indentLevel: 1 } }
+                ], { x: 0.8, y: 1.5, w: '85%', fontSize: 28, color: "334155", fontFace: "Arial", margin: 0.2 });
+
+                // Helper to create drill slides
+                const addDrillSlide = (title, drills) => {
+                    let slide = pptx.addSlide();
+                    slide.background = { color: "FFFFFF" };
+                    slide.addText(title, { x: 0.5, y: 0.5, w: '90%', fontSize: 32, bold: true, color: "059669", fontFace: "Arial" });
+                    
+                    let yPos = 1.4;
+                    drills.forEach(d => {
+                        slide.addText(d, { x: 1.0, y: yPos, w: '80%', fontSize: 28, color: "0F172A", fontFace: "Courier New", bold: true });
+                        yPos += 0.8;
+                    });
+                };
+
+                // Slide 3: Easy Drills
+                addDrillSlide("1-Деңгээл: Жеңил (Атомардык)", [
+                    "A)  4 + 2 × 3  =",
+                    "B)  10 - 4 ÷ 2  =",
+                    "C)  5 × 3 + 4  =",
+                    "D)  12 ÷ 3 - 1  =",
+                    "E)  2 + 4 × 5  ="
+                ]);
+
+                // Slide 4: Medium Drills
+                addDrillSlide("2-Деңгээл: Орто (Суб-Тизмек)", [
+                    "F)  (4 + 2) × 3  =",
+                    "G)  (10 - 4) ÷ 2  =",
+                    "H)  6 + 4 × 2 - 5  =",
+                    "I)  15 ÷ (3 + 2) × 4  =",
+                    "J)  8 + (7 - 2) × 3  ="
+                ]);
+
+                // Slide 5: Hard Drills
+                addDrillSlide("3-Деңгээл: Кыйын (Толук Тизмек)", [
+                    "K)  2 × (3 + 4) - 10 ÷ 2  =",
+                    "L)  18 ÷ 3 × 2 + (5 - 1)  =",
+                    "M)  5 + 4 × 3 ÷ 2 - 1  =",
+                    "N)  (10 + 2) ÷ 4 × (5 - 2)  =",
+                    "O)  20 - 2 × (4 + 6 ÷ 2)  ="
+                ]);
+
+                // Save file
+                await pptx.writeFile({ fileName: "Amaldardy_Atkaruu_Tartibi.pptx" });
+                showToast("Презентация ийгиликтүү көчүрүлдү!", "success");
+            } catch (error) {
+                console.error(error);
+                showToast("Көчүрүүдө ката кетти. Кайра аракет кылыңыз.", "error");
+            }
+        }
+
+        // Global Toast Notification Helper
+        function showToast(msg, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let colorClass = "border-indigo-200 text-indigo-800";
+            let icon = '<i class="fa-solid fa-circle-info text-indigo-600"></i>';
+            if (type === "success") {
+                colorClass = "border-emerald-200 text-emerald-800";
+                icon = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+            } else if (type === "warning") {
+                colorClass = "border-amber-200 text-amber-800";
+                icon = '<i class="fa-solid fa-circle-exclamation text-amber-600"></i>';
+            } else if (type === "error") {
+                colorClass = "border-rose-200 text-rose-800";
+                icon = '<i class="fa-solid fa-triangle-exclamation text-rose-600"></i>';
+            }
+
+            toast.className = `bg-white/95 border ${colorClass} text-xs px-4 py-3 rounded-xl shadow-xl backdrop-blur flex items-center space-x-2.5 transition-all duration-300 transform translate-x-12 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `
+                <div class="p-1 rounded-lg">
+                    ${icon}
+                </div>
+                <div class="font-bold">${msg}</div>
+            `;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

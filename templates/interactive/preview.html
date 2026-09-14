@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Төрт Амал Сабагы - Вариациялык Теория SaaS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; color: #1e293b; }
+        .dashboard-hero { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); color: #fff; padding: 40px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .phase-divider { border-left: 5px solid #3b82f6; padding-left: 12px; margin-top: 35px; margin-bottom: 15px; font-weight: 700; color: #1e3a8a; }
+        .slide-editor-card { background: #fff; border-radius: 16px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 20px; transition: transform 0.2s; }
+        .slide-editor-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .editable-field { border: 1px dashed #cbd5e1; padding: 10px; border-radius: 8px; background-color: #f8fafc; transition: all 0.2s; min-height: 40px; }
+        .editable-field:hover { border-color: #3b82f6; background-color: #fff; cursor: pointer; }
+        .editable-field:focus { border-color: #3b82f6; background-color: #fff; outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+        
+        /* Fullscreen Projection Canvas Layers */
+        #presentationViewport {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #f8fafc; z-index: 99999; box-sizing: border-box; padding: 30px;
+            flex-direction: column; justify-content: space-between;
+        }
+        #presentationViewport.active { display: flex; }
+        .pres-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        .pres-main { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 20px 0; overflow-y: auto; }
+        .pres-footer { display: flex; justify-content: space-between; align-items: center; background-color: #e2e8f0; padding: 15px 30px; border-radius: 12px; }
+        
+        /* Comparative Split-Screen Mechanics */
+        .split-pane { border-radius: 16px; padding: 24px; min-height: 380px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; }
+        .alien-pane { background-color: #fff1f2; border: 3px solid #f43f5e; }
+        .human-pane { background-color: #f0fdf4; border: 3px solid #22c55e; }
+        
+        /* Stepped Animations Nodes */
+        .step-node { opacity: 0; transform: translateY(15px); transition: all 0.4s ease; }
+        .step-node.active { opacity: 1; transform: translateY(0); }
+        .math-badge { display: inline-block; padding: 4px 12px; border-radius: 6px; font-weight: bold; font-family: monospace; }
+        .scaffold-box { display: none; background: #fff; border-left: 5px solid #eab308; padding: 15px; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .scaffold-box.visible { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="container my-3">
+    <div class="dashboard-hero text-center mb-4">
+        <h1 class="fw-bold text-uppercase">Төрт Амал Сабагы: Вариациялык Окутуу Модели</h1>
+        <p class="text-slate-300">Келгин 👽 (Ката жол) жана Адам баласынын 👦 (Туура жол) эсептөөлөрүн салыштыруучу SaaS Платформасы</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <button class="btn btn-warning btn-lg fw-bold px-4 shadow" onclick="launchLessonView()">🖥️ Класста Баштоо (Мугалим Режими)</button>
+            <button class="btn btn-outline-light btn-lg fw-bold px-4 shadow" onclick="compilePPTXDeck()">📥 Бирдиктүү Толук PPTX Жүктөө</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div id="cmsInterfaceContainer"></div>
+        </div>
+    </div>
+</div>
+
+<div id="presentationViewport">
+    <div class="pres-header">
+        <div>
+            <span class="badge bg-primary px-3 py-2 mb-1" id="presMetaPhase"></span>
+            <h2 id="presSlideTitle" class="fw-bold m-0 text-slate-800"></h2>
+        </div>
+        <button class="btn btn-outline-danger fw-bold shadow-sm" onclick="exitLessonView()">❌ Сабактан Чыгуу (Esc)</button>
+    </div>
+    
+    <div class="pres-main w-100">
+        <div class="container-fluid" id="presViewportDynamicGrid">
+            </div>
+    </div>
+    
+    <div class="pres-footer">
+        <div class="d-flex gap-2">
+            <button class="btn btn-secondary fw-bold px-3" id="prevSlideButton" onclick="navigateDeck(-1)">◀ Артка</button>
+            <button class="btn btn-primary fw-bold px-4" id="nextSlideButton" onclick="navigateDeck(1)">Кийинки Слайд ▶</button>
+        </div>
+        <div class="h5 fw-bold text-slate-600 mb-0" id="deckProgressIndicator">Слайд: 1 / 4</div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-warning fw-bold text-dark" id="adaptiveHelpButton" onclick="toggleAdaptiveScaffolding()">💡 Жардамчы Эреже Көрсөтүү</button>
+            <button class="btn btn-success fw-bold px-4" id="revealStepButton" onclick="animateSlideChildNode()">✨ Кийинки Амалдын Кадамы</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/PptxGenJS@3.12.0/dist/pptxgen.bundle.js"></script>
+
+<script>
+    // FULL VARIATION THEORY + ADAPTIVE LEARNING METHODOLOGY LESSON PLAN STRUCTURE
+    let lessonDatabase = [
+        {
+            id: 0,
+            phase: "I DO: Мугалимдин Түшүндүрмөсү (Теориялык Вариация) - 5 мүнөт",
+            layout: "split-screen",
+            title: "Операциялардын кезеги: Ката vs. Туура мамиле",
+            expression: "4 + 3 × 2",
+            description: "Сандар жана амалдар толугу менен бирдей. Бирок аткаруу кезеги гана өзгөртүлдү. Окуучулар менен бирге талдаңыз.",
+            alienMethod: {
+                character: "Келгин 👽 (Солдон оңго эсептейт)",
+                steps: [
+                    { text: "1. Алгач кошуу амалын аткарат: 4 + 3 = 7", val: "7" },
+                    { text: "2. Андан кийин көбөйтөт: 7 × 2 = 14", val: "14" },
+                    { text: "Ката Жообу: 14", status: "badge bg-danger" }
+                ]
+            },
+            humanMethod: {
+                character: "Окуучу Бала 👦 (Эреже боюнча эсептейт)",
+                steps: [
+                    { text: "1. Эреже боюнча биринчи көбөйтөт: 3 × 2 = 6", val: "6" },
+                    { text: "2. Андан кийин кошууну коштолойт: 4 + 6 = 10", val: "10" },
+                    { text: "Туура Жообу: 10", status: "badge bg-success" }
+                ]
+            },
+            scaffoldingRule: "КДБККК Эрежеси: Эгерде кашаа жок болсо, адегенде дайыма КӨБӨЙТҮҮ же БӨЛҮҮ аткарылат, андан кийин гана КОШУУ же КЕМИТҮҮ!"
+        },
+        {
+            id: 1,
+            phase: "WE DO: Биргелешип Иштөө (Калыптандыруучу Баалоо) - 5 мүнөт",
+            layout: "split-screen",
+            title: "Кашаа катышкан учурдагы өзгөрүү",
+            expression: "(8 + 6) ÷ 2",
+            description: "Бул мисалда кашаа кошулду. Кашаанын сыйкыры амалдардын тартибин кантип өзгөртө турганын байкаңыз.",
+            alienMethod: {
+                character: "Келгин 👽 (Кашааны көрбөйт)",
+                steps: [
+                    { text: "1. Бөлүүнү биринчи кылат деп ойлойт: 6 ÷ 2 = 3", val: "3" },
+                    { text: "2. Андан кийин кошот: 8 + 3 = 11", val: "11" },
+                    { text: "Ката Жообу: 11", status: "badge bg-danger" }
+                ]
+            },
+            humanMethod: {
+                character: "Окуучу Бала 👦 (Кашааны биринчи аткарат)",
+                steps: [
+                    { text: "1. Кашаанын ичи эң биринчи аткарылат: 8 + 6 = 14", val: "14" },
+                    { text: "2. Чыккан жыйынтыкты бөлөт: 14 ÷ 2 = 7", val: "7" },
+                    { text: "Туура Жообу: 7", status: "badge bg-success" }
+                ]
+            },
+            scaffoldingRule: "Адаптивдик Эскертүү: КАШАА () математикадагы эң күчтүү белги! Ал өз ичиндеги амалды иерархиядан тышкары биринчи орунга чыгарат."
+        },
+        {
+            id: 2,
+            phase: "WE DO: Класс менен талкуулоо машыгуулары",
+            layout: "standard",
+            title: "Практикалык чынжырды бирге талдоо",
+            subtitle: "Мисал: 12 - 4 ÷ 2 + 3 × 5",
+            description: "Бул жерде 4 амалдын бардыгы катышты. Мугалим доскага жазып, окуучулар менен кезекти аныктайт.",
+            steps: [
+                { text: "Кадам 1: Бөлүүнү табабыз: 4 ÷ 2 = 2. Туюнтма: 12 - 2 + 3 × 5", style: "text-primary fw-bold" },
+                { text: "Кадам 2: Көбөйтүүнү аткарабыз: 3 × 5 = 15. Туюнтма: 12 - 2 + 15", style: "text-primary fw-bold" },
+                { text: "Кадам 3: Солдон оңго карай кемитебиз: 12 - 2 = 10. Туюнтма: 10 + 15", style: "text-dark" },
+                { text: "Кадам 4: Акыркы кошуу амалы: 10 + 15 = 25", style: "text-success display-6 font-monospace fw-bold" }
+            ],
+            scaffoldingRule: "Кошумча Модель: Эгер бир эле убакта бөлүү жана көбөйтүү келсе, алар сол тараптан оң тарапка карай кайсынысы биринчи келсе, ошол иретте аткарылат!"
+        },
+        {
+            id: 3,
+            phase: "YOU DO: Өз алдынча иштөө топтомдору (Дифференциация) - 10 мүнөт",
+            layout: "standard",
+            title: "Үч деңгээлдүү өз алдынча иштөө тапшырмалары",
+            subtitle: "Окуучулар деңгээлине жараша дептерлерине аткарышат:",
+            description: "Мугалим класс ичинде адаптивдүү баалоо жүргүзөт.",
+            steps: [
+                { text: "🟢 ТЕҢГЕЙ A (Базалык деңгээл): \n 1) 15 + 5 × 2 = ? \n 2) 20 - 8 ÷ 4 = ?", style: "p-3 bg-light border-start border-success my-2 rounded font-monospace" },
+                { text: "🟡 ТЕҢГЕЙ B (Орточо деңгээл): \n 1) (10 + 5) × 3 - 12 = ? \n 2) 40 ÷ (4 + 4) + 7 = ?", style: "p-3 bg-light border-start border-warning my-2 rounded font-monospace" },
+                { text: "🔴 ТЕҢГЕЙ C (Татаалдаштырылган деңгээл): \n 1) 50 - 4 × (3 + 5) ÷ 2 = ? \n 2) (12 ÷ 3) + 6 × 4 - 2 = ?", style: "p-3 bg-light border-start border-danger my-2 rounded font-monospace" }
+            ],
+            scaffoldingRule: "Текшерүү ачкычы: Жооптору: А) 25, 18.  Б) 33, 12.  В) 34, 26."
+        }
+    ];
+
+    let currentSlideIdx = 0;
+    let currentAnimNodeIdx = 0;
+
+    // POPULATE THE WORKSPACE EDITOR SO TEACHERS CAN MODIFY CONTENT BEFORE THE CLASS
+    function renderCMSDashboard() {
+        const wrapper = document.getElementById("cmsInterfaceContainer");
+        wrapper.innerHTML = "";
+        
+        lessonDatabase.forEach((slide) => {
+            let card = document.createElement("div");
+            card.className = "card slide-editor-card p-4";
+            card.innerHTML = `
+                <div class='row'>
+                    <div class='col-12'>
+                        <span class='badge bg-primary mb-2'>${slide.phase}</span>
+                        <div class='mb-2'>
+                            <label class='form-label small fw-bold text-muted'>Слайддын Темасы:</label>
+                            <div class='editable-field fw-bold text-dark h4' contenteditable='true' onblur='updateContent(${slide.id}, "title", this)'>${slide.title}</div>
+                        </div>
+                        <div class='mb-2'>
+                            <label class='form-label small fw-bold text-muted'>Түшүндүрмө / Контекст:</label>
+                            <div class='editable-field text-slate-700' contenteditable='true' onblur='updateContent(${slide.id}, "description", this)'>${slide.description}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            wrapper.appendChild(card);
+        });
+    }
+
+    function updateContent(id, key, dom) {
+        lessonDatabase[id][key] = dom.innerText;
+    }
+
+    // RUNTIME PROJECTION ENGINE
+    function launchLessonView() {
+        currentSlideIdx = 0;
+        currentAnimNodeIdx = 0;
+        document.getElementById("presentationViewport").classList.add("active");
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        }
+        buildClassroomSlideDOM();
+    }
+
+    function exitLessonView() {
+        document.getElementById("presentationViewport").classList.remove("active");
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") exitLessonView();
+    });
+
+    function buildClassroomSlideDOM() {
+        let slide = lessonDatabase[currentSlideIdx];
+        currentAnimNodeIdx = 0;
+        
+        document.getElementById("presMetaPhase").innerText = slide.phase;
+        document.getElementById("presSlideTitle").innerText = slide.title;
+        document.getElementById("deckProgressIndicator").innerText = `Слайд: ${currentSlideIdx + 1} / ${lessonDatabase.length}`;
+        
+        let grid = document.getElementById("presViewportDynamicGrid");
+        grid.innerHTML = "";
+        
+        if (slide.layout === "split-screen") {
+            // SIDE-BY-SIDE CONCEPTUAL CONTRAST (VARIATION THEORY ENGINE)
+            grid.innerHTML = `
+                <div class='row text-center mb-3'>
+                    <div class='col-12'><h1 class='display-2 font-monospace fw-bold bg-dark text-warning p-2 rounded shadow d-inline-block px-5'>${slide.expression}</h1></div>
+                </div>
+                <div class='row g-4'>
+                    <div class='col-md-6'>
+                        <div class='split-pane alien-pane'>
+                            <h3 class='fw-bold text-danger'>${slide.alienMethod.character}</h3>
+                            <div id='alienAnimBox' class='my-auto'></div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='split-pane human-pane'>
+                            <h3 class='fw-bold text-success'>${slide.humanMethod.character}</h3>
+                            <div id='humanAnimBox' class='my-auto'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class='row mt-3'>
+                    <div class='col-12'><div class='scaffold-box' id='adaptiveScaffoldContainer'>📣 <b>Мугалимдин эскертүүсү:</b> ${slide.scaffoldingRule}</div></div>
+                </div>
+            `;
+            
+            // Build out the animatable nodes into both buckets simultaneously
+            let alienBox = document.getElementById("alienAnimBox");
+            slide.alienMethod.steps.forEach((step, index) => {
+                let div = document.createElement("div");
+                div.className = "step-node p-3 my-2 border bg-white rounded shadow-sm text-dark h5";
+                div.id = `node-left-${index}`;
+                div.innerText = step.text;
+                alienBox.appendChild(div);
+            });
+            
+            let humanBox = document.getElementById("humanAnimBox");
+            slide.humanMethod.steps.forEach((step, index) => {
+                let div = document.createElement("div");
+                div.className = "step-node p-3 my-2 border bg-white rounded shadow-sm text-dark h5";
+                div.id = `node-right-${index}`;
+                div.innerText = step.text;
+                humanBox.appendChild(div);
+            });
+            
+        } else {
+            // STANDARD GRID VIEW FOR SEQUENTIAL CHAINS & ASSIGNMENT PACKS
+            grid.innerHTML = `
+                <div class='row'>
+                    <div class='col-md-8 offset-md-2 bg-white p-4 rounded shadow-lg border'>
+                        <p class='fs-4 text-slate-600 border-bottom pb-2'>${slide.subtitle || ''}</p>
+                        <p class='lead fs-5 text-dark mb-4'>${slide.description}</p>
+                        <div id='standardAnimBox'></div>
+                        <div class='scaffold-box mt-3' id='adaptiveScaffoldContainer'>💡 <b>Кошумча Сүйөмөл:</b> ${slide.scaffoldingRule}</div>
+                    </div>
+                </div>
+            `;
+            
+            let stdBox = document.getElementById("standardAnimBox");
+            slide.steps.forEach((step, index) => {
+                let div = document.createElement("div");
+                div.className = `step-node ${step.style || 'p-3 my-2 bg-light rounded border-start border-primary border-4 text-dark fs-5'}`;
+                div.id = `node-std-${index}`;
+                div.innerText = step.text;
+                stdBox.appendChild(div);
+            });
+        }
+        
+        document.getElementById("prevSlideButton").disabled = (currentSlideIdx === 0);
+        document.getElementById("revealStepButton").style.display = "inline-block";
+    }
+
+    function animateSlideChildNode() {
+        let slide = lessonDatabase[currentSlideIdx];
+        if (slide.layout === "split-screen") {
+            let maxSteps = Math.max(slide.alienMethod.steps.length, slide.humanMethod.steps.length);
+            if (currentAnimNodeIdx < maxSteps) {
+                let leftNode = document.getElementById(`node-left-${currentAnimNodeIdx}`);
+                let rightNode = document.getElementById(`node-right-${currentAnimNodeIdx}`);
+                if (leftNode) leftNode.classList.add("active");
+                if (rightNode) rightNode.classList.add("active");
+                currentAnimNodeIdx++;
+            } else {
+                navigateDeck(1);
+            }
+        } else {
+            if (currentAnimNodeIdx < slide.steps.length) {
+                let stdNode = document.getElementById(`node-std-${currentAnimNodeIdx}`);
+                if (stdNode) stdNode.classList.add("active");
+                currentAnimNodeIdx++;
+            } else {
+                navigateDeck(1);
+            }
+        }
+    }
+
+    function toggleAdaptiveScaffolding() {
+        // Adaptive trigger: allows the teacher to seamlessly render scaffolding context on demand
+        document.getElementById("adaptiveScaffoldContainer").classList.toggle("visible");
+    }
+
+    function navigateDeck(vector) {
+        currentSlideIdx += vector;
+        if (currentSlideIdx >= lessonDatabase.length) {
+            exitLessonView();
+            alert("20 мүнөттүк окутуу планы ийгиликтүү жыйынтыкталды! Окуучуларды баалоого өтүңүз.");
+            return;
+        }
+        if (currentSlideIdx < 0) currentSlideIdx = 0;
+        buildClassroomSlideDOM();
+    }
+
+    // --- AUTOMATED MULTI-SLIDE PPTX GENERATOR (GRID COMPLIANT) ---
+    function compilePPTXDeck() {
+        let pptx = new PptxGenJS();
+        pptx.layout = 'LAYOUT_16x9';
+
+        lessonDatabase.forEach((slideData) => {
+            let slide = pptx.addSlide();
+            slide.background = { color: "F8FAFC" };
+
+            // Header Banner
+            slide.addShape(pptx.ShapeType.rect, { 
+                x: 0, y: 0, w: 13.33, h: 1.15, 
+                fill: { color: "1E3A8A" } 
+            });
+
+            slide.addText(slideData.phase.toUpperCase(), {
+                x: 0.5, y: 0.15, w: 10.0, h: 0.25,
+                fontSize: 11, bold: true, color: "F59E0B", fontFace: "Arial"
+            });
+
+            slide.addText(slideData.title, { 
+                x: 0.5, y: 0.45, w: 12.33, h: 0.55, 
+                fontSize: 24, bold: true, color: "FFFFFF",
+                valign: "middle", fontFace: "Calibri"
+            });
+
+            if (slideData.layout === "split-screen") {
+                // EXPLICIT SIDE-BY-SIDE INCH-GRID POSITIONING (Eliminates Misplacements)
+                slide.addText(`Туюнтма: ${slideData.expression}`, {
+                    x: 0.5, y: 1.4, w: 12.33, h: 0.5,
+                    fontSize: 22, bold: true, color: "0F172A", align: "center", fontFace: "Courier New"
+                });
+
+                // Left Column Box (Alien Container Card)
+                slide.addShape(pptx.ShapeType.roundRect, {
+                    x: 0.6, y: 2.1, w: 5.8, h: 4.4,
+                    fill: { color: "FFF1F2" }, line: { color: "F43F5E", width: 2 }
+                });
+                slide.addText(slideData.alienMethod.character, {
+                    x: 0.8, y: 2.3, w: 5.4, h: 0.4,
+                    fontSize: 16, bold: true, color: "9F1239"
+                });
+                
+                let alienY = 2.9;
+                slideData.alienMethod.steps.forEach((step, sIdx) => {
+                    slide.addText(step.text, {
+                        x: 0.9, y: alienY, w: 5.2, h: 0.4,
+                        fontSize: 13, color: "4C0519", fontFace: "Arial",
+                        animation: { type: 'fadeIn', delay: sIdx + 1 }
+                    });
+                    alienY += 0.5;
+                });
+
+                // Right Column Box (Human Container Card)
+                slide.addShape(pptx.ShapeType.roundRect, {
+                    x: 6.9, y: 2.1, w: 5.8, h: 4.4,
+                    fill: { color: "F0FDF4" }, line: { color: "22C55E", width: 2 }
+                });
+                slide.addText(slideData.humanMethod.character, {
+                    x: 7.1, y: 2.3, w: 5.4, h: 0.4,
+                    fontSize: 16, bold: true, color: "166534"
+                });
+
+                let humanY = 2.9;
+                slideData.humanMethod.steps.forEach((step, sIdx) => {
+                    slide.addText(step.text, {
+                        x: 7.2, y: humanY, w: 5.2, h: 0.4,
+                        fontSize: 13, color: "052E16", fontFace: "Arial",
+                        animation: { type: 'fadeIn', delay: sIdx + 1 }
+                    });
+                    humanY += 0.5;
+                });
+
+            } else {
+                // STANDARD CARD EXPORT
+                slide.addText(slideData.description, {
+                    x: 0.8, y: 1.5, w: 11.7, h: 0.8,
+                    fontSize: 16, color: "334155"
+                });
+
+                let stepY = 2.5;
+                slideData.steps.forEach((step, sIdx) => {
+                    slide.addText(step.text, {
+                        x: 1.0, y: stepY, w: 11.3, h: 0.6,
+                        fontSize: 15, color: "0F172A", fontFace: "Calibri",
+                        animation: { type: 'flyIn', subType: 'left', speed: 'medium', delay: sIdx + 1 }
+                    });
+                    stepY += 0.7;
+                });
+            }
+
+            // Standardized Footer Ribbon for Supporting Explanations
+            slide.addShape(pptx.ShapeType.rect, {
+                x: 0, y: 6.7, w: 13.33, h: 0.8,
+                fill: { color: "E2E8F0" }
+            });
+            slide.addText(`Эреже/Машыгуу сүйөмөлү: ${slideData.scaffoldingRule}`, {
+                x: 0.5, y: 6.75, w: 12.33, h: 0.7,
+                fontSize: 12, italic: true, color: "1E293B", valign: "middle"
+            });
+        });
+
+        pptx.writeFile({ fileName: "Вариациялык_Төрт_Амал_Планы.pptx" });
+    }
+
+    window.onload = function() {
+        renderCMSDashboard();
+    };
+</script>
+</body>
+</html>

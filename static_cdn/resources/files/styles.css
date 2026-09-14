@@ -1,0 +1,278 @@
+/* body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+  }
+  
+  main {
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .dropdown-toggle { outline: 0; }
+  
+  .btn-toggle {
+    padding: .25rem .5rem;
+    font-weight: 600;
+    color: var(--bs-emphasis-color);
+    background-color: transparent;
+  }
+  .btn-toggle:hover,
+  .btn-toggle:focus {
+    color: rgba(var(--bs-emphasis-color-rgb), .85);
+    background-color: var(--bs-tertiary-bg);
+  }
+  
+  .btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+  }
+  
+  [data-bs-theme="dark"] .btn-toggle::before {
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%28255,255,255,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  }
+  
+  .btn-toggle[aria-expanded="true"] {
+    color: rgba(var(--bs-emphasis-color-rgb), .85);
+  }
+  .btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+  }
+  
+  .btn-toggle-nav a {
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+  }
+  .btn-toggle-nav a:hover,
+  .btn-toggle-nav a:focus {
+    background-color: var(--bs-tertiary-bg);
+  }
+  
+  .scrollarea {
+    overflow-y: auto;
+  }
+   */
+
+   .mainshadow{
+    box-shadow: 0 0 20px rgb(13, 167, 255);   
+  }
+  h1 {
+  display: flex;
+  align-items: center;
+  font-size:4vw;
+}
+.zoom {
+   padding: 5px; 
+  /* background-color: green; */
+  transition: transform  .3s; /* Animation */
+   /* width: 200px;
+  height: 200px;  */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+h3{
+  display: inline-block !important;
+  font-size:2vw;
+}
+.custom_border{
+  border: 3px solid rgb(34, 133 , 195);
+  border-radius: 10px; 
+  padding:10px;
+  box-sizing: border-box;
+ 
+}
+.custom_border h1 {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+.overflow-wrap {
+  overflow-wrap: break-word;
+}
+hr{
+  margin:20px; 
+  visibility: hidden;
+}
+
+.custom-card {
+    max-width: 80%;
+    padding: 5px;
+    /* box-sizing: border-box; */
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    }
+   
+  .custom-card h2 {
+    margin: 0;
+  }
+
+  /* here I want to target all the screens */
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+  body ,.container{
+     /* width: 100%; Remove any padding that might affect the full width  */
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+  body ,.container{
+      /*Remove any padding that might affect the full width  */  
+    padding: 0;
+    margin: 1%;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Large devices (desktops, less than 1200px) */
+
+
+

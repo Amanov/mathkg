@@ -1,0 +1,113 @@
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    height: 100%;
+    text-align: left;
+}
+
+.container {
+    width: 100%;
+}
+
+
+
+.navbar {
+    z-index: 200;
+}
+
+.offcanvas {
+    top: 70px;
+    height: calc(100% - 70px);
+}
+
+.navbar-toggler {
+    margin-left: 90% !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.navbar+.navbar {
+       z-index: 80;
+       top:10%;
+    }
+
+
+.navbar-toggler {
+         margin-left: 90% !important;
+
+    }
+
+
+
+.box {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 0;
+    width: 180px;
+    height: 40px;
+    overflow-wrap: break-word;
+    
+}
+  
+
+
+
+
+ 
+
+
+
+  /* Button
+  button {
+    padding: 10px;
+    border: 20px solid #ccc;
+    width: 220px;
+    height: 40px;
+    /* font-size: 18px; 
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0;
+  } */
+
+  /* Display Account */
+  .DisplayAccount {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #9a1818;
+  }
+  
+.no-scroll {
+    overflow: hidden;
+}
+
+
+/* Update the link  */
+a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    line-height: 1.5rem;
+    /*  */
+    
+}
+
+
+
+
+
+
+

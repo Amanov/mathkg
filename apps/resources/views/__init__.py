@@ -1,0 +1,37 @@
+from .home import home_screen_view
+
+
+from .operations import (
+    all_operations_view,
+    directed_numbers_view,
+    four_basic_operations_view,
+
+    # onedigitarithmetics_view,
+)
+
+from .downloads import (
+    download_resource_view,
+)
+
+from .resources import (
+    resources_view,
+)
+
+from .dashboard import (
+    dashboard_view,
+)
+
+from .analytics import (
+    analytics_dashboard_view,
+)
+
+from .onduktar import *
+
+from .home import *
+
+from .big4 import big4_view
+
+from .topics import *
+
+from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
+from .operations import koshuu_1_digit_view

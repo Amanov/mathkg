@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Value Decimals Board Game Toolkit</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        /* Print formatting */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .print-page {
+                page-break-after: always;
+                break-inside: avoid;
+                color: #000 !important;
+                background: #fff !important;
+                border: none !important;
+                box-shadow: none !important;
+                width: 100%;
+                max-width: 100% !important;
+                padding: 1.5in !important; /* Visual padding for margins */
+            }
+            /* Reset dark background components for crisp print */
+            .print-card-box {
+                border: 2px dashed #000 !important;
+                background: #fff !important;
+                color: #000 !important;
+            }
+            .print-board-slot {
+                border: 2px solid #000 !important;
+                background: #f9fafb !important;
+                color: #000 !important;
+            }
+            .print-text-dark {
+                color: #111827 !important;
+            }
+            .print-text-muted {
+                color: #4b5563 !important;
+            }
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col overflow-hidden">
+
+    <!-- Main Dashboard Header (Screen only) -->
+    <header class="no-print bg-slate-900 border-b border-slate-800 px-6 py-4 flex-shrink-0 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="p-2.5 bg-indigo-600/20 text-indigo-400 rounded-xl border border-indigo-500/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200 heading-font">
+                    Place Value Decimals Board Game Toolkit
+                </h1>
+                <p class="text-xs text-slate-400">Printable Math Booklet Generator & Real-time Play Sandbox</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="window.print()" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white rounded-xl text-xs font-bold transition-all shadow-lg flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Print/Download PDF Booklet</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden no-print">
+        
+        <!-- Interactive Play Sandbox (Left Side) -->
+        <main class="w-full lg:w-1/2 h-1/2 lg:h-full p-4 lg:p-6 bg-slate-950 flex flex-col justify-between overflow-y-auto border-b lg:border-b-0 lg:border-r border-slate-800">
+            <div class="space-y-4">
+                <!-- Sandbox Control & Selection -->
+                <div class="flex items-center justify-between bg-slate-900/50 p-3 rounded-xl border border-slate-800/80">
+                    <div>
+                        <span class="text-[10px] text-indigo-400 font-extrabold uppercase tracking-widest">Sandbox Game Engine</span>
+                        <h2 class="text-sm font-semibold text-slate-200">Active Digital Match</h2>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <select id="sandbox-digits" onchange="initDigitalGame()" class="bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <option value="2">2-Digit Decimals (U . T)</option>
+                            <option value="3" selected>3-Digit Decimals (U . T H)</option>
+                            <option value="4">4-Digit Decimals (U . T H Th)</option>
+                        </select>
+                        <button onclick="initDigitalGame()" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors border border-slate-700/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.253 8H18" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Mode / Rules Selection -->
+                <div class="bg-slate-900/20 p-3 rounded-xl border border-slate-800/50 flex items-center justify-between text-xs text-slate-400">
+                    <span class="font-medium">Rule Variant:</span>
+                    <div class="flex items-center space-x-3">
+                        <label class="flex items-center space-x-1.5 cursor-pointer">
+                            <input type="radio" name="win-rule" value="largest" checked onchange="toggleRuleChange()" class="accent-indigo-500">
+                            <span class="text-slate-300">Largest Wins</span>
+                        </label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer">
+                            <input type="radio" name="win-rule" value="smallest" onchange="toggleRuleChange()" class="accent-indigo-500">
+                            <span class="text-slate-300">Smallest Wins</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Game Arena Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Player 1 Board -->
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 bg-indigo-500/10 text-indigo-400 rounded-full text-[10px] font-bold uppercase tracking-wider border border-indigo-500/20">Player 1</span>
+                            <span id="p1-score-badge" class="text-xs text-slate-400 font-semibold">Score: 0 pts</span>
+                        </div>
+
+                        <!-- Place Value Slots -->
+                        <div class="flex items-center justify-center space-x-1 bg-slate-950 p-4 rounded-xl border border-slate-900">
+                            <!-- Units -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-[10px] text-indigo-400 font-bold mb-1">U</span>
+                                <div id="p1-slot-0" onclick="placeSelectedCard('p1', 0)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-indigo-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Decimal Point -->
+                            <div class="flex flex-col items-center justify-end h-16 pb-2">
+                                <span class="text-2xl font-black text-indigo-500">.</span>
+                            </div>
+                            <!-- Tenths -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-[10px] text-indigo-400 font-bold mb-1">T</span>
+                                <div id="p1-slot-1" onclick="placeSelectedCard('p1', 1)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-indigo-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Hundredths -->
+                            <div id="p1-h-col" class="flex flex-col items-center">
+                                <span class="text-[10px] text-indigo-400 font-bold mb-1">H</span>
+                                <div id="p1-slot-2" onclick="placeSelectedCard('p1', 2)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-indigo-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Thousandths -->
+                            <div id="p1-th-col" class="flex flex-col items-center">
+                                <span class="text-[10px] text-indigo-400 font-bold mb-1">Th</span>
+                                <div id="p1-slot-3" onclick="placeSelectedCard('p1', 3)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-indigo-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                        </div>
+
+                        <!-- Player 1 Hand / Cards -->
+                        <div class="space-y-1.5">
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Your Hand (Pick & Place)</span>
+                            <div id="p1-hand" class="flex flex-wrap gap-1.5 justify-center"></div>
+                        </div>
+                    </div>
+
+                    <!-- Player 2 Board -->
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">Player 2</span>
+                            <span id="p2-score-badge" class="text-xs text-slate-400 font-semibold">Score: 0 pts</span>
+                        </div>
+
+                        <!-- Place Value Slots -->
+                        <div class="flex items-center justify-center space-x-1 bg-slate-950 p-4 rounded-xl border border-slate-900">
+                            <!-- Units -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-[10px] text-emerald-400 font-bold mb-1">U</span>
+                                <div id="p2-slot-0" onclick="placeSelectedCard('p2', 0)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Decimal Point -->
+                            <div class="flex flex-col items-center justify-end h-16 pb-2">
+                                <span class="text-2xl font-black text-emerald-500">.</span>
+                            </div>
+                            <!-- Tenths -->
+                            <div class="flex flex-col items-center">
+                                <span class="text-[10px] text-emerald-400 font-bold mb-1">T</span>
+                                <div id="p2-slot-1" onclick="placeSelectedCard('p2', 1)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Hundredths -->
+                            <div id="p2-h-col" class="flex flex-col items-center">
+                                <span class="text-[10px] text-emerald-400 font-bold mb-1">H</span>
+                                <div id="p2-slot-2" onclick="placeSelectedCard('p2', 2)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                            <!-- Thousandths -->
+                            <div id="p2-th-col" class="flex flex-col items-center">
+                                <span class="text-[10px] text-emerald-400 font-bold mb-1">Th</span>
+                                <div id="p2-slot-3" onclick="placeSelectedCard('p2', 3)" class="w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-400"></div>
+                            </div>
+                        </div>
+
+                        <!-- Player 2 Hand / Cards -->
+                        <div class="space-y-1.5">
+                            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Your Hand (Pick & Place)</span>
+                            <div id="p2-hand" class="flex flex-wrap gap-1.5 justify-center"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Results Panel -->
+                <div id="match-evaluation" class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-3 min-h-[140px]">
+                    <span class="text-xs text-slate-500">DECISION MATRIX</span>
+                    <p class="text-sm text-slate-400 max-w-sm">Place all decimal values above to trigger math checking, score assessment, and inequalities checking.</p>
+                </div>
+            </div>
+
+            <!-- Footer Sandbox Tip -->
+            <div class="mt-4 p-3 bg-indigo-950/20 rounded-xl border border-indigo-500/10 flex items-center justify-between text-xs">
+                <span class="text-indigo-300 font-semibold">Place Value Concept:</span>
+                <span class="text-slate-400 text-right">Units represents wholes, tenths ($0.1$), hundredths ($0.01$), and thousandths ($0.001$).</span>
+            </div>
+        </main>
+
+        <!-- Booklet Customization & Print Preview (Right Side) -->
+        <section class="w-full lg:w-1/2 h-1/2 lg:h-full bg-slate-900 flex flex-col overflow-hidden relative">
+            <div class="px-6 py-4 border-b border-slate-800 bg-slate-900/90 flex-shrink-0 flex items-center justify-between">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-indigo-400 font-extrabold">PDF Customization Pane</span>
+                    <h2 class="text-sm font-semibold text-slate-200">Printable Booklet Options</h2>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="window.print()" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-slate-100 rounded-lg text-xs font-semibold transition-all shadow-md flex items-center space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Generate & Save PDF</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Customizer controls -->
+            <div class="p-6 space-y-6 overflow-y-auto flex-1">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Player 1 Name</label>
+                        <input type="text" id="custom-p1-name" value="Player 1" oninput="updatePrintNames()" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Player 2 Name</label>
+                        <input type="text" id="custom-p2-name" value="Player 2" oninput="updatePrintNames()" class="w-full bg-slate-950 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="text-xs text-slate-400 font-bold uppercase tracking-wider">Include Pages in Booklet PDF</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs text-slate-300">
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-cover" checked class="rounded accent-indigo-500" onchange="togglePage('print-cover')">
+                            <span>Title Cover Page</span>
+                        </label>
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-cards" checked class="rounded accent-indigo-500" onchange="togglePage('print-cards')">
+                            <span>Cutout Digit Cards</span>
+                        </label>
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-2digit" checked class="rounded accent-indigo-500" onchange="togglePage('print-2digit')">
+                            <span>2-Digit Decimals Board (U.T)</span>
+                        </label>
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-3digit" checked class="rounded accent-indigo-500" onchange="togglePage('print-3digit')">
+                            <span>3-Digit Decimals Board (U.T.H)</span>
+                        </label>
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-4digit" checked class="rounded accent-indigo-500" onchange="togglePage('print-4digit')">
+                            <span>4-Digit Decimals Board (U.T.H.Th)</span>
+                        </label>
+                        <label class="flex items-center space-x-2.5 bg-slate-950 p-3 rounded-xl border border-slate-800/80 cursor-pointer hover:border-indigo-500/20">
+                            <input type="checkbox" id="inc-rules" checked class="rounded accent-indigo-500" onchange="togglePage('print-rules')">
+                            <span>Rule Changes & Scorecards</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Printable Live Preview Segment (Emulating paper style preview) -->
+                <div class="space-y-3">
+                    <span class="text-xs text-slate-400 font-bold uppercase tracking-wider block">Visual Print Preview (Scrollable)</span>
+                    <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 h-[380px] overflow-y-auto space-y-4">
+                        <div class="bg-white text-slate-900 p-6 rounded-xl shadow-lg space-y-4 max-w-lg mx-auto border border-slate-200">
+                            <div class="text-center pb-2 border-b-2 border-slate-200">
+                                <h4 class="text-lg font-black tracking-tight heading-font">PLACE VALUE CARD GAME</h4>
+                                <p class="text-[10px] text-slate-500 font-medium">Standard Classroom Handout Pack</p>
+                            </div>
+                            <div class="flex justify-between items-center bg-slate-100 p-2 rounded-lg text-[10px] text-slate-700">
+                                <div><strong>Player 1:</strong> <span class="print-preview-p1">Player 1</span></div>
+                                <div><strong>Player 2:</strong> <span class="print-preview-p2">Player 2</span></div>
+                            </div>
+                            <div class="space-y-2">
+                                <p class="text-[10px] text-slate-600 leading-relaxed">Cut out the printable digit cards below, flip them face down, draw, and strategize placements onto the decimals board. Most decimals formed win!</p>
+                                <div class="border-2 dashed border-slate-300 p-2.5 rounded-xl flex items-center justify-center space-x-3 text-xs bg-slate-50">
+                                    <span class="font-extrabold text-indigo-600">U</span>
+                                    <span class="text-slate-400">.</span>
+                                    <span class="font-extrabold text-indigo-600">T</span>
+                                    <span class="text-slate-400">.</span>
+                                    <span class="font-extrabold text-indigo-600">H</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- HIGH-RESOLUTION PRINT SHEETS WRAPPER (Print Viewport Only) -->
+    <div class="hidden print:block bg-white text-slate-900">
+        
+        <!-- COVER PAGE -->
+        <div id="print-cover" class="print-page bg-white min-h-screen flex flex-col justify-between py-12 px-16 border-8 border-double border-slate-900 m-8">
+            <div class="text-center space-y-4 my-auto">
+                <span class="text-xs tracking-widest uppercase font-extrabold text-slate-600">Active Classroom Handout Package</span>
+                <h1 class="text-5xl font-black heading-font text-slate-950 uppercase border-b-4 border-slate-900 pb-4">Place Value Decimal Game</h1>
+                <p class="text-sm font-medium text-slate-500 max-w-lg mx-auto">An interactive tactile math game focused on developing advanced number sense, decimal manipulation, and place value strategy.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 border-t-2 border-slate-300 pt-8 text-xs text-slate-600">
+                <div>
+                    <h4 class="font-extrabold uppercase text-slate-950">Learning Objectives</h4>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li>Understand place value values from units to thousandths.</li>
+                        <li>Strategize slot arrangement to optimize output decimal values.</li>
+                        <li>Contrast and compare multi-digit decimal numbers.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-extrabold uppercase text-slate-950">Classroom Setup</h4>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Students:</strong> Pair students into dyads (Player 1 & Player 2).</li>
+                        <li><strong>Materials:</strong> 1 pair of scissors per dyad, pen/pencil.</li>
+                        <li><strong>Scoring:</strong> Complete rounds to score points.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRINTABLE CARDS PAGE -->
+        <div id="print-cards" class="print-page bg-white min-h-screen py-12 px-16 border-2 border-slate-200">
+            <div class="mb-6 border-b-2 border-slate-900 pb-3">
+                <h2 class="text-xl font-bold uppercase tracking-tight text-slate-900">1. Printable Digit Cards Set</h2>
+                <p class="text-xs text-slate-500">Cut out each player's digit cards, shuffle thoroughly, and place face down.</p>
+            </div>
+
+            <!-- Player 1 Set -->
+            <div class="space-y-3">
+                <span class="text-xs font-black uppercase text-indigo-600 block tracking-wider print-preview-p1">Player 1 Set</span>
+                <div class="grid grid-cols-10 gap-1.5">
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">0</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">1</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">2</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">3</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">4</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">5</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">6</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">7</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">8</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">9</div>
+                </div>
+            </div>
+
+            <!-- Player 2 Set -->
+            <div class="space-y-3 mt-10">
+                <span class="text-xs font-black uppercase text-emerald-600 block tracking-wider print-preview-p2">Player 2 Set</span>
+                <div class="grid grid-cols-10 gap-1.5">
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">0</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">1</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">2</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">3</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">4</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">5</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">6</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">7</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">8</div>
+                    <div class="print-card-box border-2 border-dashed border-slate-800 rounded-lg text-center p-3 font-bold text-lg">9</div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-[11px] text-slate-500 border-t border-slate-200 pt-4 leading-relaxed">
+                <strong>How to play:</strong> Shuffle your set. Turn over one card at a time and decide which vacant place value slot on your game board to record it in. You cannot move cards once placed. Once all slots are filled, compare!
+            </div>
+        </div>
+
+        <!-- 2-DIGIT DECIMAL BOARD (U.T) -->
+        <div id="print-2digit" class="print-page bg-white min-h-screen py-12 px-16 border-2 border-slate-200">
+            <div class="border-b-2 border-slate-900 pb-3 mb-6">
+                <h2 class="text-xl font-black uppercase text-slate-900 tracking-wider">Place Value Card Game • 2-Digit Decimal Round</h2>
+                <p class="text-xs text-slate-500">Each player takes turns drawing a card & placing it in a slot. The player with the largest decimal wins 1 point!</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 mt-10">
+                <!-- Player 1 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-indigo-600 print-preview-p1">Player 1</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-emerald-600 print-preview-p2">Player 2</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workspace box for students -->
+            <div class="mt-16 border-2 border-dashed border-slate-300 rounded-xl p-5 space-y-2">
+                <span class="text-[11px] font-black uppercase tracking-wider text-slate-500 block">Workspace / Comparison Area</span>
+                <div class="flex items-center justify-center space-x-3 text-lg font-bold text-slate-700 h-16">
+                    <span class="print-preview-p1">Player 1</span>
+                    <span class="px-4 py-1 bg-slate-100 rounded-lg text-slate-400">&lt;&nbsp;&nbsp;=&nbsp;&nbsp;&gt;</span>
+                    <span class="print-preview-p2">Player 2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3-DIGIT DECIMAL BOARD (U.T.H) -->
+        <div id="print-3digit" class="print-page bg-white min-h-screen py-12 px-16 border-2 border-slate-200">
+            <div class="border-b-2 border-slate-900 pb-3 mb-6">
+                <h2 class="text-xl font-black uppercase text-slate-900 tracking-wider">Place Value Card Game • 3-Digit Decimal Round</h2>
+                <p class="text-xs text-slate-500">Each player takes turns drawing a card & placing it in a slot. The player with the largest decimal wins 1 point!</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 mt-10">
+                <!-- Player 1 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-indigo-600 print-preview-p1">Player 1</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Hundredths (H)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-emerald-600 print-preview-p2">Player 2</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Hundredths (H)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workspace box for students -->
+            <div class="mt-16 border-2 border-dashed border-slate-300 rounded-xl p-5 space-y-2">
+                <span class="text-[11px] font-black uppercase tracking-wider text-slate-500 block">Workspace / Comparison Area</span>
+                <div class="flex items-center justify-center space-x-3 text-lg font-bold text-slate-700 h-16">
+                    <span class="print-preview-p1">Player 1</span>
+                    <span class="px-4 py-1 bg-slate-100 rounded-lg text-slate-400">&lt;&nbsp;&nbsp;=&nbsp;&nbsp;&gt;</span>
+                    <span class="print-preview-p2">Player 2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4-DIGIT DECIMAL BOARD (U.T.H.Th) -->
+        <div id="print-4digit" class="print-page bg-white min-h-screen py-12 px-16 border-2 border-slate-200">
+            <div class="border-b-2 border-slate-900 pb-3 mb-6">
+                <h2 class="text-xl font-black uppercase text-slate-900 tracking-wider">Place Value Card Game • 4-Digit Decimal Round</h2>
+                <p class="text-xs text-slate-500">Each player takes turns drawing a card & placing it in a slot. The player with the largest decimal wins 1 point!</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 mt-10">
+                <!-- Player 1 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-indigo-600 print-preview-p1">Player 1</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Hundredths (H)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Thousandths (Th)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 Layout -->
+                <div class="border border-slate-300 rounded-2xl p-6 space-y-4">
+                    <span class="text-xs font-black uppercase tracking-wider text-emerald-600 print-preview-p2">Player 2</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Units (U)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="text-4xl font-black text-slate-900 self-end pb-3">.</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Tenths (T)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Hundredths (H)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-[10px] text-slate-500 font-extrabold mb-1">Thousandths (Th)</span>
+                            <div class="print-board-slot w-14 h-20 border-2 border-slate-400 rounded-xl bg-slate-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workspace box for students -->
+            <div class="mt-16 border-2 border-dashed border-slate-300 rounded-xl p-5 space-y-2">
+                <span class="text-[11px] font-black uppercase tracking-wider text-slate-500 block">Workspace / Comparison Area</span>
+                <div class="flex items-center justify-center space-x-3 text-lg font-bold text-slate-700 h-16">
+                    <span class="print-preview-p1">Player 1</span>
+                    <span class="px-4 py-1 bg-slate-100 rounded-lg text-slate-400">&lt;&nbsp;&nbsp;=&nbsp;&nbsp;&gt;</span>
+                    <span class="print-preview-p2">Player 2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RULE CHANGES & SCORECARDS -->
+        <div id="print-rules" class="print-page bg-white min-h-screen py-12 px-16 border-2 border-slate-200 flex flex-col justify-between">
+            <div class="space-y-6">
+                <div class="border-b-2 border-slate-900 pb-3">
+                    <h2 class="text-xl font-bold uppercase tracking-tight text-slate-900">Custom Rules & Classroom Matrix</h2>
+                    <p class="text-xs text-slate-500">Inject pedagogical variants to expand strategy dynamics during decimal matching.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Rule Variants -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h4 class="text-xs font-bold uppercase text-slate-900 mb-1.5">Rule Change A: Smallest Wins</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">Instead of generating the largest possible decimal, players must place cards to construct the **smallest possible number** without placing 0 in the Units place if possible.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h4 class="text-xs font-bold uppercase text-slate-900 mb-1.5">Rule Change B: Difference Scoring</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">The winner scores points equal to the absolute difference between the two decimals formed (e.g., if Player 1 forms $8.42$ and Player 2 forms $6.12$, Player 1 scores exactly $2.30$ points).</p>
+                        </div>
+                    </div>
+
+                    <!-- Scoresheet Tracker -->
+                    <div class="border border-slate-200 rounded-xl p-4 space-y-3">
+                        <span class="text-xs font-bold uppercase text-slate-900 block">Classroom Match Scoresheet</span>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-300">
+                                    <th class="py-1">Round</th>
+                                    <th class="py-1 print-preview-p1">Player 1</th>
+                                    <th class="py-1 print-preview-p2">Player 2</th>
+                                    <th class="py-1">Winner</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="py-2">Round 1 (2-digit)</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Round 2 (3-digit)</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Round 3 (4-digit)</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Round 4 (Custom)</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                    <td class="py-2">___________</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer descriptor -->
+            <div class="text-[10px] text-slate-400 border-t border-slate-100 pt-3 text-center">
+                Interactive Decimals Booklet Generation Engine • Ready for Classroom Deployment
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Script Controllers -->
+    <script>
+        // Game active state configuration
+        const gameState = {
+            digits: 3, // Default decimal digits
+            winRule: 'largest', // 'largest' or 'smallest'
+            p1: {
+                slots: [null, null, null, null],
+                hand: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                score: 0
+            },
+            p2: {
+                slots: [null, null, null, null],
+                hand: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                score: 0
+            },
+            selectedCard: null // Holds {player: 'p1'|'p2', val: number, indexInHand: number}
+        };
+
+        // Initialize / Start Game
+        function initDigitalGame() {
+            const digitSelector = document.getElementById('sandbox-digits');
+            gameState.digits = parseInt(digitSelector.value);
+
+            // Reset Slots
+            gameState.p1.slots = [null, null, null, null];
+            gameState.p2.slots = [null, null, null, null];
+
+            // Reset Hands
+            gameState.p1.hand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            gameState.p2.hand = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+            gameState.selectedCard = null;
+
+            // Manage Column visibility depending on digit configurations
+            toggleColumnVisibility('p1-h-col', gameState.digits >= 3);
+            toggleColumnVisibility('p2-h-col', gameState.digits >= 3);
+            toggleColumnVisibility('p1-th-col', gameState.digits >= 4);
+            toggleColumnVisibility('p2-th-col', gameState.digits >= 4);
+
+            renderHands();
+            renderSlots();
+            clearDecisionMatrix();
+        }
+
+        function toggleColumnVisibility(elementId, isVisible) {
+            const col = document.getElementById(elementId);
+            if (isVisible) {
+                col.classList.remove('hidden');
+            } else {
+                col.classList.add('hidden');
+            }
+        }
+
+        // Render digit hand selectors
+        function renderHands() {
+            const p1Container = document.getElementById('p1-hand');
+            const p2Container = document.getElementById('p2-hand');
+
+            p1Container.innerHTML = '';
+            p2Container.innerHTML = '';
+
+            // Generate Player 1 Cards
+            gameState.p1.hand.forEach((val, idx) => {
+                const card = document.createElement('button');
+                card.className = "w-8 h-10 rounded-lg bg-indigo-600 hover:bg-indigo-500 font-bold text-sm text-white flex items-center justify-center transition-all shadow active:scale-95";
+                card.textContent = val;
+                card.onclick = () => selectCard('p1', val, idx);
+                p1Container.appendChild(card);
+            });
+
+            // Generate Player 2 Cards
+            gameState.p2.hand.forEach((val, idx) => {
+                const card = document.createElement('button');
+                card.className = "w-8 h-10 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-bold text-sm text-white flex items-center justify-center transition-all shadow active:scale-95";
+                card.textContent = val;
+                card.onclick = () => selectCard('p2', val, idx);
+                p2Container.appendChild(card);
+            });
+        }
+
+        // Render placed cards inside active board slots
+        function renderSlots() {
+            for (let i = 0; i < 4; i++) {
+                const slot1 = document.getElementById(`p1-slot-${i}`);
+                const slot2 = document.getElementById(`p2-slot-${i}`);
+
+                // Player 1 Slot
+                if (gameState.p1.slots[i] !== null) {
+                    slot1.textContent = gameState.p1.slots[i];
+                    slot1.className = "w-12 h-16 rounded-xl border-2 border-indigo-500 flex items-center justify-center text-2xl font-extrabold cursor-pointer transition-all bg-indigo-950/40 text-indigo-300 shadow-md";
+                } else {
+                    slot1.textContent = '';
+                    slot1.className = "w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-indigo-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-500";
+                }
+
+                // Player 2 Slot
+                if (gameState.p2.slots[i] !== null) {
+                    slot2.textContent = gameState.p2.slots[i];
+                    slot2.className = "w-12 h-16 rounded-xl border-2 border-emerald-500 flex items-center justify-center text-2xl font-extrabold cursor-pointer transition-all bg-emerald-950/40 text-emerald-300 shadow-md";
+                } else {
+                    slot2.textContent = '';
+                    slot2.className = "w-12 h-16 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 flex items-center justify-center text-xl font-bold cursor-pointer transition-all bg-slate-900/40 text-slate-500";
+                }
+            }
+        }
+
+        // Handle active selection of a hand card
+        function selectCard(player, val, idx) {
+            gameState.selectedCard = { player, val, idx };
+            showToast(`${player === 'p1' ? 'Player 1' : 'Player 2'} selected card: ${val}. Click an empty place value slot to place it!`);
+        }
+
+        // Settle a selected card into a custom slot on the active board
+        function placeSelectedCard(player, slotIndex) {
+            if (!gameState.selectedCard) {
+                showToast("Please select a digit card from your hand first!", "warning");
+                return;
+            }
+
+            if (gameState.selectedCard.player !== player) {
+                showToast(`Incorrect player! This card belongs to ${gameState.selectedCard.player === 'p1' ? 'Player 1' : 'Player 2'}.`, "warning");
+                return;
+            }
+
+            // Ensure slot fits selected complexity range (e.g., cannot place in Thousandths if 2-digit decimals mode)
+            if (slotIndex >= gameState.digits) {
+                showToast("Slot is outside active decimals boundary range!", "warning");
+                return;
+            }
+
+            // Ensure slot is vacant
+            if (gameState[player].slots[slotIndex] !== null) {
+                showToast("This slot is already filled! Choose another slot.", "warning");
+                return;
+            }
+
+            // Lock Card into position
+            gameState[player].slots[slotIndex] = gameState.selectedCard.val;
+
+            // Remove card from player hand
+            gameState[player].hand.splice(gameState.selectedCard.idx, 1);
+
+            // Clean active temporary state
+            gameState.selectedCard = null;
+
+            renderHands();
+            renderSlots();
+            evaluateMatch();
+        }
+
+        // Toggle Rules
+        function toggleRuleChange() {
+            const rules = document.getElementsByName('win-rule');
+            for (let r of rules) {
+                if (r.checked) {
+                    gameState.winRule = r.value;
+                    break;
+                }
+            }
+            evaluateMatch();
+        }
+
+        // Evaluate decimals value math
+        function evaluateMatch() {
+            // Check if all active slots are populated
+            let p1Full = true;
+            let p2Full = true;
+
+            for (let i = 0; i < gameState.digits; i++) {
+                if (gameState.p1.slots[i] === null) p1Full = false;
+                if (gameState.p2.slots[i] === null) p2Full = false;
+            }
+
+            if (!p1Full || !p2Full) {
+                return; // Wait for both users to finish placing
+            }
+
+            // Construct values
+            const p1Val = convertSlotsToDecimal(gameState.p1.slots, gameState.digits);
+            const p2Val = convertSlotsToDecimal(gameState.p2.slots, gameState.digits);
+
+            const matrix = document.getElementById('match-evaluation');
+            let winnerText = "";
+            let resultClass = "";
+
+            let isP1Winner = false;
+            let isP2Winner = false;
+            let isTie = p1Val === p2Val;
+
+            if (!isTie) {
+                if (gameState.winRule === 'largest') {
+                    isP1Winner = p1Val > p2Val;
+                    isP2Winner = p2Val > p1Val;
+                } else {
+                    isP1Winner = p1Val < p2Val;
+                    isP2Winner = p2Val < p1Val;
+                }
+            }
+
+            if (isP1Winner) {
+                gameState.p1.score += 1;
+                winnerText = `🏆 Player 1 wins the round!`;
+                resultClass = "bg-indigo-950/30 border-indigo-500/30 text-indigo-300";
+            } else if (isP2Winner) {
+                gameState.p2.score += 1;
+                winnerText = `🏆 Player 2 wins the round!`;
+                resultClass = "bg-emerald-950/30 border-emerald-500/30 text-emerald-300";
+            } else {
+                winnerText = "⚖️ It's a Tie Round!";
+                resultClass = "bg-slate-900/60 border-slate-800 text-slate-300";
+            }
+
+            // Update Score Badges on dashboard
+            document.getElementById('p1-score-badge').textContent = `Score: ${gameState.p1.score} pts`;
+            document.getElementById('p2-score-badge').textContent = `Score: ${gameState.p2.score} pts`;
+
+            // Display live comparison formula
+            const difference = Math.abs(p1Val - p2Val).toFixed(gameState.digits - 1);
+            const relationSign = p1Val > p2Val ? '>' : p1Val < p2Val ? '<' : '=';
+
+            matrix.className = `border rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-3 min-h-[140px] transition-all duration-300 ${resultClass}`;
+            matrix.innerHTML = `
+                <span class="text-xs uppercase font-extrabold tracking-widest opacity-80">Match Settle Summary</span>
+                <h3 class="text-lg font-black heading-font">${winnerText}</h3>
+                <div class="code-font text-sm bg-slate-950/60 px-3.5 py-1.5 rounded-lg border border-slate-800">
+                    P1: ${p1Val.toFixed(gameState.digits - 1)} &nbsp;${relationSign}&nbsp; P2: ${p2Val.toFixed(gameState.digits - 1)}
+                </div>
+                <p class="text-[11px] opacity-75 max-w-sm">
+                    Absolute value difference calculation: |P1 - P2| = <strong>${difference}</strong>
+                </p>
+                <button onclick="initDigitalGame()" class="mt-2 text-[10px] uppercase font-bold tracking-wider text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/50 px-3 py-1.5 rounded-lg transition-all">
+                    Reset & Play Again
+                </button>
+            `;
+        }
+
+        function convertSlotsToDecimal(slots, digits) {
+            let numStr = slots[0].toString() + ".";
+            for (let i = 1; i < digits; i++) {
+                numStr += slots[i].toString();
+            }
+            return parseFloat(numStr);
+        }
+
+        function clearDecisionMatrix() {
+            const matrix = document.getElementById('match-evaluation');
+            matrix.className = "bg-slate-900/40 border border-slate-800 rounded-2xl p-4 flex flex-col items-center justify-center text-center space-y-3 min-h-[140px]";
+            matrix.innerHTML = `
+                <span class="text-xs text-slate-500">DECISION MATRIX</span>
+                <p class="text-sm text-slate-400 max-w-sm">Place all decimal values above to trigger math checking, score assessment, and inequalities checking.</p>
+            `;
+        }
+
+        // Custom PDF Booklet generators
+        function updatePrintNames() {
+            const p1Val = document.getElementById('custom-p1-name').value || 'Player 1';
+            const p2Val = document.getElementById('custom-p2-name').value || 'Player 2';
+
+            // Push values to preview & print elements
+            const p1Elements = document.querySelectorAll('.print-preview-p1');
+            const p2Elements = document.querySelectorAll('.print-preview-p2');
+
+            p1Elements.forEach(el => el.textContent = p1Val);
+            p2Elements.forEach(el => el.textContent = p2Val);
+        }
+
+        function togglePage(pageId) {
+            const el = document.getElementById(pageId);
+            if (el.classList.contains('print-page')) {
+                el.classList.remove('print-page', 'hidden');
+                el.classList.add('hidden');
+            } else {
+                el.classList.remove('hidden');
+                el.classList.add('print-page');
+            }
+        }
+
+        function showToast(msg, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-slate-900/95 border border-indigo-500/30 text-indigo-300 text-xs px-4 py-3 rounded-xl shadow-2xl backdrop-blur flex items-center space-x-2.5 transition-all duration-300 transform translate-x-12 opacity-0 pointer-events-auto";
+            toast.innerHTML = `
+                <div class="p-1 bg-indigo-500/10 rounded-lg text-indigo-400">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="font-medium">${msg}</div>
+            `;
+            container.appendChild(toast);
+            
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 50);
+
+            // Animate Out
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        window.onload = function() {
+            initDigitalGame();
+            updatePrintNames();
+        }
+    </script>
+</body>
+</html>

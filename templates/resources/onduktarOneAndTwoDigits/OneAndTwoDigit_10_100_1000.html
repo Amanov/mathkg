@@ -1,0 +1,958 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Ондук жана бүтүн сандарды 10, 100 жана 1000гө көбөйтүү жана бөлүү{%endblock%}
+
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+  body{   
+    margin-left: 250px;    
+  }
+  .mainshadow{
+    box-shadow: 0 0 20px rgb(13, 167, 255);   
+  }
+  h1 {
+  display: flex;
+  align-items: center;
+  font-size:3vw;
+}
+
+h1::after {
+  content: '';
+  flex: 1;
+  margin-left: 1.5rem;
+  
+  height: 8px;
+  background-color:rgb(13, 167, 255);
+}
+h1::before{
+  content: '      ';
+  flex: 1;
+  margin-right: 1.5rem;
+  height: 8px;
+  background-color:rgb(13, 167, 255);
+  
+}
+.zoom {
+   padding: 5px; 
+  /* background-color: green; */
+  transition: transform  .3s; /* Animation */
+   /* width: 200px;
+  height: 200px;  */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+h3{
+  display: inline-block !important;
+  font-size:2vw;
+}
+.custom_border{
+  border: 3px solid rgb(34, 133 , 195);
+  border-radius: 10px; 
+  padding:5%;
+ 
+}
+.overflow-wrap {
+  overflow-wrap: break-word;
+}
+.custom-card h2 {
+    margin: 0;
+  }
+ /* here I want to target all the screens */
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
+    padding: 0;
+    margin: 0;
+  }
+  
+    .col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+  body ,.container{
+    /* width: 100%; Remove any padding that might affect the full width  */ 
+    padding: 0;
+    margin: 0;
+  }
+.col-auto.col-md-3 {
+       display:block;  /*<!---Here how to show the menu from side--> */
+    }
+
+    /* Show the hamburger menu container */
+    .col-auto.d-md-none {
+      display: block;
+    }  
+   
+/* Hide the entire navigation section */
+
+  .hamburger-menu {
+    display: block; /* Show the hamburger icon */
+    transform: translateY(-65px);
+    border: 3px solid rgb(15,60,88);
+    border-radius: 10px ;
+    padding-left:  10px;
+   
+  }
+
+  .sidebar{
+    /* display: none !important; */
+    transform: translateX(-100%);
+    z-index: 1;
+    display: block;
+    position:fixed;
+         
+  }
+  .sidebar.show{
+    transform: translateX(0);
+    z-index: 2;
+    
+    
+  }
+  .sidebar a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    /* color: #333; */
+   
+}
+}
+/* // Large devices (desktops, less than 1200px) */
+/* @media (min-width: 992px) { 
+  body {
+   /* width: 100%;  Remove any padding that might affect the full width   
+    padding: 0;
+    margin: 0;
+  }
+ } */
+/* End of screen target */
+
+.anchorNew{
+  width: 70px;
+  height: 40px;
+  padding-top:10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+/* .container{
+  width: 100%;
+} */
+
+</style>
+
+<div class="container">
+  <div class="position-relative p-5 text-center" >
+    <h3 style="font-size: 3rem;     color: #333;  text-align: center;"> Ондук жана бүтүн сандарды 10, 100 жана 1000гө көбөйтүү жана бөлүү </h3> 
+    <div class="row align-items-md-stretch custom_border" style="background-color: bisque;" >
+      <h1>Сабакка даяр презентациялар</h1> 
+
+      <div class=" col-md-4">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-center overflow-wrap">Сабактын көрсөтүү - түшүндүрүү</h2>
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          <!-- for restriction from download -->
+          {% if user.is_authenticated %}
+             <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Sabak.pptx' %}">PPT</a>
+          {% else %}
+            <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
+          {% endif %}
+            </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;"> <!--Images -->
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Sabaka.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!---End of presentation sections-->
+      <hr style="margin:20px;visibility: hidden;">
+      <!---Second sections-->
+     
+      <!--End of second sections-->
+      <hr style="margin:20px;visibility: hidden;">
+      <!---worksheets sections--> 
+      <h1 class="text-uppercase">Көрсөтмө суроолору</h1> 
+
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
+          <h3 class="fw-bold text-uppercase"> Жеңил, Орто, Оор </h3>
+          
+          
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JenilOrtoOor.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+
+          {% else %}
+          <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+                             
+          {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-JenilOrtoOor.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of digital puzzle section -->
+
+      <div class="col-md-12 col-lg-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap">
+          <h3 class="fw-bold text-uppercase " >1234</h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           <!-- <button class="btn btn-outline-primary" type="button">PPT</button> -->
+           {% if user.is_authenticated %}
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-1234.pptx' %}">PPT</a><br><hr style="visibility: hidden; margin:0.2em; ">
+          </h2>
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+           <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-1234.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- spot sandyk bash katyrma mistake -->
+      
+      
+
+    
+   <hr style="margin:20px; visibility: hidden;">
+      <h1 class="text-uppercase">сабакка даяр иш барактар</h1>
+      <hr style="margin:20px; visibility: hidden;">
+      <!--Katary menen 4-->
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Катары менен төрт   </h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTort.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTortA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTortA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTortA6.pdf' %}">A6 PDF</a> 
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-KataryMNTort.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Katary menen Tort -->
+
+      <!-- Start of Katany Tap -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap" >Катаны тап </h2>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KatanyTap.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KatanyTapA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KatanyTapA5.pdf' %}">A5 PDF</a>  <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KatanyTapA6.pdf' %}">A6 PDF</a> 
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-KatanyTap.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of tarsia -->
+
+      <!-- Start of sandar menen labyrinth oyyun -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap" >Сандар менен лабиринт   </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinth.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinthA4.pdf' %}">A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinthA5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinthA6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-SandarMNLabyrinth.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Sandar mn Labyrinth -->
+       <!-- Start of Көндүм иш кагаздары 1 -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap" >Көндүм иш кагаздары 1  </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1A4.pdf' %}">A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1A5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1A6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Kondum1.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Көндүм иш кагаздары 1 -->
+      <!-- Start of Көндүм иш кагаздары 2 -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap" >Көндүм иш кагаздары 2  </h3>
+          <h5>2 деңгээлде</h5>
+
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2A4.pdf' %}">A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2A5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2A6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Kondum2.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Көндүм иш кагаздары 2-->
+        <!-- Start of Көндүм иш кагаздары 3 -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap" >Көндүм иш кагаздары 3  </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum3.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum3A4.pdf' %}">A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum3A5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum3A6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Kondum3.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Көндүм иш кагаздары 3 -->
+        <!-- Start of Көндүм иш кагаздары 4 -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap" >Көндүм иш кагаздары 4 </h3>
+          <h5>Бөлчөктөр менен</h5>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+
+           {% if user.is_authenticated %}
+
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum4.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum4A4.pdf' %}">A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum4A5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum4A6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+               {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %} 
+        </div>
+      </div>      
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px;visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Kondum4.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Көндүм иш кагаздары 4 -->       
+      <hr style="margin:20px; visibility: hidden;">
+      <h1 class="text-uppercase">Көнүгүүлөр</h1> 
+      <hr style="margin:20px; visibility: hidden;">      
+       <!-- Start of Konuguu A -->    
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Көнүгүү А </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KonuguuA.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KonuguuAA4.pdf' %}">A4 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KonuguuAA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-KonuguuA.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Tuura je Kata-->
+      
+      <!-- Start of Tasia Kurak-->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Туура же Ката </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKata.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKataA4.pdf' %}">A4 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKataA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKataA6.pdf' %}">A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-TuuraJeKata.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Tuura je Kata -->
+       <!-- Start of Tarsia Kurak-->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Тарсиа Курак </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TarsiaKurak.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TarsiaKurakA4.pdf' %}">A4 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TarsiaKurakA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-TarsiaKurak.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Tarsia Kurak -->
+
+      <!-- Start of Kazyna Izdoo-->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Казына Издөө</h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KazynaIzdoo.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KazynaIzdooA4.pdf' %}">A4 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-KazynaIzdoo.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of Kazyna Izdoo-->
+
+
+
+      <!-- Materials -->
+      <hr style="margin:20px; visibility: hidden;">
+      <h1 class="text-uppercase">мугалим жетектеген көндүмдөр </h1> 
+      <hr style="margin:20px; visibility: hidden;">
+      <!--Start of bingo-->
+      
+     
+
+      <!--End of Bingo method-->
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Блокбастер Оюну  </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-BlockbusterOyunu.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+                          
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-BlockbusterOyunu.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of blockbuster-->
+
+      <hr style="margin:20px; visibility: hidden;">
+
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h3 class="fw-bold text-uppercase" >X & O </h3>
+          <h5>көбөйтүү гана</h5>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOA.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+          
+         
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20 px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-XOA.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+
+      
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h3 class="fw-bold text-uppercase" >X & O </h3>          
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOB.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+          
+         
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20 px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-XOB.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      
+      
+     
+      <!-- True or False Maze /Туура же Ката лабиринт -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h3 class="fw-bold text-uppercase" >Жыдымай </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JYDYMAI.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+          
+         
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20 px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-JYDYMAI.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end ๋Jydymai -->
+      <!---maga korsot -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h3 class="fw-bold text-uppercase" >Мага Көрсөт </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-MagaKorsot.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+          
+         
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20 px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-MagaKorsot.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+
+      <!---end of maga korsot-->
+
+      <!-- end of Splat-->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary text-center overflow-wrap ">
+          <h3 class="fw-bold text-uppercase" >Тарс ойуну </h3>
+          <h5>көбөйтүү гана</h5>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <!-- middle buttons -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TARSOYUNU.pptx' %}">PPT</a> <hr style="visibility: hidden;">
+          
+         
+          {% else %}
+          <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+          <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+          {% endif %}           
+        </div>
+      </div>
+      <!-- A4 -->
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20 px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-TarsOyunu.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+    <!-- end of Splat-->
+
+      <!-- end of teacher led activities -->
+       <!-- Materials -->
+      <hr style="margin:20px; visibility: hidden;">
+      <h1 class="text-uppercase">Материалдар </h1> 
+      <hr style="margin:20px; visibility: hidden;">    
+      <!-- digital puzzle section -->
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary ">
+          <h3 class="fw-bold text-uppercase text-center overflow-wrap">Орундардын маанилерини диаграммалары </h3>
+          <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="h-100 p-5 bg-body-tertiary " >           
+              <!-- here we have to work  -->
+              {% if user.is_authenticated %}
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Onduktar_OrundardyMaanisiDiagrammasi.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Onduktar_OrundardyMaanisiDiagrammasiChonFormat.pdf' %}">A4</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Onduktar_OrundardyMaanisiDiagrammasiA5.pdf' %}">A5</a> <hr style="visibility: hidden; margin:0.2em; ">
+              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Onduktar_OrundardyMaanisiDiagrammasiA6.pdf' %}">A6</a> <hr style="visibility: hidden; margin:0.2em; ">
+                    
+              {% else %}
+	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
+              {% endif %}           
+        </div>
+      </div>     
+      <div class="col-md-4">
+          <div class="h-100 rounded-1">                
+            <div class="d-flex flex-column  zoom">
+              <hr style="margin:20px; visibility: hidden;">
+                <img class="img-fluid mx-auto  mainshadow " src="{% static 'img/ButunSandardyJanaOnduktardyKoboytuuBoluu10_100_1000-Materialdar.png' %}" alt="mathKG" style="border-radius:3%;" >
+            </div>
+          </div>
+      </div>
+      <!-- end of digital puzzle section -->
+      <hr style="margin:20px; visibility: hidden;"> 
+      
+      
+
+      
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

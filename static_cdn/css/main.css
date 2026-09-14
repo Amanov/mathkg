@@ -1,0 +1,31 @@
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+    background-color: #ffffff;
+}
+
+.main-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+}
+
+h1::before,
+h1::after {
+    content: '';
+    flex: 1;
+    height: 8px;
+    background-color: rgb(13, 167, 255);
+}
+
+h1::before {
+    margin-right: 1.5rem;
+}
+
+h1::after {
+    margin-left: 1.5rem;
+}

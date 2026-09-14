@@ -1,0 +1,175 @@
+
+/* ════════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════════ */
+.navbar-nav { gap: 6px; }
+.navbar-nav > li { position: relative; }
+
+/* ════════════════════════════════════════════
+   ROOT BUTTON
+════════════════════════════════════════════ */
+.mymenu {
+    min-width: 120px;
+    height: 44px;
+    padding: 0 16px;
+    background: #f8f7f4;
+    color: #1a1a2e;
+    border: 2px solid #45adff;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background .15s, color .15s;
+}
+.mymenu:hover {
+    background: #cce8ff;
+    color: #0d6efd;
+}
+
+/* ════════════════════════════════════════════
+   DROPDOWN PANEL
+════════════════════════════════════════════ */
+.dropdown-menu {
+    position: absolute;
+    padding: 0;
+    /* width: fit-content; */
+    width: 160px !important;
+    /* min-width: unset; */
+    min-width: unset !important;
+    max-width: 160px !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+
+    border: 2px solid #45adff;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.10);
+    z-index: 9999;
+    overflow: visible;
+    background: #f8f7f4;
+}
+
+/* ════════════════════════════════════════════
+   ALL LI — uniform rows, blue dividers
+════════════════════════════════════════════ */
+.dropdown-menu li {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    background: #f8f7f4;
+    z-index: 99999;
+    border-bottom: 2px solid #45adff;
+}
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+/* ════════════════════════════════════════════
+   LEAF LINKS
+════════════════════════════════════════════ */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a2e;
+    /* white-space: nowrap; */
+    text-decoration: none;
+    transition: background .15s, color .15s;
+
+    /* ========== */
+    white-space: normal !important;
+    word-break: break-word !important;
+    width: 160px !important;
+    max-width: 160px !important;
+    box-sizing: border-box !important;
+    color: #1a1a2e !important;
+
+}
+.dropdown-item:hover {
+    background: #cce8ff;
+    /* color: #0d6efd; */
+    color: #0d6efd !important;
+
+}
+
+/* ════════════════════════════════════════════
+   SUBMENU TOGGLE — same height as leaf
+════════════════════════════════════════════ */
+.dropdown-submenu { position: relative; }
+
+.dropdown-submenu > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    height: 44px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a2e;
+    background: #f8f7f4;
+    text-decoration: none;
+    /* white-space: nowrap; */
+    cursor: pointer;
+    transition: background .15s, color .15s;
+
+    /* ============== */
+    white-space: normal !important;
+    word-break: break-word !important;
+    width: 160px !important;
+    max-width: 160px !important;
+    box-sizing: border-box !important;
+}
+.dropdown-submenu > a:hover,
+.dropdown-submenu:hover > a {
+    background: #cce8ff;
+    color: #0d6efd;
+}
+
+/* Right arrow */
+.dropdown-submenu > a::after {
+    content: "›";
+    border: none;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+    margin-left: 12px;
+    flex-shrink: 0;
+    color: #45adff;
+}
+.dropdown-submenu > a:hover::after,
+.dropdown-submenu:hover > a::after {
+    color: #0d6efd;
+}
+
+/* ════════════════════════════════════════════
+   FLYOUT PANEL
+════════════════════════════════════════════ */
+.dropdown-submenu > .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: -2px ;
+    left: calc(100% + 2px);
+    margin: 0;
+    /* margin-top: 0 !important; */
+
+    border-radius: 6px;
+    overflow: visible;
+}
+
+.dropdown-submenu > .dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-submenu.dropstart > .dropdown-menu {
+    left: auto;
+    right: calc(100% + 2px);
+}

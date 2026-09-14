@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Coordinate Geometry Journey</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX for Beautiful Math Notation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <!-- Custom Style Fonts and CSS Transitions -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        /* Custom scrollbars for clean UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        /* Smooth scale animation on active elements */
+        .step-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-indigo {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden text-slate-100 flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex-shrink-0 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="p-2 bg-indigo-600/20 text-indigo-400 rounded-lg border border-indigo-500/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200">
+                    Coordinate Geometry Academy
+                </h1>
+                <p class="text-xs text-slate-400">Interactive Guided Progression • Inspired by Dr Dario Emanuele</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full border border-slate-700 text-slate-300 font-medium flex items-center space-x-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Active Sandbox Mode</span>
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
+        
+        <!-- Left Column: Dynamic Interactive Grid -->
+        <div class="w-full lg:w-1/2 h-1/2 lg:h-full p-4 lg:p-6 bg-slate-950 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
+            <div class="flex items-center justify-between mb-2">
+                <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Interactive Grid Simulator</div>
+                <div class="flex space-x-2 text-xs">
+                    <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-indigo-500 inline-block"></span> <span class="text-slate-300">A</span></span>
+                    <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> <span class="text-slate-300">B</span></span>
+                    <span id="legend-parallel" class="flex items-center space-x-1 hidden"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> <span class="text-slate-300">Parallel Point (P)</span></span>
+                </div>
+            </div>
+
+            <!-- Coordinate Canvas Wrapper -->
+            <div class="flex-1 relative bg-slate-900/60 rounded-2xl border border-slate-800 overflow-hidden min-h-[250px]">
+                <canvas id="geometryCanvas" class="absolute inset-0 block cursor-crosshair w-full h-full"></canvas>
+                
+                <!-- Floating Canvas Coordinates Controller -->
+                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-slate-900/95 border border-slate-700/50 rounded-xl px-4 py-2.5 backdrop-blur shadow-2xl">
+                    <div class="flex space-x-4 text-xs font-medium">
+                        <div>Point <span class="text-indigo-400 font-bold">A</span>: <span id="coords-A" class="code-font text-indigo-300 bg-slate-950 px-2 py-0.5 rounded border border-indigo-900/45">(2.0, 4.0)</span></div>
+                        <div>Point <span class="text-emerald-400 font-bold">B</span>: <span id="coords-B" class="code-font text-emerald-300 bg-slate-950 px-2 py-0.5 rounded border border-emerald-900/45">(6.0, 10.0)</span></div>
+                        <div id="coords-P-box" class="hidden">Point <span class="text-amber-400 font-bold">P</span>: <span id="coords-P" class="code-font text-amber-300 bg-slate-950 px-2 py-0.5 rounded border border-amber-900/45">(2.0, -1.0)</span></div>
+                    </div>
+                    <button id="btn-reset-points" class="text-xs px-2.5 py-1 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors border border-slate-700">
+                        Reset Positions
+                    </button>
+                </div>
+                
+                <!-- Canvas Floating Instructions Tag -->
+                <div class="absolute top-4 left-4 bg-indigo-600/10 border border-indigo-500/20 text-indigo-300 text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur font-semibold">
+                    💡 Drag any point to investigate the math
+                </div>
+            </div>
+            
+            <!-- Quick Diagnostic Indicator -->
+            <div id="quick-indicators" class="mt-4 p-3 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
+                <div>Active Segment Slope: <span id="diagnostic-slope" class="code-font text-indigo-400 font-semibold">positive</span></div>
+                <div>Y-Crossing Point: <span id="diagnostic-y-intercept" class="code-font text-emerald-400 font-semibold">c = 1.0</span></div>
+            </div>
+        </div>
+
+        <!-- Right Column: Lesson Progression Walkthrough Panel -->
+        <div class="w-full lg:w-1/2 h-1/2 lg:h-full bg-slate-900 flex flex-col overflow-hidden relative">
+            
+            <!-- Progress Steps Bar -->
+            <div class="px-6 py-4 border-b border-slate-800 bg-slate-900/90 flex-shrink-0">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold">Lesson Flow Tracker</span>
+                    <span id="lesson-percent" class="text-xs font-semibold text-slate-400">Step 1 of 6 (16%)</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden flex">
+                    <div id="progress-indicator" class="bg-gradient-to-r from-indigo-500 to-emerald-500 h-full rounded-full step-transition" style="width: 16%;"></div>
+                </div>
+            </div>
+
+            <!-- Walkthrough Scrolling Container -->
+            <div class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+                
+                <!-- STEP 1: READING AND PLOTTING COORDINATES -->
+                <section id="step-1" class="step-transition border border-slate-800 rounded-2xl bg-slate-950 p-5 shadow-lg relative overflow-hidden ring-2 ring-indigo-500/50">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-indigo-600 text-[10px] text-white font-bold rounded-bl-xl uppercase tracking-wider">Step 1</div>
+                    <h3 class="text-base font-bold text-slate-100 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-indigo-900/60 text-indigo-300 flex items-center justify-center text-xs mr-2 border border-indigo-700/40">1</span>
+                        Coordinates and Quadrants
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        Every position on a coordinate plane is written as an ordered pair <span class="code-font text-slate-300">(x, y)</span>. The x-value controls horizontal position (left/right) and the y-value controls vertical position (up/down).
+                    </p>
+                    
+                    <!-- Dynamic Interactive Math Box -->
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
+                        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider">Quadrant Inspector (Points A & B)</div>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80">
+                                <div class="font-bold text-indigo-300">Point A</div>
+                                <div class="mt-1">Quadrant: <span id="quad-A" class="font-bold text-white">Quadrant I</span></div>
+                                <div class="text-[10px] text-slate-500 mt-0.5" id="quad-desc-A">x is positive, y is positive</div>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80">
+                                <div class="font-bold text-emerald-300">Point B</div>
+                                <div class="mt-1">Quadrant: <span id="quad-B" class="font-bold text-white">Quadrant I</span></div>
+                                <div class="text-[10px] text-slate-500 mt-0.5" id="quad-desc-B">x is positive, y is positive</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Assessment Subchain -->
+                    <div class="mt-4 p-4 bg-indigo-950/20 rounded-xl border border-indigo-500/10">
+                        <div class="text-xs font-semibold text-indigo-300 flex items-center mb-2">
+                            <svg class="h-4 w-4 mr-1 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Core Checkpoint 1: Visual Plotting
+                        </div>
+                        <p class="text-xs text-slate-400 mb-2.5">Drag Point A directly onto the x-axis (where its y-value becomes exactly 0). Look at what the inspector outputs!</p>
+                        <div id="check-quad" class="text-xs py-2 px-3 rounded-lg flex items-center justify-between border">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 2: CONNECTING TO FORM A SEGMENT -->
+                <section id="step-2" class="step-transition border border-slate-800/60 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider">Step 2</div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40">2</span>
+                        Line Segments
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        Connecting point <span class="text-indigo-400 font-bold">A</span> directly to point <span class="text-emerald-400 font-bold">B</span> gives us a straight segment. This segment represents an infinite set of linear coordinate nodes bridging the two endpoints.
+                    </p>
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800">
+                        <div class="text-xs text-indigo-400 font-semibold mb-2 uppercase tracking-wider">Segment Properties</div>
+                        <div class="space-y-1 text-xs">
+                            <div class="flex justify-between py-1 border-b border-slate-800/50">
+                                <span class="text-slate-400">Horizontal distance (&Delta;x):</span>
+                                <span id="dist-dx" class="code-font text-white font-bold">0.0</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-slate-800/50">
+                                <span class="text-slate-400">Vertical distance (&Delta;y):</span>
+                                <span id="dist-dy" class="code-font text-white font-bold">0.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 3: THE MIDPOINT FORMULA -->
+                <section id="step-3" class="step-transition border border-slate-800/60 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider">Step 3</div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40">3</span>
+                        The Midpoint ($M$)
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        The midpoint is the precise center of our segment. It is calculated as the average of the x-coordinates and the average of the y-coordinates.
+                    </p>
+                    
+                    <!-- Dynamic KaTeX formula panel -->
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
+                        <div class="text-xs text-rose-400 font-semibold uppercase tracking-wider">Calculated Midpoint M</div>
+                        <div id="math-midpoint-formula" class="py-2 flex justify-center text-sm overflow-x-auto">
+                            <!-- KaTeX Math updates dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Mini Assessment Subchain -->
+                    <div class="mt-4 p-4 bg-rose-950/20 rounded-xl border border-rose-500/10">
+                        <div class="text-xs font-semibold text-rose-300 flex items-center mb-2">
+                            <svg class="h-4 w-4 mr-1 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Core Checkpoint 2: Midpoint Arithmetic
+                        </div>
+                        <p class="text-xs text-slate-400 mb-2.5">Drag points so that A is at <span class="code-font text-slate-200">(2, 2)</span> and B is at <span class="code-font text-slate-200">(6, 8)</span>. Can you predict the exact midpoint without looking?</p>
+                        <div id="check-midpoint" class="text-xs py-2 px-3 rounded-lg flex items-center justify-between border">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 4: CALCULATING THE GRADIENT -->
+                <section id="step-4" class="step-transition border border-slate-800/60 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider">Step 4</div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40">4</span>
+                        Gradient calculation ($m$)
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        The gradient represents the slope, or steepness, of a line. Mathematically, it is the change in vertical coordinates (rise) divided by the change in horizontal coordinates (run).
+                    </p>
+                    
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
+                        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider font-semibold">Active Slope Formula</div>
+                        <div id="math-gradient-formula" class="py-2 flex justify-center text-sm overflow-x-auto">
+                            <!-- KaTeX Math updates dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Graded Learning Progression (Ramping Sub-challenges) -->
+                    <div class="mt-4 p-4 bg-indigo-950/20 rounded-xl border border-indigo-500/10 space-y-3">
+                        <div class="text-xs font-semibold text-indigo-300 flex items-center">
+                            <svg class="h-4 w-4 mr-1 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            Ramping Challenge Matrix
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <button id="challenge-btn-1" class="w-full text-left p-2.5 rounded bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-between group transition-all">
+                                <div>
+                                    <span class="text-slate-400 font-medium">Challenge 1:</span>
+                                    <span class="text-white ml-1">Configure positive integer slope</span>
+                                </div>
+                                <span id="chall-status-1" class="text-amber-500 font-medium text-[10px] bg-amber-500/10 px-1.5 py-0.5 rounded">Not Attempted</span>
+                            </button>
+                            <button id="challenge-btn-2" class="w-full text-left p-2.5 rounded bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-between group transition-all">
+                                <div>
+                                    <span class="text-slate-400 font-medium">Challenge 2:</span>
+                                    <span class="text-white ml-1">Configure negative integer slope</span>
+                                </div>
+                                <span id="chall-status-2" class="text-amber-500 font-medium text-[10px] bg-amber-500/10 px-1.5 py-0.5 rounded">Not Attempted</span>
+                            </button>
+                            <button id="challenge-btn-3" class="w-full text-left p-2.5 rounded bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-between group transition-all">
+                                <div>
+                                    <span class="text-slate-400 font-medium">Challenge 3:</span>
+                                    <span class="text-white ml-1">Configure fractional slope</span>
+                                </div>
+                                <span id="chall-status-3" class="text-amber-500 font-medium text-[10px] bg-amber-500/10 px-1.5 py-0.5 rounded">Not Attempted</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 5: FINDING THE Y-INTERCEPT -->
+                <section id="step-5" class="step-transition border border-slate-800/60 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider">Step 5</div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40">5</span>
+                        Finding the y-intercept ($c$)
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        The y-intercept represents the point where our line crosses the vertical y-axis ($x = 0$). Mathematically, we substitute our gradient $m$ and any coordinate $(x, y)$ into $y = mx + c$ to solve for $c$.
+                    </p>
+                    
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
+                        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider">Solving intercept equation</div>
+                        <div id="math-intercept-formula" class="py-2 flex justify-center text-sm overflow-x-auto">
+                            <!-- KaTeX Math updates dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Mini Assessment Subchain -->
+                    <div class="mt-4 p-4 bg-emerald-950/20 rounded-xl border border-emerald-500/10">
+                        <div class="text-xs font-semibold text-emerald-300 flex items-center mb-2">
+                            <svg class="h-4 w-4 mr-1 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Core Checkpoint 3: Intersection Logic
+                        </div>
+                        <p class="text-xs text-slate-400 mb-2.5">Drag Point A and B to design a line segment that intersects the vertical axis at exactly positive <span class="code-font text-slate-200">c = 3.0</span>.</p>
+                        <div id="check-intercept" class="text-xs py-2 px-3 rounded-lg flex items-center justify-between border">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 6: FORMING PARALLEL LINE EQUATIONS -->
+                <section id="step-6" class="step-transition border border-slate-800/60 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider">Step 6</div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center mb-3">
+                        <span class="w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40">6</span>
+                        Parallel lines
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">
+                        Lines are parallel if they run in the exact same direction and never intersect. This means **parallel lines share the exact same gradient ($m$)** but cross the y-axis at a different value ($c_p$).
+                    </p>
+                    
+                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
+                        <div class="text-xs text-amber-400 font-semibold uppercase tracking-wider">Parallel Equation Generator</div>
+                        <div id="math-parallel-formula" class="py-2 flex justify-center text-sm overflow-x-auto">
+                            <!-- KaTeX Math updates dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Interactive Task Matrix -->
+                    <div class="mt-4 p-4 bg-amber-950/20 rounded-xl border border-amber-500/10">
+                        <div class="text-xs font-semibold text-amber-300 flex items-center mb-2">
+                            <svg class="h-4 w-4 mr-1 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            Final Integration Challenge
+                        </div>
+                        <p class="text-xs text-slate-400 mb-2.5">Drag Point <span class="text-amber-400 font-semibold">P</span> to adjust the parallel line. Watch how its formula dynamically copies the primary segment's slope ($m$) but calculates its own unique y-intercept.</p>
+                        <div id="check-parallel" class="text-xs py-2 px-3 rounded-lg flex items-center justify-between border">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+
+            <!-- Walkthrough Nav Controller Sticky Footer -->
+            <div class="px-6 py-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between flex-shrink-0">
+                <button id="btn-prev" class="text-xs px-4 py-2 bg-slate-850 hover:bg-slate-800 text-slate-400 hover:text-white rounded-lg transition-all border border-slate-700 opacity-50 cursor-not-allowed flex items-center space-x-1" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <span>Previous Step</span>
+                </button>
+                <button id="btn-next" class="text-xs px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-all flex items-center space-x-1 font-semibold glow-indigo">
+                    <span>Next Step</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Notification/Message Popups (Avoiding alert) -->
+    <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Script Block - Standard Canvas Geometry Engine -->
+    <script>
+        /* STATE STORES */
+        const state = {
+            currentStep: 1,
+            points: {
+                A: { x: 2, y: 4, color: '#6366f1', radius: 10, label: 'A' },
+                B: { x: 6, y: 10, color: '#10b981', radius: 10, label: 'B' },
+                P: { x: 2, y: -1, color: '#f59e0b', radius: 10, label: 'P' }
+            },
+            canvas: {
+                gridScale: 20, // Math units visible (-10 to 10)
+                margin: 40,
+                dragPoint: null,
+                hoveredPoint: null
+            },
+            challenges: {
+                c1: false, // Positive integer gradient
+                c2: false, // Negative integer gradient
+                c3: false  // Fractional gradient
+            }
+        };
+
+        const canvas = document.getElementById('geometryCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Element references
+        const btnPrev = document.getElementById('btn-prev');
+        const btnNext = document.getElementById('btn-next');
+        const progressIndicator = document.getElementById('progress-indicator');
+        const lessonPercent = document.getElementById('lesson-percent');
+
+        function initCanvas() {
+            // High DPI support
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            drawGrid();
+        }
+
+        // Coordinate Translation Utilities
+        // Map abstract coordinate points to actual canvas coordinate pixels
+        function mathToCanvas(mx, my) {
+            const rect = canvas.getBoundingClientRect();
+            const width = rect.width;
+            const height = rect.height;
+
+            // Mapping domain [-10, 10] to viewport pixels
+            const cx = width / 2 + (mx / 10) * (width / 2 - state.canvas.margin);
+            const cy = height / 2 - (my / 10) * (height / 2 - state.canvas.margin);
+            return { x: cx, y: cy };
+        }
+
+        // Translate pixel viewport events into snapped math geometry indices
+        function canvasToMath(cx, cy) {
+            const rect = canvas.getBoundingClientRect();
+            const width = rect.width;
+            const height = rect.height;
+
+            const mx = ((cx - width / 2) / (width / 2 - state.canvas.margin)) * 10;
+            const my = -((cy - height / 2) / (height / 2 - state.canvas.margin)) * 10;
+
+            // Snap cleanly to nearest 0.5 intervals for easier mathematics
+            const snappedX = Math.round(mx * 2) / 2;
+            const snappedY = Math.round(my * 2) / 2;
+
+            // Keep within bounds of graph
+            return {
+                x: Math.max(-10, Math.min(10, snappedX)),
+                y: Math.max(-10, Math.min(10, snappedY))
+            };
+        }
+
+        function drawGrid() {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+
+            // Clear buffer
+            ctx.fillStyle = '#090d16';
+            ctx.fillRect(0, 0, w, h);
+
+            // Draw Cartesian Grid Lines
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(71, 85, 105, 0.15)';
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.4)';
+            ctx.font = '10px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Draw vertical grid lines & labels
+            for (let i = -10; i <= 10; i++) {
+                if (i === 0) continue;
+                const pos = mathToCanvas(i, 0);
+                
+                // Vertical Line
+                ctx.beginPath();
+                ctx.moveTo(pos.x, state.canvas.margin / 2);
+                ctx.lineTo(pos.x, h - state.canvas.margin / 2);
+                ctx.stroke();
+
+                // Numbers along x-axis
+                const zeroPos = mathToCanvas(i, -0.6);
+                ctx.fillText(i.toString(), pos.x, zeroPos.y);
+            }
+
+            // Draw horizontal grid lines & labels
+            for (let i = -10; i <= 10; i++) {
+                if (i === 0) continue;
+                const pos = mathToCanvas(0, i);
+
+                // Horizontal Line
+                ctx.beginPath();
+                ctx.moveTo(state.canvas.margin / 2, pos.y);
+                ctx.lineTo(w - state.canvas.margin / 2, pos.y);
+                ctx.stroke();
+
+                // Numbers along y-axis
+                const zeroPos = mathToCanvas(-0.6, i);
+                ctx.textAlign = 'right';
+                ctx.fillText(i.toString(), zeroPos.x, pos.y);
+            }
+
+            // Draw Major Axes
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+            const origin = mathToCanvas(0, 0);
+
+            // X-Axis
+            ctx.beginPath();
+            ctx.moveTo(state.canvas.margin / 2, origin.y);
+            ctx.lineTo(w - state.canvas.margin / 2, origin.y);
+            ctx.stroke();
+
+            // Y-Axis
+            ctx.beginPath();
+            ctx.moveTo(origin.x, state.canvas.margin / 2);
+            ctx.lineTo(origin.x, h - state.canvas.margin / 2);
+            ctx.stroke();
+
+            // Axis labels
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.8)';
+            ctx.font = 'bold 11px "Inter"';
+            ctx.fillText('X', w - state.canvas.margin / 3, origin.y);
+            ctx.fillText('Y', origin.x, state.canvas.margin / 3);
+
+            // Highlight Quadrant Zones visually if in Step 1
+            if (state.currentStep === 1) {
+                ctx.fillStyle = 'rgba(99, 102, 241, 0.025)';
+                ctx.font = 'bold 16px "Inter"';
+                ctx.textAlign = 'center';
+                
+                // Quad I
+                const q1 = mathToCanvas(5, 5);
+                ctx.fillText('QI', q1.x, q1.y);
+                // Quad II
+                const q2 = mathToCanvas(-5, 5);
+                ctx.fillText('QII', q2.x, q2.y);
+                // Quad III
+                const q3 = mathToCanvas(-5, -5);
+                ctx.fillText('QIII', q3.x, q3.y);
+                // Quad IV
+                const q4 = mathToCanvas(5, -5);
+                ctx.fillText('QIV', q4.x, q4.y);
+            }
+
+            // Draw Interactive Math Elements depending on current lesson stage
+            const ptA = mathToCanvas(state.points.A.x, state.points.A.y);
+            const ptB = mathToCanvas(state.points.B.x, state.points.B.y);
+
+            // Step 2+: Main segment line
+            if (state.currentStep >= 2) {
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = 'rgba(99, 102, 241, 0.8)';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = 'rgba(99, 102, 241, 0.4)';
+                ctx.beginPath();
+                ctx.moveTo(ptA.x, ptA.y);
+                ctx.lineTo(ptB.x, ptB.y);
+                ctx.stroke();
+                ctx.shadowBlur = 0; // reset
+            }
+
+            // Step 3+: Midpoint mark
+            if (state.currentStep >= 3) {
+                const mx = (state.points.A.x + state.points.B.x) / 2;
+                const my = (state.points.A.y + state.points.B.y) / 2;
+                const ptM = mathToCanvas(mx, my);
+
+                ctx.fillStyle = '#f43f5e';
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(ptM.x, ptM.y, 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+
+                // Label M
+                ctx.fillStyle = '#f43f5e';
+                ctx.font = 'bold 11px "Inter"';
+                ctx.textAlign = 'left';
+                ctx.fillText(' M (' + mx.toFixed(1) + ', ' + my.toFixed(1) + ')', ptM.x + 10, ptM.y);
+            }
+
+            // Step 4+: Gradient Triangle lines (Rise and Run)
+            if (state.currentStep === 4) {
+                ctx.lineWidth = 1.5;
+                ctx.strokeStyle = '#e2e8f0';
+                ctx.setLineDash([5, 5]);
+                
+                // Draw run (horizontal)
+                ctx.beginPath();
+                ctx.moveTo(ptA.x, ptA.y);
+                ctx.lineTo(ptB.x, ptA.y);
+                ctx.stroke();
+
+                // Draw rise (vertical)
+                ctx.beginPath();
+                ctx.moveTo(ptB.x, ptA.y);
+                ctx.lineTo(ptB.x, ptB.y);
+                ctx.stroke();
+                ctx.setLineDash([]); // clear dash
+
+                // Rise/Run tags
+                ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                ctx.font = '10px "Inter"';
+                ctx.textAlign = 'center';
+                const runVal = state.points.B.x - state.points.A.x;
+                const riseVal = state.points.B.y - state.points.A.y;
+                
+                ctx.fillText('Run: ' + runVal.toFixed(1), (ptA.x + ptB.x) / 2, ptA.y + 15);
+                ctx.fillText('Rise: ' + riseVal.toFixed(1), ptB.x + 30, (ptA.y + ptB.y) / 2);
+            }
+
+            // Step 5+: Draw Infinite primary line to show y-intercept intersection
+            if (state.currentStep >= 5) {
+                const dx = state.points.B.x - state.points.A.x;
+                const dy = state.points.B.y - state.points.A.y;
+                
+                if (dx !== 0) {
+                    const m = dy / dx;
+                    const c = state.points.A.y - m * state.points.A.x;
+                    
+                    // Draw full extended line
+                    const startExt = mathToCanvas(-12, m * -12 + c);
+                    const endExt = mathToCanvas(12, m * 12 + c);
+
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
+                    ctx.beginPath();
+                    ctx.moveTo(startExt.x, startExt.y);
+                    ctx.lineTo(endExt.x, endExt.y);
+                    ctx.stroke();
+
+                    // Highlight Y-intercept intersection point
+                    const ptC = mathToCanvas(0, c);
+                    ctx.fillStyle = '#10b981';
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(ptC.x, ptC.y, 6.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // Y-intercept label text
+                    ctx.fillStyle = '#10b981';
+                    ctx.font = 'bold 11px "Inter"';
+                    ctx.textAlign = 'right';
+                    ctx.fillText('c = ' + c.toFixed(2) + ' ', ptC.x - 10, ptC.y);
+                }
+            }
+
+            // Step 6+: Draw Parallel Point P & Parallel Line
+            if (state.currentStep >= 6) {
+                const ptP = mathToCanvas(state.points.P.x, state.points.P.y);
+                const dx = state.points.B.x - state.points.A.x;
+                const dy = state.points.B.y - state.points.A.y;
+
+                if (dx !== 0) {
+                    const m = dy / dx;
+                    const cp = state.points.P.y - m * state.points.P.x;
+
+                    // Compute infinite path for parallel line
+                    const startExtP = mathToCanvas(-12, m * -12 + cp);
+                    const endExtP = mathToCanvas(12, m * 12 + cp);
+
+                    ctx.lineWidth = 2.5;
+                    ctx.strokeStyle = '#f59e0b';
+                    ctx.setLineDash([4, 4]);
+                    ctx.beginPath();
+                    ctx.moveTo(startExtP.x, startExtP.y);
+                    ctx.lineTo(endExtP.x, endExtP.y);
+                    ctx.stroke();
+                    ctx.setLineDash([]); // clear dash
+                }
+
+                // Render Parallel point P itself
+                ctx.fillStyle = state.points.P.color;
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = (state.canvas.hoveredPoint === 'P') ? 4 : 2;
+                ctx.beginPath();
+                ctx.arc(ptP.x, ptP.y, state.points.P.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+                
+                // Point P label index
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 10px "Inter"';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('P', ptP.x, ptP.y);
+            }
+
+            // Draw Primary Interactive Handles A and B
+            // Point A
+            ctx.fillStyle = state.points.A.color;
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = (state.canvas.hoveredPoint === 'A') ? 4 : 2;
+            ctx.beginPath();
+            ctx.arc(ptA.x, ptA.y, state.points.A.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 10px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('A', ptA.x, ptA.y);
+
+            // Point B
+            ctx.fillStyle = state.points.B.color;
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = (state.canvas.hoveredPoint === 'B') ? 4 : 2;
+            ctx.beginPath();
+            ctx.arc(ptB.x, ptB.y, state.points.B.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 10px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('B', ptB.x, ptB.y);
+        }
+
+        function getEventCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX, clientY;
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function getClickedPoint(cx, cy) {
+            const keys = ['A', 'B'];
+            if (state.currentStep >= 6) keys.push('P');
+
+            for (let key of keys) {
+                const pt = state.points[key];
+                const ptCanvas = mathToCanvas(pt.x, pt.y);
+                const dist = Math.hypot(cx - ptCanvas.x, cy - ptCanvas.y);
+                if (dist <= pt.radius + 10) { // Add padding for touch targets
+                    return key;
+                }
+            }
+            return null;
+        }
+
+        function handleStart(e) {
+            const coords = getEventCoords(e);
+            const clicked = getClickedPoint(coords.x, coords.y);
+            if (clicked) {
+                state.canvas.dragPoint = clicked;
+                e.preventDefault(); // Stop scrolling on mobile
+            }
+        }
+
+        function handleMove(e) {
+            const coords = getEventCoords(e);
+            
+            // Handle active dragging of nodes
+            if (state.canvas.dragPoint) {
+                const mathCoords = canvasToMath(coords.x, coords.y);
+                state.points[state.canvas.dragPoint].x = mathCoords.x;
+                state.points[state.canvas.dragPoint].y = mathCoords.y;
+                
+                updateGeometryValues();
+                drawGrid();
+                e.preventDefault();
+            } else {
+                // Hover highlight checks
+                const hovered = getClickedPoint(coords.x, coords.y);
+                if (hovered !== state.canvas.hoveredPoint) {
+                    state.canvas.hoveredPoint = hovered;
+                    drawGrid();
+                }
+            }
+        }
+
+        function handleEnd() {
+            state.canvas.dragPoint = null;
+        }
+
+        // Attach mouse & touch gesture listeners
+        canvas.addEventListener('mousedown', handleStart);
+        canvas.addEventListener('mousemove', handleMove);
+        window.addEventListener('mouseup', handleEnd);
+
+        canvas.addEventListener('touchstart', handleStart, { passive: false });
+        canvas.addEventListener('touchmove', handleMove, { passive: false });
+        window.addEventListener('touchend', handleEnd);
+
+        window.addEventListener('resize', initCanvas);
+
+        function updateGeometryValues() {
+            const A = state.points.A;
+            const B = state.points.B;
+            const P = state.points.P;
+
+            // Compute coordinate strings
+            document.getElementById('coords-A').textContent = `(${A.x.toFixed(1)}, ${A.y.toFixed(1)})`;
+            document.getElementById('coords-B').textContent = `(${B.x.toFixed(1)}, ${B.y.toFixed(1)})`;
+            document.getElementById('coords-P').textContent = `(${P.x.toFixed(1)}, ${P.y.toFixed(1)})`;
+
+            // Compute delta values
+            const dx = B.x - A.x;
+            const dy = B.y - A.y;
+
+            document.getElementById('dist-dx').textContent = dx.toFixed(1);
+            document.getElementById('dist-dy').textContent = dy.toFixed(1);
+
+            // Compute primary line parameters
+            let mValString = "Undefined";
+            let cVal = 0;
+            const mNumerical = dx !== 0 ? dy / dx : Infinity;
+
+            if (dx !== 0) {
+                const m = dy / dx;
+                mValString = m.toFixed(2);
+                cVal = A.y - m * A.x;
+                document.getElementById('diagnostic-y-intercept').textContent = `c = ${cVal.toFixed(1)}`;
+                document.getElementById('diagnostic-slope').textContent = m > 0 ? 'positive (' + m.toFixed(1) + ')' : m < 0 ? 'negative (' + m.toFixed(1) + ')' : 'flat (0)';
+            } else {
+                document.getElementById('diagnostic-y-intercept').textContent = 'None (Vertical Line)';
+                document.getElementById('diagnostic-slope').textContent = 'Undefined (Vertical Line)';
+            }
+
+            // Quadrant calculators for Step 1
+            const getQuadName = (pt) => {
+                if (pt.x === 0 && pt.y === 0) return 'Origin';
+                if (pt.x === 0) return 'On y-axis';
+                if (pt.y === 0) return 'On x-axis';
+                if (pt.x > 0 && pt.y > 0) return 'Quadrant I';
+                if (pt.x < 0 && pt.y > 0) return 'Quadrant II';
+                if (pt.x < 0 && pt.y < 0) return 'Quadrant III';
+                return 'Quadrant IV';
+            };
+
+            const getQuadDesc = (pt) => {
+                if (pt.x === 0 && pt.y === 0) return 'x is 0, y is 0';
+                if (pt.x === 0) return 'x is 0';
+                if (pt.y === 0) return 'y is 0';
+                if (pt.x > 0 && pt.y > 0) return 'x is positive, y is positive';
+                if (pt.x < 0 && pt.y > 0) return 'x is negative, y is positive';
+                if (pt.x < 0 && pt.y < 0) return 'x is negative, y is negative';
+                return 'x is positive, y is negative';
+            };
+
+            document.getElementById('quad-A').textContent = getQuadName(A);
+            document.getElementById('quad-desc-A').textContent = getQuadDesc(A);
+            document.getElementById('quad-B').textContent = getQuadName(B);
+            document.getElementById('quad-desc-B').textContent = getQuadDesc(B);
+
+            // Dynamically Render Mathematical Formulas (LaTeX)
+            renderKaTeXFormulae(A, B, P, dx, dy, mNumerical, cVal);
+
+            // Execute dynamic validation checks for core checkpoints
+            runAssessmentChecks(A, B, P, dx, dy, mNumerical, cVal);
+        }
+
+        function renderKaTeXFormulae(A, B, P, dx, dy, mNumerical, cVal) {
+            const mx = (A.x + B.x) / 2;
+            const my = (A.y + B.y) / 2;
+
+            // Render Midpoint Formula Step 3
+            const midpointStr = `M = \\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right) = \\left(\\frac{${A.x.toFixed(1)} + ${B.x.toFixed(1)}}{2}, \\frac{${A.y.toFixed(1)} + ${B.y.toFixed(1)}}{2}\\right) = (${mx.toFixed(1)}, ${my.toFixed(1)})`;
+            katex.render(midpointStr, document.getElementById('math-midpoint-formula'), { throwOnError: false });
+
+            // Render Gradient Formula Step 4
+            let slopeLatex = `m = \\frac{y_2 - y_1}{x_2 - x_1} = `;
+            if (dx === 0) {
+                slopeLatex += `\\frac{${dy.toFixed(1)}}{0} \\implies \\text{Undefined (Vertical Line)}`;
+            } else {
+                slopeLatex += `\\frac{${B.y.toFixed(1)} - ${A.y.toFixed(1)}}{${B.x.toFixed(1)} - ${A.x.toFixed(1)}} = \\frac{${dy.toFixed(1)}}{${dx.toFixed(1)}} = ${mNumerical.toFixed(2)}`;
+            }
+            katex.render(slopeLatex, document.getElementById('math-gradient-formula'), { throwOnError: false });
+
+            // Render intercept calculation formula Step 5
+            let interceptLatex = `y = mx + c \\implies `;
+            if (dx === 0) {
+                interceptLatex += `\\text{No unique y-intercept (Vertical Line)}`;
+            } else {
+                interceptLatex += `${A.y.toFixed(1)} = (${mNumerical.toFixed(2)})(${A.x.toFixed(1)}) + c \\implies c = ${cVal.toFixed(2)}`;
+            }
+            katex.render(interceptLatex, document.getElementById('math-intercept-formula'), { throwOnError: false });
+
+            // Render parallel linear system formula Step 6
+            let parallelLatex = `\\text{Parallel line through } P(${P.x.toFixed(1)}, ${P.y.toFixed(1)}): `;
+            if (dx === 0) {
+                parallelLatex += `x = ${P.x.toFixed(1)}`;
+            } else {
+                const cp = P.y - mNumerical * P.x;
+                const sign = cp >= 0 ? '+' : '';
+                parallelLatex += `y = ${mNumerical.toFixed(2)}x ${sign} ${cp.toFixed(2)}`;
+            }
+            katex.render(parallelLatex, document.getElementById('math-parallel-formula'), { throwOnError: false });
+        }
+
+        function runAssessmentChecks(A, B, P, dx, dy, mNumerical, cVal) {
+            // Check 1: Plotting check (A on X-axis)
+            const checkQuadEl = document.getElementById('check-quad');
+            if (A.y === 0) {
+                checkQuadEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-emerald-950/40 border-emerald-500/30 text-emerald-300 font-medium";
+                checkQuadEl.innerHTML = `<span>🎉 Target Achieved! Point A is directly on the X-Axis.</span>`;
+            } else {
+                checkQuadEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-slate-900 border-slate-800 text-slate-400";
+                checkQuadEl.innerHTML = `<span>Pending: Drag Point A to y = 0</span><span class="code-font text-[10px] bg-slate-950 px-1.5 py-0.5 rounded text-slate-500">y = ${A.y.toFixed(1)}</span>`;
+            }
+
+            // Check 2: Midpoint target check (M correctly positioned)
+            const checkMidpointEl = document.getElementById('check-midpoint');
+            const targetM = (A.x === 2 && A.y === 2 && B.x === 6 && B.y === 8);
+            if (targetM) {
+                checkMidpointEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-emerald-950/40 border-emerald-500/30 text-emerald-300 font-medium";
+                checkMidpointEl.innerHTML = `<span>🎉 Solved! Midpoint is correctly positioned at (4.0, 5.0).</span>`;
+            } else {
+                checkMidpointEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-slate-900 border-slate-800 text-slate-400";
+                checkMidpointEl.innerHTML = `<span>Pending: Setup coordinates to (2,2) and (6,8)</span><span class="code-font text-[10px] bg-slate-950 px-1.5 py-0.5 rounded text-slate-500">M = (${((A.x + B.x)/2).toFixed(1)}, ${((A.y + B.y)/2).toFixed(1)})</span>`;
+            }
+
+            // Step 4 Gradient Sandbox checks
+            if (dx !== 0) {
+                // Challenge 1: Positive Integer Slope
+                if (Number.isInteger(mNumerical) && mNumerical > 0) {
+                    if (!state.challenges.c1) {
+                        state.challenges.c1 = true;
+                        showToast("Unlocked Challenge 1: Positive Integer Slope!");
+                    }
+                    document.getElementById('chall-status-1').className = "text-emerald-400 font-bold text-[10px] bg-emerald-500/10 px-1.5 py-0.5 rounded";
+                    document.getElementById('chall-status-1').textContent = "SOLVED (m = " + mNumerical + ")";
+                }
+                // Challenge 2: Negative Integer Slope
+                if (Number.isInteger(mNumerical) && mNumerical < 0) {
+                    if (!state.challenges.c2) {
+                        state.challenges.c2 = true;
+                        showToast("Unlocked Challenge 2: Negative Integer Slope!");
+                    }
+                    document.getElementById('chall-status-2').className = "text-emerald-400 font-bold text-[10px] bg-emerald-500/10 px-1.5 py-0.5 rounded";
+                    document.getElementById('chall-status-2').textContent = "SOLVED (m = " + mNumerical + ")";
+                }
+                // Challenge 3: Fractional Slope
+                if (!Number.isInteger(mNumerical) && Math.abs(mNumerical) < 1 && mNumerical !== 0) {
+                    if (!state.challenges.c3) {
+                        state.challenges.c3 = true;
+                        showToast("Unlocked Challenge 3: Fractional Slope!");
+                    }
+                    document.getElementById('chall-status-3').className = "text-emerald-400 font-bold text-[10px] bg-emerald-500/10 px-1.5 py-0.5 rounded";
+                    document.getElementById('chall-status-3').textContent = "SOLVED (m = " + mNumerical.toFixed(2) + ")";
+                }
+            }
+
+            // Check 3: Intercept Check
+            const checkInterceptEl = document.getElementById('check-intercept');
+            if (dx !== 0 && Math.abs(cVal - 3.0) < 0.01) {
+                checkInterceptEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-emerald-950/40 border-emerald-500/30 text-emerald-300 font-medium";
+                checkInterceptEl.innerHTML = `<span>🎉 Awesome! Line passes exactly through c = 3.0.</span>`;
+            } else {
+                checkInterceptEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-slate-900 border-slate-800 text-slate-400";
+                checkInterceptEl.innerHTML = `<span>Pending: Set positions to pass c = 3.0</span><span class="code-font text-[10px] bg-slate-950 px-1.5 py-0.5 rounded text-slate-500">c = ${cVal.toFixed(2)}</span>`;
+            }
+
+            // Check 4: Parallel check
+            const checkParallelEl = document.getElementById('check-parallel');
+            const cpVal = P.y - mNumerical * P.x;
+            if (dx !== 0) {
+                checkParallelEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-emerald-950/40 border-emerald-500/30 text-emerald-300 font-medium";
+                checkParallelEl.innerHTML = `<span>🎉 Interactive: y = ${mNumerical.toFixed(2)}x ${cpVal >= 0 ? '+' : ''}${cpVal.toFixed(2)}</span>`;
+            } else {
+                checkParallelEl.className = "text-xs py-2 px-3 rounded-lg flex items-center justify-between border bg-slate-900 border-slate-800 text-slate-400";
+                checkParallelEl.innerHTML = `<span>Linear system parallel line configured cleanly.</span>`;
+            }
+        }
+
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-slate-900/95 border border-indigo-500/30 text-indigo-300 text-xs px-4 py-3 rounded-xl shadow-2xl backdrop-blur flex items-center space-x-2.5 transition-all duration-300 transform translate-x-12 opacity-0 pointer-events-auto";
+            toast.innerHTML = `
+                <div class="p-1 bg-indigo-500/10 rounded-lg text-indigo-400">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div class="font-medium">${msg}</div>
+            `;
+            container.appendChild(toast);
+            
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, 50);
+
+            // Animate Out
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function updateStepUI() {
+            // Un-highlight all step container cards and highlight only the active step card
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById(`step-${i}`);
+                if (i === state.currentStep) {
+                    el.className = "step-transition border border-slate-700 rounded-2xl bg-slate-950 p-5 shadow-lg relative overflow-hidden ring-2 ring-indigo-500/50";
+                    el.querySelector('.absolute').classList.replace('bg-slate-800', 'bg-indigo-600');
+                    el.querySelector('.absolute').classList.replace('text-slate-400', 'text-white');
+                    el.querySelector('span').classList.replace('bg-slate-800', 'bg-indigo-900/60');
+                    el.querySelector('span').classList.replace('text-slate-400', 'text-indigo-300');
+                    el.querySelector('span').classList.add('border', 'border-indigo-700/40');
+                } else {
+                    el.className = "step-transition border border-slate-800/40 opacity-50 rounded-2xl bg-slate-950/80 p-5 shadow-lg relative";
+                    el.querySelector('.absolute').className = "absolute top-0 right-0 px-3 py-1 bg-slate-800 text-[10px] text-slate-400 font-bold rounded-bl-xl uppercase tracking-wider";
+                    el.querySelector('span').className = "w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-xs mr-2 border border-slate-700/40";
+                }
+            }
+
+            // Scroll the active step into view nicely
+            const activeCard = document.getElementById(`step-${state.currentStep}`);
+            activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Toggle points and parallel markers in canvas depending on steps
+            if (state.currentStep >= 6) {
+                document.getElementById('coords-P-box').classList.remove('hidden');
+                document.getElementById('legend-parallel').classList.remove('hidden');
+            } else {
+                document.getElementById('coords-P-box').classList.add('hidden');
+                document.getElementById('legend-parallel').classList.add('hidden');
+            }
+
+            // Update Progress Tracking Bar UI
+            const percent = Math.round((state.currentStep / 6) * 100);
+            progressIndicator.style.width = `${percent}%`;
+            lessonPercent.textContent = `Step ${state.currentStep} of 6 (${percent}%)`;
+
+            // Back / Next Control Button States
+            btnPrev.disabled = state.currentStep === 1;
+            if (state.currentStep === 1) {
+                btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            if (state.currentStep === 6) {
+                btnNext.querySelector('span').textContent = 'Finish Lesson';
+                btnNext.classList.replace('bg-indigo-600', 'bg-emerald-600');
+                btnNext.classList.replace('hover:bg-indigo-500', 'hover:bg-emerald-500');
+            } else {
+                btnNext.querySelector('span').textContent = 'Next Step';
+                btnNext.className = "text-xs px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-all flex items-center space-x-1 font-semibold glow-indigo";
+            }
+
+            drawGrid();
+        }
+
+        // Attach step navigation triggers
+        btnNext.addEventListener('click', () => {
+            if (state.currentStep < 6) {
+                state.currentStep++;
+                updateStepUI();
+            } else {
+                showToast("🏆 Congratulations! You have successfully completed this interactive journey.");
+            }
+        });
+
+        btnPrev.addEventListener('click', () => {
+            if (state.currentStep > 1) {
+                state.currentStep--;
+                updateStepUI();
+            }
+        });
+
+        // Setup matrix quick configuration hooks
+        document.getElementById('challenge-btn-1').addEventListener('click', () => {
+            state.points.A = { x: 2, y: 3, color: '#6366f1', radius: 10, label: 'A' };
+            state.points.B = { x: 5, y: 9, color: '#10b981', radius: 10, label: 'B' };
+            updateGeometryValues();
+            drawGrid();
+            showToast("Configured coordinate endpoints for m = 2.0 (Challenge 1)");
+        });
+
+        document.getElementById('challenge-btn-2').addEventListener('click', () => {
+            state.points.A = { x: 2, y: 9, color: '#6366f1', radius: 10, label: 'A' };
+            state.points.B = { x: 5, y: 3, color: '#10b981', radius: 10, label: 'B' };
+            updateGeometryValues();
+            drawGrid();
+            showToast("Configured coordinate endpoints for m = -2.0 (Challenge 2)");
+        });
+
+        document.getElementById('challenge-btn-3').addEventListener('click', () => {
+            state.points.A = { x: 2, y: 5, color: '#6366f1', radius: 10, label: 'A' };
+            state.points.B = { x: 8, y: 8, color: '#10b981', radius: 10, label: 'B' };
+            updateGeometryValues();
+            drawGrid();
+            showToast("Configured coordinate endpoints for m = 0.5 (Challenge 3)");
+        });
+
+        document.getElementById('btn-reset-points').addEventListener('click', () => {
+            state.points.A = { x: 2, y: 4, color: '#6366f1', radius: 10, label: 'A' };
+            state.points.B = { x: 6, y: 10, color: '#10b981', radius: 10, label: 'B' };
+            state.points.P = { x: 2, y: -1, color: '#f59e0b', radius: 10, label: 'P' };
+            updateGeometryValues();
+            drawGrid();
+            showToast("Coordinate configurations reset.");
+        });
+
+        window.onload = function() {
+            initCanvas();
+            updateGeometryValues();
+            updateStepUI();
+        }
+    </script>
+</body>
+</html>
