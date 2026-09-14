@@ -2,6 +2,8 @@
   "providers": ["python"],
   "pkgs": [
     "glib",
+    "gobject-introspection",
+    "harfbuzz",
     "pango",
     "fontconfig",
     "gdk-pixbuf",
