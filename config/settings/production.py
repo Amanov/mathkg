@@ -8,3 +8,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://mathkg-production.up.railway.app',
+    'https://*.up.railway.app',
+]
