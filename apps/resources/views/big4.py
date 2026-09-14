@@ -97,6 +97,8 @@ def create_challenge_data(level, difficulty):
 
 # ====================== MAIN VIEW ======================
 def big4_view(request):
+    from weasyprint import HTML  # Import here inside the view
+    
     # PDF Download
     if request.GET.get('pdf') == '1':
         level = request.GET.get('level', '7')
@@ -127,3 +129,11 @@ def big4_view(request):
 
     # Normal page
     return render(request, 'interactive/big4.html', {})
+
+
+# Remove 'from weasyprint import HTML' from the top of the file
+
+# def big4_view(request):
+#     from weasyprint import HTML  # Import here inside the view
+    
+    
