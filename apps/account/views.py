@@ -12,7 +12,12 @@ from .forms import (
 )
 from datetime import date
 
-
+# Example view flow
+# new 15.09.2026
+if form.is_valid():
+    user = form.save()
+    # Ensure redirect points to a valid URL pattern
+    return redirect('login')  # or 'home'
 
 # Create your views here.
 #User registration 

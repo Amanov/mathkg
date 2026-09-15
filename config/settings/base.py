@@ -88,6 +88,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+
         'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -113,7 +114,8 @@ AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-
+# Prevent email sending crashes if SMTP isn't configured yet
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
