@@ -12,12 +12,7 @@ from .forms import (
 )
 from datetime import date
 
-# Example view flow
-# new 15.09.2026
-if form.is_valid():
-    user = form.save()
-    # Ensure redirect points to a valid URL pattern
-    return redirect('login')  # or 'home'
+
 
 # Create your views here.
 #User registration 
@@ -55,33 +50,39 @@ if form.is_valid():
 #register success
 
 # here is new register view without subscription automation
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.mail import send_mail
+from logging import getLogger
+
+logger = getLogger(__name__)
+
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
 
-            # ❌ DO NOT SET subscription here
-
-            activation_link = "https://yourwebsite.com/activate/?user_id={}".format(user.id)
+            activation_link = f"https://mathkg-production.up.railway.app/activate/?user_id={user.id}"
             message = f"Dear {user.username},\n\nActivate: {activation_link}"
 
-            send_mail(
-                'Account Activation',
-                message,
-                'noreply@yourwebsite.com',
-                [user.email],
-                fail_silently=False
-            )
+            try:
+                send_mail(
+                    'Account Activation',
+                    message,
+                    'noreply@yourwebsite.com',
+                    [user.email],
+                    fail_silently=False
+                )
+            except Exception as e:
+                logger.error(f"Failed to send activation email to {user.email}: {e}")
 
-            messages.success(request, "Registration is successful. Please wait for activation")
+            messages.success(request, "Registration is successful. Please wait for activation.")
             return redirect('SuccessMessage')
     else:
         form = RegistrationForm()
 
     return render(request, 'account/register.html', {'form': form})
-
-
 # #School  registration 
 # def registerSchool_view(request):
 #     if request.method == 'POST':
