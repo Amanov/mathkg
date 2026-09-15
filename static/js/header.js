@@ -29,23 +29,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 const menu = submenu.querySelector(':scope > .dropdown-menu');
                 if (!menu) return;
 
+                // Reset before measuring so a previous open's position
+                // (possibly computed at a different window size) never
+                // contaminates this measurement.
+                menu.style.top = '';
+                menu.style.left = '';
+                menu.style.right = 'auto';
+                submenu.classList.remove('dropstart');
+
                 menu.classList.add('show');
 
                 // Flip left if off right edge
                 const rect = menu.getBoundingClientRect();
                 if (rect.right > window.innerWidth - 10) {
                     submenu.classList.add('dropstart');
-                } else {
-                    submenu.classList.remove('dropstart');
-                    menu.style.left = '';
-                    menu.style.right = 'auto';
                 }
 
-                // Shift up if off bottom edge
-                if (rect.bottom > window.innerHeight - 10) {
-                    menu.style.top = `-${rect.bottom - window.innerHeight + 10}px`;
-                } else {
-                    menu.style.top = '';
+                // Shift up if off bottom edge, but never further than the
+                // top of this menu's own parent column - beyond that the
+                // flyout rises above the level that contains it, which is
+                // what reads as the panels overlapping each other.
+                if (rect.bottom > window.innerHeight - 10 && submenu.parentElement) {
+                    const desiredShift = rect.bottom - window.innerHeight + 10;
+                    const parentMenuTop = submenu.parentElement.getBoundingClientRect().top;
+                    const maxShift = Math.max(0, rect.top - parentMenuTop);
+                    const shift = Math.min(desiredShift, maxShift);
+                    const currentTop = parseFloat(getComputedStyle(menu).top) || 0;
+                    menu.style.top = `${currentTop - shift}px`;
                 }
             });
 
