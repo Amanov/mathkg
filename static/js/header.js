@@ -45,6 +45,29 @@ document.addEventListener('DOMContentLoaded', function () {
                     submenu.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
                 }, 150);
             });
+
+            // Touch devices never fire mouseenter/mouseleave, so the submenu
+            // above would otherwise be unreachable on mobile. Fall back to
+            // tap-to-toggle when the device has no real hover capability.
+            const toggle = submenu.querySelector(':scope > a');
+            if (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    if (!window.matchMedia('(hover: hover)').matches) {
+                        e.preventDefault();
+                        const menu = submenu.querySelector(':scope > .dropdown-menu');
+                        if (!menu) return;
+                        const isOpen = menu.classList.contains('show');
+
+                        if (submenu.parentElement) {
+                            submenu.parentElement
+                                .querySelectorAll(':scope > .dropdown-submenu > .dropdown-menu')
+                                .forEach(s => s.classList.remove('show'));
+                        }
+
+                        menu.classList.toggle('show', !isOpen);
+                    }
+                });
+            }
         });
     }
 

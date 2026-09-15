@@ -26,10 +26,6 @@ html {
     height: calc(100% - 70px);
 }
 
-.navbar-toggler {
-    margin-left: 90% !important;
-}
-
 .no-scroll {
     overflow: hidden;
 }
@@ -37,12 +33,6 @@ html {
 .navbar+.navbar {
        z-index: 80;
        top:10%;
-    }
-
-
-.navbar-toggler {
-         margin-left: 90% !important;
-
     }
 
 

@@ -173,3 +173,29 @@
     left: auto;
     right: calc(100% + 2px);
 }
+
+/* ════════════════════════════════════════════
+   MOBILE — below the navbar-expand-lg breakpoint the
+   nav collapses to a stacked list, so the flyout panel
+   above (positioned to the right of its parent) would
+   render off-screen. Stack it under its parent instead.
+   Same colors/border as the desktop flyout, just repositioned.
+════════════════════════════════════════════ */
+@media (max-width: 991.98px) {
+    .dropdown-submenu > .dropdown-menu {
+        position: static;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 0 12px;
+        border-width: 0 0 0 2px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .dropdown-submenu > a::after {
+        margin-left: auto;
+    }
+}
