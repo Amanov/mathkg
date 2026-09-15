@@ -14,3 +14,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.up.railway.app',
 ]
 
+
+# settings.py
+# Use basic storage instead of compressed storage during build
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # Disable or change to basic:
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

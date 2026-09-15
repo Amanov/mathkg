@@ -162,21 +162,26 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
-    os.path.join(BASE_DIR,'media')
+    # os.path.join(BASE_DIR,'media')
 ]
 
+
+########
 STATIC_URL = '/static/'
-MEDIA_URL= '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static_cdn')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+######
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 #### Modifying static
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where collectstatic collects static files
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#end of modification
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# Media files setup
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
