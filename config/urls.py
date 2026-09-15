@@ -83,7 +83,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('account/', account_view, name='account'),
     # Success message
-    path('SuccessMessage/', success_view, name='SuccessMessage'),
+    path('Registration is successfull. Please wait for activation./', success_view, name='Registration is successfull. Please wait for activation.'),
 
     #sandar
     

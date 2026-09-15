@@ -78,11 +78,12 @@ def registration_view(request):
                 logger.error(f"Failed to send activation email to {user.email}: {e}")
 
             messages.success(request, "Registration is successful. Please wait for activation.")
-            return redirect('SuccessMessage')
+            return redirect('Registration is successfull. Please wait for activation.')
     else:
         form = RegistrationForm()
 
     return render(request, 'account/register.html', {'form': form})
+
 # #School  registration 
 # def registerSchool_view(request):
 #     if request.method == 'POST':
