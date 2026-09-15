@@ -57,6 +57,9 @@ from logging import getLogger
 
 logger = getLogger(__name__)
 
+
+# apps/account/views.py
+
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -77,13 +80,15 @@ def registration_view(request):
             except Exception as e:
                 logger.error(f"Failed to send activation email to {user.email}: {e}")
 
+            # The flash message displays the success text
             messages.success(request, "Registration is successful. Please wait for activation.")
-            return redirect('Registration is successfull. Please wait for activation.')
+            
+            # Redirect to an actual URL route name (e.g., 'login')
+            return redirect('login') 
     else:
         form = RegistrationForm()
 
     return render(request, 'account/register.html', {'form': form})
-
 # #School  registration 
 # def registerSchool_view(request):
 #     if request.method == 'POST':
