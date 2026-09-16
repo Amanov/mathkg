@@ -20,16 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+z3u1c*yy!jdi6=op+!dex)0t#^x$st8=an(enzwqqqicg^86@'
+# Read from the environment so the real key never lives in source control.
+# production.py requires this to be set and refuses to start otherwise;
+# this fallback only ever applies to local development.
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-dev-only-+z3u1c*yy!jdi6=op+!dex)0t#^x$st8=an(enzwqqqicg^86@',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# ALLOWED_HOSTS = []
-
-# if DEBUG:
-#     EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend' #during the development
-
+# DEBUG is set explicitly in development.py / production.py.
 
 
 # Application definition
@@ -114,8 +114,21 @@ AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Prevent email sending crashes if SMTP isn't configured yet
+# Email: defaults to printing to the console (safe, never crashes) unless
+# real SMTP credentials are provided via the environment, in which case
+# actual sending is enabled. Set EMAIL_HOST/EMAIL_HOST_USER/
+# EMAIL_HOST_PASSWORD (and optionally EMAIL_PORT/EMAIL_USE_TLS) on the
+# host to turn on real activation/password-reset emails.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@mathkg.com')
+
+if os.environ.get('EMAIL_HOST'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ['EMAIL_HOST']
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'true').lower() == 'true'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -192,13 +205,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #dinamic change of locations
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/home'  #added by me
-# LOGOUT_REDIRECT_URL = '/login'  #added by me
 
-ALLOWED_HOSTS = [
-    'mathkg-production.up.railway.app',
-    '.railway.app',
-    'localhost',
-    '127.0.0.1',
-    '*',  # Optional: allows any host
-]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']

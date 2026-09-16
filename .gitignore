@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+
+# Environment
+.env
+
+# OS junk
+.DS_Store
