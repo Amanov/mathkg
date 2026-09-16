@@ -2,7 +2,7 @@
 /* ════════════════════════════════════════════
    NAVBAR
 ════════════════════════════════════════════ */
-.navbar-nav { gap: 6px; }
+.navbar-nav { gap: 8px; }
 .navbar-nav > li { position: relative; }
 
 /* ════════════════════════════════════════════
@@ -11,11 +11,11 @@
 .mymenu {
     min-width: 120px;
     height: 44px;
-    padding: 0 16px;
+    padding: 0 18px;
     background: var(--color-menu-surface);
     color: var(--color-menu-text);
-    border: 2px solid var(--color-menu-border);
-    border-radius: 6px;
+    border: 1.5px solid var(--color-menu-border);
+    border-radius: var(--radius-sm);
     font-size: 15px;
     font-weight: 600;
     display: flex;
@@ -23,48 +23,84 @@
     justify-content: center;
     gap: 6px;
     text-decoration: none;
-    transition: background .15s, color .15s;
+    transition: background var(--transition-fast), color var(--transition-fast),
+                border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .mymenu:hover {
     background: var(--color-menu-hover);
     color: var(--color-bootstrap-primary);
+    border-color: var(--color-bootstrap-primary);
+}
+.mymenu:focus-visible {
+    outline: 2px solid var(--color-bootstrap-primary);
+    outline-offset: 2px;
+}
+.mymenu[aria-expanded="true"] {
+    background: var(--color-menu-active);
+    color: var(--color-bootstrap-primary);
+    border-color: var(--color-bootstrap-primary);
+    box-shadow: var(--shadow-dropdown);
+}
+
+/* Bootstrap's own caret is a plain CSS triangle with no transition hook,
+   so it snaps instantly on open/close. Replace it with a text glyph we
+   can rotate smoothly to match the panel's own fade-in. */
+.mymenu.dropdown-toggle::after {
+    display: inline-block;
+    content: "\25BE";
+    border: none;
+    font-size: 13px;
+    line-height: 1;
+    margin-left: 2px;
+    transition: transform var(--transition-base);
+}
+.mymenu.dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
 }
 
 /* ════════════════════════════════════════════
-   DROPDOWN PANEL
+   DROPDOWN PANEL — always in the layout, faded/
+   scaled out until .show is applied, so opening
+   it is an animation rather than an instant swap.
 ════════════════════════════════════════════ */
 .dropdown-menu {
+    display: block;
     position: absolute;
-    padding: 0;
-    /* width: fit-content; */
-    width: 160px !important;
-    /* min-width: unset; */
-    min-width: unset !important;
-    max-width: 160px !important;
-    word-break: break-word !important;
-    white-space: normal !important;
-
-    border: 2px solid var(--color-menu-border);
-    border-radius: 6px;
-    box-shadow: 0 6px 16px rgba(0,0,0,.10);
+    padding: 6px;
+    min-width: 190px;
+    max-width: 260px;
+    width: max-content;
+    border: 1px solid var(--color-menu-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-dropdown);
     z-index: 9999;
     overflow: visible;
-    background: var(--color-menu-surface);
+    background: #fff;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scale(.98);
+    transform-origin: top left;
+    pointer-events: none;
+    transition: opacity var(--transition-base), transform var(--transition-base),
+                visibility 0s linear var(--transition-base);
+}
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    transition: opacity var(--transition-base), transform var(--transition-base),
+                visibility 0s linear 0s;
 }
 
 /* ════════════════════════════════════════════
-   ALL LI — uniform rows, blue dividers
+   ALL LI — uniform rows, quiet dividers
 ════════════════════════════════════════════ */
 .dropdown-menu li {
     position: relative;
     padding: 0;
     margin: 0;
-    background: var(--color-menu-surface);
-    z-index: 99999;
-    border-bottom: 2px solid var(--color-menu-border);
-}
-.dropdown-menu li:last-child {
-    border-bottom: none;
 }
 
 /* ════════════════════════════════════════════
@@ -73,35 +109,31 @@
 .dropdown-item {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    height: 44px;
-    padding: 0 16px;
-    font-size: 13px;
+    min-height: 42px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
     font-weight: 500;
-    color: var(--color-menu-text);
-    /* white-space: nowrap; */
-    text-decoration: none;
-    transition: background .15s, color .15s;
-
-    /* ========== */
-    white-space: normal !important;
-    word-break: break-word !important;
-    width: 160px !important;
-    max-width: 160px !important;
-    box-sizing: border-box !important;
+    line-height: 1.35;
     color: var(--color-menu-text) !important;
-
+    white-space: normal;
+    word-break: break-word;
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
 }
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
     background: var(--color-menu-hover);
-    /* color: var(--color-bootstrap-primary); */
     color: var(--color-bootstrap-primary) !important;
-
+}
+.dropdown-item:focus-visible {
+    outline: 2px solid var(--color-bootstrap-primary);
+    outline-offset: -2px;
 }
 
 /* ════════════════════════════════════════════
-   SUBMENU TOGGLE — same height as leaf
+   SUBMENU TOGGLE — same shape as a leaf link
 ════════════════════════════════════════════ */
 .dropdown-submenu { position: relative; }
 
@@ -109,92 +141,128 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* width: 100%; */
-    height: 44px;
-    padding: 0 16px;
-    font-size: 13px;
+    gap: 10px;
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
     font-weight: 500;
+    line-height: 1.35;
     color: var(--color-menu-text);
-    background: var(--color-menu-surface);
+    white-space: normal;
+    word-break: break-word;
     text-decoration: none;
-    /* white-space: nowrap; */
     cursor: pointer;
-    transition: background .15s, color .15s;
-
-    /* ============== */
-    white-space: normal !important;
-    word-break: break-word !important;
-    width: 160px !important;
-    max-width: 160px !important;
-    box-sizing: border-box !important;
+    transition: background var(--transition-fast), color var(--transition-fast);
 }
 .dropdown-submenu > a:hover,
-.dropdown-submenu:hover > a {
+.dropdown-submenu > a:focus-visible {
     background: var(--color-menu-hover);
     color: var(--color-bootstrap-primary);
 }
 
 /* Right arrow */
 .dropdown-submenu > a::after {
-    content: "›";
+    content: "\203A";
     border: none;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: 400;
     line-height: 1;
-    margin-left: 12px;
     flex-shrink: 0;
     color: var(--color-menu-border);
+    transition: color var(--transition-fast), transform var(--transition-base);
 }
-.dropdown-submenu > a:hover::after,
-.dropdown-submenu:hover > a::after {
+.dropdown-submenu > a:hover::after {
     color: var(--color-bootstrap-primary);
+    transform: translateX(2px);
 }
 
 /* ════════════════════════════════════════════
-   FLYOUT PANEL
+   FLYOUT PANEL — same fade/scale treatment as
+   the root dropdown, just anchored to the side.
 ════════════════════════════════════════════ */
 .dropdown-submenu > .dropdown-menu {
-    display: none;
     position: absolute;
-    top: -2px ;
-    left: calc(100% + 2px);
+    top: -6px;
+    left: calc(100% + 6px);
     margin: 0;
-
-    border-radius: 6px;
-    overflow: visible;
-}
-
-.dropdown-submenu > .dropdown-menu.show {
-    display: block;
+    transform-origin: top left;
 }
 
 .dropdown-submenu.dropstart > .dropdown-menu {
     left: auto;
-    right: calc(100% + 2px);
+    right: calc(100% + 6px);
+    transform-origin: top right;
 }
 
 /* ════════════════════════════════════════════
    MOBILE — below the navbar-expand-lg breakpoint the
-   nav collapses to a stacked list, so the flyout panel
-   above (positioned to the right of its parent) would
-   render off-screen. Stack it under its parent instead.
-   Same colors/border as the desktop flyout, just repositioned.
+   nav collapses to a stacked list. A dropdown floating
+   absolutely there would either overlay the sibling
+   category buttons or run off-screen, so it's put back
+   into normal flow instead: opening it pushes the rest
+   of the list down, like a native accordion.
 ════════════════════════════════════════════ */
 @media (max-width: 991.98px) {
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 6px;
+        transform: none;
+        transform-origin: top center;
+
+        /* display:block+opacity/visibility alone would still take up
+           layout space while "closed"; collapse it via max-height so
+           the accordion actually pushes content instead of leaving a
+           gap. */
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        border-width: 0;
+        box-shadow: none;
+        transition: max-height var(--transition-base), opacity var(--transition-base),
+                    padding var(--transition-base), border-width var(--transition-base),
+                    visibility 0s linear var(--transition-base);
+    }
+    .dropdown-menu.show {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding: 6px;
+        border-width: 1px;
+        transition: max-height var(--transition-base), opacity var(--transition-base),
+                    padding var(--transition-base), border-width var(--transition-base),
+                    visibility 0s linear 0s;
+    }
+
     .dropdown-submenu > .dropdown-menu {
         position: static;
         left: auto;
         right: auto;
         top: auto;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 0 0 12px;
+        margin: 2px 0 2px 14px;
         border-width: 0 0 0 2px;
         border-radius: 0;
         box-shadow: none;
+        width: calc(100% - 14px);
+        max-width: calc(100% - 14px);
     }
 
     .dropdown-submenu > a::after {
         margin-left: auto;
+    }
+}
+
+/* Users who've asked their OS/browser to cut down on motion get an
+   instant toggle instead of a skipped-but-still-timed transition. */
+@media (prefers-reduced-motion: reduce) {
+    .mymenu,
+    .mymenu.dropdown-toggle::after,
+    .dropdown-menu,
+    .dropdown-item,
+    .dropdown-submenu > a,
+    .dropdown-submenu > a::after {
+        transition: none !important;
     }
 }

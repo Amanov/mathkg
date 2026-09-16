@@ -16,6 +16,61 @@ html {
     z-index: 200;
 }
 
+/* ════════════════════════════════════════════
+   TOP UTILITY BAR — search + login/register/
+   account pills. Bootstrap's default .btn-success
+   gave these no hover motion and inconsistent
+   spacing next to the search box; this brings them
+   in line with the category nav's timing/radius.
+════════════════════════════════════════════ */
+#searchForm .form-control {
+    border-radius: var(--radius-sm);
+    border: none;
+}
+#searchForm .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .35);
+}
+#searchForm .btn {
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+#searchForm .btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.topMenu {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    transition: transform var(--transition-fast), filter var(--transition-fast),
+                box-shadow var(--transition-fast);
+}
+.topMenu:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+}
+.topMenu:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .topMenu,
+    #searchForm .btn {
+        transition: none !important;
+    }
+    .topMenu:hover,
+    #searchForm .btn:hover {
+        transform: none;
+    }
+}
+
 .offcanvas {
     top: 70px;
     height: calc(100% - 70px);
