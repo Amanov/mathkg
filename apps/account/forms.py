@@ -1,12 +1,10 @@
+from datetime import datetime
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-# from apps.account.models import Account
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Field
-from datetime import datetime
-
-from django.contrib.auth.forms import AuthenticationForm
+from crispy_forms.layout import Submit
 
 from .models import Account
 
@@ -43,66 +41,27 @@ class RegistrationForm(UserCreationForm):
             'username': 'Колдонуучунун атын тандаңыз ',
         }
 
-
-
-        
-
-
-
-    
-
-# Here we have customized crispy
-# class RegistrationForm(forms.Form):
-#     field1 = forms.CharField(label='Field 1')
-#     field2 = forms.EmailField(label='Field 2')
-
-#     def __init__(self, *args, **kwargs):
-#         super(RegistrationForm, self).__init__(*args, **kwargs)
-#         self.helper = FormHelper()
-#         self.helper.layout = Layout(
-#             Field('field1', css_class='custom-class'),
-#             Field('field2', css_class='custom-class'),
-#             Submit('submit', 'Submit', css_class='btn btn-primary')
-#         )
-
-# #School registraion form we will work later 
-
-# class RegistrationForm(UserCreationForm):
-#     email = forms.EmailField(max_length=60, help_text='Бардык жарактуу электрондук почта дареги')
-    
-
-#     class Meta:
-#         model = Account
-#         fields = ("email","username","password1","password2")
-
-
 #Login of user
-class AccountAuthenticationForm(forms.ModelForm):
-    
+class AccountAuthenticationForm(forms.Form):
+    # Plain Form, not ModelForm: a ModelForm bound to Account here would run
+    # Account.email's unique=True validator on every login attempt, which
+    # always fails with "Account with this Email already exists" for any
+    # real user (the whole point of logging in is that the account already
+    # exists) - login was completely broken for every user because of this.
+
     email = forms.EmailField(label="Электрондук почта",max_length=60, help_text='Катталган электрондук почта дарегиниз')
 
     password = forms.CharField(label='Сырсөз', widget=forms.PasswordInput,help_text='Катталууда жазган паролуңуз')
 
-    
-        
-
-    class Meta:
-        model =Account
-        fields =('email', 'password')
-
     def clean(self):
-        if self.is_valid():
-            email =self.cleaned_data['email']
-            password =self.cleaned_data['password']
-            if not authenticate(email=email,password = password):
-                raise forms.ValidationError('Кирүү жараксыз же админ сиздин аккаунтуңузду активдештирген эмес, админге кайрылыңыз ')
-            
-#Account[user info] Update 
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        password = cleaned_data.get('password')
+        if email and password and not authenticate(email=email, password=password):
+            raise forms.ValidationError('Кирүү жараксыз же админ сиздин аккаунтуңузду активдештирген эмес, админге кайрылыңыз ')
+        return cleaned_data
 
-# here we want to update authentification
-
-
-
+#Account[user info] Update
 
 class AccountUpdateForm(forms.ModelForm):
 
@@ -110,23 +69,17 @@ class AccountUpdateForm(forms.ModelForm):
         model=Account
         fields = ('email', 'username')
 
-    #emailin checking 
+    #emailin checking
     def clean_email(self):
-        if self.is_valid():
-            email = self.cleaned_data['email']
-            try:
-                account =Account.objects.exclude(pk=self.instance.pk).get(email=email)
-            except Account.DoesNotExist:
-                return email
+        email = self.cleaned_data['email']
+        if Account.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
             raise forms.ValidationError('Электерондук почта "%s" башка бирөө тарабынан колдонулуп жатат.' % email)
-        
-    #password checking
+        return email
+
+    #username checking
     def clean_username(self):
-        if self.is_valid():
-            username = self.cleaned_data['username']
-            try:
-                account =Account.objects.exclude(pk=self.instance.pk).get(username=username)
-            except Account.DoesNotExist:
-                return username
+        username = self.cleaned_data['username']
+        if Account.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
             raise forms.ValidationError('Бул колдонуучу "%s" башка бирөө тарабынан колдонулуп жатат.' % username)
-        
+        return username
+

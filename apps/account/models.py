@@ -4,9 +4,8 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 from rest_framework.authtoken.models import Token
-
-from django.contrib.auth.models import User
 
 #creating custom users
 class MyAccountManager(BaseUserManager):
@@ -33,6 +32,7 @@ class MyAccountManager(BaseUserManager):
         user.is_admin=True
         user.is_staff=True
         user.is_superuser=True
+        user.is_active=True
         user.save(using=self._db)
         return user
         
@@ -42,7 +42,10 @@ class Account(AbstractBaseUser):
     email                   = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username                = models.CharField(max_length=30, unique=True)  
     date_joined             = models.DateTimeField(verbose_name='date joined', auto_now_add=True) #date joined
-    last_login              = models.DateTimeField(verbose_name='last_login', auto_now=True)
+    # No auto_now: Django's own login signal (update_last_login) sets this
+    # on actual login. auto_now was overwriting it to "now" on every save
+    # of the account (admin edits, subscription updates, etc.).
+    last_login              = models.DateTimeField(verbose_name='last_login', null=True, blank=True)
     is_admin                = models.BooleanField(default=False)
     is_active               = models.BooleanField(default=False) #activation of user
     is_staff                = models.BooleanField(default=False)
@@ -76,10 +79,6 @@ def create_auth_token(sender, instance=None, created=False,**kwargs):
         pass
 
 ## I want to count how many times file is downloaded
-# yourapp/models.py
-
-from django.db import models
-from django.utils import timezone
 
 class DownloadFile(models.Model):
     name            = models.CharField(max_length=255)

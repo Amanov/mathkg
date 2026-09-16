@@ -1,64 +1,24 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth import login, authenticate,logout
-# from apps.account.forms import RegistrationForm,AccountAuthenticationForm,AccountUpdateForm
-from django.core.mail import send_mail
-from .models import Account
-from django.contrib import messages
+from datetime import date, timedelta
+from logging import getLogger
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from .models import Account
 from .forms import (
     RegistrationForm,
     AccountAuthenticationForm,
     AccountUpdateForm,
 )
-from datetime import date
-
-
-
-# Create your views here.
-#User registration 
-# this is working before subscription problem come to out
-# def registration_view(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid() :    
-#             user = form.save()
-            
-#             # Perform manual activation steps
-#             # For example, send an activation email
-#             activation_link = "https://yourwebsite.com/activate/?user_id={}".format(user.id)
-#             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
-#                 user.username, activation_link)
-#             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
-            
-#             # Display a success message to the user
-#             # Redirect to a thank you or activation pending page
-#             # ...
-
-#             # login(request, user)
-
-#             messages.success(request, "Registration is successful. Please for activation")
-#             # print("Success")
-#             return redirect('SuccessMessage')
-#     else:
-#         form = RegistrationForm()
-#         print("failure")
-        
-#      # Render the registration form template
-#     context = {'form': form}
-#     return render(request, 'account/register.html', context)
-# #
-#register success
-
-# here is new register view without subscription automation
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.core.mail import send_mail
-from logging import getLogger
 
 logger = getLogger(__name__)
 
-
-# apps/account/views.py
 
 def registration_view(request):
     if request.method == 'POST':
@@ -66,54 +26,29 @@ def registration_view(request):
         if form.is_valid():
             user = form.save()
 
-            activation_link = f"https://mathkg-production.up.railway.app/activate/?user_id={user.id}"
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+            domain = get_current_site(request).domain
+            activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
             message = f"Dear {user.username},\n\nActivate: {activation_link}"
 
             try:
                 send_mail(
                     'Account Activation',
                     message,
-                    'noreply@yourwebsite.com',
+                    None,  # uses settings.DEFAULT_FROM_EMAIL
                     [user.email],
                     fail_silently=False
                 )
             except Exception as e:
                 logger.error(f"Failed to send activation email to {user.email}: {e}")
 
-            # The flash message displays the success text
             messages.success(request, "Registration is successful. Please wait for activation.")
-            
-            # Redirect to an actual URL route name (e.g., 'login')
-            return redirect('login') 
+            return redirect('login')
     else:
         form = RegistrationForm()
 
     return render(request, 'account/register.html', {'form': form})
-# #School  registration 
-# def registerSchool_view(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-            
-#             # Perform manual activation steps
-#             # For example, send an activation email
-#             activation_link = "https://mathkh.pythonanywhere.com/activate/?user_id={}".format(user.id)
-#             message = "Dear {},\n\nPlease click on the following link to activate your account: {}".format(
-#                 user.username, activation_link)
-#             send_mail('Account Activation', message, 'noreply@yourwebsite.com', [user.email], fail_silently=False)
-            
-#             # Display a success message to the user
-#             # Redirect to a thank you or activation pending page
-#             # ...
-#             messages.success(request, 'Registration is successful. Please wait for activation.')
-#             return redirect('SuccessMessage')
-#     else:
-#         form = RegistrationForm()
-    
-#     # Render the registration form template
-#     context = {'form': form}
-#     return render(request, 'account/registerSchool.html', context)
 
 
 def logout_view(request):
@@ -145,51 +80,21 @@ def login_view(request):
 
 
 #account update
-# working account view without subscription automation
-# def account_view(request):
-    
-#     if not request.user.is_authenticated:
-#         return redirect("login")
-    
-#     user = request.user   # ✅ FIX HERE
-    
-#     context = {}
-
-#     if request.POST:
-#         form = AccountUpdateForm(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.initial ={
-#                 "email":request.POST['email'],
-#                 "username":request.POST['username'],
-#             }
-#             form.save()
-#             context['success_message'] = "Updated"
-#     else:
-#         form =AccountUpdateForm(
-#             initial={
-#                 "email":request.user.email,
-#                 "username": request.user.username,
-#             }
-#         )
-    
-#     # ✅ ADD THESE LINES
-#     context['subscription_end'] = request.user.subscription_end
-#     context['today'] = date.today()
-
-#     context['account_form'] = form
-
-#     return render(request,'account/account.html',context)
-     
-#account view  subscription automation
-from datetime import date, timedelta
-
-from datetime import date, timedelta
-
 def account_view(request):
     if not request.user.is_authenticated:
         return redirect("login")
 
     user = request.user
+
+    if request.method == 'POST':
+        form = AccountUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Маалымат жаңыртылды.')
+            return redirect('account')
+    else:
+        form = AccountUpdateForm(instance=user)
+
     today = date.today()
 
     # subscription end (hybrid)
@@ -200,9 +105,6 @@ def account_view(request):
 
     days_left = (subscription_end - today).days
 
-    # ✅ FIX: compute absolute value here
-    days_passed = abs(days_left)
-
     # status color
     if days_left > 7:
         status_color = "success"
@@ -212,33 +114,30 @@ def account_view(request):
         status_color = "danger"
 
     context = {
-        'account_form': AccountUpdateForm(instance=user),
+        'account_form': form,
         'subscription_end': subscription_end,
         'days_left': days_left,
-        'days_passed': days_passed,   # ✅ NEW
+        'days_passed': abs(days_left),
         'status_color': status_color,
     }
 
     return render(request, 'account/account.html', context)
-    
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
 
-def activation_view(request):
-    user_id = request.GET.get('user_id')
+def activation_view(request, uidb64, token):
     try:
-        user = Account.objects.get(id=user_id)
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = Account.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
-        user.save()
-        # Perform any additional actions after activation
-        # For example, display an activation success message or redirect to a login page
+        user.save(update_fields=['is_active'])
         messages.success(request, 'Your account has been activated successfully.')
-        return redirect('login')  # Redirect to the login page after activation
-    except Account.DoesNotExist:
-        # Handle the case when the user is not found
-        # For example, display an activation failure message or redirect to an error page
+    else:
         messages.error(request, 'Invalid activation link.')
-        return redirect('activation_failure')  # Redirect to the activation failure page
+
+    return redirect('login')
 
 
