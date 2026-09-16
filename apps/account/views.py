@@ -3,12 +3,15 @@ from logging import getLogger
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django_ratelimit.decorators import ratelimit
 
 from .models import Account
 from .forms import (
@@ -19,7 +22,21 @@ from .forms import (
 
 logger = getLogger(__name__)
 
+# NOTE on key='ip': this uses django-ratelimit's default, which reads
+# request.META['REMOTE_ADDR']. Whether that's the real client IP or
+# Railway's proxy IP for every request depends on how Railway's edge
+# sets REMOTE_ADDR - verify this isn't rate-limiting all users as one
+# client (or, worse, trusting a spoofable header) once this is live.
+#
+# Also: with no CACHES setting configured, Django's implicit default is
+# LocMemCache, which is per-process. Under gunicorn with more than one
+# worker, each worker counts independently, so the effective limit is
+# closer to (rate x worker count) than the configured rate. Fine as a
+# first line of defense; move to a shared cache (Redis/Memcached) for
+# an exact limit once this runs with multiple workers.
 
+
+@ratelimit(key='ip', rate='10/h', method='POST', block=True)
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -58,6 +75,7 @@ def logout_view(request):
 
 
 #User Login
+@ratelimit(key='ip', rate='5/m', method='POST', block=True)
 def login_view(request):
     if request.method == 'POST':
         form = AccountAuthenticationForm(request.POST)
@@ -137,5 +155,19 @@ def activation_view(request, uidb64, token):
         messages.error(request, 'Invalid activation link.')
 
     return redirect('login')
+
+
+@method_decorator(
+    ratelimit(key='ip', rate='5/h', method='POST', block=True),
+    name='dispatch',
+)
+class RateLimitedPasswordResetView(auth_views.PasswordResetView):
+    """auth_views.PasswordResetView, rate-limited per IP.
+
+    Otherwise identical - kept as a thin subclass purely so urls.py can
+    rate-limit it the same way as login/registration, since a plain
+    function decorator can't be applied to a class-based view's
+    as_view() the same way.
+    """
 
 
