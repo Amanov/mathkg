@@ -36,3 +36,19 @@ CSRF_COOKIE_SECURE = True
 # stable, since browsers cache this and a long value is hard to undo.
 SECURE_HSTS_SECONDS = 3600
 
+# This app was persisting its SQLite database only by committing
+# db.sqlite3 to git and redeploying it each time - once that file was
+# rightly untracked (it held live password hashes), every fresh
+# container got a brand-new empty database, since Railway's container
+# filesystem isn't persisted across deploys by default. Point at a
+# Railway Volume instead: create one in the Railway dashboard, mount
+# it at any path, and set SQLITE_PATH to <that mount path>/db.sqlite3
+# as an environment variable. Falls back to the previous location so
+# this doesn't break anything if SQLITE_PATH isn't set yet.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.environ.get('SQLITE_PATH', str(BASE_DIR / 'db.sqlite3')),
+    }
+}
+
