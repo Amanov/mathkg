@@ -1,5 +1,6 @@
 
 {% load static %}
+{% load custom_tags %}
 {% for item in nodes %}
 
     {% if item.children.all %}
@@ -17,7 +18,7 @@
 
     {% else %}
         <li class="{% if parent %}dropdown-leaf{% else %}nav-item{% endif %}">
-            <a href="{% if item.url_name %}{% url item.url_name %}{% else %}#{% endif %}"
+            <a href="{% safe_url item.url_name %}"
                class="{% if parent %}dropdown-item{% else %}btn btn-outline-primary mymenuSize text-uppercase{% endif %}">
                 {% if item.icon and not parent %}<i class="{{ item.icon }}"></i>{% endif %}
                 {{ item.title }}
