@@ -5,7 +5,7 @@ from django.db.models import Sum
 from apps.resources.models import Resource
 
 
-@staff_member_required
+@staff_member_required(login_url='login')
 def dashboard_view(request):
 
     resources = Resource.objects.all()

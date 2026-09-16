@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.files import File
 from ...models import Resource
@@ -6,7 +7,7 @@ from ...models import Resource
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
-        folder = 'media/resources/files'   # folder where your files are
+        folder = os.path.join(settings.MEDIA_ROOT, 'resources', 'files')
 
         for filename in os.listdir(folder):
             filepath = os.path.join(folder, filename)
@@ -14,10 +15,6 @@ class Command(BaseCommand):
             # ADD THIS LINE — skip subfolders
             if os.path.isdir(filepath):
                 self.stdout.write(f'Skipping folder: {filename}')
-                continue
-
-            if Resource.objects.filter(title=filename).exists():
-                self.stdout.write(f'Skipping {filename} — already exists')
                 continue
 
             if Resource.objects.filter(title=filename).exists():

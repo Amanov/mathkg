@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count
+from django.db.models.functions import TruncDate
 from django.utils import timezone
 
 from apps.resources.models import (
@@ -11,7 +12,7 @@ from apps.resources.models import (
 )
 
 
-@staff_member_required
+@staff_member_required(login_url='login')
 def analytics_dashboard_view(request):
 
     today = timezone.now().date()
@@ -112,24 +113,26 @@ def analytics_dashboard_view(request):
     # Daily Download Trend
     # =========================
 
-    daily_stats = []
+    thirty_days_ago = today - timedelta(days=29)
 
-    for i in range(30):
-
-        date = today - timedelta(days=i)
-
-        count = (
+    counts_by_day = {
+        row['day']: row['count']
+        for row in (
             ResourceDownload.objects
-            .filter(downloaded_at__date=date)
-            .count()
+            .filter(downloaded_at__date__gte=thirty_days_ago)
+            .annotate(day=TruncDate('downloaded_at'))
+            .values('day')
+            .annotate(count=Count('id'))
         )
+    }
 
-        daily_stats.append({
+    daily_stats = [
+        {
             'date': date.strftime('%m/%d'),
-            'count': count,
-        })
-
-    daily_stats.reverse()
+            'count': counts_by_day.get(date, 0),
+        }
+        for date in (thirty_days_ago + timedelta(days=i) for i in range(30))
+    ]
 
     # =========================
     # Context

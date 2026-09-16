@@ -1,4 +1,3 @@
-# cat > ./apps/resources/data/koshuu_1_digit_data.py << 'EOF'
 KOSHUU_1_DIGIT_SECTIONS = [
 
     {

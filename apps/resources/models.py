@@ -28,10 +28,6 @@ class Topic(models.Model):
         ordering = ['order']
 
 
-def __str__(self):
-    return self.title
-
-
 # =====================================================
 
 # CHOICES
@@ -279,21 +275,19 @@ class ResourceDownload(models.Model):
         blank=True
     )
 
-class Meta:
-    ordering = ['-downloaded_at']
-    verbose_name = 'Download Log'
-    verbose_name_plural = 'Download Logs'
+    class Meta:
+        ordering = ['-downloaded_at']
+        verbose_name = 'Download Log'
+        verbose_name_plural = 'Download Logs'
 
-def __str__(self):
-    user_str = self.user.username if self.user else self.ip_address
-    return f"{user_str} - {self.resource.title}"
+    def __str__(self):
+        user_str = self.user.username if self.user else self.ip_address
+        return f"{user_str} - {self.resource.title}"
 
 
 
 
 # for data driven menu
-from django.db import models
-
 
 class MenuItem(models.Model):
     title = models.CharField(max_length=200)

@@ -1,12 +1,10 @@
-from .home import home_screen_view
-
+from .home import home_screen_view, success_view
 
 from .operations import (
     all_operations_view,
     directed_numbers_view,
     four_basic_operations_view,
-
-    # onedigitarithmetics_view,
+    koshuu_1_digit_view,
 )
 
 from .downloads import (
@@ -25,13 +23,8 @@ from .analytics import (
     analytics_dashboard_view,
 )
 
-from .onduktar import *
-
-from .home import *
+from .onduktar import onedigitarithmetics_view
 
 from .big4 import big4_view
 
-from .topics import *
-
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
-from .operations import koshuu_1_digit_view

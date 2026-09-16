@@ -23,7 +23,7 @@ def build_topic_sections(subtopic):
                 "title": resource.title,
                 "subtitle": resource.description,
                 "resource": resource,
-                "fallback_image": "images/default.jpg",
+                "fallback_image": "img/GraphIllustration.png",
             }
         )
 

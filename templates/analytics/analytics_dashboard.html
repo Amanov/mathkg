@@ -1,0 +1,270 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .dash {
+    padding: 2rem 1.5rem;
+    margin-top: 80px;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .topbar h1 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .stat {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 500;
+  }
+  .stat-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .section {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 500;
+  }
+  .badge-blue {
+    background: #ddeeff;
+    color: #1a4a7a;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    color: #888;
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  tr:hover td {
+    background: #fafafa;
+  }
+  .dl-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dl-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #b5d4f4;
+  }
+</style>
+
+<div class="dash">
+  <div class="topbar">
+    <h1>Analytics</h1>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Active resources</div>
+      <div class="stat-value">{{ total_resources }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Total downloads</div>
+      <div class="stat-value">{{ total_downloads }}</div>
+      <div class="stat-sub">all time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Unique users</div>
+      <div class="stat-value">{{ unique_users }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">This week</div>
+      <div class="stat-value">{{ downloads_this_week }}</div>
+      <div class="stat-sub">downloads</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">This month</div>
+      <div class="stat-value">{{ downloads_this_month }}</div>
+      <div class="stat-sub">downloads</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Daily downloads
+      <span class="badge badge-blue">30 days</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for day in daily_stats %}
+        <tr>
+          <td style="color: #aaa">{{ day.date }}</td>
+          <td>
+            <div class="dl-bar-wrap">
+              <div class="dl-bar" style="width: {{ day.count|default:0 }}px; max-width: 200px;"></div>
+              {{ day.count }}
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Top resources
+      <span class="badge badge-blue">{{ top_resources|length }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in top_resources %}
+        <tr>
+          <td>{{ r.title }}</td>
+          <td>{{ r.get_category_display }}</td>
+          <td>{{ r.dl_count }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Top users
+      <span class="badge badge-blue">{{ top_users|length }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in top_users %}
+        <tr>
+          <td>{{ u.user__username }}</td>
+          <td>{{ u.user__email }}</td>
+          <td>{{ u.download_count }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      By category
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Total downloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in category_stats %}
+        <tr>
+          <td>{{ c.category }}</td>
+          <td>{{ c.total_downloads }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Recent downloads
+      <span class="badge badge-blue">{{ recent_downloads|length }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>User</th>
+          <th>IP</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in recent_downloads %}
+        <tr>
+          <td>{{ d.resource.title }}</td>
+          <td>{{ d.user.username|default:"—" }}</td>
+          <td style="color: #aaa">{{ d.ip_address|default:"—" }}</td>
+          <td style="color: #aaa">{{ d.downloaded_at }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" style="color: #aaa">No downloads yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

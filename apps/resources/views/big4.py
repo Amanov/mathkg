@@ -1,9 +1,11 @@
 from datetime import datetime
 import random
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.template.loader import render_to_string
+
+MAX_PDF_SHEETS = 50
 
 
 # ====================== HELPER FUNCTIONS ======================
@@ -167,12 +169,21 @@ def create_challenge_data(level, difficulty):
 def big4_view(request):
     # PDF Download
     if request.GET.get("pdf") == "1":
-        from weasyprint import HTML  # Lazy import inside the view
-
         level = request.GET.get("level", "7")
-        count = int(request.GET.get("count", 1))
         progressive = request.GET.get("progressive") == "1"
-        difficulty = int(request.GET.get("difficulty", 1))
+
+        try:
+            count = int(request.GET.get("count", 1))
+            difficulty = int(request.GET.get("difficulty", 1))
+        except ValueError:
+            return HttpResponseBadRequest("count and difficulty must be integers")
+
+        if not 1 <= count <= MAX_PDF_SHEETS:
+            return HttpResponseBadRequest(f"count must be between 1 and {MAX_PDF_SHEETS}")
+        if difficulty not in (1, 2, 3):
+            return HttpResponseBadRequest("difficulty must be 1, 2, or 3")
+
+        from weasyprint import HTML  # Lazy import inside the view
 
         sheets = []
         curr_diff = difficulty
