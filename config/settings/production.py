@@ -1,5 +1,6 @@
 import os
 
+import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 
 from .base import *
@@ -40,15 +41,20 @@ SECURE_HSTS_SECONDS = 3600
 # db.sqlite3 to git and redeploying it each time - once that file was
 # rightly untracked (it held live password hashes), every fresh
 # container got a brand-new empty database, since Railway's container
-# filesystem isn't persisted across deploys by default. Point at a
-# Railway Volume instead: create one in the Railway dashboard, mount
-# it at any path, and set SQLITE_PATH to <that mount path>/db.sqlite3
-# as an environment variable. Falls back to the previous location so
-# this doesn't break anything if SQLITE_PATH isn't set yet.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.environ.get('SQLITE_PATH', str(BASE_DIR / 'db.sqlite3')),
+# filesystem isn't persisted across deploys by default. Volumes aren't
+# available on the Trial plan, so use Railway's Postgres plugin
+# instead (DATABASE_URL is set automatically once it's attached).
+# Falls back to ephemeral SQLite so this doesn't hard-crash if
+# DATABASE_URL isn't set yet.
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600),
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.environ.get('SQLITE_PATH', str(BASE_DIR / 'db.sqlite3')),
+        }
+    }
 

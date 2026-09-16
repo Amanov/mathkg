@@ -10,6 +10,8 @@ djangorestframework==3.14.0
 docopt==0.6.2
 fonttools==4.63.0
 gunicorn==26.2.0
+psycopg2-binary==2.9.10
+dj-database-url==2.3.0
 jsonpointer==2.1
 matplotlib==3.10.0
 polars==1.38.1
