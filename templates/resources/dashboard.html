@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% block title %}Башкаруу панели{% endblock %}
 {% block content %}
 <style>
   * {
@@ -142,39 +143,39 @@
 
 <div class="dash">
   <div class="topbar">
-    <h1>Dashboard</h1>
-    <a href="/admin/personal/resource/add/">+ Add resource</a>
+    <h1>Башкаруу панели</h1>
+    <a href="{% url 'admin:personal_resource_add' %}">+ Ресурс кошуу</a>
   </div>
 
   <div class="stats">
     <div class="stat">
-      <div class="stat-label">Total files</div>
+      <div class="stat-label">Бардык файлдар</div>
       <div class="stat-value">{{ total_resources }}</div>
-      <div class="stat-sub">across 3 categories</div>
+      <div class="stat-sub">3 категорияда</div>
     </div>
     <div class="stat">
-      <div class="stat-label">Active</div>
+      <div class="stat-label">Активдүү</div>
       <div class="stat-value">{{ active_resources }}</div>
     </div>
     <div class="stat">
-      <div class="stat-label">Total downloads</div>
+      <div class="stat-label">Жалпы жүктөлгөн</div>
       <div class="stat-value">{{ total_downloads }}</div>
-      <div class="stat-sub">all time</div>
+      <div class="stat-sub">бардык убакытта</div>
     </div>
   </div>
 
   <div class="section">
     <div class="section-header">
-      Presentations
+      Презентациялар
       <span class="badge badge-blue">{{ presentations.count }}</span>
     </div>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Downloads</th>
-          <th>Status</th>
+          <th>Аталышы</th>
+          <th>Жүктөлгөн</th>
+          <th>Абалы</th>
           <th></th>
         </tr>
       </thead>
@@ -195,14 +196,14 @@
           <td>
             <span
               class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
-              >{% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+              >{% if r.is_active %}Активдүү{% else %}Жашырылган{% endif %}</span
             >
           </td>
           <td>
             <a
               class="edit-btn"
-              href="/admin/personal/resource/{{ r.id }}/change/"
-              >Edit</a
+              href="{% url 'admin:personal_resource_change' r.id %}"
+              >Түзөтүү</a
             >
           </td>
         </tr>
@@ -213,15 +214,15 @@
 
   <div class="section">
     <div class="section-header">
-      Worksheets <span class="badge badge-green">{{ worksheets.count }}</span>
+      Иш барактар <span class="badge badge-green">{{ worksheets.count }}</span>
     </div>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Downloads</th>
-          <th>Status</th>
+          <th>Аталышы</th>
+          <th>Жүктөлгөн</th>
+          <th>Абалы</th>
           <th></th>
         </tr>
       </thead>
@@ -239,18 +240,18 @@
               {{ r.download_count }}
             </div>
           </td>
-          
+          <td>
             <span
               class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
             >
-              {% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+              {% if r.is_active %}Активдүү{% else %}Жашырылган{% endif %}</span
             >
           </td>
           <td>
             <a
               class="edit-btn"
-              href="/admin/personal/resource/{{ r.id }}/change/"
-              >Edit</a
+              href="{% url 'admin:personal_resource_change' r.id %}"
+              >Түзөтүү</a
             >
           </td>
         </tr>
@@ -261,15 +262,15 @@
 
   <div class="section">
     <div class="section-header">
-      Activities <span class="badge badge-amber">{{ activities.count }}</span>
+      Көнүгүүлөр <span class="badge badge-amber">{{ activities.count }}</span>
     </div>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Downloads</th>
-          <th>Status</th>
+          <th>Аталышы</th>
+          <th>Жүктөлгөн</th>
+          <th>Абалы</th>
           <th></th>
         </tr>
       </thead>
@@ -290,14 +291,14 @@
           <td>
             <span
               class="pill {% if r.is_active %}pill-on{% else %}pill-off{% endif %}"
-              >{% if r.is_active %}Active{% else %}Hidden{% endif %}</span
+              >{% if r.is_active %}Активдүү{% else %}Жашырылган{% endif %}</span
             >
           </td>
           <td>
             <a
               class="edit-btn"
-              href="/admin/personal/resource/{{ r.id }}/change/"
-              >Edit</a
+              href="{% url 'admin:personal_resource_change' r.id %}"
+              >Түзөтүү</a
             >
           </td>
         </tr>

@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 
-{% block title %}Big 4 Number Challenge - Modern Edition{% endblock %}
+{% block title %}Big 4 Сан Таймашы{% endblock %}
 
 {% load static %}
 
@@ -93,25 +93,25 @@
     <!-- Header -->
     <header class="control-panel shadow-sm p-3 d-flex flex-wrap justify-content-between align-items-center gap-3 border-bottom border-primary border-4 rounded-4 mx-auto w-100 mb-2" style="max-width: 950px;">
         <div>
-            <h1 class="fs-3 fw-bold text-primary mb-0"><i class="bi bi-calculator-fill me-2"></i>The Big 4 Challenge</h1>
+            <h1 class="fs-3 fw-bold text-primary mb-0"><i class="bi bi-calculator-fill me-2"></i>Big 4 Таймашы</h1>
         </div>
-        
+
         <div class="d-flex align-items-center flex-wrap gap-3 bg-white p-2 rounded-pill shadow-sm border">
             <select id="curriculumLevel" class="form-select form-select-sm fw-bold border-0 bg-transparent shadow-none" onchange="generateChallenge()">
-                <option value="7">Year 7</option>
-                <option value="8">Year 8</option>
-                <option value="9">Year 9</option>
+                <option value="7">7-класс</option>
+                <option value="8">8-класс</option>
+                <option value="9">9-класс</option>
             </select>
-            <span id="difficultyBadge" class="badge bg-success rounded-pill px-3 py-2 fs-6 shadow-sm">Easy</span>
-            
-            <button onclick="levelUp()" class="btn btn-warning btn-sm rounded-pill fw-bold">Level Up</button>
-            <button onclick="generateChallenge()" class="btn btn-primary btn-sm rounded-pill fw-bold">Next Challenge</button>
+            <span id="difficultyBadge" class="badge bg-success rounded-pill px-3 py-2 fs-6 shadow-sm">Оңой</span>
+
+            <button onclick="levelUp()" class="btn btn-warning btn-sm rounded-pill fw-bold">Деңгээлди жогорулатуу</button>
+            <button onclick="generateChallenge()" class="btn btn-primary btn-sm rounded-pill fw-bold">Кийинки тапшырма</button>
         </div>
     </header>
 
     <main class="flex-grow-1 d-flex flex-column align-items-center p-4 gap-4">
         <div class="text-center mb-4 w-100">
-            <h2 class="fs-5 fw-bold text-primary opacity-75">Today's Target Number</h2>
+            <h2 class="fs-5 fw-bold text-primary opacity-75">Бүгүнкү максаттуу сан</h2>
             <div id="targetNumberDisplay" class="display-1 fw-bold text-dark target-number-box py-4 px-5 rounded-5 d-inline-block">--</div>
         </div>
 
@@ -122,25 +122,25 @@
         <!-- Worksheet Generator -->
         <div class="card shadow border-0 rounded-4 mt-5 w-100 mx-auto" style="max-width: 950px;">
             <div class="card-header bg-dark text-white fw-bold">
-                <i class="bi bi-printer-fill text-warning"></i> Batch Worksheet Generator
+                <i class="bi bi-printer-fill text-warning"></i> Иш барактарды топтоп түзүү
             </div>
             <div class="card-body p-5">
                 <div class="row align-items-center">
                     <div class="col-md-7">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <label class="fw-bold fs-5">Number of Pages:</label>
+                            <label class="fw-bold fs-5">Беттердин саны:</label>
                             <input type="number" id="batchCount" value="1" min="1" max="20" class="form-control text-center fw-bold" style="width: 110px;">
                         </div>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="progDiffCheck">
-                            <label class="form-check-label fw-bold">Progressive Difficulty</label>
+                            <label class="form-check-label fw-bold">Деңгээли өсүп отурат</label>
                         </div>
                     </div>
                     <div class="col-md-5 text-center">
                         <button onclick="downloadBatchPDF()" class="btn btn-danger fw-bold p-4 shadow rounded-4 w-100" style="min-height: 110px; background: linear-gradient(135deg, #ef4444, #b91c1c);">
                             <i class="bi bi-file-earmark-pdf-fill fs-2"></i><br>
-                            Download Worksheet
-                            <small id="downloadStatusText" class="d-block text-white-50 mt-1">Clean printer-friendly PDF</small>
+                            Иш барагын жүктөө
+                            <small id="downloadStatusText" class="d-block text-white-50 mt-1">Басып чыгарууга даяр PDF</small>
                         </button>
                     </div>
                 </div>
@@ -208,8 +208,8 @@
                                 </div>
                                 <h5 class="fw-bold pt-2">${q.text}</h5>
                             </div>
-                            <input type="text" class="form-control form-control-lg mb-3" placeholder="Your answer...">
-                            <button onclick="revealAnswer(${q.id})" class="btn btn-link text-secondary">Reveal Answer</button>
+                            <input type="text" class="form-control form-control-lg mb-3" placeholder="Жообуңуз...">
+                            <button onclick="revealAnswer(${q.id})" class="btn btn-link text-secondary">Жоопту көрсөтүү</button>
                             <div id="q${q.id}-answer" class="answer-reveal mt-3 p-3 bg-light rounded-4 text-center fw-bold">${q.answer}</div>
                         </div>
                     </div>
@@ -234,13 +234,13 @@
         currentDifficulty = (currentDifficulty % 3) + 1;
         const badge = document.getElementById('difficultyBadge');
         badge.className = `badge rounded-pill px-3 py-2 fs-6 shadow-sm ${currentDifficulty===1 ? 'bg-success' : currentDifficulty===2 ? 'bg-warning text-dark' : 'bg-danger'}`;
-        badge.textContent = currentDifficulty===1 ? "Easy" : currentDifficulty===2 ? "Medium" : "Hard";
+        badge.textContent = currentDifficulty===1 ? "Оңой" : currentDifficulty===2 ? "Орто" : "Кыйын";
         generateChallenge();
     }
 
     async function downloadBatchPDF() {
         const statusText = document.getElementById('downloadStatusText');
-        statusText.textContent = "Generating PDF...";
+        statusText.textContent = "PDF даярдалууда...";
 
         try {
             const level = document.getElementById('curriculumLevel').value;
@@ -272,11 +272,11 @@
                     <div class="pdf-sheet-break">
                         <div style="display:flex; justify-content:space-between; margin-bottom:30px; border-bottom:3px solid #1e40af; padding-bottom:15px;">
                             <div>
-                                <h1 style="margin:0; font-size:28px; color:#1e40af;">The Big 4 Challenge</h1>
-                                <p style="margin:5px 0 0; color:#475569;">Year ${level} • Level ${diff}</p>
+                                <h1 style="margin:0; font-size:28px; color:#1e40af;">Big 4 Таймашы</h1>
+                                <p style="margin:5px 0 0; color:#475569;">${level}-класс • ${diff}-деңгээл</p>
                             </div>
                             <div style="text-align:right;">
-                                <strong>Page ${i+1}</strong>
+                                <strong>${i+1}-бет</strong>
                             </div>
                         </div>
                         <div style="text-align:center; margin:35px 0;">
@@ -292,7 +292,7 @@
                                     </div>
                                     <div style="flex:1;">
                                         <h5 style="margin-bottom:12px;">${q.text}</h5>
-                                        <input type="text" placeholder="Write your answer here...">
+                                        <input type="text" placeholder="Жообуңузду бул жерге жазыңыз...">
                                     </div>
                                 </div>
                             </div>
@@ -303,15 +303,15 @@
             }
 
             await html2pdf().set(opt).from(pdfClone).save();
-            statusText.textContent = "✅ Download Complete!";
+            statusText.textContent = "✅ Жүктөлдү!";
 
         } catch (err) {
             console.error("PDF Generation Error:", err);
-            statusText.textContent = "❌ Failed - Check Console";
+            statusText.textContent = "❌ Ката кетти";
         }
 
         setTimeout(() => {
-            statusText.textContent = "Clean printer-friendly PDF";
+            statusText.textContent = "Басып чыгарууга даяр PDF";
         }, 4000);
     }
 

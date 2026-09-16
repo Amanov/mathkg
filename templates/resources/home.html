@@ -10,10 +10,28 @@
 .mainshadow{
     box-shadow: 0 0 20px rgb(13, 167, 255);   
   }
-  h1 {
+  h1, h2.section-heading {
   display: flex;
   align-items: center;
   font-size:4vw;
+}
+/* Section headings below were <h1> (six of them on one page - a real
+   accessibility/SEO issue, a page should have one). Demoted to <h2> with
+   this local class so they keep the exact same decorative-bar look that
+   main.css's global h1::before/after already gives real <h1>s, without
+   extending that global rule to every <h2> on every other page. */
+h2.section-heading::before,
+h2.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 8px;
+  background-color: rgb(13, 167, 255);
+}
+h2.section-heading::before {
+  margin-right: 1.5rem;
+}
+h2.section-heading::after {
+  margin-left: 1.5rem;
 }
 .zoom {
    padding: 5px; 
@@ -320,7 +338,7 @@ hr{
     </div>
     <hr>
     
-      <h1>Презентациялар</h1>
+      <h2 class="section-heading">Презентациялар</h2>
       <div class="col-md-6">
         <div class="h-100 rounded-1">                
           <div class="d-flex flex-column  zoom">
@@ -342,7 +360,7 @@ hr{
       <!-- end of spot the mistake -->
       <hr >
 
-      <h1>Математика боюнча иш барактар</h1>
+      <h2 class="section-heading">Математика боюнча иш барактар</h2>
       
       <div class="col-lg-6 ">
         <div class="h-100 p-5 bg-body-tertiary  text-center overflow-wrap">
@@ -366,7 +384,7 @@ hr{
       <!--End of Worksheet  sections-->
 
       <hr >
-      <h1 >     Акыл таймаштары    </h1> 
+      <h2 class="section-heading">     Акыл таймаштары    </h2> 
       
       
       <div class="col-md-6">
@@ -381,7 +399,7 @@ hr{
         <div class="h-100 p-5 bg-body-tertiary ">
           <h2 class="fw-bold text-center overflow-wrap">✓ Кыймылдуу оюндар</h2>
           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Топтук кызматташуу көндүмдөр</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери bar kondumdor</h2>
+          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери бар көндүмдөр</h2>
         </div>
       </div>    
             
@@ -390,11 +408,11 @@ hr{
       <hr >         
       
       <!-- teacher-led activities -->
-      <h1 >Мугалим жетектеген кондумдор</h1> 
+      <h2 class="section-heading">Мугалим жетектеген кондумдор</h2> 
       
       <div class="col-md-6">
         <div class="h-100 p-5 bg-body-tertiary "">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир bagytta ой жүгүртүү</h2>
+          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир багытта ой жүгүртүү</h2>
           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Бүт класс үчүн кыска жана натыйжалуу тапшырмалар</h2>
           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Түшүнүүнү дароо текшерүү мүмкүнчүлүгү.</h2>
           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Ар бир окуучунун катышуусун камсыздoo</h2>
@@ -412,7 +430,7 @@ hr{
       
       <hr >
             
-      <h1 >Экзамен суроолору</h1>
+      <h2 class="section-heading">Экзамен суроолору</h2>
       
 
       <div class="col-md-6">
@@ -440,7 +458,7 @@ hr{
    
       <hr >
 
-      <h1 class="text-uppercase">Кайталоо</h1>
+      <h2 class="section-heading text-uppercase">Кайталоо</h2>
       
      
       <div class="col-md-6 ">

@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h2>Resources</h2>
+<h2>Ресурстар</h2>
 
 <!-- Category filter buttons -->
 <div>
-  <a href="{% url 'resources' %}">All</a>
+  <a href="{% url 'resources' %}">Баары</a>
   {% for value, label in categories %}
     <a href="{% url 'resources' %}?category={{ value }}">{{ label }}</a>
   {% endfor %}
@@ -23,15 +23,27 @@
       <h3>{{ resource.title }}</h3>
       <p>{{ resource.description }}</p>
       <span>{{ resource.get_category_display }}</span>
-      <span>Downloads: {{ resource.download_count }}</span>
+      <span>Жүктөлгөн саны: {{ resource.download_count }}</span>
 
       <a href="{% url 'download_resource' pk=resource.pk %}">
-        Download
+        Жүктөө
       </a>
     </div>
   {% empty %}
-    <p>No resources found.</p>
+    <p>Бул бөлүмдө азырынча ресурс жок.</p>
   {% endfor %}
 </div>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<div>
+  {% if page_obj.has_previous %}
+    <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.previous_page_number }}">Мурунку</a>
+  {% endif %}
+  <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}page={{ page_obj.next_page_number }}">Кийинки</a>
+  {% endif %}
+</div>
+{% endif %}
 
 {% endblock %}
