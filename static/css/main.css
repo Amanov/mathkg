@@ -1,14 +1,35 @@
+/* Named, shared color values instead of the same hex/rgb codes retyped
+   across header.css/menu.css/operations.css/responsive.css. Each name
+   keeps its own existing value - this doesn't unify the site's several
+   different blues into one, only gives each a single source of truth. */
+:root {
+    --color-heading-accent: rgb(13, 167, 255);
+    --color-border-accent: rgb(34, 133, 195);
+    --color-navy: rgb(15, 60, 88);
+    --color-bootstrap-primary: #0d6efd;
+    --color-menu-border: #45adff;
+    --color-menu-text: #1a1a2e;
+    --color-menu-surface: #f8f7f4;
+    --color-menu-hover: #cce8ff;
+}
+
+/* Single source of truth for body - this used to be declared three times
+   (here, an inline <style> in base.html, and header.css), each winning a
+   different subset of properties depending on cascade order. Consolidated
+   to the values that were actually taking effect, so nothing visually
+   changes. */
 body {
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Alegreya Sans', Arial, Helvetica, sans-serif;
     background-color: #ffffff;
-}
-
-.main-wrapper {
-    min-height: 100vh;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
     width: 100%;
-    position: relative;
+    overflow-x: hidden;
 }
 
+/* Decorative blue bars flanking every h1 - previously duplicated between
+   here and base.html's inline <style>. */
 h1 {
     display: flex;
     align-items: center;
@@ -19,7 +40,9 @@ h1::after {
     content: '';
     flex: 1;
     height: 8px;
-    background-color: rgb(13, 167, 255);
+    background-color: var(--color-heading-accent);
+    font-size: 3rem;
+    text-align: center;
 }
 
 h1::before {

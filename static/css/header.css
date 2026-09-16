@@ -1,11 +1,6 @@
-body {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
-}
-
+/* body's rules now live in main.css - this used to redeclare them here
+   too, and being the last-loaded of the three copies, silently won the
+   cascade for min-height/margin/padding/width/overflow-x. */
 html {
     height: 100%;
     text-align: left;

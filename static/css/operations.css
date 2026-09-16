@@ -1,7 +1,7 @@
 /* operations.css */
 
 .mainshadow {
-    box-shadow: 0 0 20px rgb(13, 167, 255);
+    box-shadow: 0 0 20px var(--color-heading-accent);
 }
 
 .zoom {
@@ -21,7 +21,7 @@ h3 {
 }
 
 .custom_border {
-    border: 3px solid rgb(34, 133, 195);
+    border: 3px solid var(--color-border-accent);
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
@@ -90,7 +90,7 @@ hr {
     .all-operations .hamburger-menu { 
         display: block; 
         transform: translateY(-65px); 
-        border: 3px solid rgb(15,60,88); 
+        border: 3px solid var(--color-navy); 
         border-radius: 10px; 
         padding-left: 10px; 
     }
@@ -136,7 +136,7 @@ hr {
 /*--From One digit page */
 
 .mainshadow{
-    box-shadow: 0 0 20px rgb(13, 167, 255);   
+    box-shadow: 0 0 20px var(--color-heading-accent);   
   }
 h1 {
   display: flex;
@@ -217,14 +217,13 @@ hr{
   .hamburger-menu {
     display: block; /* Show the hamburger icon */
     transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
+    border: 3px solid var(--color-navy);
     border-radius: 10px ;
     padding-left:  10px;
    
   }
 
   .sidebar{
-    /* display: none !important; */
     transform: translateX(-100%);
     z-index: 1;
     display: block;
@@ -266,7 +265,7 @@ hr{
   .hamburger-menu {
     display: block; /* Show the hamburger icon */
     transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
+    border: 3px solid var(--color-navy);
     border-radius: 10px ;
     padding-left:  10px;
    
@@ -296,7 +295,7 @@ hr{
   .hamburger-menu {
     display: block; /* Show the hamburger icon */
     transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
+    border: 3px solid var(--color-navy);
     border-radius: 10px ;
     padding-left:  10px;
    

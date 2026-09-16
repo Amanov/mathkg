@@ -28,7 +28,7 @@
     .hamburger-menu {
         display: block;
         transform: translateY(-65px);
-        border: 3px solid rgb(15,60,88);
+        border: 3px solid var(--color-navy);
         border-radius: 10px;
         padding-left: 10px;
     }
