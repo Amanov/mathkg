@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date
 from logging import getLogger
 
 from django.shortcuts import render, redirect
@@ -97,11 +97,9 @@ def account_view(request):
 
     today = date.today()
 
-    # subscription end (hybrid)
-    if user.subscription_end:
-        subscription_end = user.subscription_end
-    else:
-        subscription_end = user.date_joined.date() + timedelta(days=365)
+    # subscription end (hybrid) - single source of truth on the model,
+    # shared with the download view's access check.
+    subscription_end = user.subscription_end_date
 
     days_left = (subscription_end - today).days
 

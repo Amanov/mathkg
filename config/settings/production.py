@@ -44,17 +44,27 @@ SECURE_HSTS_SECONDS = 3600
 # filesystem isn't persisted across deploys by default. Volumes aren't
 # available on the Trial plan, so use Railway's Postgres plugin
 # instead (DATABASE_URL is set automatically once it's attached).
-# Falls back to ephemeral SQLite so this doesn't hard-crash if
-# DATABASE_URL isn't set yet.
+# Fails loudly if neither is set, same as SECRET_KEY above - a silent
+# fallback to ephemeral SQLite on the container's filesystem is exactly
+# what destroyed production data before DATABASE_URL/Postgres was wired
+# up, so this must never happen by accident again.
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600),
     }
-else:
+elif os.environ.get('SQLITE_PATH'):
+    # Explicit opt-in only: someone deliberately pointed this at a
+    # path on a persistent volume, not the container's ephemeral disk.
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.environ.get('SQLITE_PATH', str(BASE_DIR / 'db.sqlite3')),
+            'NAME': os.environ['SQLITE_PATH'],
         }
     }
+else:
+    raise ImproperlyConfigured(
+        'No DATABASE_URL is set. Attach a persistent database (e.g. '
+        "Railway's Postgres plugin), or set SQLITE_PATH to an explicit "
+        'path on a persistent volume if SQLite is really intended.'
+    )
 
