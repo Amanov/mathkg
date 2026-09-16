@@ -25,7 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # this fallback only ever applies to local development.
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
-    'django-insecure-dev-only-+z3u1c*yy!jdi6=op+!dex)0t#^x$st8=an(enzwqqqicg^86@',
+    # Freshly generated - the previous value here was the exact key that
+    # was once live in production (before production.py started requiring
+    # SECRET_KEY from the environment). It leaked into git history, so it
+    # must never be reused anywhere, dev fallback included.
+    'django-insecure-dev-only-9$zznpr0w7=w#2m+ezv@1h&$(2a9w+t92h@egc#+(#y0d_!^ti',
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
