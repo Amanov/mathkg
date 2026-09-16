@@ -157,10 +157,10 @@ None of this invalidates the direction in §1–§5 — the comparative research
 - [ ] From grade 3 up, every topic produces at least one artifact in each of: estimate/model, structure-spot-across-problems, data/critique-a-claim (USA 8 Practices as a checklist).
 - [ ] From primary onward, an algorithmic-thinking thread runs in parallel (Estonia) — unplugged at first, tool-based later.
 - [ ] Word problems are authored natively in Kyrgyz, using a single maintained glossary, and deliberately use the numeral system's own base-10 transparency and case-marking as teaching aids rather than incidental facts.
-- [ ] `Topic`/strand labels use the state standard's own content-line names, not an invented parallel taxonomy (`docs/kyrgyzstan-state-standard-research.md`).
-- [ ] Grades 1, 2, 5, and 8 are prioritized first — that's where the 12-year-system transition is landing new official standards and textbooks in 2025/2026.
-- [ ] Upper-secondary practice includes the `quant_compare` format (two boxed quantities, judge the relationship) — it's the ОРТ's own distinctive item type, not just an imported idea.
-- [ ] Early production effort goes to scaffolded fluency and functional literacy across the full distribution before open-ended/founder-tier enrichment — Kyrgyzstan's PISA 2025 data shows 49% of 15-year-olds below basic functional numeracy.
+- [ ] `Topic`/strand labels use the state standard's own content-line names — **once those are confirmed in the Kyrgyz-medium standard specifically**, not the Russian-medium terms this project has so far, since MathKG authors in Kyrgyz and no Kyrgyz-medium source was located yet (`docs/kyrgyzstan-state-standard-research.md`, self-audit section).
+- [ ] Grades 1, 2, 5, and 8 are prioritized first — that's where the 12-year-system transition is landing new official standards and textbooks in 2025/2026, though note the content-line list currently in hand predates that transition and hasn't been confirmed to still apply grade-for-grade.
+- [ ] Upper-secondary practice includes a `quant_compare`-style format (two boxed quantities, judge the relationship) — it's inspired by the ОРТ's own item type, but the exact answer-option structure is still unconfirmed and should be checked before finalizing the activity type.
+- [ ] Early production effort goes to scaffolded fluency and functional literacy across the full distribution before open-ended/founder-tier enrichment — directionally supported by Kyrgyzstan's PISA 2025 data (~49% of 15-year-olds below basic functional numeracy, though the exact figure has a proficiency-level definitional ambiguity noted in the companion doc — the direction, not the precise number, is what should drive this).
 
 ---
 
