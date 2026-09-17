@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 # Create your models here.
@@ -69,7 +71,18 @@ class Account(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
-    
+
+    @property
+    def subscription_end_date(self):
+        # Hybrid: an explicit subscription_end wins; otherwise every
+        # account gets a 1-year trial from signup. Shared here so the
+        # account page and any access-gating check agree on the same date.
+        return self.subscription_end or (self.date_joined.date() + timedelta(days=365))
+
+    @property
+    def has_active_subscription(self):
+        return self.subscription_end_date >= timezone.now().date()
+
 
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False,**kwargs):

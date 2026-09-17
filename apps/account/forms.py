@@ -19,7 +19,13 @@ class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        self.helper.form_method = "GET"
+        # Must be POST: this form carries a password. It's currently
+        # rendered via {{ form|crispy }} inside a manually-written
+        # <form method="post">, which ignores this setting - but if that
+        # template ever switches to {% crispy form %}, this value is what
+        # decides the real HTTP method, and GET would leak passwords into
+        # the URL, browser history and server logs.
+        self.helper.form_method = "POST"
         self.helper.add_input(Submit('submit', 'Submit'))
         # Help text
         self.helper['username'].help_text = 'Колдонуучунун атын тандаңыз'

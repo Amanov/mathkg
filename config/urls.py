@@ -1,3 +1,5 @@
+import os
+
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
@@ -37,11 +39,18 @@ from apps.account.views import (
     login_view,
     account_view,
     activation_view,
+    RateLimitedPasswordResetView,
 )
 
+# Configurable so the real path never has to live in source control (same
+# reasoning as SECRET_KEY) - set ADMIN_URL_PATH on the host to something
+# private. Automated credential-stuffing bots scan the literal "admin/"
+# path on every host they find, so a non-default path is a cheap layer of
+# defense - not a substitute for real auth, but it stops the noise.
+ADMIN_URL_PATH = os.environ.get('ADMIN_URL_PATH', 'admin/').strip('/') + '/'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(ADMIN_URL_PATH, admin.site.urls),
     path('', home_screen_view, name='home'),
     path('home/', home_screen_view, name='home'),
     path('register/', registration_view, name='register'),
@@ -84,7 +93,7 @@ urlpatterns = [
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), name='password_change'),
     path('password_reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html', email_template_name='registration/password_reset_email.html', subject_template_name='registration/password_reset_subject.txt'), name='password_reset'),
+    path('password_reset/', RateLimitedPasswordResetView.as_view(template_name='registration/password_reset_form.html', email_template_name='registration/password_reset_email.html', subject_template_name='registration/password_reset_subject.txt'), name='password_reset'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
 ]
 
