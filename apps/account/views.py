@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 
 from .models import Account, SubscriptionRequest
@@ -22,21 +23,36 @@ from .forms import (
 
 logger = getLogger(__name__)
 
-# NOTE on key='ip': this uses django-ratelimit's default, which reads
-# request.META['REMOTE_ADDR']. Whether that's the real client IP or
-# Railway's proxy IP for every request depends on how Railway's edge
-# sets REMOTE_ADDR - verify this isn't rate-limiting all users as one
-# client (or, worse, trusting a spoofable header) once this is live.
-#
-# Also: with no CACHES setting configured, Django's implicit default is
+
+def get_client_ip(request):
+    # Railway terminates TLS and proxies every request to this app, so
+    # REMOTE_ADDR is always Railway's edge IP, never the visitor's -
+    # django-ratelimit's built-in key='ip' would key every single
+    # visitor's rate limit off that one shared address, meaning one
+    # person mistyping their password could lock out everyone else
+    # trying to log in. Railway is the only hop in front of this app
+    # (same trust assumption production.py already makes for
+    # X-Forwarded-Proto), so the first X-Forwarded-For value is the
+    # real client IP.
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        return x_forwarded_for.split(',')[0].strip()
+    return request.META.get('REMOTE_ADDR')
+
+
+def ratelimit_key(group, request):
+    return get_client_ip(request)
+
+
+# NOTE: with no CACHES setting configured, Django's implicit default is
 # LocMemCache, which is per-process. Under gunicorn with more than one
 # worker, each worker counts independently, so the effective limit is
 # closer to (rate x worker count) than the configured rate. Fine as a
-# first line of defense; move to a shared cache (Redis/Memcached) for
-# an exact limit once this runs with multiple workers.
+# first line of defense while this runs on a single worker; move to a
+# shared cache (Redis/Memcached) if that ever changes.
 
 
-@ratelimit(key='ip', rate='10/h', method='POST', block=True)
+@ratelimit(key=ratelimit_key, rate='10/h', method='POST', block=True)
 def registration_view(request):
     # Carries the plan chosen in the subscribe modal through to here via
     # a query param on GET (?plan=6m) and a hidden field on the POSTed
@@ -94,7 +110,7 @@ def logout_view(request):
 
 
 #User Login
-@ratelimit(key='ip', rate='5/m', method='POST', block=True)
+@ratelimit(key=ratelimit_key, rate='5/m', method='POST', block=True)
 def login_view(request):
     if request.method == 'POST':
         form = AccountAuthenticationForm(request.POST)
@@ -160,15 +176,34 @@ def account_view(request):
     return render(request, 'account/account.html', context)
 
 
+@require_POST
 def subscribe_request_view(request):
     # Handles the subscribe modal's "continue" step for a user who
     # already has an account (e.g. opened from the account page) -
     # the modal sends brand-new visitors to registration instead, since
     # they don't have a user to attach a SubscriptionRequest to yet.
+    #
+    # Must be POST, not a plain link: this creates a database row, and a
+    # GET request that does that is both unprotected by Django's CSRF
+    # middleware (which only covers unsafe methods) and non-idempotent -
+    # a page refresh, a browser's link-prefetch, or someone replaying the
+    # URL would silently create another pending request. Two pending
+    # requests for one real payment is a real billing bug: whoever
+    # confirms them in admin has no way to tell they're duplicates, and
+    # confirming both extends the subscription twice for money paid once.
     if not request.user.is_authenticated:
         return redirect('login')
 
-    plan = request.GET.get('plan')
+    if SubscriptionRequest.objects.filter(
+        user=request.user, status=SubscriptionRequest.STATUS_PENDING,
+    ).exists():
+        messages.info(
+            request,
+            "Сизде мурунтан эле каралып жаткан суранычыңыз бар. Төлөм текшерилгенде сизге кабарлайбыз.",
+        )
+        return redirect('account')
+
+    plan = request.POST.get('plan')
     valid_plans = dict(SubscriptionRequest.PLAN_CHOICES)
     if plan in valid_plans:
         SubscriptionRequest.objects.create(user=request.user, plan=plan)
@@ -197,7 +232,7 @@ def activation_view(request, uidb64, token):
 
 
 @method_decorator(
-    ratelimit(key='ip', rate='5/h', method='POST', block=True),
+    ratelimit(key=ratelimit_key, rate='5/h', method='POST', block=True),
     name='dispatch',
 )
 class RateLimitedPasswordResetView(auth_views.PasswordResetView):

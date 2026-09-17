@@ -46,10 +46,20 @@
               QR кодду скандап төлөмдү жасаңыз, андан кийин катталууну улантыңыз.
               Төлөм текшерилгенден кийин жазылууңуз активдештирилет.
             </p>
-            <a href="{% if request.user.is_authenticated %}{% url 'subscribe_request' %}{% else %}{% url 'register' %}{% endif %}"
-               id="subscribeContinueBtn" class="btn-subscribe-continue">
-              {% if request.user.is_authenticated %}Планды тандоону аяктоо{% else %}Катталууну улантуу{% endif %}
-            </a>
+            {% if request.user.is_authenticated %}
+              {# A real POST, not a link: this creates a database row, so it #}
+              {# needs CSRF protection and must not fire from a page reload   #}
+              {# or a browser's link-prefetch the way a GET link would.      #}
+              <form method="post" action="{% url 'subscribe_request' %}">
+                {% csrf_token %}
+                <input type="hidden" name="plan" id="subscribeContinuePlanInput" value="">
+                <button type="submit" class="btn-subscribe-continue">Планды тандоону аяктоо</button>
+              </form>
+            {% else %}
+              <a href="{% url 'register' %}" id="subscribeContinueBtn" class="btn-subscribe-continue">
+                Катталууну улантуу
+              </a>
+            {% endif %}
           </div>
         </div>
 
