@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="utf-8">
+<title>{{ pack.series_title }} {{ pack.pack_code }}</title>
+<style>
+    @page {
+        size: {{ page_size|default:"A4" }};
+        margin: {{ page_margin|default:"12mm" }};
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif;
+        color: #1e293b;
+        font-size: {{ base_font_size|default:"10.5pt" }};
+        margin: 0;
+    }
+
+    .sheet {
+        page-break-after: always;
+    }
+    .sheet:last-child {
+        page-break-after: avoid;
+    }
+
+    .masthead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2.5px solid #0f3c58;
+        padding-bottom: 6px;
+        margin-bottom: 8px;
+    }
+    .masthead h1 {
+        font-size: 1.35em;
+        letter-spacing: 0.05em;
+        color: #0f3c58;
+        margin: 0;
+    }
+    .masthead .subject {
+        font-size: 0.8em;
+        color: #475569;
+        margin-top: 2px;
+    }
+    .masthead .pack-meta {
+        text-align: right;
+        font-size: 0.85em;
+        color: #475569;
+    }
+    .masthead .pack-code {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #0f3c58;
+    }
+    .page-flag {
+        display: inline-block;
+        margin-top: 2px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 0.78em;
+        font-weight: bold;
+        color: #fff;
+    }
+    .page-flag.questions { background: #0f3c58; }
+    .page-flag.answers { background: #0d6efd; }
+
+    .grid {
+        position: relative;
+        width: 100%;
+        height: {{ grid_height|default:"255mm" }};
+    }
+    .cell {
+        position: absolute;
+        box-sizing: border-box;
+        border: 1.4px solid #0f3c58;
+        padding: 13px 8px 5px 8px;
+        overflow: hidden;
+    }
+    .cell .circled {
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        font-size: 1.15em;
+        font-weight: bold;
+        color: #0f3c58;
+    }
+    .cell .marks {
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 999px;
+        border: 1.2px solid #0f3c58;
+        color: #0f3c58;
+        font-size: 0.68em;
+        font-weight: bold;
+        text-align: center;
+        line-height: 16px;
+    }
+    .cell .topic {
+        font-size: 0.66em;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #64748b;
+        margin: 2px 24px 4px 14px;
+    }
+    .cell .prompt {
+        font-size: 0.92em;
+        line-height: 1.28;
+    }
+    .cell .answer {
+        margin-top: 6px;
+        padding-top: 5px;
+        border-top: 1px dashed #94a3b8;
+        color: #0d6efd;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+    .cell.geometry .prompt {
+        margin-bottom: 4px;
+    }
+    .cell.geometry svg {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .footer-note {
+        margin-top: 6px;
+        font-size: 0.68em;
+        color: #94a3b8;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+{% for show_answers in pages %}
+<section class="sheet">
+    <div class="masthead">
+        <div>
+            <h1>{{ pack.series_title }}</h1>
+            <div class="subject">{{ pack.subject_line }}</div>
+        </div>
+        <div class="pack-meta">
+            <div class="pack-code">{{ pack.pack_code }}</div>
+            <div>Максималдуу балл: {{ pack.total_marks }}</div>
+            {% if show_answers %}
+                <span class="page-flag answers">Жооптор</span>
+            {% else %}
+                <span class="page-flag questions">Суроолор</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="grid">
+        {% for q in pack.questions %}
+        <div class="cell{% if q.svg %} geometry{% endif %}" style="left:{{ q.rect.left }}%; top:{{ q.rect.top }}%; width:{{ q.rect.width }}%; height:{{ q.rect.height }}%;">
+            <span class="circled">{{ q.circled }}</span>
+            <span class="marks">{{ q.marks }}</span>
+            <div class="topic">{{ q.topic }}</div>
+            <div class="prompt">{{ q.prompt|safe }}</div>
+            {% if q.svg %}
+                {% if show_answers %}{{ q.svg_html_answer|safe }}{% else %}{{ q.svg_html_blank|safe }}{% endif %}
+            {% elif show_answers %}
+                <div class="answer">{{ q.answer }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="footer-note">mathkg.online &middot; {{ pack.series_title }} {{ pack.pack_code }}</div>
+</section>
+{% endfor %}
+</body>
+</html>
