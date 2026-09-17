@@ -8,6 +8,7 @@ djangorestframework==3.14.0
 fonttools==4.63.0
 gunicorn==26.2.0
 Pillow==11.0.0
+qrcode==8.2
 psycopg2-binary==2.9.10
 dj-database-url==2.3.0
 django-ratelimit==4.1.0

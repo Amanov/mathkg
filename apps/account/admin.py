@@ -18,8 +18,12 @@ admin.site.register(Account,AccountAdmin)
 
 @admin.register(PaymentQRCode)
 class PaymentQRCodeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'is_active', 'updated_at')
+    list_display = ('id', 'source', 'is_active', 'updated_at')
     list_filter = ('is_active',)
+
+    @admin.display(description='Булагы')
+    def source(self, obj):
+        return obj.link or "Жүктөлгөн сүрөт"
 
     def save_model(self, request, obj, form, change):
         # Only one QR code should ever be "the" one shown on the site -

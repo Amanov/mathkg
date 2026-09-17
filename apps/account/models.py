@@ -116,7 +116,20 @@ class PaymentQRCode(models.Model):
     # since the underlying payment account/QR needs to be swapped every
     # few months without a code deploy. is_active lets an old one be kept
     # around (for records) while only ever showing one at a time.
-    image = models.ImageField(upload_to='payment_qr/')
+    #
+    # Two ways to provide it: upload a QR image directly, or paste a
+    # payment link (e.g. from finik.kg) and have the QR generated from
+    # it here - Finik hands out a payment URL, not a hosted image, so
+    # there's nothing to just point an <img> tag at. Either way the
+    # result lands in `image`, so every template/view that displays this
+    # (the subscribe modal) reads one field regardless of which path
+    # produced it.
+    image = models.ImageField(upload_to='payment_qr/', blank=True)
+    link = models.URLField(
+        blank=True,
+        verbose_name="Төлөм шилтемеси (Finik.kg ж.б.)",
+        help_text="Эгер сүрөт жүктөбөсөңүз, ушул жерге төлөм шилтемесин коюңуз - QR код автоматтык түрдө түзүлөт.",
+    )
     is_active = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -126,6 +139,24 @@ class PaymentQRCode(models.Model):
 
     def __str__(self):
         return f"QR ({'активдүү' if self.is_active else 'эски'}, {self.updated_at:%Y-%m-%d})"
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        if not self.image and not self.link:
+            raise ValidationError("Сүрөттү жүктөңүз же төлөм шилтемесин киргизиңиз.")
+        if self.image and self.link:
+            raise ValidationError("Экөөнүн бирин гана тандаңыз: жүктөлгөн сүрөт же шилтеме.")
+
+    def save(self, *args, **kwargs):
+        if self.link:
+            import io
+            import qrcode
+            from django.core.files.base import ContentFile
+
+            buffer = io.BytesIO()
+            qrcode.make(self.link).save(buffer, format='PNG')
+            self.image.save('qr_from_link.png', ContentFile(buffer.getvalue()), save=False)
+        super().save(*args, **kwargs)
 
 
 class SubscriptionRequest(models.Model):
