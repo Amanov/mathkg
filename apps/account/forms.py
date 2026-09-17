@@ -33,6 +33,10 @@ class RegistrationForm(UserCreationForm):
         self.fields['password2'].label = "Сырсөз Тастыктаңыз"
         self.fields['date_of_birth'].label = "Туулган жылыңыз"
 
+        for field in self.fields.values():
+            existing = field.widget.attrs.get('class', '')
+            field.widget.attrs['class'] = (existing + ' form-control').strip()
+
     class Meta:
         model = Account
         fields = ("email", "username", "password1", "password2", "date_of_birth")
@@ -52,6 +56,11 @@ class AccountAuthenticationForm(forms.Form):
     email = forms.EmailField(label="Электрондук почта",max_length=60, help_text='Катталган электрондук почта дарегиниз')
 
     password = forms.CharField(label='Сырсөз', widget=forms.PasswordInput,help_text='Катталууда жазган паролуңуз')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
 
     def clean(self):
         cleaned_data = super().clean()
