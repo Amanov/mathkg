@@ -6,9 +6,9 @@
 .auth-page {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: calc(100vh - 70px);
-    padding: 48px 16px 64px;
+    padding: 48px 16px;
 }
 
 .auth-card {
@@ -134,39 +134,32 @@
     border-radius: 4px;
 }
 
-/* ── Submit button ── */
+/* ── Submit button — same solid brand blue used for the active nav
+   state elsewhere (.mymenu[aria-expanded="true"]), not a one-off
+   gradient invented for this page. ── */
 .auth-card .btn-auth-submit {
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    background: var(--color-bootstrap-primary, #0d6efd);
     color: #fff;
     border: none;
-    border-radius: var(--radius-sm, 10px);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);
+    border-radius: var(--radius-sm, 8px);
+    padding: 11px 16px;
+    transition: background var(--transition-fast, 150ms ease),
+                transform var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease);
+    box-shadow: 0 2px 6px rgba(13, 110, 253, .25);
     margin-top: 8px;
 }
-.auth-card .btn-auth-submit::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.55s ease;
-}
 .auth-card .btn-auth-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.45);
+    background: var(--color-navy, #0f3c58);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(15, 60, 88, .3);
 }
-.auth-card .btn-auth-submit:hover::after { left: 160%; }
 .auth-card .btn-auth-submit:active {
-    transform: translateY(0) scale(0.98);
-    opacity: 0.92;
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(15, 60, 88, .25);
 }
 .auth-card .btn-auth-submit:focus-visible {
     outline: 2px solid var(--color-navy, #0f3c58);
@@ -193,7 +186,6 @@
 
 @media (prefers-reduced-motion: reduce) {
     .auth-card .btn-auth-submit,
-    .auth-card .btn-auth-submit::after,
     .auth-tabs a,
     .auth-card .form-control {
         transition: none !important;
