@@ -1,0 +1,240 @@
+/* Account page - profile header, subscription status, edit form.
+   Shares tokens with auth.css/subscribe.css/menu.css instead of
+   introducing its own colors/radii/timings. */
+
+.account-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+}
+
+/* ── Header ── */
+.account-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
+    padding: 24px;
+    margin-bottom: 20px;
+}
+.account-avatar {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-header-info { flex: 1; min-width: 200px; }
+.account-header-info h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+    margin: 0 0 6px;
+}
+.account-header-info p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+.btn-account-subscribe {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-navy, #0f3c58);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: transform var(--transition-fast, 150ms ease), filter var(--transition-fast, 150ms ease);
+}
+.btn-account-subscribe:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+/* ── Status cards ── */
+.account-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+@media (max-width: 767.98px) {
+    .account-status-grid { grid-template-columns: 1fr; }
+}
+.account-status-card {
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-left: 4px solid #cbd5e1;
+    border-radius: var(--radius-md, 12px);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.account-status-card.is-success { border-left-color: #198754; }
+.account-status-card.is-warning { border-left-color: #f0ad4e; }
+.account-status-card.is-danger { border-left-color: #dc3545; }
+
+.account-status-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+.account-status-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+}
+.account-status-value.account-status-muted { color: #94a3b8; }
+.account-status-sub {
+    font-size: 0.8125rem;
+    color: #64748b;
+}
+
+.account-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 999px;
+}
+.account-badge-pending { background: #fff3cd; color: #664d03; }
+.account-badge-confirmed { background: #d1e7dd; color: #0f5132; }
+
+/* ── Cards (profile form / contact) ── */
+.account-card {
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
+    padding: 24px;
+    margin-bottom: 20px;
+}
+.account-card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+    margin: 0 0 18px;
+}
+
+.account-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 575.98px) {
+    .account-form-row { grid-template-columns: 1fr; }
+}
+
+.account-card .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #334155;
+}
+.account-card .form-control {
+    background: #f6f8fa;
+    border: 1.5px solid #e6ebf1;
+    border-radius: var(--radius-sm, 8px);
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    transition: border-color var(--transition-fast, 150ms ease), background var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease);
+}
+.account-card .form-control:focus {
+    background: #fff;
+    border-color: var(--color-bootstrap-primary, #0d6efd);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
+}
+
+.btn-account-save {
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background var(--transition-fast, 150ms ease), transform var(--transition-fast, 150ms ease);
+}
+.btn-account-save:hover {
+    background: var(--color-navy, #0f3c58);
+    transform: translateY(-1px);
+}
+
+.account-divider {
+    border-top: 1px solid #e6ebf1;
+    margin: 22px 0;
+}
+
+.account-password-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.account-password-row strong {
+    color: var(--color-navy, #0f3c58);
+    font-size: 0.95rem;
+}
+.account-muted {
+    color: #64748b;
+    font-size: 0.8125rem;
+    margin: 2px 0 0;
+}
+.btn-account-secondary {
+    display: inline-block;
+    background: #fff;
+    color: var(--color-bootstrap-primary, #0d6efd);
+    border: 1.5px solid var(--color-bootstrap-primary, #0d6efd);
+    border-radius: var(--radius-sm, 8px);
+    padding: 9px 16px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--transition-fast, 150ms ease), color var(--transition-fast, 150ms ease);
+}
+.btn-account-secondary:hover {
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
+}
+
+.account-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-bootstrap-primary, #0d6efd);
+    font-weight: 600;
+    text-decoration: none;
+}
+.account-contact-link:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-account-subscribe,
+    .btn-account-save,
+    .btn-account-secondary,
+    .account-card .form-control {
+        transition: none !important;
+    }
+    .btn-account-subscribe:hover,
+    .btn-account-save:hover {
+        transform: none;
+    }
+}

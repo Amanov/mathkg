@@ -50,9 +50,12 @@
     {% include 'snippets/header.html' %}
 
     {# ── Main page content ───────────────────────────────────────────────── #}
-    {# padding-top on the div compensates for the fixed navbar height.       #}
-    {# 70px matches the navbar height defined in navbar.css.                 #}
-    <div class="container-fluid" style="padding-top: 70px;">
+    {# padding-top on the div compensates for the fixed navbar's real height #}
+    {# (measured: two stacked nav rows = 148px, not the 70px this assumed    #}
+    {# before - most pages had extra content up top absorbing the shortfall #}
+    {# without it being obvious, but any page whose content starts right at #}
+    {# the top had its first ~78px sitting under the fixed nav).            #}
+    <div class="container-fluid" style="padding-top: 148px;">
         {% block content %}
         {% endblock content %}
     </div>
