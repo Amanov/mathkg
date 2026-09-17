@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django_ratelimit.decorators import ratelimit
 
-from .models import Account
+from .models import Account, SubscriptionRequest
 from .forms import (
     RegistrationForm,
     AccountAuthenticationForm,
@@ -38,10 +38,20 @@ logger = getLogger(__name__)
 
 @ratelimit(key='ip', rate='10/h', method='POST', block=True)
 def registration_view(request):
+    # Carries the plan chosen in the subscribe modal through to here via
+    # a query param on GET (?plan=6m) and a hidden field on the POSTed
+    # form, since the modal opens before the user has an account to
+    # attach a SubscriptionRequest to.
+    valid_plans = dict(SubscriptionRequest.PLAN_CHOICES)
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            plan = request.POST.get('plan')
+            if plan in valid_plans:
+                SubscriptionRequest.objects.create(user=user, plan=plan)
 
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
@@ -65,7 +75,16 @@ def registration_view(request):
     else:
         form = RegistrationForm()
 
-    return render(request, 'account/register.html', {'form': form})
+    selected_plan = request.GET.get('plan')
+    if selected_plan not in valid_plans:
+        selected_plan = ''
+
+    context = {
+        'form': form,
+        'selected_plan': selected_plan,
+        'selected_plan_label': valid_plans.get(selected_plan, ''),
+    }
+    return render(request, 'account/register.html', context)
 
 
 def logout_view(request):
@@ -135,9 +154,29 @@ def account_view(request):
         'days_left': days_left,
         'days_passed': abs(days_left),
         'status_color': status_color,
+        'latest_subscription_request': user.subscription_requests.first(),
     }
 
     return render(request, 'account/account.html', context)
+
+
+def subscribe_request_view(request):
+    # Handles the subscribe modal's "continue" step for a user who
+    # already has an account (e.g. opened from the account page) -
+    # the modal sends brand-new visitors to registration instead, since
+    # they don't have a user to attach a SubscriptionRequest to yet.
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    plan = request.GET.get('plan')
+    valid_plans = dict(SubscriptionRequest.PLAN_CHOICES)
+    if plan in valid_plans:
+        SubscriptionRequest.objects.create(user=request.user, plan=plan)
+        messages.success(
+            request,
+            f"«{valid_plans[plan]}» планы катталды. Төлөм текшерилгенден кийин жазылууңуз активдештирилет.",
+        )
+    return redirect('account')
 
 
 def activation_view(request, uidb64, token):

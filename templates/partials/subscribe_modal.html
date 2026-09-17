@@ -1,0 +1,61 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/subscribe.css' %}">
+
+<div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content subscribe-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="subscribeModalLabel">Жазылуу планын тандаңыз</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Жабуу"></button>
+      </div>
+      <div class="modal-body">
+
+        <div id="subscribePlanStep">
+          <div class="subscribe-plans">
+            <button type="button" class="subscribe-plan-card" data-plan="6m" data-price="2999 сом">
+              <span class="subscribe-plan-name">6 ай</span>
+              <span class="subscribe-plan-price">2999 сом</span>
+              <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+            </button>
+            <button type="button" class="subscribe-plan-card featured" data-plan="1y" data-price="4999 сом">
+              <span class="subscribe-plan-badge">Сунушталат</span>
+              <span class="subscribe-plan-name">1 жыл</span>
+              <span class="subscribe-plan-price">4999 сом</span>
+              <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="subscribeQrStep" class="d-none">
+          <button type="button" class="subscribe-back-btn" id="subscribeBackBtn">
+            <i class="fa fa-arrow-left"></i> Артка
+          </button>
+          <div class="subscribe-qr-wrap">
+            {% if active_payment_qr %}
+              <img src="{{ active_payment_qr.image.url }}" alt="Төлөм QR коду" class="subscribe-qr-img">
+            {% else %}
+              <div class="subscribe-qr-missing">
+                QR код азырынча жеткиликсиз. Байланыш үчүн: mathematicskgz@gmail.com
+              </div>
+            {% endif %}
+            <p class="subscribe-qr-text">
+              Тандалган план: <strong id="subscribeSelectedPlanName"></strong> —
+              <strong id="subscribeSelectedPlanPrice"></strong>
+            </p>
+            <p class="subscribe-qr-hint">
+              QR кодду скандап төлөмдү жасаңыз, андан кийин катталууну улантыңыз.
+              Төлөм текшерилгенден кийин жазылууңуз активдештирилет.
+            </p>
+            <a href="{% if request.user.is_authenticated %}{% url 'subscribe_request' %}{% else %}{% url 'register' %}{% endif %}"
+               id="subscribeContinueBtn" class="btn-subscribe-continue">
+              {% if request.user.is_authenticated %}Планды тандоону аяктоо{% else %}Катталууну улантуу{% endif %}
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/subscribe.js' %}"></script>

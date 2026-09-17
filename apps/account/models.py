@@ -111,4 +111,67 @@ class DownloadFile(models.Model):
         return f"{self.name} ({self.download_count})"
 
 
+class PaymentQRCode(models.Model):
+    # A single admin-managed image rather than a hardcoded static file,
+    # since the underlying payment account/QR needs to be swapped every
+    # few months without a code deploy. is_active lets an old one be kept
+    # around (for records) while only ever showing one at a time.
+    image = models.ImageField(upload_to='payment_qr/')
+    is_active = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Төлөм QR коду"
+        verbose_name_plural = "Төлөм QR коддору"
+
+    def __str__(self):
+        return f"QR ({'активдүү' if self.is_active else 'эски'}, {self.updated_at:%Y-%m-%d})"
+
+
+class SubscriptionRequest(models.Model):
+    PLAN_SIX_MONTHS = '6m'
+    PLAN_ONE_YEAR = '1y'
+    PLAN_CHOICES = [
+        (PLAN_SIX_MONTHS, '6 ай - 2999 сом'),
+        (PLAN_ONE_YEAR, '1 жыл - 4999 сом'),
+    ]
+    # Kept next to the choices they describe, instead of a separate
+    # settings/constants file, since a plan here is meaningless without
+    # both a duration and a price.
+    PLAN_DAYS = {PLAN_SIX_MONTHS: 182, PLAN_ONE_YEAR: 365}
+    PLAN_PRICE_SOM = {PLAN_SIX_MONTHS: 2999, PLAN_ONE_YEAR: 4999}
+
+    STATUS_PENDING = 'pending'
+    STATUS_CONFIRMED = 'confirmed'
+    STATUS_CHOICES = [
+        (STATUS_PENDING, 'Төлөм күтүлүүдө'),
+        (STATUS_CONFIRMED, 'Төлөндү'),
+    ]
+
+    user = models.ForeignKey(
+        Account, on_delete=models.CASCADE, related_name='subscription_requests',
+    )
+    plan = models.CharField(max_length=2, choices=PLAN_CHOICES)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_PENDING)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Жазылуу суранычы"
+        verbose_name_plural = "Жазылуу суранычтары"
+
+    def __str__(self):
+        return f"{self.user.email} - {self.get_plan_display()} ({self.get_status_display()})"
+
+    def activate(self):
+        # Extends from whichever is later: today, or the account's
+        # current paid-through date - so renewing before expiry adds to
+        # the remaining time instead of resetting it.
+        base_date = max(timezone.now().date(), self.user.subscription_end_date)
+        self.user.subscription_end = base_date + timedelta(days=self.PLAN_DAYS[self.plan])
+        self.user.save(update_fields=['subscription_end'])
+        self.status = self.STATUS_CONFIRMED
+        self.save(update_fields=['status'])
+
+
 

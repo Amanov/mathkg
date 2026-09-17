@@ -39,6 +39,7 @@ from apps.account.views import (
     login_view,
     account_view,
     activation_view,
+    subscribe_request_view,
     RateLimitedPasswordResetView,
 )
 
@@ -58,6 +59,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('activate/<uidb64>/<token>/', activation_view, name='activate'),
     path('account/', account_view, name='account'),
+    path('subscribe/', subscribe_request_view, name='subscribe_request'),
     # Success message
     path('registration-success/', success_view, name='registration_success'),
 

@@ -104,6 +104,7 @@ TEMPLATES = [
 
                 # 'apps.resources.views.context_processors.topic_menu',
                 'apps.resources.views.context_processors.menu_items',
+                'apps.account.context_processors.active_qr_code',
                 # "apps.resources.views.context_processors.main_menu",
                 # 'apps.resources.context_processors.nav_topics',
 

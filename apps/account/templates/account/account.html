@@ -609,9 +609,23 @@
             <span class="label">Жазылуу аяктайт</span>
             <span class="value">{{ subscription_end|date:"d.m.Y" }}</span>
           </div>
-      
+
+          {% if latest_subscription_request %}
+          <div class="info-row">
+            <span class="label">Акыркы суранылган план</span>
+            <span class="value">
+              {{ latest_subscription_request.get_plan_display }}
+              {% if latest_subscription_request.status == 'pending' %}
+                <span class="badge text-bg-warning">Төлөм күтүлүүдө</span>
+              {% else %}
+                <span class="badge text-bg-success">Төлөндү</span>
+              {% endif %}
+            </span>
+          </div>
+          {% endif %}
+
         </div>
-      
+
       </div>
 
       
@@ -636,69 +650,23 @@
           <!-- Content -->
           <div id="collapseOne" class="accordion-collapse collapse"
                data-bs-parent="#subscriptionAccordion">
-            
+
             <div class="accordion-body">
-      
+
               <!-- Info -->
-              <p class="fw-bold mb-3">Кошумча маалымат:</p>
+              <p class="fw-bold mb-3">Жазылуу пландары:</p>
 
               <ul class="list-unstyled mb-4 small">
-                <li><strong>Баасы:</strong> 1500 сом</li>
-                <li><strong>Мөөнөтү:</strong> 365 күн</li>
-                <li>Учурдагы мөөнөткө дагы бир жыл кошулат.</li>
-                <li>Бул төлөм бир жолку жана автоматтык түрдө жаңыланбайт.</li>
+                <li><strong>6 ай:</strong> 2999 сом</li>
+                <li><strong>1 жыл:</strong> 4999 сом</li>
+                <li>Учурдагы мөөнөткө тандалган план кошулат.</li>
+                <li>Төлөм QR код аркылуу жасалат, андан кийин админ тарабынан активдештирилет.</li>
               </ul>
-              <!-- Form -->
-              <form >
-      
-                <div class="row g-3">
-      
-                  <div class="col-12">
-                    <label class="form-label">Электрондук почтаңыз</label>
-                    <input type="email" class="form-control" placeholder="example@gmail.com">
-                  </div>
-      
-                  <div class="col-12">
-                    <label class="form-label">Колдонуучунун аты-жөнү</label>
-                    <input type="text" class="form-control" placeholder="Аты-жөнү">
-                  </div>
-      
-                  <!-- <div class="col-12">
-                    <label class="form-label">Карта маалыматы</label>
-                    <input type="text" class="form-control" placeholder="Карта номери">
-                  </div> -->
-      
-                  <div class="col-12">
-                    <label class="form-label">Төлөм дареги</label>
-                    <input type="text" class="form-control" placeholder="Дарек (1-сап)">
-                  </div>
-      
-                  <!-- <div class="col-md-6">
-                    <label class="form-label">Шаар</label>
-                    <input type="text" class="form-control" placeholder="Айыл, шаар">
-                  </div> -->
-      
-                  <!-- <div class="col-md-6">
-                    <label class="form-label">Почта индекси</label>
-                    <input type="text" class="form-control" placeholder="Почта индекси">
-                  </div> -->
-      
-                  <div class="col-12">
-                    <label class="form-label">Дарек (айыл/шаар/облус)</label>
-                    <input type="text" class="form-control" placeholder="Облус">
-                  </div>
-      
-                </div>
-      
-                <!-- Button -->
-                <div class="mt-4">
-                  <button class="btn btn-primary w-100">
-                    Узартуу
-                  </button>
-                </div>
-      
-              </form>
-      
+
+              <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#subscribeModal">
+                Планды тандоо
+              </button>
+
             </div>
           </div>
       

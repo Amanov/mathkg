@@ -1,0 +1,143 @@
+/* Subscribe modal: plan picker + QR payment step. Shared design tokens
+   from main.css (--color-*, --radius-*, --transition-*), no one-off
+   colors or gradients. */
+
+.subscribe-plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding-top: 8px;
+}
+@media (max-width: 575.98px) {
+    .subscribe-plans { grid-template-columns: 1fr; }
+}
+
+.subscribe-plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 28px 16px;
+    background: #f6f8fa;
+    border: 2px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    cursor: pointer;
+    transition: border-color var(--transition-fast, 150ms ease),
+                background var(--transition-fast, 150ms ease),
+                transform var(--transition-fast, 150ms ease);
+}
+.subscribe-plan-card:hover {
+    border-color: var(--color-bootstrap-primary, #0d6efd);
+    background: #fff;
+    transform: translateY(-2px);
+}
+.subscribe-plan-card:focus-visible {
+    outline: 2px solid var(--color-bootstrap-primary, #0d6efd);
+    outline-offset: 2px;
+}
+.subscribe-plan-card.featured {
+    border-color: var(--color-bootstrap-primary, #0d6efd);
+    background: #eef5ff;
+}
+.subscribe-plan-badge {
+    position: absolute;
+    top: -12px;
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+.subscribe-plan-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+}
+.subscribe-plan-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-bootstrap-primary, #0d6efd);
+}
+.subscribe-plan-note {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.subscribe-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: none;
+    color: var(--color-bootstrap-primary, #0d6efd);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 4px 0;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.subscribe-back-btn:hover { text-decoration: underline; }
+
+.subscribe-qr-wrap { text-align: center; }
+
+.subscribe-qr-img {
+    max-width: 240px;
+    width: 100%;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-sm, 8px);
+    padding: 12px;
+    background: #fff;
+}
+.subscribe-qr-missing {
+    padding: 24px;
+    background: #fff3cd;
+    border-radius: var(--radius-sm, 8px);
+    color: #664d03;
+    font-size: 0.9rem;
+}
+.subscribe-qr-text {
+    margin-top: 16px;
+    font-size: 0.95rem;
+}
+.subscribe-qr-hint {
+    font-size: 0.825rem;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.btn-subscribe-continue {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 11px 16px;
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    text-decoration: none;
+    transition: background var(--transition-fast, 150ms ease),
+                transform var(--transition-fast, 150ms ease);
+}
+.btn-subscribe-continue:hover {
+    background: var(--color-navy, #0f3c58);
+    color: #fff;
+    transform: translateY(-1px);
+}
+.btn-subscribe-continue:focus-visible {
+    outline: 2px solid var(--color-navy, #0f3c58);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subscribe-plan-card,
+    .btn-subscribe-continue {
+        transition: none !important;
+    }
+    .subscribe-plan-card:hover,
+    .btn-subscribe-continue:hover {
+        transform: none;
+    }
+}

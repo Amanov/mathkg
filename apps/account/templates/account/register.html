@@ -17,8 +17,15 @@
 
     <h1>Аккаунт түзүү</h1>
 
+    {% if selected_plan_label %}
+      <div class="auth-selected-plan">
+        Тандалган план: <strong>{{ selected_plan_label }}</strong>
+      </div>
+    {% endif %}
+
     <form name="registration" method="post" action="{% url 'register' %}">
       {% csrf_token %}
+      <input type="hidden" name="plan" value="{{ selected_plan }}">
 
       <div class="mb-3">
         <label for="id_email" class="form-label">{{ form.email.label }}</label>

@@ -68,7 +68,7 @@
             {% else %}
               <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="color:red;"></i> Башкы бет</a>
               <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="color:red;"></i>Кирүү</a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'register' %}"><i class="fa fa-user-plus" style="color:red;"></i> Катталуу</a>
+              <button type="button" class="btn btn-success btn-sm topMenu text-uppercase" data-bs-toggle="modal" data-bs-target="#subscribeModal"><i class="fa fa-user-plus" style="color:red;"></i> Катталуу</button>
             {% endif %}
           </li>
         </ul>
@@ -93,5 +93,7 @@
   </nav>
 
 </div>
+
+{% include 'partials/subscribe_modal.html' %}
 
 <script src="{% static 'js/header.js' %}"></script>
