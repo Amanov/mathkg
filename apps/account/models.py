@@ -9,6 +9,8 @@ from django.dispatch import receiver
 from django.utils import timezone
 from rest_framework.authtoken.models import Token
 
+from config.storage_backends import persistent_media_storage
+
 #creating custom users
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -124,7 +126,7 @@ class PaymentQRCode(models.Model):
     # result lands in `image`, so every template/view that displays this
     # (the subscribe modal) reads one field regardless of which path
     # produced it.
-    image = models.ImageField(upload_to='payment_qr/', blank=True)
+    image = models.ImageField(upload_to='payment_qr/', blank=True, storage=persistent_media_storage)
     link = models.URLField(
         blank=True,
         verbose_name="Төлөм шилтемеси (Finik.kg ж.б.)",
