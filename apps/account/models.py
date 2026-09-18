@@ -227,10 +227,18 @@ class SubscriptionRequest(models.Model):
         if self.status == self.STATUS_CONFIRMED:
             return
 
-        # Extends from whichever is later: today, or the account's
-        # current paid-through date - so renewing before expiry adds to
-        # the remaining time instead of resetting it.
-        base_date = max(timezone.now().date(), self.user.subscription_end_date)
+        today = timezone.now().date()
+        # Stacks on top of a real remaining *paid* period - so renewing
+        # a still-active plan early adds to the remaining time instead
+        # of resetting it - but never on top of the free signup trial.
+        # self.user.subscription_end_date falls back to a synthesized
+        # trial date (date_joined + 1 year) when subscription_end is
+        # still null; stacking a new plan onto *that* is what let a
+        # freshly-signed-up account paying for 6 months end up with
+        # ~1.5 years of access instead of 6 months. Reading the raw
+        # field instead of that hybrid property is what excludes it.
+        current_paid_end = self.user.subscription_end
+        base_date = max(today, current_paid_end) if current_paid_end else today
         self.user.subscription_end = add_months(base_date, self.PLAN_MONTHS[self.plan])
         self.user.save(update_fields=['subscription_end'])
         self.status = self.STATUS_CONFIRMED

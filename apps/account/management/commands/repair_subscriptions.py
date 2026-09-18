@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 from django.core.management.base import BaseCommand
 
 from apps.account.models import Account, SubscriptionRequest, add_months
@@ -7,13 +5,18 @@ from apps.account.models import Account, SubscriptionRequest, add_months
 
 class Command(BaseCommand):
     help = (
-        "Finds accounts whose confirmed SubscriptionRequest history implies "
-        "more paid access than their current subscription_end reflects - "
-        "the symptom of confirming a request without activate() actually "
-        "running (fixed in SubscriptionRequestAdmin.save_model, but "
-        "requests confirmed before that fix may still be under-credited) - "
-        "and tops them up to what they're owed. Never lowers anyone's "
-        "subscription_end. Dry-run by default; pass --apply to write."
+        "Recomputes subscription_end for every account with a confirmed "
+        "SubscriptionRequest, by replaying that history through the same "
+        "rule activate() now uses (each plan grants exactly its own "
+        "duration from whichever is later - today, or a still-active paid "
+        "period - never stacked on top of the free signup trial), and "
+        "corrects any account that doesn't match. This can move a date in "
+        "either direction: it fixes both a confirmed request that never "
+        "actually ran through activate() (subscription_end too low) and "
+        "one that was activated under the old trial-stacking rule "
+        "(subscription_end too high). Dry-run by default; pass --apply "
+        "to write. Ignores any admin adjustment to subscription_end that "
+        "isn't backed by a SubscriptionRequest."
     )
 
     def add_arguments(self, parser):
@@ -39,20 +42,22 @@ class Command(BaseCommand):
                 .order_by('created_at')
             )
 
-            # Replays every confirmed request in order, starting from the
-            # same 1-year-trial baseline Account.subscription_end_date
-            # falls back to when subscription_end is still null - i.e.
-            # what the account would legitimately have ended up with if
-            # every one of these had gone through activate() for real.
-            simulated_end = account.date_joined.date() + timedelta(days=365)
+            # Replays every confirmed request in order, mirroring
+            # activate(): each one grants exactly its own duration from
+            # whichever is later - the date it was actually confirmed
+            # (activated_at, falling back to created_at for requests
+            # confirmed before that field existed), or the point the
+            # previous one in this chain left off - with no free-trial
+            # baseline involved at all.
+            simulated_end = None
             for req in confirmed:
-                anchor = max(req.created_at.date(), simulated_end)
+                anchor = (req.activated_at or req.created_at).date()
+                if simulated_end:
+                    anchor = max(anchor, simulated_end)
                 simulated_end = add_months(anchor, SubscriptionRequest.PLAN_MONTHS[req.plan])
 
             actual_end = account.subscription_end
-            under_credited = actual_end is None or simulated_end > actual_end
-
-            if not under_credited:
+            if actual_end == simulated_end:
                 continue
 
             fixed += 1
