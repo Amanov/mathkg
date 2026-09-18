@@ -91,7 +91,15 @@ def registration_view(request):
     else:
         form = RegistrationForm()
 
-    selected_plan = request.GET.get('plan')
+    # A failed validation (mismatched passwords, a weak password, an
+    # email already in use...) re-renders this same view as a POST, on
+    # which request.GET is empty - reading only that would silently drop
+    # the plan on the very first retry, and with it the hidden field
+    # that would have carried it into the next submission too. Reading
+    # whichever of GET/POST this request actually is keeps the plan
+    # alive across that retry, all the way to a successful submission.
+    plan_source = request.POST if request.method == 'POST' else request.GET
+    selected_plan = plan_source.get('plan')
     if selected_plan not in valid_plans:
         selected_plan = ''
 
