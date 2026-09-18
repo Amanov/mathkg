@@ -64,10 +64,42 @@ class PaymentQRCodeAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class StatusDefaultsToPendingFilter(admin.SimpleListFilter):
+    # A plain ('status',) entry in list_filter has no concept of a
+    # default - landing on the list with no filter chosen shows every
+    # request ever confirmed, burying new pending ones underneath. This
+    # makes "no filter chosen yet" behave as if "Төлөм күтүлүүдө" were
+    # selected, while still offering a real "Бардыгы" option (its own
+    # explicit value, not just the absence of a param) to see everything
+    # on demand - nothing is hidden permanently or deleted.
+    title = 'абалы'
+    parameter_name = 'status'
+
+    def lookups(self, request, model_admin):
+        return list(SubscriptionRequest.STATUS_CHOICES) + [('all', 'Бардыгы')]
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value is None:
+            return queryset.filter(status=SubscriptionRequest.STATUS_PENDING)
+        if value == 'all':
+            return queryset
+        return queryset.filter(status=value)
+
+    def choices(self, changelist):
+        value = self.value()
+        for lookup, title in self.lookup_choices:
+            yield {
+                'selected': value == lookup or (value is None and lookup == SubscriptionRequest.STATUS_PENDING),
+                'query_string': changelist.get_query_string({self.parameter_name: lookup}),
+                'display': title,
+            }
+
+
 @admin.register(SubscriptionRequest)
 class SubscriptionRequestAdmin(admin.ModelAdmin):
     list_display = ('user', 'plan', 'status', 'activation_status', 'created_at')
-    list_filter = ('plan', 'status')
+    list_filter = ('plan', StatusDefaultsToPendingFilter)
     search_fields = ('user__email', 'user__username')
     actions = ['confirm_and_activate']
 

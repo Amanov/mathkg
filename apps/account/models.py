@@ -240,7 +240,12 @@ class SubscriptionRequest(models.Model):
         current_paid_end = self.user.subscription_end
         base_date = max(today, current_paid_end) if current_paid_end else today
         self.user.subscription_end = add_months(base_date, self.PLAN_MONTHS[self.plan])
-        self.user.save(update_fields=['subscription_end'])
+        # A verified payment is at least as strong proof of a real user as
+        # clicking the signup activation email - so confirming one also
+        # activates the account, rather than leaving login blocked on an
+        # unrelated step a paying user may never have completed.
+        self.user.is_active = True
+        self.user.save(update_fields=['subscription_end', 'is_active'])
         self.status = self.STATUS_CONFIRMED
         self.activated_at = timezone.now()
         self.save(update_fields=['status', 'activated_at'])
