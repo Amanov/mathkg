@@ -197,6 +197,14 @@ class SubscriptionRequest(models.Model):
         return f"{self.user.email} - {self.get_plan_display()} ({self.get_status_display()})"
 
     def activate(self):
+        # Idempotent on purpose: this runs from more than one admin path
+        # (the bulk action, and a plain status-field edit on the object -
+        # see SubscriptionRequestAdmin.save_model), so it must be safe to
+        # call on an already-confirmed request without extending the
+        # account a second time for one payment.
+        if self.status == self.STATUS_CONFIRMED:
+            return
+
         # Extends from whichever is later: today, or the account's
         # current paid-through date - so renewing before expiry adds to
         # the remaining time instead of resetting it.

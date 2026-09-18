@@ -49,3 +49,25 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
             confirmed += 1
         self.message_user(request, f"{confirmed} жазылуу активдештирилди.")
 
+    def save_model(self, request, obj, form, change):
+        # This model has no fields/readonly_fields restriction, so nothing
+        # stops a site owner from just opening a request and flipping the
+        # Status dropdown on its own edit page instead of using the bulk
+        # action above. Saved the ordinary way, that silently persists
+        # "confirmed" without ever extending the account's
+        # subscription_end (only activate() does that) - the request
+        # *looks* confirmed but the user gets no actual access. Route
+        # that path through activate() too, so confirming a payment has
+        # the same effect no matter which page it's done from.
+        becoming_confirmed = (
+            change
+            and form.initial.get('status') == SubscriptionRequest.STATUS_PENDING
+            and obj.status == SubscriptionRequest.STATUS_CONFIRMED
+        )
+        if becoming_confirmed:
+            obj.status = SubscriptionRequest.STATUS_PENDING
+            super().save_model(request, obj, form, change)
+            obj.activate()
+        else:
+            super().save_model(request, obj, form, change)
+
