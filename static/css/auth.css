@@ -43,7 +43,8 @@
     padding: 4px;
     margin-bottom: 24px;
 }
-.auth-tabs a {
+.auth-tabs a,
+.auth-tabs button {
     flex: 1;
     text-align: center;
     padding: 10px 12px;
@@ -52,14 +53,18 @@
     font-weight: 600;
     color: #64748b;
     text-decoration: none;
+    border: none;
+    background: none;
     transition: background .15s ease, color .15s ease, box-shadow .15s ease;
 }
-.auth-tabs a.active {
+.auth-tabs a.active,
+.auth-tabs button.active {
     background: #fff;
     color: var(--color-navy, #0f3c58);
     box-shadow: 0 1px 3px rgba(15, 23, 42, .12);
 }
-.auth-tabs a:not(.active):hover {
+.auth-tabs a:not(.active):hover,
+.auth-tabs button:not(.active):hover {
     color: var(--color-navy, #0f3c58);
 }
 
