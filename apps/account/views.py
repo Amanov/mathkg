@@ -86,7 +86,16 @@ def registration_view(request):
             except Exception as e:
                 logger.error(f"Failed to send activation email to {user.email}: {e}")
 
-            messages.success(request, "Registration is successful. Please wait for activation.")
+            messages.success(
+                request,
+                "Каттоо ийгиликтүү аяктады!\n"
+                "Аккаунтуңузду активдештирүү үчүн электрондук почтаңызга жиберилген "
+                "шилтемени басыңыз, андан кийин кызматты пайдаланып, сабактардан "
+                "ырахат ала аласыз.\n"
+                "QR код аркылуу төлөм жасаган болсоңуз, төлөм текшерилгенден кийин "
+                "жазылууңуз өзү активдештирилет - кошумча аракет талап кылынбайт.\n"
+                "Кирүү менен көйгөй чыкса, бизге жазыңыз: mathematicskgz@gmail.com",
+            )
             return redirect('login')
     else:
         form = RegistrationForm()

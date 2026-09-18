@@ -71,14 +71,14 @@
     {% if messages %}
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
         {% for message in messages %}
-        <div class="toast show align-items-center text-white
+        <div class="toast app-toast show align-items-center text-white
                     {% if message.tags == 'error' %}bg-danger
                     {% elif message.tags == 'success' %}bg-success
                     {% elif message.tags == 'warning' %}bg-warning
                     {% else %}bg-info{% endif %}"
              role="alert">
             <div class="d-flex">
-                <div class="toast-body">{{ message }}</div>
+                <div class="toast-body">{{ message|linebreaksbr }}</div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto"
                         data-bs-dismiss="toast"></button>
             </div>

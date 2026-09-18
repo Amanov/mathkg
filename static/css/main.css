@@ -62,3 +62,18 @@ h1::before {
 h1::after {
     margin-left: 1.5rem;
 }
+
+/* Flash-message toast (templates/base/base.html) - Bootstrap's own
+   default (max-width: 350px, compact padding) reads fine for a short
+   one-liner but cramps a message with several sentences of real
+   information, like the post-registration one. */
+.app-toast {
+    max-width: 420px;
+    min-width: 300px;
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .18));
+}
+.app-toast .toast-body {
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
