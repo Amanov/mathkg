@@ -18,10 +18,16 @@
 
     {% else %}
         <li class="{% if parent %}dropdown-leaf{% else %}nav-item{% endif %}">
+            {# A leaf sits next to dropdown-toggle siblings in the same row      #}
+            {# (see the "if item.children.all" branch above) - it shares the    #}
+            {# exact same .mymenu chip styling so a topic that hasn't had its    #}
+            {# sub-items added yet doesn't look like a visually different kind   #}
+            {# of button while that's still pending, only that it isn't         #}
+            {# clickable-to-expand (no chevron, since it has nothing to open).   #}
             <a href="{% safe_url item.url_name %}"
-               class="{% if parent %}dropdown-item{% else %}btn btn-outline-primary mymenuSize text-uppercase{% endif %}">
+               class="{% if parent %}dropdown-item{% else %}mymenu{% endif %}">
                 {% if item.icon and not parent %}<i class="{{ item.icon }}"></i>{% endif %}
-                {{ item.title }}
+                <span>{{ item.title }}</span>
             </a>
         </li>
     {% endif %}
