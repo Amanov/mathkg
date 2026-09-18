@@ -138,10 +138,10 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, 'Login successful!')  # Add a success message
+                messages.success(request, 'Кирүү ийгиликтүү аяктады!')
                 return redirect("home")
             else:
-                messages.error(request, 'Invalid email or password.')  # Add an error message
+                messages.error(request, 'Электрондук почта же сырсөз туура эмес.')
     else:
         form = AccountAuthenticationForm()
 

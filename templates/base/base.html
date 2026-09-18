@@ -71,7 +71,7 @@
     {% if messages %}
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
         {% for message in messages %}
-        <div class="toast app-toast show align-items-center text-white
+        <div class="toast app-toast align-items-center text-white
                     {% if message.tags == 'error' %}bg-danger
                     {% elif message.tags == 'success' %}bg-success
                     {% elif message.tags == 'warning' %}bg-warning
@@ -97,6 +97,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+
+    {# Flash-message toasts render without Bootstrap's own "show" class -   #}
+    {# it's added here instead, via a real Toast instance, so autohide and  #}
+    {# its delay are actually in effect rather than the message just        #}
+    {# sitting there statically until someone clicks its close button.      #}
+    {% if messages %}
+    <script>
+        document.querySelectorAll('.app-toast').forEach(function (el) {
+            new bootstrap.Toast(el, { delay: 8000 }).show();
+        });
+    </script>
+    {% endif %}
+
     {# ── Block for page-specific JavaScript ──────────────────────────────── #}
     {# Use this in child templates for things like Chart.js on the analytics #}
     {# dashboard, or any interactive widget on a specific page.              #}
