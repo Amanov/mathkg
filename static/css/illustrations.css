@@ -1,0 +1,38 @@
+/* Homepage topic icons (templates/resources/home.html) - replaces a single
+   cluttered stock illustration reused seven times with one clean,
+   on-brand SVG per section. Shared design tokens from main.css
+   (--color-navy, --radius-*, --shadow-dropdown, --transition-*), no
+   gradients, no one-off colors. */
+
+.illustration-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
+    padding: 32px;
+    margin: 0 auto;
+    max-width: 320px;
+    transition: transform var(--transition-base, 250ms ease),
+                box-shadow var(--transition-base, 250ms ease);
+}
+.illustration-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .12));
+}
+.illustration-card svg {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .illustration-card {
+        transition: none;
+    }
+    .illustration-card:hover {
+        transform: none;
+    }
+}
