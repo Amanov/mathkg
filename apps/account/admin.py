@@ -1,5 +1,9 @@
-from django.contrib import admin
+from datetime import timedelta
+
+from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
+from django.utils import timezone
+
 from .models import Account, PaymentQRCode, SubscriptionRequest
 # Register your models here.
 
@@ -12,6 +16,32 @@ class AccountAdmin(UserAdmin):
     filter_horizontal =()
     list_filter = ()
     fieldsets = ()
+    actions = ['end_subscription_for_violation']
+
+    @admin.action(description='Эрежелерди бузгандыгы үчүн жазылууну токтотуу жана бөгөттөө')
+    def end_subscription_for_violation(self, request, queryset):
+        # Immediate and permanent until someone manually reverses it -
+        # this is meant for a real ToS violation, not a routine expiry.
+        # Setting subscription_end into the past (rather than clearing
+        # it to null) matters: null falls back to the 1-year signup
+        # trial on Account.subscription_end_date, which would leave
+        # access in place instead of cutting it off. is_active=False
+        # additionally blocks login entirely, not just paid downloads.
+        yesterday = timezone.now().date() - timedelta(days=1)
+        count = 0
+        for account in queryset:
+            account.subscription_end = yesterday
+            account.is_active = False
+            account.save(update_fields=['subscription_end', 'is_active'])
+            self.log_change(
+                request, account,
+                "Эрежелерди/макулдашууну бузгандыгы үчүн жазылуу токтотулду жана аккаунт бөгөттөлдү.",
+            )
+            count += 1
+        self.message_user(
+            request, f"{count} колдонуучунун жазылуусу токтотулду жана аккаунту бөгөттөлдү.",
+            level=messages.WARNING,
+        )
 
 admin.site.register(Account,AccountAdmin)
 
@@ -36,10 +66,22 @@ class PaymentQRCodeAdmin(admin.ModelAdmin):
 
 @admin.register(SubscriptionRequest)
 class SubscriptionRequestAdmin(admin.ModelAdmin):
-    list_display = ('user', 'plan', 'status', 'created_at')
+    list_display = ('user', 'plan', 'status', 'activation_status', 'created_at')
     list_filter = ('plan', 'status')
     search_fields = ('user__email', 'user__username')
     actions = ['confirm_and_activate']
+
+    @admin.display(description='Активдештирилдиби')
+    def activation_status(self, obj):
+        # Surfaces the exact failure mode that motivated activated_at:
+        # a request whose status shows "Төлөндү" but was never actually
+        # run through activate(), so the account's subscription_end was
+        # never extended despite looking confirmed.
+        if obj.status != SubscriptionRequest.STATUS_CONFIRMED:
+            return "—"
+        if obj.activated_at:
+            return obj.activated_at.strftime('%Y-%m-%d %H:%M')
+        return "ЖОК - колдонуучу али активдештирилген эмес"
 
     @admin.action(description='Тандалган: төлөмдү ырастоо жана жазылууну активдештирүү')
     def confirm_and_activate(self, request, queryset):

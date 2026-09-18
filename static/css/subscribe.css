@@ -4,11 +4,11 @@
 
 .subscribe-plans {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     padding-top: 8px;
 }
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
     .subscribe-plans { grid-template-columns: 1fr; }
 }
 

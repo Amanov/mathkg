@@ -1,3 +1,4 @@
+import calendar
 from datetime import timedelta
 
 from django.db import models
@@ -86,6 +87,17 @@ class Account(AbstractBaseUser):
         return self.subscription_end_date >= timezone.now().date()
 
 
+def add_months(base_date, months):
+    """Adds exact calendar months to a date (not a fixed day-count
+    approximation), clamping the day when the target month is shorter -
+    e.g. 31 Jan + 1 month -> 28/29 Feb, not an overflow into March."""
+    month_index = base_date.month - 1 + months
+    year = base_date.year + month_index // 12
+    month = month_index % 12 + 1
+    day = min(base_date.day, calendar.monthrange(year, month)[1])
+    return base_date.replace(year=year, month=month, day=day)
+
+
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False,**kwargs):
     if created:
@@ -162,17 +174,21 @@ class PaymentQRCode(models.Model):
 
 
 class SubscriptionRequest(models.Model):
+    PLAN_THREE_MONTHS = '3m'
     PLAN_SIX_MONTHS = '6m'
     PLAN_ONE_YEAR = '1y'
     PLAN_CHOICES = [
+        (PLAN_THREE_MONTHS, '3 ай - 1499 сом'),
         (PLAN_SIX_MONTHS, '6 ай - 2999 сом'),
         (PLAN_ONE_YEAR, '1 жыл - 4999 сом'),
     ]
     # Kept next to the choices they describe, instead of a separate
     # settings/constants file, since a plan here is meaningless without
-    # both a duration and a price.
-    PLAN_DAYS = {PLAN_SIX_MONTHS: 182, PLAN_ONE_YEAR: 365}
-    PLAN_PRICE_SOM = {PLAN_SIX_MONTHS: 2999, PLAN_ONE_YEAR: 4999}
+    # both a duration and a price. Durations are exact calendar months
+    # (via add_months), not a fixed day-count approximation - "6 months"
+    # from different starting dates isn't always the same number of days.
+    PLAN_MONTHS = {PLAN_THREE_MONTHS: 3, PLAN_SIX_MONTHS: 6, PLAN_ONE_YEAR: 12}
+    PLAN_PRICE_SOM = {PLAN_THREE_MONTHS: 1499, PLAN_SIX_MONTHS: 2999, PLAN_ONE_YEAR: 4999}
 
     STATUS_PENDING = 'pending'
     STATUS_CONFIRMED = 'confirmed'
@@ -187,6 +203,12 @@ class SubscriptionRequest(models.Model):
     plan = models.CharField(max_length=2, choices=PLAN_CHOICES)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_PENDING)
     created_at = models.DateTimeField(auto_now_add=True)
+    # Set only by activate() itself - lets admin tell a request that was
+    # genuinely confirmed apart from one whose status field was set some
+    # other way (see SubscriptionRequestAdmin.save_model) without this
+    # ever actually running, which is exactly the bug that left a paying
+    # user's subscription_end untouched despite status showing "Төлөндү".
+    activated_at = models.DateTimeField(null=True, blank=True, editable=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -209,10 +231,11 @@ class SubscriptionRequest(models.Model):
         # current paid-through date - so renewing before expiry adds to
         # the remaining time instead of resetting it.
         base_date = max(timezone.now().date(), self.user.subscription_end_date)
-        self.user.subscription_end = base_date + timedelta(days=self.PLAN_DAYS[self.plan])
+        self.user.subscription_end = add_months(base_date, self.PLAN_MONTHS[self.plan])
         self.user.save(update_fields=['subscription_end'])
         self.status = self.STATUS_CONFIRMED
-        self.save(update_fields=['status'])
+        self.activated_at = timezone.now()
+        self.save(update_fields=['status', 'activated_at'])
 
 
 
