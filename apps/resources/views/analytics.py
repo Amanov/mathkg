@@ -8,7 +8,8 @@ from django.utils import timezone
 
 from apps.resources.models import (
     Resource,
-    ResourceDownload
+    ResourceDownload,
+    SiteVisit,
 )
 
 
@@ -19,6 +20,7 @@ def analytics_dashboard_view(request):
 
     week_ago = today - timedelta(days=7)
     month_ago = today - timedelta(days=30)
+    thirty_days_ago = today - timedelta(days=29)
 
     # =========================
     # Overall Statistics
@@ -37,6 +39,78 @@ def analytics_dashboard_view(request):
         .distinct()
         .count()
     )
+
+    # =========================
+    # Site Traffic (page views logged by SiteVisitMiddleware)
+    # =========================
+
+    total_visits = SiteVisit.objects.count()
+
+    unique_visitors = (
+        SiteVisit.objects
+        .values('session_key')
+        .distinct()
+        .count()
+    )
+
+    visits_this_week = (
+        SiteVisit.objects
+        .filter(visited_at__date__gte=week_ago)
+        .count()
+    )
+
+    unique_visitors_this_week = (
+        SiteVisit.objects
+        .filter(visited_at__date__gte=week_ago)
+        .values('session_key')
+        .distinct()
+        .count()
+    )
+
+    visits_this_month = (
+        SiteVisit.objects
+        .filter(visited_at__date__gte=month_ago)
+        .count()
+    )
+
+    unique_visitors_this_month = (
+        SiteVisit.objects
+        .filter(visited_at__date__gte=month_ago)
+        .values('session_key')
+        .distinct()
+        .count()
+    )
+
+    top_pages = (
+        SiteVisit.objects
+        .values('path')
+        .annotate(views=Count('id'))
+        .order_by('-views')[:10]
+    )
+
+    visit_counts_by_day = {}
+    visitor_counts_by_day = {}
+    for row in (
+        SiteVisit.objects
+        .filter(visited_at__date__gte=thirty_days_ago)
+        .annotate(day=TruncDate('visited_at'))
+        .values('day')
+        .annotate(
+            views=Count('id'),
+            visitors=Count('session_key', distinct=True),
+        )
+    ):
+        visit_counts_by_day[row['day']] = row['views']
+        visitor_counts_by_day[row['day']] = row['visitors']
+
+    daily_visit_stats = [
+        {
+            'date': the_date.strftime('%m/%d'),
+            'views': visit_counts_by_day.get(the_date, 0),
+            'visitors': visitor_counts_by_day.get(the_date, 0),
+        }
+        for the_date in (thirty_days_ago + timedelta(days=i) for i in range(30))
+    ]
 
     # =========================
     # Downloads
@@ -113,8 +187,6 @@ def analytics_dashboard_view(request):
     # Daily Download Trend
     # =========================
 
-    thirty_days_ago = today - timedelta(days=29)
-
     counts_by_day = {
         row['day']: row['count']
         for row in (
@@ -149,6 +221,14 @@ def analytics_dashboard_view(request):
         'category_stats': category_stats,
         'recent_downloads': recent_downloads,
         'daily_stats': daily_stats,
+        'total_visits': total_visits,
+        'unique_visitors': unique_visitors,
+        'visits_this_week': visits_this_week,
+        'unique_visitors_this_week': unique_visitors_this_week,
+        'visits_this_month': visits_this_month,
+        'unique_visitors_this_month': unique_visitors_this_month,
+        'top_pages': top_pages,
+        'daily_visit_stats': daily_visit_stats,
     }
 
     return render(

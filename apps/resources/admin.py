@@ -6,6 +6,7 @@ from .models import (
     SubSubtopic,
     Resource,
     ResourceDownload,
+    SiteVisit,
     MenuItem,
 )
 
@@ -103,6 +104,47 @@ class ResourceDownloadAdmin(admin.ModelAdmin):
     ordering = (
         "-downloaded_at",
     )
+
+    list_per_page = 50
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(SiteVisit)
+class SiteVisitAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "path",
+        "user",
+        "ip_address",
+        "visited_at",
+    )
+
+    list_filter = (
+        "visited_at",
+    )
+
+    search_fields = (
+        "path",
+        "user__username",
+        "ip_address",
+        "session_key",
+    )
+
+    readonly_fields = (
+        "session_key",
+        "user",
+        "ip_address",
+        "path",
+        "visited_at",
+    )
+
+    ordering = (
+        "-visited_at",
+    )
+
+    date_hierarchy = "visited_at"
 
     list_per_page = 50
 

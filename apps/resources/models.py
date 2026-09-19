@@ -287,6 +287,48 @@ class ResourceDownload(models.Model):
 
 
 
+# =====================================================
+
+# SITE TRAFFIC ANALYTICS
+
+# =====================================================
+
+class SiteVisit(models.Model):
+    session_key = models.CharField(
+        max_length=40,
+        blank=True
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    ip_address = models.GenericIPAddressField(
+        null=True,
+        blank=True
+    )
+
+    path = models.CharField(
+        max_length=255
+    )
+
+    visited_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ['-visited_at']
+        verbose_name = 'Site Visit'
+        verbose_name_plural = 'Site Visits'
+
+    def __str__(self):
+        who = self.user.username if self.user else (self.session_key[:8] or self.ip_address)
+        return f"{who} - {self.path}"
+
+
 # for data driven menu
 
 class MenuItem(models.Model):

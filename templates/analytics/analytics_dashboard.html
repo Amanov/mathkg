@@ -110,6 +110,29 @@
 
   <div class="stats">
     <div class="stat">
+      <div class="stat-label">Total site visits</div>
+      <div class="stat-value">{{ total_visits }}</div>
+      <div class="stat-sub">all time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Unique visitors</div>
+      <div class="stat-value">{{ unique_visitors }}</div>
+      <div class="stat-sub">all time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Visitors this week</div>
+      <div class="stat-value">{{ unique_visitors_this_week }}</div>
+      <div class="stat-sub">{{ visits_this_week }} visits</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Visitors this month</div>
+      <div class="stat-value">{{ unique_visitors_this_month }}</div>
+      <div class="stat-sub">{{ visits_this_month }} visits</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
       <div class="stat-label">Active resources</div>
       <div class="stat-value">{{ total_resources }}</div>
     </div>
@@ -132,6 +155,61 @@
       <div class="stat-value">{{ downloads_this_month }}</div>
       <div class="stat-sub">downloads</div>
     </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Daily site traffic
+      <span class="badge badge-blue">30 days</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Visits</th>
+          <th>Unique visitors</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for day in daily_visit_stats %}
+        <tr>
+          <td style="color: #aaa">{{ day.date }}</td>
+          <td>
+            <div class="dl-bar-wrap">
+              <div class="dl-bar" style="width: {{ day.views|default:0 }}px; max-width: 200px;"></div>
+              {{ day.views }}
+            </div>
+          </td>
+          <td>{{ day.visitors }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Most visited pages
+      <span class="badge badge-blue">{{ top_pages|length }}</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Path</th>
+          <th>Views</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in top_pages %}
+        <tr>
+          <td>{{ p.path }}</td>
+          <td>{{ p.views }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2" style="color: #aaa">No visits logged yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
   <div class="section">
