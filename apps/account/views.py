@@ -14,6 +14,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 
+from apps.resources.models import LoginEvent
+
 from .models import Account, SubscriptionRequest
 from .forms import (
     RegistrationForm,
@@ -138,6 +140,13 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
+                if not request.session.session_key:
+                    request.session.save()
+                LoginEvent.objects.create(
+                    user=user,
+                    session_key=request.session.session_key or '',
+                    ip_address=get_client_ip(request),
+                )
                 messages.success(request, 'Кирүү ийгиликтүү аяктады!')
                 return redirect("home")
             else:

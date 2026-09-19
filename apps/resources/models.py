@@ -369,6 +369,36 @@ class ButtonClick(models.Model):
         return f"{self.label} - {self.clicked_at:%Y-%m-%d %H:%M}"
 
 
+class LoginEvent(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='login_events'
+    )
+
+    session_key = models.CharField(
+        max_length=40,
+        blank=True
+    )
+
+    ip_address = models.GenericIPAddressField(
+        null=True,
+        blank=True
+    )
+
+    logged_in_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ['-logged_in_at']
+        verbose_name = 'Login Event'
+        verbose_name_plural = 'Login Events'
+
+    def __str__(self):
+        return f"{self.user.username} - {self.logged_in_at:%Y-%m-%d %H:%M}"
+
+
 # for data driven menu
 
 class MenuItem(models.Model):

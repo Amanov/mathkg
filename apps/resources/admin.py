@@ -8,6 +8,7 @@ from .models import (
     ResourceDownload,
     SiteVisit,
     ButtonClick,
+    LoginEvent,
     MenuItem,
 )
 
@@ -189,6 +190,44 @@ class ButtonClickAdmin(admin.ModelAdmin):
     )
 
     date_hierarchy = "clicked_at"
+
+    list_per_page = 50
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(LoginEvent)
+class LoginEventAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "user",
+        "ip_address",
+        "logged_in_at",
+    )
+
+    list_filter = (
+        "logged_in_at",
+    )
+
+    search_fields = (
+        "user__username",
+        "user__email",
+        "ip_address",
+    )
+
+    readonly_fields = (
+        "user",
+        "session_key",
+        "ip_address",
+        "logged_in_at",
+    )
+
+    ordering = (
+        "-logged_in_at",
+    )
+
+    date_hierarchy = "logged_in_at"
 
     list_per_page = 50
 

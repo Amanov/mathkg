@@ -1,0 +1,70 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{# Django's own admin/index.html, with one addition: an "Analytics         #}
+{# Dashboard" module above the app list, styled exactly like the app-list  #}
+{# boxes below it (same .module/table markup admin/app_list.html uses) so  #}
+{# it reads as a native part of the index rather than a bolted-on banner.  #}
+{# Everything else is untouched stock Django - see                        #}
+{# contrib/admin/templates/admin/index.html.                              #}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+  <div class="module" id="analytics-dashboard-module">
+    <table>
+      <caption>
+        <a href="{% url 'analytics_dashboard' %}" class="section" title="{% translate 'Site visits, downloads, logins and policy watch' %}">{% translate 'Analytics Dashboard' %}</a>
+      </caption>
+      <tr>
+        <th scope="row"><a href="{% url 'analytics_dashboard' %}">{% translate 'Site visits, downloads, logins and policy watch' %}</a></th>
+        <td><a href="{% url 'analytics_dashboard' %}" class="viewlink">{% translate 'Open' %}</a></td>
+      </tr>
+    </table>
+  </div>
+
+  {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>{% translate 'Recent actions' %}</h2>
+        <h3>{% translate 'My actions' %}</h3>
+            {% load log %}
+            {% get_admin_log 10 as admin_log for_user user %}
+            {% if not admin_log %}
+            <p>{% translate 'None available' %}</p>
+            {% else %}
+            <ul class="actionlist">
+            {% for entry in admin_log %}
+            <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                {% if entry.is_deletion or not entry.get_admin_url %}
+                    {{ entry.object_repr }}
+                {% else %}
+                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                {% endif %}
+                <br>
+                {% if entry.content_type %}
+                    <span class="mini quiet">{% filter capfirst %}{{ entry.content_type.name }}{% endfilter %}</span>
+                {% else %}
+                    <span class="mini quiet">{% translate 'Unknown content' %}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}

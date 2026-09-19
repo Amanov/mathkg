@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{# Django's own admin/base_site.html, with one addition: an "Analytics"    #}
+{# link in the persistent user-tools row (top-right of every admin page),  #}
+{# so the dashboard is reachable from anywhere in the admin, not just a    #}
+{# URL someone has to already know. Everything else here is untouched     #}
+{# stock Django - see contrib/admin/templates/admin/base_site.html.       #}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+    {% endif %}
+    <a href="{% url 'analytics_dashboard' %}">{% translate 'Analytics' %}</a> /
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+    <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+    {% endif %}
+    <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+        {% csrf_token %}
+        <button type="submit">{% translate 'Log out' %}</button>
+    </form>
+    {% include "admin/color_theme_toggle.html" %}
+{% endblock %}

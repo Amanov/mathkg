@@ -1,137 +1,121 @@
-{% extends 'base/base.html' %}
-{% block content %}
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block extrastyle %}{{ block.super }}
 <style>
-  * {
-    box-sizing: border-box;
+  #content-main { max-width: 1400px; }
+  .dash * { box-sizing: border-box; }
+  .dash { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .dash .subtitle {
+    color: #666;
+    font-size: 13px;
+    margin: -8px 0 20px;
   }
-  .dash {
-    padding: 2rem 1.5rem;
-    margin-top: 80px;
+
+  /* ---- KPI groups ---- */
+  .kpi-group { margin-bottom: 22px; }
+  .kpi-group-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #888;
+    margin-bottom: 8px;
   }
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-  }
-  .topbar h1 {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  .stats {
+  .kpi-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
-    margin-bottom: 2rem;
   }
-  .stat {
-    background: #f5f5f5;
-    border-radius: 8px;
-    padding: 1rem;
+  .kpi-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-left: 3px solid var(--kpi-accent, #0d6efd);
+    border-radius: 6px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
   }
-  .stat-label {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 6px;
-  }
-  .stat-value {
-    font-size: 26px;
-    font-weight: 500;
-  }
-  .stat-sub {
-    font-size: 12px;
-    color: #888;
-    margin-top: 4px;
-  }
+  .kpi-card.accent-blue   { --kpi-accent: #0d6efd; }
+  .kpi-card.accent-green  { --kpi-accent: #198754; }
+  .kpi-card.accent-amber  { --kpi-accent: #fd7e14; }
+  .kpi-card.accent-navy   { --kpi-accent: #0f3c58; }
+  .kpi-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 600; color: #1a1a2e; line-height: 1.1; }
+  .kpi-sub { font-size: 12px; color: #999; margin-top: 4px; }
+
+  /* ---- Section / chart cards ---- */
   .section {
-    border: 1px solid #eee;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin-bottom: 18px;
     overflow: hidden;
   }
   .section-header {
     display: flex;
     align-items: center;
-    padding: 14px 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid #eee;
     gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .badge {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 99px;
-    font-weight: 500;
-  }
-  .badge-blue {
-    background: #ddeeff;
-    color: #1a4a7a;
-  }
-  .badge-red {
-    background: #fde3e3;
-    color: #9c2626;
-  }
-  .section-warn {
-    border-color: #f3c9c9;
-  }
-  .section-warn .section-header {
-    background: #fff6f6;
-    border-bottom-color: #f3c9c9;
-  }
-  .flag-reason {
-    font-size: 12px;
-    color: #9c2626;
-  }
-  .admin-link {
-    font-size: 12px;
-    color: #1a4a7a;
-    text-decoration: none;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .admin-link:hover {
-    text-decoration: underline;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
     font-size: 13px;
+    font-weight: 600;
+    color: #333;
   }
-  th {
-    text-align: left;
-    padding: 10px 16px;
-    color: #888;
-    font-weight: 400;
-    font-size: 12px;
-    border-bottom: 1px solid #eee;
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+  .badge-blue { background: #ddeeff; color: #1a4a7a; }
+  .badge-red  { background: #fde3e3; color: #9c2626; }
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
   }
-  td {
-    padding: 10px 16px;
-    border-bottom: 1px solid #eee;
+  @media (max-width: 900px) {
+    .charts-grid { grid-template-columns: 1fr; }
   }
-  tr:last-child td {
-    border-bottom: none;
+  .chart-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 16px 8px;
   }
-  tr:hover td {
-    background: #fafafa;
+  .chart-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px;
   }
-  .dl-bar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .chart-card .chart-wrap { position: relative; height: 240px; }
+
+  /* ---- Tables ---- */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 9px 16px; color: #888; font-weight: 500; font-size: 12px; border-bottom: 1px solid #eee; }
+  td { padding: 9px 16px; border-bottom: 1px solid #eee; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+
+  /* ---- Policy watch ---- */
+  .section-warn { border-color: #f3c9c9; }
+  .section-warn .section-header { background: #fff6f6; border-bottom-color: #f3c9c9; }
+  .flag-reason { font-size: 12px; color: #9c2626; }
+  .admin-link { font-size: 12px; color: #1a4a7a; text-decoration: none; font-weight: 500; white-space: nowrap; }
+  .admin-link:hover { text-decoration: underline; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
   }
-  .dl-bar {
-    height: 4px;
-    border-radius: 2px;
-    background: #b5d4f4;
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; }
   }
 </style>
+{% endblock %}
 
+{% block content %}
 <div class="dash">
-  <div class="topbar">
-    <h1>Analytics</h1>
-  </div>
+  <p class="subtitle">Traffic, downloads, logins and policy watch - last updated on page load.</p>
 
   <div class="section section-warn">
     <div class="section-header">
@@ -172,249 +156,232 @@
           <td><a class="admin-link" href="{{ a.admin_url }}">Review in admin →</a></td>
         </tr>
         {% endfor %}
-        {% if not flagged_shared_ip_accounts and not flagged_bulk_download_accounts and not flagged_same_file_multi_ip %}
+        {% for a in flagged_shared_ip_logins %}
+        <tr>
+          <td>{{ a.user__username }}</td>
+          <td>{{ a.user__email }}</td>
+          <td class="flag-reason">Logged in from {{ a.distinct_ips }} different IPs ({{ a.login_count }} logins) in {{ shared_ip_login_window_days }} days — possible account sharing</td>
+          <td><a class="admin-link" href="{{ a.admin_url }}">Review in admin →</a></td>
+        </tr>
+        {% endfor %}
+        {% if not flagged_shared_ip_accounts and not flagged_bulk_download_accounts and not flagged_same_file_multi_ip and not flagged_shared_ip_logins %}
         <tr><td colspan="4" style="color: #aaa">No suspicious activity detected.</td></tr>
         {% endif %}
       </tbody>
     </table>
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-label">Total site visits</div>
-      <div class="stat-value">{{ total_visits }}</div>
-      <div class="stat-sub">all time</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Unique visitors</div>
-      <div class="stat-value">{{ unique_visitors }}</div>
-      <div class="stat-sub">all time</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Visitors this week</div>
-      <div class="stat-value">{{ unique_visitors_this_week }}</div>
-      <div class="stat-sub">{{ visits_this_week }} visits</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Visitors this month</div>
-      <div class="stat-value">{{ unique_visitors_this_month }}</div>
-      <div class="stat-sub">{{ visits_this_month }} visits</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Button clicks</div>
-      <div class="stat-value">{{ total_clicks }}</div>
-      <div class="stat-sub">all time</div>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-label">Active resources</div>
-      <div class="stat-value">{{ total_resources }}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Total downloads</div>
-      <div class="stat-value">{{ total_downloads }}</div>
-      <div class="stat-sub">all time</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Unique users</div>
-      <div class="stat-value">{{ unique_users }}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">This week</div>
-      <div class="stat-value">{{ downloads_this_week }}</div>
-      <div class="stat-sub">downloads</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">This month</div>
-      <div class="stat-value">{{ downloads_this_month }}</div>
-      <div class="stat-sub">downloads</div>
+  <div class="kpi-group">
+    <div class="kpi-group-label">Visitors</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">Total visits</div>
+        <div class="kpi-value">{{ total_visits }}</div>
+        <div class="kpi-sub">all time</div>
+      </div>
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">Unique visitors</div>
+        <div class="kpi-value">{{ unique_visitors }}</div>
+        <div class="kpi-sub">all time</div>
+      </div>
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">Repeat visitors</div>
+        <div class="kpi-value">{{ returning_visitors }}</div>
+        <div class="kpi-sub">{{ returning_visitor_pct }}% of {{ total_sessions_tracked }} tracked</div>
+      </div>
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">This week</div>
+        <div class="kpi-value">{{ unique_visitors_this_week }}</div>
+        <div class="kpi-sub">{{ visits_this_week }} visits</div>
+      </div>
+      <div class="kpi-card accent-blue">
+        <div class="kpi-label">This month</div>
+        <div class="kpi-value">{{ unique_visitors_this_month }}</div>
+        <div class="kpi-sub">{{ visits_this_month }} visits</div>
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      Daily site traffic
-      <span class="badge badge-blue">30 days</span>
+  <div class="kpi-group">
+    <div class="kpi-group-label">Engagement</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-navy">
+        <div class="kpi-label">Avg. time on site</div>
+        <div class="kpi-value">{{ avg_session_minutes }} min</div>
+        <div class="kpi-sub">{{ engaged_sessions }} engaged sessions (30d)</div>
+      </div>
+      <div class="kpi-card accent-navy">
+        <div class="kpi-label">Bounce rate</div>
+        <div class="kpi-value">{{ bounce_rate_pct }}%</div>
+        <div class="kpi-sub">single-page sessions (30d)</div>
+      </div>
+      <div class="kpi-card accent-navy">
+        <div class="kpi-label">Button clicks</div>
+        <div class="kpi-value">{{ total_clicks }}</div>
+        <div class="kpi-sub">all time</div>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Visits</th>
-          <th>Unique visitors</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for day in daily_visit_stats %}
-        <tr>
-          <td style="color: #aaa">{{ day.date }}</td>
-          <td>
-            <div class="dl-bar-wrap">
-              <div class="dl-bar" style="width: {{ day.views|default:0 }}px; max-width: 200px;"></div>
-              {{ day.views }}
-            </div>
-          </td>
-          <td>{{ day.visitors }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      Most visited pages
-      <span class="badge badge-blue">{{ top_pages|length }}</span>
+  <div class="kpi-group">
+    <div class="kpi-group-label">Downloads</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">Total downloads</div>
+        <div class="kpi-value">{{ total_downloads }}</div>
+        <div class="kpi-sub">all time</div>
+      </div>
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">Unique users</div>
+        <div class="kpi-value">{{ unique_users }}</div>
+      </div>
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">This week</div>
+        <div class="kpi-value">{{ downloads_this_week }}</div>
+      </div>
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">This month</div>
+        <div class="kpi-value">{{ downloads_this_month }}</div>
+      </div>
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">Active resources</div>
+        <div class="kpi-value">{{ total_resources }}</div>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Path</th>
-          <th>Views</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for p in top_pages %}
-        <tr>
-          <td>{{ p.path }}</td>
-          <td>{{ p.views }}</td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="2" style="color: #aaa">No visits logged yet.</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      Most clicked buttons
-      <span class="badge badge-blue">{{ top_buttons|length }}</span>
+  <div class="kpi-group">
+    <div class="kpi-group-label">Logins</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-amber">
+        <div class="kpi-label">Total logins</div>
+        <div class="kpi-value">{{ total_logins }}</div>
+        <div class="kpi-sub">all time</div>
+      </div>
+      <div class="kpi-card accent-amber">
+        <div class="kpi-label">This week</div>
+        <div class="kpi-value">{{ logins_this_week }}</div>
+      </div>
+      <div class="kpi-card accent-amber">
+        <div class="kpi-label">This month</div>
+        <div class="kpi-value">{{ logins_this_month }}</div>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Button</th>
-          <th>Clicks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for b in top_buttons %}
-        <tr>
-          <td>{{ b.label }}</td>
-          <td>{{ b.clicks }}</td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="2" style="color: #aaa">No clicks logged yet.</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      Daily downloads
-      <span class="badge badge-blue">30 days</span>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Traffic &amp; logins — last 30 days</h3>
+      <div class="chart-wrap"><canvas id="chart-traffic"></canvas></div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Downloads</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for day in daily_stats %}
-        <tr>
-          <td style="color: #aaa">{{ day.date }}</td>
-          <td>
-            <div class="dl-bar-wrap">
-              <div class="dl-bar" style="width: {{ day.count|default:0 }}px; max-width: 200px;"></div>
-              {{ day.count }}
-            </div>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="chart-card">
+      <h3>Downloads — last 30 days</h3>
+      <div class="chart-wrap"><canvas id="chart-downloads"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Downloads by folder (topic)</h3>
+      <div class="chart-wrap"><canvas id="chart-folders"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Most clicked buttons</h3>
+      <div class="chart-wrap"><canvas id="chart-buttons"></canvas></div>
+    </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      Top resources
-      <span class="badge badge-blue">{{ top_resources|length }}</span>
+  <div class="two-col">
+    <div class="section">
+      <div class="section-header">
+        Top resources
+        <span class="badge badge-blue">{{ top_resources|length }}</span>
+      </div>
+      <table>
+        <thead><tr><th>Title</th><th>Category</th><th>Downloads</th></tr></thead>
+        <tbody>
+          {% for r in top_resources %}
+          <tr><td>{{ r.title }}</td><td>{{ r.get_category_display }}</td><td>{{ r.dl_count }}</td></tr>
+          {% empty %}
+          <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Downloads</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for r in top_resources %}
-        <tr>
-          <td>{{ r.title }}</td>
-          <td>{{ r.get_category_display }}</td>
-          <td>{{ r.dl_count }}</td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      Top users
-      <span class="badge badge-blue">{{ top_users|length }}</span>
+    <div class="section">
+      <div class="section-header">
+        Top downloaders
+        <span class="badge badge-blue">{{ top_users|length }}</span>
+      </div>
+      <table>
+        <thead><tr><th>Username</th><th>Email</th><th>Downloads</th></tr></thead>
+        <tbody>
+          {% for u in top_users %}
+          <tr><td>{{ u.user__username }}</td><td>{{ u.user__email }}</td><td>{{ u.download_count }}</td></tr>
+          {% empty %}
+          <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Downloads</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for u in top_users %}
-        <tr>
-          <td>{{ u.user__username }}</td>
-          <td>{{ u.user__email }}</td>
-          <td>{{ u.download_count }}</td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      By category
+    <div class="section">
+      <div class="section-header">
+        Most frequent logins
+        <span class="badge badge-blue">{{ top_login_users|length }}</span>
+      </div>
+      <table>
+        <thead><tr><th>Username</th><th>Email</th><th>Logins</th></tr></thead>
+        <tbody>
+          {% for u in top_login_users %}
+          <tr><td>{{ u.user__username }}</td><td>{{ u.user__email }}</td><td>{{ u.login_count }}</td></tr>
+          {% empty %}
+          <tr><td colspan="3" style="color: #aaa">No logins yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Total downloads</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for c in category_stats %}
-        <tr>
-          <td>{{ c.category }}</td>
-          <td>{{ c.total_downloads }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+
+    <div class="section">
+      <div class="section-header">
+        Most visited pages
+        <span class="badge badge-blue">{{ top_pages|length }}</span>
+      </div>
+      <table>
+        <thead><tr><th>Path</th><th>Views</th></tr></thead>
+        <tbody>
+          {% for p in top_pages %}
+          <tr><td>{{ p.path }}</td><td>{{ p.views }}</td></tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: #aaa">No visits logged yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-header">By category</div>
+      <table>
+        <thead><tr><th>Category</th><th>Total downloads</th></tr></thead>
+        <tbody>
+          {% for c in category_stats %}
+          <tr><td>{{ c.category }}</td><td>{{ c.total_downloads }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-header">By folder (topic)</div>
+      <table>
+        <thead><tr><th>Folder</th><th>Total downloads</th></tr></thead>
+        <tbody>
+          {% for f in downloads_by_folder %}
+          <tr><td>{{ f.folder }}</td><td>{{ f.total }}</td></tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: #aaa">No downloads yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="section">
@@ -423,14 +390,7 @@
       <span class="badge badge-blue">{{ recent_downloads|length }}</span>
     </div>
     <table>
-      <thead>
-        <tr>
-          <th>Resource</th>
-          <th>User</th>
-          <th>IP</th>
-          <th>When</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Resource</th><th>User</th><th>IP</th><th>When</th></tr></thead>
       <tbody>
         {% for d in recent_downloads %}
         <tr>
@@ -446,4 +406,100 @@
     </table>
   </div>
 </div>
+
+{{ chart_traffic_labels|json_script:"chart-traffic-labels" }}
+{{ chart_traffic_visits|json_script:"chart-traffic-visits" }}
+{{ chart_traffic_visitors|json_script:"chart-traffic-visitors" }}
+{{ chart_traffic_logins|json_script:"chart-traffic-logins" }}
+{{ chart_download_labels|json_script:"chart-download-labels" }}
+{{ chart_download_counts|json_script:"chart-download-counts" }}
+{{ chart_folder_labels|json_script:"chart-folder-labels" }}
+{{ chart_folder_counts|json_script:"chart-folder-counts" }}
+{{ chart_button_labels|json_script:"chart-button-labels" }}
+{{ chart_button_counts|json_script:"chart-button-counts" }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  function readJSON(id) {
+    var el = document.getElementById(id);
+    return el ? JSON.parse(el.textContent) : [];
+  }
+
+  var NAVY = '#0f3c58', BLUE = '#0d6efd', GREEN = '#198754', AMBER = '#fd7e14', GRID = '#f0f0f0';
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = '#666';
+
+  new Chart(document.getElementById('chart-traffic'), {
+    type: 'line',
+    data: {
+      labels: readJSON('chart-traffic-labels'),
+      datasets: [
+        { label: 'Visits', data: readJSON('chart-traffic-visits'), borderColor: BLUE, backgroundColor: BLUE, tension: 0.3, pointRadius: 0 },
+        { label: 'Unique visitors', data: readJSON('chart-traffic-visitors'), borderColor: NAVY, backgroundColor: NAVY, tension: 0.3, pointRadius: 0 },
+        { label: 'Logins', data: readJSON('chart-traffic-logins'), borderColor: AMBER, backgroundColor: AMBER, tension: 0.3, pointRadius: 0 },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, grid: { color: GRID } },
+      },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } },
+    },
+  });
+
+  new Chart(document.getElementById('chart-downloads'), {
+    type: 'bar',
+    data: {
+      labels: readJSON('chart-download-labels'),
+      datasets: [{ label: 'Downloads', data: readJSON('chart-download-counts'), backgroundColor: GREEN, borderRadius: 3 }],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, grid: { color: GRID } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+
+  new Chart(document.getElementById('chart-folders'), {
+    type: 'bar',
+    data: {
+      labels: readJSON('chart-folder-labels'),
+      datasets: [{ label: 'Downloads', data: readJSON('chart-folder-counts'), backgroundColor: NAVY, borderRadius: 3 }],
+    },
+    options: {
+      indexAxis: 'y',
+      maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, grid: { color: GRID } },
+        y: { grid: { display: false } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+
+  new Chart(document.getElementById('chart-buttons'), {
+    type: 'bar',
+    data: {
+      labels: readJSON('chart-button-labels'),
+      datasets: [{ label: 'Clicks', data: readJSON('chart-button-counts'), backgroundColor: BLUE, borderRadius: 3 }],
+    },
+    options: {
+      indexAxis: 'y',
+      maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, grid: { color: GRID } },
+        y: { grid: { display: false } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+})();
+</script>
 {% endblock %}
