@@ -3,50 +3,98 @@
 
 {% block extrastyle %}{{ block.super }}
 <style>
-  #content-main { max-width: 1400px; }
+  /* ============================================================
+     Palette: validated per the project's dataviz method.
+     Categorical chart hues are the reference palette's slots 1-3
+     (blue/orange/aqua) - the only three that clear CVD separation
+     under BOTH adjacent and all-pairs testing in light mode
+     (validate_palette.js). Chrome/ink tokens are the site's own
+     (main.css --color-navy / --color-bootstrap-primary) plus the
+     skill's neutral ink/gridline scale for the chart surfaces.
+     Status red is the skill's fixed "critical" step, not an
+     eyeballed red, since it's reserved and never doubles as a
+     chart series color.
+     ============================================================ */
+  .dash {
+    --ink-primary:   #0b0b0b;
+    --ink-secondary: #52514e;
+    --ink-muted:     #898781;
+    --gridline:      #e1e0d9;
+    --surface:       #fff;
+    --page:          #f9f9f7;
+    --border:        rgba(11,11,11,0.10);
+
+    --navy:  #0f3c58;   /* site brand - chrome/text only, not a chart mark */
+    --blue:  #0d6efd;   /* site brand - chrome/accent only */
+
+    --series-1: #2a78d6;  /* validated slot 1 - blue */
+    --series-2: #eb6834;  /* validated slot 2 - orange */
+    --series-3: #1baf7a;  /* validated slot 3 - aqua (contrast WARN vs surface -
+                              mitigated below with a direct end-label, never
+                              used for text) */
+    --status-critical: #d03b3b;
+    --status-critical-wash: #fbe9e9;
+  }
   .dash * { box-sizing: border-box; }
-  .dash { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .dash {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink-primary);
+  }
   .dash .subtitle {
-    color: #666;
+    color: var(--ink-secondary);
     font-size: 13px;
-    margin: -8px 0 20px;
+    margin: -8px 0 22px;
   }
 
-  /* ---- KPI groups ---- */
-  .kpi-group { margin-bottom: 22px; }
+  /* ---- KPI stat tiles ---- */
+  .kpi-group { margin-bottom: 24px; }
   .kpi-group-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: .04em;
-    color: #888;
+    letter-spacing: .06em;
+    color: var(--ink-muted);
     margin-bottom: 8px;
   }
   .kpi-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 12px;
   }
   .kpi-card {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-left: 3px solid var(--kpi-accent, #0d6efd);
-    border-radius: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
     padding: 14px 16px;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+    box-shadow: 0 1px 2px rgba(11,11,11,.04);
+    position: relative;
+    overflow: hidden;
   }
-  .kpi-card.accent-blue   { --kpi-accent: #0d6efd; }
-  .kpi-card.accent-green  { --kpi-accent: #198754; }
-  .kpi-card.accent-amber  { --kpi-accent: #fd7e14; }
-  .kpi-card.accent-navy   { --kpi-accent: #0f3c58; }
-  .kpi-label { font-size: 12px; color: #888; margin-bottom: 6px; }
-  .kpi-value { font-size: 24px; font-weight: 600; color: #1a1a2e; line-height: 1.1; }
-  .kpi-sub { font-size: 12px; color: #999; margin-top: 4px; }
+  .kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--kpi-accent, var(--blue));
+  }
+  .kpi-card.accent-blue  { --kpi-accent: var(--blue); }
+  .kpi-card.accent-green { --kpi-accent: #198754; }
+  .kpi-card.accent-amber { --kpi-accent: #fd7e14; }
+  .kpi-card.accent-navy  { --kpi-accent: var(--navy); }
+  .kpi-label { font-size: 12px; color: var(--ink-secondary); margin-bottom: 6px; }
+  .kpi-value {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink-primary);
+    line-height: 1.1;
+    font-variant-numeric: normal;   /* proportional figures for display size - never tabular-nums here */
+  }
+  .kpi-sub { font-size: 12px; color: var(--ink-muted); margin-top: 4px; }
 
   /* ---- Section / chart cards ---- */
   .section {
-    background: #fff;
-    border: 1px solid #e5e5e5;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 8px;
     margin-bottom: 18px;
     overflow: hidden;
@@ -55,15 +103,15 @@
     display: flex;
     align-items: center;
     padding: 12px 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--gridline);
     gap: 8px;
     font-size: 13px;
     font-weight: 600;
-    color: #333;
+    color: var(--ink-primary);
   }
-  .badge { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
-  .badge-blue { background: #ddeeff; color: #1a4a7a; }
-  .badge-red  { background: #fde3e3; color: #9c2626; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 600; }
+  .badge-neutral { background: #eee; color: var(--ink-secondary); }
+  .badge-critical { background: var(--status-critical-wash); color: var(--status-critical); }
 
   .charts-grid {
     display: grid;
@@ -75,31 +123,59 @@
     .charts-grid { grid-template-columns: 1fr; }
   }
   .chart-card {
-    background: #fff;
-    border: 1px solid #e5e5e5;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 14px 16px 8px;
+    padding: 14px 16px 12px;
   }
   .chart-card h3 {
     font-size: 13px;
     font-weight: 600;
-    color: #333;
+    color: var(--ink-primary);
+    margin: 0 0 2px;
+  }
+  .chart-card .chart-caption {
+    font-size: 11px;
+    color: var(--ink-muted);
     margin: 0 0 10px;
   }
-  .chart-card .chart-wrap { position: relative; height: 240px; }
+  /* height sized to include the x-axis label band, per the "no nested
+     scroll" rule - the canvas is allowed to breathe, not clipped */
+  .chart-card .chart-wrap { position: relative; height: 260px; }
+
+  .view-data {
+    margin-top: 10px;
+    border-top: 1px solid var(--gridline);
+    padding-top: 8px;
+  }
+  .view-data summary {
+    font-size: 12px;
+    color: var(--ink-secondary);
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .view-data summary:hover { color: var(--ink-primary); }
+  .view-data table { margin-top: 8px; max-height: 220px; display: block; overflow-y: auto; }
 
   /* ---- Tables ---- */
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; padding: 9px 16px; color: #888; font-weight: 500; font-size: 12px; border-bottom: 1px solid #eee; }
-  td { padding: 9px 16px; border-bottom: 1px solid #eee; }
+  th {
+    text-align: left; padding: 9px 16px; color: var(--ink-muted);
+    font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .03em;
+    border-bottom: 1px solid var(--gridline);
+  }
+  td {
+    padding: 9px 16px; border-bottom: 1px solid var(--gridline);
+    font-variant-numeric: tabular-nums;  /* table columns align vertically */
+  }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #fafafa; }
+  tr:hover td { background: var(--page); }
 
   /* ---- Policy watch ---- */
-  .section-warn { border-color: #f3c9c9; }
-  .section-warn .section-header { background: #fff6f6; border-bottom-color: #f3c9c9; }
-  .flag-reason { font-size: 12px; color: #9c2626; }
-  .admin-link { font-size: 12px; color: #1a4a7a; text-decoration: none; font-weight: 500; white-space: nowrap; }
+  .section-warn { border-color: rgba(208,59,59,.28); }
+  .section-warn .section-header { background: var(--status-critical-wash); border-bottom-color: rgba(208,59,59,.28); }
+  .flag-reason { font-size: 12px; color: var(--status-critical); }
+  .admin-link { font-size: 12px; color: var(--blue); text-decoration: none; font-weight: 600; white-space: nowrap; }
   .admin-link:hover { text-decoration: underline; }
 
   .two-col {
@@ -115,12 +191,12 @@
 
 {% block content %}
 <div class="dash">
-  <p class="subtitle">Traffic, downloads, logins and policy watch - last updated on page load.</p>
+  <p class="subtitle">Traffic, downloads, logins and policy watch — last updated on page load.</p>
 
   <div class="section section-warn">
     <div class="section-header">
       Policy watch — possible ToS violations
-      <span class="badge badge-red">{{ total_flagged_accounts }}</span>
+      <span class="badge badge-critical">{{ total_flagged_accounts }}</span>
     </div>
     <table>
       <thead>
@@ -165,7 +241,7 @@
         </tr>
         {% endfor %}
         {% if not flagged_shared_ip_accounts and not flagged_bulk_download_accounts and not flagged_same_file_multi_ip and not flagged_shared_ip_logins %}
-        <tr><td colspan="4" style="color: #aaa">No suspicious activity detected.</td></tr>
+        <tr><td colspan="4" style="color: var(--ink-muted)">No suspicious activity detected.</td></tr>
         {% endif %}
       </tbody>
     </table>
@@ -271,20 +347,68 @@
 
   <div class="charts-grid">
     <div class="chart-card">
-      <h3>Traffic &amp; logins — last 30 days</h3>
+      <h3>Traffic &amp; logins</h3>
+      <p class="chart-caption">Last 30 days</p>
       <div class="chart-wrap"><canvas id="chart-traffic"></canvas></div>
+      <details class="view-data">
+        <summary>View data</summary>
+        <table>
+          <thead><tr><th>Date</th><th>Visits</th><th>Visitors</th><th>Logins</th></tr></thead>
+          <tbody>
+            {% for row in traffic_table_rows %}
+            <tr><td>{{ row.date }}</td><td>{{ row.visits }}</td><td>{{ row.visitors }}</td><td>{{ row.logins }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
     </div>
     <div class="chart-card">
-      <h3>Downloads — last 30 days</h3>
+      <h3>Downloads</h3>
+      <p class="chart-caption">Last 30 days</p>
       <div class="chart-wrap"><canvas id="chart-downloads"></canvas></div>
+      <details class="view-data">
+        <summary>View data</summary>
+        <table>
+          <thead><tr><th>Date</th><th>Downloads</th></tr></thead>
+          <tbody>
+            {% for row in download_table_rows %}
+            <tr><td>{{ row.date }}</td><td>{{ row.count }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
     </div>
     <div class="chart-card">
-      <h3>Downloads by folder (topic)</h3>
+      <h3>Downloads by folder</h3>
+      <p class="chart-caption">Grouped by topic, all time</p>
       <div class="chart-wrap"><canvas id="chart-folders"></canvas></div>
+      <details class="view-data">
+        <summary>View data</summary>
+        <table>
+          <thead><tr><th>Folder</th><th>Downloads</th></tr></thead>
+          <tbody>
+            {% for f in downloads_by_folder %}
+            <tr><td>{{ f.folder }}</td><td>{{ f.total }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
     </div>
     <div class="chart-card">
       <h3>Most clicked buttons</h3>
+      <p class="chart-caption">All time</p>
       <div class="chart-wrap"><canvas id="chart-buttons"></canvas></div>
+      <details class="view-data">
+        <summary>View data</summary>
+        <table>
+          <thead><tr><th>Button</th><th>Clicks</th></tr></thead>
+          <tbody>
+            {% for b in top_buttons %}
+            <tr><td>{{ b.label }}</td><td>{{ b.clicks }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
     </div>
   </div>
 
@@ -292,7 +416,7 @@
     <div class="section">
       <div class="section-header">
         Top resources
-        <span class="badge badge-blue">{{ top_resources|length }}</span>
+        <span class="badge badge-neutral">{{ top_resources|length }}</span>
       </div>
       <table>
         <thead><tr><th>Title</th><th>Category</th><th>Downloads</th></tr></thead>
@@ -300,7 +424,7 @@
           {% for r in top_resources %}
           <tr><td>{{ r.title }}</td><td>{{ r.get_category_display }}</td><td>{{ r.dl_count }}</td></tr>
           {% empty %}
-          <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+          <tr><td colspan="3" style="color: var(--ink-muted)">No downloads yet.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -309,7 +433,7 @@
     <div class="section">
       <div class="section-header">
         Top downloaders
-        <span class="badge badge-blue">{{ top_users|length }}</span>
+        <span class="badge badge-neutral">{{ top_users|length }}</span>
       </div>
       <table>
         <thead><tr><th>Username</th><th>Email</th><th>Downloads</th></tr></thead>
@@ -317,7 +441,7 @@
           {% for u in top_users %}
           <tr><td>{{ u.user__username }}</td><td>{{ u.user__email }}</td><td>{{ u.download_count }}</td></tr>
           {% empty %}
-          <tr><td colspan="3" style="color: #aaa">No downloads yet.</td></tr>
+          <tr><td colspan="3" style="color: var(--ink-muted)">No downloads yet.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -326,7 +450,7 @@
     <div class="section">
       <div class="section-header">
         Most frequent logins
-        <span class="badge badge-blue">{{ top_login_users|length }}</span>
+        <span class="badge badge-neutral">{{ top_login_users|length }}</span>
       </div>
       <table>
         <thead><tr><th>Username</th><th>Email</th><th>Logins</th></tr></thead>
@@ -334,7 +458,7 @@
           {% for u in top_login_users %}
           <tr><td>{{ u.user__username }}</td><td>{{ u.user__email }}</td><td>{{ u.login_count }}</td></tr>
           {% empty %}
-          <tr><td colspan="3" style="color: #aaa">No logins yet.</td></tr>
+          <tr><td colspan="3" style="color: var(--ink-muted)">No logins yet.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -343,7 +467,7 @@
     <div class="section">
       <div class="section-header">
         Most visited pages
-        <span class="badge badge-blue">{{ top_pages|length }}</span>
+        <span class="badge badge-neutral">{{ top_pages|length }}</span>
       </div>
       <table>
         <thead><tr><th>Path</th><th>Views</th></tr></thead>
@@ -351,7 +475,7 @@
           {% for p in top_pages %}
           <tr><td>{{ p.path }}</td><td>{{ p.views }}</td></tr>
           {% empty %}
-          <tr><td colspan="2" style="color: #aaa">No visits logged yet.</td></tr>
+          <tr><td colspan="2" style="color: var(--ink-muted)">No visits logged yet.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -377,7 +501,7 @@
           {% for f in downloads_by_folder %}
           <tr><td>{{ f.folder }}</td><td>{{ f.total }}</td></tr>
           {% empty %}
-          <tr><td colspan="2" style="color: #aaa">No downloads yet.</td></tr>
+          <tr><td colspan="2" style="color: var(--ink-muted)">No downloads yet.</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -387,7 +511,7 @@
   <div class="section">
     <div class="section-header">
       Recent downloads
-      <span class="badge badge-blue">{{ recent_downloads|length }}</span>
+      <span class="badge badge-neutral">{{ recent_downloads|length }}</span>
     </div>
     <table>
       <thead><tr><th>Resource</th><th>User</th><th>IP</th><th>When</th></tr></thead>
@@ -396,11 +520,11 @@
         <tr>
           <td>{{ d.resource.title }}</td>
           <td>{{ d.user.username|default:"—" }}</td>
-          <td style="color: #aaa">{{ d.ip_address|default:"—" }}</td>
-          <td style="color: #aaa">{{ d.downloaded_at }}</td>
+          <td style="color: var(--ink-muted)">{{ d.ip_address|default:"—" }}</td>
+          <td style="color: var(--ink-muted)">{{ d.downloaded_at }}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="4" style="color: #aaa">No downloads yet.</td></tr>
+        <tr><td colspan="4" style="color: var(--ink-muted)">No downloads yet.</td></tr>
         {% endfor %}
       </tbody>
     </table>
@@ -426,28 +550,92 @@
     return el ? JSON.parse(el.textContent) : [];
   }
 
-  var NAVY = '#0f3c58', BLUE = '#0d6efd', GREEN = '#198754', AMBER = '#fd7e14', GRID = '#f0f0f0';
+  var INK = '#0b0b0b', INK_MUTED = '#898781', GRID = '#e1e0d9', SURFACE = '#ffffff';
+  var SERIES_1 = '#2a78d6', SERIES_2 = '#eb6834', SERIES_3 = '#1baf7a';
+  var GREEN = '#198754';
+
+  Chart.defaults.font.family = "-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
   Chart.defaults.font.size = 12;
-  Chart.defaults.color = '#666';
+  Chart.defaults.color = INK_MUTED;
+  Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(11,11,11,0.92)';
+  Chart.defaults.plugins.tooltip.titleColor = '#fff';
+  Chart.defaults.plugins.tooltip.bodyColor = '#fff';
+  Chart.defaults.plugins.tooltip.cornerRadius = 6;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.boxPadding = 4;
+  Chart.defaults.plugins.tooltip.usePointStyle = true;
+
+  // Direct end-of-line labels: drawn once per series at its last point, in
+  // ink (never the series color - text never wears data color) with a small
+  // colored dot beside it carrying identity. Doubles as the required relief
+  // for the aqua series, whose fill sits under the 3:1 contrast floor.
+  var endLabelPlugin = {
+    id: 'endLabels',
+    afterDatasetsDraw: function (chart) {
+      var ctx = chart.ctx;
+      chart.data.datasets.forEach(function (ds, i) {
+        var meta = chart.getDatasetMeta(i);
+        if (meta.hidden || !meta.data.length) return;
+        var point = meta.data[meta.data.length - 1];
+        var value = ds.data[ds.data.length - 1];
+        ctx.save();
+        ctx.fillStyle = ds.borderColor;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = '600 11px -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+        ctx.fillStyle = INK;
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ds.label + ': ' + value, point.x + 8, point.y);
+        ctx.restore();
+      });
+    },
+  };
 
   new Chart(document.getElementById('chart-traffic'), {
     type: 'line',
     data: {
       labels: readJSON('chart-traffic-labels'),
       datasets: [
-        { label: 'Visits', data: readJSON('chart-traffic-visits'), borderColor: BLUE, backgroundColor: BLUE, tension: 0.3, pointRadius: 0 },
-        { label: 'Unique visitors', data: readJSON('chart-traffic-visitors'), borderColor: NAVY, backgroundColor: NAVY, tension: 0.3, pointRadius: 0 },
-        { label: 'Logins', data: readJSON('chart-traffic-logins'), borderColor: AMBER, backgroundColor: AMBER, tension: 0.3, pointRadius: 0 },
+        {
+          label: 'Visits', data: readJSON('chart-traffic-visits'),
+          borderColor: SERIES_1, backgroundColor: SERIES_1,
+          borderWidth: 2, borderCapStyle: 'round', borderJoinStyle: 'round',
+          tension: 0.3, pointRadius: 0, pointHoverRadius: 5,
+          pointHoverBackgroundColor: SERIES_1, pointHoverBorderColor: SURFACE, pointHoverBorderWidth: 2,
+        },
+        {
+          label: 'Unique visitors', data: readJSON('chart-traffic-visitors'),
+          borderColor: SERIES_2, backgroundColor: SERIES_2,
+          borderWidth: 2, borderCapStyle: 'round', borderJoinStyle: 'round',
+          tension: 0.3, pointRadius: 0, pointHoverRadius: 5,
+          pointHoverBackgroundColor: SERIES_2, pointHoverBorderColor: SURFACE, pointHoverBorderWidth: 2,
+        },
+        {
+          label: 'Logins', data: readJSON('chart-traffic-logins'),
+          borderColor: SERIES_3, backgroundColor: SERIES_3,
+          borderWidth: 2, borderCapStyle: 'round', borderJoinStyle: 'round',
+          tension: 0.3, pointRadius: 0, pointHoverRadius: 5,
+          pointHoverBackgroundColor: SERIES_3, pointHoverBorderColor: SURFACE, pointHoverBorderWidth: 2,
+        },
       ],
     },
+    plugins: [endLabelPlugin],
     options: {
+      layout: { padding: { right: 90 } },
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       scales: {
-        x: { grid: { display: false } },
-        y: { beginAtZero: true, grid: { color: GRID } },
+        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } },
+        y: { beginAtZero: true, grid: { color: GRID }, border: { display: false } },
       },
-      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } },
+      plugins: {
+        legend: {
+          position: 'bottom', align: 'start',
+          labels: { usePointStyle: true, pointStyle: 'line', boxWidth: 20, color: INK, padding: 14 },
+        },
+        tooltip: { usePointStyle: true, pointStyle: 'line' },
+      },
     },
   });
 
@@ -455,13 +643,17 @@
     type: 'bar',
     data: {
       labels: readJSON('chart-download-labels'),
-      datasets: [{ label: 'Downloads', data: readJSON('chart-download-counts'), backgroundColor: GREEN, borderRadius: 3 }],
+      datasets: [{
+        label: 'Downloads', data: readJSON('chart-download-counts'),
+        backgroundColor: GREEN, borderRadius: 4, borderSkipped: 'bottom',
+        maxBarThickness: 22, categoryPercentage: 0.7, barPercentage: 0.9,
+      }],
     },
     options: {
       maintainAspectRatio: false,
       scales: {
-        x: { grid: { display: false } },
-        y: { beginAtZero: true, grid: { color: GRID } },
+        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
+        y: { beginAtZero: true, grid: { color: GRID }, border: { display: false } },
       },
       plugins: { legend: { display: false } },
     },
@@ -471,13 +663,17 @@
     type: 'bar',
     data: {
       labels: readJSON('chart-folder-labels'),
-      datasets: [{ label: 'Downloads', data: readJSON('chart-folder-counts'), backgroundColor: NAVY, borderRadius: 3 }],
+      datasets: [{
+        label: 'Downloads', data: readJSON('chart-folder-counts'),
+        backgroundColor: SERIES_1, borderRadius: 4, borderSkipped: 'left',
+        maxBarThickness: 22, categoryPercentage: 0.7, barPercentage: 0.9,
+      }],
     },
     options: {
       indexAxis: 'y',
       maintainAspectRatio: false,
       scales: {
-        x: { beginAtZero: true, grid: { color: GRID } },
+        x: { beginAtZero: true, grid: { color: GRID }, border: { display: false } },
         y: { grid: { display: false } },
       },
       plugins: { legend: { display: false } },
@@ -488,13 +684,17 @@
     type: 'bar',
     data: {
       labels: readJSON('chart-button-labels'),
-      datasets: [{ label: 'Clicks', data: readJSON('chart-button-counts'), backgroundColor: BLUE, borderRadius: 3 }],
+      datasets: [{
+        label: 'Clicks', data: readJSON('chart-button-counts'),
+        backgroundColor: SERIES_2, borderRadius: 4, borderSkipped: 'left',
+        maxBarThickness: 22, categoryPercentage: 0.7, barPercentage: 0.9,
+      }],
     },
     options: {
       indexAxis: 'y',
       maintainAspectRatio: false,
       scales: {
-        x: { beginAtZero: true, grid: { color: GRID } },
+        x: { beginAtZero: true, grid: { color: GRID }, border: { display: false } },
         y: { grid: { display: false } },
       },
       plugins: { legend: { display: false } },

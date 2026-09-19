@@ -453,6 +453,19 @@ def analytics_dashboard_view(request):
     # Chart data (fed to json_script in the template - Chart.js reads these)
     # =========================
 
+    # "View data" table twins for each chart - every value a chart shows
+    # must also be reachable without hovering it.
+    traffic_table_rows = list(reversed([
+        {
+            'date': v['date'],
+            'visits': v['views'],
+            'visitors': v['visitors'],
+            'logins': daily_login_stats[i],
+        }
+        for i, v in enumerate(daily_visit_stats)
+    ]))
+    download_table_rows = list(reversed(daily_stats))
+
     chart_traffic_labels = [d['date'] for d in daily_visit_stats]
     chart_traffic_visits = [d['views'] for d in daily_visit_stats]
     chart_traffic_visitors = [d['visitors'] for d in daily_visit_stats]
@@ -525,6 +538,10 @@ def analytics_dashboard_view(request):
 
         # downloads by folder
         'downloads_by_folder': downloads_by_folder,
+
+        # table-view twins
+        'traffic_table_rows': traffic_table_rows,
+        'download_table_rows': download_table_rows,
 
         # chart payloads
         'chart_traffic_labels': chart_traffic_labels,
