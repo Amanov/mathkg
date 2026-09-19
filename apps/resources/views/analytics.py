@@ -24,6 +24,7 @@ SHARED_IP_WINDOW_HOURS = 24
 SHARED_IP_THRESHOLD = 3
 BULK_DOWNLOAD_WINDOW_HOURS = 24
 BULK_DOWNLOAD_THRESHOLD = 30
+SAME_FILE_MULTI_IP_THRESHOLD = 2
 
 
 @staff_member_required(login_url='login')
@@ -168,6 +169,26 @@ def analytics_dashboard_view(request):
         .order_by('-dl_count')
     )
 
+    # Same user + same file, downloaded from 2+ distinct IPs - a much more
+    # direct account-sharing signal than "downloaded from several IPs that
+    # day" (a teacher legitimately switching between home wifi and a phone
+    # hotspot for DIFFERENT files isn't suspicious; needing the exact same
+    # worksheet again from a brand-new IP usually means someone else has
+    # the login). All-time, not windowed, since a second household using
+    # the account for the same file two weeks apart is still sharing.
+    flagged_same_file_multi_ip = (
+        ResourceDownload.objects
+        .filter(user__isnull=False)
+        .exclude(ip_address__isnull=True)
+        .values('user__id', 'user__username', 'user__email', 'resource__id', 'resource__title')
+        .annotate(
+            distinct_ips=Count('ip_address', distinct=True),
+            dl_count=Count('id'),
+        )
+        .filter(distinct_ips__gte=SAME_FILE_MULTI_IP_THRESHOLD)
+        .order_by('-distinct_ips', '-dl_count')
+    )
+
     def with_admin_link(rows):
         rows = list(rows)
         for row in rows:
@@ -176,7 +197,12 @@ def analytics_dashboard_view(request):
 
     flagged_shared_ip_accounts = with_admin_link(flagged_shared_ip_accounts)
     flagged_bulk_download_accounts = with_admin_link(flagged_bulk_download_accounts)
-    total_flagged_accounts = len(flagged_shared_ip_accounts) + len(flagged_bulk_download_accounts)
+    flagged_same_file_multi_ip = with_admin_link(flagged_same_file_multi_ip)
+    total_flagged_accounts = (
+        len(flagged_shared_ip_accounts)
+        + len(flagged_bulk_download_accounts)
+        + len(flagged_same_file_multi_ip)
+    )
 
     # =========================
     # Downloads
@@ -299,6 +325,7 @@ def analytics_dashboard_view(request):
         'top_buttons': top_buttons,
         'flagged_shared_ip_accounts': flagged_shared_ip_accounts,
         'flagged_bulk_download_accounts': flagged_bulk_download_accounts,
+        'flagged_same_file_multi_ip': flagged_same_file_multi_ip,
         'total_flagged_accounts': total_flagged_accounts,
         'shared_ip_window_hours': SHARED_IP_WINDOW_HOURS,
         'shared_ip_threshold': SHARED_IP_THRESHOLD,

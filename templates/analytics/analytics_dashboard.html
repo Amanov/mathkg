@@ -164,8 +164,16 @@
           <td><a class="admin-link" href="{{ a.admin_url }}">Review in admin →</a></td>
         </tr>
         {% endfor %}
-        {% if not flagged_shared_ip_accounts and not flagged_bulk_download_accounts %}
-        <tr><td colspan="4" style="color: #aaa">No suspicious activity in the last {{ shared_ip_window_hours }}h.</td></tr>
+        {% for a in flagged_same_file_multi_ip %}
+        <tr>
+          <td>{{ a.user__username }}</td>
+          <td>{{ a.user__email }}</td>
+          <td class="flag-reason">"{{ a.resource__title }}" downloaded {{ a.dl_count }} times from {{ a.distinct_ips }} different IPs — possible account sharing</td>
+          <td><a class="admin-link" href="{{ a.admin_url }}">Review in admin →</a></td>
+        </tr>
+        {% endfor %}
+        {% if not flagged_shared_ip_accounts and not flagged_bulk_download_accounts and not flagged_same_file_multi_ip %}
+        <tr><td colspan="4" style="color: #aaa">No suspicious activity detected.</td></tr>
         {% endif %}
       </tbody>
     </table>
