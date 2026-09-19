@@ -50,25 +50,25 @@
           <li class="nav-item" id="searchForm">
             <form class="d-flex my-1 my-lg-0">
               <input class="form-control me-2" type="search" placeholder="Издөө" style="width: 150px;" aria-label="Search">
-              <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-search"></i></button>
+              <button class="btn btn-success" type="submit" data-track="Издөө"><i class="fa fa-fw fa-search"></i></button>
             </form>
           </li>
-          
+
           <li class="nav-item d-flex flex-wrap gap-1 ms-lg-2">
             {% if request.user.is_authenticated %}
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}">
+              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}" data-track="Башкы бет (header)">
                 <i class="fa fa-fw fa-home" style="color:red"></i> Башкы бет
               </a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'logout' %}">
+              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'logout' %}" data-track="Чыгуу">
                 <i class="fa fa-sign-out" style="color:red"></i> Чыгуу
               </a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'account' %}">
+              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'account' %}" data-track="Аккаунт (header)">
                 <i class="fa fa-user" style="color:red;"></i> {{ request.user.username }}
               </a>
             {% else %}
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}"><i class="fa fa-fw fa-home" style="color:red;"></i> Башкы бет</a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'login' %}"><i class="fa fa-fw fa-user" style="color:red;"></i>Кирүү</a>
-              <button type="button" class="btn btn-success btn-sm topMenu text-uppercase" data-bs-toggle="modal" data-bs-target="#subscribeModal"><i class="fa fa-user-plus" style="color:red;"></i> Катталуу</button>
+              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}" data-track="Башкы бет (header)"><i class="fa fa-fw fa-home" style="color:red;"></i> Башкы бет</a>
+              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'login' %}" data-track="Кирүү (header)"><i class="fa fa-fw fa-user" style="color:red;"></i>Кирүү</a>
+              <button type="button" class="btn btn-success btn-sm topMenu text-uppercase" data-bs-toggle="modal" data-bs-target="#subscribeModal" data-track="Катталуу (header)"><i class="fa fa-user-plus" style="color:red;"></i> Катталуу</button>
             {% endif %}
           </li>
         </ul>

@@ -7,6 +7,7 @@ from .models import (
     Resource,
     ResourceDownload,
     SiteVisit,
+    ButtonClick,
     MenuItem,
 )
 
@@ -145,6 +146,49 @@ class SiteVisitAdmin(admin.ModelAdmin):
     )
 
     date_hierarchy = "visited_at"
+
+    list_per_page = 50
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(ButtonClick)
+class ButtonClickAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "label",
+        "path",
+        "user",
+        "ip_address",
+        "clicked_at",
+    )
+
+    list_filter = (
+        "clicked_at",
+    )
+
+    search_fields = (
+        "label",
+        "path",
+        "user__username",
+        "ip_address",
+    )
+
+    readonly_fields = (
+        "label",
+        "path",
+        "session_key",
+        "user",
+        "ip_address",
+        "clicked_at",
+    )
+
+    ordering = (
+        "-clicked_at",
+    )
+
+    date_hierarchy = "clicked_at"
 
     list_per_page = 50
 

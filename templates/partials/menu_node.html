@@ -7,7 +7,8 @@
         <li class="{% if parent %}dropdown-submenu{% else %}nav-item dropdown{% endif %}">
             <a href="#"
                class="{% if parent %}dropdown-item{% else %}mymenu dropdown-toggle{% endif %}"
-               {% if not parent %}data-bs-toggle="dropdown" aria-expanded="false"{% endif %}>
+               {% if not parent %}data-bs-toggle="dropdown" aria-expanded="false"{% endif %}
+               data-track="Меню: {{ item.title }}">
                 {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
                 <span>{{ item.title }}</span>
             </a>
@@ -25,7 +26,8 @@
             {# of button while that's still pending, only that it isn't         #}
             {# clickable-to-expand (no chevron, since it has nothing to open).   #}
             <a href="{% safe_url item.url_name %}"
-               class="{% if parent %}dropdown-item{% else %}mymenu{% endif %}">
+               class="{% if parent %}dropdown-item{% else %}mymenu{% endif %}"
+               data-track="Меню: {{ item.title }}">
                 {% if item.icon and not parent %}<i class="{{ item.icon }}"></i>{% endif %}
                 <span>{{ item.title }}</span>
             </a>

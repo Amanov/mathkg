@@ -19,6 +19,7 @@ from apps.resources.views import (
     resources_view,
 
     download_resource_view,
+    track_click_view,
     
 
 
@@ -85,6 +86,7 @@ urlpatterns = [
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
+    path('track-click/', track_click_view, name='track_click'),
 
     # Resources
     path('resources/download/<int:pk>/', download_resource_view, name='download_resource'),

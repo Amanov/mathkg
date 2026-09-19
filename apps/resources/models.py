@@ -329,6 +329,46 @@ class SiteVisit(models.Model):
         return f"{who} - {self.path}"
 
 
+class ButtonClick(models.Model):
+    label = models.CharField(
+        max_length=120
+    )
+
+    path = models.CharField(
+        max_length=255,
+        blank=True
+    )
+
+    session_key = models.CharField(
+        max_length=40,
+        blank=True
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    ip_address = models.GenericIPAddressField(
+        null=True,
+        blank=True
+    )
+
+    clicked_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ['-clicked_at']
+        verbose_name = 'Button Click'
+        verbose_name_plural = 'Button Clicks'
+
+    def __str__(self):
+        return f"{self.label} - {self.clicked_at:%Y-%m-%d %H:%M}"
+
+
 # for data driven menu
 
 class MenuItem(models.Model):

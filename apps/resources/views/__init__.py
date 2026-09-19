@@ -23,6 +23,10 @@ from .analytics import (
     analytics_dashboard_view,
 )
 
+from .tracking import (
+    track_click_view,
+)
+
 from .onduktar import onedigitarithmetics_view
 
 from .big4 import big4_view
