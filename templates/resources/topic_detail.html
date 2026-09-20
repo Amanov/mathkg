@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ topic.title }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.topic-subtopic-card{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:24px;
+    margin-bottom:20px;
+    background:white;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    transition:0.2s;
+}
+
+.topic-subtopic-card:hover{
+    border-color:rgb(34,133,195);
+    box-shadow:0 4px 16px rgba(15,23,42,.08);
+    color:inherit;
+}
+
+</style>
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4">
+            {{ topic.title }}
+        </h1>
+    </div>
+
+    <div class="row">
+        {% for subtopic in subtopics %}
+            <div class="col-md-6">
+                <a class="topic-subtopic-card" href="{% url 'subtopic_detail' topic.slug subtopic.slug %}">
+                    <h4>{{ subtopic.title }}</h4>
+                </a>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    Бул темада азырынча бөлүм жок.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

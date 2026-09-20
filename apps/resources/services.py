@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from .models import Resource
+from .models import LEARNING_GOALS, Resource
 
 
 def build_topic_sections(subtopic):
@@ -30,7 +30,7 @@ def build_topic_sections(subtopic):
     sections = []
 
     learning_goal_names = dict(
-        Resource.LEARNING_GOALS
+        LEARNING_GOALS
     )
 
     for goal, blocks in grouped.items():
