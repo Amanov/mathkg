@@ -137,8 +137,13 @@ class Resource(models.Model):
         blank=True,
         related_name="resources"
     )
-    
-    
+
+    subsubtopic = models.ForeignKey("SubSubtopic",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="resources"
+    )
 
     learning_goal = models.CharField(
         max_length=50,

@@ -3,14 +3,19 @@ from collections import defaultdict
 from .models import LEARNING_GOALS, Resource
 
 
-def build_topic_sections(subtopic):
+def build_topic_sections(subtopic, subsubtopic=None):
 
     resources = (
         Resource.objects
-        .select_related("topic", "subtopic")
+        .select_related("topic", "subtopic", "subsubtopic")
         .filter(
             subtopic=subtopic,
-            is_active=True
+            is_active=True,
+            **(
+                {"subsubtopic": subsubtopic}
+                if subsubtopic is not None
+                else {"subsubtopic__isnull": True}
+            )
         )
     )
 

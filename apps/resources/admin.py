@@ -50,6 +50,7 @@ class ResourceAdmin(admin.ModelAdmin):
         "title",
         "topic",
         "subtopic",
+        "subsubtopic",
         "learning_goal",
         "activity_type",
         "difficulty",
@@ -61,6 +62,7 @@ class ResourceAdmin(admin.ModelAdmin):
     list_filter = (
         "topic",
         "subtopic",
+        "subsubtopic",
         "learning_goal",
         "activity_type",
         "difficulty",

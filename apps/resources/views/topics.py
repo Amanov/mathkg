@@ -69,7 +69,7 @@ def subsubtopic_detail(request, topic_slug, subtopic_slug, subsubtopic_slug):
     topic = get_object_or_404(Topic, slug=topic_slug)
     subtopic = get_object_or_404(Subtopic, slug=subtopic_slug, topic=topic)
     subsubtopic = get_object_or_404(SubSubtopic, slug=subsubtopic_slug, subtopic=subtopic)
-    sections = build_topic_sections(subtopic)
+    sections = build_topic_sections(subtopic, subsubtopic)
     return render(request, 'resources/topic_page.html', {
         'topic': topic,
         'subtopic': subtopic,
