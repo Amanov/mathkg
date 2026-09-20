@@ -187,16 +187,112 @@ TAXONOMY = {
             },
         },
     },
+    'Геометрия': {
+        'slug': 'geometry',
+        'menu_order_start': 1,
+        'subtopics': {
+            'Бурчтар': {
+                'slug': 'angles',
+                'subsubtopics': {
+                    'Негизги бурчтар': 'basic-angles',
+                    'Параллель сызыктар': 'parallel-lines',
+                    'Көп бурчтуктар': 'polygons',
+                },
+            },
+            'Аянт, периметр жана көлөм': {
+                'slug': 'area-perimeter-volume',
+                'subsubtopics': {
+                    'Аянт жана периметр': 'area-and-perimeter',
+                    'Тегеректер': 'circles',
+                    'Көлөм жана бет аянты': 'volume-and-surface-area',
+                },
+            },
+            'Түрлөндүрүүлөр': {
+                'slug': 'transformations',
+                'subsubtopics': {
+                    '2D түрлөндүрүүлөр': '2d-transformations',
+                },
+            },
+            'Пифагор жана тригонометрия': {
+                'slug': 'pythagoras-trigonometry',
+                'subsubtopics': {
+                    'Тик бурчтуу үч бурчтуктар': 'right-angled-triangles',
+                    'Тик эмес бурчтуу үч бурчтуктар': 'non-right-angled-triangles',
+                    'Тереңдетилген тригонометрия': 'advanced-trigonometry',
+                },
+            },
+            'Векторлор': {
+                'slug': 'vectors',
+                'subsubtopics': {
+                    'Векторлор менен эсептөөлөр': 'vector-arithmetic',
+                    'Векторлук геометрия': 'vector-geometry',
+                },
+            },
+            'Фигуралардын касиеттери': {
+                'slug': 'properties-of-shapes',
+                'subsubtopics': {
+                    '2D жана 3D фигуралар': '2d-3d-shapes',
+                    'Курулуштар жана геометриялык орундар': 'constructions-and-loci',
+                },
+            },
+        },
+    },
+    'Ыктымалдуулук': {
+        'slug': 'probability',
+        'menu_order_start': 1,
+        'subtopics': {
+            'Негизги ыктымалдуулук': {
+                'slug': 'basic-probability',
+                'subsubtopics': {
+                    'Жеке окуялар': 'single-events',
+                },
+            },
+            'Айкалышкан окуялар': {
+                'slug': 'combined-events',
+                'subsubtopics': {
+                    'Диаграммалар': 'diagrams',
+                    'Дарак диаграммалары': 'tree-diagrams',
+                },
+            },
+        },
+    },
+    'Дата': {
+        'slug': 'statistics',
+        'menu_order_start': 1,
+        'subtopics': {
+            'Орточо маанилер жана чачыроо': {
+                'slug': 'averages-and-spread',
+                'subsubtopics': {
+                    'Негизги орточо маанилер': 'basic-averages',
+                    'Жыштык таблицалары': 'frequency-tables',
+                },
+            },
+            'Маалыматтарды сүрөттөө': {
+                'slug': 'data-representation',
+                'subsubtopics': {
+                    'Диаграммалар жана графиктер': 'charts-and-graphs',
+                    'Тереңдетилген маалымат сүрөттөө': 'advanced-data-representation',
+                },
+            },
+            'Маалымат чогултуу': {
+                'slug': 'data-collection',
+                'subsubtopics': {
+                    'Тандап алуу': 'sampling',
+                },
+            },
+        },
+    },
 }
 
 
 class Command(BaseCommand):
     help = (
         "Builds the Topic/Subtopic/Sub-subtopic content tree (translated "
-        "to Kyrgyz) under the existing Сандар/Пропорция/Алгебра menu "
-        "items, and wires matching MenuItem entries so it's browsable "
-        "from the nav. Idempotent - safe to re-run. Pass --undo to remove "
-        "everything it adds; existing manually-added items (e.g. under "
+        "to Kyrgyz) under the existing Сандар/Пропорция/Алгебра/Геометрия/"
+        "Ыктымалдуулук/Дата menu items, and wires matching MenuItem "
+        "entries so it's browsable from the nav. Idempotent - safe to "
+        "re-run. Pass --undo to remove everything it adds; existing "
+        "manually-added items (e.g. under "
         "Сандар) are never touched."
     )
 
