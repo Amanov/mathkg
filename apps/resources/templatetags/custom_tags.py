@@ -24,3 +24,13 @@ def safe_url(url_name):
         return reverse(url_name)
     except NoReverseMatch:
         return '#'
+
+
+@register.simple_tag
+def menu_item_url(item):
+    """A MenuItem's link: its Topic/Subtopic/Sub-subtopic pick if it has
+    one (the most specific level set), else its plain url_name, else '#'."""
+    resolved = item.get_resolved_url()
+    if resolved:
+        return resolved
+    return safe_url(item.url_name)

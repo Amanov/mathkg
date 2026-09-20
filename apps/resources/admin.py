@@ -240,7 +240,8 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'parent',
-        'order'
+        'order',
+        'link_target',
     )
 
     list_filter = (
@@ -251,3 +252,21 @@ class MenuItemAdmin(admin.ModelAdmin):
         'parent',
         'order'
     )
+
+    fields = (
+        'title',
+        'parent',
+        'order',
+        'topic',
+        'subtopic',
+        'subsubtopic',
+        'url_name',
+    )
+
+    @admin.display(description='Links to')
+    def link_target(self, obj):
+        if obj.subsubtopic_id or obj.subtopic_id or obj.topic_id:
+            return obj.get_resolved_url() or '(broken topic link)'
+        if obj.url_name:
+            return obj.url_name
+        return '—'

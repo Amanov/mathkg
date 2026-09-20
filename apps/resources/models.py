@@ -1,5 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
+from django.urls import reverse, NoReverseMatch
 
 # =====================================================
 
@@ -415,13 +417,50 @@ class MenuItem(models.Model):
     url_name = models.CharField(
         max_length=200,
         blank=True,
-        null=True
+        null=True,
+        help_text=(
+            "Only for a fixed, argument-less page (e.g. 'directed_numbers'). "
+            "To link to a topic/subtopic/sub-subtopic page, use the Topic/"
+            "Subtopic/Sub-subtopic fields below instead - they take "
+            "priority over this one when set."
+        ),
     )
-   
+
 
     slug = models.SlugField(
     blank=True,
     null=True
+    )
+
+    # Linking straight to a browsable content page needs up to three
+    # slugs (topic/subtopic/subsubtopic_detail all take slug arguments),
+    # which a single free-text field can't hold safely - these give staff
+    # a plain dropdown picker instead of hand-typed, typo-prone slugs.
+    topic = models.ForeignKey(
+        'Topic',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='menu_items',
+        help_text="Links to this topic's page. Leave Subtopic/Sub-subtopic blank for a topic-level link.",
+    )
+
+    subtopic = models.ForeignKey(
+        'Subtopic',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='menu_items',
+        help_text="Must belong to the Topic selected above.",
+    )
+
+    subsubtopic = models.ForeignKey(
+        'SubSubtopic',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='menu_items',
+        help_text="Must belong to the Subtopic selected above.",
     )
 
     order = models.PositiveIntegerField(default=0)
@@ -431,3 +470,30 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.title
+
+    def clean(self):
+        if self.subtopic_id and not self.topic_id:
+            raise ValidationError("Pick a Topic before picking a Subtopic.")
+        if self.subtopic_id and self.topic_id and self.subtopic.topic_id != self.topic_id:
+            raise ValidationError("That Subtopic doesn't belong to the selected Topic.")
+        if self.subsubtopic_id and not self.subtopic_id:
+            raise ValidationError("Pick a Subtopic before picking a Sub-subtopic.")
+        if self.subsubtopic_id and self.subtopic_id and self.subsubtopic.subtopic_id != self.subtopic_id:
+            raise ValidationError("That Sub-subtopic doesn't belong to the selected Subtopic.")
+
+    def get_resolved_url(self):
+        """The URL for a topic/subtopic/sub-subtopic link, most specific
+        first - or None if none of those three fields are set (in which
+        case the template falls back to url_name)."""
+        try:
+            if self.subsubtopic_id:
+                return reverse('subsubtopic_detail', args=[
+                    self.topic.slug, self.subtopic.slug, self.subsubtopic.slug,
+                ])
+            if self.subtopic_id:
+                return reverse('subtopic_detail', args=[self.topic.slug, self.subtopic.slug])
+            if self.topic_id:
+                return reverse('topic_detail', args=[self.topic.slug])
+        except NoReverseMatch:
+            return None
+        return None
