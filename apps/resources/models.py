@@ -200,6 +200,16 @@ class Resource(models.Model):
         self.download_count += 1
         self.save(update_fields=['download_count'])
 
+    def clean(self):
+        if self.subtopic_id and not self.topic_id:
+            raise ValidationError("Pick a Topic before picking a Subtopic.")
+        if self.subtopic_id and self.topic_id and self.subtopic.topic_id != self.topic_id:
+            raise ValidationError("That Subtopic doesn't belong to the selected Topic.")
+        if self.subsubtopic_id and not self.subtopic_id:
+            raise ValidationError("Pick a Subtopic before picking a Sub-subtopic.")
+        if self.subsubtopic_id and self.subtopic_id and self.subsubtopic.subtopic_id != self.subtopic_id:
+            raise ValidationError("That Sub-subtopic doesn't belong to the selected Subtopic.")
+
     def __str__(self):
         return self.title
 

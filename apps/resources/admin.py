@@ -59,6 +59,19 @@ class ResourceAdmin(admin.ModelAdmin):
         "download_count",
     )
 
+    # Editable straight from the list: filter by Topic in the sidebar (below)
+    # to narrow the rows down, then pick Subtopic/Sub-subtopic/Learning goal
+    # from the dropdowns on each row and hit "Save" - no need to open every
+    # Resource's own edit page one at a time.
+    list_display_links = ("title",)
+
+    list_editable = (
+        "topic",
+        "subtopic",
+        "subsubtopic",
+        "learning_goal",
+    )
+
     list_filter = (
         "topic",
         "subtopic",
