@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Жыйынтык{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center" style="max-width: 600px;">
+
+    <h1 class="mb-4">Рахмат, {{ attempt.student_name }}!</h1>
+
+    <div class="alert alert-success">
+        <h2 class="mb-0">{{ attempt.score }} / {{ total_marks }}</h2>
+        <p class="mb-0">упай топтодуңуз</p>
+    </div>
+
+    <p class="text-muted mt-4">"{{ exam.title }}" тести аяктады.</p>
+
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Суроолор банкы{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Менин суроолорум</h1>
+        <a class="btn btn-success" href="{% url 'question_create' %}">+ Жаңы суроо кошуу</a>
+    </div>
+
+    {% if questions %}
+        <div class="table-responsive">
+            <table class="table table-bordered bg-white">
+                <thead>
+                    <tr>
+                        <th>Суроо</th>
+                        <th>Түрү</th>
+                        <th>Тема</th>
+                        <th>Упай</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in questions %}
+                        <tr>
+                            <td>{{ q.text|truncatewords:12 }}</td>
+                            <td>{{ q.get_question_type_display }}</td>
+                            <td>{{ q.topic.title|default:"—" }}</td>
+                            <td>{{ q.marks }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            Азырынча суроо кошпоптурсуз. "Жаңы суроо кошуу" баскычын басып баштаңыз.
+        </div>
+    {% endif %}
+
+    <a class="btn btn-outline-primary mt-3" href="{% url 'exam_list' %}">Тесттерге өтүү</a>
+
+</div>
+{% endblock %}

@@ -32,6 +32,16 @@ from apps.resources.views import (
 
     # onduktar
     onedigitarithmetics_view,
+
+    # question bank / online tests
+    question_bank_view,
+    question_create_view,
+    exam_list_view,
+    exam_create_view,
+    exam_detail_view,
+    exam_take_view,
+    exam_submit_view,
+    exam_result_view,
 )
 
 from apps.account.views import (
@@ -91,6 +101,16 @@ urlpatterns = [
     # Resources
     path('resources/download/<int:pk>/', download_resource_view, name='download_resource'),
     path('resources/', resources_view, name='resources'),
+
+    # Question bank / online tests
+    path('questions/', question_bank_view, name='question_bank'),
+    path('questions/create/', question_create_view, name='question_create'),
+    path('tests/', exam_list_view, name='exam_list'),
+    path('tests/create/', exam_create_view, name='exam_create'),
+    path('tests/<int:pk>/', exam_detail_view, name='exam_detail'),
+    path('t/<str:access_code>/', exam_take_view, name='exam_take'),
+    path('t/<str:access_code>/submit/', exam_submit_view, name='exam_submit'),
+    path('t/<str:access_code>/result/<int:attempt_id>/', exam_result_view, name='exam_result'),
 
     # Password management
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),

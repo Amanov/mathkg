@@ -32,3 +32,14 @@ from .onduktar import onedigitarithmetics_view
 from .big4 import big4_view
 
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
+
+from .exams import (
+    question_bank_view,
+    question_create_view,
+    exam_list_view,
+    exam_create_view,
+    exam_detail_view,
+    exam_take_view,
+    exam_submit_view,
+    exam_result_view,
+)

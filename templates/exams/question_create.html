@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Жаңы суроо{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 720px;">
+
+    <h1 class="mb-4">Жаңы суроо кошуу</h1>
+
+    {% if errors %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Суроонун түрү</label>
+            <select class="form-select" name="question_type" id="question_type" onchange="toggleChoices()">
+                <option value="mcq">Көп тандоолуу (A/B/C/D)</option>
+                <option value="short">Кыска жооп</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Суроонун тексти</label>
+            <textarea class="form-control" name="text" rows="3" required>{{ posted.text }}</textarea>
+        </div>
+
+        <div id="mcq-fields">
+            <div class="row mb-3">
+                <div class="col-md-6 mb-2">
+                    <label class="form-label">A варианты</label>
+                    <input class="form-control" name="choice_a" value="{{ posted.choice_a }}">
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label class="form-label">B варианты</label>
+                    <input class="form-control" name="choice_b" value="{{ posted.choice_b }}">
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label class="form-label">C варианты</label>
+                    <input class="form-control" name="choice_c" value="{{ posted.choice_c }}">
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label class="form-label">D варианты</label>
+                    <input class="form-control" name="choice_d" value="{{ posted.choice_d }}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Туура жооп</label>
+                <select class="form-select" name="correct_choice">
+                    <option value="">— тандаңыз —</option>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                    <option value="c">C</option>
+                    <option value="d">D</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="short-fields" style="display:none;">
+            <div class="mb-3">
+                <label class="form-label">Эталон жооп (мугалим үчүн, автоматтык текшерилбейт)</label>
+                <input class="form-control" name="correct_answer_text" value="{{ posted.correct_answer_text }}">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Упай</label>
+                <input class="form-control" type="number" name="marks" min="1" value="{{ posted.marks|default:1 }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Тема</label>
+                <select class="form-select" name="topic">
+                    <option value="">— тандаңыз —</option>
+                    {% for topic in topics %}
+                        <option value="{{ topic.id }}">{{ topic.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Сактоо</button>
+        <a class="btn btn-outline-secondary" href="{% url 'question_bank' %}">Артка</a>
+    </form>
+
+</div>
+
+<script>
+function toggleChoices() {
+    const type = document.getElementById('question_type').value;
+    document.getElementById('mcq-fields').style.display = type === 'mcq' ? 'block' : 'none';
+    document.getElementById('short-fields').style.display = type === 'short' ? 'block' : 'none';
+}
+</script>
+{% endblock %}

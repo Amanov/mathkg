@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
@@ -512,3 +515,149 @@ class MenuItem(models.Model):
         except NoReverseMatch:
             return None
         return None
+
+
+# =====================================================
+
+# QUESTION BANK / ONLINE TESTS
+
+# =====================================================
+
+class Question(models.Model):
+    QUESTION_TYPES = [
+        ('mcq', 'Көп тандоолуу'),
+        ('short', 'Кыска жооп'),
+    ]
+
+    CHOICE_LETTERS = [
+        ('a', 'A'),
+        ('b', 'B'),
+        ('c', 'C'),
+        ('d', 'D'),
+    ]
+
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='questions',
+    )
+
+    topic = models.ForeignKey(
+        Topic, null=True, blank=True, on_delete=models.SET_NULL, related_name='questions',
+    )
+    subtopic = models.ForeignKey(
+        Subtopic, null=True, blank=True, on_delete=models.SET_NULL, related_name='questions',
+    )
+    subsubtopic = models.ForeignKey(
+        SubSubtopic, null=True, blank=True, on_delete=models.SET_NULL, related_name='questions',
+    )
+
+    question_type = models.CharField(max_length=10, choices=QUESTION_TYPES, default='mcq')
+    text = models.TextField()
+    image = models.ImageField(upload_to='questions/images/', blank=True, null=True)
+
+    choice_a = models.CharField(max_length=255, blank=True)
+    choice_b = models.CharField(max_length=255, blank=True)
+    choice_c = models.CharField(max_length=255, blank=True)
+    choice_d = models.CharField(max_length=255, blank=True)
+    correct_choice = models.CharField(max_length=1, choices=CHOICE_LETTERS, blank=True)
+
+    correct_answer_text = models.CharField(
+        max_length=255, blank=True,
+        help_text="'Кыска жооп' түрүндөгү суроолор автоматтык бааланбайт - бул мугалимге эталон жооп катары гана көрсөтүлөт.",
+    )
+
+    marks = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def clean(self):
+        if self.subtopic_id and not self.topic_id:
+            raise ValidationError("Теманы тандабай туруп, бөлүмдү тандай албайсыз.")
+        if self.subtopic_id and self.topic_id and self.subtopic.topic_id != self.topic_id:
+            raise ValidationError("Тандалган бөлүм тандалган темага таандык эмес.")
+        if self.subsubtopic_id and not self.subtopic_id:
+            raise ValidationError("Бөлүмдү тандабай туруп, кичи бөлүмдү тандай албайсыз.")
+        if self.subsubtopic_id and self.subtopic_id and self.subsubtopic.subtopic_id != self.subtopic_id:
+            raise ValidationError("Тандалган кичи бөлүм тандалган бөлүмгө таандык эмес.")
+        if self.question_type == 'mcq' and not self.correct_choice:
+            raise ValidationError("Көп тандоолуу суроо үчүн туура жоопту (A/B/C/D) көрсөтүү керек.")
+
+    def __str__(self):
+        return self.text[:60]
+
+
+class Exam(models.Model):
+    title = models.CharField(max_length=255)
+
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='exams',
+    )
+
+    questions = models.ManyToManyField(Question, through='ExamQuestion', related_name='exams')
+
+    access_code = models.CharField(max_length=8, unique=True, blank=True)
+    is_published = models.BooleanField(default=False)
+    time_limit_minutes = models.PositiveIntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    @staticmethod
+    def _generate_access_code():
+        alphabet = string.ascii_uppercase + string.digits
+        while True:
+            code = ''.join(random.choices(alphabet, k=6))
+            if not Exam.objects.filter(access_code=code).exists():
+                return code
+
+    def save(self, *args, **kwargs):
+        if not self.access_code:
+            self.access_code = self._generate_access_code()
+        super().save(*args, **kwargs)
+
+    def total_marks(self):
+        return sum(
+            eq.question.marks
+            for eq in self.examquestion_set.select_related('question')
+        )
+
+    def __str__(self):
+        return self.title
+
+
+class ExamQuestion(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        unique_together = ('exam', 'question')
+
+
+class ExamAttempt(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='attempts')
+    student_name = models.CharField(max_length=150)
+    started_at = models.DateTimeField(auto_now_add=True)
+    submitted_at = models.DateTimeField(null=True, blank=True)
+    score = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['-started_at']
+
+    def __str__(self):
+        return f"{self.student_name} — {self.exam.title}"
+
+
+class ExamAnswer(models.Model):
+    attempt = models.ForeignKey(ExamAttempt, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    selected_choice = models.CharField(max_length=1, blank=True)
+    answer_text = models.CharField(max_length=500, blank=True)
+    is_correct = models.BooleanField(null=True)

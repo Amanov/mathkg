@@ -10,6 +10,11 @@ from .models import (
     ButtonClick,
     LoginEvent,
     MenuItem,
+    Question,
+    Exam,
+    ExamQuestion,
+    ExamAttempt,
+    ExamAnswer,
 )
 
 
@@ -285,3 +290,38 @@ class MenuItemAdmin(admin.ModelAdmin):
         if obj.url_name:
             return obj.url_name
         return '—'
+
+
+class ExamQuestionInline(admin.TabularInline):
+    model = ExamQuestion
+    extra = 1
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ("text", "question_type", "topic", "subtopic", "subsubtopic", "marks", "created_by")
+    list_filter = ("question_type", "topic", "subtopic", "subsubtopic")
+    search_fields = ("text",)
+
+
+@admin.register(Exam)
+class ExamAdmin(admin.ModelAdmin):
+    list_display = ("title", "created_by", "access_code", "is_published", "created_at")
+    list_filter = ("is_published",)
+    search_fields = ("title", "access_code")
+    readonly_fields = ("access_code", "created_at")
+    inlines = [ExamQuestionInline]
+
+
+@admin.register(ExamAttempt)
+class ExamAttemptAdmin(admin.ModelAdmin):
+    list_display = ("student_name", "exam", "score", "started_at", "submitted_at")
+    list_filter = ("exam",)
+    search_fields = ("student_name",)
+    readonly_fields = ("started_at",)
+
+
+@admin.register(ExamAnswer)
+class ExamAnswerAdmin(admin.ModelAdmin):
+    list_display = ("attempt", "question", "selected_choice", "is_correct")
+    list_filter = ("is_correct",)
