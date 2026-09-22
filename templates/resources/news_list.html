@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Жаңылыктар{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 760px;">
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Сайттагы жаңылыктар</h1>
+        <p class="text-muted">MathKGZ платформасына кошулган өзгөрүүлөр жана жаңылыктар</p>
+    </div>
+
+    {% if posts %}
+        {% for post in posts %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="text-muted small mb-1">{{ post.formatted_date }}</div>
+                    <h3 class="h5 fw-bold mb-2">{{ post.title }}</h3>
+                    <p class="mb-0">{{ post.body|linebreaksbr }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning">
+            Азырынча жаңылык жок.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

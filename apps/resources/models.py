@@ -512,3 +512,36 @@ class MenuItem(models.Model):
         except NoReverseMatch:
             return None
         return None
+
+
+# =====================================================
+
+# NEWS
+
+# =====================================================
+
+KYRGYZ_MONTHS = [
+    'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',
+]
+
+
+class NewsPost(models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField(
+        help_text="Кыска түшүндүрмө - эмне өзгөрдү же кошулду.",
+    )
+    published_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-published_date', '-created_at']
+        verbose_name = 'Жаңылык'
+        verbose_name_plural = 'Жаңылыктар'
+
+    def formatted_date(self):
+        d = self.published_date
+        return f"{d.day}-{KYRGYZ_MONTHS[d.month - 1]}, {d.year}-жыл"
+
+    def __str__(self):
+        return f"{self.published_date}: {self.title}"

@@ -10,6 +10,7 @@ from .models import (
     ButtonClick,
     LoginEvent,
     MenuItem,
+    NewsPost,
 )
 
 
@@ -285,3 +286,11 @@ class MenuItemAdmin(admin.ModelAdmin):
         if obj.url_name:
             return obj.url_name
         return '—'
+
+
+@admin.register(NewsPost)
+class NewsPostAdmin(admin.ModelAdmin):
+    list_display = ("title", "published_date")
+    list_editable = ("published_date",)
+    search_fields = ("title", "body")
+    ordering = ("-published_date",)
