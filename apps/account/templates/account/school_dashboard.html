@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Мектеп башкаруусу{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <h1 class="mb-1">{{ school.name }}</h1>
+    <p class="text-muted mb-4">Мектеп башкаруу панели</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'info' }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h3 class="mb-3">Мугалим кошуу</h3>
+    <form method="post" class="d-flex gap-2 mb-5" style="max-width: 500px;">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="add_teacher">
+        <input class="form-control" type="email" name="email" placeholder="Мугалимдин электрондук почтасы" required>
+        <button type="submit" class="btn btn-success text-nowrap">Кошуу</button>
+    </form>
+    <p class="text-muted small mb-5" style="margin-top: -2.5rem;">
+        Мугалим мурда MathKGZ'де катталган болушу керек.
+    </p>
+
+    <h3 class="mb-3">Мугалимдер ({{ teachers|length }})</h3>
+
+    {% if teachers %}
+        <div class="table-responsive">
+            <table class="table table-bordered bg-white align-middle">
+                <thead>
+                    <tr>
+                        <th>Мугалим</th>
+                        <th>Кирүүлөр саны</th>
+                        <th>Жүктөлгөн файлдар</th>
+                        <th>Түзүлгөн суроолор</th>
+                        <th>Түзүлгөн тесттер</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in teachers %}
+                        <tr>
+                            <td>{{ t.account.email }}</td>
+                            <td>{{ t.logins }}</td>
+                            <td>{{ t.downloads }}</td>
+                            <td>{{ t.questions_created }}</td>
+                            <td>{{ t.exams_created }}</td>
+                            <td>
+                                <form method="post" class="m-0">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="remove_teacher">
+                                    <input type="hidden" name="teacher_id" value="{{ t.account.id }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Алып салуу</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            Азырынча мектепте мугалим жок. Жогорудагы форма менен кошуңуз.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

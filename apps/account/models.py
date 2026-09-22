@@ -54,11 +54,22 @@ class Account(AbstractBaseUser):
     is_admin                = models.BooleanField(default=False)
     is_active               = models.BooleanField(default=False) #activation of user
     is_staff                = models.BooleanField(default=False)
-    is_superuser            = models.BooleanField(default=False)     
-    # first_name              =models.CharField(max_length=30) 
-    # 
+    is_superuser            = models.BooleanField(default=False)
+    # first_name              =models.CharField(max_length=30)
+    #
     # ✅ Subscription end date field
-    subscription_end = models.DateField(null=True, blank=True)           
+    subscription_end = models.DateField(null=True, blank=True)
+
+    # A teacher belongs to at most one school. School itself is defined
+    # below (staff assign schools/admins via Django admin for now - no
+    # self-serve "create a school" flow yet), hence the string reference.
+    school = models.ForeignKey(
+        'School', null=True, blank=True, on_delete=models.SET_NULL, related_name='teachers',
+    )
+    is_school_admin = models.BooleanField(
+        default=False,
+        help_text="Мектептин башкаруучусу - өз мектебиндеги мугалимдерди көзөмөлдөй жана башкара алат.",
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]  #'first_name' we can add a list
@@ -85,6 +96,18 @@ class Account(AbstractBaseUser):
     @property
     def has_active_subscription(self):
         return self.subscription_end_date >= timezone.now().date()
+
+
+class School(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Мектептин аталышы")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Мектеп"
+        verbose_name_plural = "Мектептер"
+
+    def __str__(self):
+        return self.name
 
 
 def add_months(base_date, months):

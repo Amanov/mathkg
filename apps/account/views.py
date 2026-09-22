@@ -14,9 +14,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 
-from apps.resources.models import LoginEvent
+from apps.resources.models import Exam, LoginEvent, Question, ResourceDownload
 
-from .models import Account, SubscriptionRequest
+from .models import Account, School, SubscriptionRequest
 from .forms import (
     RegistrationForm,
     AccountAuthenticationForm,
@@ -255,6 +255,55 @@ def activation_view(request, uidb64, token):
         messages.error(request, 'Invalid activation link.')
 
     return redirect('login')
+
+
+def school_dashboard_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if not request.user.is_school_admin or not request.user.school_id:
+        return redirect('account')
+
+    school = request.user.school
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'add_teacher':
+            email = request.POST.get('email', '').strip().lower()
+            try:
+                teacher = Account.objects.get(email=email)
+            except Account.DoesNotExist:
+                messages.error(request, f"'{email}' дареги менен катталган колдонуучу табылган жок.")
+            else:
+                if teacher.school_id and teacher.school_id != school.id:
+                    messages.error(request, f"{teacher.email} мурунтан эле башка мектепке таандык.")
+                else:
+                    teacher.school = school
+                    teacher.save(update_fields=['school'])
+                    messages.success(request, f"{teacher.email} мектепке кошулду.")
+
+        elif action == 'remove_teacher':
+            teacher_id = request.POST.get('teacher_id')
+            Account.objects.filter(id=teacher_id, school=school).update(school=None)
+            messages.success(request, "Мугалим мектептен алынды.")
+
+        return redirect('school_dashboard')
+
+    teachers = [
+        {
+            'account': teacher,
+            'downloads': ResourceDownload.objects.filter(user=teacher).count(),
+            'logins': LoginEvent.objects.filter(user=teacher).count(),
+            'exams_created': Exam.objects.filter(created_by=teacher).count(),
+            'questions_created': Question.objects.filter(created_by=teacher).count(),
+        }
+        for teacher in school.teachers.all()
+    ]
+
+    return render(request, 'account/school_dashboard.html', {
+        'school': school,
+        'teachers': teachers,
+    })
 
 
 @method_decorator(

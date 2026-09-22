@@ -4,17 +4,17 @@ from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
 from django.utils import timezone
 
-from .models import Account, PaymentQRCode, SubscriptionRequest
+from .models import Account, PaymentQRCode, SubscriptionRequest, School
 # Register your models here.
 
 
 class AccountAdmin(UserAdmin):
-    list_display = ('email','username','date_joined','last_login','is_admin','is_staff')
+    list_display = ('email','username','date_joined','last_login','is_admin','is_staff','school','is_school_admin')
     search_fields = ('email','username')
     readonly_fields = ('date_joined','last_login')
 
     filter_horizontal =()
-    list_filter = ()
+    list_filter = ('school', 'is_school_admin')
     fieldsets = ()
     actions = ['end_subscription_for_violation']
 
@@ -144,4 +144,14 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
             obj.activate()
         else:
             super().save_model(request, obj, form, change)
+
+
+@admin.register(School)
+class SchoolAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at', 'teacher_count')
+    search_fields = ('name',)
+
+    @admin.display(description='Мугалимдер саны')
+    def teacher_count(self, obj):
+        return obj.teachers.count()
 

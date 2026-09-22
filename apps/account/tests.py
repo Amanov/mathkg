@@ -4,7 +4,7 @@ from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Account
+from .models import Account, School
 
 
 class RegistrationAndActivationTests(TestCase):
@@ -132,3 +132,71 @@ class SuperuserTests(TestCase):
             email='admin@example.com', username='admin', password='SuperSecret123!'
         )
         self.assertTrue(admin.is_active)
+
+
+class SchoolDashboardTests(TestCase):
+    def setUp(self):
+        self.school = School.objects.create(name='Бишкек 5-мектеп')
+
+        self.principal = Account.objects.create_user(
+            email='principal@example.com', username='principal', password='SuperSecret123!'
+        )
+        self.principal.is_active = True
+        self.principal.is_school_admin = True
+        self.principal.school = self.school
+        self.principal.save()
+
+        self.teacher = Account.objects.create_user(
+            email='teacher@example.com', username='teacher', password='SuperSecret123!'
+        )
+        self.teacher.is_active = True
+        self.teacher.save(update_fields=['is_active'])
+
+        self.client.login(email='principal@example.com', password='SuperSecret123!')
+
+    def test_non_school_admin_is_redirected(self):
+        self.client.logout()
+        self.client.login(email='teacher@example.com', password='SuperSecret123!')
+        resp = self.client.get(reverse('school_dashboard'))
+        self.assertRedirects(resp, reverse('account'))
+
+    def test_admin_can_view_dashboard(self):
+        resp = self.client.get(reverse('school_dashboard'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Бишкек 5-мектеп')
+
+    def test_admin_can_add_existing_teacher_by_email(self):
+        self.client.post(reverse('school_dashboard'), {
+            'action': 'add_teacher', 'email': 'teacher@example.com',
+        })
+        self.teacher.refresh_from_db()
+        self.assertEqual(self.teacher.school_id, self.school.id)
+
+    def test_adding_unknown_email_shows_error_and_adds_nobody(self):
+        resp = self.client.post(reverse('school_dashboard'), {
+            'action': 'add_teacher', 'email': 'nobody@example.com',
+        }, follow=True)
+        self.assertContains(resp, 'табылган жок')
+        self.assertEqual(self.school.teachers.count(), 1)
+
+    def test_cannot_add_teacher_already_in_another_school(self):
+        other_school = School.objects.create(name='Ош 2-мектеп')
+        self.teacher.school = other_school
+        self.teacher.save(update_fields=['school'])
+
+        resp = self.client.post(reverse('school_dashboard'), {
+            'action': 'add_teacher', 'email': 'teacher@example.com',
+        }, follow=True)
+        self.assertContains(resp, 'башка мектепке таандык')
+        self.teacher.refresh_from_db()
+        self.assertEqual(self.teacher.school_id, other_school.id)
+
+    def test_admin_can_remove_a_teacher(self):
+        self.teacher.school = self.school
+        self.teacher.save(update_fields=['school'])
+
+        self.client.post(reverse('school_dashboard'), {
+            'action': 'remove_teacher', 'teacher_id': self.teacher.id,
+        })
+        self.teacher.refresh_from_db()
+        self.assertIsNone(self.teacher.school_id)

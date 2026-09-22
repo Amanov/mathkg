@@ -59,6 +59,11 @@
               <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}" data-track="Башкы бет (header)">
                 <i class="fas fa-fw fa-house" style="color:red"></i> Башкы бет
               </a>
+              {% if request.user.is_school_admin and request.user.school_id %}
+                <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'school_dashboard' %}" data-track="Мектеп (header)">
+                  <i class="fas fa-fw fa-school" style="color:red"></i> Мектеп
+                </a>
+              {% endif %}
               <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'logout' %}" data-track="Чыгуу">
                 <i class="fas fa-right-from-bracket" style="color:red"></i> Чыгуу
               </a>
