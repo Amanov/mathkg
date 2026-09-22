@@ -1,9 +1,11 @@
+from datetime import date
+
 from django.test import TestCase
 from django.urls import reverse
 
 from apps.account.models import Account
 
-from .models import Exam, ExamQuestion, Question
+from .models import Exam, ExamQuestion, NewsPost, Question
 
 
 class ExamFlowTests(TestCase):
@@ -87,3 +89,23 @@ class ExamFlowTests(TestCase):
 
         resp = self.client.get(reverse('exam_detail', args=[self.exam.pk]))
         self.assertEqual(resp.status_code, 404)
+
+
+class PagesTests(TestCase):
+    def test_news_list_shows_posts_newest_first(self):
+        NewsPost.objects.create(title='Эски жаңылык', body='...', published_date=date(2026, 1, 1))
+        NewsPost.objects.create(title='Жаңы жаңылык', body='...', published_date=date(2026, 6, 1))
+
+        resp = self.client.get(reverse('news_list'))
+        self.assertEqual(resp.status_code, 200)
+        content = resp.content.decode()
+        self.assertLess(content.index('Жаңы жаңылык'), content.index('Эски жаңылык'))
+
+    def test_news_post_formats_date_in_kyrgyz(self):
+        post = NewsPost.objects.create(title='T', body='...', published_date=date(2026, 9, 22))
+        self.assertEqual(post.formatted_date(), '22-сентябрь, 2026-жыл')
+
+    def test_about_page_loads(self):
+        resp = self.client.get(reverse('about'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'MathKGZ')

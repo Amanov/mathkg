@@ -33,6 +33,10 @@ from apps.resources.views import (
     # onduktar
     onedigitarithmetics_view,
 
+    # pages
+    news_list_view,
+    about_view,
+
     # question bank / online tests
     question_bank_view,
     question_create_view,
@@ -103,6 +107,10 @@ urlpatterns = [
     # Resources
     path('resources/download/<int:pk>/', download_resource_view, name='download_resource'),
     path('resources/', resources_view, name='resources'),
+
+    # Pages
+    path('news/', news_list_view, name='news_list'),
+    path('about/', about_view, name='about'),
 
     # Question bank / online tests
     path('questions/', question_bank_view, name='question_bank'),

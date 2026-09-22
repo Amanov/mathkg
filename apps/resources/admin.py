@@ -15,6 +15,7 @@ from .models import (
     ExamQuestion,
     ExamAttempt,
     ExamAnswer,
+    NewsPost,
 )
 
 
@@ -325,3 +326,11 @@ class ExamAttemptAdmin(admin.ModelAdmin):
 class ExamAnswerAdmin(admin.ModelAdmin):
     list_display = ("attempt", "question", "selected_choice", "is_correct")
     list_filter = ("is_correct",)
+
+
+@admin.register(NewsPost)
+class NewsPostAdmin(admin.ModelAdmin):
+    list_display = ("title", "published_date")
+    list_editable = ("published_date",)
+    search_fields = ("title", "body")
+    ordering = ("-published_date",)

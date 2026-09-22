@@ -661,3 +661,39 @@ class ExamAnswer(models.Model):
     selected_choice = models.CharField(max_length=1, blank=True)
     answer_text = models.CharField(max_length=500, blank=True)
     is_correct = models.BooleanField(null=True)
+
+
+# =====================================================
+
+# SITE NEWS
+
+# =====================================================
+
+KYRGYZ_MONTHS = [
+    'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',
+]
+
+
+class NewsPost(models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField(
+        help_text="Кыска түшүндүрмө - эмне өзгөрдү же кошулду.",
+    )
+    published_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-published_date', '-created_at']
+        verbose_name = 'Жаңылык'
+        verbose_name_plural = 'Жаңылыктар'
+
+    def formatted_date(self):
+        # Django has no built-in Kyrgyz locale, so the |date filter's "F"
+        # (full month name) silently falls back to English - this spells
+        # it out in Kyrgyz instead.
+        d = self.published_date
+        return f"{d.day}-{KYRGYZ_MONTHS[d.month - 1]}, {d.year}-жыл"
+
+    def __str__(self):
+        return f"{self.published_date}: {self.title}"
