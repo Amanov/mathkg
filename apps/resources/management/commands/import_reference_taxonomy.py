@@ -112,6 +112,9 @@ TAXONOMY = {
                     'Айландыруу': 'converting',
                 },
             },
+            'Системалуу тизмелөө': {'slug': 'systematic-listing', 'subsubtopics': {}},
+            'Эсептөөнүн көбөйтүү эрежеси': {'slug': 'product-rule-for-counting', 'subsubtopics': {}},
+            'Калькулятор колдонуу': {'slug': 'using-a-calculator', 'subsubtopics': {}},
         },
     },
     'Пропорция': {
