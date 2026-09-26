@@ -51,12 +51,18 @@ TAXONOMY = {
                     'Ондуктарды айландыруу': 'converting-decimals',
                     'Пайыздарды айландыруу': 'converting-percentages',
                     'Катыштарды айландыруу': 'converting-ratios',
+                    'Бөлчөк, ондук жана пайыз эквиваленттүүлүгү': 'fraction-decimal-percentage',
+                    'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө': 'ordering-fractions-decimals-percentages',
+                    'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү': 'fraction-percentage-ratio',
+                    'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү': 'fraction-decimal-percentage-ratio',
                 },
             },
             'Болжолдоо жана тегеректөө': {
                 'slug': 'estimating-rounding',
                 'subsubtopics': {
-                    'Болжолдоо': 'estimating',
+                    'Эсептөөлөрдү болжолдоо': 'approximating-calculations',
+                    'Тамырларды болжолдоо': 'estimating-roots',
+                    'Масштабдуу сүрөт менен болжолдоо': 'scale-drawings-estimation',
                     'Тегеректөө': 'rounding',
                     'Ката аралыктары': 'error-intervals',
                 },
@@ -64,7 +70,11 @@ TAXONOMY = {
             'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар': {
                 'slug': 'factors-multiples-primes',
                 'subsubtopics': {
-                    'Негиздери': 'basics',
+                    'Жөнөкөй сандар': 'prime-numbers',
+                    'Эселиктер': 'multiples',
+                    'Бөлүүчүлөр': 'factors',
+                    'Жөнөкөй сандар, бөлүүчүлөр жана эселиктер': 'prime-numbers-factors-multiples',
+                    'Даража түрүндөгү жөнөкөй көбөйтүүчүлөргө ажыратуу': 'prime-factorisation-index-form',
                     'Эң чоң орток бөлүүчү жана эң кичине орток эселик: тизмелөө менен': 'hcf-lcm-listing',
                     'Эң чоң орток бөлүүчү жана эң кичине орток эселик: жөнөкөй көбөйтүүчүлөргө ажыратуу менен': 'hcf-lcm-prime-factorisation',
                 },
@@ -73,12 +83,17 @@ TAXONOMY = {
                 'slug': 'fractions',
                 'subsubtopics': {
                     'Киришүү': 'introduction',
+                    'Бөлчөктөрдү сөз менен туюнтуу': 'fractions-as-words',
                     'Эсептөөлөр: бирдик бөлчөктөр': 'arithmetic-unit-fractions',
                     'Эсептөөлөр: бирдик эмес бөлчөктөр': 'arithmetic-non-unit-fractions',
+                    'Эквиваленттүүлүк': 'equivalence',
                     'Барабар бөлчөктөр': 'equivalent-fractions',
                     'Туюнтуу': 'expressing',
                     'Чоңдуктун бөлчөгү': 'fraction-of-a-quantity',
                     'Аралаш сандар жана туура эмес бөлчөктөр': 'mixed-numbers-improper-fractions',
+                    'Аралаш бөлчөктөр боюнча суроолор': 'mixed-fraction-questions',
+                    'Тескери сандар': 'reciprocals',
+                    'Калькулятордо бөлчөктөр': 'fractions-calculator',
                 },
             },
             'Даражалар жана тамырлар': {
@@ -87,6 +102,7 @@ TAXONOMY = {
                     'Даражалар': 'indices',
                     'Тамырларды эсептөө': 'evaluating-roots',
                     'Тамырлар менен эсептөөлөр': 'surds',
+                    'Бүтүн сандар менен даражалар жана тамырлар боюнча суроолор': 'indices-roots-integers',
                 },
             },
             'Бүтүн сандар': {
