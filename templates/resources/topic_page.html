@@ -69,6 +69,12 @@
             {{ subtopic.title }}
         </h3>
 
+        {% if subsubtopic %}
+            <p class="text-muted mb-0">
+                {{ subsubtopic.title }}
+            </p>
+        {% endif %}
+
     </div>
 
     <div class="custom_border bg-light">
