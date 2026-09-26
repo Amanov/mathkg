@@ -108,16 +108,23 @@ TAXONOMY = {
             'Бүтүн сандар': {
                 'slug': 'integers',
                 'subsubtopics': {
-                    'Негиздери': 'basics',
+                    'Бүтүн сандардын орун наркы жана иреттөө': 'place-value-ordering',
+                    'Бүтүн сандарды сөз менен туюнтуу': 'integers-as-words',
+                    'Бөлүнүү белгилери': 'divisibility-rules',
                     'Эсептөөлөр: 1 жана 2 орундук': 'arithmetic-1-2-digit',
                     'Эсептөөлөр: 2 жана 3 орундук': 'arithmetic-2-3-digit',
+                    'Эсептөөлөр: ондуктар менен': 'arithmetic-with-decimals',
                     'Турмуштук маселелер': 'real-life',
+                    'Рим сандарын окуу жана жазуу': 'roman-numerals',
                 },
             },
             'Өлчөмдөр': {
                 'slug': 'measures',
                 'subsubtopics': {
                     'Татаал өлчөмдөр': 'compound',
+                    'Сызыктарды өлчөө': 'measuring-lines',
+                    'Акча': 'money',
+                    'Шкаланы окуу': 'reading-scales',
                     'Масштабдуу сүрөттөр': 'scale-drawings',
                     'Өлчөө системалары': 'systems-of-measurement',
                     'Убакыт': 'time',
@@ -126,14 +133,22 @@ TAXONOMY = {
             'Стандарттык форма': {
                 'slug': 'standard-form',
                 'subsubtopics': {
-                    'Негиздери': 'basics',
+                    '10дун даражалары менен эсептөөлөр': 'powers-of-10',
+                    'Стандарттык форманы кошуу жана кемитүү: калькулятордсуз': 'adding-subtracting-non-calculator',
                     'Көбөйтүү жана бөлүү': 'multiplying-dividing',
                     'Айландыруу': 'converting',
+                    'Стандарттык форманы тууралоо': 'correcting',
                 },
             },
             'Системалуу тизмелөө': {'slug': 'systematic-listing', 'subsubtopics': {}},
             'Эсептөөнүн көбөйтүү эрежеси': {'slug': 'product-rule-for-counting', 'subsubtopics': {}},
-            'Калькулятор колдонуу': {'slug': 'using-a-calculator', 'subsubtopics': {}},
+            'Калькулятор колдонуу': {
+                'slug': 'using-a-calculator',
+                'subsubtopics': {
+                    'Негизги көндүмдөр': 'basic-skills',
+                    'Калькулятордо бөлчөктөр': 'fractions',
+                },
+            },
         },
     },
     'Пропорция': {
