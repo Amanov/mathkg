@@ -31,6 +31,8 @@ TAXONOMY = {
                     'Эсептөөлөр: бүтүн сандар менен': 'arithmetic-with-integers',
                     'Эквиваленттүүлүк': 'equivalence',
                     'Акча': 'money',
+                    'Ондуктарды иреттөө': 'ordering-decimals',
+                    'Ондуктун орун наркы': 'place-value',
                     'Мезгилдүү ондуктар': 'recurring',
                     'Башка': 'other',
                 },
@@ -39,6 +41,7 @@ TAXONOMY = {
                 'slug': 'directed-numbers',
                 'subsubtopics': {
                     'Эсептөөлөр': 'arithmetic',
+                    'Багытталган сандарды иреттөө': 'ordering',
                 },
             },
             'Эквиваленттүүлүк': {
