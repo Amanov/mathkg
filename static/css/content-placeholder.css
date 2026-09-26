@@ -1,0 +1,61 @@
+/* Empty-state for topics/subtopics/sub-subtopics that don't have real
+   Resource rows yet (templates/resources/topic_page.html, topic_detail.html).
+   Deliberately dashed and muted so it reads as "not real content" at a
+   glance - distinct from the solid-bordered, white resource-card these
+   same pages show once material is actually added. Shares tokens with
+   main.css / illustrations.css (--radius-*, --color-navy) rather than
+   introducing new one-off colors. */
+
+.content-placeholder {
+    padding: 8px 0 24px;
+}
+
+.content-placeholder__intro {
+    color: #5b6572;
+    font-size: 1rem;
+    margin-bottom: 24px;
+}
+
+.content-placeholder__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 767.98px) {
+    .content-placeholder__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.content-placeholder__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 28px 20px;
+    border: 1.5px dashed #cbd3db;
+    border-radius: var(--radius-md, 12px);
+    background: #fafbfc;
+}
+
+.content-placeholder__icon {
+    font-size: 1.6rem;
+    color: #9aa4b1;
+}
+
+.content-placeholder__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-navy, rgb(15, 60, 88));
+    margin: 0;
+}
+
+.content-placeholder__badge {
+    font-size: .8rem;
+    color: #6b7684;
+    background: #eef1f4;
+    border-radius: 999px;
+    padding: 4px 12px;
+}

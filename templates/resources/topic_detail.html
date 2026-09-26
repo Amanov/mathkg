@@ -47,9 +47,7 @@
             </div>
         {% empty %}
             <div class="col-12">
-                <div class="alert alert-warning">
-                    Бул темада азырынча бөлүм жок.
-                </div>
+                {% include 'components/content_placeholder.html' with placeholder_intro='Бул тема үчүн материалдар даярдалууда.' %}
             </div>
         {% endfor %}
     </div>

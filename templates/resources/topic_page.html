@@ -188,6 +188,10 @@
 
             {% endfor %}
 
+        {% empty %}
+
+            {% include 'components/content_placeholder.html' with placeholder_intro='Бул бөлүм үчүн материалдар даярдалууда.' %}
+
         {% endfor %}
 
     </div>
