@@ -1,0 +1,41 @@
+{% comment %}
+Single source of truth for the 3 subscription plans, shared by the
+subscribe modal (templates/partials/subscribe_modal.html) and the
+homepage preview (templates/resources/home.html) - editing a price
+here updates both places, so they can never drift apart again.
+mode='modal': plain buttons, clicked by subscribe.js to advance the
+modal to its QR step. mode='preview': the same cards, but each one
+opens the modal itself (data-bs-toggle/target) since they live
+outside it.
+{% endcomment %}
+<div class="subscribe-plans">
+
+    <button type="button" class="subscribe-plan-card"
+            data-plan="3m" data-price="1499 сом"
+            {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
+            data-track="Тандоо: 3 ай план">
+        <span class="subscribe-plan-name">3 ай</span>
+        <span class="subscribe-plan-price">1499 сом</span>
+        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+    </button>
+
+    <button type="button" class="subscribe-plan-card"
+            data-plan="6m" data-price="2999 сом"
+            {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
+            data-track="Тандоо: 6 ай план">
+        <span class="subscribe-plan-name">6 ай</span>
+        <span class="subscribe-plan-price">2999 сом</span>
+        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+    </button>
+
+    <button type="button" class="subscribe-plan-card featured"
+            data-plan="1y" data-price="4999 сом"
+            {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
+            data-track="Тандоо: 1 жыл план">
+        <span class="subscribe-plan-badge">Сунушталат</span>
+        <span class="subscribe-plan-name">1 жыл</span>
+        <span class="subscribe-plan-price">4999 сом</span>
+        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+    </button>
+
+</div>

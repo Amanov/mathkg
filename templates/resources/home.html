@@ -305,44 +305,11 @@ hr{
       {% if user.is_authenticated %}
        <!-- User is logged in, hide registration links -->
       {% else %}
-      <!-- <div class="container-fluid"  > -->
         <hr>
-        <div class=" mb-3 text-center" >
-          <div class="col" >
-            <div class="card mb-4 rounded-3 shadow-sm" >
-              <div class="card-header py-3" >
-                <h2 class="my-0 fw-normal">Катталыңыз</h2>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title pricing-card-title">1000 с<small class="text-body-secondary fw-light">/жылына</small></h2>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Презентациялар бекер</li>
-                  <li>көнүгүүлөр бекер</li>
-                  <li>электрондук почта колдоо</li>
-                  <!-- <li>Help center access</li> extra help can be addedd-->
-                </ul>
-                <a href="{% url 'register' %}" type="button" class=" btn btn-lg btn-primary">Катталыңыз</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <!-- <div class="card mb-4 rounded-3 shadow-sm">
-              <div class="card-header py-3">
-                <h2 class="my-0 fw-normal">Мектепти каттаңыз</h2>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title pricing-card-title">3000 c<small class="text-body-secondary fw-light">/mo</small></h2>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Презентациялар бекер</li>
-                  <li>көнүгүүлөр бекер</li>
-                  <li>3 мугалим </li>
-                  <li>Help center access</li> 
-                </ul>
-              </div>
-            </div> -->
-          </div>
+        <div class="text-center mb-3">
+          <h2 class="section-heading">Жазылуу планын тандаңыз</h2>
         </div>
-      <!-- </div> -->
+        {% include 'partials/pricing_cards.html' with mode='preview' %}
       {% endif %}
 
     </div>
