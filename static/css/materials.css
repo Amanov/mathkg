@@ -1,0 +1,291 @@
+/* materials.css - minimal layout for topic material pages (Төрт амал).
+   Neutral surface, one accent, content first: the preview images are the
+   only colour on the page. Builds on the tokens in main.css. */
+
+.materials {
+    --m-text: #16181d;
+    --m-muted: #6b7280;
+    --m-line: #e6e7eb;
+    --m-surface: #f6f7f9;
+    --m-accent: var(--color-bootstrap-primary, #0d6efd);
+
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 0 24px;
+    color: var(--m-text);
+}
+
+/* main.css draws blue bars either side of every h1 - not here. */
+.materials h1::before,
+.materials h1::after {
+    content: none;
+}
+
+/* ── Page head ──────────────────────────────────────────────────────── */
+
+.materials-title {
+    display: block;
+    margin: 0 0 20px;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+
+.materials-jump {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.materials-jump::-webkit-scrollbar {
+    display: none;
+}
+
+.materials-jump a {
+    flex: none;
+    padding: 6px 14px;
+    border: 1px solid var(--m-line);
+    border-radius: 999px;
+    color: var(--m-text);
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.materials-jump a:hover {
+    border-color: var(--m-text);
+}
+
+/* ── Sign-up notice (logged-out visitors) ───────────────────────────── */
+
+.materials-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: var(--m-surface);
+    border-radius: var(--radius-md);
+}
+
+.materials-notice p {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.materials-notice-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────── */
+
+.materials-section {
+    margin-top: 56px;
+    scroll-margin-top: 164px; /* clears the fixed two-row nav */
+}
+
+.materials-section-title {
+    display: block;
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--m-line);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.materials-count {
+    margin-left: 6px;
+    color: var(--m-muted);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px 24px;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────── */
+
+.material-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.material-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    padding: 12px;
+    background: var(--m-surface);
+    border: 1px solid var(--m-line);
+    border-radius: var(--radius-md);
+    cursor: zoom-in;
+    transition: border-color var(--transition-fast);
+}
+
+.material-thumb:hover {
+    border-color: #c9ccd3;
+}
+
+.material-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.material-title {
+    display: block !important;
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.material-subtitle {
+    margin: 2px 0 0;
+    color: var(--m-muted);
+    font-size: 0.95rem;
+}
+
+.material-files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* ── Buttons & tags ─────────────────────────────────────────────────── */
+
+.m-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--m-line);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--m-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.m-btn:hover {
+    border-color: var(--m-text);
+    color: var(--m-text);
+}
+
+.m-btn:focus-visible,
+.material-thumb:focus-visible,
+.materials-jump a:focus-visible {
+    outline: 2px solid var(--m-accent);
+    outline-offset: 2px;
+}
+
+.m-btn-primary {
+    background: var(--m-text);
+    border-color: var(--m-text);
+    color: #fff;
+}
+
+.m-btn-primary:hover {
+    background: #000;
+    color: #fff;
+}
+
+.m-btn-file:hover {
+    border-color: var(--m-accent);
+    color: var(--m-accent);
+}
+
+.m-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 6px;
+    background: var(--m-surface);
+    color: var(--m-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.m-tag-missing {
+    color: #b42318;
+}
+
+/* ── Preview dialog ─────────────────────────────────────────────────── */
+
+.materials-preview {
+    max-width: min(1000px, 94vw);
+    max-height: 90vh;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: #fff;
+}
+
+.materials-preview::backdrop {
+    background: rgba(15, 18, 25, .6);
+}
+
+.materials-preview img {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.materials-preview-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .9);
+    color: var(--m-text);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* ── Phones ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 575.98px) {
+    .materials {
+        padding-top: 24px;
+    }
+
+    .materials-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .materials-section {
+        margin-top: 40px;
+    }
+
+    .materials-notice-actions,
+    .materials-notice-actions .m-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}

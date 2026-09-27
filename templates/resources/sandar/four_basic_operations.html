@@ -3,36 +3,91 @@
 {% block title %}Төрт амал{% endblock %}
 
 {% load static %}
+{% load custom_tags %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/materials.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<!-- Load External CSS -->
-<link rel="stylesheet" href="{% static 'css/operations.css' %}">
+<main class="materials">
 
-<div class="container d-flex flex-column justify-content-center align-items-center four-operations">
+    <header class="materials-head">
+        <h1 class="materials-title">Төрт амал</h1>
 
-    <div class="position-relative p-5 text-center" style="margin-top: 10%;">
-
-        <h1 style="font-size: 3rem; text-align:center;">Төрт амал</h1>
-
-        <div class="row align-items-md-stretch custom_border"
-             style="background-color: bisque;">
-
+        {# Jump links: the page is long, this lets a teacher go straight #}
+        {# to the kind of material they came for.                         #}
+        <nav class="materials-jump" aria-label="Бөлүмдөр">
             {% for section in sections %}
-
-                <h1 style="font-size: 3rem; text-align:center;">{{ section.header }}</h1>
-                <hr>
-
-                {% for block in section.blocks %}
-                    {% include 'components/operation_block.html' %}
-                {% endfor %}
-
+                <a href="#section-{{ forloop.counter }}">{{ section.header|strip_leading_symbols }}</a>
             {% endfor %}
+        </nav>
+    </header>
 
+    {# One sign-up prompt for the whole page, instead of repeating it on #}
+    {# every single material.                                             #}
+    {% if not user.is_authenticated %}
+        <div class="materials-notice">
+            <p>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</p>
+            <div class="materials-notice-actions">
+                <a class="m-btn m-btn-primary" href="{% url 'register' %}" data-track="Катталуу (materials)">Катталуу</a>
+                <a class="m-btn" href="{% url 'login' %}" data-track="Кирүү (materials)">Кирүү</a>
+            </div>
         </div>
+    {% endif %}
 
-    </div>
+    {% for section in sections %}
+        <section class="materials-section" id="section-{{ forloop.counter }}">
+            <h2 class="materials-section-title">
+                {{ section.header|strip_leading_symbols }}
+                <span class="materials-count">{{ section.blocks|length }}</span>
+            </h2>
 
-</div>
+            <div class="materials-grid">
+                {% for block in section.blocks %}
+                    {% include 'components/material_card.html' %}
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+
+</main>
+
+{# Enlarged preview for a card's image - native <dialog>, no library. #}
+<dialog class="materials-preview" id="materials-preview" aria-label="Көрүү">
+    <button type="button" class="materials-preview-close" aria-label="Жабуу">&times;</button>
+    <img src="" alt="">
+</dialog>
 
 {% endblock content %}
+
+{% block extra_scripts %}
+{{ block.super }}
+<script>
+    (function () {
+        var dialog = document.getElementById('materials-preview');
+        if (!dialog || typeof dialog.showModal !== 'function') {
+            return;
+        }
+        var img = dialog.querySelector('img');
+
+        document.addEventListener('click', function (event) {
+            var trigger = event.target.closest('[data-preview]');
+            if (!trigger) {
+                return;
+            }
+            img.src = trigger.getAttribute('data-preview');
+            img.alt = trigger.getAttribute('data-preview-alt') || '';
+            dialog.showModal();
+        });
+
+        // Close on the × button or on a click outside the image.
+        dialog.addEventListener('click', function (event) {
+            if (event.target === dialog || event.target.closest('.materials-preview-close')) {
+                dialog.close();
+            }
+        });
+    })();
+</script>
+{% endblock %}

@@ -1,3 +1,5 @@
+import re
+
 from django import template
 from django.urls import reverse, NoReverseMatch
 
@@ -34,3 +36,22 @@ def menu_item_url(item):
     if resolved:
         return resolved
     return safe_url(item.url_name)
+
+@register.filter
+def file_label(filename):
+    """Short, human label for a download button, built from the file name:
+    'x.pptx' -> 'PPT', 'xA5.pdf' -> 'PDF A5', 'xA6.pptx' -> 'PPT A6'.
+    The old buttons all read just 'PPT' / '.PDF', so a teacher couldn't
+    tell the A4, A5 and A6 versions of the same worksheet apart."""
+    stem, _, ext = filename.rpartition('.')
+    kind = 'PPT' if ext.lower().startswith('ppt') else ext.upper()
+    size = re.search(r'A([3-6])$', stem.strip())
+    return f'{kind} A{size.group(1)}' if size else kind
+
+
+@register.filter
+def strip_leading_symbols(text):
+    """Drop the emoji (and any broken '�' left where one got
+    mangled) that the section headers in the data files start with,
+    keeping the Kyrgyz words themselves unchanged."""
+    return re.sub(r'^[^\w(]+', '', text or '').strip()

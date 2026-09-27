@@ -1,0 +1,44 @@
+{% load static %}
+{% load custom_tags %}
+
+{# One material: preview image, title, and a download button per file.  #}
+{# The static fallback_image is preferred over the Resource's uploaded   #}
+{# image because uploaded media isn't served in production yet (see      #}
+{# docs/deployment-notes.md), while static images always are.            #}
+<article class="material-card">
+
+    {% with first=res|get_item:block.files.0 %}
+        {% if block.fallback_image or first.image %}
+            {% if block.fallback_image %}{% static block.fallback_image as src %}{% else %}{% firstof first.image.url as src %}{% endif %}
+            <button type="button" class="material-thumb"
+                    data-preview="{{ src }}" data-preview-alt="{{ block.title }}"
+                    aria-label="{{ block.title }}">
+                <img src="{{ src }}" alt="{{ block.title }}" loading="lazy">
+            </button>
+        {% endif %}
+    {% endwith %}
+
+    <div class="material-body">
+        <h3 class="material-title">{{ block.title }}</h3>
+        {% if block.subtitle %}<p class="material-subtitle">{{ block.subtitle }}</p>{% endif %}
+
+        <div class="material-files">
+            {% for file in block.files %}
+                {% with r=res|get_item:file %}
+                    {% if user.is_authenticated and r %}
+                        <a class="m-btn m-btn-file" href="{% url 'download_resource' pk=r.id %}"
+                           data-track="{{ block.title }} · {{ file|file_label }}">
+                            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M3 13h10"/></svg>
+                            {{ file|file_label }}
+                        </a>
+                    {% elif r %}
+                        <span class="m-tag">{{ file|file_label }}</span>
+                    {% elif user.is_staff %}
+                        <span class="m-tag m-tag-missing" title="{{ file }}">Not found: {{ file }}</span>
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+
+</article>
