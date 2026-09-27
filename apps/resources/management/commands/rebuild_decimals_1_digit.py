@@ -97,6 +97,22 @@ GROUPS = [
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
+        # 5 legacy menu entries that already sat directly under this
+        # parent in production (never seeded by any command in this repo,
+        # so absent from a fresh local dev DB - only found once running
+        # this group live surfaced 11 items instead of 9). Each one
+        # duplicates the meaning of one of the 9 target items above under
+        # slightly different wording (e.g. "Бөлчөктөргө" vs "Ондуктарды
+        # бөлчөккө айландыруу"). Removed by exact title match under this
+        # specific parent only - the underlying page/content, if any, is
+        # untouched, only the duplicate navigation entry is deleted.
+        'displaced_titles': [
+            'Бөлчөктөргө',
+            'Пайызга',
+            'Экөөнө тең',
+            'Кайталануучу ондуктарды бөлчөктөргө айландыруу',
+            'Бөлчөктөр менен',
+        ],
     },
 ]
 
@@ -109,11 +125,13 @@ class Command(BaseCommand):
         "generic Topic/Subtopic placeholder pages an earlier version of "
         "this command created for it. For each group: removes any "
         "'displaced_url_names' menu entries that don't correspond to any "
-        "target slot (the real page/content itself is untouched, only "
-        "its navigation link is deleted); removes 'stale_subsubtopic_"
-        "titles' placeholders (only if 0 resources attached); then "
-        "creates/repositions the target items in order. Idempotent - "
-        "safe to re-run, and safe to run after adding a new group."
+        "target slot, and any 'displaced_titles' menu entries under this "
+        "same parent by exact title match (either way, the real page/"
+        "content itself is untouched, only its navigation link is "
+        "deleted); removes 'stale_subsubtopic_titles' placeholders (only "
+        "if 0 resources attached); then creates/repositions the target "
+        "items in order. Idempotent - safe to re-run, and safe to run "
+        "after adding a new group."
     )
 
     def handle(self, *args, **options):
@@ -146,6 +164,16 @@ class Command(BaseCommand):
                     self.stdout.write(
                         f'  Removed {removed} menu item(s) linking to {url_name} '
                         f'(the page itself is untouched).'
+                    )
+
+            for title in group.get('displaced_titles', []):
+                displaced_qs = MenuItem.objects.filter(parent=parent_menu, title=title)
+                removed = displaced_qs.count()
+                if removed:
+                    displaced_qs.delete()
+                    self.stdout.write(
+                        f'  Removed duplicate menu item "{title}" under this parent '
+                        f'(any underlying page/content is untouched).'
                     )
 
             for title in group['stale_subsubtopic_titles']:
