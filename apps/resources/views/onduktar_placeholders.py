@@ -17,6 +17,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'multiplying-dividing-1-digit': 'Көбөйтүү жана бөлүү — 1 орундуу сандар',
     'mixed-1-digit': 'Аралаш эсептөөлөр — 1 орундуу сандар',
     'dividing-by-less-than-1': '1ден кичине ондукка бөлүү',
+
+    # Ондуктар > Эсептөөлөр: 1 жана 2 орундук сандар - none of these 8
+    # have a real hand-built page yet, unlike the 1-digit group above.
+    'adding-1-2-digit': 'Кошуу — 1 жана 2 орундук сандар',
+    'subtracting-1-2-digit': 'Кемитүү — 1 жана 2 орундук сандар',
+    'adding-subtracting-1-2-digit': 'Кошуу жана кемитүү — 1 жана 2 орундук сандар',
+    'multiplying-1-2-digit': 'Көбөйтүү — 1 жана 2 орундук сандар',
+    'dividing-1-2-digit': 'Бөлүү — 1 жана 2 орундук сандар',
+    'multiplying-dividing-1-2-digit': 'Көбөйтүү жана бөлүү — 1 жана 2 орундук сандар',
+    'multiplying-dividing-10-100-1000': '10, 100, 1000гө көбөйтүү жана бөлүү',
+    'mixed-1-2-digit': 'Аралаш эсептөөлөр — 1 жана 2 орундук сандар',
 }
 
 
