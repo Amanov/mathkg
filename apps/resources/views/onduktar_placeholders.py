@@ -39,6 +39,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     'multiplying-dividing-with-integers': 'Көбөйтүү жана бөлүү — бүтүн сандар менен',
     'mixed-with-integers': 'Аралаш эсептөөлөр — бүтүн сандар менен',
     'dividing-divisor-less-than-1-with-integers': 'Бөлүүчүсү 1ден кичине бөлүү — бүтүн сандар менен',
+
+    # Ондуктар > Акча - none of these 5 have a real hand-built page yet.
+    'purchasing-calculator': 'Сатып алуу: калькулятор менен',
+    'purchasing-non-calculator': 'Сатып алуу: калькуляторсуз',
+    'hire-purchase': 'Насыяга сатып алуу',
+    'bills-and-statements': 'Эсептер жана көчүрмөлөр',
+    'rates-of-pay': 'Эмгек акы ставкалары',
 }
 
 

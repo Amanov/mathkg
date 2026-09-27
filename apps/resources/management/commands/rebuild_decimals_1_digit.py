@@ -98,6 +98,19 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 5 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Ондуктар', 'Акча'),
+        'target_items': [
+            {'title': 'Сатып алуу: калькулятор менен', 'url_name': 'purchasing_calculator'},
+            {'title': 'Сатып алуу: калькуляторсуз', 'url_name': 'purchasing_non_calculator'},
+            {'title': 'Насыяга сатып алуу', 'url_name': 'hire_purchase'},
+            {'title': 'Эсептер жана көчүрмөлөр', 'url_name': 'bills_and_statements'},
+            {'title': 'Эмгек акы ставкалары', 'url_name': 'rates_of_pay'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 
