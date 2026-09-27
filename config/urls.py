@@ -34,6 +34,17 @@ from apps.resources.views import (
     onedigitarithmetics_view,
     operation_placeholder_view,
 
+    # ekvivalenttuuluk
+    to_fractions_view,
+    to_percentages_view,
+    to_both_view,
+    recurring_decimals_to_fractions_view,
+    with_fractions_view,
+    with_percentages_view,
+    fdp_view,
+    fdp_ordering_view,
+    fdpr_view,
+
     # pages
     news_list_view,
     about_view,
@@ -133,6 +144,19 @@ urlpatterns = [
     path('multiplying-dividing-with-integers/', operation_placeholder_view, {'operation_slug': 'multiplying-dividing-with-integers'}, name='multiplying_dividing_with_integers'),
     path('mixed-with-integers/', operation_placeholder_view, {'operation_slug': 'mixed-with-integers'}, name='mixed_with_integers'),
     path('dividing-divisor-less-than-1-with-integers/', operation_placeholder_view, {'operation_slug': 'dividing-divisor-less-than-1-with-integers'}, name='dividing_divisor_less_than_1_with_integers'),
+
+    # Ондуктар > Эквиваленттүүлүк - 9 real, hand-built pages (unlike the
+    # placeholder groups above), each rewired from the old dead
+    # `download_file` scheme onto the current download_resource system.
+    path('to-fractions/', to_fractions_view, name='to_fractions'),
+    path('to-percentages/', to_percentages_view, name='to_percentages'),
+    path('to-both/', to_both_view, name='to_both'),
+    path('recurring-decimals-to-fractions/', recurring_decimals_to_fractions_view, name='recurring_decimals_to_fractions'),
+    path('with-fractions/', with_fractions_view, name='with_fractions'),
+    path('with-percentages/', with_percentages_view, name='with_percentages'),
+    path('fdp/', fdp_view, name='fdp'),
+    path('fdp-ordering/', fdp_ordering_view, name='fdp_ordering'),
+    path('fdpr/', fdpr_view, name='fdpr'),
 
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
