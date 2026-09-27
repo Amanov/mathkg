@@ -28,6 +28,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'multiplying-dividing-1-2-digit': 'Көбөйтүү жана бөлүү — 1 жана 2 орундук сандар',
     'multiplying-dividing-10-100-1000': '10, 100, 1000гө көбөйтүү жана бөлүү',
     'mixed-1-2-digit': 'Аралаш эсептөөлөр — 1 жана 2 орундук сандар',
+
+    # Ондуктар > Эсептөөлөр: бүтүн сандар менен - none of these 8 have a
+    # real hand-built page yet either.
+    'adding-with-integers': 'Кошуу — бүтүн сандар менен',
+    'subtracting-with-integers': 'Кемитүү — бүтүн сандар менен',
+    'adding-subtracting-with-integers': 'Кошуу жана кемитүү — бүтүн сандар менен',
+    'multiplying-with-integers': 'Көбөйтүү — бүтүн сандар менен',
+    'dividing-with-integers': 'Бөлүү — бүтүн сандар менен',
+    'multiplying-dividing-with-integers': 'Көбөйтүү жана бөлүү — бүтүн сандар менен',
+    'mixed-with-integers': 'Аралаш эсептөөлөр — бүтүн сандар менен',
+    'dividing-divisor-less-than-1-with-integers': 'Бөлүүчүсү 1ден кичине бөлүү — бүтүн сандар менен',
 }
 
 
