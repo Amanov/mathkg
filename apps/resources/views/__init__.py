@@ -29,6 +29,8 @@ from .tracking import (
 
 from .onduktar import onedigitarithmetics_view
 
+from .onduktar_placeholders import operation_placeholder_view
+
 from .big4 import big4_view
 
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail

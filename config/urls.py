@@ -32,6 +32,7 @@ from apps.resources.views import (
 
     # onduktar
     onedigitarithmetics_view,
+    operation_placeholder_view,
 
     # pages
     news_list_view,
@@ -98,6 +99,18 @@ urlpatterns = [
 
     #onduktar
     path('onedigitarithmetics/', onedigitarithmetics_view, name='onedigitarithmetics'),
+
+    # Ондуктар > Эсептөөлөр: 1 орундук сандар - the other 7 operation
+    # slots (Кошуу/Adding is the one real page, koshuu-1-digit above).
+    # Short flat URLs matching koshuu-1-digit/'s own convention, not the
+    # long generic /resources/topic/number/... path.
+    path('subtracting-1-digit/', operation_placeholder_view, {'operation_slug': 'subtracting-1-digit'}, name='subtracting_1_digit'),
+    path('adding-subtracting-1-digit/', operation_placeholder_view, {'operation_slug': 'adding-subtracting-1-digit'}, name='adding_subtracting_1_digit'),
+    path('multiplying-1-digit/', operation_placeholder_view, {'operation_slug': 'multiplying-1-digit'}, name='multiplying_1_digit'),
+    path('dividing-1-digit/', operation_placeholder_view, {'operation_slug': 'dividing-1-digit'}, name='dividing_1_digit'),
+    path('multiplying-dividing-1-digit/', operation_placeholder_view, {'operation_slug': 'multiplying-dividing-1-digit'}, name='multiplying_dividing_1_digit'),
+    path('mixed-1-digit/', operation_placeholder_view, {'operation_slug': 'mixed-1-digit'}, name='mixed_1_digit'),
+    path('dividing-by-less-than-1/', operation_placeholder_view, {'operation_slug': 'dividing-by-less-than-1'}, name='dividing_by_less_than_1'),
 
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),

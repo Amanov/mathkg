@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Same page chrome as koshuu_1_digit.html (the real "Кошуу" page) -
+     so a visitor moving between a finished operation page and a
+     not-yet-ready one sees one consistent design, not two. -->
+<link rel="stylesheet" href="{% static 'css/operations.css' %}">
+
+<div class="container d-flex flex-column justify-content-center align-items-center four-operations">
+
+    <div class="position-relative p-5 text-center" style="margin-top: 10%;">
+
+        <h1 style="font-size: 3rem; text-align:center;">{{ page_title }}</h1>
+
+        <div class="row align-items-md-stretch custom_border"
+             style="background-color: bisque;">
+
+            <div class="col-12 py-4">
+                {% include 'components/content_placeholder.html' with placeholder_intro='Бул бөлүм үчүн материалдар даярдалууда.' %}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
