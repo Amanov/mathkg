@@ -20,10 +20,16 @@ TARGET_ITEMS = [
     {'title': '1ден кичине ондукка бөлүү', 'url_name': 'dividing_by_less_than_1'},
 ]
 
-# Old titles an earlier version of this command created as generic
-# Topic/Subtopic SubSubtopic placeholders, now superseded by the real
-# pages in TARGET_ITEMS above - removed if they hold 0 resources.
+# Old titles earlier versions of this command (and its predecessor,
+# add_leaf_items.py) created as generic Topic/Subtopic SubSubtopic
+# placeholders, now superseded by the real pages in TARGET_ITEMS above -
+# removed if they hold 0 resources. Includes both the very first
+# iteration's 2 titles (Adding/Arithmetic With, before they were known to
+# duplicate real pages) and the second iteration's 6, so this cleans up
+# fully regardless of which earlier version last ran on a given database.
 STALE_SUBSUBTOPIC_TITLES = [
+    '1 орундук ондуктарды кошуу',
+    '1 орундук ондуктар менен эсептөөлөр',
     '1 орундук ондуктарды кемитүү',
     '1 орундук ондуктарды кошуу жана кемитүү',
     '1 орундук ондуктарды көбөйтүү',
