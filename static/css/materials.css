@@ -1,18 +1,49 @@
 /* materials.css - minimal layout for topic material pages (Төрт амал).
-   Neutral surface, one accent, content first: the preview images are the
-   only colour on the page. Builds on the tokens in main.css. */
+   Ink-navy text on white, the site's header blue as the one accent, and
+   a quiet colour per section so the kinds of material are easy to tell
+   apart at a glance. Rubik for headings, Onest for text (both loaded in
+   the page's extra_head, both cover ң ө ү). Builds on main.css tokens. */
 
 .materials {
-    --m-text: #16181d;
-    --m-muted: #6b7280;
-    --m-line: #e6e7eb;
-    --m-surface: #f6f7f9;
-    --m-accent: var(--color-bootstrap-primary, #0d6efd);
+    --m-text: #1a2233;
+    --m-muted: #5d6679;
+    --m-line: #e3e7ef;
+    --m-surface: #f4f6fa;
+    --m-accent: #3761c2;          /* same blue as the site header */
+    --m-accent-soft: #eaf0fb;
+    --m-heading-font: 'Rubik', 'Alegreya Sans', Arial, sans-serif;
+    --m-text-font: 'Onest', 'Alegreya Sans', Arial, sans-serif;
+
+    /* Per-section colour, set by data-tone below. */
+    --tone: var(--m-accent);
+    --tone-soft: var(--m-accent-soft);
 
     max-width: 1120px;
     margin: 0 auto;
     padding: 40px 0 24px;
     color: var(--m-text);
+    font-family: var(--m-text-font);
+}
+
+[data-tone="blue"]  { --tone: #3761c2; --tone-soft: #eaf0fb; }
+[data-tone="teal"]  { --tone: #0e7f74; --tone-soft: #e3f4f1; }
+[data-tone="amber"] { --tone: #b86a00; --tone-soft: #fcf1df; }
+[data-tone="rose"]  { --tone: #c03a57; --tone-soft: #fbe9ed; }
+[data-tone="green"] { --tone: #3c7d32; --tone-soft: #e9f4e5; }
+
+.materials-title,
+.materials-section-title,
+.material-title {
+    font-family: var(--m-heading-font);
+}
+
+.materials-dot {
+    display: inline-block;
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: var(--tone);
 }
 
 /* main.css draws blue bars either side of every h1 - not here. */
@@ -26,9 +57,9 @@
 .materials-title {
     display: block;
     margin: 0 0 20px;
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
     line-height: 1.1;
 }
 
@@ -45,8 +76,12 @@
 }
 
 .materials-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     flex: none;
-    padding: 6px 14px;
+    padding: 7px 14px;
+    background: #fff;
     border: 1px solid var(--m-line);
     border-radius: 999px;
     color: var(--m-text);
@@ -57,7 +92,9 @@
 }
 
 .materials-jump a:hover {
-    border-color: var(--m-text);
+    border-color: var(--tone);
+    background: var(--tone-soft);
+    color: var(--m-text);
 }
 
 /* ── Sign-up notice (logged-out visitors) ───────────────────────────── */
@@ -70,7 +107,7 @@
     gap: 12px 24px;
     margin-top: 28px;
     padding: 16px 20px;
-    background: var(--m-surface);
+    background: var(--m-accent-soft);
     border-radius: var(--radius-md);
 }
 
@@ -96,15 +133,26 @@
     margin: 0 0 20px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--m-line);
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+.materials-section-title .materials-dot {
+    margin-right: 10px;
+    vertical-align: 0.12em;
 }
 
 .materials-count {
-    margin-left: 6px;
-    color: var(--m-muted);
-    font-size: 1rem;
-    font-weight: 400;
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 9px;
+    border-radius: 999px;
+    background: var(--tone-soft);
+    color: var(--tone);
+    font-family: var(--m-text-font);
+    font-size: 0.85rem;
+    font-weight: 600;
+    vertical-align: 0.2em;
 }
 
 .materials-grid {
@@ -126,16 +174,16 @@
     display: block;
     width: 100%;
     aspect-ratio: 16 / 10;
-    padding: 12px;
-    background: var(--m-surface);
-    border: 1px solid var(--m-line);
+    padding: 14px;
+    background: var(--tone-soft);
+    border: 1px solid transparent;
     border-radius: var(--radius-md);
     cursor: zoom-in;
     transition: border-color var(--transition-fast);
 }
 
 .material-thumb:hover {
-    border-color: #c9ccd3;
+    border-color: var(--tone);
 }
 
 .material-thumb img {
@@ -149,7 +197,7 @@
     display: block !important;
     margin: 0;
     font-size: 1.15rem;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.3;
     text-align: left;
 }
@@ -179,8 +227,9 @@
     border-radius: var(--radius-sm);
     background: #fff;
     color: var(--m-text);
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-family: var(--m-text-font);
+    font-size: 0.92rem;
+    font-weight: 500;
     line-height: 1;
     text-decoration: none;
     white-space: nowrap;
@@ -200,19 +249,25 @@
 }
 
 .m-btn-primary {
-    background: var(--m-text);
-    border-color: var(--m-text);
+    background: var(--m-accent);
+    border-color: var(--m-accent);
     color: #fff;
 }
 
 .m-btn-primary:hover {
-    background: #000;
+    background: #2b4fa3;
+    border-color: #2b4fa3;
     color: #fff;
 }
 
+.m-btn-file svg {
+    color: var(--tone);
+}
+
 .m-btn-file:hover {
-    border-color: var(--m-accent);
-    color: var(--m-accent);
+    border-color: var(--tone);
+    background: var(--tone-soft);
+    color: var(--m-text);
 }
 
 .m-tag {
@@ -224,7 +279,7 @@
     background: var(--m-surface);
     color: var(--m-muted);
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .m-tag-missing {
@@ -265,6 +320,14 @@
     color: var(--m-text);
     font-size: 1.5rem;
     line-height: 1;
+}
+
+/* Wider screens: let the jump links wrap instead of scrolling. */
+@media (min-width: 576px) {
+    .materials-jump {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
 }
 
 /* ── Phones ─────────────────────────────────────────────────────────── */

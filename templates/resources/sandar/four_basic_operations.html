@@ -6,6 +6,8 @@
 {% load custom_tags %}
 
 {% block extra_head %}
+{# Rubik (headings) + Onest (text): both cover the Kyrgyz letters ң ө ү. #}
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/materials.css' %}">
 {% endblock %}
 
@@ -20,7 +22,7 @@
         {# to the kind of material they came for.                         #}
         <nav class="materials-jump" aria-label="Бөлүмдөр">
             {% for section in sections %}
-                <a href="#section-{{ forloop.counter }}">{{ section.header|strip_leading_symbols }}</a>
+                <a href="#section-{{ forloop.counter }}" data-tone="{% cycle 'blue' 'teal' 'amber' 'rose' 'green' %}"><span class="materials-dot" aria-hidden="true"></span>{{ section.header|strip_leading_symbols }}</a>
             {% endfor %}
         </nav>
     </header>
@@ -38,8 +40,9 @@
     {% endif %}
 
     {% for section in sections %}
-        <section class="materials-section" id="section-{{ forloop.counter }}">
+        <section class="materials-section" id="section-{{ forloop.counter }}" data-tone="{% cycle 'blue' 'teal' 'amber' 'rose' 'green' %}">
             <h2 class="materials-section-title">
+                <span class="materials-dot" aria-hidden="true"></span>
                 {{ section.header|strip_leading_symbols }}
                 <span class="materials-count">{{ section.blocks|length }}</span>
             </h2>
