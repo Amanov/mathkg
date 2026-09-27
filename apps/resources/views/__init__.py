@@ -31,6 +31,18 @@ from .onduktar import onedigitarithmetics_view
 
 from .onduktar_placeholders import operation_placeholder_view
 
+from .ekvivalenttuuluk import (
+    to_fractions_view,
+    to_percentages_view,
+    to_both_view,
+    recurring_decimals_to_fractions_view,
+    with_fractions_view,
+    with_percentages_view,
+    fdp_view,
+    fdp_ordering_view,
+    fdpr_view,
+)
+
 from .big4 import big4_view
 
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail

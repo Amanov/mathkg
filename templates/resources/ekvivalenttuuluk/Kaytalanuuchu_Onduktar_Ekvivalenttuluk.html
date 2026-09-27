@@ -2,6 +2,7 @@
 {% block title %} Кайталануучу ондуктарды бөлчөккө айландыруу {%endblock%}
 
 {% load static %}
+{% load custom_tags %}
 
 {% block content %}
 <style type="text/css">
@@ -251,7 +252,7 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
           <!-- for restriction from download -->
           {% if user.is_authenticated %}
-             <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Sabak.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+             {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Sabak.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
           {% else %}
             <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
             <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
@@ -281,7 +282,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Jenil_Orto_Oor.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Jenil_Orto_Oor.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
            {% else %}
            <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
@@ -309,7 +310,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_1234.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">   
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_1234.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">   
           {% else %}
           <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
@@ -342,10 +343,10 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosu.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA6.pdf' %}">A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA7.pdf' %}">A7 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosu.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A5 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA6.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A6 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosuA7.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A7 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
 
           {% else %}
           <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
@@ -376,9 +377,9 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            <!-- <button class="btn btn-outline-primary" type="button">PPT</button> -->
            {% if user.is_authenticated %}
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTap.pptx' %}">PPT</a><br><hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTapA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTapA5.pdf' %}">A5 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTap.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<br><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTapA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KatanyTapA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A5 PDF</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
           </h2>
           {% else %}
           <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -410,10 +411,10 @@ h3{
            
               <!-- here we have to work  -->
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumA.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumA.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A5 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KondumAA6.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A6 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
 
               {% else %}
 	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -454,9 +455,9 @@ h3{
            
               
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruu.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruuA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruuA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruu.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruuA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruuA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A5 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
 
               </h2>
               {% else %}
@@ -488,9 +489,9 @@ h3{
 
            {% if user.is_authenticated %}
 
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurak.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurakA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurakA5.pdf' %}">A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurak.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurakA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurakA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A5 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
               
               
               
@@ -523,8 +524,8 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KazynaIzdoo.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KazynaIzdooA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KazynaIzdoo.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_KazynaIzdooA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
               
           
           
@@ -563,7 +564,7 @@ h3{
            
               <!-- here we have to work  -->
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_UnaaJarysh.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_UnaaJarysh.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
                           
               {% else %}
 	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -594,7 +595,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_XjanaO.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_XjanaO.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
           
          
           {% else %}

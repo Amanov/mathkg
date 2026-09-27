@@ -78,6 +78,26 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # Unlike the previous 3 groups, all 9 of these are real, hand-built
+        # pages (see apps/resources/views/ekvivalenttuuluk.py) - rewired
+        # from a dead download_file URL scheme onto the current
+        # download_resource system, not fresh placeholders.
+        'parent_path': ('Сандар', 'Ондуктар', 'Эквиваленттүүлүк'),
+        'target_items': [
+            {'title': 'Ондуктарды бөлчөккө айландыруу', 'url_name': 'to_fractions'},
+            {'title': 'Ондуктарды пайыздарга айландыруу', 'url_name': 'to_percentages'},
+            {'title': 'Ондуктарды бөлчөккө жана пайызга айландыруу', 'url_name': 'to_both'},
+            {'title': 'Кайталануучу ондуктарды бөлчөккө айландыруу', 'url_name': 'recurring_decimals_to_fractions'},
+            {'title': 'Бөлчөктөрдү жана ондуктарды ортосунда айландыруу', 'url_name': 'with_fractions'},
+            {'title': 'Бөлчөктөрдүн жана пайыздардын ортосунда айландыруу', 'url_name': 'with_percentages'},
+            {'title': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк', 'url_name': 'fdp'},
+            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө', 'url_name': 'fdp_ordering'},
+            {'title': 'Бөлчөк, ондук, пайыздык жана катыштын эквиваленттүүлүгү', 'url_name': 'fdpr'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 

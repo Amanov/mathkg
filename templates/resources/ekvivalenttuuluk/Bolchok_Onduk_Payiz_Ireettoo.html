@@ -2,6 +2,7 @@
 {% block title %} Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө{%endblock%}
 
 {% load static %}
+{% load custom_tags %}
 
 {% block content %}
 <style type="text/css">
@@ -251,7 +252,7 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
           <!-- for restriction from download -->
           {% if user.is_authenticated %}
-             <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_Sabak.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+             {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_Sabak.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
           {% else %}
             <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
             <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
@@ -281,7 +282,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_JenilOrtoOor.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_JenilOrtoOor.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
            {% else %}
            <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
@@ -309,7 +310,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_1234.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">   
+          {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_1234.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">   
           {% else %}
           <h3>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h3>
            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>  <!-- Add this line to redirect to the registration page -->
@@ -347,9 +348,9 @@ h3{
       <div class="h-100 p-5 bg-body-tertiary " >
         <!-- <button class="btn btn-outline-primary" type="button">PPT</button> -->
         {% if user.is_authenticated %}
-        <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrma.pptx' %}">PPT</a><br><hr style="visibility: hidden; margin:0.2em; ">
-        <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrmaA6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-        <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrmaA7.pdf' %}">A7 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+        {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrma.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<br><hr style="visibility: hidden; margin:0.2em; ">
+        {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrmaA6.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A6 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+        {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrmaA7.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A7 PDF</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
         </h2>
         {% else %}
         <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -379,10 +380,10 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            <!-- <button class="btn btn-outline-primary" type="button">PPT</button> -->
            {% if user.is_authenticated %}
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinth.pptx' %}">PPT</a><br><hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA5.pdf' %}">A5 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA6.pdf' %}">A6 PDF</a><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinth.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<br><hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A5 PDF</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinthA6.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A6 PDF</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
 
           </h2>
           {% else %}
@@ -415,9 +416,9 @@ h3{
            
               <!-- here we have to work  -->
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_KondumA.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_KondumAA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_KondumAA5.pdf' %}"> A5 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_KondumA.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_KondumAA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_KondumAA5.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A5 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
 
 
               {% else %}
@@ -459,9 +460,9 @@ h3{
            
               
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunu.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunuA6.pdf' %}"> A6 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunuA7.pdf' %}">A7 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunu.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunuA6.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A6 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunuA7.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">A7 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
 
               </h2>
               {% else %}
@@ -493,8 +494,8 @@ h3{
         <div class="h-100 p-5 bg-body-tertiary " >
            
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdoo.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
-           <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdooA4.pdf' %}"> A4 PDF</a> <hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdoo.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
+           {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdooA4.pdf' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}"> A4 PDF</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
               
           
           
@@ -536,7 +537,7 @@ h3{
            
               <!-- here we have to work  -->
               {% if user.is_authenticated %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_BlockbusterOyunu.pptx' %}">PPT</a> <hr style="visibility: hidden; margin:0.2em; ">
+              {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_BlockbusterOyunu.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %} <hr style="visibility: hidden; margin:0.2em; ">
                           
               {% else %}
 	            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -565,7 +566,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_XjanaO.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_XjanaO.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
           
          
           {% else %}
@@ -598,7 +599,7 @@ h3{
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-body-tertiary " >
           {% if user.is_authenticated %}
-          <a class="btn btn-outline-primary anchorNew" href="{% url 'download_file' file_name='Ekvivalenettuuluk_BOP_iREETTOO_JYDYMAI.pptx' %}">PPT</a><hr style="visibility: hidden; margin:0.2em; ">
+          {% with r=res|get_item:'Ekvivalenettuuluk_BOP_iREETTOO_JYDYMAI.pptx' %}{% if r %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endif %}{% endwith %}<hr style="visibility: hidden; margin:0.2em; ">
           
          
           {% else %}
