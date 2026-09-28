@@ -294,6 +294,20 @@ urlpatterns = [
     path('expressing-quantity/', operation_placeholder_view, {'operation_slug': 'expressing-quantity'}, name='expressing_quantity'),
     path('expressing-change/', operation_placeholder_view, {'operation_slug': 'expressing-change'}, name='expressing_change'),
 
+    # Даражалар жана тамырлар > Даражалар (Indices) - all 11 slots, none
+    # with a real page yet.
+    path('indices-introduction/', operation_placeholder_view, {'operation_slug': 'indices-introduction'}, name='indices_introduction'),
+    path('indices-square-numbers/', operation_placeholder_view, {'operation_slug': 'indices-square-numbers'}, name='indices_square_numbers'),
+    path('indices-cube-numbers/', operation_placeholder_view, {'operation_slug': 'indices-cube-numbers'}, name='indices_cube_numbers'),
+    path('indices-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'indices-multiplying-dividing'}, name='indices_multiplying_dividing'),
+    path('indices-negative/', operation_placeholder_view, {'operation_slug': 'indices-negative'}, name='indices_negative'),
+    path('indices-fractional/', operation_placeholder_view, {'operation_slug': 'indices-fractional'}, name='indices_fractional'),
+    path('indices-negative-fractional/', operation_placeholder_view, {'operation_slug': 'indices-negative-fractional'}, name='indices_negative_fractional'),
+    path('indices-with-brackets/', operation_placeholder_view, {'operation_slug': 'indices-with-brackets'}, name='indices_with_brackets'),
+    path('indices-mixed/', operation_placeholder_view, {'operation_slug': 'indices-mixed'}, name='indices_mixed'),
+    path('indices-equations/', operation_placeholder_view, {'operation_slug': 'indices-equations'}, name='indices_equations'),
+    path('indices-reciprocals/', operation_placeholder_view, {'operation_slug': 'indices-reciprocals'}, name='indices_reciprocals'),
+
     # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - all 8
     # slots, none with a real page yet.
     path('surds-simplifying/', operation_placeholder_view, {'operation_slug': 'surds-simplifying'}, name='surds_simplifying'),

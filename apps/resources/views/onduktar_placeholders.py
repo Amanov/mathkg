@@ -189,6 +189,20 @@ OPERATION_PLACEHOLDER_TITLES = {
     'expressing-quantity': 'Чоңдук',
     'expressing-change': 'Өзгөрүү',
 
+    # Даражалар жана тамырлар > Даражалар (Indices) - none of these 11
+    # have a real hand-built page yet.
+    'indices-introduction': 'Киришүү',
+    'indices-square-numbers': 'Квадрат сандар',
+    'indices-cube-numbers': 'Куб сандар',
+    'indices-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'indices-negative': 'Терс даража',
+    'indices-fractional': 'Бөлчөк даража',
+    'indices-negative-fractional': 'Терс бөлчөк даража',
+    'indices-with-brackets': 'Кашалар менен',
+    'indices-mixed': 'Аралаш',
+    'indices-equations': 'Даражалар менен теңдемелер',
+    'indices-reciprocals': 'Тескери сандар',
+
     # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - none
     # of these 8 have a real hand-built page yet.
     'surds-simplifying': 'Жөнөкөйлөтүү',
