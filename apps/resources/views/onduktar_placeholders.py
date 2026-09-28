@@ -63,6 +63,20 @@ OPERATION_PLACEHOLDER_TITLES = {
     'mixed-directed': 'Аралаш эсептөөлөр',
     'with-bidmas-directed': 'BIDMAS менен',
     'complex-directed': 'Татаал эсептөөлөр',
+
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Бөлчөктөрдү айландыруу
+    # (Converting Fractions) - none of these 10 have a real hand-built
+    # page yet.
+    'fractions-to-decimals': 'Ондукка айландыруу',
+    'fractions-to-decimals-calculator': 'Ондукка айландыруу: калькулятор менен',
+    'fractions-to-percentages': 'Пайызга айландыруу',
+    'fractions-to-percentages-calculator': 'Пайызга айландыруу: калькулятор менен',
+    'fractions-to-ratios': 'Катышка айландыруу',
+    'fractions-to-all': 'Баарына айландыруу',
+    'fractions-with-decimals': 'Ондуктар менен',
+    'fractions-with-percentages': 'Пайыздар менен',
+    'fractions-with-ratios': 'Катыштар менен',
+    'fractions-with-all': 'Баары менен',
 }
 
 

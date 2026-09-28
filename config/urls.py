@@ -166,6 +166,19 @@ urlpatterns = [
     path('with-bidmas-directed/', operation_placeholder_view, {'operation_slug': 'with-bidmas-directed'}, name='with_bidmas_directed'),
     path('complex-directed/', operation_placeholder_view, {'operation_slug': 'complex-directed'}, name='complex_directed'),
 
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Бөлчөктөрдү айландыруу -
+    # all 10 slots, none with a real page yet.
+    path('fractions-to-decimals/', operation_placeholder_view, {'operation_slug': 'fractions-to-decimals'}, name='fractions_to_decimals'),
+    path('fractions-to-decimals-calculator/', operation_placeholder_view, {'operation_slug': 'fractions-to-decimals-calculator'}, name='fractions_to_decimals_calculator'),
+    path('fractions-to-percentages/', operation_placeholder_view, {'operation_slug': 'fractions-to-percentages'}, name='fractions_to_percentages'),
+    path('fractions-to-percentages-calculator/', operation_placeholder_view, {'operation_slug': 'fractions-to-percentages-calculator'}, name='fractions_to_percentages_calculator'),
+    path('fractions-to-ratios/', operation_placeholder_view, {'operation_slug': 'fractions-to-ratios'}, name='fractions_to_ratios'),
+    path('fractions-to-all/', operation_placeholder_view, {'operation_slug': 'fractions-to-all'}, name='fractions_to_all'),
+    path('fractions-with-decimals/', operation_placeholder_view, {'operation_slug': 'fractions-with-decimals'}, name='fractions_with_decimals'),
+    path('fractions-with-percentages/', operation_placeholder_view, {'operation_slug': 'fractions-with-percentages'}, name='fractions_with_percentages'),
+    path('fractions-with-ratios/', operation_placeholder_view, {'operation_slug': 'fractions-with-ratios'}, name='fractions_with_ratios'),
+    path('fractions-with-all/', operation_placeholder_view, {'operation_slug': 'fractions-with-all'}, name='fractions_with_all'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
