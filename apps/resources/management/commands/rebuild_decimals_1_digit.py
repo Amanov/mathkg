@@ -602,6 +602,26 @@ CHILD_ORDER_FIXES = [
             'Рим сандарын окуу жана жазуу',
         ],
     },
+    {
+        # Reference has 8 items - production is missing "Area & Volume
+        # Conversion" entirely (not invisible-to-dev-DB this time - it
+        # genuinely doesn't exist anywhere yet), created the same way as
+        # Даражалар жана тамырлар's missing "Аралаш" sibling above.
+        'parent_path': ('Сандар', 'Өлчөмдөр'),
+        'create_subsubtopics': [
+            {'title': 'Аянт жана көлөм бирдиктерин алмаштыруу', 'slug': 'area-volume-conversion'},
+        ],
+        'order': [
+            'Татаал өлчөмдөр',
+            'Сызыктарды өлчөө',
+            'Акча',
+            'Шкаланы окуу',
+            'Масштабдуу сүрөттөр',
+            'Өлчөө системалары',
+            'Аянт жана көлөм бирдиктерин алмаштыруу',
+            'Убакыт',
+        ],
+    },
 ]
 
 
