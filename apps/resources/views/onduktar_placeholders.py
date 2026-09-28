@@ -77,6 +77,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'fractions-with-percentages': 'Пайыздар менен',
     'fractions-with-ratios': 'Катыштар менен',
     'fractions-with-all': 'Баары менен',
+
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Ондуктарды айландыруу
+    # (Converting Decimals) - none of these 7 have a real hand-built page
+    # yet.
+    'decimals-to-fractions': 'Бөлчөккө айландыруу',
+    'decimals-to-percentages': 'Пайызга айландыруу',
+    'decimals-to-both': 'Бөлчөккө жана пайызга айландыруу',
+    'decimals-recurring-to-fractions': 'Кайталануучу ондуктарды бөлчөккө айландыруу',
+    'decimals-with-fractions': 'Бөлчөктөр менен',
+    'decimals-with-percentages': 'Пайыздар менен',
+    'decimals-with-both': 'Экөө менен тең',
 }
 
 

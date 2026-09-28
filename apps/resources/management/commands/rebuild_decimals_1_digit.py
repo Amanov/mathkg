@@ -167,6 +167,30 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 7 have a real hand-built page yet. Content-wise
+        # this overlaps a lot with Ондуктар > Эквиваленттүүлүк (built
+        # earlier - to_fractions, to_percentages, etc.), but that's a
+        # different SubSubtopic with its own url_names already positioned
+        # in its own list; reusing those url_names here would make this
+        # command fight over repositioning them out of that list, so this
+        # gets its own distinct pages instead (same reasoning as
+        # recurring_converting_to_fractions under Мезгилдүү ондуктар).
+        # No FDP/FDP Ordering/FPR/FDPR items here - those are already
+        # covered by this SubSubtopic's own siblings at the level above.
+        'parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Ондуктарды айландыруу'),
+        'target_items': [
+            {'title': 'Бөлчөккө айландыруу', 'url_name': 'decimals_to_fractions'},
+            {'title': 'Пайызга айландыруу', 'url_name': 'decimals_to_percentages'},
+            {'title': 'Бөлчөккө жана пайызга айландыруу', 'url_name': 'decimals_to_both'},
+            {'title': 'Кайталануучу ондуктарды бөлчөккө айландыруу', 'url_name': 'decimals_recurring_to_fractions'},
+            {'title': 'Бөлчөктөр менен', 'url_name': 'decimals_with_fractions'},
+            {'title': 'Пайыздар менен', 'url_name': 'decimals_with_percentages'},
+            {'title': 'Экөө менен тең', 'url_name': 'decimals_with_both'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
