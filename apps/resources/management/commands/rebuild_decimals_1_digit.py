@@ -142,6 +142,31 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': ['directed_numbers'],
     },
+    {
+        # None of these 10 have a real hand-built page yet. Note this
+        # "Эквиваленттүүлүк" is the top-level Number topic (Topic ->
+        # Subtopic "Эквиваленттүүлүк" -> SubSubtopic "Бөлчөктөрдү
+        # айландыруу"/Converting Fractions), not the Ондуктар >
+        # Эквиваленттүүлүк sub-subtopic rebuilt earlier - the parent_path
+        # lookup below disambiguates by requiring the grandparent to be
+        # Сандар directly (there are 4 different "Эквиваленттүүлүк" menu
+        # items in the tree, each under a different parent).
+        'parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү айландыруу'),
+        'target_items': [
+            {'title': 'Ондукка айландыруу', 'url_name': 'fractions_to_decimals'},
+            {'title': 'Ондукка айландыруу: калькулятор менен', 'url_name': 'fractions_to_decimals_calculator'},
+            {'title': 'Пайызга айландыруу', 'url_name': 'fractions_to_percentages'},
+            {'title': 'Пайызга айландыруу: калькулятор менен', 'url_name': 'fractions_to_percentages_calculator'},
+            {'title': 'Катышка айландыруу', 'url_name': 'fractions_to_ratios'},
+            {'title': 'Баарына айландыруу', 'url_name': 'fractions_to_all'},
+            {'title': 'Ондуктар менен', 'url_name': 'fractions_with_decimals'},
+            {'title': 'Пайыздар менен', 'url_name': 'fractions_with_percentages'},
+            {'title': 'Катыштар менен', 'url_name': 'fractions_with_ratios'},
+            {'title': 'Баары менен', 'url_name': 'fractions_with_all'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
