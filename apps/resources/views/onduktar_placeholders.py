@@ -46,6 +46,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'hire-purchase': 'Насыяга сатып алуу',
     'bills-and-statements': 'Эсептер жана көчүрмөлөр',
     'rates-of-pay': 'Эмгек акы ставкалары',
+
+    # Ондуктар > Мезгилдүү ондуктар - neither of these 2 have a real
+    # hand-built page yet.
+    'recurring-decimals-ordering': 'Мезгилдүү ондуктарды иреттөө',
+    'recurring-converting-to-fractions': 'Мезгилдүү ондуктарды бөлчөккө айландыруу',
 }
 
 

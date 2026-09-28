@@ -111,6 +111,35 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # Neither of these 2 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Ондуктар', 'Мезгилдүү ондуктар'),
+        'target_items': [
+            {'title': 'Мезгилдүү ондуктарды иреттөө', 'url_name': 'recurring_decimals_ordering'},
+            {'title': 'Мезгилдүү ондуктарды бөлчөккө айландыруу', 'url_name': 'recurring_converting_to_fractions'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+]
+
+# Canonical order for Ондуктар's own direct children (a level up from the
+# GROUPS above, which each rebuild the children *within* one of these).
+# Production had drifted from the reference order (Money, then Recurring,
+# then Ordering/Place Value swapped) in a way invisible to a fresh local
+# dev DB, since nothing in this repo ever seeded these 8 in this exact
+# order before. Applied by exact title match under Ондуктар only - only
+# the 'order' field changes, nothing is created, moved elsewhere, or
+# deleted.
+ONDUKTAR_CHILD_ORDER = [
+    'Эсептөөлөр: 1 орундук сандар',
+    'Эсептөөлөр: 1 жана 2 орундук сандар',
+    'Эсептөөлөр: бүтүн сандар менен',
+    'Эквиваленттүүлүк',
+    'Акча',
+    'Ондуктарды иреттөө',
+    'Ондуктун орун наркы',
+    'Мезгилдүү ондуктар',
 ]
 
 
@@ -217,5 +246,20 @@ class Command(BaseCommand):
                         f'(any underlying page/content is untouched).'
                     )
                     extra.delete()
+
+        self.stdout.write('=== Ондуктар (direct children order) ===')
+        try:
+            onduktar = MenuItem.objects.get(title='Ондуктар', parent__title='Сандар')
+        except MenuItem.DoesNotExist:
+            self.stderr.write('  "Ондуктар" not found - run import_reference_taxonomy / fix_number_menu first.')
+        else:
+            for order, title in enumerate(ONDUKTAR_CHILD_ORDER, start=1):
+                child = MenuItem.objects.filter(parent=onduktar, title=title).first()
+                if not child:
+                    continue
+                if child.order != order:
+                    child.order = order
+                    child.save(update_fields=['order'])
+                    self.stdout.write(f'  Reordered: {title} -> {order}')
 
         self.stdout.write(self.style.SUCCESS('Done.'))

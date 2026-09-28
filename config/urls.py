@@ -165,6 +165,10 @@ urlpatterns = [
     path('bills-and-statements/', operation_placeholder_view, {'operation_slug': 'bills-and-statements'}, name='bills_and_statements'),
     path('rates-of-pay/', operation_placeholder_view, {'operation_slug': 'rates-of-pay'}, name='rates_of_pay'),
 
+    # Ондуктар > Мезгилдүү ондуктар - both slots, neither with a real page yet.
+    path('recurring-decimals-ordering/', operation_placeholder_view, {'operation_slug': 'recurring-decimals-ordering'}, name='recurring_decimals_ordering'),
+    path('recurring-converting-to-fractions/', operation_placeholder_view, {'operation_slug': 'recurring-converting-to-fractions'}, name='recurring_converting_to_fractions'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
