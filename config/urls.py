@@ -296,6 +296,12 @@ urlpatterns = [
     path('indices-equations/', operation_placeholder_view, {'operation_slug': 'indices-equations'}, name='indices_equations'),
     path('indices-reciprocals/', operation_placeholder_view, {'operation_slug': 'indices-reciprocals'}, name='indices_reciprocals'),
 
+    # Даражалар жана тамырлар > Тамырларды эсептөө (Evaluating Roots) -
+    # all 3 slots, none with a real page yet.
+    path('evaluating-roots-estimating/', operation_placeholder_view, {'operation_slug': 'evaluating-roots-estimating'}, name='evaluating_roots_estimating'),
+    path('evaluating-roots-square/', operation_placeholder_view, {'operation_slug': 'evaluating-roots-square'}, name='evaluating_roots_square'),
+    path('evaluating-roots-square-cube/', operation_placeholder_view, {'operation_slug': 'evaluating-roots-square-cube'}, name='evaluating_roots_square_cube'),
+
     # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - all 8
     # slots, none with a real page yet.
     path('surds-simplifying/', operation_placeholder_view, {'operation_slug': 'surds-simplifying'}, name='surds_simplifying'),

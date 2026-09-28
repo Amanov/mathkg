@@ -378,6 +378,19 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Тамырларды эсептөө" already exists as the "Evaluating Roots"
+        # sub-subtopic (slug 'evaluating-roots') - it just had no children
+        # yet.
+        'parent_path': ('Сандар', 'Даражалар жана тамырлар', 'Тамырларды эсептөө'),
+        'target_items': [
+            {'title': 'Тамырларды болжолдоо', 'url_name': 'evaluating_roots_estimating'},
+            {'title': 'Квадрат', 'url_name': 'evaluating_roots_square'},
+            {'title': 'Квадрат жана куб', 'url_name': 'evaluating_roots_square_cube'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Тамырлар менен эсептөөлөр" already exists as the "Surds"
         # sub-subtopic (slug 'surds') - it just had no children yet.
         'parent_path': ('Сандар', 'Даражалар жана тамырлар', 'Тамырлар менен эсептөөлөр'),

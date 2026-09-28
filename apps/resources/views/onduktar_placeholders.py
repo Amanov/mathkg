@@ -203,6 +203,12 @@ OPERATION_PLACEHOLDER_TITLES = {
     'indices-equations': 'Даражалар менен теңдемелер',
     'indices-reciprocals': 'Тескери сандар',
 
+    # Даражалар жана тамырлар > Тамырларды эсептөө (Evaluating Roots) -
+    # none of these 3 have a real hand-built page yet.
+    'evaluating-roots-estimating': 'Тамырларды болжолдоо',
+    'evaluating-roots-square': 'Квадрат',
+    'evaluating-roots-square-cube': 'Квадрат жана куб',
+
     # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - none
     # of these 8 have a real hand-built page yet.
     'surds-simplifying': 'Жөнөкөйлөтүү',
