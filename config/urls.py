@@ -222,6 +222,18 @@ urlpatterns = [
     path('error-intervals-calculations/', operation_placeholder_view, {'operation_slug': 'error-intervals-calculations'}, name='error_intervals_calculations'),
     path('error-intervals-truncation/', operation_placeholder_view, {'operation_slug': 'error-intervals-truncation'}, name='error_intervals_truncation'),
 
+    # Бөлүүчүлөр, эселиктер жана жөнөкөй сандар > ЭЧОБ & ЭКОЭ: тизмелөө
+    # менен - all 3 slots, none with a real page yet.
+    path('hcf-listing/', operation_placeholder_view, {'operation_slug': 'hcf-listing'}, name='hcf_listing'),
+    path('lcm-listing/', operation_placeholder_view, {'operation_slug': 'lcm-listing'}, name='lcm_listing'),
+    path('hcf-lcm-listing-mixed/', operation_placeholder_view, {'operation_slug': 'hcf-lcm-listing-mixed'}, name='hcf_lcm_listing_mixed'),
+
+    # Бөлүүчүлөр, эселиктер жана жөнөкөй сандар > ЭЧОБ & ЭКОЭ: жөнөкөй
+    # көбөйтүүчүлөргө ажыратуу менен - all 3 slots, none with a real page yet.
+    path('hcf-prime-factorisation/', operation_placeholder_view, {'operation_slug': 'hcf-prime-factorisation'}, name='hcf_prime_factorisation'),
+    path('lcm-prime-factorisation/', operation_placeholder_view, {'operation_slug': 'lcm-prime-factorisation'}, name='lcm_prime_factorisation'),
+    path('hcf-lcm-prime-factorisation-mixed/', operation_placeholder_view, {'operation_slug': 'hcf-lcm-prime-factorisation-mixed'}, name='hcf_lcm_prime_factorisation_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

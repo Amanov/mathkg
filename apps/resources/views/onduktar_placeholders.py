@@ -123,6 +123,20 @@ OPERATION_PLACEHOLDER_TITLES = {
     'error-intervals-decimal-significant': 'Ондук орундар жана маанилүү сандар',
     'error-intervals-calculations': 'Эсептөөлөр',
     'error-intervals-truncation': 'Кесүү',
+
+    # Бөлүүчүлөр, эселиктер жана жөнөкөй сандар > ЭЧОБ & ЭКОЭ: тизмелөө
+    # менен (HCF & LCM: Listing) - none of these 3 have a real hand-built
+    # page yet.
+    'hcf-listing': 'Эң чоң орток бөлүүчү',
+    'lcm-listing': 'Эң кичине орток эселик',
+    'hcf-lcm-listing-mixed': 'Аралаш',
+
+    # Бөлүүчүлөр, эселиктер жана жөнөкөй сандар > ЭЧОБ & ЭКОЭ: жөнөкөй
+    # көбөйтүүчүлөргө ажыратуу менен (HCF & LCM: Prime Factorisation) -
+    # none of these 3 have a real hand-built page yet.
+    'hcf-prime-factorisation': 'Эң чоң орток бөлүүчү',
+    'lcm-prime-factorisation': 'Эң кичине орток эселик',
+    'hcf-lcm-prime-factorisation-mixed': 'Аралаш',
 }
 
 

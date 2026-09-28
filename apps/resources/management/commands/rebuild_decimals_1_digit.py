@@ -250,6 +250,28 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 3 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар', 'Эң чоң орток бөлүүчү жана эң кичине орток эселик: тизмелөө менен'),
+        'target_items': [
+            {'title': 'Эң чоң орток бөлүүчү', 'url_name': 'hcf_listing'},
+            {'title': 'Эң кичине орток эселик', 'url_name': 'lcm_listing'},
+            {'title': 'Аралаш', 'url_name': 'hcf_lcm_listing_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 3 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар', 'Эң чоң орток бөлүүчү жана эң кичине орток эселик: жөнөкөй көбөйтүүчүлөргө ажыратуу менен'),
+        'target_items': [
+            {'title': 'Эң чоң орток бөлүүчү', 'url_name': 'hcf_prime_factorisation'},
+            {'title': 'Эң кичине орток эселик', 'url_name': 'lcm_prime_factorisation'},
+            {'title': 'Аралаш', 'url_name': 'hcf_lcm_prime_factorisation_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
