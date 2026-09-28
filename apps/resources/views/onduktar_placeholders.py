@@ -219,6 +219,43 @@ OPERATION_PLACEHOLDER_TITLES = {
     'surds-rationalising-denominators': 'Бөлүүчүнү рационалдаштыруу',
     'surds-mixed': 'Аралаш',
     'surds-with-pythagoras': 'Пифагор менен',
+
+    # Бүтүн сандар > Эсептөөлөр: 1 жана 2 орундук - none of these 8 have
+    # a real hand-built page yet.
+    'integers-adding-1-2-digit': 'Кошуу',
+    'integers-subtracting-1-2-digit': 'Кемитүү',
+    'integers-adding-subtracting-1-2-digit': 'Кошуу жана кемитүү',
+    'integers-multiplying-1-2-digit': 'Көбөйтүү',
+    'integers-dividing-1-2-digit': 'Бөлүү',
+    'integers-multiplying-dividing-1-2-digit': 'Көбөйтүү жана бөлүү',
+    'integers-multiplying-dividing-10-100-1000': '10, 100, 1000гө көбөйтүү жана бөлүү',
+    'integers-mixed-1-2-digit': 'Аралаш',
+
+    # Бүтүн сандар > Эсептөөлөр: 2 жана 3 орундук - none of these 7 have
+    # a real hand-built page yet.
+    'integers-adding-2-3-digit': 'Кошуу',
+    'integers-subtracting-2-3-digit': 'Кемитүү',
+    'integers-adding-subtracting-2-3-digit': 'Кошуу жана кемитүү',
+    'integers-multiplying-2-3-digit': 'Көбөйтүү',
+    'integers-dividing-2-3-digit': 'Бөлүү',
+    'integers-multiplying-dividing-2-3-digit': 'Көбөйтүү жана бөлүү',
+    'integers-mixed-2-3-digit': 'Аралаш',
+
+    # Бүтүн сандар > Эсептөөлөр: ондуктар менен - none of these 8 have a
+    # real hand-built page yet.
+    'integers-adding-with-decimals': 'Кошуу',
+    'integers-subtracting-with-decimals': 'Кемитүү',
+    'integers-adding-subtracting-with-decimals': 'Кошуу жана кемитүү',
+    'integers-multiplying-with-decimals': 'Көбөйтүү',
+    'integers-dividing-with-decimals': 'Бөлүү',
+    'integers-multiplying-dividing-with-decimals': 'Көбөйтүү жана бөлүү',
+    'integers-mixed-with-decimals': 'Аралаш',
+    'integers-dividing-divisor-less-than-1-with-decimals': 'Бөлүүчүсү 1ден кичине бөлүү',
+
+    # Бүтүн сандар > Турмуштук маселелер - neither of these 2 have a real
+    # hand-built page yet.
+    'integers-real-life-calculator': 'Калькулятор менен',
+    'integers-real-life-non-calculator': 'Калькуляторсуз',
 }
 
 
