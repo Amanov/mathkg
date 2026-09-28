@@ -137,6 +137,57 @@ OPERATION_PLACEHOLDER_TITLES = {
     'hcf-prime-factorisation': 'Эң чоң орток бөлүүчү',
     'lcm-prime-factorisation': 'Эң кичине орток эселик',
     'hcf-lcm-prime-factorisation-mixed': 'Аралаш',
+
+    # Бөлчөктөр > Эсептөөлөр: бирдик бөлчөктөр (Arithmetic: Unit
+    # Fractions) - none of these 8 have a real hand-built page yet.
+    'unit-fractions-adding': 'Кошуу',
+    'unit-fractions-subtracting': 'Кемитүү',
+    'unit-fractions-adding-subtracting': 'Кошуу жана кемитүү',
+    'unit-fractions-multiplying': 'Көбөйтүү',
+    'unit-fractions-dividing': 'Бөлүү',
+    'unit-fractions-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'unit-fractions-with-integers': 'Бүтүн сандар менен',
+    'unit-fractions-mixed': 'Аралаш',
+
+    # Бөлчөктөр > Эсептөөлөр: бирдик эмес бөлчөктөр (Arithmetic: Non-Unit
+    # Fractions) - none of these 9 have a real hand-built page yet.
+    'non-unit-fractions-adding': 'Кошуу',
+    'non-unit-fractions-subtracting': 'Кемитүү',
+    'non-unit-fractions-adding-subtracting': 'Кошуу жана кемитүү',
+    'non-unit-fractions-multiplying': 'Көбөйтүү',
+    'non-unit-fractions-dividing': 'Бөлүү',
+    'non-unit-fractions-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'non-unit-fractions-with-cancelling': 'Кыскартуу менен',
+    'non-unit-fractions-with-integers': 'Бүтүн сандар менен',
+    'non-unit-fractions-mixed': 'Аралаш',
+
+    # Бөлчөктөр > Эквиваленттүүлүк - none of these 13 have a real
+    # hand-built page yet.
+    'fractions-equiv-to-decimals': 'Ондукка айландыруу',
+    'fractions-equiv-to-decimals-calculator': 'Ондукка айландыруу: калькулятор менен',
+    'fractions-equiv-to-percentages': 'Пайызга айландыруу',
+    'fractions-equiv-to-percentages-calculator': 'Пайызга айландыруу: калькулятор менен',
+    'fractions-equiv-to-ratios': 'Катышка айландыруу',
+    'fractions-equiv-to-all': 'Баарына айландыруу',
+    'fractions-equiv-with-decimals': 'Ондуктар менен',
+    'fractions-equiv-with-percentages': 'Пайыздар менен',
+    'fractions-equiv-with-ratios': 'Катыштар менен',
+    'fractions-equiv-fdp': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк',
+    'fractions-equiv-fdp-ordering': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө',
+    'fractions-equiv-fpr': 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү',
+    'fractions-equiv-fdpr': 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү',
+
+    # Бөлчөктөр > Барабар бөлчөктөр (Equivalent Fractions) - none of these
+    # 4 have a real hand-built page yet.
+    'equivalent-fractions-simplifying': 'Жөнөкөйлөтүү',
+    'equivalent-fractions-comparing-ordering': 'Салыштыруу жана иреттөө',
+    'equivalent-fractions-comparing-inequality': 'Барабарсыздык белгилери менен салыштыруу',
+    'equivalent-fractions-with-calculations': 'Эсептөөлөр менен',
+
+    # Бөлчөктөр > Туюнтуу (Expressing) - none of these 2 have a real
+    # hand-built page yet.
+    'expressing-quantity': 'Чоңдук',
+    'expressing-change': 'Өзгөрүү',
 }
 
 
