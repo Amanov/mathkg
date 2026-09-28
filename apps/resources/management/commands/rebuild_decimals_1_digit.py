@@ -191,6 +191,24 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 8 have a real hand-built page yet. Same
+        # own-distinct-pages reasoning as Converting Decimals above - no
+        # FDP-family items here either, for the same reason.
+        'parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Пайыздарды айландыруу'),
+        'target_items': [
+            {'title': 'Бөлчөккө айландыруу', 'url_name': 'percentages_to_fractions'},
+            {'title': 'Ондукка айландыруу', 'url_name': 'percentages_to_decimals'},
+            {'title': 'Катышка айландыруу', 'url_name': 'percentages_to_ratios'},
+            {'title': 'Баарына айландыруу', 'url_name': 'percentages_to_all'},
+            {'title': 'Бөлчөктөр менен', 'url_name': 'percentages_with_fractions'},
+            {'title': 'Ондуктар менен', 'url_name': 'percentages_with_decimals'},
+            {'title': 'Катыштар менен', 'url_name': 'percentages_with_ratios'},
+            {'title': 'Баары менен', 'url_name': 'percentages_with_all'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up

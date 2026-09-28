@@ -201,6 +201,17 @@ urlpatterns = [
     path('decimals-with-percentages/', operation_placeholder_view, {'operation_slug': 'decimals-with-percentages'}, name='decimals_with_percentages'),
     path('decimals-with-both/', operation_placeholder_view, {'operation_slug': 'decimals-with-both'}, name='decimals_with_both'),
 
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Пайыздарды айландыруу -
+    # all 8 slots, none with a real page yet.
+    path('percentages-to-fractions/', operation_placeholder_view, {'operation_slug': 'percentages-to-fractions'}, name='percentages_to_fractions'),
+    path('percentages-to-decimals/', operation_placeholder_view, {'operation_slug': 'percentages-to-decimals'}, name='percentages_to_decimals'),
+    path('percentages-to-ratios/', operation_placeholder_view, {'operation_slug': 'percentages-to-ratios'}, name='percentages_to_ratios'),
+    path('percentages-to-all/', operation_placeholder_view, {'operation_slug': 'percentages-to-all'}, name='percentages_to_all'),
+    path('percentages-with-fractions/', operation_placeholder_view, {'operation_slug': 'percentages-with-fractions'}, name='percentages_with_fractions'),
+    path('percentages-with-decimals/', operation_placeholder_view, {'operation_slug': 'percentages-with-decimals'}, name='percentages_with_decimals'),
+    path('percentages-with-ratios/', operation_placeholder_view, {'operation_slug': 'percentages-with-ratios'}, name='percentages_with_ratios'),
+    path('percentages-with-all/', operation_placeholder_view, {'operation_slug': 'percentages-with-all'}, name='percentages_with_all'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

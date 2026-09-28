@@ -88,6 +88,18 @@ OPERATION_PLACEHOLDER_TITLES = {
     'decimals-with-fractions': 'Бөлчөктөр менен',
     'decimals-with-percentages': 'Пайыздар менен',
     'decimals-with-both': 'Экөө менен тең',
+
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Пайыздарды айландыруу
+    # (Converting Percentages) - none of these 8 have a real hand-built
+    # page yet.
+    'percentages-to-fractions': 'Бөлчөккө айландыруу',
+    'percentages-to-decimals': 'Ондукка айландыруу',
+    'percentages-to-ratios': 'Катышка айландыруу',
+    'percentages-to-all': 'Баарына айландыруу',
+    'percentages-with-fractions': 'Бөлчөктөр менен',
+    'percentages-with-decimals': 'Ондуктар менен',
+    'percentages-with-ratios': 'Катыштар менен',
+    'percentages-with-all': 'Баары менен',
 }
 
 
