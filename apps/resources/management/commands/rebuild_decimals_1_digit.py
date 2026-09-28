@@ -295,6 +295,24 @@ CHILD_ORDER_FIXES = [
             'Ката аралыктары',
         ],
     },
+    {
+        # Reference order: Prime Numbers, Multiples, Factors, Mixed, Prime
+        # Factorisation, HCF & LCM: Listing, HCF & LCM: Prime
+        # Factorisation - production had the 2 HCF & LCM items pulled
+        # forward to positions 2-3 (sharing duplicate order values with
+        # Multiples/Factors). All 7 already exist as real menu entries;
+        # this only fixes their order, nothing is created or removed.
+        'parent_path': ('Сандар', 'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар'),
+        'order': [
+            'Жөнөкөй сандар',
+            'Эселиктер',
+            'Бөлүүчүлөр',
+            'Жөнөкөй сандар, бөлүүчүлөр жана эселиктер',
+            'Даража түрүндөгү жөнөкөй көбөйтүүчүлөргө ажыратуу',
+            'Эң чоң орток бөлүүчү жана эң кичине орток эселик: тизмелөө менен',
+            'Эң чоң орток бөлүүчү жана эң кичине орток эселик: жөнөкөй көбөйтүүчүлөргө ажыратуу менен',
+        ],
+    },
 ]
 
 
