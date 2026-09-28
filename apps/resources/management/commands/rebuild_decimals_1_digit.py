@@ -422,4 +422,21 @@ class Command(BaseCommand):
                     child.save(update_fields=['order'])
                     self.stdout.write(f'  Reordered: {title} -> {order}')
 
+            # A canonical order list is meant to be the exhaustive set of
+            # this parent's children, so - same as GROUPS' target_items
+            # pruning above - anything else under this parent is a
+            # leftover/duplicate (e.g. an old menu entry never seeded by
+            # any command in this repo, invisible to a fresh local dev DB,
+            # only surfaced by running against production's real, longer-
+            # lived menu state). Only the navigation entry is deleted; any
+            # underlying page/content is untouched.
+            fixed_titles = set(fix['order'])
+            for extra in MenuItem.objects.filter(parent=parent):
+                if extra.title not in fixed_titles:
+                    self.stdout.write(
+                        f'  Removed extra menu item "{extra.title}" under this parent '
+                        f'(any underlying page/content is untouched).'
+                    )
+                    extra.delete()
+
         self.stdout.write(self.style.SUCCESS('Done.'))
