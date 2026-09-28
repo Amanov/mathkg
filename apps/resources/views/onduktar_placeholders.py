@@ -51,6 +51,18 @@ OPERATION_PLACEHOLDER_TITLES = {
     # hand-built page yet.
     'recurring-decimals-ordering': 'Мезгилдүү ондуктарды иреттөө',
     'recurring-converting-to-fractions': 'Мезгилдүү ондуктарды бөлчөккө айландыруу',
+
+    # Багытталган сандар > Эсептөөлөр - none of these 7 have a real
+    # hand-built page yet (the one real page for Directed Numbers,
+    # directed_numbers_view, is a general combined page that doesn't map
+    # onto any single one of these 7 slots).
+    'adding-directed': 'Кошуу',
+    'subtracting-directed': 'Кемитүү',
+    'adding-subtracting-directed': 'Кошуу жана кемитүү',
+    'multiplying-dividing-directed': 'Көбөйтүү жана бөлүү',
+    'mixed-directed': 'Аралаш эсептөөлөр',
+    'with-bidmas-directed': 'BIDMAS менен',
+    'complex-directed': 'Татаал эсептөөлөр',
 }
 
 
