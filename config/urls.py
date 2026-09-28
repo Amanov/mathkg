@@ -325,6 +325,43 @@ urlpatterns = [
     path('surds-mixed/', operation_placeholder_view, {'operation_slug': 'surds-mixed'}, name='surds_mixed'),
     path('surds-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'surds-with-pythagoras'}, name='surds_with_pythagoras'),
 
+    # Бүтүн сандар > Эсептөөлөр: 1 жана 2 орундук - all 8 slots, none
+    # with a real page yet.
+    path('integers-adding-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-1-2-digit'}, name='integers_adding_1_2_digit'),
+    path('integers-subtracting-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-subtracting-1-2-digit'}, name='integers_subtracting_1_2_digit'),
+    path('integers-adding-subtracting-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-subtracting-1-2-digit'}, name='integers_adding_subtracting_1_2_digit'),
+    path('integers-multiplying-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-1-2-digit'}, name='integers_multiplying_1_2_digit'),
+    path('integers-dividing-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-dividing-1-2-digit'}, name='integers_dividing_1_2_digit'),
+    path('integers-multiplying-dividing-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-dividing-1-2-digit'}, name='integers_multiplying_dividing_1_2_digit'),
+    path('integers-multiplying-dividing-10-100-1000/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-dividing-10-100-1000'}, name='integers_multiplying_dividing_10_100_1000'),
+    path('integers-mixed-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-mixed-1-2-digit'}, name='integers_mixed_1_2_digit'),
+
+    # Бүтүн сандар > Эсептөөлөр: 2 жана 3 орундук - all 7 slots, none
+    # with a real page yet.
+    path('integers-adding-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-2-3-digit'}, name='integers_adding_2_3_digit'),
+    path('integers-subtracting-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-subtracting-2-3-digit'}, name='integers_subtracting_2_3_digit'),
+    path('integers-adding-subtracting-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-subtracting-2-3-digit'}, name='integers_adding_subtracting_2_3_digit'),
+    path('integers-multiplying-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-2-3-digit'}, name='integers_multiplying_2_3_digit'),
+    path('integers-dividing-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-dividing-2-3-digit'}, name='integers_dividing_2_3_digit'),
+    path('integers-multiplying-dividing-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-dividing-2-3-digit'}, name='integers_multiplying_dividing_2_3_digit'),
+    path('integers-mixed-2-3-digit/', operation_placeholder_view, {'operation_slug': 'integers-mixed-2-3-digit'}, name='integers_mixed_2_3_digit'),
+
+    # Бүтүн сандар > Эсептөөлөр: ондуктар менен - all 8 slots, none with
+    # a real page yet.
+    path('integers-adding-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-adding-with-decimals'}, name='integers_adding_with_decimals'),
+    path('integers-subtracting-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-subtracting-with-decimals'}, name='integers_subtracting_with_decimals'),
+    path('integers-adding-subtracting-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-adding-subtracting-with-decimals'}, name='integers_adding_subtracting_with_decimals'),
+    path('integers-multiplying-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-with-decimals'}, name='integers_multiplying_with_decimals'),
+    path('integers-dividing-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-dividing-with-decimals'}, name='integers_dividing_with_decimals'),
+    path('integers-multiplying-dividing-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-dividing-with-decimals'}, name='integers_multiplying_dividing_with_decimals'),
+    path('integers-mixed-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-mixed-with-decimals'}, name='integers_mixed_with_decimals'),
+    path('integers-dividing-divisor-less-than-1-with-decimals/', operation_placeholder_view, {'operation_slug': 'integers-dividing-divisor-less-than-1-with-decimals'}, name='integers_dividing_divisor_less_than_1_with_decimals'),
+
+    # Бүтүн сандар > Турмуштук маселелер - both slots, none with a real
+    # page yet.
+    path('integers-real-life-calculator/', operation_placeholder_view, {'operation_slug': 'integers-real-life-calculator'}, name='integers_real_life_calculator'),
+    path('integers-real-life-non-calculator/', operation_placeholder_view, {'operation_slug': 'integers-real-life-non-calculator'}, name='integers_real_life_non_calculator'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

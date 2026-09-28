@@ -407,6 +407,74 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Эсептөөлөр: 1 жана 2 орундук" already exists as a Бүтүн сандар
+        # sub-subtopic - it just had no children yet. Same 8-slot shape as
+        # Ондуктар's own "1 жана 2 орундук сандар" group above, but these
+        # are whole-number (not decimal) questions, so distinct url_names.
+        'parent_path': ('Сандар', 'Бүтүн сандар', 'Эсептөөлөр: 1 жана 2 орундук'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'integers_adding_1_2_digit'},
+            {'title': 'Кемитүү', 'url_name': 'integers_subtracting_1_2_digit'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'integers_adding_subtracting_1_2_digit'},
+            {'title': 'Көбөйтүү', 'url_name': 'integers_multiplying_1_2_digit'},
+            {'title': 'Бөлүү', 'url_name': 'integers_dividing_1_2_digit'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_1_2_digit'},
+            {'title': '10, 100, 1000гө көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_10_100_1000'},
+            {'title': 'Аралаш', 'url_name': 'integers_mixed_1_2_digit'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Эсептөөлөр: 2 жана 3 орундук" already exists as a Бүтүн сандар
+        # sub-subtopic - it just had no children yet. Same shape as the
+        # group above minus the "10, 100, 1000" slot (reference doesn't
+        # show that shortcut at this digit size).
+        'parent_path': ('Сандар', 'Бүтүн сандар', 'Эсептөөлөр: 2 жана 3 орундук'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'integers_adding_2_3_digit'},
+            {'title': 'Кемитүү', 'url_name': 'integers_subtracting_2_3_digit'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'integers_adding_subtracting_2_3_digit'},
+            {'title': 'Көбөйтүү', 'url_name': 'integers_multiplying_2_3_digit'},
+            {'title': 'Бөлүү', 'url_name': 'integers_dividing_2_3_digit'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_2_3_digit'},
+            {'title': 'Аралаш', 'url_name': 'integers_mixed_2_3_digit'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Эсептөөлөр: ондуктар менен" already exists as a Бүтүн сандар
+        # sub-subtopic - it just had no children yet. Same 8-slot shape as
+        # Ондуктар's own "бүтүн сандар менен" group above (Adding through
+        # Mixed plus "Dividing: Divisor <1"), but here it's integers
+        # combined with decimals, so distinct url_names.
+        'parent_path': ('Сандар', 'Бүтүн сандар', 'Эсептөөлөр: ондуктар менен'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'integers_adding_with_decimals'},
+            {'title': 'Кемитүү', 'url_name': 'integers_subtracting_with_decimals'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'integers_adding_subtracting_with_decimals'},
+            {'title': 'Көбөйтүү', 'url_name': 'integers_multiplying_with_decimals'},
+            {'title': 'Бөлүү', 'url_name': 'integers_dividing_with_decimals'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_with_decimals'},
+            {'title': 'Аралаш', 'url_name': 'integers_mixed_with_decimals'},
+            {'title': 'Бөлүүчүсү 1ден кичине бөлүү', 'url_name': 'integers_dividing_divisor_less_than_1_with_decimals'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Турмуштук маселелер" already exists as a Бүтүн сандар
+        # sub-subtopic - it just had no children yet.
+        'parent_path': ('Сандар', 'Бүтүн сандар', 'Турмуштук маселелер'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'integers_real_life_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'integers_real_life_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
