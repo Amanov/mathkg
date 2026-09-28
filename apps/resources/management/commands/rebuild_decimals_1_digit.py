@@ -358,6 +358,26 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Даражалар" already exists as the "Indices" sub-subtopic (slug
+        # 'indices') - it just had no children yet.
+        'parent_path': ('Сандар', 'Даражалар жана тамырлар', 'Даражалар'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'indices_introduction'},
+            {'title': 'Квадрат сандар', 'url_name': 'indices_square_numbers'},
+            {'title': 'Куб сандар', 'url_name': 'indices_cube_numbers'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'indices_multiplying_dividing'},
+            {'title': 'Терс даража', 'url_name': 'indices_negative'},
+            {'title': 'Бөлчөк даража', 'url_name': 'indices_fractional'},
+            {'title': 'Терс бөлчөк даража', 'url_name': 'indices_negative_fractional'},
+            {'title': 'Кашалар менен', 'url_name': 'indices_with_brackets'},
+            {'title': 'Аралаш', 'url_name': 'indices_mixed'},
+            {'title': 'Даражалар менен теңдемелер', 'url_name': 'indices_equations'},
+            {'title': 'Тескери сандар', 'url_name': 'indices_reciprocals'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Тамырлар менен эсептөөлөр" already exists as the "Surds"
         # sub-subtopic (slug 'surds') - it just had no children yet.
         'parent_path': ('Сандар', 'Даражалар жана тамырлар', 'Тамырлар менен эсептөөлөр'),
