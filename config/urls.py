@@ -209,6 +209,19 @@ urlpatterns = [
     path('ratios-with-percentages/', operation_placeholder_view, {'operation_slug': 'ratios-with-percentages'}, name='ratios_with_percentages'),
     path('ratios-with-both/', operation_placeholder_view, {'operation_slug': 'ratios-with-both'}, name='ratios_with_both'),
 
+    # Болжолдоо жана тегеректөө > Тегеректөө - all 4 slots, none with a
+    # real page yet.
+    path('rounding-decimal-places/', operation_placeholder_view, {'operation_slug': 'rounding-decimal-places'}, name='rounding_decimal_places'),
+    path('rounding-significant-figures/', operation_placeholder_view, {'operation_slug': 'rounding-significant-figures'}, name='rounding_significant_figures'),
+    path('rounding-mixed/', operation_placeholder_view, {'operation_slug': 'rounding-mixed'}, name='rounding_mixed'),
+    path('rounding-whole-numbers/', operation_placeholder_view, {'operation_slug': 'rounding-whole-numbers'}, name='rounding_whole_numbers'),
+
+    # Болжолдоо жана тегеректөө > Ката аралыктары - all 3 slots, none
+    # with a real page yet.
+    path('error-intervals-decimal-significant/', operation_placeholder_view, {'operation_slug': 'error-intervals-decimal-significant'}, name='error_intervals_decimal_significant'),
+    path('error-intervals-calculations/', operation_placeholder_view, {'operation_slug': 'error-intervals-calculations'}, name='error_intervals_calculations'),
+    path('error-intervals-truncation/', operation_placeholder_view, {'operation_slug': 'error-intervals-truncation'}, name='error_intervals_truncation'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

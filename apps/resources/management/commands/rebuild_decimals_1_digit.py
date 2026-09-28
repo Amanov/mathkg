@@ -227,6 +227,29 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 4 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Болжолдоо жана тегеректөө', 'Тегеректөө'),
+        'target_items': [
+            {'title': 'Ондук орундар', 'url_name': 'rounding_decimal_places'},
+            {'title': 'Маанилүү сандар', 'url_name': 'rounding_significant_figures'},
+            {'title': 'Аралаш', 'url_name': 'rounding_mixed'},
+            {'title': 'Бүтүн сандар', 'url_name': 'rounding_whole_numbers'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 3 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Болжолдоо жана тегеректөө', 'Ката аралыктары'),
+        'target_items': [
+            {'title': 'Ондук орундар жана маанилүү сандар', 'url_name': 'error_intervals_decimal_significant'},
+            {'title': 'Эсептөөлөр', 'url_name': 'error_intervals_calculations'},
+            {'title': 'Кесүү', 'url_name': 'error_intervals_truncation'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
@@ -256,6 +279,20 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Эсептөөлөр',
             'Багытталган сандарды иреттөө',
+        ],
+    },
+    {
+        # Reference order: Approximating Calculations, Estimating Roots,
+        # Estimation with Scale Drawings, Rounding, Error Intervals -
+        # production had Rounding and Error Intervals ahead of the last
+        # two (both pairs sharing a duplicate order value).
+        'parent_path': ('Сандар', 'Болжолдоо жана тегеректөө'),
+        'order': [
+            'Эсептөөлөрдү болжолдоо',
+            'Тамырларды болжолдоо',
+            'Масштабдуу сүрөт менен болжолдоо',
+            'Тегеректөө',
+            'Ката аралыктары',
         ],
     },
 ]
