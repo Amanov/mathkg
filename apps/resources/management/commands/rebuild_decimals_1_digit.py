@@ -335,6 +335,32 @@ CHILD_ORDER_FIXES = [
             'Эң чоң орток бөлүүчү жана эң кичине орток эселик: жөнөкөй көбөйтүүчүлөргө ажыратуу менен',
         ],
     },
+    {
+        # Reference order: Introduction, Writing as Words, Arithmetic:
+        # Unit Fractions, Arithmetic: Non-Unit Fractions, Equivalence,
+        # Equivalent Fractions, Expressing, Fraction of a Quantity, Mixed
+        # Numbers & Improper Fractions, Mixed, Reciprocals, With a
+        # Calculator - production had positions 2/3 swapped (Arithmetic:
+        # Unit Fractions ahead of Writing as Words) and Equivalence pulled
+        # back to position 7 instead of 5 (all sharing duplicate order
+        # values with their neighbours). All 12 already exist as real menu
+        # entries with accurate translations; this only fixes their order.
+        'parent_path': ('Сандар', 'Бөлчөктөр'),
+        'order': [
+            'Киришүү',
+            'Бөлчөктөрдү сөз менен туюнтуу',
+            'Эсептөөлөр: бирдик бөлчөктөр',
+            'Эсептөөлөр: бирдик эмес бөлчөктөр',
+            'Эквиваленттүүлүк',
+            'Барабар бөлчөктөр',
+            'Туюнтуу',
+            'Чоңдуктун бөлчөгү',
+            'Аралаш сандар жана туура эмес бөлчөктөр',
+            'Аралаш бөлчөктөр боюнча суроолор',
+            'Тескери сандар',
+            'Калькулятордо бөлчөктөр',
+        ],
+    },
 ]
 
 
