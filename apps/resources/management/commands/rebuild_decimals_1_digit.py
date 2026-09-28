@@ -272,6 +272,91 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 8 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлчөктөр', 'Эсептөөлөр: бирдик бөлчөктөр'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'unit_fractions_adding'},
+            {'title': 'Кемитүү', 'url_name': 'unit_fractions_subtracting'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'unit_fractions_adding_subtracting'},
+            {'title': 'Көбөйтүү', 'url_name': 'unit_fractions_multiplying'},
+            {'title': 'Бөлүү', 'url_name': 'unit_fractions_dividing'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'unit_fractions_multiplying_dividing'},
+            {'title': 'Бүтүн сандар менен', 'url_name': 'unit_fractions_with_integers'},
+            {'title': 'Аралаш', 'url_name': 'unit_fractions_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 9 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлчөктөр', 'Эсептөөлөр: бирдик эмес бөлчөктөр'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'non_unit_fractions_adding'},
+            {'title': 'Кемитүү', 'url_name': 'non_unit_fractions_subtracting'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'non_unit_fractions_adding_subtracting'},
+            {'title': 'Көбөйтүү', 'url_name': 'non_unit_fractions_multiplying'},
+            {'title': 'Бөлүү', 'url_name': 'non_unit_fractions_dividing'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'non_unit_fractions_multiplying_dividing'},
+            {'title': 'Кыскартуу менен', 'url_name': 'non_unit_fractions_with_cancelling'},
+            {'title': 'Бүтүн сандар менен', 'url_name': 'non_unit_fractions_with_integers'},
+            {'title': 'Аралаш', 'url_name': 'non_unit_fractions_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 13 have a real hand-built page yet. This
+        # "Эквиваленттүүлүк" is Бөлчөктөр's own (parent_path disambiguates
+        # by requiring the grandparent to be Сандар and the parent to be
+        # Бөлчөктөр specifically - there are 4 different "Эквиваленттүүлүк"
+        # menu items in the tree). Overlaps content-wise with the
+        # top-level Эквиваленттүүлүк topic's "Converting Fractions" (built
+        # earlier), but gets its own distinct pages for the same reason as
+        # every other cross-referenced duplicate this session: reusing a
+        # url_name across two GROUPS entries makes this command fight over
+        # repositioning it out of whichever group ran second.
+        'parent_path': ('Сандар', 'Бөлчөктөр', 'Эквиваленттүүлүк'),
+        'target_items': [
+            {'title': 'Ондукка айландыруу', 'url_name': 'fractions_equiv_to_decimals'},
+            {'title': 'Ондукка айландыруу: калькулятор менен', 'url_name': 'fractions_equiv_to_decimals_calculator'},
+            {'title': 'Пайызга айландыруу', 'url_name': 'fractions_equiv_to_percentages'},
+            {'title': 'Пайызга айландыруу: калькулятор менен', 'url_name': 'fractions_equiv_to_percentages_calculator'},
+            {'title': 'Катышка айландыруу', 'url_name': 'fractions_equiv_to_ratios'},
+            {'title': 'Баарына айландыруу', 'url_name': 'fractions_equiv_to_all'},
+            {'title': 'Ондуктар менен', 'url_name': 'fractions_equiv_with_decimals'},
+            {'title': 'Пайыздар менен', 'url_name': 'fractions_equiv_with_percentages'},
+            {'title': 'Катыштар менен', 'url_name': 'fractions_equiv_with_ratios'},
+            {'title': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк', 'url_name': 'fractions_equiv_fdp'},
+            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө', 'url_name': 'fractions_equiv_fdp_ordering'},
+            {'title': 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү', 'url_name': 'fractions_equiv_fpr'},
+            {'title': 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү', 'url_name': 'fractions_equiv_fdpr'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 4 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлчөктөр', 'Барабар бөлчөктөр'),
+        'target_items': [
+            {'title': 'Жөнөкөйлөтүү', 'url_name': 'equivalent_fractions_simplifying'},
+            {'title': 'Салыштыруу жана иреттөө', 'url_name': 'equivalent_fractions_comparing_ordering'},
+            {'title': 'Барабарсыздык белгилери менен салыштыруу', 'url_name': 'equivalent_fractions_comparing_inequality'},
+            {'title': 'Эсептөөлөр менен', 'url_name': 'equivalent_fractions_with_calculations'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # None of these 2 have a real hand-built page yet.
+        'parent_path': ('Сандар', 'Бөлчөктөр', 'Туюнтуу'),
+        'target_items': [
+            {'title': 'Чоңдук', 'url_name': 'expressing_quantity'},
+            {'title': 'Өзгөрүү', 'url_name': 'expressing_change'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up

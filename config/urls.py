@@ -234,6 +234,54 @@ urlpatterns = [
     path('lcm-prime-factorisation/', operation_placeholder_view, {'operation_slug': 'lcm-prime-factorisation'}, name='lcm_prime_factorisation'),
     path('hcf-lcm-prime-factorisation-mixed/', operation_placeholder_view, {'operation_slug': 'hcf-lcm-prime-factorisation-mixed'}, name='hcf_lcm_prime_factorisation_mixed'),
 
+    # Бөлчөктөр > Эсептөөлөр: бирдик бөлчөктөр - all 8 slots, none with a
+    # real page yet.
+    path('unit-fractions-adding/', operation_placeholder_view, {'operation_slug': 'unit-fractions-adding'}, name='unit_fractions_adding'),
+    path('unit-fractions-subtracting/', operation_placeholder_view, {'operation_slug': 'unit-fractions-subtracting'}, name='unit_fractions_subtracting'),
+    path('unit-fractions-adding-subtracting/', operation_placeholder_view, {'operation_slug': 'unit-fractions-adding-subtracting'}, name='unit_fractions_adding_subtracting'),
+    path('unit-fractions-multiplying/', operation_placeholder_view, {'operation_slug': 'unit-fractions-multiplying'}, name='unit_fractions_multiplying'),
+    path('unit-fractions-dividing/', operation_placeholder_view, {'operation_slug': 'unit-fractions-dividing'}, name='unit_fractions_dividing'),
+    path('unit-fractions-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'unit-fractions-multiplying-dividing'}, name='unit_fractions_multiplying_dividing'),
+    path('unit-fractions-with-integers/', operation_placeholder_view, {'operation_slug': 'unit-fractions-with-integers'}, name='unit_fractions_with_integers'),
+    path('unit-fractions-mixed/', operation_placeholder_view, {'operation_slug': 'unit-fractions-mixed'}, name='unit_fractions_mixed'),
+
+    # Бөлчөктөр > Эсептөөлөр: бирдик эмес бөлчөктөр - all 9 slots, none
+    # with a real page yet.
+    path('non-unit-fractions-adding/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-adding'}, name='non_unit_fractions_adding'),
+    path('non-unit-fractions-subtracting/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-subtracting'}, name='non_unit_fractions_subtracting'),
+    path('non-unit-fractions-adding-subtracting/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-adding-subtracting'}, name='non_unit_fractions_adding_subtracting'),
+    path('non-unit-fractions-multiplying/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-multiplying'}, name='non_unit_fractions_multiplying'),
+    path('non-unit-fractions-dividing/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-dividing'}, name='non_unit_fractions_dividing'),
+    path('non-unit-fractions-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-multiplying-dividing'}, name='non_unit_fractions_multiplying_dividing'),
+    path('non-unit-fractions-with-cancelling/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-with-cancelling'}, name='non_unit_fractions_with_cancelling'),
+    path('non-unit-fractions-with-integers/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-with-integers'}, name='non_unit_fractions_with_integers'),
+    path('non-unit-fractions-mixed/', operation_placeholder_view, {'operation_slug': 'non-unit-fractions-mixed'}, name='non_unit_fractions_mixed'),
+
+    # Бөлчөктөр > Эквиваленттүүлүк - all 13 slots, none with a real page yet.
+    path('fractions-equiv-to-decimals/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-decimals'}, name='fractions_equiv_to_decimals'),
+    path('fractions-equiv-to-decimals-calculator/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-decimals-calculator'}, name='fractions_equiv_to_decimals_calculator'),
+    path('fractions-equiv-to-percentages/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-percentages'}, name='fractions_equiv_to_percentages'),
+    path('fractions-equiv-to-percentages-calculator/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-percentages-calculator'}, name='fractions_equiv_to_percentages_calculator'),
+    path('fractions-equiv-to-ratios/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-ratios'}, name='fractions_equiv_to_ratios'),
+    path('fractions-equiv-to-all/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-to-all'}, name='fractions_equiv_to_all'),
+    path('fractions-equiv-with-decimals/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-with-decimals'}, name='fractions_equiv_with_decimals'),
+    path('fractions-equiv-with-percentages/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-with-percentages'}, name='fractions_equiv_with_percentages'),
+    path('fractions-equiv-with-ratios/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-with-ratios'}, name='fractions_equiv_with_ratios'),
+    path('fractions-equiv-fdp/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-fdp'}, name='fractions_equiv_fdp'),
+    path('fractions-equiv-fdp-ordering/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-fdp-ordering'}, name='fractions_equiv_fdp_ordering'),
+    path('fractions-equiv-fpr/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-fpr'}, name='fractions_equiv_fpr'),
+    path('fractions-equiv-fdpr/', operation_placeholder_view, {'operation_slug': 'fractions-equiv-fdpr'}, name='fractions_equiv_fdpr'),
+
+    # Бөлчөктөр > Барабар бөлчөктөр - all 4 slots, none with a real page yet.
+    path('equivalent-fractions-simplifying/', operation_placeholder_view, {'operation_slug': 'equivalent-fractions-simplifying'}, name='equivalent_fractions_simplifying'),
+    path('equivalent-fractions-comparing-ordering/', operation_placeholder_view, {'operation_slug': 'equivalent-fractions-comparing-ordering'}, name='equivalent_fractions_comparing_ordering'),
+    path('equivalent-fractions-comparing-inequality/', operation_placeholder_view, {'operation_slug': 'equivalent-fractions-comparing-inequality'}, name='equivalent_fractions_comparing_inequality'),
+    path('equivalent-fractions-with-calculations/', operation_placeholder_view, {'operation_slug': 'equivalent-fractions-with-calculations'}, name='equivalent_fractions_with_calculations'),
+
+    # Бөлчөктөр > Туюнтуу - all 2 slots, none with a real page yet.
+    path('expressing-quantity/', operation_placeholder_view, {'operation_slug': 'expressing-quantity'}, name='expressing_quantity'),
+    path('expressing-change/', operation_placeholder_view, {'operation_slug': 'expressing-change'}, name='expressing_change'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
