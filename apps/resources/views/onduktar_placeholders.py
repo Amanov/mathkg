@@ -188,6 +188,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     # hand-built page yet.
     'expressing-quantity': 'Чоңдук',
     'expressing-change': 'Өзгөрүү',
+
+    # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - none
+    # of these 8 have a real hand-built page yet.
+    'surds-simplifying': 'Жөнөкөйлөтүү',
+    'surds-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'surds-adding-subtracting': 'Кошуу жана кемитүү',
+    'surds-expanding-brackets': 'Кашаны ачуу',
+    'surds-rationalising-without-conjugates': 'Рационалдаштыруу: коньюгатасыз',
+    'surds-rationalising-denominators': 'Бөлүүчүнү рационалдаштыруу',
+    'surds-mixed': 'Аралаш',
+    'surds-with-pythagoras': 'Пифагор менен',
 }
 
 
