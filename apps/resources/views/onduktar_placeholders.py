@@ -100,6 +100,16 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-with-decimals': 'Ондуктар менен',
     'percentages-with-ratios': 'Катыштар менен',
     'percentages-with-all': 'Баары менен',
+
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Катыштарды айландыруу
+    # (Converting Ratios) - none of these 6 have a real hand-built page
+    # yet.
+    'ratios-to-fractions': 'Бөлчөккө айландыруу',
+    'ratios-to-percentages': 'Пайызга айландыруу',
+    'ratios-to-both': 'Бөлчөккө жана пайызга айландыруу',
+    'ratios-with-fractions': 'Бөлчөктөр менен',
+    'ratios-with-percentages': 'Пайыздар менен',
+    'ratios-with-both': 'Экөө менен тең',
 }
 
 
