@@ -110,6 +110,19 @@ OPERATION_PLACEHOLDER_TITLES = {
     'ratios-with-fractions': 'Бөлчөктөр менен',
     'ratios-with-percentages': 'Пайыздар менен',
     'ratios-with-both': 'Экөө менен тең',
+
+    # Болжолдоо жана тегеректөө (Estimating & Rounding) > Тегеректөө
+    # (Rounding) - none of these 4 have a real hand-built page yet.
+    'rounding-decimal-places': 'Ондук орундар',
+    'rounding-significant-figures': 'Маанилүү сандар',
+    'rounding-mixed': 'Аралаш',
+    'rounding-whole-numbers': 'Бүтүн сандар',
+
+    # Болжолдоо жана тегеректөө > Ката аралыктары (Error Intervals) -
+    # none of these 3 have a real hand-built page yet.
+    'error-intervals-decimal-significant': 'Ондук орундар жана маанилүү сандар',
+    'error-intervals-calculations': 'Эсептөөлөр',
+    'error-intervals-truncation': 'Кесүү',
 }
 
 
