@@ -121,25 +121,58 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 7 have a real hand-built page yet. "Сабак
+        # материалдары" (directed_numbers_view - a real, general combined
+        # page, not specific to any one of these 7 slots) sat as a sibling
+        # of this parent under Багытталган сандар - doesn't correspond to
+        # any of the 7 target slots, so its menu entry is removed the same
+        # way onedigitarithmetics's was in the first group above; the page
+        # itself is untouched.
+        'parent_path': ('Сандар', 'Багытталган сандар', 'Эсептөөлөр'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'adding_directed'},
+            {'title': 'Кемитүү', 'url_name': 'subtracting_directed'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'adding_subtracting_directed'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'multiplying_dividing_directed'},
+            {'title': 'Аралаш эсептөөлөр', 'url_name': 'mixed_directed'},
+            {'title': 'BIDMAS менен', 'url_name': 'with_bidmas_directed'},
+            {'title': 'Татаал эсептөөлөр', 'url_name': 'complex_directed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': ['directed_numbers'],
+    },
 ]
 
-# Canonical order for Ондуктар's own direct children (a level up from the
-# GROUPS above, which each rebuild the children *within* one of these).
-# Production had drifted from the reference order (Money, then Recurring,
-# then Ordering/Place Value swapped) in a way invisible to a fresh local
-# dev DB, since nothing in this repo ever seeded these 8 in this exact
-# order before. Applied by exact title match under Ондуктар only - only
-# the 'order' field changes, nothing is created, moved elsewhere, or
-# deleted.
-ONDUKTAR_CHILD_ORDER = [
-    'Эсептөөлөр: 1 орундук сандар',
-    'Эсептөөлөр: 1 жана 2 орундук сандар',
-    'Эсептөөлөр: бүтүн сандар менен',
-    'Эквиваленттүүлүк',
-    'Акча',
-    'Ондуктарды иреттөө',
-    'Ондуктун орун наркы',
-    'Мезгилдүү ондуктар',
+# Canonical order fixes for a Subtopic's own direct children (a level up
+# from the GROUPS above, which each rebuild the children *within* one of
+# a subtopic's children). Production had drifted from the reference order
+# in ways invisible to a fresh local dev DB, since nothing in this repo
+# ever seeded these in this exact order before. Applied by exact title
+# match under the named parent only - only the 'order' field changes,
+# nothing is created, moved elsewhere, or deleted.
+CHILD_ORDER_FIXES = [
+    {
+        # Money, then Recurring, then Ordering/Place Value swapped.
+        'parent_path': ('Сандар', 'Ондуктар'),
+        'order': [
+            'Эсептөөлөр: 1 орундук сандар',
+            'Эсептөөлөр: 1 жана 2 орундук сандар',
+            'Эсептөөлөр: бүтүн сандар менен',
+            'Эквиваленттүүлүк',
+            'Акча',
+            'Ондуктарды иреттөө',
+            'Ондуктун орун наркы',
+            'Мезгилдүү ондуктар',
+        ],
+    },
+    {
+        'parent_path': ('Сандар', 'Багытталган сандар'),
+        'order': [
+            'Эсептөөлөр',
+            'Багытталган сандарды иреттөө',
+        ],
+    },
 ]
 
 
@@ -247,14 +280,19 @@ class Command(BaseCommand):
                     )
                     extra.delete()
 
-        self.stdout.write('=== Ондуктар (direct children order) ===')
-        try:
-            onduktar = MenuItem.objects.get(title='Ондуктар', parent__title='Сандар')
-        except MenuItem.DoesNotExist:
-            self.stderr.write('  "Ондуктар" not found - run import_reference_taxonomy / fix_number_menu first.')
-        else:
-            for order, title in enumerate(ONDUKTAR_CHILD_ORDER, start=1):
-                child = MenuItem.objects.filter(parent=onduktar, title=title).first()
+        for fix in CHILD_ORDER_FIXES:
+            topic_title, subtopic_title = fix['parent_path']
+            self.stdout.write(f'=== {topic_title} > {subtopic_title} (direct children order) ===')
+            try:
+                parent = MenuItem.objects.get(title=subtopic_title, parent__title=topic_title)
+            except MenuItem.DoesNotExist:
+                self.stderr.write(
+                    f'  "{topic_title} > {subtopic_title}" not found - '
+                    f'run import_reference_taxonomy / fix_number_menu first.'
+                )
+                continue
+            for order, title in enumerate(fix['order'], start=1):
+                child = MenuItem.objects.filter(parent=parent, title=title).first()
                 if not child:
                     continue
                 if child.order != order:
