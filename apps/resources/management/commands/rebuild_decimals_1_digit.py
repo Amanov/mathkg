@@ -209,6 +209,24 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # None of these 6 have a real hand-built page yet. Same
+        # own-distinct-pages reasoning as the other Converting-X siblings.
+        # No "To/With Decimals" or "To All" here, unlike the Fractions/
+        # Percentages siblings - matches the reference's own narrower list
+        # for Ratios.
+        'parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Катыштарды айландыруу'),
+        'target_items': [
+            {'title': 'Бөлчөккө айландыруу', 'url_name': 'ratios_to_fractions'},
+            {'title': 'Пайызга айландыруу', 'url_name': 'ratios_to_percentages'},
+            {'title': 'Бөлчөккө жана пайызга айландыруу', 'url_name': 'ratios_to_both'},
+            {'title': 'Бөлчөктөр менен', 'url_name': 'ratios_with_fractions'},
+            {'title': 'Пайыздар менен', 'url_name': 'ratios_with_percentages'},
+            {'title': 'Экөө менен тең', 'url_name': 'ratios_with_both'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up

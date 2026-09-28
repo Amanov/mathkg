@@ -200,6 +200,15 @@ urlpatterns = [
     path('percentages-with-ratios/', operation_placeholder_view, {'operation_slug': 'percentages-with-ratios'}, name='percentages_with_ratios'),
     path('percentages-with-all/', operation_placeholder_view, {'operation_slug': 'percentages-with-all'}, name='percentages_with_all'),
 
+    # Сандар > Эквиваленттүүлүк (top-level topic) > Катыштарды айландыруу -
+    # all 6 slots, none with a real page yet.
+    path('ratios-to-fractions/', operation_placeholder_view, {'operation_slug': 'ratios-to-fractions'}, name='ratios_to_fractions'),
+    path('ratios-to-percentages/', operation_placeholder_view, {'operation_slug': 'ratios-to-percentages'}, name='ratios_to_percentages'),
+    path('ratios-to-both/', operation_placeholder_view, {'operation_slug': 'ratios-to-both'}, name='ratios_to_both'),
+    path('ratios-with-fractions/', operation_placeholder_view, {'operation_slug': 'ratios-with-fractions'}, name='ratios_with_fractions'),
+    path('ratios-with-percentages/', operation_placeholder_view, {'operation_slug': 'ratios-with-percentages'}, name='ratios_with_percentages'),
+    path('ratios-with-both/', operation_placeholder_view, {'operation_slug': 'ratios-with-both'}, name='ratios_with_both'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
