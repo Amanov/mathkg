@@ -357,6 +357,23 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Тамырлар менен эсептөөлөр" already exists as the "Surds"
+        # sub-subtopic (slug 'surds') - it just had no children yet.
+        'parent_path': ('Сандар', 'Даражалар жана тамырлар', 'Тамырлар менен эсептөөлөр'),
+        'target_items': [
+            {'title': 'Жөнөкөйлөтүү', 'url_name': 'surds_simplifying'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'surds_multiplying_dividing'},
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'surds_adding_subtracting'},
+            {'title': 'Кашаны ачуу', 'url_name': 'surds_expanding_brackets'},
+            {'title': 'Рационалдаштыруу: коньюгатасыз', 'url_name': 'surds_rationalising_without_conjugates'},
+            {'title': 'Бөлүүчүнү рационалдаштыруу', 'url_name': 'surds_rationalising_denominators'},
+            {'title': 'Аралаш', 'url_name': 'surds_mixed'},
+            {'title': 'Пифагор менен', 'url_name': 'surds_with_pythagoras'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
@@ -444,6 +461,24 @@ CHILD_ORDER_FIXES = [
             'Аралаш бөлчөктөр боюнча суроолор',
             'Тескери сандар',
             'Калькулятордо бөлчөктөр',
+        ],
+    },
+    {
+        # Reference has a 5th sibling here, "Mixed", with no precedent in
+        # the menu tree yet - same shape as its 4 siblings (a plain
+        # SubSubtopic-level "Даярдалууда" placeholder, not one of the
+        # rebuilt-pages GROUPS above), so it's created via
+        # 'create_subsubtopics' before the order below is applied.
+        'parent_path': ('Сандар', 'Даражалар жана тамырлар'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Даражалар',
+            'Тамырларды эсептөө',
+            'Бүтүн сандар менен даражалар жана тамырлар боюнча суроолор',
+            'Тамырлар менен эсептөөлөр',
+            'Аралаш',
         ],
     },
 ]
@@ -564,6 +599,19 @@ class Command(BaseCommand):
                     f'run import_reference_taxonomy / fix_number_menu first.'
                 )
                 continue
+
+            for item in fix.get('create_subsubtopics', []):
+                if MenuItem.objects.filter(parent=parent, title=item['title']).exists():
+                    continue
+                new_ss = SubSubtopic.objects.create(
+                    subtopic=parent.subtopic, title=item['title'], slug=item['slug'],
+                )
+                MenuItem.objects.create(
+                    parent=parent, title=item['title'], topic=parent.topic,
+                    subtopic=parent.subtopic, subsubtopic=new_ss,
+                )
+                self.stdout.write(f'  Created sibling "{item["title"]}" (new SubSubtopic + MenuItem)')
+
             for order, title in enumerate(fix['order'], start=1):
                 child = MenuItem.objects.filter(parent=parent, title=title).first()
                 if not child:

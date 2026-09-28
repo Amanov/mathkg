@@ -294,6 +294,17 @@ urlpatterns = [
     path('expressing-quantity/', operation_placeholder_view, {'operation_slug': 'expressing-quantity'}, name='expressing_quantity'),
     path('expressing-change/', operation_placeholder_view, {'operation_slug': 'expressing-change'}, name='expressing_change'),
 
+    # Даражалар жана тамырлар > Тамырлар менен эсептөөлөр (Surds) - all 8
+    # slots, none with a real page yet.
+    path('surds-simplifying/', operation_placeholder_view, {'operation_slug': 'surds-simplifying'}, name='surds_simplifying'),
+    path('surds-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'surds-multiplying-dividing'}, name='surds_multiplying_dividing'),
+    path('surds-adding-subtracting/', operation_placeholder_view, {'operation_slug': 'surds-adding-subtracting'}, name='surds_adding_subtracting'),
+    path('surds-expanding-brackets/', operation_placeholder_view, {'operation_slug': 'surds-expanding-brackets'}, name='surds_expanding_brackets'),
+    path('surds-rationalising-without-conjugates/', operation_placeholder_view, {'operation_slug': 'surds-rationalising-without-conjugates'}, name='surds_rationalising_without_conjugates'),
+    path('surds-rationalising-denominators/', operation_placeholder_view, {'operation_slug': 'surds-rationalising-denominators'}, name='surds_rationalising_denominators'),
+    path('surds-mixed/', operation_placeholder_view, {'operation_slug': 'surds-mixed'}, name='surds_mixed'),
+    path('surds-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'surds-with-pythagoras'}, name='surds_with_pythagoras'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
