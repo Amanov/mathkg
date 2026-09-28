@@ -514,6 +514,26 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # Reference order: Place Value & Ordering, Writing as Words,
+        # Divisibility Rules, Arithmetic: 1 & 2 Digit, Arithmetic: 2 & 3
+        # Digit, Arithmetic: With Decimals, Real-Life, Roman Numerals - all
+        # 8 already exist as real menu entries; production also carries an
+        # extra "Негиздери" (Introduction) not in the reference at all
+        # (invisible to a fresh local dev DB), pruned by the exhaustive
+        # order list below like any other leftover.
+        'parent_path': ('Сандар', 'Бүтүн сандар'),
+        'order': [
+            'Бүтүн сандардын орун наркы жана иреттөө',
+            'Бүтүн сандарды сөз менен туюнтуу',
+            'Бөлүнүү белгилери',
+            'Эсептөөлөр: 1 жана 2 орундук',
+            'Эсептөөлөр: 2 жана 3 орундук',
+            'Эсептөөлөр: ондуктар менен',
+            'Турмуштук маселелер',
+            'Рим сандарын окуу жана жазуу',
+        ],
+    },
 ]
 
 
