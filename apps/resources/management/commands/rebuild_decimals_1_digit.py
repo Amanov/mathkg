@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.resources.models import MenuItem, SubSubtopic
+from apps.resources.models import MenuItem, SubSubtopic, Subtopic
 
 # Each entry rebuilds one sub-subtopic's children as a reference-ordered
 # list of real pages (see apps/resources/views/onduktar_placeholders.py +
@@ -759,6 +759,34 @@ CHILD_ORDER_FIXES = [
             'Стандарттык форманы тууралоо',
         ],
     },
+    {
+        # Reference order (7 items): Compound Measures, Direct & Inverse,
+        # Graphs, Percentages: Calculator, Percentages: Non-Calculator,
+        # Ratio, Real-Life. Пропорция is itself a root Topic (1-tuple
+        # parent_path, see the resolution logic above) - "Ылдамдык,
+        # аралык жана убакыт" (Speed, Distance & Time - a specific
+        # compound-measure example, not the general label) had 0
+        # children, so it's simply renamed to the general "Татаал
+        # өлчөмдөр" (Compound Measures) rather than losing any content.
+        # "Percentages: Non-Calculator" doesn't exist anywhere yet -
+        # created via 'create_subsubtopics' like Пропорция's siblings.
+        'parent_path': ('Пропорция',),
+        'renames': [
+            {'from': 'Ылдамдык, аралык жана убакыт', 'to': 'Татаал өлчөмдөр'},
+        ],
+        'create_subsubtopics': [
+            {'title': 'Пайыздар: калькулятордсуз', 'slug': 'percentages-non-calculator'},
+        ],
+        'order': [
+            'Татаал өлчөмдөр',
+            'Түз жана тескери пропорция',
+            'Айландыруу графиктери',
+            'Пайыздар: калькулятор менен',
+            'Пайыздар: калькулятордсуз',
+            'Катыш',
+            'Турмуштук колдонуулар',
+        ],
+    },
 ]
 
 
@@ -867,13 +895,24 @@ class Command(BaseCommand):
                     extra.delete()
 
         for fix in CHILD_ORDER_FIXES:
-            topic_title, subtopic_title = fix['parent_path']
-            self.stdout.write(f'=== {topic_title} > {subtopic_title} (direct children order) ===')
+            # Usually a 2-tuple (Topic, Subtopic) - the Subtopic sits
+            # under a root Topic (e.g. Ондуктар under Сандар). Пропорция
+            # is itself a root Topic (no parent), so a 1-tuple means
+            # "this title, with no parent at all".
+            if len(fix['parent_path']) == 2:
+                topic_title, subtopic_title = fix['parent_path']
+                label = f'{topic_title} > {subtopic_title}'
+                parent_lookup = {'title': subtopic_title, 'parent__title': topic_title}
+            else:
+                (subtopic_title,) = fix['parent_path']
+                label = subtopic_title
+                parent_lookup = {'title': subtopic_title, 'parent__isnull': True}
+            self.stdout.write(f'=== {label} (direct children order) ===')
             try:
-                parent = MenuItem.objects.get(title=subtopic_title, parent__title=topic_title)
+                parent = MenuItem.objects.get(**parent_lookup)
             except MenuItem.DoesNotExist:
                 self.stderr.write(
-                    f'  "{topic_title} > {subtopic_title}" not found - '
+                    f'  "{label}" not found - '
                     f'run import_reference_taxonomy / fix_number_menu first.'
                 )
                 continue
@@ -881,21 +920,54 @@ class Command(BaseCommand):
             for item in fix.get('create_subsubtopics', []):
                 if MenuItem.objects.filter(parent=parent, title=item['title']).exists():
                     continue
-                new_ss = SubSubtopic.objects.create(
-                    subtopic=parent.subtopic, title=item['title'], slug=item['slug'],
-                )
-                MenuItem.objects.create(
-                    parent=parent, title=item['title'], topic=parent.topic,
-                    subtopic=parent.subtopic, subsubtopic=new_ss,
-                )
-                self.stdout.write(f'  Created sibling "{item["title"]}" (new SubSubtopic + MenuItem)')
+                if parent.subtopic_id:
+                    # Parent's own children share its one subtopic, each
+                    # getting its own SubSubtopic (e.g. Даражалар жана
+                    # тамырлар, Өлчөмдөр).
+                    new_ss = SubSubtopic.objects.create(
+                        subtopic_id=parent.subtopic_id, title=item['title'], slug=item['slug'],
+                    )
+                    MenuItem.objects.create(
+                        parent=parent, title=item['title'], topic=parent.topic,
+                        subtopic_id=parent.subtopic_id, subsubtopic=new_ss,
+                    )
+                else:
+                    # Parent is itself a root Topic (e.g. Пропорция) -
+                    # each direct child is its own Subtopic, not a
+                    # SubSubtopic sharing one.
+                    new_subtopic = Subtopic.objects.create(
+                        topic=parent.topic, title=item['title'], slug=item['slug'],
+                    )
+                    MenuItem.objects.create(
+                        parent=parent, title=item['title'], topic=parent.topic,
+                        subtopic=new_subtopic,
+                    )
+                self.stdout.write(f'  Created sibling "{item["title"]}" (new Subtopic/SubSubtopic + MenuItem)')
 
             for rename in fix.get('renames', []):
-                child = MenuItem.objects.filter(parent=parent, title=rename['from']).first()
-                if child and child.title != rename['to']:
+                child = MenuItem.objects.filter(parent=parent, title__in=[rename['from'], rename['to']]).first()
+                if not child:
+                    continue
+                if child.title != rename['to']:
                     child.title = rename['to']
                     child.save(update_fields=['title'])
                     self.stdout.write(f'  Renamed: "{rename["from"]}" -> "{rename["to"]}"')
+                # The MenuItem title is what the nav shows, but the
+                # generic topic/subsubtopic page headings read straight
+                # from the underlying Subtopic/SubSubtopic - rename
+                # whichever one this item actually represents too, so a
+                # rename doesn't leave the page itself showing the old
+                # title. Checked independently of the block above so a
+                # rename applied in an earlier run still gets its
+                # underlying title fixed on a later one.
+                if child.subsubtopic_id and child.subsubtopic.title != rename['to']:
+                    child.subsubtopic.title = rename['to']
+                    child.subsubtopic.save(update_fields=['title'])
+                    self.stdout.write(f'  Renamed underlying SubSubtopic to "{rename["to"]}"')
+                elif child.subtopic_id and not child.subsubtopic_id and child.subtopic.title != rename['to']:
+                    child.subtopic.title = rename['to']
+                    child.subtopic.save(update_fields=['title'])
+                    self.stdout.write(f'  Renamed underlying Subtopic to "{rename["to"]}"')
 
             for order, title in enumerate(fix['order'], start=1):
                 child = MenuItem.objects.filter(parent=parent, title=title).first()
