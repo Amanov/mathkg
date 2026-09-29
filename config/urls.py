@@ -394,6 +394,17 @@ urlpatterns = [
     path('time-calculations/', operation_placeholder_view, {'operation_slug': 'time-calculations'}, name='time_calculations'),
     path('time-converting/', operation_placeholder_view, {'operation_slug': 'time-converting'}, name='time_converting'),
 
+    # Стандарттык форма > Көбөйтүү жана бөлүү - both slots, none with a
+    # real page yet.
+    path('standard-form-multiplying-dividing-calculator/', operation_placeholder_view, {'operation_slug': 'standard-form-multiplying-dividing-calculator'}, name='standard_form_multiplying_dividing_calculator'),
+    path('standard-form-multiplying-dividing-non-calculator/', operation_placeholder_view, {'operation_slug': 'standard-form-multiplying-dividing-non-calculator'}, name='standard_form_multiplying_dividing_non_calculator'),
+
+    # Стандарттык форма > Айландыруу - all 3 slots, none with a real
+    # page yet.
+    path('standard-form-converting-ordinary-to-standard/', operation_placeholder_view, {'operation_slug': 'standard-form-converting-ordinary-to-standard'}, name='standard_form_converting_ordinary_to_standard'),
+    path('standard-form-converting-standard-to-ordinary/', operation_placeholder_view, {'operation_slug': 'standard-form-converting-standard-to-ordinary'}, name='standard_form_converting_standard_to_ordinary'),
+    path('standard-form-converting-mixed/', operation_placeholder_view, {'operation_slug': 'standard-form-converting-mixed'}, name='standard_form_converting_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

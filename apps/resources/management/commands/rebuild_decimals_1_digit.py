@@ -564,6 +564,29 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Көбөйтүү жана бөлүү" already exists as a Стандарттык форма
+        # sub-subtopic - it just had no children yet.
+        'parent_path': ('Сандар', 'Стандарттык форма', 'Көбөйтүү жана бөлүү'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'standard_form_multiplying_dividing_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'standard_form_multiplying_dividing_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Айландыруу" already exists as a Стандарттык форма sub-subtopic
+        # - it just had no children yet.
+        'parent_path': ('Сандар', 'Стандарттык форма', 'Айландыруу'),
+        'target_items': [
+            {'title': 'Жөнөкөйдөн стандарттык формага', 'url_name': 'standard_form_converting_ordinary_to_standard'},
+            {'title': 'Стандарттык формадан жөнөкөйгө', 'url_name': 'standard_form_converting_standard_to_ordinary'},
+            {'title': 'Аралаш', 'url_name': 'standard_form_converting_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
