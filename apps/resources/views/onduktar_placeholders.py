@@ -302,6 +302,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'time-timetables': 'Жүрүш тартиби',
     'time-calculations': 'Эсептөөлөр',
     'time-converting': 'Айландыруу',
+
+    # Стандарттык форма > Көбөйтүү жана бөлүү - neither of these 2 have a
+    # real hand-built page yet.
+    'standard-form-multiplying-dividing-calculator': 'Калькулятор менен',
+    'standard-form-multiplying-dividing-non-calculator': 'Калькуляторсуз',
+
+    # Стандарттык форма > Айландыруу - none of these 3 have a real
+    # hand-built page yet.
+    'standard-form-converting-ordinary-to-standard': 'Жөнөкөйдөн стандарттык формага',
+    'standard-form-converting-standard-to-ordinary': 'Стандарттык формадан жөнөкөйгө',
+    'standard-form-converting-mixed': 'Аралаш',
 }
 
 
