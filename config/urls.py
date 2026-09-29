@@ -393,6 +393,19 @@ urlpatterns = [
     path('systems-of-measurement-mixed/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-mixed'}, name='systems_of_measurement_mixed'),
     path('systems-of-measurement-conversion-factors/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-conversion-factors'}, name='systems_of_measurement_conversion_factors'),
 
+    # Өлчөмдөр > Аянт жана көлөм бирдиктерин алмаштыруу (top-level
+    # sibling) - all 3 slots, none with a real page yet.
+    path('area-volume-conversion-area/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-area'}, name='area_volume_conversion_area'),
+    path('area-volume-conversion-volume/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-volume'}, name='area_volume_conversion_volume'),
+    path('area-volume-conversion-mixed/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-mixed'}, name='area_volume_conversion_mixed'),
+
+    # Өлчөмдөр > Убакыт (Time) - all 5 slots, none with a real page yet.
+    path('time-reading-clocks/', operation_placeholder_view, {'operation_slug': 'time-reading-clocks'}, name='time_reading_clocks'),
+    path('time-days-months-years/', operation_placeholder_view, {'operation_slug': 'time-days-months-years'}, name='time_days_months_years'),
+    path('time-timetables/', operation_placeholder_view, {'operation_slug': 'time-timetables'}, name='time_timetables'),
+    path('time-calculations/', operation_placeholder_view, {'operation_slug': 'time-calculations'}, name='time_calculations'),
+    path('time-converting/', operation_placeholder_view, {'operation_slug': 'time-converting'}, name='time_converting'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

@@ -287,6 +287,21 @@ OPERATION_PLACEHOLDER_TITLES = {
     'systems-of-measurement-metric': 'Метрикалык система',
     'systems-of-measurement-mixed': 'Аралаш',
     'systems-of-measurement-conversion-factors': 'Айландыруу коэффициенттери',
+
+    # Өлчөмдөр > Аянт жана көлөм бирдиктерин алмаштыруу (the top-level
+    # sibling, distinct from Compound's own child of the same name) -
+    # none of these 3 have a real hand-built page yet.
+    'area-volume-conversion-area': 'Аянт',
+    'area-volume-conversion-volume': 'Көлөм',
+    'area-volume-conversion-mixed': 'Аралаш',
+
+    # Өлчөмдөр > Убакыт (Time) - none of these 5 have a real hand-built
+    # page yet.
+    'time-reading-clocks': 'Саатты окуу',
+    'time-days-months-years': 'Күндөр, айлар жана жылдар',
+    'time-timetables': 'Жүрүш тартиби',
+    'time-calculations': 'Эсептөөлөр',
+    'time-converting': 'Айландыруу',
 }
 
 
