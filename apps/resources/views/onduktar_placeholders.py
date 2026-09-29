@@ -256,6 +256,16 @@ OPERATION_PLACEHOLDER_TITLES = {
     # hand-built page yet.
     'integers-real-life-calculator': 'Калькулятор менен',
     'integers-real-life-non-calculator': 'Калькуляторсуз',
+
+    # Өлчөмдөр > Татаал өлчөмдөр (Compound) - none of these 7 have a real
+    # hand-built page yet.
+    'compound-area-volume-conversion': 'Аянт жана көлөм бирдиктерин алмаштыруу',
+    'compound-density-mass-volume': 'Тыгыздык, масса жана көлөм',
+    'compound-work-hours': 'Жумуш-сааттар',
+    'compound-population-density': 'Калктын калыңдыгы',
+    'compound-pressure-force-area': 'Басым, күч жана аянт',
+    'compound-rates-of-pay': 'Эмгек акы ставкалары',
+    'compound-speed-distance-time': 'Ылдамдык, аралык жана убакыт',
 }
 
 
