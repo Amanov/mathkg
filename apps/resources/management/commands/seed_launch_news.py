@@ -8,6 +8,15 @@ from apps.resources.models import NewsPost
 # out on purpose since it's not something a site visitor needs to know.
 NEWS_ITEMS = [
     {
+        'published_date': '2026-09-29',
+        'title': '"Татаал өлчөмдөр" темасы толукталды',
+        'body': (
+            '"Сандар > Өлчөмдөр > Татаал өлчөмдөр" темасына 7 кичи '
+            'бөлүм (тыгыздык, басым, ылдамдык, калктын калыңдыгы, эмгек '
+            'акы ставкалары ж.б.у.с.) кошулду.'
+        ),
+    },
+    {
         'published_date': '2026-09-28',
         'title': '"Өлчөмдөр" бөлүмүнө жаңы тема кошулду',
         'body': (

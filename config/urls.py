@@ -362,6 +362,16 @@ urlpatterns = [
     path('integers-real-life-calculator/', operation_placeholder_view, {'operation_slug': 'integers-real-life-calculator'}, name='integers_real_life_calculator'),
     path('integers-real-life-non-calculator/', operation_placeholder_view, {'operation_slug': 'integers-real-life-non-calculator'}, name='integers_real_life_non_calculator'),
 
+    # Өлчөмдөр > Татаал өлчөмдөр (Compound) - all 7 slots, none with a
+    # real page yet.
+    path('compound-area-volume-conversion/', operation_placeholder_view, {'operation_slug': 'compound-area-volume-conversion'}, name='compound_area_volume_conversion'),
+    path('compound-density-mass-volume/', operation_placeholder_view, {'operation_slug': 'compound-density-mass-volume'}, name='compound_density_mass_volume'),
+    path('compound-work-hours/', operation_placeholder_view, {'operation_slug': 'compound-work-hours'}, name='compound_work_hours'),
+    path('compound-population-density/', operation_placeholder_view, {'operation_slug': 'compound-population-density'}, name='compound_population_density'),
+    path('compound-pressure-force-area/', operation_placeholder_view, {'operation_slug': 'compound-pressure-force-area'}, name='compound_pressure_force_area'),
+    path('compound-rates-of-pay/', operation_placeholder_view, {'operation_slug': 'compound-rates-of-pay'}, name='compound_rates_of_pay'),
+    path('compound-speed-distance-time/', operation_placeholder_view, {'operation_slug': 'compound-speed-distance-time'}, name='compound_speed_distance_time'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

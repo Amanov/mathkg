@@ -475,6 +475,26 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Татаал өлчөмдөр" (Compound) already exists as an Өлчөмдөр
+        # sub-subtopic - it just had no children yet. Its own "Area &
+        # Volume Conversion" child shares a display name with the
+        # top-level Measures sibling of the same name (a genuine
+        # duplicate on the reference site, not a mistake) - distinct
+        # url_name, own chevron/children left for a future screenshot.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
+        'target_items': [
+            {'title': 'Аянт жана көлөм бирдиктерин алмаштыруу', 'url_name': 'compound_area_volume_conversion'},
+            {'title': 'Тыгыздык, масса жана көлөм', 'url_name': 'compound_density_mass_volume'},
+            {'title': 'Жумуш-сааттар', 'url_name': 'compound_work_hours'},
+            {'title': 'Калктын калыңдыгы', 'url_name': 'compound_population_density'},
+            {'title': 'Басым, күч жана аянт', 'url_name': 'compound_pressure_force_area'},
+            {'title': 'Эмгек акы ставкалары', 'url_name': 'compound_rates_of_pay'},
+            {'title': 'Ылдамдык, аралык жана убакыт', 'url_name': 'compound_speed_distance_time'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
