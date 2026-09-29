@@ -787,6 +787,27 @@ CHILD_ORDER_FIXES = [
             'Турмуштук колдонуулар',
         ],
     },
+    {
+        # Reference order for Татаал өлчөмдөр's OWN children (8 items):
+        # Area & Volume Conversion, Density/Mass/Volume, Work-Hours,
+        # Population Density, Pressure/Force/Area, Rates of Pay, Time,
+        # Speed/Distance/Time. "Убакыт" (Time) is mirrored in as an 8th
+        # item by MIRROR_NODES below, which runs after this loop - so on
+        # a from-scratch run this entry's reorder skips it the first
+        # time (not created yet) and only fully settles on a second run,
+        # same as any other cross-run dependency in this command.
+        'parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
+        'order': [
+            'Аянт жана көлөм бирдиктерин алмаштыруу',
+            'Тыгыздык, масса жана көлөм',
+            'Жумуш-сааттар',
+            'Калктын калыңдыгы',
+            'Басым, күч жана аянт',
+            'Эмгек акы ставкалары',
+            'Убакыт',
+            'Ылдамдык, аралык жана убакыт',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
@@ -803,6 +824,18 @@ MIRROR_GROUPS = [
     {
         'parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
+    },
+]
+
+# Like MIRROR_GROUPS above, but the mirrored thing is itself a whole
+# node with its own children (e.g. "Убакыт"/Time, a Measures topic with
+# 5 sub-items), not a flat leaf page - so it needs a new MenuItem of its
+# own under the target parent, which then gets its own mirrored children
+# one level deeper.
+MIRROR_NODES = [
+    {
+        'target_parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
+        'source_path': ('Сандар', 'Өлчөмдөр', 'Убакыт'),
     },
 ]
 
@@ -1050,16 +1083,75 @@ class Command(BaseCommand):
                 )
                 if created:
                     self.stdout.write(f'  Mirrored: {child.title} ({child.url_name})')
+                elif mirrored.url_name != child.url_name:
+                    # order is deliberately left alone once created - the
+                    # target parent can have its own extra siblings (see
+                    # MIRROR_NODES below) needing a different position
+                    # than the source uses, and CHILD_ORDER_FIXES already
+                    # owns ordering for this parent.
+                    mirrored.url_name = child.url_name
+                    mirrored.save(update_fields=['url_name'])
+                    self.stdout.write(f'  Updated mirror: {child.title}')
+
+            # Anything under target_parent that this mirror didn't just
+            # create/update is a leftover - except a title also managed
+            # by a MIRROR_NODES entry on the same parent (a whole mirrored
+            # subtree, not one of this mirror's own flat leaves), which
+            # must survive this prune untouched.
+            source_titles = {child.title for child in source_children}
+            protected_titles = source_titles | {
+                node_mirror['source_path'][-1]
+                for node_mirror in MIRROR_NODES
+                if node_mirror['target_parent_path'] == mirror['parent_path']
+            }
+            for extra in MenuItem.objects.filter(parent=target_parent):
+                if extra.title not in protected_titles:
+                    self.stdout.write(f'  Removed stale mirror "{extra.title}"')
+                    extra.delete()
+
+        for mirror in MIRROR_NODES:
+            target_topic_title, target_subtopic_title = mirror['target_parent_path']
+            self.stdout.write(f'=== Mirror node: {target_topic_title} > {target_subtopic_title} ===')
+            try:
+                target_parent = MenuItem.objects.get(title=target_subtopic_title, parent__title=target_topic_title)
+            except MenuItem.DoesNotExist:
+                self.stderr.write(f'  "{target_topic_title} > {target_subtopic_title}" not found.')
+                continue
+
+            src_topic_title, src_subtopic_title, src_title = mirror['source_path']
+            try:
+                source_node = MenuItem.objects.get(
+                    title=src_title, parent__title=src_subtopic_title, parent__parent__title=src_topic_title,
+                )
+            except MenuItem.DoesNotExist:
+                self.stderr.write(f'  Source "{src_topic_title} > {src_subtopic_title} > {src_title}" not found.')
+                continue
+
+            mirrored_node, created = MenuItem.objects.get_or_create(
+                parent=target_parent, title=source_node.title,
+                defaults={'order': target_parent.children.count() + 1},
+            )
+            if created:
+                self.stdout.write(f'  Mirrored node: {source_node.title}')
+
+            source_children = list(source_node.children.all().order_by('order'))
+            for child in source_children:
+                mirrored, child_created = MenuItem.objects.get_or_create(
+                    parent=mirrored_node, title=child.title,
+                    defaults={'url_name': child.url_name, 'order': child.order},
+                )
+                if child_created:
+                    self.stdout.write(f'    Mirrored: {child.title} ({child.url_name})')
                 elif mirrored.url_name != child.url_name or mirrored.order != child.order:
                     mirrored.url_name = child.url_name
                     mirrored.order = child.order
                     mirrored.save(update_fields=['url_name', 'order'])
-                    self.stdout.write(f'  Updated mirror: {child.title}')
+                    self.stdout.write(f'    Updated mirror: {child.title}')
 
             source_titles = {child.title for child in source_children}
-            for extra in MenuItem.objects.filter(parent=target_parent):
+            for extra in MenuItem.objects.filter(parent=mirrored_node):
                 if extra.title not in source_titles:
-                    self.stdout.write(f'  Removed stale mirror "{extra.title}"')
+                    self.stdout.write(f'    Removed stale mirror "{extra.title}"')
                     extra.delete()
 
         self.stdout.write(self.style.SUCCESS('Done.'))
