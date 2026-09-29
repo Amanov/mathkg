@@ -495,6 +495,48 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Акча" already exists as an Өлчөмдөр sub-subtopic - it just had
+        # no children yet. Same 5 slots as Ондуктар's own "Акча" group
+        # above, but distinct url_names (measures_money_* prefix) since
+        # this is a separate topic.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Акча'),
+        'target_items': [
+            {'title': 'Сатып алуу: калькулятор менен', 'url_name': 'measures_money_purchasing_calculator'},
+            {'title': 'Сатып алуу: калькуляторсуз', 'url_name': 'measures_money_purchasing_non_calculator'},
+            {'title': 'Насыяга сатып алуу', 'url_name': 'measures_money_hire_purchase'},
+            {'title': 'Эсептер жана көчүрмөлөр', 'url_name': 'measures_money_bills_statements'},
+            {'title': 'Эмгек акы ставкалары', 'url_name': 'measures_money_rates_of_pay'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Масштабдуу сүрөттөр" already exists as an Өлчөмдөр sub-subtopic
+        # - it just had no children yet.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Масштабдуу сүрөттөр'),
+        'target_items': [
+            {'title': 'Узундуктар', 'url_name': 'scale_drawings_lengths'},
+            {'title': 'Болжолдоо', 'url_name': 'scale_drawings_estimation'},
+            {'title': 'Багыттар менен', 'url_name': 'scale_drawings_with_bearings'},
+            {'title': 'Аянттар', 'url_name': 'scale_drawings_areas'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Өлчөө системалары" already exists as an Өлчөмдөр sub-subtopic -
+        # it just had no children yet.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Өлчөө системалары'),
+        'target_items': [
+            {'title': 'Империялык система', 'url_name': 'systems_of_measurement_imperial'},
+            {'title': 'Метрикалык система', 'url_name': 'systems_of_measurement_metric'},
+            {'title': 'Аралаш', 'url_name': 'systems_of_measurement_mixed'},
+            {'title': 'Айландыруу коэффициенттери', 'url_name': 'systems_of_measurement_conversion_factors'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
