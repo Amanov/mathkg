@@ -372,6 +372,27 @@ urlpatterns = [
     path('compound-rates-of-pay/', operation_placeholder_view, {'operation_slug': 'compound-rates-of-pay'}, name='compound_rates_of_pay'),
     path('compound-speed-distance-time/', operation_placeholder_view, {'operation_slug': 'compound-speed-distance-time'}, name='compound_speed_distance_time'),
 
+    # Өлчөмдөр > Акча - all 5 slots, none with a real page yet.
+    path('measures-money-purchasing-calculator/', operation_placeholder_view, {'operation_slug': 'measures-money-purchasing-calculator'}, name='measures_money_purchasing_calculator'),
+    path('measures-money-purchasing-non-calculator/', operation_placeholder_view, {'operation_slug': 'measures-money-purchasing-non-calculator'}, name='measures_money_purchasing_non_calculator'),
+    path('measures-money-hire-purchase/', operation_placeholder_view, {'operation_slug': 'measures-money-hire-purchase'}, name='measures_money_hire_purchase'),
+    path('measures-money-bills-statements/', operation_placeholder_view, {'operation_slug': 'measures-money-bills-statements'}, name='measures_money_bills_statements'),
+    path('measures-money-rates-of-pay/', operation_placeholder_view, {'operation_slug': 'measures-money-rates-of-pay'}, name='measures_money_rates_of_pay'),
+
+    # Өлчөмдөр > Масштабдуу сүрөттөр - all 4 slots, none with a real
+    # page yet.
+    path('scale-drawings-lengths/', operation_placeholder_view, {'operation_slug': 'scale-drawings-lengths'}, name='scale_drawings_lengths'),
+    path('scale-drawings-estimation/', operation_placeholder_view, {'operation_slug': 'scale-drawings-estimation'}, name='scale_drawings_estimation'),
+    path('scale-drawings-with-bearings/', operation_placeholder_view, {'operation_slug': 'scale-drawings-with-bearings'}, name='scale_drawings_with_bearings'),
+    path('scale-drawings-areas/', operation_placeholder_view, {'operation_slug': 'scale-drawings-areas'}, name='scale_drawings_areas'),
+
+    # Өлчөмдөр > Өлчөө системалары - all 4 slots, none with a real page
+    # yet.
+    path('systems-of-measurement-imperial/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-imperial'}, name='systems_of_measurement_imperial'),
+    path('systems-of-measurement-metric/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-metric'}, name='systems_of_measurement_metric'),
+    path('systems-of-measurement-mixed/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-mixed'}, name='systems_of_measurement_mixed'),
+    path('systems-of-measurement-conversion-factors/', operation_placeholder_view, {'operation_slug': 'systems-of-measurement-conversion-factors'}, name='systems_of_measurement_conversion_factors'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

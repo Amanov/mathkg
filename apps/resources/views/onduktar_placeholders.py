@@ -266,6 +266,27 @@ OPERATION_PLACEHOLDER_TITLES = {
     'compound-pressure-force-area': 'Басым, күч жана аянт',
     'compound-rates-of-pay': 'Эмгек акы ставкалары',
     'compound-speed-distance-time': 'Ылдамдык, аралык жана убакыт',
+
+    # Өлчөмдөр > Акча - none of these 5 have a real hand-built page yet.
+    'measures-money-purchasing-calculator': 'Сатып алуу: калькулятор менен',
+    'measures-money-purchasing-non-calculator': 'Сатып алуу: калькуляторсуз',
+    'measures-money-hire-purchase': 'Насыяга сатып алуу',
+    'measures-money-bills-statements': 'Эсептер жана көчүрмөлөр',
+    'measures-money-rates-of-pay': 'Эмгек акы ставкалары',
+
+    # Өлчөмдөр > Масштабдуу сүрөттөр - none of these 4 have a real
+    # hand-built page yet.
+    'scale-drawings-lengths': 'Узундуктар',
+    'scale-drawings-estimation': 'Болжолдоо',
+    'scale-drawings-with-bearings': 'Багыттар менен',
+    'scale-drawings-areas': 'Аянттар',
+
+    # Өлчөмдөр > Өлчөө системалары - none of these 4 have a real
+    # hand-built page yet.
+    'systems-of-measurement-imperial': 'Империялык система',
+    'systems-of-measurement-metric': 'Метрикалык система',
+    'systems-of-measurement-mixed': 'Аралаш',
+    'systems-of-measurement-conversion-factors': 'Айландыруу коэффициенттери',
 }
 
 
