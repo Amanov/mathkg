@@ -711,6 +711,31 @@ CHILD_ORDER_FIXES = [
             'Убакыт',
         ],
     },
+    {
+        # Reference order: Calculations with Powers of 10, Adding &
+        # Subtracting, Multiplying & Dividing, Converting, Correcting -
+        # production had Multiplying & Dividing pulled forward to
+        # position 2 (sharing a duplicate order value with Adding &
+        # Subtracting), an over-qualified title on Adding & Subtracting
+        # ("...: калькулятордсуз", not present on the reference or any
+        # sibling), and an extra "Негиздери" (Introduction) not in the
+        # reference at all (invisible to a fresh local dev DB), pruned by
+        # the exhaustive order list below like any other leftover.
+        'parent_path': ('Сандар', 'Стандарттык форма'),
+        'renames': [
+            {
+                'from': 'Стандарттык форманы кошуу жана кемитүү: калькулятордсуз',
+                'to': 'Кошуу жана кемитүү',
+            },
+        ],
+        'order': [
+            '10дун даражалары менен эсептөөлөр',
+            'Кошуу жана кемитүү',
+            'Көбөйтүү жана бөлүү',
+            'Айландыруу',
+            'Стандарттык форманы тууралоо',
+        ],
+    },
 ]
 
 
@@ -841,6 +866,13 @@ class Command(BaseCommand):
                     subtopic=parent.subtopic, subsubtopic=new_ss,
                 )
                 self.stdout.write(f'  Created sibling "{item["title"]}" (new SubSubtopic + MenuItem)')
+
+            for rename in fix.get('renames', []):
+                child = MenuItem.objects.filter(parent=parent, title=rename['from']).first()
+                if child and child.title != rename['to']:
+                    child.title = rename['to']
+                    child.save(update_fields=['title'])
+                    self.stdout.write(f'  Renamed: "{rename["from"]}" -> "{rename["to"]}"')
 
             for order, title in enumerate(fix['order'], start=1):
                 child = MenuItem.objects.filter(parent=parent, title=title).first()
