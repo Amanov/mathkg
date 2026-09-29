@@ -537,6 +537,33 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # The top-level "Аянт жана көлөм бирдиктерин алмаштыруу" sibling
+        # (distinct from Compound's own child of the same name) already
+        # exists as an Өлчөмдөр sub-subtopic - it just had no children yet.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Аянт жана көлөм бирдиктерин алмаштыруу'),
+        'target_items': [
+            {'title': 'Аянт', 'url_name': 'area_volume_conversion_area'},
+            {'title': 'Көлөм', 'url_name': 'area_volume_conversion_volume'},
+            {'title': 'Аралаш', 'url_name': 'area_volume_conversion_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Убакыт" already exists as an Өлчөмдөр sub-subtopic - it just
+        # had no children yet.
+        'parent_path': ('Сандар', 'Өлчөмдөр', 'Убакыт'),
+        'target_items': [
+            {'title': 'Саатты окуу', 'url_name': 'time_reading_clocks'},
+            {'title': 'Күндөр, айлар жана жылдар', 'url_name': 'time_days_months_years'},
+            {'title': 'Жүрүш тартиби', 'url_name': 'time_timetables'},
+            {'title': 'Эсептөөлөр', 'url_name': 'time_calculations'},
+            {'title': 'Айландыруу', 'url_name': 'time_converting'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # Canonical order fixes for a Subtopic's own direct children (a level up
