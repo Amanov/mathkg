@@ -789,6 +789,23 @@ CHILD_ORDER_FIXES = [
     },
 ]
 
+# The reference site cross-links some groups from two different places
+# in the menu tree rather than duplicating their content - e.g. Compound
+# Measures is filed under both Сандар > Өлчөмдөр (as a Measures topic)
+# and Пропорция (since compound measures are a proportion concept too).
+# Each entry here copies an existing GROUPS-built parent's children
+# (same title, same url_name - so both locations link to the exact same
+# page) into a second parent that has none of its own yet. Matched by
+# (parent, title), not url_name, since the point here is to deliberately
+# reuse a url_name across two menu locations - the opposite of GROUPS'
+# own rule against that.
+MIRROR_GROUPS = [
+    {
+        'parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
+        'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
+    },
+]
+
 
 class Command(BaseCommand):
     help = (
@@ -852,11 +869,21 @@ class Command(BaseCommand):
                 self.stdout.write(f'  Removed stale placeholder "{title}"')
 
             for order, item in enumerate(group['target_items'], start=1):
-                leaf, created = MenuItem.objects.get_or_create(
-                    url_name=item['url_name'],
-                    defaults={'title': item['title'], 'parent': parent_menu, 'order': order},
+                # Usually exactly one MenuItem per url_name, but
+                # MIRROR_GROUPS below deliberately gives a second row the
+                # same url_name under a different parent (two nav
+                # locations linking to the one page) - prefer the row
+                # already under this parent over crashing on
+                # MultipleObjectsReturned, and leave the other parent's
+                # copy alone rather than repositioning it here.
+                matches = list(MenuItem.objects.filter(url_name=item['url_name']))
+                leaf = next((m for m in matches if m.parent_id == parent_menu.id), None) or (
+                    matches[0] if matches else None
                 )
-                if created:
+                if leaf is None:
+                    leaf = MenuItem.objects.create(
+                        url_name=item['url_name'], title=item['title'], parent=parent_menu, order=order,
+                    )
                     self.stdout.write(f'  Created: {item["title"]} ({item["url_name"]})')
                     continue
                 changed = (
@@ -993,6 +1020,46 @@ class Command(BaseCommand):
                         f'  Removed extra menu item "{extra.title}" under this parent '
                         f'(any underlying page/content is untouched).'
                     )
+                    extra.delete()
+
+        for mirror in MIRROR_GROUPS:
+            target_topic_title, target_subtopic_title = mirror['parent_path']
+            self.stdout.write(f'=== Mirror: {target_topic_title} > {target_subtopic_title} ===')
+            try:
+                target_parent = MenuItem.objects.get(title=target_subtopic_title, parent__title=target_topic_title)
+            except MenuItem.DoesNotExist:
+                self.stderr.write(f'  "{target_topic_title} > {target_subtopic_title}" not found.')
+                continue
+
+            src_topic_title, src_subtopic_title, src_ss_title = mirror['source_parent_path']
+            try:
+                source_parent = MenuItem.objects.get(
+                    title=src_ss_title, parent__title=src_subtopic_title, parent__parent__title=src_topic_title,
+                )
+            except MenuItem.DoesNotExist:
+                self.stderr.write(
+                    f'  Source "{src_topic_title} > {src_subtopic_title} > {src_ss_title}" not found.'
+                )
+                continue
+
+            source_children = list(source_parent.children.all().order_by('order'))
+            for child in source_children:
+                mirrored, created = MenuItem.objects.get_or_create(
+                    parent=target_parent, title=child.title,
+                    defaults={'url_name': child.url_name, 'order': child.order},
+                )
+                if created:
+                    self.stdout.write(f'  Mirrored: {child.title} ({child.url_name})')
+                elif mirrored.url_name != child.url_name or mirrored.order != child.order:
+                    mirrored.url_name = child.url_name
+                    mirrored.order = child.order
+                    mirrored.save(update_fields=['url_name', 'order'])
+                    self.stdout.write(f'  Updated mirror: {child.title}')
+
+            source_titles = {child.title for child in source_children}
+            for extra in MenuItem.objects.filter(parent=target_parent):
+                if extra.title not in source_titles:
+                    self.stdout.write(f'  Removed stale mirror "{extra.title}"')
                     extra.delete()
 
         self.stdout.write(self.style.SUCCESS('Done.'))
