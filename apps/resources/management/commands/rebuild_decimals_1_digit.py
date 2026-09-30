@@ -1263,6 +1263,114 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Графиктер: абстракттуу" (Graphs: Abstract) was an empty
+        # top-level category. Reference (10 items): Coordinates,
+        # Linear: Calculating, Linear: Plotting, Linear: Reading,
+        # Linear: Mixed are flat; Quadratic, Circles, Other Non-Linear,
+        # Transformations, Differentiation are chevron-bearing
+        # categories (created via 'create_subsubtopics' below, left
+        # empty pending screenshots of their own contents).
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу'),
+        'target_items': [
+            {'title': 'Координаттар', 'url_name': 'algebra_graphs_abstract_coordinates'},
+            {'title': 'Сызыктуу: эсептөө', 'url_name': 'algebra_graphs_abstract_linear_calculating'},
+            {'title': 'Сызыктуу: чиймелөө', 'url_name': 'algebra_graphs_abstract_linear_plotting'},
+            {'title': 'Сызыктуу: окуу', 'url_name': 'algebra_graphs_abstract_linear_reading'},
+            {'title': 'Сызыктуу: аралаш', 'url_name': 'algebra_graphs_abstract_linear_mixed'},
+        ],
+        'promoted_titles': [
+            'Квадраттык', 'Тегеректер', 'Башка сызыктуу эмес',
+            'Түрлөндүрүүлөр', 'Дифференциалдоо',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Графиктер: турмуштук" (Graphs: Real-Life) was an empty
+        # top-level category. Reference (9 items): Depth-Time,
+        # Volume-Time, Mixed, Mixed: Distance & Velocity are flat;
+        # Conversion Graphs, Cost Relationships, Distance-Time:
+        # Constant Speeds, Distance-Time: Variable Speeds, Velocity-Time
+        # are chevron-bearing categories (created via
+        # 'create_subsubtopics' below, left empty pending screenshots of
+        # their own contents).
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук'),
+        'target_items': [
+            {'title': 'Тереңдик-Убакыт', 'url_name': 'algebra_graphs_real_life_depth_time'},
+            {'title': 'Көлөм-Убакыт', 'url_name': 'algebra_graphs_real_life_volume_time'},
+            {'title': 'Аралаш', 'url_name': 'algebra_graphs_real_life_mixed'},
+            {'title': 'Аралаш: аралык жана ылдамдык', 'url_name': 'algebra_graphs_real_life_mixed_distance_velocity'},
+        ],
+        'promoted_titles': [
+            'Айландыруу графиктери', 'Баа катыштары',
+            'Аралык-Убакыт: турактуу ылдамдык',
+            'Аралык-Убакыт: өзгөрмө ылдамдык', 'Ылдамдык-Убакыт',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Барабарсыздыктар" (Inequalities) top-level was an empty
+        # category. Reference (4 items): Quadratic, Trial &
+        # Improvement are flat; Linear, Graphical are chevron-bearing
+        # categories (created via 'create_subsubtopics' below, left
+        # empty pending screenshots of their own contents).
+        'parent_path': ('Алгебра', 'Барабарсыздыктар'),
+        'target_items': [
+            {'title': 'Квадраттык', 'url_name': 'algebra_inequalities_quadratic'},
+            {'title': 'Сыноо жана жакшыртуу', 'url_name': 'algebra_inequalities_trial_improvement'},
+        ],
+        'promoted_titles': ['Сызыктуу', 'Графикалык'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Түрлөндүрүү" (Manipulation) was an empty top-level category.
+        # Reference (11 items): Notation, Changing the Subject of a
+        # Formula are flat; Forming Expressions, Algebraic Fractions,
+        # Expanding Single Brackets, Expanding Double & Triple
+        # Brackets, Factorising into Single Brackets, Factorising into
+        # Double Brackets, Proofs, Simplifying Expressions, Mixed are
+        # chevron-bearing categories (created via 'create_subsubtopics'
+        # below, left empty pending screenshots of their own contents).
+        'parent_path': ('Алгебра', 'Түрлөндүрүү'),
+        'target_items': [
+            {'title': 'Белгилөө', 'url_name': 'algebra_manipulation_notation'},
+            {'title': 'Формуланын өзгөрмөсүн алмаштыруу', 'url_name': 'algebra_manipulation_changing_subject'},
+        ],
+        'promoted_titles': [
+            'Туюнтма түзүү', 'Алгебралык бөлчөктөр',
+            'Бир кашааны ачуу', 'Эки жана үч кашааны ачуу',
+            'Бир кашаага ажыратуу', 'Эки кашаага ажыратуу',
+            'Далилдөөлөр', 'Туюнтмаларды жөнөкөйлөтүү', 'Аралаш',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Ырааттуулуктар" (Sequences) was an empty top-level category.
+        # Reference (10 items): Introduction, With Graphs, With
+        # Equations & Functions, Quadratic, Linear & Quadratic,
+        # Geometric, Fibonacci, Special, Mixed are flat; Linear is a
+        # chevron-bearing category (created via 'create_subsubtopics'
+        # below, left empty pending a screenshot of its own contents).
+        'parent_path': ('Алгебра', 'Ырааттуулуктар'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'algebra_sequences_introduction'},
+            {'title': 'Графиктер менен', 'url_name': 'algebra_sequences_with_graphs'},
+            {'title': 'Теңдемелер жана функциялар менен', 'url_name': 'algebra_sequences_equations_functions'},
+            {'title': 'Квадраттык', 'url_name': 'algebra_sequences_quadratic'},
+            {'title': 'Сызыктуу жана квадраттык', 'url_name': 'algebra_sequences_linear_quadratic'},
+            {'title': 'Геометриялык', 'url_name': 'algebra_sequences_geometric'},
+            {'title': 'Фибоначчи', 'url_name': 'algebra_sequences_fibonacci'},
+            {'title': 'Атайын', 'url_name': 'algebra_sequences_special'},
+            {'title': 'Аралаш', 'url_name': 'algebra_sequences_mixed'},
+        ],
+        'promoted_titles': ['Сызыктуу'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1749,6 +1857,130 @@ CHILD_ORDER_FIXES = [
             'Түзүү',
             'Маанисин эсептөө',
             'ЖРТ',
+        ],
+    },
+    {
+        # "Квадраттык", "Тегеректер", "Башка сызыктуу эмес",
+        # "Түрлөндүрүүлөр", "Дифференциалдоо" are created here (fresh
+        # chevron-bearing categories, left empty pending screenshots of
+        # their own contents) before their own GROUPS entry can find
+        # them - 2-run cross-run dependency, same pattern as the
+        # Quadratic/Simultaneous fixes above.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу'),
+        'create_subsubtopics': [
+            {'title': 'Квадраттык', 'slug': 'graphs-abstract-quadratic'},
+            {'title': 'Тегеректер', 'slug': 'graphs-abstract-circles'},
+            {'title': 'Башка сызыктуу эмес', 'slug': 'graphs-abstract-other-non-linear'},
+            {'title': 'Түрлөндүрүүлөр', 'slug': 'graphs-abstract-transformations'},
+            {'title': 'Дифференциалдоо', 'slug': 'graphs-abstract-differentiation'},
+        ],
+        'order': [
+            'Координаттар',
+            'Сызыктуу: эсептөө',
+            'Сызыктуу: чиймелөө',
+            'Сызыктуу: окуу',
+            'Сызыктуу: аралаш',
+            'Квадраттык',
+            'Тегеректер',
+            'Башка сызыктуу эмес',
+            'Түрлөндүрүүлөр',
+            'Дифференциалдоо',
+        ],
+    },
+    {
+        # "Айландыруу графиктери", "Баа катыштары", "Аралык-Убакыт:
+        # турактуу ылдамдык", "Аралык-Убакыт: өзгөрмө ылдамдык",
+        # "Ылдамдык-Убакыт" are created here (fresh chevron-bearing
+        # categories, left empty pending screenshots of their own
+        # contents) - 2-run cross-run dependency.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук'),
+        'create_subsubtopics': [
+            {'title': 'Айландыруу графиктери', 'slug': 'graphs-real-life-conversion'},
+            {'title': 'Баа катыштары', 'slug': 'graphs-real-life-cost-relationships'},
+            {'title': 'Аралык-Убакыт: турактуу ылдамдык', 'slug': 'graphs-real-life-distance-time-constant'},
+            {'title': 'Аралык-Убакыт: өзгөрмө ылдамдык', 'slug': 'graphs-real-life-distance-time-variable'},
+            {'title': 'Ылдамдык-Убакыт', 'slug': 'graphs-real-life-velocity-time'},
+        ],
+        'order': [
+            'Айландыруу графиктери',
+            'Баа катыштары',
+            'Тереңдик-Убакыт',
+            'Көлөм-Убакыт',
+            'Аралаш',
+            'Аралык-Убакыт: турактуу ылдамдык',
+            'Аралык-Убакыт: өзгөрмө ылдамдык',
+            'Ылдамдык-Убакыт',
+            'Аралаш: аралык жана ылдамдык',
+        ],
+    },
+    {
+        # "Сызыктуу" and "Графикалык" are created here (fresh
+        # chevron-bearing categories, left empty pending screenshots of
+        # their own contents) - 2-run cross-run dependency.
+        'parent_path': ('Алгебра', 'Барабарсыздыктар'),
+        'create_subsubtopics': [
+            {'title': 'Сызыктуу', 'slug': 'inequalities-linear'},
+            {'title': 'Графикалык', 'slug': 'inequalities-graphical'},
+        ],
+        'order': [
+            'Сызыктуу',
+            'Графикалык',
+            'Квадраттык',
+            'Сыноо жана жакшыртуу',
+        ],
+    },
+    {
+        # "Туюнтма түзүү", "Алгебралык бөлчөктөр", "Бир кашааны ачуу",
+        # "Эки жана үч кашааны ачуу", "Бир кашаага ажыратуу", "Эки
+        # кашаага ажыратуу", "Далилдөөлөр", "Туюнтмаларды жөнөкөйлөтүү",
+        # "Аралаш" are created here (fresh chevron-bearing categories,
+        # left empty pending screenshots of their own contents) - 2-run
+        # cross-run dependency.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү'),
+        'create_subsubtopics': [
+            {'title': 'Туюнтма түзүү', 'slug': 'manipulation-forming-expressions'},
+            {'title': 'Алгебралык бөлчөктөр', 'slug': 'manipulation-algebraic-fractions'},
+            {'title': 'Бир кашааны ачуу', 'slug': 'manipulation-expanding-single-brackets'},
+            {'title': 'Эки жана үч кашааны ачуу', 'slug': 'manipulation-expanding-double-triple-brackets'},
+            {'title': 'Бир кашаага ажыратуу', 'slug': 'manipulation-factorising-single-brackets'},
+            {'title': 'Эки кашаага ажыратуу', 'slug': 'manipulation-factorising-double-brackets'},
+            {'title': 'Далилдөөлөр', 'slug': 'manipulation-proofs'},
+            {'title': 'Туюнтмаларды жөнөкөйлөтүү', 'slug': 'manipulation-simplifying-expressions'},
+            {'title': 'Аралаш', 'slug': 'manipulation-mixed'},
+        ],
+        'order': [
+            'Белгилөө',
+            'Туюнтма түзүү',
+            'Алгебралык бөлчөктөр',
+            'Формуланын өзгөрмөсүн алмаштыруу',
+            'Бир кашааны ачуу',
+            'Эки жана үч кашааны ачуу',
+            'Бир кашаага ажыратуу',
+            'Эки кашаага ажыратуу',
+            'Далилдөөлөр',
+            'Туюнтмаларды жөнөкөйлөтүү',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Сызыктуу" is created here (fresh chevron-bearing category,
+        # left empty pending a screenshot of its own contents) - 2-run
+        # cross-run dependency.
+        'parent_path': ('Алгебра', 'Ырааттуулуктар'),
+        'create_subsubtopics': [
+            {'title': 'Сызыктуу', 'slug': 'sequences-linear'},
+        ],
+        'order': [
+            'Киришүү',
+            'Графиктер менен',
+            'Теңдемелер жана функциялар менен',
+            'Сызыктуу',
+            'Квадраттык',
+            'Сызыктуу жана квадраттык',
+            'Геометриялык',
+            'Фибоначчи',
+            'Атайын',
+            'Аралаш',
         ],
     },
 ]

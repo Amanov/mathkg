@@ -686,6 +686,38 @@ urlpatterns = [
     path('algebra-functions-evaluating-solving-equations/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-solving-equations'}, name='algebra_functions_evaluating_solving_equations'),
     path('algebra-functions-evaluating-iteration/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-iteration'}, name='algebra_functions_evaluating_iteration'),
 
+    # Графиктер: абстракттуу - 5 flat slots, none with a real page yet.
+    path('algebra-graphs-abstract-coordinates/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates'}, name='algebra_graphs_abstract_coordinates'),
+    path('algebra-graphs-abstract-linear-calculating/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calculating'}, name='algebra_graphs_abstract_linear_calculating'),
+    path('algebra-graphs-abstract-linear-plotting/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plotting'}, name='algebra_graphs_abstract_linear_plotting'),
+    path('algebra-graphs-abstract-linear-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-reading'}, name='algebra_graphs_abstract_linear_reading'),
+    path('algebra-graphs-abstract-linear-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-mixed'}, name='algebra_graphs_abstract_linear_mixed'),
+
+    # Графиктер: турмуштук - 4 flat slots, none with a real page yet.
+    path('algebra-graphs-real-life-depth-time/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-depth-time'}, name='algebra_graphs_real_life_depth_time'),
+    path('algebra-graphs-real-life-volume-time/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-volume-time'}, name='algebra_graphs_real_life_volume_time'),
+    path('algebra-graphs-real-life-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-mixed'}, name='algebra_graphs_real_life_mixed'),
+    path('algebra-graphs-real-life-mixed-distance-velocity/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-mixed-distance-velocity'}, name='algebra_graphs_real_life_mixed_distance_velocity'),
+
+    # Барабарсыздыктар - 2 flat slots, none with a real page yet.
+    path('algebra-inequalities-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-quadratic'}, name='algebra_inequalities_quadratic'),
+    path('algebra-inequalities-trial-improvement/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-trial-improvement'}, name='algebra_inequalities_trial_improvement'),
+
+    # Түрлөндүрүү - 2 flat slots, none with a real page yet.
+    path('algebra-manipulation-notation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation'}, name='algebra_manipulation_notation'),
+    path('algebra-manipulation-changing-subject/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject'}, name='algebra_manipulation_changing_subject'),
+
+    # Ырааттуулуктар - 9 flat slots, none with a real page yet.
+    path('algebra-sequences-introduction/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-introduction'}, name='algebra_sequences_introduction'),
+    path('algebra-sequences-with-graphs/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-with-graphs'}, name='algebra_sequences_with_graphs'),
+    path('algebra-sequences-equations-functions/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-equations-functions'}, name='algebra_sequences_equations_functions'),
+    path('algebra-sequences-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-quadratic'}, name='algebra_sequences_quadratic'),
+    path('algebra-sequences-linear-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-quadratic'}, name='algebra_sequences_linear_quadratic'),
+    path('algebra-sequences-geometric/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-geometric'}, name='algebra_sequences_geometric'),
+    path('algebra-sequences-fibonacci/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-fibonacci'}, name='algebra_sequences_fibonacci'),
+    path('algebra-sequences-special/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-special'}, name='algebra_sequences_special'),
+    path('algebra-sequences-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-mixed'}, name='algebra_sequences_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
