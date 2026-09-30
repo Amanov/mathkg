@@ -1080,20 +1080,20 @@ GROUPS = [
         # Linear) - removed from target_items, one-time-cleaned via
         # 'displaced_url_names', recreated as categories via
         # CHILD_ORDER_FIXES, protected via 'promoted_titles', each filled
-        # by its own dedicated GROUPS entry below. The screenshots gave
-        # inconsistent signals on whether "c = 0", "Completing the
-        # Square", "Rational", "Quadratic Formula" and "Forming" also
-        # have chevrons - left as flat leaves for now pending clearer
-        # screenshots of each. Screenshot's list may also continue past
-        # "Barabarsyzdyktar" (a partial line was cut off in an earlier
-        # screenshot) - flagged for the user to confirm this is the
-        # complete list.
+        # by its own dedicated GROUPS entry below. A later screenshot
+        # confirmed "c = 0", "Completing the Square", "Quadratic
+        # Formula", "Equations with No Solution", "Mixed", "Trial &
+        # Improvement", "Iteration", "By Intersection" and
+        # "Inequalities" are all flat (no chevron) and this is the
+        # complete list. A further screenshot then showed "Рационалдык"
+        # (Rational) ALSO has its own chevron children (Without
+        # Coefficients, With Coefficients) - same misread again, fixed
+        # the same way below.
         'parent_path': ('Алгебра', 'Теңдемелер: квадраттык'),
         'target_items': [
             {'title': 'Түзүү', 'url_name': 'algebra_quadratic_forming'},
             {'title': 'c = 0', 'url_name': 'algebra_quadratic_c_zero'},
             {'title': 'Толук квадратка келтирүү', 'url_name': 'algebra_quadratic_completing_square'},
-            {'title': 'Рационалдык', 'url_name': 'algebra_quadratic_rational'},
             {'title': 'Квадраттык теңдеме формуласы', 'url_name': 'algebra_quadratic_formula'},
             {'title': 'Чечими жок теңдемелер', 'url_name': 'algebra_quadratic_no_solution'},
             {'title': 'Аралаш', 'url_name': 'algebra_quadratic_mixed'},
@@ -1103,12 +1103,13 @@ GROUPS = [
             {'title': 'Барабарсыздыктар', 'url_name': 'algebra_quadratic_inequalities'},
         ],
         'promoted_titles': [
-            'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'b = 0',
+            'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'b = 0', 'Рационалдык',
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [
             'algebra_quadratic_factorisation_double_brackets',
             'algebra_quadratic_b_zero',
+            'algebra_quadratic_rational',
         ],
     },
     {
@@ -1133,6 +1134,19 @@ GROUPS = [
             {'title': 'Кайра жайгаштыруу', 'url_name': 'algebra_quadratic_b_zero_rearranging'},
             {'title': 'Эки квадраттын айырмасы', 'url_name': 'algebra_quadratic_b_zero_difference_of_squares'},
             {'title': 'Аралаш', 'url_name': 'algebra_quadratic_b_zero_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Рационалдык" (Rational) is a fresh chevron-bearing category,
+        # created via 'create_subsubtopics' below. Reference (2 items):
+        # Without Coefficients, With Coefficients - same pair of titles
+        # as Factorisation: Double Brackets above, distinct url_names.
+        'parent_path': ('Алгебра', 'Теңдемелер: квадраттык', 'Рационалдык'),
+        'target_items': [
+            {'title': 'Коэффициентсиз', 'url_name': 'algebra_quadratic_rational_without_coefficients'},
+            {'title': 'Коэффициент менен', 'url_name': 'algebra_quadratic_rational_with_coefficients'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1583,17 +1597,19 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # "Көбөйтүүчүлөргө ажыратуу: эки кашаа менен" and "b = 0" are
-        # created here (fresh chevron-bearing categories) before their
-        # own GROUPS entries can find them - 2-run cross-run dependency,
-        # same as Теңдемелер: сызыктуу above. The final order below
-        # interleaves them among the 11 flat leaves GROUPS' target_items
-        # builds (same cosmetic every-run reorder noise as Теңдемелер:
-        # сызыктуу - the end state each run is identical and correct).
+        # "Көбөйтүүчүлөргө ажыратуу: эки кашаа менен", "b = 0" and
+        # "Рационалдык" are created here (fresh chevron-bearing
+        # categories) before their own GROUPS entries can find them -
+        # 2-run cross-run dependency, same as Теңдемелер: сызыктуу
+        # above. The final order below interleaves them among the 10
+        # flat leaves GROUPS' target_items builds (same cosmetic
+        # every-run reorder noise as Теңдемелер: сызыктуу - the end
+        # state each run is identical and correct).
         'parent_path': ('Алгебра', 'Теңдемелер: квадраттык'),
         'create_subsubtopics': [
             {'title': 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'slug': 'factorisation-double-brackets'},
             {'title': 'b = 0', 'slug': 'b-equals-0'},
+            {'title': 'Рационалдык', 'slug': 'rational'},
         ],
         'order': [
             'Түзүү',

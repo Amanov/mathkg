@@ -560,6 +560,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-quadratic-b-zero-rearranging': 'Кайра жайгаштыруу',
     'algebra-quadratic-b-zero-difference-of-squares': 'Эки квадраттын айырмасы',
     'algebra-quadratic-b-zero-mixed': 'Аралаш',
+
+    # Теңдемелер: квадраттык > Рационалдык - both slots, none with a
+    # real page yet.
+    'algebra-quadratic-rational-without-coefficients': 'Коэффициентсиз',
+    'algebra-quadratic-rational-with-coefficients': 'Коэффициент менен',
 }
 
 
