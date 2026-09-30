@@ -867,6 +867,72 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Баалар" (Prices) is a brand new chevron-bearing child of
+        # Турмуштук колдонуулар, created via 'create_subsubtopics' below
+        # before this entry's own target_items can find it (same cross-
+        # run dependency as "Катышка бөлүү" above). Reference (2 items):
+        # Calculator, Non-Calculator.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Баалар'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'real_life_prices_calculator'},
+            {'title': 'Калькулятордсуз', 'url_name': 'real_life_prices_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Пайдалуу сатып алуу" (Best Buys) already exists as a chevron-
+        # bearing SubSubtopic under Турмуштук колдонуулар - it just had
+        # no children yet. Reference (2 items): Calculator,
+        # Non-Calculator.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Пайдалуу сатып алуу'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'real_life_best_buys_calculator'},
+            {'title': 'Калькулятордсуз', 'url_name': 'real_life_best_buys_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Валюта курстары" (Exchange Rates) already exists as a chevron-
+        # bearing SubSubtopic under Турмуштук колдонуулар - it just had
+        # no children yet. Reference (2 items): Calculator,
+        # Non-Calculator.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Валюта курстары'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'real_life_exchange_rates_calculator'},
+            {'title': 'Калькулятордсуз', 'url_name': 'real_life_exchange_rates_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Рецепттер" (Recipes) already exists as a chevron-bearing
+        # SubSubtopic under Турмуштук колдонуулар - it just had no
+        # children yet. Reference (2 items): Calculator, Non-Calculator.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Рецепттер'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'real_life_recipes_calculator'},
+            {'title': 'Калькулятордсуз', 'url_name': 'real_life_recipes_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed, the 5th top-level Турмуштук колдонуулар
+        # sibling) is a brand new chevron-bearing child, created via
+        # 'create_subsubtopics' below before this entry's own
+        # target_items can find it. Reference (2 items): Calculator,
+        # Non-Calculator - same shape as its 4 siblings above.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Аралаш'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'real_life_mixed_calculator'},
+            {'title': 'Калькулятордсуз', 'url_name': 'real_life_mixed_non_calculator'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1198,6 +1264,25 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Катышка бөлүү',
             'Тескери',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Турмуштук колдонуулар" (Real-Life) already has 3 chevron-
+        # bearing children from import_reference_taxonomy.py (Пайдалуу
+        # сатып алуу, Валюта курстары, Рецепттер) - reference adds 2 more:
+        # "Баалар" (Prices, 1st) and "Аралаш" (Mixed, 5th), both getting
+        # the same Calculator/Non-Calculator shape as their siblings.
+        'parent_path': ('Пропорция', 'Турмуштук колдонуулар'),
+        'create_subsubtopics': [
+            {'title': 'Баалар', 'slug': 'prices'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Баалар',
+            'Пайдалуу сатып алуу',
+            'Валюта курстары',
+            'Рецепттер',
             'Аралаш',
         ],
     },
