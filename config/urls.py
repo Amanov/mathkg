@@ -657,6 +657,11 @@ urlpatterns = [
     path('algebra-quadratic-b-zero-difference-of-squares/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-b-zero-difference-of-squares'}, name='algebra_quadratic_b_zero_difference_of_squares'),
     path('algebra-quadratic-b-zero-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-b-zero-mixed'}, name='algebra_quadratic_b_zero_mixed'),
 
+    # Теңдемелер: квадраттык > Рационалдык - both slots, none with a
+    # real page yet.
+    path('algebra-quadratic-rational-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-rational-without-coefficients'}, name='algebra_quadratic_rational_without_coefficients'),
+    path('algebra-quadratic-rational-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-rational-with-coefficients'}, name='algebra_quadratic_rational_with_coefficients'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
