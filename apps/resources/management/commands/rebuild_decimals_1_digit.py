@@ -676,6 +676,22 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Туюнтуу" already exists as a chevron-bearing SubSubtopic under
+        # Пайыздар: калькулятор менен (see import_reference_taxonomy.py) -
+        # it just had no children yet. New url_names (not reused from
+        # Сандар > Бөлчөктөр > Туюнтуу's own "Чоңдук"/"Өзгөрүү" pages)
+        # since these cover the percentage version of the same generic
+        # titles, not the same pages.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятор менен', 'Туюнтуу'),
+        'target_items': [
+            {'title': 'Бөлчөктөрдү айландыруу', 'url_name': 'percentages_expressing_converting_fractions'},
+            {'title': 'Чоңдук', 'url_name': 'percentages_expressing_quantity'},
+            {'title': 'Өзгөрүү', 'url_name': 'percentages_expressing_change'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -925,6 +941,25 @@ CHILD_ORDER_FIXES = [
             'Эмгек акы ставкалары',
             'Убакыт',
             'Ылдамдык, аралык жана убакыт',
+        ],
+    },
+    {
+        # Reference has a 5th sibling here, "Mixed", with no precedent in
+        # the menu tree yet - same shape as the other "Аралаш" leaf
+        # placeholders elsewhere in this file (a plain SubSubtopic-level
+        # placeholder, not one of the rebuilt-pages GROUPS above), so it's
+        # created via 'create_subsubtopics' before the order below is
+        # applied.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятор менен'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Туюнтуу',
+            'Чоңдуктун пайызы',
+            'Көбөйтүү жана азайтуу',
+            'Кайталанма пайыздык өзгөрүү',
+            'Аралаш',
         ],
     },
 ]
