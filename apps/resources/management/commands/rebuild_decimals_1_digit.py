@@ -796,6 +796,77 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Туюнтуу" already exists as a chevron-bearing SubSubtopic under
+        # Катыш - it just had no children yet. Reference (3 flat items):
+        # Division, Simplifying, 1:n.
+        'parent_path': ('Пропорция', 'Катыш', 'Туюнтуу'),
+        'target_items': [
+            {'title': 'Бөлүү', 'url_name': 'ratio_expressing_division'},
+            {'title': 'Жөнөкөйлөтүү', 'url_name': 'ratio_expressing_simplifying'},
+            {'title': '1:n', 'url_name': 'ratio_expressing_1_to_n'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Катыштар жана чоңдуктар" (Ratios & Quantities) already exists
+        # as a chevron-bearing SubSubtopic under Катыш - it just had no
+        # children yet. Reference (3 items): Dividing Into a Ratio
+        # (itself chevron-bearing, own 4 children below), Reverse, Mixed.
+        'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар'),
+        'target_items': [
+            {'title': 'Тескери', 'url_name': 'ratio_quantities_reverse'},
+            {'title': 'Аралаш', 'url_name': 'ratio_quantities_mixed'},
+        ],
+        'promoted_titles': ['Катышка бөлүү'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Катышка бөлүү" (Dividing Into a Ratio) is a fresh chevron-
+        # bearing child of Катыштар жана чоңдуктар - created via
+        # 'create_subsubtopics' below before this entry's own target_items
+        # are applied. Reference (4 items): With Line Segments, FPR:
+        # Calculator, FPR: Non-Calculator, FPR: With Frequency Trees.
+        'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар', 'Катышка бөлүү'),
+        'target_items': [
+            {'title': 'Сызык кесиндилери менен', 'url_name': 'ratio_dividing_with_line_segments'},
+            {'title': 'Бөлчөк, пайыз жана катыш: калькулятор менен', 'url_name': 'ratio_dividing_fpr_calculator'},
+            {'title': 'Бөлчөк, пайыз жана катыш: калькулятордсуз', 'url_name': 'ratio_dividing_fpr_non_calculator'},
+            {'title': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен', 'url_name': 'ratio_dividing_fpr_frequency_trees'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Түрлөндүрүү" (Manipulation) already exists as a chevron-bearing
+        # SubSubtopic under Катыш - it just had no children yet.
+        # Reference (4 flat items): 1:n, Comparing Parts, Combining,
+        # Changing.
+        'parent_path': ('Пропорция', 'Катыш', 'Түрлөндүрүү'),
+        'target_items': [
+            {'title': '1:n', 'url_name': 'ratio_manipulation_1_to_n'},
+            {'title': 'Бөлүктөрдү салыштыруу', 'url_name': 'ratio_manipulation_comparing_parts'},
+            {'title': 'Бириктирүү', 'url_name': 'ratio_manipulation_combining'},
+            {'title': 'Өзгөртүү', 'url_name': 'ratio_manipulation_changing'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed, the 5th top-level Катыш sibling) already
+        # exists as a chevron-bearing SubSubtopic - it just had no
+        # children yet. Reference (2 flat items): Foundation, Higher (UK
+        # GCSE difficulty tiers).
+        'parent_path': ('Пропорция', 'Катыш', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'ratio_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'ratio_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1113,6 +1184,23 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # "Катышка бөлүү" (Dividing Into a Ratio) is a brand new chevron-
+        # bearing child of Катыштар жана чоңдуктар, created here before
+        # its own GROUPS entry (target_items) can find it - same cross-
+        # run dependency as any other freshly-'create_subsubtopics'-d
+        # parent used by a later GROUPS entry (settles fully on a 2nd
+        # run).
+        'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар'),
+        'create_subsubtopics': [
+            {'title': 'Катышка бөлүү', 'slug': 'dividing-into-a-ratio'},
+        ],
+        'order': [
+            'Катышка бөлүү',
+            'Тескери',
+            'Аралаш',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
@@ -1415,20 +1503,19 @@ class Command(BaseCommand):
 
         for fix in CHILD_ORDER_FIXES:
             # Usually a 2-tuple (Topic, Subtopic) - the Subtopic sits
-            # under a root Topic (e.g. Ондуктар under Сандар). Пропорция
+            # under a root Topic (e.g. Ондуктар under Сандар), or deeper
+            # (e.g. a 3-tuple for a SubSubtopic's own children, resolved
+            # via the same title-chain walk as resolve_path). Пропорция
             # is itself a root Topic (no parent), so a 1-tuple means
             # "this title, with no parent at all".
-            if len(fix['parent_path']) == 2:
-                topic_title, subtopic_title = fix['parent_path']
-                label = f'{topic_title} > {subtopic_title}'
-                parent_lookup = {'title': subtopic_title, 'parent__title': topic_title}
-            else:
-                (subtopic_title,) = fix['parent_path']
-                label = subtopic_title
-                parent_lookup = {'title': subtopic_title, 'parent__isnull': True}
+            label = ' > '.join(fix['parent_path'])
             self.stdout.write(f'=== {label} (direct children order) ===')
             try:
-                parent = MenuItem.objects.get(**parent_lookup)
+                if len(fix['parent_path']) == 1:
+                    (subtopic_title,) = fix['parent_path']
+                    parent = MenuItem.objects.get(title=subtopic_title, parent__isnull=True)
+                else:
+                    parent = self.resolve_path(fix['parent_path'])
             except MenuItem.DoesNotExist:
                 self.stderr.write(
                     f'  "{label}" not found - '

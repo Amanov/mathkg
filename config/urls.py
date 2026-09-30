@@ -506,6 +506,32 @@ urlpatterns = [
     path('percentages-noncalc-incdec-mixed/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-incdec-mixed'}, name='percentages_noncalc_incdec_mixed'),
     path('percentages-noncalc-incdec-reverse/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-incdec-reverse'}, name='percentages_noncalc_incdec_reverse'),
 
+    # Катыш > Туюнтуу - all 3 slots, none with a real page yet.
+    path('ratio-expressing-division/', operation_placeholder_view, {'operation_slug': 'ratio-expressing-division'}, name='ratio_expressing_division'),
+    path('ratio-expressing-simplifying/', operation_placeholder_view, {'operation_slug': 'ratio-expressing-simplifying'}, name='ratio_expressing_simplifying'),
+    path('ratio-expressing-1-to-n/', operation_placeholder_view, {'operation_slug': 'ratio-expressing-1-to-n'}, name='ratio_expressing_1_to_n'),
+
+    # Катыш > Катыштар жана чоңдуктар - flat leaves only.
+    path('ratio-quantities-reverse/', operation_placeholder_view, {'operation_slug': 'ratio-quantities-reverse'}, name='ratio_quantities_reverse'),
+    path('ratio-quantities-mixed/', operation_placeholder_view, {'operation_slug': 'ratio-quantities-mixed'}, name='ratio_quantities_mixed'),
+
+    # Катыш > Катыштар жана чоңдуктар > Катышка бөлүү - all 4 slots,
+    # none with a real page yet.
+    path('ratio-dividing-with-line-segments/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-with-line-segments'}, name='ratio_dividing_with_line_segments'),
+    path('ratio-dividing-fpr-calculator/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-calculator'}, name='ratio_dividing_fpr_calculator'),
+    path('ratio-dividing-fpr-non-calculator/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-non-calculator'}, name='ratio_dividing_fpr_non_calculator'),
+    path('ratio-dividing-fpr-frequency-trees/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-frequency-trees'}, name='ratio_dividing_fpr_frequency_trees'),
+
+    # Катыш > Түрлөндүрүү - all 4 slots, none with a real page yet.
+    path('ratio-manipulation-1-to-n/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-1-to-n'}, name='ratio_manipulation_1_to_n'),
+    path('ratio-manipulation-comparing-parts/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-comparing-parts'}, name='ratio_manipulation_comparing_parts'),
+    path('ratio-manipulation-combining/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-combining'}, name='ratio_manipulation_combining'),
+    path('ratio-manipulation-changing/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-changing'}, name='ratio_manipulation_changing'),
+
+    # Катыш > Аралаш - both slots, none with a real page yet.
+    path('ratio-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'ratio-mixed-foundation'}, name='ratio_mixed_foundation'),
+    path('ratio-mixed-higher/', operation_placeholder_view, {'operation_slug': 'ratio-mixed-higher'}, name='ratio_mixed_higher'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
