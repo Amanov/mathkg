@@ -424,6 +424,14 @@ urlpatterns = [
     path('standard-form-converting-standard-to-ordinary/', operation_placeholder_view, {'operation_slug': 'standard-form-converting-standard-to-ordinary'}, name='standard_form_converting_standard_to_ordinary'),
     path('standard-form-converting-mixed/', operation_placeholder_view, {'operation_slug': 'standard-form-converting-mixed'}, name='standard_form_converting_mixed'),
 
+    # Пропорция > Түз жана тескери пропорция - all 5 slots, none with a
+    # real page yet.
+    path('direct-inverse-introduction/', operation_placeholder_view, {'operation_slug': 'direct-inverse-introduction'}, name='direct_inverse_introduction'),
+    path('direct-inverse-direct/', operation_placeholder_view, {'operation_slug': 'direct-inverse-direct'}, name='direct_inverse_direct'),
+    path('direct-inverse-inverse/', operation_placeholder_view, {'operation_slug': 'direct-inverse-inverse'}, name='direct_inverse_inverse'),
+    path('direct-inverse-mixed/', operation_placeholder_view, {'operation_slug': 'direct-inverse-mixed'}, name='direct_inverse_mixed'),
+    path('direct-inverse-identifying-graphs/', operation_placeholder_view, {'operation_slug': 'direct-inverse-identifying-graphs'}, name='direct_inverse_identifying_graphs'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
