@@ -419,6 +419,34 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-noncalc-incdec-decrease': 'Азайтуу',
     'percentages-noncalc-incdec-mixed': 'Аралаш',
     'percentages-noncalc-incdec-reverse': 'Тескери',
+
+    # Катыш > Туюнтуу - all 3 slots, none with a real page yet.
+    'ratio-expressing-division': 'Бөлүү',
+    'ratio-expressing-simplifying': 'Жөнөкөйлөтүү',
+    'ratio-expressing-1-to-n': '1:n',
+
+    # Катыш > Катыштар жана чоңдуктар - only Reverse/Mixed are flat
+    # leaves here ("Катышка бөлүү" is its own chevron-bearing child, see
+    # below).
+    'ratio-quantities-reverse': 'Тескери',
+    'ratio-quantities-mixed': 'Аралаш',
+
+    # Катыш > Катыштар жана чоңдуктар > Катышка бөлүү - all 4 slots,
+    # none with a real page yet.
+    'ratio-dividing-with-line-segments': 'Сызык кесиндилери менен',
+    'ratio-dividing-fpr-calculator': 'Бөлчөк, пайыз жана катыш: калькулятор менен',
+    'ratio-dividing-fpr-non-calculator': 'Бөлчөк, пайыз жана катыш: калькулятордсуз',
+    'ratio-dividing-fpr-frequency-trees': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен',
+
+    # Катыш > Түрлөндүрүү - all 4 slots, none with a real page yet.
+    'ratio-manipulation-1-to-n': '1:n',
+    'ratio-manipulation-comparing-parts': 'Бөлүктөрдү салыштыруу',
+    'ratio-manipulation-combining': 'Бириктирүү',
+    'ratio-manipulation-changing': 'Өзгөртүү',
+
+    # Катыш > Аралаш - both slots, none with a real page yet.
+    'ratio-mixed-foundation': 'Негизги деңгээл',
+    'ratio-mixed-higher': 'Жогорку деңгээл',
 }
 
 
