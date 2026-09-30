@@ -470,6 +470,52 @@ OPERATION_PLACEHOLDER_TITLES = {
     # page yet.
     'real-life-mixed-calculator': 'Калькулятор менен',
     'real-life-mixed-non-calculator': 'Калькуляторсуз',
+
+    # Алгебра > Киришүү - all 3 flat slots, none with a real page yet.
+    'algebra-intro-definitions': 'Аныктамалар',
+    'algebra-intro-notation': 'Белгилөөлөр',
+    'algebra-intro-manipulating-formulae': 'Формулаларды түрлөндүрүү',
+
+    # Алгебра > Киришүү > Туюнтмаларды түзүү - all 3 slots, none with a
+    # real page yet.
+    'algebra-forming-expr-function-machines': 'Функция машиналары менен',
+    'algebra-forming-expr-linear': 'Сызыктуу',
+    'algebra-forming-expr-quadratic': 'Квадраттык',
+
+    # Алгебра > Теңдемелер: сызыктуу - all 8 flat slots, none with a
+    # real page yet.
+    'algebra-linear-forming': 'Түзүү',
+    'algebra-linear-variable-one-side-calculator': 'Белгисиз бир жагында: калькулятор менен',
+    'algebra-linear-variable-one-side-non-calculator': 'Белгисиз бир жагында: калькуляторсуз',
+    'algebra-linear-variable-both-sides': 'Белгисиз эки жагында',
+    'algebra-linear-rational': 'Рационалдык',
+    'algebra-linear-mixed': 'Аралаш',
+    'algebra-linear-inequalities': 'Барабарсыздыктар',
+    'algebra-linear-unknown-indices': 'Белгисиз даражалар менен',
+
+    # Алгебра > Теңдемелер: квадраттык - all 13 slots, none with a real
+    # page yet.
+    'algebra-quadratic-forming': 'Түзүү',
+    'algebra-quadratic-factorisation-double-brackets': 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен',
+    'algebra-quadratic-b-zero': 'b = 0',
+    'algebra-quadratic-c-zero': 'c = 0',
+    'algebra-quadratic-completing-square': 'Толук квадратка келтирүү',
+    'algebra-quadratic-rational': 'Рационалдык',
+    'algebra-quadratic-formula': 'Квадраттык теңдеме формуласы',
+    'algebra-quadratic-no-solution': 'Чечими жок теңдемелер',
+    'algebra-quadratic-mixed': 'Аралаш',
+    'algebra-quadratic-trial-improvement': 'Сыноо жана жакшыртуу',
+    'algebra-quadratic-iteration': 'Кайталануу',
+    'algebra-quadratic-by-intersection': 'Кесилишүү аркылуу',
+    'algebra-quadratic-inequalities': 'Барабарсыздыктар',
+
+    # Алгебра > Теңдемелер: системасы - all 5 flat slots, none with a
+    # real page yet.
+    'algebra-simultaneous-forming': 'Түзүү',
+    'algebra-simultaneous-substitution': 'Алмаштыруу',
+    'algebra-simultaneous-mixed': 'Аралаш',
+    'algebra-simultaneous-graphically': 'Графикалык жол менен',
+    'algebra-simultaneous-linear-non-linear': 'Сызыктуу жана сызыктуу эмес',
 }
 
 

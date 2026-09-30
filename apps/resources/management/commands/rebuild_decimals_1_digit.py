@@ -928,6 +928,116 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Киришүү" (Introduction) under Алгебра was empty. Reference (4
+        # items): Definitions, Notation, Forming Expressions (itself
+        # chevron-bearing - created via 'create_subsubtopics' below,
+        # protected from this entry's pruning via 'promoted_titles'),
+        # Manipulating Formulae.
+        'parent_path': ('Алгебра', 'Киришүү'),
+        'target_items': [
+            {'title': 'Аныктамалар', 'url_name': 'algebra_intro_definitions'},
+            {'title': 'Белгилөөлөр', 'url_name': 'algebra_intro_notation'},
+            {'title': 'Формулаларды түрлөндүрүү', 'url_name': 'algebra_intro_manipulating_formulae'},
+        ],
+        'promoted_titles': ['Туюнтмаларды түзүү'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Туюнтмаларды түзүү" (Forming Expressions) is a fresh chevron-
+        # bearing child of Киришүү - created via 'create_subsubtopics'
+        # below before this entry's own target_items can find it.
+        # Reference (3 items): With Function Machines, Linear, Quadratic.
+        'parent_path': ('Алгебра', 'Киришүү', 'Туюнтмаларды түзүү'),
+        'target_items': [
+            {'title': 'Функция машиналары менен', 'url_name': 'algebra_forming_expr_function_machines'},
+            {'title': 'Сызыктуу', 'url_name': 'algebra_forming_expr_linear'},
+            {'title': 'Квадраттык', 'url_name': 'algebra_forming_expr_quadratic'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Теңдемелер: сызыктуу" (Equations: Linear) already had 4
+        # chevron-bearing children from the original taxonomy import, all
+        # still empty. Reference shows 10 items, only 2 of them
+        # (Кашаа менен/With Brackets, kept; Функциялар менен/With
+        # Functions, brand new) chevron-bearing - the other 8 are flat
+        # leaves, so "Түзүү", "Белгисиз бир жагында" (split into
+        # Calculator/Non-Calculator) and "Белгисиз эки жагында" lose
+        # their empty category status and get rebuilt as real flat
+        # pages here (safe since each had 0 children of its own - no
+        # content lost, same "prune the empty category, target_items
+        # recreates it as a leaf" fix as Ratios & Quantities earlier).
+        # "Функциялар менен" is created via 'create_subsubtopics' below
+        # and protected here via 'promoted_titles' alongside the kept
+        # "Кашаа менен".
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу'),
+        'target_items': [
+            {'title': 'Түзүү', 'url_name': 'algebra_linear_forming'},
+            {'title': 'Белгисиз бир жагында: калькулятор менен', 'url_name': 'algebra_linear_variable_one_side_calculator'},
+            {'title': 'Белгисиз бир жагында: калькуляторсуз', 'url_name': 'algebra_linear_variable_one_side_non_calculator'},
+            {'title': 'Белгисиз эки жагында', 'url_name': 'algebra_linear_variable_both_sides'},
+            {'title': 'Рационалдык', 'url_name': 'algebra_linear_rational'},
+            {'title': 'Аралаш', 'url_name': 'algebra_linear_mixed'},
+            {'title': 'Барабарсыздыктар', 'url_name': 'algebra_linear_inequalities'},
+            {'title': 'Белгисиз даражалар менен', 'url_name': 'algebra_linear_unknown_indices'},
+        ],
+        'promoted_titles': ['Кашаа менен', 'Функциялар менен'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Теңдемелер: квадраттык" (Equations: Quadratic) already had 2
+        # chevron-bearing children (Көбөйтүүчүлөргө ажыратуу, Ыкмалар),
+        # both still empty. Reference shows 13 items, none chevron-
+        # bearing (all flat leaves, including a more specific
+        # factorisation title) - both old categories are replaced, same
+        # prune-and-rebuild-as-leaves reasoning as Equations: Linear
+        # above. Screenshot's list may continue past "Barabarsyzdyktar"
+        # (a partial "M" is cut off at the bottom edge) - these 13 are
+        # what's clearly visible; flagged for the user to confirm this
+        # is the complete list.
+        'parent_path': ('Алгебра', 'Теңдемелер: квадраттык'),
+        'target_items': [
+            {'title': 'Түзүү', 'url_name': 'algebra_quadratic_forming'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'url_name': 'algebra_quadratic_factorisation_double_brackets'},
+            {'title': 'b = 0', 'url_name': 'algebra_quadratic_b_zero'},
+            {'title': 'c = 0', 'url_name': 'algebra_quadratic_c_zero'},
+            {'title': 'Толук квадратка келтирүү', 'url_name': 'algebra_quadratic_completing_square'},
+            {'title': 'Рационалдык', 'url_name': 'algebra_quadratic_rational'},
+            {'title': 'Квадраттык теңдеме формуласы', 'url_name': 'algebra_quadratic_formula'},
+            {'title': 'Чечими жок теңдемелер', 'url_name': 'algebra_quadratic_no_solution'},
+            {'title': 'Аралаш', 'url_name': 'algebra_quadratic_mixed'},
+            {'title': 'Сыноо жана жакшыртуу', 'url_name': 'algebra_quadratic_trial_improvement'},
+            {'title': 'Кайталануу', 'url_name': 'algebra_quadratic_iteration'},
+            {'title': 'Кесилишүү аркылуу', 'url_name': 'algebra_quadratic_by_intersection'},
+            {'title': 'Барабарсыздыктар', 'url_name': 'algebra_quadratic_inequalities'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Теңдемелер: системасы" (Equations: Simultaneous) already had
+        # 2 chevron-bearing children - "Жоюу ыкмасы" (Elimination)
+        # matches the reference's own chevron-bearing "Elimination" item
+        # exactly, so it's kept (protected via 'promoted_titles');
+        # "Ыкмалар" (the generic "Methods" placeholder) isn't in the
+        # reference at all and is replaced by the 5 specific flat items
+        # below.
+        'parent_path': ('Алгебра', 'Теңдемелер: системасы'),
+        'target_items': [
+            {'title': 'Түзүү', 'url_name': 'algebra_simultaneous_forming'},
+            {'title': 'Алмаштыруу', 'url_name': 'algebra_simultaneous_substitution'},
+            {'title': 'Аралаш', 'url_name': 'algebra_simultaneous_mixed'},
+            {'title': 'Графикалык жол менен', 'url_name': 'algebra_simultaneous_graphically'},
+            {'title': 'Сызыктуу жана сызыктуу эмес', 'url_name': 'algebra_simultaneous_linear_non_linear'},
+        ],
+        'promoted_titles': ['Жоюу ыкмасы'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1299,6 +1409,66 @@ CHILD_ORDER_FIXES = [
             'Түрлөндүрүү',
             'Ырааттуулуктар',
             'Коюу',
+        ],
+    },
+    {
+        # "Туюнтмаларды түзүү" is created here (a fresh chevron-bearing
+        # child of Киришүү) before its own GROUPS entry (target_items)
+        # can find it - settles on a 2nd run, same cross-run dependency
+        # as any other freshly-'create_subsubtopics'-d parent.
+        'parent_path': ('Алгебра', 'Киришүү'),
+        'create_subsubtopics': [
+            {'title': 'Туюнтмаларды түзүү', 'slug': 'forming-expressions'},
+        ],
+        'order': [
+            'Аныктамалар',
+            'Белгилөөлөр',
+            'Туюнтмаларды түзүү',
+            'Формулаларды түрлөндүрүү',
+        ],
+    },
+    {
+        # "Функциялар менен" is created here (a fresh chevron-bearing
+        # child of Теңдемелер: сызыктуу) before its own GROUPS entry can
+        # find it. The final order below interleaves it and the kept
+        # "Кашаа менен" among the 8 flat leaves that GROUPS' target_items
+        # builds (target_items' own sequential numbering doesn't leave
+        # room for these 2 categories, so this explicit order fixes the
+        # final positions to match the reference exactly). Note: since
+        # GROUPS' target_items always resets those 8 leaves back to its
+        # own 1..8 numbering on every run (it doesn't know about the 2
+        # interleaved categories), this entry's reordering re-fires every
+        # run too - cosmetic log noise only, the end state each run is
+        # identical and correct, same as Теңдемелер: системасы below.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу'),
+        'create_subsubtopics': [
+            {'title': 'Функциялар менен', 'slug': 'with-functions'},
+        ],
+        'order': [
+            'Түзүү',
+            'Белгисиз бир жагында: калькулятор менен',
+            'Белгисиз бир жагында: калькуляторсуз',
+            'Кашаа менен',
+            'Белгисиз эки жагында',
+            'Рационалдык',
+            'Аралаш',
+            'Барабарсыздыктар',
+            'Функциялар менен',
+            'Белгисиз даражалар менен',
+        ],
+    },
+    {
+        # Final order for Теңдемелер: системасы (6 items) - "Жоюу
+        # ыкмасы" (kept, chevron-bearing) interleaved among the 5 flat
+        # leaves GROUPS' target_items builds.
+        'parent_path': ('Алгебра', 'Теңдемелер: системасы'),
+        'order': [
+            'Түзүү',
+            'Жоюу ыкмасы',
+            'Алмаштыруу',
+            'Аралаш',
+            'Графикалык жол менен',
+            'Сызыктуу жана сызыктуу эмес',
         ],
     },
 ]
