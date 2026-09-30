@@ -532,6 +532,31 @@ urlpatterns = [
     path('ratio-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'ratio-mixed-foundation'}, name='ratio_mixed_foundation'),
     path('ratio-mixed-higher/', operation_placeholder_view, {'operation_slug': 'ratio-mixed-higher'}, name='ratio_mixed_higher'),
 
+    # Турмуштук колдонуулар > Баалар - both slots, none with a real
+    # page yet.
+    path('real-life-prices-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-prices-calculator'}, name='real_life_prices_calculator'),
+    path('real-life-prices-non-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-prices-non-calculator'}, name='real_life_prices_non_calculator'),
+
+    # Турмуштук колдонуулар > Пайдалуу сатып алуу - both slots, none
+    # with a real page yet.
+    path('real-life-best-buys-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-best-buys-calculator'}, name='real_life_best_buys_calculator'),
+    path('real-life-best-buys-non-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-best-buys-non-calculator'}, name='real_life_best_buys_non_calculator'),
+
+    # Турмуштук колдонуулар > Валюта курстары - both slots, none with a
+    # real page yet.
+    path('real-life-exchange-rates-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-exchange-rates-calculator'}, name='real_life_exchange_rates_calculator'),
+    path('real-life-exchange-rates-non-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-exchange-rates-non-calculator'}, name='real_life_exchange_rates_non_calculator'),
+
+    # Турмуштук колдонуулар > Рецепттер - both slots, none with a real
+    # page yet.
+    path('real-life-recipes-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-recipes-calculator'}, name='real_life_recipes_calculator'),
+    path('real-life-recipes-non-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-recipes-non-calculator'}, name='real_life_recipes_non_calculator'),
+
+    # Турмуштук колдонуулар > Аралаш - both slots, none with a real
+    # page yet.
+    path('real-life-mixed-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-mixed-calculator'}, name='real_life_mixed_calculator'),
+    path('real-life-mixed-non-calculator/', operation_placeholder_view, {'operation_slug': 'real-life-mixed-non-calculator'}, name='real_life_mixed_non_calculator'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
