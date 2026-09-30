@@ -577,8 +577,9 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-simultaneous-linear-non-linear-algebraically': 'Алгебралык жол менен',
     'algebra-simultaneous-linear-non-linear-graphically': 'Графикалык жол менен',
 
-    # Функциялар - "IGCSE" flat slot, none with a real page yet.
-    'algebra-functions-igcse': 'IGCSE',
+    # Функциялар - "ЖРТ" flat slot (localized from the reference's
+    # "IGCSE"), none with a real page yet.
+    'algebra-functions-igcse': 'ЖРТ',
 
     # Функциялар > Түзүү - all 7 slots, none with a real page yet.
     'algebra-functions-forming-expressions': 'Туюнтмалар',
