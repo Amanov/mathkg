@@ -425,14 +425,12 @@ OPERATION_PLACEHOLDER_TITLES = {
     'ratio-expressing-simplifying': 'Жөнөкөйлөтүү',
     'ratio-expressing-1-to-n': '1:n',
 
-    # Катыш > Катыштар жана чоңдуктар - only Reverse/Mixed are flat
-    # leaves here ("Катышка бөлүү" is its own chevron-bearing child, see
-    # below).
+    # Катыш > Катыштар жана чоңдуктар - all 7 are flat leaves at this
+    # one level (an earlier pass wrongly nested the last 4 under
+    # "Катышка бөлүү" as its own category).
+    'ratio-dividing-into-a-ratio': 'Катышка бөлүү',
     'ratio-quantities-reverse': 'Тескери',
     'ratio-quantities-mixed': 'Аралаш',
-
-    # Катыш > Катыштар жана чоңдуктар > Катышка бөлүү - all 4 slots,
-    # none with a real page yet.
     'ratio-dividing-with-line-segments': 'Сызык кесиндилери менен',
     'ratio-dividing-fpr-calculator': 'Бөлчөк, пайыз жана катыш: калькулятор менен',
     'ratio-dividing-fpr-non-calculator': 'Бөлчөк, пайыз жана катыш: калькулятордсуз',

@@ -812,25 +812,20 @@ GROUPS = [
     {
         # "Катыштар жана чоңдуктар" (Ratios & Quantities) already exists
         # as a chevron-bearing SubSubtopic under Катыш - it just had no
-        # children yet. Reference (3 items): Dividing Into a Ratio
-        # (itself chevron-bearing, own 4 children below), Reverse, Mixed.
+        # children yet. Corrected: reference actually gives it 7 FLAT
+        # items (Dividing Into a Ratio, Reverse, Mixed, With Line
+        # Segments, FPR: Calculator, FPR: Non-Calculator, FPR: With
+        # Frequency Trees) - an earlier pass misread the grid as Dividing
+        # Into a Ratio being its own chevron-bearing category with the
+        # last 4 nested under it, when they're really all siblings at
+        # this one level (same "column runs longer than the sibling list
+        # beside it" layout as Percentage of a Quantity's 6 flat items
+        # elsewhere in this file).
         'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар'),
         'target_items': [
+            {'title': 'Катышка бөлүү', 'url_name': 'ratio_dividing_into_a_ratio'},
             {'title': 'Тескери', 'url_name': 'ratio_quantities_reverse'},
             {'title': 'Аралаш', 'url_name': 'ratio_quantities_mixed'},
-        ],
-        'promoted_titles': ['Катышка бөлүү'],
-        'stale_subsubtopic_titles': [],
-        'displaced_url_names': [],
-    },
-    {
-        # "Катышка бөлүү" (Dividing Into a Ratio) is a fresh chevron-
-        # bearing child of Катыштар жана чоңдуктар - created via
-        # 'create_subsubtopics' below before this entry's own target_items
-        # are applied. Reference (4 items): With Line Segments, FPR:
-        # Calculator, FPR: Non-Calculator, FPR: With Frequency Trees.
-        'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар', 'Катышка бөлүү'),
-        'target_items': [
             {'title': 'Сызык кесиндилери менен', 'url_name': 'ratio_dividing_with_line_segments'},
             {'title': 'Бөлчөк, пайыз жана катыш: калькулятор менен', 'url_name': 'ratio_dividing_fpr_calculator'},
             {'title': 'Бөлчөк, пайыз жана катыш: калькулятордсуз', 'url_name': 'ratio_dividing_fpr_non_calculator'},
@@ -870,9 +865,9 @@ GROUPS = [
     {
         # "Баалар" (Prices) is a brand new chevron-bearing child of
         # Турмуштук колдонуулар, created via 'create_subsubtopics' below
-        # before this entry's own target_items can find it (same cross-
-        # run dependency as "Катышка бөлүү" above). Reference (2 items):
-        # Calculator, Non-Calculator.
+        # before this entry's own target_items can find it (a cross-run
+        # dependency - settles on a 2nd run of the command). Reference
+        # (2 items): Calculator, Non-Calculator.
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Баалар'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_prices_calculator'},
@@ -1247,23 +1242,6 @@ CHILD_ORDER_FIXES = [
             'Туюнтуу',
             'Катыштар жана чоңдуктар',
             'Түрлөндүрүү',
-            'Аралаш',
-        ],
-    },
-    {
-        # "Катышка бөлүү" (Dividing Into a Ratio) is a brand new chevron-
-        # bearing child of Катыштар жана чоңдуктар, created here before
-        # its own GROUPS entry (target_items) can find it - same cross-
-        # run dependency as any other freshly-'create_subsubtopics'-d
-        # parent used by a later GROUPS entry (settles fully on a 2nd
-        # run).
-        'parent_path': ('Пропорция', 'Катыш', 'Катыштар жана чоңдуктар'),
-        'create_subsubtopics': [
-            {'title': 'Катышка бөлүү', 'slug': 'dividing-into-a-ratio'},
-        ],
-        'order': [
-            'Катышка бөлүү',
-            'Тескери',
             'Аралаш',
         ],
     },

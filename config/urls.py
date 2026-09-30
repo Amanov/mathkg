@@ -511,12 +511,10 @@ urlpatterns = [
     path('ratio-expressing-simplifying/', operation_placeholder_view, {'operation_slug': 'ratio-expressing-simplifying'}, name='ratio_expressing_simplifying'),
     path('ratio-expressing-1-to-n/', operation_placeholder_view, {'operation_slug': 'ratio-expressing-1-to-n'}, name='ratio_expressing_1_to_n'),
 
-    # Катыш > Катыштар жана чоңдуктар - flat leaves only.
+    # Катыш > Катыштар жана чоңдуктар - all 7 flat leaves.
+    path('ratio-dividing-into-a-ratio/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-into-a-ratio'}, name='ratio_dividing_into_a_ratio'),
     path('ratio-quantities-reverse/', operation_placeholder_view, {'operation_slug': 'ratio-quantities-reverse'}, name='ratio_quantities_reverse'),
     path('ratio-quantities-mixed/', operation_placeholder_view, {'operation_slug': 'ratio-quantities-mixed'}, name='ratio_quantities_mixed'),
-
-    # Катыш > Катыштар жана чоңдуктар > Катышка бөлүү - all 4 slots,
-    # none with a real page yet.
     path('ratio-dividing-with-line-segments/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-with-line-segments'}, name='ratio_dividing_with_line_segments'),
     path('ratio-dividing-fpr-calculator/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-calculator'}, name='ratio_dividing_fpr_calculator'),
     path('ratio-dividing-fpr-non-calculator/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-non-calculator'}, name='ratio_dividing_fpr_non_calculator'),
