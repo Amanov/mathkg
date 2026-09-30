@@ -1143,6 +1143,17 @@ MIRROR_GROUPS = [
         'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
         'source_parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Пайыздарды айландыруу'),
     },
+    {
+        # "Эквиваленттүүлүк" (Equivalence) under Катыш (Ratio) is the same
+        # ratio-equivalence exercise set as Сандар's own top-level
+        # Эквиваленттүүлүк > Катыштарды айландыруу - reuses those same 6
+        # real pages. (Reference shows 5 of these 6 plus FPR/FDPR mirrored
+        # in via MIRROR_NODES below, 7 total - same "mirrors the whole
+        # existing set, one harmless extra item" reasoning as Барабардык
+        # above; the extra item here is "Экөө менен тең"/With Both.)
+        'parent_path': ('Пропорция', 'Катыш', 'Эквиваленттүүлүк'),
+        'source_parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Катыштарды айландыруу'),
+    },
 ]
 
 # Like MIRROR_GROUPS above, but the mirrored thing is itself a whole
@@ -1186,6 +1197,18 @@ MIRROR_NODES = [
         # reasoning as Барабардык's mirror above.
         'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Туюнтуу'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү айландыруу'),
+    },
+    {
+        # FPR and FDPR (2 of the same 4 FDP-family nodes already mirrored
+        # into Барабардык above) also appear under Катыш > Эквиваленттүүлүк
+        # - mirrored into this third location too, same underlying
+        # SubSubtopics.
+        'target_parent_path': ('Пропорция', 'Катыш', 'Эквиваленттүүлүк'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү'),
+    },
+    {
+        'target_parent_path': ('Пропорция', 'Катыш', 'Эквиваленттүүлүк'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү'),
     },
 ]
 
