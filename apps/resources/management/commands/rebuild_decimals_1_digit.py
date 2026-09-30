@@ -1092,6 +1092,27 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # "Катыш" (Ratio) already has its own 4 chevron-bearing children
+        # from import_reference_taxonomy.py (Эквиваленттүүлүк, Туюнтуу,
+        # Катыштар жана чоңдуктар, Түрлөндүрүү) - reference adds a 5th,
+        # "Аралаш" (Mixed), same shape as its Percentages counterparts.
+        # Unlike those, this reference "Mixed" itself shows a chevron
+        # (its own further children) rather than being a flat leaf - left
+        # as an empty placeholder for now, pending a screenshot of its
+        # contents.
+        'parent_path': ('Пропорция', 'Катыш'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Эквиваленттүүлүк',
+            'Туюнтуу',
+            'Катыштар жана чоңдуктар',
+            'Түрлөндүрүү',
+            'Аралаш',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
