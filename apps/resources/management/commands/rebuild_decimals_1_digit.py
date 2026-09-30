@@ -1057,6 +1057,19 @@ MIRROR_GROUPS = [
         'parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
     },
+    {
+        # "Барабардык" (Equivalence) under Пайыздар: калькулятордсуз is
+        # the same percentage-equivalence exercise set as Сандар's own
+        # top-level Эквиваленттүүлүк > Пайыздарды айландыруу - reuses
+        # those same 8 real pages rather than building duplicates.
+        # (Reference shows 7 of these 8 plus the 4 FDP-family items
+        # mirrored in via MIRROR_NODES below, 11 total - this mirrors the
+        # whole existing 8-item set since mirror_children copies a parent
+        # wholesale, not a hand-picked subset; the one extra item, "Баары
+        # менен"/With All, is harmless bonus practice, not a wrong page.)
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'source_parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Пайыздарды айландыруу'),
+    },
 ]
 
 # Like MIRROR_GROUPS above, but the mirrored thing is itself a whole
@@ -1068,6 +1081,28 @@ MIRROR_NODES = [
     {
         'target_parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
         'source_path': ('Сандар', 'Өлчөмдөр', 'Убакыт'),
+    },
+    {
+        # The 4 FDP-family items ("FDP", "FDP Ordering", "FPR", "FDPR")
+        # already exist as empty placeholder SubSubtopics under Сандар >
+        # Эквиваленттүүлүк (siblings of Пайыздарды айландыруу, mirrored
+        # above) - mirrored in as their own (still-empty) nodes so both
+        # locations share the same underlying SubSubtopic and stay in
+        # sync once either one gets real content.
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук жана пайыз эквиваленттүүлүгү'),
+    },
+    {
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө'),
+    },
+    {
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү'),
+    },
+    {
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү'),
     },
 ]
 
@@ -1089,6 +1124,20 @@ class Command(BaseCommand):
         "Idempotent - safe to re-run, and safe to run after adding a new "
         "group."
     )
+
+    def resolve_path(self, path):
+        """Looks up a MenuItem by its chain of ancestor titles (any
+        length - e.g. a 2-tuple Topic>Subtopic or a 3-tuple Topic>
+        Subtopic>SubSubtopic), same ancestor-walk technique as the GROUPS
+        loop below. Used by MIRROR_GROUPS/MIRROR_NODES so a mirror target
+        or source isn't limited to exactly 2 levels deep."""
+        *ancestor_titles, leaf_title = path
+        lookup = {'title': leaf_title}
+        field = 'parent'
+        for ancestor_title in reversed(ancestor_titles):
+            lookup[f'{field}__title'] = ancestor_title
+            field += '__parent'
+        return MenuItem.objects.get(**lookup)
 
     def mirror_children(self, target_parent, source_parent, extra_protected_titles=(), indent='  '):
         """Recursively mirrors source_parent's children (title + url_name,
@@ -1360,23 +1409,19 @@ class Command(BaseCommand):
                     extra.delete()
 
         for mirror in MIRROR_GROUPS:
-            target_topic_title, target_subtopic_title = mirror['parent_path']
-            self.stdout.write(f'=== Mirror: {target_topic_title} > {target_subtopic_title} ===')
+            label = ' > '.join(mirror['parent_path'])
+            self.stdout.write(f'=== Mirror: {label} ===')
             try:
-                target_parent = MenuItem.objects.get(title=target_subtopic_title, parent__title=target_topic_title)
+                target_parent = self.resolve_path(mirror['parent_path'])
             except MenuItem.DoesNotExist:
-                self.stderr.write(f'  "{target_topic_title} > {target_subtopic_title}" not found.')
+                self.stderr.write(f'  "{label}" not found.')
                 continue
 
-            src_topic_title, src_subtopic_title, src_ss_title = mirror['source_parent_path']
+            src_label = ' > '.join(mirror['source_parent_path'])
             try:
-                source_parent = MenuItem.objects.get(
-                    title=src_ss_title, parent__title=src_subtopic_title, parent__parent__title=src_topic_title,
-                )
+                source_parent = self.resolve_path(mirror['source_parent_path'])
             except MenuItem.DoesNotExist:
-                self.stderr.write(
-                    f'  Source "{src_topic_title} > {src_subtopic_title} > {src_ss_title}" not found.'
-                )
+                self.stderr.write(f'  Source "{src_label}" not found.')
                 continue
 
             # Recurses into any child that itself has children (e.g. a
@@ -1394,21 +1439,19 @@ class Command(BaseCommand):
             self.mirror_children(target_parent, source_parent, extra_protected_titles=node_mirror_titles)
 
         for mirror in MIRROR_NODES:
-            target_topic_title, target_subtopic_title = mirror['target_parent_path']
-            self.stdout.write(f'=== Mirror node: {target_topic_title} > {target_subtopic_title} ===')
+            label = ' > '.join(mirror['target_parent_path'])
+            self.stdout.write(f'=== Mirror node: {label} ===')
             try:
-                target_parent = MenuItem.objects.get(title=target_subtopic_title, parent__title=target_topic_title)
+                target_parent = self.resolve_path(mirror['target_parent_path'])
             except MenuItem.DoesNotExist:
-                self.stderr.write(f'  "{target_topic_title} > {target_subtopic_title}" not found.')
+                self.stderr.write(f'  "{label}" not found.')
                 continue
 
-            src_topic_title, src_subtopic_title, src_title = mirror['source_path']
+            src_label = ' > '.join(mirror['source_path'])
             try:
-                source_node = MenuItem.objects.get(
-                    title=src_title, parent__title=src_subtopic_title, parent__parent__title=src_topic_title,
-                )
+                source_node = self.resolve_path(mirror['source_path'])
             except MenuItem.DoesNotExist:
-                self.stderr.write(f'  Source "{src_topic_title} > {src_subtopic_title} > {src_title}" not found.')
+                self.stderr.write(f'  Source "{src_label}" not found.')
                 continue
 
             mirrored_node, created = MenuItem.objects.get_or_create(
