@@ -602,6 +602,51 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-functions-evaluating-composite-inverse': 'Татаал жана тескери функциялар',
     'algebra-functions-evaluating-solving-equations': 'Теңдемелерди чечүү',
     'algebra-functions-evaluating-iteration': 'Кайталануу',
+
+    # Графиктер: абстракттуу - 5 flat slots, none with a real page yet.
+    # The other 5 reference items (Quadratic, Circles, Other
+    # Non-Linear, Transformations, Differentiation) are chevron-bearing
+    # categories left empty pending screenshots of their own contents.
+    'algebra-graphs-abstract-coordinates': 'Координаттар',
+    'algebra-graphs-abstract-linear-calculating': 'Сызыктуу: эсептөө',
+    'algebra-graphs-abstract-linear-plotting': 'Сызыктуу: чиймелөө',
+    'algebra-graphs-abstract-linear-reading': 'Сызыктуу: окуу',
+    'algebra-graphs-abstract-linear-mixed': 'Сызыктуу: аралаш',
+
+    # Графиктер: турмуштук - 4 flat slots, none with a real page yet.
+    # The other 5 reference items (Conversion Graphs, Cost
+    # Relationships, Distance-Time: Constant/Variable Speeds,
+    # Velocity-Time) are chevron-bearing categories left empty pending
+    # screenshots of their own contents.
+    'algebra-graphs-real-life-depth-time': 'Тереңдик-Убакыт',
+    'algebra-graphs-real-life-volume-time': 'Көлөм-Убакыт',
+    'algebra-graphs-real-life-mixed': 'Аралаш',
+    'algebra-graphs-real-life-mixed-distance-velocity': 'Аралаш: аралык жана ылдамдык',
+
+    # Барабарсыздыктар - 2 flat slots, none with a real page yet. The
+    # other 2 reference items (Linear, Graphical) are chevron-bearing
+    # categories left empty pending screenshots of their own contents.
+    'algebra-inequalities-quadratic': 'Квадраттык',
+    'algebra-inequalities-trial-improvement': 'Сыноо жана жакшыртуу',
+
+    # Түрлөндүрүү - 2 flat slots, none with a real page yet. The other
+    # 9 reference items are chevron-bearing categories left empty
+    # pending screenshots of their own contents.
+    'algebra-manipulation-notation': 'Белгилөө',
+    'algebra-manipulation-changing-subject': 'Формуланын өзгөрмөсүн алмаштыруу',
+
+    # Ырааттуулуктар - 9 flat slots, none with a real page yet. The
+    # remaining reference item (Linear) is a chevron-bearing category
+    # left empty pending a screenshot of its own contents.
+    'algebra-sequences-introduction': 'Киришүү',
+    'algebra-sequences-with-graphs': 'Графиктер менен',
+    'algebra-sequences-equations-functions': 'Теңдемелер жана функциялар менен',
+    'algebra-sequences-quadratic': 'Квадраттык',
+    'algebra-sequences-linear-quadratic': 'Сызыктуу жана квадраттык',
+    'algebra-sequences-geometric': 'Геометриялык',
+    'algebra-sequences-fibonacci': 'Фибоначчи',
+    'algebra-sequences-special': 'Атайын',
+    'algebra-sequences-mixed': 'Аралаш',
 }
 
 
