@@ -662,6 +662,17 @@ urlpatterns = [
     path('algebra-quadratic-rational-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-rational-without-coefficients'}, name='algebra_quadratic_rational_without_coefficients'),
     path('algebra-quadratic-rational-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-rational-with-coefficients'}, name='algebra_quadratic_rational_with_coefficients'),
 
+    # Теңдемелер: системасы > Жоюу ыкмасы - all 3 slots, none with a
+    # real page yet.
+    path('algebra-simultaneous-elimination-without-balancing/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-elimination-without-balancing'}, name='algebra_simultaneous_elimination_without_balancing'),
+    path('algebra-simultaneous-elimination-with-balancing/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-elimination-with-balancing'}, name='algebra_simultaneous_elimination_with_balancing'),
+    path('algebra-simultaneous-elimination-negative-only/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-elimination-negative-only'}, name='algebra_simultaneous_elimination_negative_only'),
+
+    # Теңдемелер: системасы > Сызыктуу жана сызыктуу эмес - both slots,
+    # none with a real page yet.
+    path('algebra-simultaneous-linear-non-linear-algebraically/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-linear-non-linear-algebraically'}, name='algebra_simultaneous_linear_non_linear_algebraically'),
+    path('algebra-simultaneous-linear-non-linear-graphically/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-linear-non-linear-graphically'}, name='algebra_simultaneous_linear_non_linear_graphically'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

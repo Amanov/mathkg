@@ -1158,16 +1158,51 @@ GROUPS = [
         # exactly, so it's kept (protected via 'promoted_titles');
         # "Ыкмалар" (the generic "Methods" placeholder) isn't in the
         # reference at all and is replaced by the 5 specific flat items
-        # below.
+        # below. A further screenshot then showed "Сызыктуу жана
+        # сызыктуу эмес" (Linear & Non-Linear) ALSO has its own chevron
+        # children (Algebraically, Graphically) - same misread as the
+        # Quadratic items - removed from target_items, one-time-cleaned
+        # via 'displaced_url_names', recreated as a category via
+        # CHILD_ORDER_FIXES, protected via 'promoted_titles', filled by
+        # its own dedicated GROUPS entry below. The same screenshot
+        # finally revealed "Жоюу ыкмасы" (Elimination)'s own children:
+        # Without Balancing Coefficients, With Balancing Coefficients,
+        # Only Negative Coefficients - filled in by another dedicated
+        # GROUPS entry below (no displaced_url_names/promoted_titles
+        # needed there since Elimination was already a category).
         'parent_path': ('Алгебра', 'Теңдемелер: системасы'),
         'target_items': [
             {'title': 'Түзүү', 'url_name': 'algebra_simultaneous_forming'},
             {'title': 'Алмаштыруу', 'url_name': 'algebra_simultaneous_substitution'},
             {'title': 'Аралаш', 'url_name': 'algebra_simultaneous_mixed'},
             {'title': 'Графикалык жол менен', 'url_name': 'algebra_simultaneous_graphically'},
-            {'title': 'Сызыктуу жана сызыктуу эмес', 'url_name': 'algebra_simultaneous_linear_non_linear'},
         ],
-        'promoted_titles': ['Жоюу ыкмасы'],
+        'promoted_titles': ['Жоюу ыкмасы', 'Сызыктуу жана сызыктуу эмес'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': ['algebra_simultaneous_linear_non_linear'],
+    },
+    {
+        # "Жоюу ыкмасы" (Elimination) is an already-existing category -
+        # reference (3 items): Without Balancing Coefficients, With
+        # Balancing Coefficients, Only Negative Coefficients.
+        'parent_path': ('Алгебра', 'Теңдемелер: системасы', 'Жоюу ыкмасы'),
+        'target_items': [
+            {'title': 'Коэффициенттерди теңдөөсүз', 'url_name': 'algebra_simultaneous_elimination_without_balancing'},
+            {'title': 'Коэффициенттерди теңдөө менен', 'url_name': 'algebra_simultaneous_elimination_with_balancing'},
+            {'title': 'Терс коэффициенттер гана', 'url_name': 'algebra_simultaneous_elimination_negative_only'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Сызыктуу жана сызыктуу эмес" (Linear & Non-Linear) is a fresh
+        # chevron-bearing category, created via 'create_subsubtopics'
+        # below. Reference (2 items): Algebraically, Graphically.
+        'parent_path': ('Алгебра', 'Теңдемелер: системасы', 'Сызыктуу жана сызыктуу эмес'),
+        'target_items': [
+            {'title': 'Алгебралык жол менен', 'url_name': 'algebra_simultaneous_linear_non_linear_algebraically'},
+            {'title': 'Графикалык жол менен', 'url_name': 'algebra_simultaneous_linear_non_linear_graphically'},
+        ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
@@ -1629,9 +1664,15 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Теңдемелер: системасы (6 items) - "Жоюу
-        # ыкмасы" (kept, chevron-bearing) interleaved among the 5 flat
-        # leaves GROUPS' target_items builds.
+        # ыкмасы" (kept, chevron-bearing) and "Сызыктуу жана сызыктуу
+        # эмес" (fresh chevron-bearing category, created here before its
+        # own GROUPS entry can find it - 2-run cross-run dependency,
+        # same pattern as the Quadratic fixes above) interleaved among
+        # the 4 flat leaves GROUPS' target_items builds.
         'parent_path': ('Алгебра', 'Теңдемелер: системасы'),
+        'create_subsubtopics': [
+            {'title': 'Сызыктуу жана сызыктуу эмес', 'slug': 'linear-non-linear'},
+        ],
         'order': [
             'Түзүү',
             'Жоюу ыкмасы',
