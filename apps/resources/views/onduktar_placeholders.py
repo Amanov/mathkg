@@ -324,6 +324,14 @@ OPERATION_PLACEHOLDER_TITLES = {
     'standard-form-converting-ordinary-to-standard': 'Жөнөкөйдөн стандарттык формага',
     'standard-form-converting-standard-to-ordinary': 'Стандарттык формадан жөнөкөйгө',
     'standard-form-converting-mixed': 'Аралаш',
+
+    # Пропорция > Түз жана тескери пропорция - none of these 5 have a
+    # real hand-built page yet.
+    'direct-inverse-introduction': 'Киришүү',
+    'direct-inverse-direct': 'Түз пропорция',
+    'direct-inverse-inverse': 'Тескери пропорция',
+    'direct-inverse-mixed': 'Аралаш',
+    'direct-inverse-identifying-graphs': 'Графиктерди аныктоо',
 }
 
 

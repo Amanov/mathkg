@@ -592,6 +592,21 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Түз жана тескери пропорция" already exists as a direct child
+        # of the root Пропорция topic (2-tuple parent_path, see the
+        # resolution logic above) - it just had no children yet.
+        'parent_path': ('Пропорция', 'Түз жана тескери пропорция'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'direct_inverse_introduction'},
+            {'title': 'Түз пропорция', 'url_name': 'direct_inverse_direct'},
+            {'title': 'Тескери пропорция', 'url_name': 'direct_inverse_inverse'},
+            {'title': 'Аралаш', 'url_name': 'direct_inverse_mixed'},
+            {'title': 'Графиктерди аныктоо', 'url_name': 'direct_inverse_identifying_graphs'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -923,14 +938,22 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for group in GROUPS:
-            topic_title, subtopic_title, parent_ss_title = group['parent_path']
+            # Usually a 3-tuple (Topic, Subtopic, Sub-subtopic), but a
+            # root Topic's own direct child (e.g. "Түз жана тескери
+            # пропорция" straight under Пропорция, no Subtopic level in
+            # between) needs a shorter chain - so this walks 'parent__'
+            # back however many ancestors are given, same technique as
+            # CHILD_ORDER_FIXES's 1-or-2-tuple resolution and
+            # PROMOTE_LEAVES's 4-tuple one.
+            *ancestor_titles, parent_ss_title = group['parent_path']
+            lookup = {'title': parent_ss_title}
+            field = 'parent'
+            for ancestor_title in reversed(ancestor_titles):
+                lookup[f'{field}__title'] = ancestor_title
+                field += '__parent'
             self.stdout.write(f'=== {" > ".join(group["parent_path"])} ===')
             try:
-                parent_menu = MenuItem.objects.get(
-                    title=parent_ss_title,
-                    parent__title=subtopic_title,
-                    parent__parent__title=topic_title,
-                )
+                parent_menu = MenuItem.objects.get(**lookup)
             except MenuItem.DoesNotExist:
                 self.stderr.write(
                     f'  "{" > ".join(group["parent_path"])}" not found - '
