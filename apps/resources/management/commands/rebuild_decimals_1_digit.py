@@ -744,6 +744,58 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Туюнтуу" already exists as a chevron-bearing SubSubtopic under
+        # Пайыздар: калькулятордсуз - it just had no children yet.
+        # Reference gives it 3 children: Converting Fractions (itself
+        # chevron-bearing - not a flat leaf like its Calculator-side
+        # namesake), Quantity, Change. "Converting Fractions" is mirrored
+        # in via MIRROR_NODES below (same underlying content as Сандар >
+        # Эквиваленттүүлүк > Бөлчөктөрдү айландыруу, same reasoning as
+        # Барабардык's own mirror) rather than built here, so it's
+        # protected from this entry's own pruning via 'promoted_titles'.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Туюнтуу'),
+        'target_items': [
+            {'title': 'Чоңдук', 'url_name': 'percentages_noncalc_expressing_quantity'},
+            {'title': 'Өзгөрүү', 'url_name': 'percentages_noncalc_expressing_change'},
+        ],
+        'promoted_titles': ['Бөлчөктөрдү айландыруу'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Чоңдуктун пайызы" already exists as a chevron-bearing
+        # SubSubtopic under Пайыздар: калькулятордсуз - it just had no
+        # children yet. Reference (6 items): 10s, 5s, Integer & Decimal,
+        # Reverse, FPR of Quantities, FPR: With Frequency Trees.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Чоңдуктун пайызы'),
+        'target_items': [
+            {'title': '10дор менен', 'url_name': 'percentages_noncalc_quantity_10s'},
+            {'title': '5тер менен', 'url_name': 'percentages_noncalc_quantity_5s'},
+            {'title': 'Бүтүн сан жана ондук бөлчөк', 'url_name': 'percentages_noncalc_quantity_integer_decimal'},
+            {'title': 'Тескери', 'url_name': 'percentages_noncalc_quantity_reverse'},
+            {'title': 'Бөлчөк, пайыз жана катыш', 'url_name': 'percentages_noncalc_quantity_fpr'},
+            {'title': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен', 'url_name': 'percentages_noncalc_quantity_fpr_frequency_trees'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Көбөйтүү жана азайтуу" already exists as a chevron-bearing
+        # SubSubtopic under Пайыздар: калькулятордсуз - it just had no
+        # children yet. Reference (4 items): Increase, Decrease, Mixed,
+        # Reverse - a shorter list than its Calculator-side namesake
+        # (no Simple Interest/Using a Multiplier/Marginal Tax here).
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Көбөйтүү жана азайтуу'),
+        'target_items': [
+            {'title': 'Көбөйтүү', 'url_name': 'percentages_noncalc_incdec_increase'},
+            {'title': 'Азайтуу', 'url_name': 'percentages_noncalc_incdec_decrease'},
+            {'title': 'Аралаш', 'url_name': 'percentages_noncalc_incdec_mixed'},
+            {'title': 'Тескери', 'url_name': 'percentages_noncalc_incdec_reverse'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1103,6 +1155,16 @@ MIRROR_NODES = [
     {
         'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү'),
+    },
+    {
+        # "Converting Fractions" under Пайыздар: калькулятордсуз >
+        # Туюнтуу shows a chevron on the reference site (unlike its flat-
+        # leaf Calculator-side namesake), matching Сандар >
+        # Эквиваленттүүлүк > Бөлчөктөрдү айландыруу's own 10-item
+        # structure closely enough to be the same shared content, same
+        # reasoning as Барабардык's mirror above.
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Туюнтуу'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү айландыруу'),
     },
 ]
 
