@@ -746,7 +746,7 @@ GROUPS = [
     },
     {
         # "Туюнтуу" already exists as a chevron-bearing SubSubtopic under
-        # Пайыздар: калькулятордсуз - it just had no children yet.
+        # Пайыздар: калькуляторсуз - it just had no children yet.
         # Reference gives it 3 children: Converting Fractions (itself
         # chevron-bearing - not a flat leaf like its Calculator-side
         # namesake), Quantity, Change. "Converting Fractions" is mirrored
@@ -754,7 +754,7 @@ GROUPS = [
         # Эквиваленттүүлүк > Бөлчөктөрдү айландыруу, same reasoning as
         # Барабардык's own mirror) rather than built here, so it's
         # protected from this entry's own pruning via 'promoted_titles'.
-        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Туюнтуу'),
+        'parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Туюнтуу'),
         'target_items': [
             {'title': 'Чоңдук', 'url_name': 'percentages_noncalc_expressing_quantity'},
             {'title': 'Өзгөрүү', 'url_name': 'percentages_noncalc_expressing_change'},
@@ -765,10 +765,10 @@ GROUPS = [
     },
     {
         # "Чоңдуктун пайызы" already exists as a chevron-bearing
-        # SubSubtopic under Пайыздар: калькулятордсуз - it just had no
+        # SubSubtopic under Пайыздар: калькуляторсуз - it just had no
         # children yet. Reference (6 items): 10s, 5s, Integer & Decimal,
         # Reverse, FPR of Quantities, FPR: With Frequency Trees.
-        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Чоңдуктун пайызы'),
+        'parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Чоңдуктун пайызы'),
         'target_items': [
             {'title': '10дор менен', 'url_name': 'percentages_noncalc_quantity_10s'},
             {'title': '5тер менен', 'url_name': 'percentages_noncalc_quantity_5s'},
@@ -782,11 +782,11 @@ GROUPS = [
     },
     {
         # "Көбөйтүү жана азайтуу" already exists as a chevron-bearing
-        # SubSubtopic under Пайыздар: калькулятордсуз - it just had no
+        # SubSubtopic under Пайыздар: калькуляторсуз - it just had no
         # children yet. Reference (4 items): Increase, Decrease, Mixed,
         # Reverse - a shorter list than its Calculator-side namesake
         # (no Simple Interest/Using a Multiplier/Marginal Tax here).
-        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Көбөйтүү жана азайтуу'),
+        'parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Көбөйтүү жана азайтуу'),
         'target_items': [
             {'title': 'Көбөйтүү', 'url_name': 'percentages_noncalc_incdec_increase'},
             {'title': 'Азайтуу', 'url_name': 'percentages_noncalc_incdec_decrease'},
@@ -828,7 +828,7 @@ GROUPS = [
             {'title': 'Аралаш', 'url_name': 'ratio_quantities_mixed'},
             {'title': 'Сызык кесиндилери менен', 'url_name': 'ratio_dividing_with_line_segments'},
             {'title': 'Бөлчөк, пайыз жана катыш: калькулятор менен', 'url_name': 'ratio_dividing_fpr_calculator'},
-            {'title': 'Бөлчөк, пайыз жана катыш: калькулятордсуз', 'url_name': 'ratio_dividing_fpr_non_calculator'},
+            {'title': 'Бөлчөк, пайыз жана катыш: калькуляторсуз', 'url_name': 'ratio_dividing_fpr_non_calculator'},
             {'title': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен', 'url_name': 'ratio_dividing_fpr_frequency_trees'},
         ],
         'stale_subsubtopic_titles': [],
@@ -1106,7 +1106,7 @@ CHILD_ORDER_FIXES = [
         # production had Multiplying & Dividing pulled forward to
         # position 2 (sharing a duplicate order value with Adding &
         # Subtracting), an over-qualified title on Adding & Subtracting
-        # ("...: калькулятордсуз", not present on the reference or any
+        # ("...: калькуляторсуз", not present on the reference or any
         # sibling), and an extra "Негиздери" (Introduction) not in the
         # reference at all (invisible to a fresh local dev DB), pruned by
         # the exhaustive order list below like any other leftover.
@@ -1134,8 +1134,14 @@ CHILD_ORDER_FIXES = [
         # compound-measure example, not the general label) had 0
         # children, so it's simply renamed to the general "Татаал
         # өлчөмдөр" (Compound Measures) rather than losing any content.
-        # "Percentages: Non-Calculator" doesn't exist anywhere yet -
-        # created via 'create_subsubtopics' like Пропорция's siblings.
+        # "Percentages: Non-Calculator" was originally created via
+        # 'create_subsubtopics' (now removed from this entry - it exists
+        # in both dev and production now, so re-declaring it here would
+        # just try to create a duplicate every run once its title no
+        # longer matches). It was created with a typo'd title
+        # ("калькулятордсуз") - the 'renames' entry below fixes that on
+        # the existing item without touching create_subsubtopics at all,
+        # same mechanism as the other 2 renames here.
         # "Айландыруу графиктери" (Conversion Graphs, over-specific) is
         # renamed to the general "Графиктер" (Graphs) for the same
         # reason as Compound Measures above - its own reference submenu
@@ -1144,16 +1150,14 @@ CHILD_ORDER_FIXES = [
         'renames': [
             {'from': 'Ылдамдык, аралык жана убакыт', 'to': 'Татаал өлчөмдөр'},
             {'from': 'Айландыруу графиктери', 'to': 'Графиктер'},
-        ],
-        'create_subsubtopics': [
-            {'title': 'Пайыздар: калькулятордсуз', 'slug': 'percentages-non-calculator'},
+            {'from': 'Пайыздар: калькулятордсуз', 'to': 'Пайыздар: калькуляторсуз'},
         ],
         'order': [
             'Татаал өлчөмдөр',
             'Түз жана тескери пропорция',
             'Графиктер',
             'Пайыздар: калькулятор менен',
-            'Пайыздар: калькулятордсуз',
+            'Пайыздар: калькуляторсуз',
             'Катыш',
             'Турмуштук колдонуулар',
         ],
@@ -1199,7 +1203,7 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # "Пайыздар: калькулятордсуз" was created empty (see its own
+        # "Пайыздар: калькуляторсуз" was created empty (see its own
         # 'create_subsubtopics' entry above, under Пропорция) - reference
         # gives it 5 children (Equivalence, Expressing, Percentage of a
         # Quantity, Increase & Decrease, Mixed), 4 of them chevron-bearing
@@ -1208,7 +1212,7 @@ CHILD_ORDER_FIXES = [
         # slug uniqueness constraint, same as "Туюнтуу"/expressing already
         # being reused 3x elsewhere) and "Аралаш" a plain leaf placeholder
         # like its Calculator counterpart.
-        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз'),
+        'parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз'),
         'create_subsubtopics': [
             {'title': 'Барабардык', 'slug': 'equivalence'},
             {'title': 'Туюнтуу', 'slug': 'expressing'},
@@ -1282,7 +1286,7 @@ MIRROR_GROUPS = [
         'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
     },
     {
-        # "Барабардык" (Equivalence) under Пайыздар: калькулятордсуз is
+        # "Барабардык" (Equivalence) under Пайыздар: калькуляторсуз is
         # the same percentage-equivalence exercise set as Сандар's own
         # top-level Эквиваленттүүлүк > Пайыздарды айландыруу - reuses
         # those same 8 real pages rather than building duplicates.
@@ -1291,7 +1295,7 @@ MIRROR_GROUPS = [
         # whole existing 8-item set since mirror_children copies a parent
         # wholesale, not a hand-picked subset; the one extra item, "Баары
         # менен"/With All, is harmless bonus practice, not a wrong page.)
-        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
         'source_parent_path': ('Сандар', 'Эквиваленттүүлүк', 'Пайыздарды айландыруу'),
     },
     {
@@ -1324,29 +1328,29 @@ MIRROR_NODES = [
         # above) - mirrored in as their own (still-empty) nodes so both
         # locations share the same underlying SubSubtopic and stay in
         # sync once either one gets real content.
-        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук жана пайыз эквиваленттүүлүгү'),
     },
     {
-        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө'),
     },
     {
-        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү'),
     },
     {
-        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Барабардык'),
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү'),
     },
     {
-        # "Converting Fractions" under Пайыздар: калькулятордсуз >
+        # "Converting Fractions" under Пайыздар: калькуляторсуз >
         # Туюнтуу shows a chevron on the reference site (unlike its flat-
         # leaf Calculator-side namesake), matching Сандар >
         # Эквиваленттүүлүк > Бөлчөктөрдү айландыруу's own 10-item
         # structure closely enough to be the same shared content, same
         # reasoning as Барабардык's mirror above.
-        'target_parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз', 'Туюнтуу'),
+        'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Туюнтуу'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү айландыруу'),
     },
     {
