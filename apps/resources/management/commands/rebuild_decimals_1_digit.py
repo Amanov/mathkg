@@ -1014,6 +1014,32 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # "Пайыздар: калькулятордсуз" was created empty (see its own
+        # 'create_subsubtopics' entry above, under Пропорция) - reference
+        # gives it 5 children (Equivalence, Expressing, Percentage of a
+        # Quantity, Increase & Decrease, Mixed), 4 of them chevron-bearing
+        # SubSubtopics of their own (reusing the same slugs as their
+        # namesake siblings under Пайыздар: калькулятор менен - no global
+        # slug uniqueness constraint, same as "Туюнтуу"/expressing already
+        # being reused 3x elsewhere) and "Аралаш" a plain leaf placeholder
+        # like its Calculator counterpart.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятордсуз'),
+        'create_subsubtopics': [
+            {'title': 'Барабардык', 'slug': 'equivalence'},
+            {'title': 'Туюнтуу', 'slug': 'expressing'},
+            {'title': 'Чоңдуктун пайызы', 'slug': 'percentage-of-a-quantity'},
+            {'title': 'Көбөйтүү жана азайтуу', 'slug': 'increase-decrease'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Барабардык',
+            'Туюнтуу',
+            'Чоңдуктун пайызы',
+            'Көбөйтүү жана азайтуу',
+            'Аралаш',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
