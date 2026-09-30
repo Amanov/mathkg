@@ -472,6 +472,31 @@ urlpatterns = [
     path('percentages-expressing-quantity/', operation_placeholder_view, {'operation_slug': 'percentages-expressing-quantity'}, name='percentages_expressing_quantity'),
     path('percentages-expressing-change/', operation_placeholder_view, {'operation_slug': 'percentages-expressing-change'}, name='percentages_expressing_change'),
 
+    # Пайыздар: калькулятор менен > Чоңдуктун пайызы - all 4 slots, none
+    # with a real page yet.
+    path('percentages-quantity-integer/', operation_placeholder_view, {'operation_slug': 'percentages-quantity-integer'}, name='percentages_quantity_integer'),
+    path('percentages-quantity-decimal/', operation_placeholder_view, {'operation_slug': 'percentages-quantity-decimal'}, name='percentages_quantity_decimal'),
+    path('percentages-quantity-reverse/', operation_placeholder_view, {'operation_slug': 'percentages-quantity-reverse'}, name='percentages_quantity_reverse'),
+    path('percentages-quantity-fpr/', operation_placeholder_view, {'operation_slug': 'percentages-quantity-fpr'}, name='percentages_quantity_fpr'),
+
+    # Пайыздар: калькулятор менен > Көбөйтүү жана азайтуу - all 7 slots,
+    # none with a real page yet.
+    path('percentages-incdec-increase/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-increase'}, name='percentages_incdec_increase'),
+    path('percentages-incdec-decrease/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-decrease'}, name='percentages_incdec_decrease'),
+    path('percentages-incdec-mixed/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-mixed'}, name='percentages_incdec_mixed'),
+    path('percentages-incdec-simple-interest/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-simple-interest'}, name='percentages_incdec_simple_interest'),
+    path('percentages-incdec-using-multiplier/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-using-multiplier'}, name='percentages_incdec_using_multiplier'),
+    path('percentages-incdec-reverse/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-reverse'}, name='percentages_incdec_reverse'),
+    path('percentages-incdec-marginal-tax/', operation_placeholder_view, {'operation_slug': 'percentages-incdec-marginal-tax'}, name='percentages_incdec_marginal_tax'),
+
+    # Пайыздар: калькулятор менен > Кайталанма пайыздык өзгөрүү - all 5
+    # slots, none with a real page yet.
+    path('percentages-repeated-change-increase-compound-interest/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-increase-compound-interest'}, name='percentages_repeated_change_increase_compound_interest'),
+    path('percentages-repeated-change-decrease/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-decrease'}, name='percentages_repeated_change_decrease'),
+    path('percentages-repeated-change-increase-decrease/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-increase-decrease'}, name='percentages_repeated_change_increase_decrease'),
+    path('percentages-repeated-change-reverse/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-reverse'}, name='percentages_repeated_change_reverse'),
+    path('percentages-repeated-change-mixed/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-mixed'}, name='percentages_repeated_change_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

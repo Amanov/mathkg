@@ -692,6 +692,58 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Чоңдуктун пайызы" already exists as a chevron-bearing
+        # SubSubtopic under Пайыздар: калькулятор менен (see
+        # import_reference_taxonomy.py) - it just had no children yet.
+        # Reference: Integer, Decimal, Reverse, FPR of Quantities (the
+        # last one - expressing a quantity as a fraction, percentage or
+        # ratio of another - translated as a short noun phrase rather
+        # than spelled out, matching this file's usual title length).
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятор менен', 'Чоңдуктун пайызы'),
+        'target_items': [
+            {'title': 'Бүтүн сан', 'url_name': 'percentages_quantity_integer'},
+            {'title': 'Ондук бөлчөк', 'url_name': 'percentages_quantity_decimal'},
+            {'title': 'Тескери', 'url_name': 'percentages_quantity_reverse'},
+            {'title': 'Бөлчөк, пайыз жана катыш', 'url_name': 'percentages_quantity_fpr'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Көбөйтүү жана азайтуу" already exists as a chevron-bearing
+        # SubSubtopic under Пайыздар: калькулятор менен - it just had no
+        # children yet. Reference (7 items): Increase, Decrease, Mixed,
+        # Simple Interest, Using a Multiplier, Reverse, Marginal Tax.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятор менен', 'Көбөйтүү жана азайтуу'),
+        'target_items': [
+            {'title': 'Көбөйтүү', 'url_name': 'percentages_incdec_increase'},
+            {'title': 'Азайтуу', 'url_name': 'percentages_incdec_decrease'},
+            {'title': 'Аралаш', 'url_name': 'percentages_incdec_mixed'},
+            {'title': 'Жөнөкөй пайыз', 'url_name': 'percentages_incdec_simple_interest'},
+            {'title': 'Көбөйтүүчү менен', 'url_name': 'percentages_incdec_using_multiplier'},
+            {'title': 'Тескери', 'url_name': 'percentages_incdec_reverse'},
+            {'title': 'Чектик салык', 'url_name': 'percentages_incdec_marginal_tax'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Кайталанма пайыздык өзгөрүү" already exists as a chevron-
+        # bearing SubSubtopic under Пайыздар: калькулятор менен - it just
+        # had no children yet. Reference (5 items): Increase & Compound
+        # Interest, Decrease, Increase & Decrease, Reverse, Mixed.
+        'parent_path': ('Пропорция', 'Пайыздар: калькулятор менен', 'Кайталанма пайыздык өзгөрүү'),
+        'target_items': [
+            {'title': 'Көбөйтүү жана татаал пайыз', 'url_name': 'percentages_repeated_change_increase_compound_interest'},
+            {'title': 'Азайтуу', 'url_name': 'percentages_repeated_change_decrease'},
+            {'title': 'Көбөйтүү жана азайтуу', 'url_name': 'percentages_repeated_change_increase_decrease'},
+            {'title': 'Тескери', 'url_name': 'percentages_repeated_change_reverse'},
+            {'title': 'Аралаш', 'url_name': 'percentages_repeated_change_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
