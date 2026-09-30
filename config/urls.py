@@ -485,12 +485,12 @@ urlpatterns = [
     path('percentages-repeated-change-reverse/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-reverse'}, name='percentages_repeated_change_reverse'),
     path('percentages-repeated-change-mixed/', operation_placeholder_view, {'operation_slug': 'percentages-repeated-change-mixed'}, name='percentages_repeated_change_mixed'),
 
-    # Пайыздар: калькулятордсуз > Туюнтуу - 2 flat slots (Converting
+    # Пайыздар: калькуляторсуз > Туюнтуу - 2 flat slots (Converting
     # Fractions is mirrored in, not a URL here).
     path('percentages-noncalc-expressing-quantity/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-expressing-quantity'}, name='percentages_noncalc_expressing_quantity'),
     path('percentages-noncalc-expressing-change/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-expressing-change'}, name='percentages_noncalc_expressing_change'),
 
-    # Пайыздар: калькулятордсуз > Чоңдуктун пайызы - all 6 slots, none
+    # Пайыздар: калькуляторсуз > Чоңдуктун пайызы - all 6 slots, none
     # with a real page yet.
     path('percentages-noncalc-quantity-10s/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-quantity-10s'}, name='percentages_noncalc_quantity_10s'),
     path('percentages-noncalc-quantity-5s/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-quantity-5s'}, name='percentages_noncalc_quantity_5s'),
@@ -499,7 +499,7 @@ urlpatterns = [
     path('percentages-noncalc-quantity-fpr/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-quantity-fpr'}, name='percentages_noncalc_quantity_fpr'),
     path('percentages-noncalc-quantity-fpr-frequency-trees/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-quantity-fpr-frequency-trees'}, name='percentages_noncalc_quantity_fpr_frequency_trees'),
 
-    # Пайыздар: калькулятордсуз > Көбөйтүү жана азайтуу - all 4 slots,
+    # Пайыздар: калькуляторсуз > Көбөйтүү жана азайтуу - all 4 slots,
     # none with a real page yet.
     path('percentages-noncalc-incdec-increase/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-incdec-increase'}, name='percentages_noncalc_incdec_increase'),
     path('percentages-noncalc-incdec-decrease/', operation_placeholder_view, {'operation_slug': 'percentages-noncalc-incdec-decrease'}, name='percentages_noncalc_incdec_decrease'),

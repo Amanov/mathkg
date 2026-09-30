@@ -398,13 +398,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-repeated-change-reverse': 'Тескери',
     'percentages-repeated-change-mixed': 'Аралаш',
 
-    # Пайыздар: калькулятордсуз > Туюнтуу - only 2 have a real
+    # Пайыздар: калькуляторсуз > Туюнтуу - only 2 have a real
     # hand-built page yet ("Converting Fractions" is mirrored in via
     # MIRROR_NODES, not a flat leaf here).
     'percentages-noncalc-expressing-quantity': 'Чоңдук',
     'percentages-noncalc-expressing-change': 'Өзгөрүү',
 
-    # Пайыздар: калькулятордсуз > Чоңдуктун пайызы - none of these 6
+    # Пайыздар: калькуляторсуз > Чоңдуктун пайызы - none of these 6
     # have a real hand-built page yet.
     'percentages-noncalc-quantity-10s': '10дор менен',
     'percentages-noncalc-quantity-5s': '5тер менен',
@@ -413,7 +413,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-noncalc-quantity-fpr': 'Бөлчөк, пайыз жана катыш',
     'percentages-noncalc-quantity-fpr-frequency-trees': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен',
 
-    # Пайыздар: калькулятордсуз > Көбөйтүү жана азайтуу - none of these 4
+    # Пайыздар: калькуляторсуз > Көбөйтүү жана азайтуу - none of these 4
     # have a real hand-built page yet.
     'percentages-noncalc-incdec-increase': 'Көбөйтүү',
     'percentages-noncalc-incdec-decrease': 'Азайтуу',
@@ -433,7 +433,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'ratio-quantities-mixed': 'Аралаш',
     'ratio-dividing-with-line-segments': 'Сызык кесиндилери менен',
     'ratio-dividing-fpr-calculator': 'Бөлчөк, пайыз жана катыш: калькулятор менен',
-    'ratio-dividing-fpr-non-calculator': 'Бөлчөк, пайыз жана катыш: калькулятордсуз',
+    'ratio-dividing-fpr-non-calculator': 'Бөлчөк, пайыз жана катыш: калькуляторсуз',
     'ratio-dividing-fpr-frequency-trees': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен',
 
     # Катыш > Түрлөндүрүү - all 4 slots, none with a real page yet.
