@@ -432,6 +432,19 @@ urlpatterns = [
     path('direct-inverse-mixed/', operation_placeholder_view, {'operation_slug': 'direct-inverse-mixed'}, name='direct_inverse_mixed'),
     path('direct-inverse-identifying-graphs/', operation_placeholder_view, {'operation_slug': 'direct-inverse-identifying-graphs'}, name='direct_inverse_identifying_graphs'),
 
+    # Пропорция > Графиктер (Graphs) - all 10 slots, none with a real
+    # page yet.
+    path('graphs-identifying-proportional/', operation_placeholder_view, {'operation_slug': 'graphs-identifying-proportional'}, name='graphs_identifying_proportional'),
+    path('graphs-conversion-graphs/', operation_placeholder_view, {'operation_slug': 'graphs-conversion-graphs'}, name='graphs_conversion_graphs'),
+    path('graphs-cost-relationships/', operation_placeholder_view, {'operation_slug': 'graphs-cost-relationships'}, name='graphs_cost_relationships'),
+    path('graphs-depth-time/', operation_placeholder_view, {'operation_slug': 'graphs-depth-time'}, name='graphs_depth_time'),
+    path('graphs-volume-time/', operation_placeholder_view, {'operation_slug': 'graphs-volume-time'}, name='graphs_volume_time'),
+    path('graphs-mixed/', operation_placeholder_view, {'operation_slug': 'graphs-mixed'}, name='graphs_mixed'),
+    path('graphs-distance-time-constant-speeds/', operation_placeholder_view, {'operation_slug': 'graphs-distance-time-constant-speeds'}, name='graphs_distance_time_constant_speeds'),
+    path('graphs-distance-time-variable-speeds/', operation_placeholder_view, {'operation_slug': 'graphs-distance-time-variable-speeds'}, name='graphs_distance_time_variable_speeds'),
+    path('graphs-velocity-time/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time'}, name='graphs_velocity_time'),
+    path('graphs-mixed-distance-velocity/', operation_placeholder_view, {'operation_slug': 'graphs-mixed-distance-velocity'}, name='graphs_mixed_distance_velocity'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

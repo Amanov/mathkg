@@ -332,6 +332,19 @@ OPERATION_PLACEHOLDER_TITLES = {
     'direct-inverse-inverse': 'Тескери пропорция',
     'direct-inverse-mixed': 'Аралаш',
     'direct-inverse-identifying-graphs': 'Графиктерди аныктоо',
+
+    # Пропорция > Графиктер (Graphs) - none of these 10 have a real
+    # hand-built page yet.
+    'graphs-identifying-proportional': 'Пропорционалдуу графиктерди аныктоо',
+    'graphs-conversion-graphs': 'Айландыруу графиктери',
+    'graphs-cost-relationships': 'Баа мамилелери',
+    'graphs-depth-time': 'Тереңдик-убакыт',
+    'graphs-volume-time': 'Көлөм-убакыт',
+    'graphs-mixed': 'Аралаш',
+    'graphs-distance-time-constant-speeds': 'Аралык-убакыт: туруктуу ылдамдыктар',
+    'graphs-distance-time-variable-speeds': 'Аралык-убакыт: өзгөрмө ылдамдыктар',
+    'graphs-velocity-time': 'Ылдамдык-убакыт',
+    'graphs-mixed-distance-velocity': 'Аралаш: аралык жана ылдамдык',
 }
 
 
