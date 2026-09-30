@@ -372,6 +372,31 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-expressing-converting-fractions': 'Бөлчөктөрдү айландыруу',
     'percentages-expressing-quantity': 'Чоңдук',
     'percentages-expressing-change': 'Өзгөрүү',
+
+    # Пайыздар: калькулятор менен > Чоңдуктун пайызы - none of these 4
+    # have a real hand-built page yet.
+    'percentages-quantity-integer': 'Бүтүн сан',
+    'percentages-quantity-decimal': 'Ондук бөлчөк',
+    'percentages-quantity-reverse': 'Тескери',
+    'percentages-quantity-fpr': 'Бөлчөк, пайыз жана катыш',
+
+    # Пайыздар: калькулятор менен > Көбөйтүү жана азайтуу - none of these
+    # 7 have a real hand-built page yet.
+    'percentages-incdec-increase': 'Көбөйтүү',
+    'percentages-incdec-decrease': 'Азайтуу',
+    'percentages-incdec-mixed': 'Аралаш',
+    'percentages-incdec-simple-interest': 'Жөнөкөй пайыз',
+    'percentages-incdec-using-multiplier': 'Көбөйтүүчү менен',
+    'percentages-incdec-reverse': 'Тескери',
+    'percentages-incdec-marginal-tax': 'Чектик салык',
+
+    # Пайыздар: калькулятор менен > Кайталанма пайыздык өзгөрүү - none of
+    # these 5 have a real hand-built page yet.
+    'percentages-repeated-change-increase-compound-interest': 'Көбөйтүү жана татаал пайыз',
+    'percentages-repeated-change-decrease': 'Азайтуу',
+    'percentages-repeated-change-increase-decrease': 'Көбөйтүү жана азайтуу',
+    'percentages-repeated-change-reverse': 'Тескери',
+    'percentages-repeated-change-mixed': 'Аралаш',
 }
 
 
