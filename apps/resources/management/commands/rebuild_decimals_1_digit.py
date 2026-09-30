@@ -482,6 +482,11 @@ GROUPS = [
         # top-level Measures sibling of the same name (a genuine
         # duplicate on the reference site, not a mistake) - distinct
         # url_name, own chevron/children left for a future screenshot.
+        # "Ылдамдык, аралык жана убакыт" (Speed, Distance & Time) is NOT
+        # listed here even though it's a direct child - PROMOTE_LEAVES
+        # below turned it into its own category with 4 children, which
+        # this list's simple flat-leaf model can't represent, so it owns
+        # that item's lifecycle now (see 'promoted_titles').
         'parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
         'target_items': [
             {'title': 'Аянт жана көлөм бирдиктерин алмаштыруу', 'url_name': 'compound_area_volume_conversion'},
@@ -490,8 +495,8 @@ GROUPS = [
             {'title': 'Калктын калыңдыгы', 'url_name': 'compound_population_density'},
             {'title': 'Басым, күч жана аянт', 'url_name': 'compound_pressure_force_area'},
             {'title': 'Эмгек акы ставкалары', 'url_name': 'compound_rates_of_pay'},
-            {'title': 'Ылдамдык, аралык жана убакыт', 'url_name': 'compound_speed_distance_time'},
         ],
+        'promoted_titles': ['Ылдамдык, аралык жана убакыт'],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
@@ -586,6 +591,31 @@ GROUPS = [
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
+    },
+]
+
+# A flat GROUPS-built leaf that turns out to have its own sub-items on
+# the reference site - the leaf itself becomes a category, its existing
+# page survives unchanged as the new "Introduction" first child (same
+# url_name, same content), and the rest are brand new pages alongside
+# it. The leaf's own identity (id/title/parent/order) never changes -
+# only its url_name moves onto the new "Introduction" child - so nothing
+# elsewhere that already points at this title needs updating.
+PROMOTE_LEAVES = [
+    {
+        # Reference: "Speed, Distance & Time" has 4 children (Adding
+        # Introduction, Converting Speeds, 2-Stage Journeys, Relative
+        # Speeds) - previously a flat leaf in the "Сандар > Өлчөмдөр >
+        # Татаал өлчөмдөр" GROUPS entry above (see 'promoted_titles'
+        # there, which now excludes it and protects it from that entry's
+        # own pruning).
+        'leaf_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр', 'Ылдамдык, аралык жана убакыт'),
+        'introduction_title': 'Киришүү',
+        'new_children': [
+            {'title': 'Ылдамдыкты айландыруу', 'url_name': 'speed_distance_time_converting_speeds'},
+            {'title': 'Эки этаптуу саякаттар', 'url_name': 'speed_distance_time_two_stage_journeys'},
+            {'title': 'Салыштырмалуу ылдамдыктар', 'url_name': 'speed_distance_time_relative_speeds'},
+        ],
     },
 ]
 
@@ -858,6 +888,39 @@ class Command(BaseCommand):
         "group."
     )
 
+    def mirror_children(self, target_parent, source_parent, extra_protected_titles=(), indent='  '):
+        """Recursively mirrors source_parent's children (title + url_name,
+        matched by title) into target_parent, descending into any child
+        that itself has children (e.g. a GROUPS leaf later promoted to
+        its own category via PROMOTE_LEAVES) so the whole subtree stays
+        in sync, not just the first level."""
+        source_children = list(source_parent.children.all().order_by('order'))
+        for child in source_children:
+            mirrored, created = MenuItem.objects.get_or_create(
+                parent=target_parent, title=child.title,
+                defaults={'url_name': child.url_name, 'order': child.order},
+            )
+            if created:
+                self.stdout.write(f'{indent}Mirrored: {child.title} ({child.url_name})')
+            elif mirrored.url_name != child.url_name:
+                # order is deliberately left alone once created - the
+                # target parent can have its own extra siblings (see
+                # MIRROR_NODES) needing a different position than the
+                # source uses, and CHILD_ORDER_FIXES already owns
+                # ordering for this parent.
+                mirrored.url_name = child.url_name
+                mirrored.save(update_fields=['url_name'])
+                self.stdout.write(f'{indent}Updated mirror: {child.title}')
+            if child.children.exists():
+                self.mirror_children(mirrored, child, indent=indent + '  ')
+
+        source_titles = {child.title for child in source_children}
+        protected_titles = source_titles | set(extra_protected_titles)
+        for extra in MenuItem.objects.filter(parent=target_parent):
+            if extra.title not in protected_titles:
+                self.stdout.write(f'{indent}Removed stale mirror "{extra.title}"')
+                extra.delete()
+
     def handle(self, *args, **options):
         for group in GROUPS:
             topic_title, subtopic_title, parent_ss_title = group['parent_path']
@@ -946,13 +1009,44 @@ class Command(BaseCommand):
             # navigation entry is deleted; any underlying page/content is
             # untouched.
             target_url_names = {item['url_name'] for item in group['target_items']}
+            promoted_titles = set(group.get('promoted_titles', []))
             for extra in MenuItem.objects.filter(parent=parent_menu):
-                if extra.url_name not in target_url_names:
+                if extra.url_name not in target_url_names and extra.title not in promoted_titles:
                     self.stdout.write(
                         f'  Removed extra menu item "{extra.title}" under this parent '
                         f'(any underlying page/content is untouched).'
                     )
                     extra.delete()
+
+        for promo in PROMOTE_LEAVES:
+            *ancestors, leaf_title = promo['leaf_path']
+            lookup = {'title': leaf_title}
+            field = 'parent'
+            for ancestor_title in reversed(ancestors):
+                lookup[f'{field}__title'] = ancestor_title
+                field += '__parent'
+            self.stdout.write(f'=== Promote: {" > ".join(promo["leaf_path"])} ===')
+            node = MenuItem.objects.filter(**lookup).first()
+            if node is None:
+                self.stderr.write(f'  Not found.')
+                continue
+
+            if not node.children.exists():
+                MenuItem.objects.create(
+                    parent=node, title=promo['introduction_title'], url_name=node.url_name, order=1,
+                )
+                node.url_name = None
+                node.save(update_fields=['url_name'])
+                self.stdout.write(
+                    f'  Promoted to a category; its old page is now "{promo["introduction_title"]}"'
+                )
+
+            for order, item in enumerate(promo['new_children'], start=2):
+                child, created = MenuItem.objects.get_or_create(
+                    parent=node, title=item['title'], defaults={'url_name': item['url_name'], 'order': order},
+                )
+                if created:
+                    self.stdout.write(f'  Created: {item["title"]} ({item["url_name"]})')
 
         for fix in CHILD_ORDER_FIXES:
             # Usually a 2-tuple (Topic, Subtopic) - the Subtopic sits
@@ -1075,39 +1169,19 @@ class Command(BaseCommand):
                 )
                 continue
 
-            source_children = list(source_parent.children.all().order_by('order'))
-            for child in source_children:
-                mirrored, created = MenuItem.objects.get_or_create(
-                    parent=target_parent, title=child.title,
-                    defaults={'url_name': child.url_name, 'order': child.order},
-                )
-                if created:
-                    self.stdout.write(f'  Mirrored: {child.title} ({child.url_name})')
-                elif mirrored.url_name != child.url_name:
-                    # order is deliberately left alone once created - the
-                    # target parent can have its own extra siblings (see
-                    # MIRROR_NODES below) needing a different position
-                    # than the source uses, and CHILD_ORDER_FIXES already
-                    # owns ordering for this parent.
-                    mirrored.url_name = child.url_name
-                    mirrored.save(update_fields=['url_name'])
-                    self.stdout.write(f'  Updated mirror: {child.title}')
-
-            # Anything under target_parent that this mirror didn't just
-            # create/update is a leftover - except a title also managed
-            # by a MIRROR_NODES entry on the same parent (a whole mirrored
-            # subtree, not one of this mirror's own flat leaves), which
-            # must survive this prune untouched.
-            source_titles = {child.title for child in source_children}
-            protected_titles = source_titles | {
+            # Recurses into any child that itself has children (e.g. a
+            # GROUPS leaf later promoted to its own category via
+            # PROMOTE_LEAVES), so the whole subtree stays mirrored, not
+            # just the flat top level. A title also managed by a
+            # MIRROR_NODES entry on this same parent (a whole separate
+            # mirrored subtree) is protected from this mirror's own
+            # pruning.
+            node_mirror_titles = {
                 node_mirror['source_path'][-1]
                 for node_mirror in MIRROR_NODES
                 if node_mirror['target_parent_path'] == mirror['parent_path']
             }
-            for extra in MenuItem.objects.filter(parent=target_parent):
-                if extra.title not in protected_titles:
-                    self.stdout.write(f'  Removed stale mirror "{extra.title}"')
-                    extra.delete()
+            self.mirror_children(target_parent, source_parent, extra_protected_titles=node_mirror_titles)
 
         for mirror in MIRROR_NODES:
             target_topic_title, target_subtopic_title = mirror['target_parent_path']
@@ -1134,24 +1208,6 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f'  Mirrored node: {source_node.title}')
 
-            source_children = list(source_node.children.all().order_by('order'))
-            for child in source_children:
-                mirrored, child_created = MenuItem.objects.get_or_create(
-                    parent=mirrored_node, title=child.title,
-                    defaults={'url_name': child.url_name, 'order': child.order},
-                )
-                if child_created:
-                    self.stdout.write(f'    Mirrored: {child.title} ({child.url_name})')
-                elif mirrored.url_name != child.url_name or mirrored.order != child.order:
-                    mirrored.url_name = child.url_name
-                    mirrored.order = child.order
-                    mirrored.save(update_fields=['url_name', 'order'])
-                    self.stdout.write(f'    Updated mirror: {child.title}')
-
-            source_titles = {child.title for child in source_children}
-            for extra in MenuItem.objects.filter(parent=mirrored_node):
-                if extra.title not in source_titles:
-                    self.stdout.write(f'    Removed stale mirror "{extra.title}"')
-                    extra.delete()
+            self.mirror_children(mirrored_node, source_node, indent='    ')
 
         self.stdout.write(self.style.SUCCESS('Done.'))
