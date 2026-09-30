@@ -445,6 +445,26 @@ urlpatterns = [
     path('graphs-velocity-time/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time'}, name='graphs_velocity_time'),
     path('graphs-mixed-distance-velocity/', operation_placeholder_view, {'operation_slug': 'graphs-mixed-distance-velocity'}, name='graphs_mixed_distance_velocity'),
 
+    # Графиктер > Айландыруу графиктери - both slots, none with a real
+    # page yet.
+    path('graphs-conversion-reading/', operation_placeholder_view, {'operation_slug': 'graphs-conversion-reading'}, name='graphs_conversion_reading'),
+    path('graphs-conversion-plotting-reading/', operation_placeholder_view, {'operation_slug': 'graphs-conversion-plotting-reading'}, name='graphs_conversion_plotting_reading'),
+
+    # Графиктер > Баа мамилелери - both slots, none with a real page yet.
+    path('graphs-cost-introduction/', operation_placeholder_view, {'operation_slug': 'graphs-cost-introduction'}, name='graphs_cost_introduction'),
+    path('graphs-cost-with-equations/', operation_placeholder_view, {'operation_slug': 'graphs-cost-with-equations'}, name='graphs_cost_with_equations'),
+
+    # Графиктер > Аралык-убакыт: туруктуу ылдамдыктар - both slots, none
+    # with a real page yet.
+    path('graphs-distance-time-reading/', operation_placeholder_view, {'operation_slug': 'graphs-distance-time-reading'}, name='graphs_distance_time_reading'),
+    path('graphs-distance-time-plotting-reading/', operation_placeholder_view, {'operation_slug': 'graphs-distance-time-plotting-reading'}, name='graphs_distance_time_plotting_reading'),
+
+    # Графиктер > Ылдамдык-убакыт - all 3 slots, none with a real page
+    # yet.
+    path('graphs-velocity-time-distance/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time-distance'}, name='graphs_velocity_time_distance'),
+    path('graphs-velocity-time-acceleration/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time-acceleration'}, name='graphs_velocity_time_acceleration'),
+    path('graphs-velocity-time-mixed/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time-mixed'}, name='graphs_velocity_time_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
