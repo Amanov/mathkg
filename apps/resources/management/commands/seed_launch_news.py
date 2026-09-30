@@ -54,8 +54,14 @@ NEWS_ITEMS = [
         ),
     },
     {
+        # This title keeps the "калькулятордсуз" typo on purpose - it's
+        # already published (get_or_create matches posts by title+date),
+        # so correcting the spelling here would just create a duplicate
+        # post on the next run rather than fix the live one. The body
+        # text below is safe to correct since it's only used on first
+        # creation, not for matching.
         'published_date': '2026-09-30',
-        'title': '"Пайыздар: калькуляторсуз" бөлүмүндөгү дагы 3 тема толукталды',
+        'title': '"Пайыздар: калькулятордсуз" бөлүмүндөгү дагы 3 тема толукталды',
         'body': (
             '"Пропорция > Пайыздар: калькуляторсуз" ичиндеги "Туюнтуу", '
             '"Чоңдуктун пайызы" жана "Көбөйтүү жана азайтуу" темаларына '
@@ -74,7 +80,7 @@ NEWS_ITEMS = [
     },
     {
         'published_date': '2026-09-30',
-        'title': '"Пайыздар: калькуляторсуз" бөлүмүнө 5 кичи тема кошулду',
+        'title': '"Пайыздар: калькулятордсуз" бөлүмүнө 5 кичи тема кошулду',
         'body': (
             '"Пропорция > Пайыздар: калькуляторсуз" бөлүмүнө '
             '"Барабардык", "Туюнтуу", "Чоңдуктун пайызы", "Көбөйтүү жана '
