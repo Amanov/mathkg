@@ -449,27 +449,27 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Турмуштук колдонуулар > Баалар - both slots, none with a real
     # page yet.
     'real-life-prices-calculator': 'Калькулятор менен',
-    'real-life-prices-non-calculator': 'Калькулятордсуз',
+    'real-life-prices-non-calculator': 'Калькуляторсуз',
 
     # Турмуштук колдонуулар > Пайдалуу сатып алуу - both slots, none
     # with a real page yet.
     'real-life-best-buys-calculator': 'Калькулятор менен',
-    'real-life-best-buys-non-calculator': 'Калькулятордсуз',
+    'real-life-best-buys-non-calculator': 'Калькуляторсуз',
 
     # Турмуштук колдонуулар > Валюта курстары - both slots, none with a
     # real page yet.
     'real-life-exchange-rates-calculator': 'Калькулятор менен',
-    'real-life-exchange-rates-non-calculator': 'Калькулятордсуз',
+    'real-life-exchange-rates-non-calculator': 'Калькуляторсуз',
 
     # Турмуштук колдонуулар > Рецепттер - both slots, none with a real
     # page yet.
     'real-life-recipes-calculator': 'Калькулятор менен',
-    'real-life-recipes-non-calculator': 'Калькулятордсуз',
+    'real-life-recipes-non-calculator': 'Калькуляторсуз',
 
     # Турмуштук колдонуулар > Аралаш - both slots, none with a real
     # page yet.
     'real-life-mixed-calculator': 'Калькулятор менен',
-    'real-life-mixed-non-calculator': 'Калькулятордсуз',
+    'real-life-mixed-non-calculator': 'Калькуляторсуз',
 }
 
 
