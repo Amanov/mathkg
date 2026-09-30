@@ -871,7 +871,7 @@ GROUPS = [
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Баалар'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_prices_calculator'},
-            {'title': 'Калькулятордсуз', 'url_name': 'real_life_prices_non_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'real_life_prices_non_calculator'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -884,7 +884,7 @@ GROUPS = [
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Пайдалуу сатып алуу'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_best_buys_calculator'},
-            {'title': 'Калькулятордсуз', 'url_name': 'real_life_best_buys_non_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'real_life_best_buys_non_calculator'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -897,7 +897,7 @@ GROUPS = [
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Валюта курстары'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_exchange_rates_calculator'},
-            {'title': 'Калькулятордсуз', 'url_name': 'real_life_exchange_rates_non_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'real_life_exchange_rates_non_calculator'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -909,7 +909,7 @@ GROUPS = [
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Рецепттер'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_recipes_calculator'},
-            {'title': 'Калькулятордсуз', 'url_name': 'real_life_recipes_non_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'real_life_recipes_non_calculator'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -923,7 +923,7 @@ GROUPS = [
         'parent_path': ('Пропорция', 'Турмуштук колдонуулар', 'Аралаш'),
         'target_items': [
             {'title': 'Калькулятор менен', 'url_name': 'real_life_mixed_calculator'},
-            {'title': 'Калькулятордсуз', 'url_name': 'real_life_mixed_non_calculator'},
+            {'title': 'Калькуляторсуз', 'url_name': 'real_life_mixed_non_calculator'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
