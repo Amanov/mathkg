@@ -1371,6 +1371,23 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Ордуна коюу" (Substitution, renamed from "Коюу" per the
+        # user's request - see the Algebra-root CHILD_ORDER_FIXES entry
+        # below) was an empty top-level category. Reference (5 items):
+        # With a Calculator, Vectors are flat; Using Symbols, Without
+        # Indices, With Indices are chevron-bearing categories (created
+        # via 'create_subsubtopics' below, left empty pending
+        # screenshots of their own contents).
+        'parent_path': ('Алгебра', 'Ордуна коюу'),
+        'target_items': [
+            {'title': 'Калькулятор менен', 'url_name': 'algebra_substitution_with_calculator'},
+            {'title': 'Векторлор', 'url_name': 'algebra_substitution_vectors'},
+        ],
+        'promoted_titles': ['Белгилерди колдонуу', 'Даражасыз', 'Даража менен'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1720,7 +1737,13 @@ CHILD_ORDER_FIXES = [
         # reference at all - confirmed with the user to drop it, so it's
         # left out of 'order' below and pruned by this entry's own
         # cleanup step (only the nav entry is removed; its underlying
-        # page, if any, is untouched).
+        # page, if any, is untouched). "Коюу" (Substitution) has since
+        # been renamed to "Ордуна коюу" per the user's request - removed
+        # from 'create_subsubtopics' now that it exists in both dev and
+        # production (re-declaring it here would just create a
+        # duplicate every run once its title no longer matches, same
+        # reasoning as "Percentages: Non-Calculator" below), fixed via
+        # the 'renames' entry instead.
         'parent_path': ('Алгебра',),
         'create_subsubtopics': [
             {'title': 'Графиктер: абстракттуу', 'slug': 'graphs-abstract'},
@@ -1728,7 +1751,9 @@ CHILD_ORDER_FIXES = [
             {'title': 'Барабарсыздыктар', 'slug': 'inequalities'},
             {'title': 'Түрлөндүрүү', 'slug': 'manipulation'},
             {'title': 'Ырааттуулуктар', 'slug': 'sequences'},
-            {'title': 'Коюу', 'slug': 'substitution'},
+        ],
+        'renames': [
+            {'from': 'Коюу', 'to': 'Ордуна коюу'},
         ],
         'order': [
             'Киришүү',
@@ -1741,7 +1766,7 @@ CHILD_ORDER_FIXES = [
             'Барабарсыздыктар',
             'Түрлөндүрүү',
             'Ырааттуулуктар',
-            'Коюу',
+            'Ордуна коюу',
         ],
     },
     {
@@ -1981,6 +2006,28 @@ CHILD_ORDER_FIXES = [
             'Фибоначчи',
             'Атайын',
             'Аралаш',
+        ],
+    },
+    {
+        # "Белгилерди колдонуу", "Даражасыз", "Даража менен" are created
+        # here (fresh chevron-bearing categories, left empty pending
+        # screenshots of their own contents) - depends on the
+        # Algebra-root entry above having already renamed "Коюу" to
+        # "Ордуна коюу" this same run (it appears earlier in this list),
+        # then a further cross-run dependency for its own GROUPS entry
+        # to find this parent, same pattern as the other fixes above.
+        'parent_path': ('Алгебра', 'Ордуна коюу'),
+        'create_subsubtopics': [
+            {'title': 'Белгилерди колдонуу', 'slug': 'substitution-using-symbols'},
+            {'title': 'Даражасыз', 'slug': 'substitution-without-indices'},
+            {'title': 'Даража менен', 'slug': 'substitution-with-indices'},
+        ],
+        'order': [
+            'Белгилерди колдонуу',
+            'Даражасыз',
+            'Даража менен',
+            'Калькулятор менен',
+            'Векторлор',
         ],
     },
 ]
