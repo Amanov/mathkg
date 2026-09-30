@@ -565,6 +565,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     # real page yet.
     'algebra-quadratic-rational-without-coefficients': 'Коэффициентсиз',
     'algebra-quadratic-rational-with-coefficients': 'Коэффициент менен',
+
+    # Теңдемелер: системасы > Жоюу ыкмасы - all 3 slots, none with a
+    # real page yet.
+    'algebra-simultaneous-elimination-without-balancing': 'Коэффициенттерди теңдөөсүз',
+    'algebra-simultaneous-elimination-with-balancing': 'Коэффициенттерди теңдөө менен',
+    'algebra-simultaneous-elimination-negative-only': 'Терс коэффициенттер гана',
+
+    # Теңдемелер: системасы > Сызыктуу жана сызыктуу эмес - both slots,
+    # none with a real page yet.
+    'algebra-simultaneous-linear-non-linear-algebraically': 'Алгебралык жол менен',
+    'algebra-simultaneous-linear-non-linear-graphically': 'Графикалык жол менен',
 }
 
 
