@@ -466,6 +466,12 @@ urlpatterns = [
     path('graphs-velocity-time-acceleration/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time-acceleration'}, name='graphs_velocity_time_acceleration'),
     path('graphs-velocity-time-mixed/', operation_placeholder_view, {'operation_slug': 'graphs-velocity-time-mixed'}, name='graphs_velocity_time_mixed'),
 
+    # Пайыздар: калькулятор менен > Туюнтуу - all 3 slots, none with a
+    # real page yet.
+    path('percentages-expressing-converting-fractions/', operation_placeholder_view, {'operation_slug': 'percentages-expressing-converting-fractions'}, name='percentages_expressing_converting_fractions'),
+    path('percentages-expressing-quantity/', operation_placeholder_view, {'operation_slug': 'percentages-expressing-quantity'}, name='percentages_expressing_quantity'),
+    path('percentages-expressing-change/', operation_placeholder_view, {'operation_slug': 'percentages-expressing-change'}, name='percentages_expressing_change'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

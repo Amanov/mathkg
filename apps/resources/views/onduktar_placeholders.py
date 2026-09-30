@@ -366,6 +366,12 @@ OPERATION_PLACEHOLDER_TITLES = {
     'graphs-velocity-time-distance': 'Аралык',
     'graphs-velocity-time-acceleration': 'Ылдамдануу',
     'graphs-velocity-time-mixed': 'Аралаш',
+
+    # Пайыздар: калькулятор менен > Туюнтуу - none of these 3 have a real
+    # hand-built page yet.
+    'percentages-expressing-converting-fractions': 'Бөлчөктөрдү айландыруу',
+    'percentages-expressing-quantity': 'Чоңдук',
+    'percentages-expressing-change': 'Өзгөрүү',
 }
 
 
