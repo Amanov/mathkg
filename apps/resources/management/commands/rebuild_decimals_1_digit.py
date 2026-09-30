@@ -961,30 +961,113 @@ GROUPS = [
     {
         # "Теңдемелер: сызыктуу" (Equations: Linear) already had 4
         # chevron-bearing children from the original taxonomy import, all
-        # still empty. Reference shows 10 items, only 2 of them
-        # (Кашаа менен/With Brackets, kept; Функциялар менен/With
-        # Functions, brand new) chevron-bearing - the other 8 are flat
-        # leaves, so "Түзүү", "Белгисиз бир жагында" (split into
-        # Calculator/Non-Calculator) and "Белгисиз эки жагында" lose
-        # their empty category status and get rebuilt as real flat
-        # pages here (safe since each had 0 children of its own - no
-        # content lost, same "prune the empty category, target_items
-        # recreates it as a leaf" fix as Ratios & Quantities earlier).
-        # "Функциялар менен" is created via 'create_subsubtopics' below
-        # and protected here via 'promoted_titles' alongside the kept
-        # "Кашаа менен".
+        # still empty. Corrected: further screenshots revealed "Түзүү",
+        # both "Белгисиз бир жагында" variants, and "Белгисиз эки
+        # жагында" all have their own chevron children too (an earlier
+        # pass wrongly built them as flat leaves). Their old url_names
+        # are one-time-deleted via 'displaced_url_names' below (so the
+        # wrong-type flat MenuItems are gone for good, letting
+        # CHILD_ORDER_FIXES's 'create_subsubtopics' recreate each as a
+        # proper empty category), while their titles are ALSO in
+        # 'promoted_titles' - needed permanently, not just for the
+        # transition, since without it this entry's own pruning step
+        # would delete the newly-recreated categories again on every
+        # later run (they're not flat leaves in target_items, so nothing
+        # else protects them). Only 4 of the original 8 flat items remain
+        # flat here; each promoted category is filled by its own
+        # dedicated GROUPS entry below.
         'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу'),
         'target_items': [
-            {'title': 'Түзүү', 'url_name': 'algebra_linear_forming'},
-            {'title': 'Белгисиз бир жагында: калькулятор менен', 'url_name': 'algebra_linear_variable_one_side_calculator'},
-            {'title': 'Белгисиз бир жагында: калькуляторсуз', 'url_name': 'algebra_linear_variable_one_side_non_calculator'},
-            {'title': 'Белгисиз эки жагында', 'url_name': 'algebra_linear_variable_both_sides'},
             {'title': 'Рационалдык', 'url_name': 'algebra_linear_rational'},
             {'title': 'Аралаш', 'url_name': 'algebra_linear_mixed'},
             {'title': 'Барабарсыздыктар', 'url_name': 'algebra_linear_inequalities'},
             {'title': 'Белгисиз даражалар менен', 'url_name': 'algebra_linear_unknown_indices'},
         ],
-        'promoted_titles': ['Кашаа менен', 'Функциялар менен'],
+        'promoted_titles': [
+            'Кашаа менен', 'Функциялар менен', 'Түзүү',
+            'Белгисиз бир жагында: калькулятор менен',
+            'Белгисиз бир жагында: калькуляторсуз',
+            'Белгисиз эки жагында',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [
+            'algebra_linear_forming',
+            'algebra_linear_variable_one_side_calculator',
+            'algebra_linear_variable_one_side_non_calculator',
+            'algebra_linear_variable_both_sides',
+        ],
+    },
+    {
+        # "Кашаа менен" (With Brackets) already existed as a chevron-
+        # bearing SubSubtopic under Теңдемелер: сызыктуу - it just had no
+        # children yet. Reference (3 items): Without Coefficients, With
+        # Coefficients, Multiple.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу', 'Кашаа менен'),
+        'target_items': [
+            {'title': 'Коэффициентсиз', 'url_name': 'algebra_linear_brackets_without_coefficients'},
+            {'title': 'Коэффициент менен', 'url_name': 'algebra_linear_brackets_with_coefficients'},
+            {'title': 'Бир нече', 'url_name': 'algebra_linear_brackets_multiple'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Түзүү" (Forming) under Теңдемелер: сызыктуу is a fresh
+        # chevron-bearing category, created via 'create_subsubtopics'
+        # below before this entry can find it. Reference (3 items):
+        # Shapes/Angles & Real Life, With Function Machines, With
+        # Functions & Sequences.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу', 'Түзүү'),
+        'target_items': [
+            {'title': 'Фигуралар, бурчтар жана турмуштук маселелер', 'url_name': 'algebra_linear_forming_shapes_angles_real_life'},
+            {'title': 'Функция машиналары менен', 'url_name': 'algebra_linear_forming_function_machines'},
+            {'title': 'Функциялар жана ырааттуулуктар менен', 'url_name': 'algebra_linear_forming_functions_sequences'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Белгисиз бир жагында: калькулятор менен" (Variable on One
+        # Side: Calculator) is a fresh chevron-bearing category, created
+        # via 'create_subsubtopics' below. Reference (4 items): 1-Step,
+        # 2-Step, 3-Step, Mixed.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу', 'Белгисиз бир жагында: калькулятор менен'),
+        'target_items': [
+            {'title': '1-кадам', 'url_name': 'algebra_linear_var1side_calc_1step'},
+            {'title': '2-кадам', 'url_name': 'algebra_linear_var1side_calc_2step'},
+            {'title': '3-кадам', 'url_name': 'algebra_linear_var1side_calc_3step'},
+            {'title': 'Аралаш', 'url_name': 'algebra_linear_var1side_calc_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Белгисиз бир жагында: калькуляторсуз" (Variable on One Side:
+        # Non-Calculator) is a fresh chevron-bearing category, created
+        # via 'create_subsubtopics' below. Reference (4 items): 1-Step,
+        # 2-Step, 3-Step, Rational.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу', 'Белгисиз бир жагында: калькуляторсуз'),
+        'target_items': [
+            {'title': '1-кадам', 'url_name': 'algebra_linear_var1side_noncalc_1step'},
+            {'title': '2-кадам', 'url_name': 'algebra_linear_var1side_noncalc_2step'},
+            {'title': '3-кадам', 'url_name': 'algebra_linear_var1side_noncalc_3step'},
+            {'title': 'Рационалдык', 'url_name': 'algebra_linear_var1side_noncalc_rational'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Белгисиз эки жагында" (Variable on Both Sides) is a fresh
+        # chevron-bearing category, created via 'create_subsubtopics'
+        # below. Reference (4 items): Without Brackets, With Brackets,
+        # Graphical Intersections, With Parallel Lines.
+        'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу', 'Белгисиз эки жагында'),
+        'target_items': [
+            {'title': 'Кашаасыз', 'url_name': 'algebra_linear_var_both_sides_without_brackets'},
+            {'title': 'Кашаа менен', 'url_name': 'algebra_linear_var_both_sides_with_brackets'},
+            {'title': 'Графиктердин кесилиши', 'url_name': 'algebra_linear_var_both_sides_graphical_intersections'},
+            {'title': 'Параллель сызыктар менен', 'url_name': 'algebra_linear_var_both_sides_parallel_lines'},
+        ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
@@ -1428,21 +1511,27 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # "Функциялар менен" is created here (a fresh chevron-bearing
-        # child of Теңдемелер: сызыктуу) before its own GROUPS entry can
-        # find it. The final order below interleaves it and the kept
-        # "Кашаа менен" among the 8 flat leaves that GROUPS' target_items
-        # builds (target_items' own sequential numbering doesn't leave
-        # room for these 2 categories, so this explicit order fixes the
-        # final positions to match the reference exactly). Note: since
-        # GROUPS' target_items always resets those 8 leaves back to its
-        # own 1..8 numbering on every run (it doesn't know about the 2
-        # interleaved categories), this entry's reordering re-fires every
+        # "Функциялар менен" plus 4 more (Түзүү, both Белгисиз бир
+        # жагында variants, Белгисиз эки жагында - each pruned as the
+        # wrong node type by the GROUPS entry above, then recreated here
+        # as proper empty categories) are created before their own
+        # GROUPS entries can find them (2-run cross-run dependency). The
+        # final order below interleaves these 5 categories and the kept
+        # "Кашаа менен" among the 4 flat leaves GROUPS' target_items
+        # builds (its own sequential numbering doesn't leave room for
+        # 6 categories, so this explicit order fixes the final positions
+        # to match the reference exactly). Note: since GROUPS' own
+        # target_items always resets those 4 leaves back to its own
+        # numbering on every run, this entry's reordering re-fires every
         # run too - cosmetic log noise only, the end state each run is
         # identical and correct, same as Теңдемелер: системасы below.
         'parent_path': ('Алгебра', 'Теңдемелер: сызыктуу'),
         'create_subsubtopics': [
             {'title': 'Функциялар менен', 'slug': 'with-functions'},
+            {'title': 'Түзүү', 'slug': 'forming'},
+            {'title': 'Белгисиз бир жагында: калькулятор менен', 'slug': 'variable-on-one-side-calculator'},
+            {'title': 'Белгисиз бир жагында: калькуляторсуз', 'slug': 'variable-on-one-side-non-calculator'},
+            {'title': 'Белгисиз эки жагында', 'slug': 'variable-on-both-sides'},
         ],
         'order': [
             'Түзүү',

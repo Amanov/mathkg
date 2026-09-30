@@ -601,6 +601,39 @@ urlpatterns = [
     path('algebra-simultaneous-graphically/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-graphically'}, name='algebra_simultaneous_graphically'),
     path('algebra-simultaneous-linear-non-linear/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-linear-non-linear'}, name='algebra_simultaneous_linear_non_linear'),
 
+    # Теңдемелер: сызыктуу > Кашаа менен - all 3 slots, none with a
+    # real page yet.
+    path('algebra-linear-brackets-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-linear-brackets-without-coefficients'}, name='algebra_linear_brackets_without_coefficients'),
+    path('algebra-linear-brackets-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-linear-brackets-with-coefficients'}, name='algebra_linear_brackets_with_coefficients'),
+    path('algebra-linear-brackets-multiple/', operation_placeholder_view, {'operation_slug': 'algebra-linear-brackets-multiple'}, name='algebra_linear_brackets_multiple'),
+
+    # Теңдемелер: сызыктуу > Түзүү - all 3 slots, none with a real page
+    # yet.
+    path('algebra-linear-forming-shapes-angles-real-life/', operation_placeholder_view, {'operation_slug': 'algebra-linear-forming-shapes-angles-real-life'}, name='algebra_linear_forming_shapes_angles_real_life'),
+    path('algebra-linear-forming-function-machines/', operation_placeholder_view, {'operation_slug': 'algebra-linear-forming-function-machines'}, name='algebra_linear_forming_function_machines'),
+    path('algebra-linear-forming-functions-sequences/', operation_placeholder_view, {'operation_slug': 'algebra-linear-forming-functions-sequences'}, name='algebra_linear_forming_functions_sequences'),
+
+    # Теңдемелер: сызыктуу > Белгисиз бир жагында: калькулятор менен -
+    # all 4 slots, none with a real page yet.
+    path('algebra-linear-var1side-calc-1step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-calc-1step'}, name='algebra_linear_var1side_calc_1step'),
+    path('algebra-linear-var1side-calc-2step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-calc-2step'}, name='algebra_linear_var1side_calc_2step'),
+    path('algebra-linear-var1side-calc-3step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-calc-3step'}, name='algebra_linear_var1side_calc_3step'),
+    path('algebra-linear-var1side-calc-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-calc-mixed'}, name='algebra_linear_var1side_calc_mixed'),
+
+    # Теңдемелер: сызыктуу > Белгисиз бир жагында: калькуляторсуз - all
+    # 4 slots, none with a real page yet.
+    path('algebra-linear-var1side-noncalc-1step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-1step'}, name='algebra_linear_var1side_noncalc_1step'),
+    path('algebra-linear-var1side-noncalc-2step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-2step'}, name='algebra_linear_var1side_noncalc_2step'),
+    path('algebra-linear-var1side-noncalc-3step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-3step'}, name='algebra_linear_var1side_noncalc_3step'),
+    path('algebra-linear-var1side-noncalc-rational/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-rational'}, name='algebra_linear_var1side_noncalc_rational'),
+
+    # Теңдемелер: сызыктуу > Белгисиз эки жагында - all 4 slots, none
+    # with a real page yet.
+    path('algebra-linear-var-both-sides-without-brackets/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-without-brackets'}, name='algebra_linear_var_both_sides_without_brackets'),
+    path('algebra-linear-var-both-sides-with-brackets/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-with-brackets'}, name='algebra_linear_var_both_sides_with_brackets'),
+    path('algebra-linear-var-both-sides-graphical-intersections/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-graphical-intersections'}, name='algebra_linear_var_both_sides_graphical_intersections'),
+    path('algebra-linear-var-both-sides-parallel-lines/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-parallel-lines'}, name='algebra_linear_var_both_sides_parallel_lines'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

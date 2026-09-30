@@ -516,6 +516,39 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-simultaneous-mixed': 'Аралаш',
     'algebra-simultaneous-graphically': 'Графикалык жол менен',
     'algebra-simultaneous-linear-non-linear': 'Сызыктуу жана сызыктуу эмес',
+
+    # Теңдемелер: сызыктуу > Кашаа менен - all 3 slots, none with a
+    # real page yet.
+    'algebra-linear-brackets-without-coefficients': 'Коэффициентсиз',
+    'algebra-linear-brackets-with-coefficients': 'Коэффициент менен',
+    'algebra-linear-brackets-multiple': 'Бир нече',
+
+    # Теңдемелер: сызыктуу > Түзүү - all 3 slots, none with a real page
+    # yet.
+    'algebra-linear-forming-shapes-angles-real-life': 'Фигуралар, бурчтар жана турмуштук маселелер',
+    'algebra-linear-forming-function-machines': 'Функция машиналары менен',
+    'algebra-linear-forming-functions-sequences': 'Функциялар жана ырааттуулуктар менен',
+
+    # Теңдемелер: сызыктуу > Белгисиз бир жагында: калькулятор менен -
+    # all 4 slots, none with a real page yet.
+    'algebra-linear-var1side-calc-1step': '1-кадам',
+    'algebra-linear-var1side-calc-2step': '2-кадам',
+    'algebra-linear-var1side-calc-3step': '3-кадам',
+    'algebra-linear-var1side-calc-mixed': 'Аралаш',
+
+    # Теңдемелер: сызыктуу > Белгисиз бир жагында: калькуляторсуз - all
+    # 4 slots, none with a real page yet.
+    'algebra-linear-var1side-noncalc-1step': '1-кадам',
+    'algebra-linear-var1side-noncalc-2step': '2-кадам',
+    'algebra-linear-var1side-noncalc-3step': '3-кадам',
+    'algebra-linear-var1side-noncalc-rational': 'Рационалдык',
+
+    # Теңдемелер: сызыктуу > Белгисиз эки жагында - all 4 slots, none
+    # with a real page yet.
+    'algebra-linear-var-both-sides-without-brackets': 'Кашаасыз',
+    'algebra-linear-var-both-sides-with-brackets': 'Кашаа менен',
+    'algebra-linear-var-both-sides-graphical-intersections': 'Графиктердин кесилиши',
+    'algebra-linear-var-both-sides-parallel-lines': 'Параллель сызыктар менен',
 }
 
 
