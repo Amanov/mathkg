@@ -1268,6 +1268,41 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # Алгебра (root Topic) already has 6 children from the original
+        # taxonomy import (Киришүү, Туюнтмаларды түзүү, Теңдемелер:
+        # сызыктуу/квадраттык/системасы, Функциялар) - reference adds 6
+        # more chevron-bearing siblings: Графиктер: абстракттуу,
+        # Графиктер: турмуштук, Барабарсыздыктар, Түрлөндүрүү,
+        # Ырааттуулуктар, Коюу. "Туюнтмаларды түзүү" (Forming
+        # Expressions) isn't in this reference screenshot at all - kept
+        # in its existing position (right after Introduction) rather
+        # than dropped, since nothing here justifies deleting real
+        # existing content; flagged for the user to confirm placement.
+        'parent_path': ('Алгебра',),
+        'create_subsubtopics': [
+            {'title': 'Графиктер: абстракттуу', 'slug': 'graphs-abstract'},
+            {'title': 'Графиктер: турмуштук', 'slug': 'graphs-real-life'},
+            {'title': 'Барабарсыздыктар', 'slug': 'inequalities'},
+            {'title': 'Түрлөндүрүү', 'slug': 'manipulation'},
+            {'title': 'Ырааттуулуктар', 'slug': 'sequences'},
+            {'title': 'Коюу', 'slug': 'substitution'},
+        ],
+        'order': [
+            'Киришүү',
+            'Туюнтмаларды түзүү',
+            'Теңдемелер: сызыктуу',
+            'Теңдемелер: квадраттык',
+            'Теңдемелер: системасы',
+            'Функциялар',
+            'Графиктер: абстракттуу',
+            'Графиктер: турмуштук',
+            'Барабарсыздыктар',
+            'Түрлөндүрүү',
+            'Ырааттуулуктар',
+            'Коюу',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
