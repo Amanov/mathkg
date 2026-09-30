@@ -265,7 +265,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'compound-population-density': 'Калктын калыңдыгы',
     'compound-pressure-force-area': 'Басым, күч жана аянт',
     'compound-rates-of-pay': 'Эмгек акы ставкалары',
-    'compound-speed-distance-time': 'Ылдамдык, аралык жана убакыт',
+    # Renamed from "Ылдамдык, аралык жана убакыт" - this url_name now
+    # belongs to the "Introduction" child of the Speed, Distance & Time
+    # category (see PROMOTE_LEAVES in rebuild_decimals_1_digit.py),
+    # which took over the category's old title as its own nav label.
+    'compound-speed-distance-time': 'Киришүү',
 
     # Өлчөмдөр > Акча - none of these 5 have a real hand-built page yet.
     'measures-money-purchasing-calculator': 'Сатып алуу: калькулятор менен',
@@ -302,6 +306,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     'time-timetables': 'Жүрүш тартиби',
     'time-calculations': 'Эсептөөлөр',
     'time-converting': 'Айландыруу',
+
+    # Татаал өлчөмдөр > Ылдамдык, аралык жана убакыт (Speed, Distance &
+    # Time, promoted to a category) - none of these 3 new children have
+    # a real hand-built page yet.
+    'speed-distance-time-converting-speeds': 'Ылдамдыкты айландыруу',
+    'speed-distance-time-two-stage-journeys': 'Эки этаптуу саякаттар',
+    'speed-distance-time-relative-speeds': 'Салыштырмалуу ылдамдыктар',
 
     # Стандарттык форма > Көбөйтүү жана бөлүү - neither of these 2 have a
     # real hand-built page yet.

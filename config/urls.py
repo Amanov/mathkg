@@ -394,6 +394,13 @@ urlpatterns = [
     path('time-calculations/', operation_placeholder_view, {'operation_slug': 'time-calculations'}, name='time_calculations'),
     path('time-converting/', operation_placeholder_view, {'operation_slug': 'time-converting'}, name='time_converting'),
 
+    # Татаал өлчөмдөр > Ылдамдык, аралык жана убакыт (Speed, Distance &
+    # Time, promoted to a category) - all 3 new children, none with a
+    # real page yet.
+    path('speed-distance-time-converting-speeds/', operation_placeholder_view, {'operation_slug': 'speed-distance-time-converting-speeds'}, name='speed_distance_time_converting_speeds'),
+    path('speed-distance-time-two-stage-journeys/', operation_placeholder_view, {'operation_slug': 'speed-distance-time-two-stage-journeys'}, name='speed_distance_time_two_stage_journeys'),
+    path('speed-distance-time-relative-speeds/', operation_placeholder_view, {'operation_slug': 'speed-distance-time-relative-speeds'}, name='speed_distance_time_relative_speeds'),
+
     # Стандарттык форма > Көбөйтүү жана бөлүү - both slots, none with a
     # real page yet.
     path('standard-form-multiplying-dividing-calculator/', operation_placeholder_view, {'operation_slug': 'standard-form-multiplying-dividing-calculator'}, name='standard_form_multiplying_dividing_calculator'),
