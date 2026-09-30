@@ -1074,19 +1074,23 @@ GROUPS = [
     {
         # "Теңдемелер: квадраттык" (Equations: Quadratic) already had 2
         # chevron-bearing children (Көбөйтүүчүлөргө ажыратуу, Ыкмалар),
-        # both still empty. Reference shows 13 items, none chevron-
-        # bearing (all flat leaves, including a more specific
-        # factorisation title) - both old categories are replaced, same
-        # prune-and-rebuild-as-leaves reasoning as Equations: Linear
-        # above. Screenshot's list may continue past "Barabarsyzdyktar"
-        # (a partial "M" is cut off at the bottom edge) - these 13 are
-        # what's clearly visible; flagged for the user to confirm this
-        # is the complete list.
+        # both still empty. Corrected: further screenshots confirmed
+        # "Көбөйтүүчүлөргө ажыратуу: эки кашаа менен" and "b = 0" both
+        # have their own chevron children (same misread as Equations:
+        # Linear) - removed from target_items, one-time-cleaned via
+        # 'displaced_url_names', recreated as categories via
+        # CHILD_ORDER_FIXES, protected via 'promoted_titles', each filled
+        # by its own dedicated GROUPS entry below. The screenshots gave
+        # inconsistent signals on whether "c = 0", "Completing the
+        # Square", "Rational", "Quadratic Formula" and "Forming" also
+        # have chevrons - left as flat leaves for now pending clearer
+        # screenshots of each. Screenshot's list may also continue past
+        # "Barabarsyzdyktar" (a partial line was cut off in an earlier
+        # screenshot) - flagged for the user to confirm this is the
+        # complete list.
         'parent_path': ('Алгебра', 'Теңдемелер: квадраттык'),
         'target_items': [
             {'title': 'Түзүү', 'url_name': 'algebra_quadratic_forming'},
-            {'title': 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'url_name': 'algebra_quadratic_factorisation_double_brackets'},
-            {'title': 'b = 0', 'url_name': 'algebra_quadratic_b_zero'},
             {'title': 'c = 0', 'url_name': 'algebra_quadratic_c_zero'},
             {'title': 'Толук квадратка келтирүү', 'url_name': 'algebra_quadratic_completing_square'},
             {'title': 'Рационалдык', 'url_name': 'algebra_quadratic_rational'},
@@ -1097,6 +1101,38 @@ GROUPS = [
             {'title': 'Кайталануу', 'url_name': 'algebra_quadratic_iteration'},
             {'title': 'Кесилишүү аркылуу', 'url_name': 'algebra_quadratic_by_intersection'},
             {'title': 'Барабарсыздыктар', 'url_name': 'algebra_quadratic_inequalities'},
+        ],
+        'promoted_titles': [
+            'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'b = 0',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [
+            'algebra_quadratic_factorisation_double_brackets',
+            'algebra_quadratic_b_zero',
+        ],
+    },
+    {
+        # "Көбөйтүүчүлөргө ажыратуу: эки кашаа менен" (Factorisation:
+        # Double Brackets) is a fresh chevron-bearing category, created
+        # via 'create_subsubtopics' below. Reference (2 items): Without
+        # Coefficients, With Coefficients.
+        'parent_path': ('Алгебра', 'Теңдемелер: квадраттык', 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен'),
+        'target_items': [
+            {'title': 'Коэффициентсиз', 'url_name': 'algebra_quadratic_factorisation_without_coefficients'},
+            {'title': 'Коэффициент менен', 'url_name': 'algebra_quadratic_factorisation_with_coefficients'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "b = 0" is a fresh chevron-bearing category, created via
+        # 'create_subsubtopics' below. Reference (3 items): Rearranging,
+        # Difference of Two Squares, Mixed.
+        'parent_path': ('Алгебра', 'Теңдемелер: квадраттык', 'b = 0'),
+        'target_items': [
+            {'title': 'Кайра жайгаштыруу', 'url_name': 'algebra_quadratic_b_zero_rearranging'},
+            {'title': 'Эки квадраттын айырмасы', 'url_name': 'algebra_quadratic_b_zero_difference_of_squares'},
+            {'title': 'Аралаш', 'url_name': 'algebra_quadratic_b_zero_mixed'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1544,6 +1580,35 @@ CHILD_ORDER_FIXES = [
             'Барабарсыздыктар',
             'Функциялар менен',
             'Белгисиз даражалар менен',
+        ],
+    },
+    {
+        # "Көбөйтүүчүлөргө ажыратуу: эки кашаа менен" and "b = 0" are
+        # created here (fresh chevron-bearing categories) before their
+        # own GROUPS entries can find them - 2-run cross-run dependency,
+        # same as Теңдемелер: сызыктуу above. The final order below
+        # interleaves them among the 11 flat leaves GROUPS' target_items
+        # builds (same cosmetic every-run reorder noise as Теңдемелер:
+        # сызыктуу - the end state each run is identical and correct).
+        'parent_path': ('Алгебра', 'Теңдемелер: квадраттык'),
+        'create_subsubtopics': [
+            {'title': 'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен', 'slug': 'factorisation-double-brackets'},
+            {'title': 'b = 0', 'slug': 'b-equals-0'},
+        ],
+        'order': [
+            'Түзүү',
+            'Көбөйтүүчүлөргө ажыратуу: эки кашаа менен',
+            'b = 0',
+            'c = 0',
+            'Толук квадратка келтирүү',
+            'Рационалдык',
+            'Квадраттык теңдеме формуласы',
+            'Чечими жок теңдемелер',
+            'Аралаш',
+            'Сыноо жана жакшыртуу',
+            'Кайталануу',
+            'Кесилишүү аркылуу',
+            'Барабарсыздыктар',
         ],
     },
     {

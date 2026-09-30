@@ -646,6 +646,17 @@ urlpatterns = [
     path('algebra-linear-var-both-sides-graphical-intersections/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-graphical-intersections'}, name='algebra_linear_var_both_sides_graphical_intersections'),
     path('algebra-linear-var-both-sides-parallel-lines/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var-both-sides-parallel-lines'}, name='algebra_linear_var_both_sides_parallel_lines'),
 
+    # Теңдемелер: квадраттык > Көбөйтүүчүлөргө ажыратуу: эки кашаа
+    # менен - both slots, none with a real page yet.
+    path('algebra-quadratic-factorisation-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-factorisation-without-coefficients'}, name='algebra_quadratic_factorisation_without_coefficients'),
+    path('algebra-quadratic-factorisation-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-factorisation-with-coefficients'}, name='algebra_quadratic_factorisation_with_coefficients'),
+
+    # Теңдемелер: квадраттык > b = 0 - all 3 slots, none with a real
+    # page yet.
+    path('algebra-quadratic-b-zero-rearranging/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-b-zero-rearranging'}, name='algebra_quadratic_b_zero_rearranging'),
+    path('algebra-quadratic-b-zero-difference-of-squares/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-b-zero-difference-of-squares'}, name='algebra_quadratic_b_zero_difference_of_squares'),
+    path('algebra-quadratic-b-zero-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-quadratic-b-zero-mixed'}, name='algebra_quadratic_b_zero_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

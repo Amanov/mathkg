@@ -549,6 +549,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-linear-var-both-sides-with-brackets': 'Кашаа менен',
     'algebra-linear-var-both-sides-graphical-intersections': 'Графиктердин кесилиши',
     'algebra-linear-var-both-sides-parallel-lines': 'Параллель сызыктар менен',
+
+    # Теңдемелер: квадраттык > Көбөйтүүчүлөргө ажыратуу: эки кашаа
+    # менен - both slots, none with a real page yet.
+    'algebra-quadratic-factorisation-without-coefficients': 'Коэффициентсиз',
+    'algebra-quadratic-factorisation-with-coefficients': 'Коэффициент менен',
+
+    # Теңдемелер: квадраттык > b = 0 - all 3 slots, none with a real
+    # page yet.
+    'algebra-quadratic-b-zero-rearranging': 'Кайра жайгаштыруу',
+    'algebra-quadratic-b-zero-difference-of-squares': 'Эки квадраттын айырмасы',
+    'algebra-quadratic-b-zero-mixed': 'Аралаш',
 }
 
 
