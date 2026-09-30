@@ -397,6 +397,28 @@ OPERATION_PLACEHOLDER_TITLES = {
     'percentages-repeated-change-increase-decrease': 'Көбөйтүү жана азайтуу',
     'percentages-repeated-change-reverse': 'Тескери',
     'percentages-repeated-change-mixed': 'Аралаш',
+
+    # Пайыздар: калькулятордсуз > Туюнтуу - only 2 have a real
+    # hand-built page yet ("Converting Fractions" is mirrored in via
+    # MIRROR_NODES, not a flat leaf here).
+    'percentages-noncalc-expressing-quantity': 'Чоңдук',
+    'percentages-noncalc-expressing-change': 'Өзгөрүү',
+
+    # Пайыздар: калькулятордсуз > Чоңдуктун пайызы - none of these 6
+    # have a real hand-built page yet.
+    'percentages-noncalc-quantity-10s': '10дор менен',
+    'percentages-noncalc-quantity-5s': '5тер менен',
+    'percentages-noncalc-quantity-integer-decimal': 'Бүтүн сан жана ондук бөлчөк',
+    'percentages-noncalc-quantity-reverse': 'Тескери',
+    'percentages-noncalc-quantity-fpr': 'Бөлчөк, пайыз жана катыш',
+    'percentages-noncalc-quantity-fpr-frequency-trees': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен',
+
+    # Пайыздар: калькулятордсуз > Көбөйтүү жана азайтуу - none of these 4
+    # have a real hand-built page yet.
+    'percentages-noncalc-incdec-increase': 'Көбөйтүү',
+    'percentages-noncalc-incdec-decrease': 'Азайтуу',
+    'percentages-noncalc-incdec-mixed': 'Аралаш',
+    'percentages-noncalc-incdec-reverse': 'Тескери',
 }
 
 
