@@ -607,6 +607,29 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Графиктер" (renamed from "Айландыруу графиктери" - see
+        # CHILD_ORDER_FIXES's ('Пропорция',) entry - only had 0 children
+        # either way). Referenced here by its final/renamed title, so on
+        # a from-scratch run this entry doesn't find it until the rename
+        # runs (GROUPS runs before CHILD_ORDER_FIXES) - settles on a
+        # second run, same as other cross-mechanism dependencies here.
+        'parent_path': ('Пропорция', 'Графиктер'),
+        'target_items': [
+            {'title': 'Пропорционалдуу графиктерди аныктоо', 'url_name': 'graphs_identifying_proportional'},
+            {'title': 'Айландыруу графиктери', 'url_name': 'graphs_conversion_graphs'},
+            {'title': 'Баа мамилелери', 'url_name': 'graphs_cost_relationships'},
+            {'title': 'Тереңдик-убакыт', 'url_name': 'graphs_depth_time'},
+            {'title': 'Көлөм-убакыт', 'url_name': 'graphs_volume_time'},
+            {'title': 'Аралаш', 'url_name': 'graphs_mixed'},
+            {'title': 'Аралык-убакыт: туруктуу ылдамдыктар', 'url_name': 'graphs_distance_time_constant_speeds'},
+            {'title': 'Аралык-убакыт: өзгөрмө ылдамдыктар', 'url_name': 'graphs_distance_time_variable_speeds'},
+            {'title': 'Ылдамдык-убакыт', 'url_name': 'graphs_velocity_time'},
+            {'title': 'Аралаш: аралык жана ылдамдык', 'url_name': 'graphs_mixed_distance_velocity'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -815,9 +838,14 @@ CHILD_ORDER_FIXES = [
         # өлчөмдөр" (Compound Measures) rather than losing any content.
         # "Percentages: Non-Calculator" doesn't exist anywhere yet -
         # created via 'create_subsubtopics' like Пропорция's siblings.
+        # "Айландыруу графиктери" (Conversion Graphs, over-specific) is
+        # renamed to the general "Графиктер" (Graphs) for the same
+        # reason as Compound Measures above - its own reference submenu
+        # has a "Conversion Graphs" child of its own now.
         'parent_path': ('Пропорция',),
         'renames': [
             {'from': 'Ылдамдык, аралык жана убакыт', 'to': 'Татаал өлчөмдөр'},
+            {'from': 'Айландыруу графиктери', 'to': 'Графиктер'},
         ],
         'create_subsubtopics': [
             {'title': 'Пайыздар: калькулятордсуз', 'slug': 'percentages-non-calculator'},
@@ -825,7 +853,7 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Татаал өлчөмдөр',
             'Түз жана тескери пропорция',
-            'Айландыруу графиктери',
+            'Графиктер',
             'Пайыздар: калькулятор менен',
             'Пайыздар: калькулятордсуз',
             'Катыш',
