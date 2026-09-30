@@ -1269,16 +1269,15 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # Алгебра (root Topic) already has 6 children from the original
-        # taxonomy import (Киришүү, Туюнтмаларды түзүү, Теңдемелер:
-        # сызыктуу/квадраттык/системасы, Функциялар) - reference adds 6
-        # more chevron-bearing siblings: Графиктер: абстракттуу,
-        # Графиктер: турмуштук, Барабарсыздыктар, Түрлөндүрүү,
-        # Ырааттуулуктар, Коюу. "Туюнтмаларды түзүү" (Forming
-        # Expressions) isn't in this reference screenshot at all - kept
-        # in its existing position (right after Introduction) rather
-        # than dropped, since nothing here justifies deleting real
-        # existing content; flagged for the user to confirm placement.
+        # Алгебра (root Topic) already had 6 children from the original
+        # taxonomy import - reference adds 6 more chevron-bearing
+        # siblings: Графиктер: абстракттуу, Графиктер: турмуштук,
+        # Барабарсыздыктар, Түрлөндүрүү, Ырааттуулуктар, Коюу.
+        # "Туюнтмаларды түзүү" (Forming Expressions) isn't in the
+        # reference at all - confirmed with the user to drop it, so it's
+        # left out of 'order' below and pruned by this entry's own
+        # cleanup step (only the nav entry is removed; its underlying
+        # page, if any, is untouched).
         'parent_path': ('Алгебра',),
         'create_subsubtopics': [
             {'title': 'Графиктер: абстракттуу', 'slug': 'graphs-abstract'},
@@ -1290,7 +1289,6 @@ CHILD_ORDER_FIXES = [
         ],
         'order': [
             'Киришүү',
-            'Туюнтмаларды түзүү',
             'Теңдемелер: сызыктуу',
             'Теңдемелер: квадраттык',
             'Теңдемелер: системасы',
