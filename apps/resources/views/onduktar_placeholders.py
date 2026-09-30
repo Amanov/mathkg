@@ -345,6 +345,27 @@ OPERATION_PLACEHOLDER_TITLES = {
     'graphs-distance-time-variable-speeds': 'Аралык-убакыт: өзгөрмө ылдамдыктар',
     'graphs-velocity-time': 'Ылдамдык-убакыт',
     'graphs-mixed-distance-velocity': 'Аралаш: аралык жана ылдамдык',
+
+    # Графиктер > Айландыруу графиктери - neither of these 2 have a real
+    # hand-built page yet.
+    'graphs-conversion-reading': 'Окуу',
+    'graphs-conversion-plotting-reading': 'Тургузуу жана окуу',
+
+    # Графиктер > Баа мамилелери - neither of these 2 have a real
+    # hand-built page yet.
+    'graphs-cost-introduction': 'Киришүү',
+    'graphs-cost-with-equations': 'Теңдемелер менен',
+
+    # Графиктер > Аралык-убакыт: туруктуу ылдамдыктар - neither of these
+    # 2 have a real hand-built page yet.
+    'graphs-distance-time-reading': 'Окуу',
+    'graphs-distance-time-plotting-reading': 'Тургузуу жана окуу',
+
+    # Графиктер > Ылдамдык-убакыт - none of these 3 have a real
+    # hand-built page yet.
+    'graphs-velocity-time-distance': 'Аралык',
+    'graphs-velocity-time-acceleration': 'Ылдамдануу',
+    'graphs-velocity-time-mixed': 'Аралаш',
 }
 
 

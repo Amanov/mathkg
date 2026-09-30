@@ -630,6 +630,52 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Айландыруу графиктери" (Conversion Graphs) already exists as
+        # a Графиктер sub-subtopic - it just had no children yet.
+        'parent_path': ('Пропорция', 'Графиктер', 'Айландыруу графиктери'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'graphs_conversion_reading'},
+            {'title': 'Тургузуу жана окуу', 'url_name': 'graphs_conversion_plotting_reading'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Баа мамилелери" (Cost Relationships) already exists as a
+        # Графиктер sub-subtopic - it just had no children yet.
+        'parent_path': ('Пропорция', 'Графиктер', 'Баа мамилелери'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'graphs_cost_introduction'},
+            {'title': 'Теңдемелер менен', 'url_name': 'graphs_cost_with_equations'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралык-убакыт: туруктуу ылдамдыктар" (Distance-Time: Constant
+        # Speeds) already exists as a Графиктер sub-subtopic - it just
+        # had no children yet.
+        'parent_path': ('Пропорция', 'Графиктер', 'Аралык-убакыт: туруктуу ылдамдыктар'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'graphs_distance_time_reading'},
+            {'title': 'Тургузуу жана окуу', 'url_name': 'graphs_distance_time_plotting_reading'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Ылдамдык-убакыт" (Velocity-Time) already exists as a
+        # Графиктер sub-subtopic - it just had no children yet.
+        'parent_path': ('Пропорция', 'Графиктер', 'Ылдамдык-убакыт'),
+        'target_items': [
+            {'title': 'Аралык', 'url_name': 'graphs_velocity_time_distance'},
+            {'title': 'Ылдамдануу', 'url_name': 'graphs_velocity_time_acceleration'},
+            {'title': 'Аралаш', 'url_name': 'graphs_velocity_time_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
