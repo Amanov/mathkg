@@ -730,6 +730,11 @@ urlpatterns = [
     path('algebra-sequences-special/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-special'}, name='algebra_sequences_special'),
     path('algebra-sequences-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-mixed'}, name='algebra_sequences_mixed'),
 
+    # Ордуна коюу (renamed from "Коюу") - 2 flat slots, none with a
+    # real page yet.
+    path('algebra-substitution-with-calculator/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-with-calculator'}, name='algebra_substitution_with_calculator'),
+    path('algebra-substitution-vectors/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-vectors'}, name='algebra_substitution_vectors'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

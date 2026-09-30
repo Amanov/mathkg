@@ -647,6 +647,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-sequences-fibonacci': 'Фибоначчи',
     'algebra-sequences-special': 'Атайын',
     'algebra-sequences-mixed': 'Аралаш',
+
+    # Ордуна коюу (renamed from "Коюу") - 2 flat slots, none with a
+    # real page yet. The other 3 reference items (Using Symbols,
+    # Without Indices, With Indices) are chevron-bearing categories
+    # left empty pending screenshots of their own contents.
+    'algebra-substitution-with-calculator': 'Калькулятор менен',
+    'algebra-substitution-vectors': 'Векторлор',
 }
 
 
