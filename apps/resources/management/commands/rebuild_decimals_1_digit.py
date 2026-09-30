@@ -1211,10 +1211,12 @@ GROUPS = [
         # Already had 2 chevron-bearing children - "Түзүү" (Forming)
         # and "Маанисин эсептөө" (Evaluating) - both empty, both kept
         # (protected via 'promoted_titles', same as "Жоюу ыкмасы"
-        # above). Reference's 3rd item, "IGCSE", is flat.
+        # above). Reference's 3rd item, "IGCSE" (a UK exam board), is
+        # flat - localized as "ЖРТ" (the Kyrgyz national exam) since the
+        # user asked for it by that name; url_name stays as-is.
         'parent_path': ('Алгебра', 'Функциялар'),
         'target_items': [
-            {'title': 'IGCSE', 'url_name': 'algebra_functions_igcse'},
+            {'title': 'ЖРТ', 'url_name': 'algebra_functions_igcse'},
         ],
         'promoted_titles': ['Түзүү', 'Маанисин эсептөө'],
         'stale_subsubtopic_titles': [],
@@ -1740,13 +1742,13 @@ CHILD_ORDER_FIXES = [
     {
         # Final order for Функциялар (3 items) - "Түзүү" and "Маанисин
         # эсептөө" already existed as chevron-bearing categories, no
-        # 'create_subsubtopics' needed here; "IGCSE" is the one flat
-        # leaf GROUPS' target_items builds.
+        # 'create_subsubtopics' needed here; "ЖРТ" is the one flat leaf
+        # GROUPS' target_items builds.
         'parent_path': ('Алгебра', 'Функциялар'),
         'order': [
             'Түзүү',
             'Маанисин эсептөө',
-            'IGCSE',
+            'ЖРТ',
         ],
     },
 ]
