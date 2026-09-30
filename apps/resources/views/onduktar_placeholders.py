@@ -576,6 +576,31 @@ OPERATION_PLACEHOLDER_TITLES = {
     # none with a real page yet.
     'algebra-simultaneous-linear-non-linear-algebraically': 'Алгебралык жол менен',
     'algebra-simultaneous-linear-non-linear-graphically': 'Графикалык жол менен',
+
+    # Функциялар - "IGCSE" flat slot, none with a real page yet.
+    'algebra-functions-igcse': 'IGCSE',
+
+    # Функциялар > Түзүү - all 7 slots, none with a real page yet.
+    'algebra-functions-forming-expressions': 'Туюнтмалар',
+    'algebra-functions-forming-simple-functions': 'Жөнөкөй функциялар',
+    'algebra-functions-forming-changing-subject': 'Формуланын өзгөрмөсүн алмаштыруу',
+    'algebra-functions-forming-composite-linear': 'Татаал функция: сызыктуу',
+    'algebra-functions-forming-inverse': 'Тескери функция',
+    'algebra-functions-forming-composite-inverse': 'Татаал жана тескери функциялар',
+    'algebra-functions-forming-composite-quadratics': 'Татаал функция: квадраттык менен',
+
+    # Функциялар > Маанисин эсептөө - all 10 slots, none with a real
+    # page yet.
+    'algebra-functions-evaluating-simple-machines': 'Жөнөкөй функция машиналары',
+    'algebra-functions-evaluating-graphing': 'Графигин түзүү',
+    'algebra-functions-evaluating-equations-sequences': 'Теңдемелер жана ырааттуулуктар менен',
+    'algebra-functions-evaluating-linear': 'Сызыктуу',
+    'algebra-functions-evaluating-indices': 'Даражалар менен',
+    'algebra-functions-evaluating-composite': 'Татаал функция',
+    'algebra-functions-evaluating-inverse': 'Тескери функция',
+    'algebra-functions-evaluating-composite-inverse': 'Татаал жана тескери функциялар',
+    'algebra-functions-evaluating-solving-equations': 'Теңдемелерди чечүү',
+    'algebra-functions-evaluating-iteration': 'Кайталануу',
 }
 
 

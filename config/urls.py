@@ -661,6 +661,31 @@ urlpatterns = [
     path('algebra-simultaneous-linear-non-linear-algebraically/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-linear-non-linear-algebraically'}, name='algebra_simultaneous_linear_non_linear_algebraically'),
     path('algebra-simultaneous-linear-non-linear-graphically/', operation_placeholder_view, {'operation_slug': 'algebra-simultaneous-linear-non-linear-graphically'}, name='algebra_simultaneous_linear_non_linear_graphically'),
 
+    # Функциялар - "IGCSE" flat slot, none with a real page yet.
+    path('algebra-functions-igcse/', operation_placeholder_view, {'operation_slug': 'algebra-functions-igcse'}, name='algebra_functions_igcse'),
+
+    # Функциялар > Түзүү - all 7 slots, none with a real page yet.
+    path('algebra-functions-forming-expressions/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-expressions'}, name='algebra_functions_forming_expressions'),
+    path('algebra-functions-forming-simple-functions/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-simple-functions'}, name='algebra_functions_forming_simple_functions'),
+    path('algebra-functions-forming-changing-subject/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-changing-subject'}, name='algebra_functions_forming_changing_subject'),
+    path('algebra-functions-forming-composite-linear/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-composite-linear'}, name='algebra_functions_forming_composite_linear'),
+    path('algebra-functions-forming-inverse/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-inverse'}, name='algebra_functions_forming_inverse'),
+    path('algebra-functions-forming-composite-inverse/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-composite-inverse'}, name='algebra_functions_forming_composite_inverse'),
+    path('algebra-functions-forming-composite-quadratics/', operation_placeholder_view, {'operation_slug': 'algebra-functions-forming-composite-quadratics'}, name='algebra_functions_forming_composite_quadratics'),
+
+    # Функциялар > Маанисин эсептөө - all 10 slots, none with a real
+    # page yet.
+    path('algebra-functions-evaluating-simple-machines/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-simple-machines'}, name='algebra_functions_evaluating_simple_machines'),
+    path('algebra-functions-evaluating-graphing/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-graphing'}, name='algebra_functions_evaluating_graphing'),
+    path('algebra-functions-evaluating-equations-sequences/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-equations-sequences'}, name='algebra_functions_evaluating_equations_sequences'),
+    path('algebra-functions-evaluating-linear/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-linear'}, name='algebra_functions_evaluating_linear'),
+    path('algebra-functions-evaluating-indices/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-indices'}, name='algebra_functions_evaluating_indices'),
+    path('algebra-functions-evaluating-composite/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-composite'}, name='algebra_functions_evaluating_composite'),
+    path('algebra-functions-evaluating-inverse/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-inverse'}, name='algebra_functions_evaluating_inverse'),
+    path('algebra-functions-evaluating-composite-inverse/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-composite-inverse'}, name='algebra_functions_evaluating_composite_inverse'),
+    path('algebra-functions-evaluating-solving-equations/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-solving-equations'}, name='algebra_functions_evaluating_solving_equations'),
+    path('algebra-functions-evaluating-iteration/', operation_placeholder_view, {'operation_slug': 'algebra-functions-evaluating-iteration'}, name='algebra_functions_evaluating_iteration'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

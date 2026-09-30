@@ -1206,6 +1206,61 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Функциялар" (Functions) was an empty top-level category.
+        # Already had 2 chevron-bearing children - "Түзүү" (Forming)
+        # and "Маанисин эсептөө" (Evaluating) - both empty, both kept
+        # (protected via 'promoted_titles', same as "Жоюу ыкмасы"
+        # above). Reference's 3rd item, "IGCSE", is flat.
+        'parent_path': ('Алгебра', 'Функциялар'),
+        'target_items': [
+            {'title': 'IGCSE', 'url_name': 'algebra_functions_igcse'},
+        ],
+        'promoted_titles': ['Түзүү', 'Маанисин эсептөө'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Түзүү" (Forming) under Функциялар is an already-existing
+        # category - reference (7 items): Expressions, Simple
+        # Functions, Changing the Subject of a Formula, Composite:
+        # Linear, Inverse, Composite & Inverse, Composite: With
+        # Quadratics.
+        'parent_path': ('Алгебра', 'Функциялар', 'Түзүү'),
+        'target_items': [
+            {'title': 'Туюнтмалар', 'url_name': 'algebra_functions_forming_expressions'},
+            {'title': 'Жөнөкөй функциялар', 'url_name': 'algebra_functions_forming_simple_functions'},
+            {'title': 'Формуланын өзгөрмөсүн алмаштыруу', 'url_name': 'algebra_functions_forming_changing_subject'},
+            {'title': 'Татаал функция: сызыктуу', 'url_name': 'algebra_functions_forming_composite_linear'},
+            {'title': 'Тескери функция', 'url_name': 'algebra_functions_forming_inverse'},
+            {'title': 'Татаал жана тескери функциялар', 'url_name': 'algebra_functions_forming_composite_inverse'},
+            {'title': 'Татаал функция: квадраттык менен', 'url_name': 'algebra_functions_forming_composite_quadratics'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Маанисин эсептөө" (Evaluating) under Функциялар is an
+        # already-existing category - reference (10 items): Simple
+        # Function Machines, Graphing, With Equations & Sequences,
+        # Linear, With Indices, Composite, Inverse, Composite &
+        # Inverse, Solving Equations, Iteration.
+        'parent_path': ('Алгебра', 'Функциялар', 'Маанисин эсептөө'),
+        'target_items': [
+            {'title': 'Жөнөкөй функция машиналары', 'url_name': 'algebra_functions_evaluating_simple_machines'},
+            {'title': 'Графигин түзүү', 'url_name': 'algebra_functions_evaluating_graphing'},
+            {'title': 'Теңдемелер жана ырааттуулуктар менен', 'url_name': 'algebra_functions_evaluating_equations_sequences'},
+            {'title': 'Сызыктуу', 'url_name': 'algebra_functions_evaluating_linear'},
+            {'title': 'Даражалар менен', 'url_name': 'algebra_functions_evaluating_indices'},
+            {'title': 'Татаал функция', 'url_name': 'algebra_functions_evaluating_composite'},
+            {'title': 'Тескери функция', 'url_name': 'algebra_functions_evaluating_inverse'},
+            {'title': 'Татаал жана тескери функциялар', 'url_name': 'algebra_functions_evaluating_composite_inverse'},
+            {'title': 'Теңдемелерди чечүү', 'url_name': 'algebra_functions_evaluating_solving_equations'},
+            {'title': 'Кайталануу', 'url_name': 'algebra_functions_evaluating_iteration'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -1680,6 +1735,18 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
             'Графикалык жол менен',
             'Сызыктуу жана сызыктуу эмес',
+        ],
+    },
+    {
+        # Final order for Функциялар (3 items) - "Түзүү" and "Маанисин
+        # эсептөө" already existed as chevron-bearing categories, no
+        # 'create_subsubtopics' needed here; "IGCSE" is the one flat
+        # leaf GROUPS' target_items builds.
+        'parent_path': ('Алгебра', 'Функциялар'),
+        'order': [
+            'Түзүү',
+            'Маанисин эсептөө',
+            'IGCSE',
         ],
     },
 ]
