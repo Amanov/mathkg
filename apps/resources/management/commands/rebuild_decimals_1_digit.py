@@ -1809,6 +1809,22 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Сызыктуу" (Linear) under Ырааттуулуктар was already an empty
+        # chevron-bearing category - reference (4 items, all flat):
+        # Introduction, Evaluating Terms, From 2 Terms, Summing
+        # (IGCSE) - "IGCSE" localized to "ЖРТ" per the user's standing
+        # request.
+        'parent_path': ('Алгебра', 'Ырааттуулуктар', 'Сызыктуу'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'algebra_sequences_linear_introduction'},
+            {'title': 'Мүчөлөрдү эсептөө', 'url_name': 'algebra_sequences_linear_evaluating_terms'},
+            {'title': '2 мүчөдөн', 'url_name': 'algebra_sequences_linear_from_2_terms'},
+            {'title': 'Суммалоо (ЖРТ)', 'url_name': 'algebra_sequences_linear_summing'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Ордуна коюу" (Substitution, renamed from "Коюу" per the
         # user's request - see the Algebra-root CHILD_ORDER_FIXES entry
         # below) was an empty top-level category. Reference (5 items):
@@ -2791,6 +2807,18 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Негизги деңгээл',
             'Жогорку деңгээл',
+        ],
+    },
+    {
+        # Final order for Сызыктуу's own 4 children (under
+        # Ырааттуулуктар) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Ырааттуулуктар', 'Сызыктуу'),
+        'order': [
+            'Киришүү',
+            'Мүчөлөрдү эсептөө',
+            '2 мүчөдөн',
+            'Суммалоо (ЖРТ)',
         ],
     },
 ]

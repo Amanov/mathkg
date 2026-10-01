@@ -853,6 +853,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Өзгөртүп түзүү > Аралаш - both slots, none with a real page yet.
     'algebra-manipulation-mixed-foundation': 'Негизги деңгээл',
     'algebra-manipulation-mixed-higher': 'Жогорку деңгээл',
+
+    # Ырааттуулуктар > Сызыктуу - all 4 slots, none with a real page
+    # yet.
+    'algebra-sequences-linear-introduction': 'Киришүү',
+    'algebra-sequences-linear-evaluating-terms': 'Мүчөлөрдү эсептөө',
+    'algebra-sequences-linear-from-2-terms': '2 мүчөдөн',
+    'algebra-sequences-linear-summing': 'Суммалоо (ЖРТ)',
 }
 
 
