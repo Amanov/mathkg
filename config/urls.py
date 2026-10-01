@@ -1039,6 +1039,19 @@ urlpatterns = [
     path('geometry-trigonometry-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-with-circle-theorems'}, name='geometry_trigonometry_with_circle_theorems'),
     path('geometry-trigonometry-area-rule/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-area-rule'}, name='geometry_trigonometry_area_rule'),
 
+    # Геометрия > Векторлор - all 5 slots, none with a real page yet.
+    path('geometry-vectors-translation/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-translation'}, name='geometry_vectors_translation'),
+    path('geometry-vectors-expressing/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-expressing'}, name='geometry_vectors_expressing'),
+    path('geometry-vectors-substitution/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-substitution'}, name='geometry_vectors_substitution'),
+    path('geometry-vectors-around-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-around-shapes'}, name='geometry_vectors_around_shapes'),
+    path('geometry-vectors-proofs/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-proofs'}, name='geometry_vectors_proofs'),
+
+    # Геометрия > Көлөм жана бет аянты - 3 flat slots, none with a
+    # real page yet.
+    path('geometry-volume-surface-area-vocabulary/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-vocabulary'}, name='geometry_volume_surface_area_vocabulary'),
+    path('geometry-volume-surface-area-introduction-to-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-introduction-to-volume'}, name='geometry_volume_surface_area_introduction_to_volume'),
+    path('geometry-volume-surface-area-nets/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-nets'}, name='geometry_volume_surface_area_nets'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

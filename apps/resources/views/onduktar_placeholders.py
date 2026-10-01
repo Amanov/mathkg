@@ -975,6 +975,19 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-trigonometry-without-calculator': 'Калькуляторсуз',
     'geometry-trigonometry-with-circle-theorems': 'Тегерек теоремалары менен',
     'geometry-trigonometry-area-rule': 'Аянт эрежеси',
+
+    # Геометрия > Векторлор - all 5 slots, none with a real page yet.
+    'geometry-vectors-translation': 'Жылдыруу',
+    'geometry-vectors-expressing': 'Туюнтуу',
+    'geometry-vectors-substitution': 'Коюу',
+    'geometry-vectors-around-shapes': 'Фигуралардын тегерегинде',
+    'geometry-vectors-proofs': 'Далилдөөлөр',
+
+    # Геометрия > Көлөм жана бет аянты - 3 flat slots, none with a
+    # real page yet.
+    'geometry-volume-surface-area-vocabulary': 'Терминология',
+    'geometry-volume-surface-area-introduction-to-volume': 'Көлөмгө киришүү',
+    'geometry-volume-surface-area-nets': 'Жайылмалар',
 }
 
 
