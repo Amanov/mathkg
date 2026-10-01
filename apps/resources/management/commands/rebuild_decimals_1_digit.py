@@ -2067,6 +2067,83 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Пифагор" (Pythagoras) under Геометрия was an empty top-level
+        # category. Reference (12 items): Introduction, Finding A or B,
+        # Finding A/B/C, Isosceles Triangles, Real-Life, 3D,
+        # Coordinates, Mixed, Shape Perimeters, With Surds, With Circle
+        # Theorems are flat; "With Trigonometry" is itself a
+        # chevron-bearing category (created via 'create_subsubtopics'
+        # below, left empty pending its own screenshot).
+        'parent_path': ('Геометрия', 'Пифагор'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'geometry_pythagoras_introduction'},
+            {'title': 'A же B табуу', 'url_name': 'geometry_pythagoras_finding_a_or_b'},
+            {'title': 'A, B же C табуу', 'url_name': 'geometry_pythagoras_finding_a_b_or_c'},
+            {'title': 'Тең бүйрүүчү үч бурчтуктар', 'url_name': 'geometry_pythagoras_isosceles_triangles'},
+            {'title': 'Турмуштук маселелер', 'url_name': 'geometry_pythagoras_real_life'},
+            {'title': '3D', 'url_name': 'geometry_pythagoras_3d'},
+            {'title': 'Координаттар', 'url_name': 'geometry_pythagoras_coordinates'},
+            {'title': 'Аралаш', 'url_name': 'geometry_pythagoras_mixed'},
+            {'title': 'Фигуралардын периметрлери', 'url_name': 'geometry_pythagoras_shape_perimeters'},
+            {'title': 'Тамырлар менен', 'url_name': 'geometry_pythagoras_with_surds'},
+            {'title': 'Тегерек теоремалары менен', 'url_name': 'geometry_pythagoras_with_circle_theorems'},
+        ],
+        'promoted_titles': ['Тригонометрия менен'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Окшоштук" (Similarity) under Геометрия was an empty
+        # top-level category. Reference screenshot clearly showed 4
+        # items (all flat): Similar 2D Shapes, Similar Triangles,
+        # Congruent Triangles, Length/Area/Volume Scale Factors - a 5th
+        # row ("Area & Volume Conversion") appeared above these at the
+        # same row position as Measures' own matching item one
+        # screenshot earlier, which doesn't fit this topic at all and
+        # is very likely a stale render artifact from the previous
+        # hover rather than a genuine child - left out, flagged to the
+        # user to confirm.
+        'parent_path': ('Геометрия', 'Окшоштук'),
+        'target_items': [
+            {'title': 'Окшош 2D фигуралар', 'url_name': 'geometry_similarity_similar_2d_shapes'},
+            {'title': 'Окшош үч бурчтуктар', 'url_name': 'geometry_similarity_similar_triangles'},
+            {'title': 'Тең үч бурчтуктар', 'url_name': 'geometry_similarity_congruent_triangles'},
+            {'title': 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү', 'url_name': 'geometry_similarity_length_area_volume_scale_factors'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Тригонометрия" (Trigonometry) under Геометрия was an empty
+        # top-level category. Reference (13 items): Introduction,
+        # Graphs, Choosing a Ratio, Isosceles Triangles, Without a
+        # Calculator, With Circle Theorems, Area Rule are flat; Sine &
+        # Cosine Ratios, Tangent Ratio, All Ratios, Real-Life, With
+        # Pythagoras, Sine & Cosine Rules are chevron-bearing categories
+        # (created via 'create_subsubtopics' below, left empty pending
+        # their own screenshots).
+        'parent_path': ('Геометрия', 'Тригонометрия'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'geometry_trigonometry_introduction'},
+            {'title': 'Графиктер', 'url_name': 'geometry_trigonometry_graphs'},
+            {'title': 'Катышты тандоо', 'url_name': 'geometry_trigonometry_choosing_a_ratio'},
+            {'title': 'Тең бүйрүүчү үч бурчтуктар', 'url_name': 'geometry_trigonometry_isosceles_triangles'},
+            {'title': 'Калькуляторсуз', 'url_name': 'geometry_trigonometry_without_calculator'},
+            {'title': 'Тегерек теоремалары менен', 'url_name': 'geometry_trigonometry_with_circle_theorems'},
+            {'title': 'Аянт эрежеси', 'url_name': 'geometry_trigonometry_area_rule'},
+        ],
+        'promoted_titles': [
+            'Синус жана косинус катыштары',
+            'Тангенс катышы',
+            'Бардык катыштар',
+            'Турмуштук маселелер',
+            'Пифагор менен',
+            'Синус жана косинус эрежелери',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -3325,6 +3402,95 @@ CHILD_ORDER_FIXES = [
             'Диаграммаларды чийүү',
         ],
     },
+    {
+        # "Тригонометрия менен" under Пифагор doesn't exist yet -
+        # created here via 'create_subsubtopics' (GROUPS' own
+        # target_items can only create flat url_name leaves). An
+        # 'order' entry is needed since 'create_subsubtopics' doesn't
+        # know where the 11 GROUPS-built siblings already sit.
+        'parent_path': ('Геометрия', 'Пифагор'),
+        'create_subsubtopics': [
+            {'title': 'Тригонометрия менен', 'slug': 'with-trigonometry'},
+        ],
+        'order': [
+            'Киришүү',
+            'A же B табуу',
+            'A, B же C табуу',
+            'Тең бүйрүүчү үч бурчтуктар',
+            'Турмуштук маселелер',
+            '3D',
+            'Координаттар',
+            'Аралаш',
+            'Фигуралардын периметрлери',
+            'Тамырлар менен',
+            'Тригонометрия менен',
+            'Тегерек теоремалары менен',
+        ],
+    },
+    {
+        # "Түрлөндүрүүлөр" (Transformations) under Геометрия carried 1
+        # child ("2D түрлөндүрүүлөр") from the old coarser import - not
+        # in the new reference's 10-item list at all (0 resources
+        # attached), pruned by the exhaustive order list below. All 10
+        # reference items are chevron-bearing categories, created here
+        # via 'create_subsubtopics', left empty pending their own
+        # screenshots.
+        'parent_path': ('Геометрия', 'Түрлөндүрүүлөр'),
+        'create_subsubtopics': [
+            {'title': 'Чоңойтуу', 'slug': 'enlargement'},
+            {'title': 'Чагылдыруу', 'slug': 'reflection'},
+            {'title': 'Буруу', 'slug': 'rotation'},
+            {'title': 'Жылдыруу', 'slug': 'translation'},
+            {'title': 'Өзгөрбөгөн чекиттер', 'slug': 'invariant-points'},
+            {'title': 'Айкалышкан', 'slug': 'combined'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+            {'title': 'Сызыктуу симметрия', 'slug': 'line-symmetry'},
+            {'title': 'Айлануу симметриясы', 'slug': 'rotational-symmetry'},
+            {'title': 'Тесселляция', 'slug': 'tessellation'},
+        ],
+        'order': [
+            'Чоңойтуу',
+            'Чагылдыруу',
+            'Буруу',
+            'Жылдыруу',
+            'Өзгөрбөгөн чекиттер',
+            'Айкалышкан',
+            'Аралаш',
+            'Сызыктуу симметрия',
+            'Айлануу симметриясы',
+            'Тесселляция',
+        ],
+    },
+    {
+        # The 6 chevron-bearing categories under Тригонометрия don't
+        # exist yet - created here via 'create_subsubtopics'. An
+        # 'order' entry is needed since 'create_subsubtopics' doesn't
+        # know where the 7 GROUPS-built flat siblings already sit.
+        'parent_path': ('Геометрия', 'Тригонометрия'),
+        'create_subsubtopics': [
+            {'title': 'Синус жана косинус катыштары', 'slug': 'sine-cosine-ratios'},
+            {'title': 'Тангенс катышы', 'slug': 'tangent-ratio'},
+            {'title': 'Бардык катыштар', 'slug': 'all-ratios'},
+            {'title': 'Турмуштук маселелер', 'slug': 'real-life'},
+            {'title': 'Пифагор менен', 'slug': 'with-pythagoras'},
+            {'title': 'Синус жана косинус эрежелери', 'slug': 'sine-cosine-rules'},
+        ],
+        'order': [
+            'Киришүү',
+            'Графиктер',
+            'Катышты тандоо',
+            'Синус жана косинус катыштары',
+            'Тангенс катышы',
+            'Бардык катыштар',
+            'Тең бүйрүүчү үч бурчтуктар',
+            'Турмуштук маселелер',
+            'Калькуляторсуз',
+            'Пифагор менен',
+            'Тегерек теоремалары менен',
+            'Аянт эрежеси',
+            'Синус жана косинус эрежелери',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
@@ -3341,6 +3507,21 @@ MIRROR_GROUPS = [
     {
         'parent_path': ('Пропорция', 'Татаал өлчөмдөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Татаал өлчөмдөр'),
+    },
+    {
+        # "Өлчөмдөр" (Measures) under Геометрия is the exact same
+        # 8-item set as Сандар's own top-level Өлчөмдөр (Compound,
+        # Measuring Lines, Money, Reading Scales, Scale Drawings,
+        # Systems of Measurement, Area & Volume Conversion, Time) - the
+        # user spotted this duplication directly from the reference
+        # site's own menu. mirror_children recurses into every child
+        # that itself has further children (Татаал өлчөмдөр,
+        # Акча, Масштабдуу сүрөттөр, Өлчөө системалары, Аянт жана
+        # көлөм бирдиктерин алмаштыруу, Убакыт all do), so this one
+        # entry brings the whole already-built subtree across - no new
+        # pages needed.
+        'parent_path': ('Геометрия', 'Өлчөмдөр'),
+        'source_parent_path': ('Сандар', 'Өлчөмдөр'),
     },
     {
         # "Барабардык" (Equivalence) under Пайыздар: калькуляторсуз is

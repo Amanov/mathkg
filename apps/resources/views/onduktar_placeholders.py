@@ -946,6 +946,35 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-coordinates-line-segments-ratio': 'Кесиндилер жана катыш',
     'geometry-coordinates-geometric-problems': 'Геометриялык маселелер',
     'geometry-coordinates-with-pythagoras': 'Пифагор менен',
+
+    # Геометрия > Пифагор - 11 flat slots, none with a real page yet.
+    'geometry-pythagoras-introduction': 'Киришүү',
+    'geometry-pythagoras-finding-a-or-b': 'A же B табуу',
+    'geometry-pythagoras-finding-a-b-or-c': 'A, B же C табуу',
+    'geometry-pythagoras-isosceles-triangles': 'Тең бүйрүүчү үч бурчтуктар',
+    'geometry-pythagoras-real-life': 'Турмуштук маселелер',
+    'geometry-pythagoras-3d': '3D',
+    'geometry-pythagoras-coordinates': 'Координаттар',
+    'geometry-pythagoras-mixed': 'Аралаш',
+    'geometry-pythagoras-shape-perimeters': 'Фигуралардын периметрлери',
+    'geometry-pythagoras-with-surds': 'Тамырлар менен',
+    'geometry-pythagoras-with-circle-theorems': 'Тегерек теоремалары менен',
+
+    # Геометрия > Окшоштук - all 4 slots, none with a real page yet.
+    'geometry-similarity-similar-2d-shapes': 'Окшош 2D фигуралар',
+    'geometry-similarity-similar-triangles': 'Окшош үч бурчтуктар',
+    'geometry-similarity-congruent-triangles': 'Тең үч бурчтуктар',
+    'geometry-similarity-length-area-volume-scale-factors': 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү',
+
+    # Геометрия > Тригонометрия - 7 flat slots, none with a real page
+    # yet.
+    'geometry-trigonometry-introduction': 'Киришүү',
+    'geometry-trigonometry-graphs': 'Графиктер',
+    'geometry-trigonometry-choosing-a-ratio': 'Катышты тандоо',
+    'geometry-trigonometry-isosceles-triangles': 'Тең бүйрүүчү үч бурчтуктар',
+    'geometry-trigonometry-without-calculator': 'Калькуляторсуз',
+    'geometry-trigonometry-with-circle-theorems': 'Тегерек теоремалары менен',
+    'geometry-trigonometry-area-rule': 'Аянт эрежеси',
 }
 
 
