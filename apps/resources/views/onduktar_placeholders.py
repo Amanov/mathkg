@@ -1024,6 +1024,35 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-area-perimeter-compound-with-circles-area': 'Аянт',
     'geometry-area-perimeter-compound-with-circles-perimeter': 'Периметр',
     'geometry-area-perimeter-compound-with-circles-mixed': 'Аралаш',
+
+    # Геометрия > Аянт жана периметр > Төрт бурчтуктар - 6 slots, none
+    # with a real page yet.
+    'geometry-area-perimeter-quadrilaterals-vocabulary': 'Терминология',
+    'geometry-area-perimeter-quadrilaterals-rectangle-area': 'Тик бурчтук: аянт',
+    'geometry-area-perimeter-quadrilaterals-rectangle-perimeter': 'Тик бурчтук: периметр',
+    'geometry-area-perimeter-quadrilaterals-rectangle-area-perimeter': 'Тик бурчтук: аянт жана периметр',
+    'geometry-area-perimeter-quadrilaterals-parallelogram': 'Параллелограмм',
+    'geometry-area-perimeter-quadrilaterals-trapezium': 'Трапеция',
+
+    # Геометрия > Аянт жана периметр > Үч бурчтуктар - 2 known slots
+    # (screenshot was cut off), none with a real page yet.
+    'geometry-area-perimeter-triangles-area': 'Аянт',
+    'geometry-area-perimeter-triangles-area-using-sine-rule': 'Синус эрежеси менен аянт',
+
+    # Геометрия > Аянт жана периметр > Аралаш - all 4 slots, none
+    # with a real page yet.
+    'geometry-area-perimeter-mixed-polygons': 'Көп бурчтуктар',
+    'geometry-area-perimeter-mixed-polygons-with-pythagoras': 'Көп бурчтуктар: Пифагор менен',
+    'geometry-area-perimeter-mixed-polygons-circles': 'Көп бурчтуктар жана тегеректер',
+    'geometry-area-perimeter-mixed-polygons-circles-with-pythagoras': 'Көп бурчтуктар жана тегеректер: Пифагор менен',
+
+    # Геометрия > Классификациялоо жана терминология > Фигураларды
+    # классификациялоо - 4 known slots (screenshot was cut off), none
+    # with a real page yet.
+    'geometry-classifying-vocabulary-classifying-shapes-diagonals': 'Диагоналдар',
+    'geometry-classifying-vocabulary-classifying-shapes-symmetry': 'Симметрия',
+    'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals': 'Төрт бурчтуктар',
+    'geometry-classifying-vocabulary-classifying-shapes-2d-shapes': '2D фигуралар',
 }
 
 

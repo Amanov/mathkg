@@ -1086,6 +1086,31 @@ urlpatterns = [
     path('geometry-area-perimeter-compound-with-circles-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-with-circles-perimeter'}, name='geometry_area_perimeter_compound_with_circles_perimeter'),
     path('geometry-area-perimeter-compound-with-circles-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-with-circles-mixed'}, name='geometry_area_perimeter_compound_with_circles_mixed'),
 
+    # Геометрия > Аянт жана периметр > Төрт бурчтуктар - 6 slots.
+    path('geometry-area-perimeter-quadrilaterals-vocabulary/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-vocabulary'}, name='geometry_area_perimeter_quadrilaterals_vocabulary'),
+    path('geometry-area-perimeter-quadrilaterals-rectangle-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-rectangle-area'}, name='geometry_area_perimeter_quadrilaterals_rectangle_area'),
+    path('geometry-area-perimeter-quadrilaterals-rectangle-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-rectangle-perimeter'}, name='geometry_area_perimeter_quadrilaterals_rectangle_perimeter'),
+    path('geometry-area-perimeter-quadrilaterals-rectangle-area-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-rectangle-area-perimeter'}, name='geometry_area_perimeter_quadrilaterals_rectangle_area_perimeter'),
+    path('geometry-area-perimeter-quadrilaterals-parallelogram/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-parallelogram'}, name='geometry_area_perimeter_quadrilaterals_parallelogram'),
+    path('geometry-area-perimeter-quadrilaterals-trapezium/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-quadrilaterals-trapezium'}, name='geometry_area_perimeter_quadrilaterals_trapezium'),
+
+    # Геометрия > Аянт жана периметр > Үч бурчтуктар - 2 known slots.
+    path('geometry-area-perimeter-triangles-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-triangles-area'}, name='geometry_area_perimeter_triangles_area'),
+    path('geometry-area-perimeter-triangles-area-using-sine-rule/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-triangles-area-using-sine-rule'}, name='geometry_area_perimeter_triangles_area_using_sine_rule'),
+
+    # Геометрия > Аянт жана периметр > Аралаш - all 4 slots.
+    path('geometry-area-perimeter-mixed-polygons/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-mixed-polygons'}, name='geometry_area_perimeter_mixed_polygons'),
+    path('geometry-area-perimeter-mixed-polygons-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-mixed-polygons-with-pythagoras'}, name='geometry_area_perimeter_mixed_polygons_with_pythagoras'),
+    path('geometry-area-perimeter-mixed-polygons-circles/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-mixed-polygons-circles'}, name='geometry_area_perimeter_mixed_polygons_circles'),
+    path('geometry-area-perimeter-mixed-polygons-circles-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-mixed-polygons-circles-with-pythagoras'}, name='geometry_area_perimeter_mixed_polygons_circles_with_pythagoras'),
+
+    # Геометрия > Классификациялоо жана терминология > Фигураларды
+    # классификациялоо - 4 known slots.
+    path('geometry-classifying-vocabulary-classifying-shapes-diagonals/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-diagonals'}, name='geometry_classifying_vocabulary_classifying_shapes_diagonals'),
+    path('geometry-classifying-vocabulary-classifying-shapes-symmetry/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-symmetry'}, name='geometry_classifying_vocabulary_classifying_shapes_symmetry'),
+    path('geometry-classifying-vocabulary-classifying-shapes-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals'}, name='geometry_classifying_vocabulary_classifying_shapes_quadrilaterals'),
+    path('geometry-classifying-vocabulary-classifying-shapes-2d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-2d-shapes'}, name='geometry_classifying_vocabulary_classifying_shapes_2d_shapes'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

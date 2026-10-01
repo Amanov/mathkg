@@ -2271,6 +2271,71 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Төрт бурчтуктар" (Quadrilaterals) under Аянт жана периметр
+        # was an empty chevron-bearing category - reference screenshot
+        # showed 6 items, all flat, with no indication of more below
+        # (no crop/cutoff visible): Vocabulary, Rectangle: Area,
+        # Rectangle: Perimeter, Rectangle: Area & Perimeter,
+        # Parallelogram, Trapezium.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Төрт бурчтуктар'),
+        'target_items': [
+            {'title': 'Терминология', 'url_name': 'geometry_area_perimeter_quadrilaterals_vocabulary'},
+            {'title': 'Тик бурчтук: аянт', 'url_name': 'geometry_area_perimeter_quadrilaterals_rectangle_area'},
+            {'title': 'Тик бурчтук: периметр', 'url_name': 'geometry_area_perimeter_quadrilaterals_rectangle_perimeter'},
+            {'title': 'Тик бурчтук: аянт жана периметр', 'url_name': 'geometry_area_perimeter_quadrilaterals_rectangle_area_perimeter'},
+            {'title': 'Параллелограмм', 'url_name': 'geometry_area_perimeter_quadrilaterals_parallelogram'},
+            {'title': 'Трапеция', 'url_name': 'geometry_area_perimeter_quadrilaterals_trapezium'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Үч бурчтуктар" (Triangles) under Аянт жана периметр was an
+        # empty chevron-bearing category - reference screenshot was cut
+        # off after 2 items (Area, Area Using Sine Rule) - only these
+        # are built for now, flagged to the user to confirm the rest.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Үч бурчтуктар'),
+        'target_items': [
+            {'title': 'Аянт', 'url_name': 'geometry_area_perimeter_triangles_area'},
+            {'title': 'Синус эрежеси менен аянт', 'url_name': 'geometry_area_perimeter_triangles_area_using_sine_rule'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Аянт жана периметр (its own top-level
+        # Mixed) was an empty chevron-bearing category - reference (4
+        # items, all flat): Polygons, Polygons: With Pythagoras,
+        # Polygons & Circles, Polygons & Circles: With Pythagoras.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Аралаш'),
+        'target_items': [
+            {'title': 'Көп бурчтуктар', 'url_name': 'geometry_area_perimeter_mixed_polygons'},
+            {'title': 'Көп бурчтуктар: Пифагор менен', 'url_name': 'geometry_area_perimeter_mixed_polygons_with_pythagoras'},
+            {'title': 'Көп бурчтуктар жана тегеректер', 'url_name': 'geometry_area_perimeter_mixed_polygons_circles'},
+            {'title': 'Көп бурчтуктар жана тегеректер: Пифагор менен', 'url_name': 'geometry_area_perimeter_mixed_polygons_circles_with_pythagoras'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Фигураларды классификациялоо" (Classifying Shapes) under
+        # Классификациялоо жана терминология was an empty
+        # chevron-bearing category - reference screenshot was cut off
+        # (a "Ready... Set..." loading overlay covered the rest) after
+        # 4 items (Diagonals, Symmetry, Quadrilaterals, 2D Shapes) -
+        # only these are built for now, flagged to the user to confirm
+        # the rest.
+        'parent_path': ('Геометрия', 'Классификациялоо жана терминология', 'Фигураларды классификациялоо'),
+        'target_items': [
+            {'title': 'Диагоналдар', 'url_name': 'geometry_classifying_vocabulary_classifying_shapes_diagonals'},
+            {'title': 'Симметрия', 'url_name': 'geometry_classifying_vocabulary_classifying_shapes_symmetry'},
+            {'title': 'Төрт бурчтуктар', 'url_name': 'geometry_classifying_vocabulary_classifying_shapes_quadrilaterals'},
+            {'title': '2D фигуралар', 'url_name': 'geometry_classifying_vocabulary_classifying_shapes_2d_shapes'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
