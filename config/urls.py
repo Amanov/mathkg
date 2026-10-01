@@ -770,6 +770,25 @@ urlpatterns = [
     path('algebra-graphs-abstract-quadratic-solving-by-intersection/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-solving-by-intersection'}, name='algebra_graphs_abstract_quadratic_solving_by_intersection'),
     path('algebra-graphs-abstract-quadratic-simultaneous/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-simultaneous'}, name='algebra_graphs_abstract_quadratic_simultaneous'),
 
+    # Графиктер: абстракттуу > Тегеректер - both slots, none with a
+    # real page yet.
+    path('algebra-graphs-abstract-circles-equation/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-circles-equation'}, name='algebra_graphs_abstract_circles_equation'),
+    path('algebra-graphs-abstract-circles-tangent/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-circles-tangent'}, name='algebra_graphs_abstract_circles_tangent'),
+
+    # Графиктер: абстракттуу > Башка сызыктуу эмес - all 6 slots, none
+    # with a real page yet.
+    path('algebra-graphs-abstract-other-nonlinear-plotting/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-plotting'}, name='algebra_graphs_abstract_other_nonlinear_plotting'),
+    path('algebra-graphs-abstract-other-nonlinear-identifying-nonlinear/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-identifying-nonlinear'}, name='algebra_graphs_abstract_other_nonlinear_identifying_nonlinear'),
+    path('algebra-graphs-abstract-other-nonlinear-identifying-proportional/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-identifying-proportional'}, name='algebra_graphs_abstract_other_nonlinear_identifying_proportional'),
+    path('algebra-graphs-abstract-other-nonlinear-estimating-gradient/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-estimating-gradient'}, name='algebra_graphs_abstract_other_nonlinear_estimating_gradient'),
+    path('algebra-graphs-abstract-other-nonlinear-exponential-functions/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-exponential-functions'}, name='algebra_graphs_abstract_other_nonlinear_exponential_functions'),
+    path('algebra-graphs-abstract-other-nonlinear-trig-functions/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-trig-functions'}, name='algebra_graphs_abstract_other_nonlinear_trig_functions'),
+
+    # Графиктер: абстракттуу > Түрлөндүрүүлөр - both slots, none with a
+    # real page yet.
+    path('algebra-graphs-abstract-transformations-gcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-gcse'}, name='algebra_graphs_abstract_transformations_gcse'),
+    path('algebra-graphs-abstract-transformations-igcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-igcse'}, name='algebra_graphs_abstract_transformations_igcse'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
