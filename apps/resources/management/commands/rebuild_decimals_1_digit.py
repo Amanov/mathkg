@@ -2941,6 +2941,55 @@ CHILD_ORDER_FIXES = [
         'parent_path': ('Алгебра', 'Ордуна коюу', 'Даража менен'),
         'order': ['Оң', 'Терс', 'Аралаш'],
     },
+    {
+        # Геометрия (a root Topic, like Пропорция) started out with 6
+        # merged Subtopics from an earlier, coarser import
+        # (import_reference_taxonomy.py) - e.g. "Аянт, периметр жана
+        # көлөм" bundled Area & Perimeter, Circles and Volume & Surface
+        # Area into one. The new reference site's own top-level menu
+        # instead shows 13 separate categories, so this entry rebuilds
+        # Геометрия's direct children to match it exactly: Бурчтар
+        # (Angles), Түрлөндүрүүлөр (Transformations) and Векторлор
+        # (Vectors) already matched 1:1 and are left untouched; the
+        # other 10 are created fresh as empty Subtopic-level categories
+        # via 'create_subsubtopics' (which, same as for a root-Topic
+        # parent elsewhere in this file, creates a new Subtopic + its
+        # MenuItem rather than a SubSubtopic when the parent itself has
+        # no subtopic_id). The 3 old merged Subtopics (and their now-
+        # orphaned SubSubtopic children, all with 0 resources attached)
+        # are then pruned by the exhaustive 'order' list below like any
+        # other leftover - only the navigation entries go; the
+        # underlying Subtopic/SubSubtopic rows are left in place,
+        # unreferenced, same as every other prune in this file.
+        'parent_path': ('Геометрия',),
+        'create_subsubtopics': [
+            {'title': 'Аянт жана периметр', 'slug': 'area-perimeter'},
+            {'title': 'Азимут', 'slug': 'bearings'},
+            {'title': 'Классификациялоо жана терминология', 'slug': 'classifying-vocabulary'},
+            {'title': 'Курулуштар', 'slug': 'construction'},
+            {'title': 'Координаттар', 'slug': 'coordinates'},
+            {'title': 'Өлчөмдөр', 'slug': 'measures'},
+            {'title': 'Пифагор', 'slug': 'pythagoras'},
+            {'title': 'Окшоштук', 'slug': 'similarity'},
+            {'title': 'Тригонометрия', 'slug': 'trigonometry'},
+            {'title': 'Көлөм жана бет аянты', 'slug': 'volume-surface-area'},
+        ],
+        'order': [
+            'Бурчтар',
+            'Аянт жана периметр',
+            'Азимут',
+            'Классификациялоо жана терминология',
+            'Курулуштар',
+            'Координаттар',
+            'Өлчөмдөр',
+            'Пифагор',
+            'Окшоштук',
+            'Түрлөндүрүүлөр',
+            'Тригонометрия',
+            'Векторлор',
+            'Көлөм жана бет аянты',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
