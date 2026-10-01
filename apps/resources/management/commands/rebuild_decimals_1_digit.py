@@ -1825,6 +1825,36 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Туюнтмаларды жөнөкөйлөтүү" (Simplifying Expressions) under
+        # Өзгөртүп түзүү was an empty flat leaf - reference (13 items,
+        # all flat): Adding, Adding: With Brackets, Adding: With
+        # Indices, Multiplying, Multiplying & Adding, Dividing,
+        # Multiplying & Dividing, Squared & Cubed, Mixed Arithmetic,
+        # With Negative & Fractional Indices, Rational: With
+        # Factorisation, Rational: Difference of Two Squares, Mixed:
+        # All. Near-identical item set to Белгилөө (Notation, see
+        # above) minus its extra plain "Mixed" item - distinct
+        # url_names since these are separate pages, not a mirror.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Туюнтмаларды жөнөкөйлөтүү'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'algebra_manipulation_expressions_adding'},
+            {'title': 'Кошуу: кашаа менен', 'url_name': 'algebra_manipulation_expressions_adding_brackets'},
+            {'title': 'Кошуу: даража менен', 'url_name': 'algebra_manipulation_expressions_adding_indices'},
+            {'title': 'Көбөйтүү', 'url_name': 'algebra_manipulation_expressions_multiplying'},
+            {'title': 'Көбөйтүү жана кошуу', 'url_name': 'algebra_manipulation_expressions_multiplying_adding'},
+            {'title': 'Бөлүү', 'url_name': 'algebra_manipulation_expressions_dividing'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'algebra_manipulation_expressions_multiplying_dividing'},
+            {'title': 'Квадрат жана куб', 'url_name': 'algebra_manipulation_expressions_squared_cubed'},
+            {'title': 'Аралаш арифметика', 'url_name': 'algebra_manipulation_expressions_mixed_arithmetic'},
+            {'title': 'Терс жана бөлчөк даражалар менен', 'url_name': 'algebra_manipulation_expressions_negative_fractional_indices'},
+            {'title': 'Рационалдык: көбөйтүүчүлөргө ажыратуу менен', 'url_name': 'algebra_manipulation_expressions_rational_with_factorisation'},
+            {'title': 'Рационалдык: эки квадраттын айырмасы', 'url_name': 'algebra_manipulation_expressions_rational_difference_squares'},
+            {'title': 'Аралаш: баары', 'url_name': 'algebra_manipulation_expressions_mixed_all'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Ордуна коюу" (Substitution, renamed from "Коюу" per the
         # user's request - see the Algebra-root CHILD_ORDER_FIXES entry
         # below) was an empty top-level category. Reference (5 items):
@@ -2819,6 +2849,27 @@ CHILD_ORDER_FIXES = [
             'Мүчөлөрдү эсептөө',
             '2 мүчөдөн',
             'Суммалоо (ЖРТ)',
+        ],
+    },
+    {
+        # Final order for Туюнтмаларды жөнөкөйлөтүү's own 13 children
+        # (under Өзгөртүп түзүү) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Туюнтмаларды жөнөкөйлөтүү'),
+        'order': [
+            'Кошуу',
+            'Кошуу: кашаа менен',
+            'Кошуу: даража менен',
+            'Көбөйтүү',
+            'Көбөйтүү жана кошуу',
+            'Бөлүү',
+            'Көбөйтүү жана бөлүү',
+            'Квадрат жана куб',
+            'Аралаш арифметика',
+            'Терс жана бөлчөк даражалар менен',
+            'Рационалдык: көбөйтүүчүлөргө ажыратуу менен',
+            'Рационалдык: эки квадраттын айырмасы',
+            'Аралаш: баары',
         ],
     },
 ]

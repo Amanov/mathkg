@@ -913,6 +913,22 @@ urlpatterns = [
     path('algebra-sequences-linear-from-2-terms/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-from-2-terms'}, name='algebra_sequences_linear_from_2_terms'),
     path('algebra-sequences-linear-summing/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-summing'}, name='algebra_sequences_linear_summing'),
 
+    # Өзгөртүп түзүү > Туюнтмаларды жөнөкөйлөтүү - all 13 slots, none
+    # with a real page yet.
+    path('algebra-manipulation-expressions-adding/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-adding'}, name='algebra_manipulation_expressions_adding'),
+    path('algebra-manipulation-expressions-adding-brackets/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-adding-brackets'}, name='algebra_manipulation_expressions_adding_brackets'),
+    path('algebra-manipulation-expressions-adding-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-adding-indices'}, name='algebra_manipulation_expressions_adding_indices'),
+    path('algebra-manipulation-expressions-multiplying/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-multiplying'}, name='algebra_manipulation_expressions_multiplying'),
+    path('algebra-manipulation-expressions-multiplying-adding/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-multiplying-adding'}, name='algebra_manipulation_expressions_multiplying_adding'),
+    path('algebra-manipulation-expressions-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-dividing'}, name='algebra_manipulation_expressions_dividing'),
+    path('algebra-manipulation-expressions-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-multiplying-dividing'}, name='algebra_manipulation_expressions_multiplying_dividing'),
+    path('algebra-manipulation-expressions-squared-cubed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-squared-cubed'}, name='algebra_manipulation_expressions_squared_cubed'),
+    path('algebra-manipulation-expressions-mixed-arithmetic/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-mixed-arithmetic'}, name='algebra_manipulation_expressions_mixed_arithmetic'),
+    path('algebra-manipulation-expressions-negative-fractional-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-negative-fractional-indices'}, name='algebra_manipulation_expressions_negative_fractional_indices'),
+    path('algebra-manipulation-expressions-rational-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-rational-with-factorisation'}, name='algebra_manipulation_expressions_rational_with_factorisation'),
+    path('algebra-manipulation-expressions-rational-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-rational-difference-squares'}, name='algebra_manipulation_expressions_rational_difference_squares'),
+    path('algebra-manipulation-expressions-mixed-all/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-mixed-all'}, name='algebra_manipulation_expressions_mixed_all'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
