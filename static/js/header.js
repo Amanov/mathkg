@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 menu.style.top = '';
                 menu.style.left = '';
                 menu.style.right = '';
+                menu.style.maxHeight = '';
+                menu.style.overflowY = '';
                 submenu.classList.remove('dropstart');
 
                 menu.classList.add('show');
@@ -62,6 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     const shift = Math.min(desiredShift, maxShift);
                     const currentTop = parseFloat(getComputedStyle(menu).top) || 0;
                     menu.style.top = `${currentTop - shift}px`;
+                }
+
+                // A long panel (many items) can still be taller than the
+                // viewport even after shifting up as far as the ancestor
+                // boundary allows - without this, its remaining items are
+                // simply cut off past the screen edge with no way to reach
+                // them. Cap its height to whatever space is actually left
+                // and let it scroll internally instead.
+                const finalRect = menu.getBoundingClientRect();
+                const available = window.innerHeight - 10 - finalRect.top;
+                if (finalRect.height > available) {
+                    menu.style.maxHeight = `${Math.max(available, 100)}px`;
+                    menu.style.overflowY = 'auto';
                 }
             });
 
