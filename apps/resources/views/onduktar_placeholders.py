@@ -808,6 +808,41 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-expand-double-triple-triple': 'Үч кашаа',
     'algebra-manipulation-expand-double-triple-mixed': 'Аралаш ачуу',
     'algebra-manipulation-expand-double-triple-with-surds': 'Тамырлар менен',
+
+    # Өзгөртүп түзүү > Бир кашаага ажыратуу - both slots, none with a
+    # real page yet.
+    'algebra-manipulation-factorise-single-without-indices': 'Даражасыз',
+    'algebra-manipulation-factorise-single-with-indices': 'Даража менен',
+
+    # Өзгөртүп түзүү > Эки кашаага ажыратуу - all 7 slots, none with a
+    # real page yet.
+    'algebra-manipulation-factorise-double-quadratic-without-coefficients': 'Квадраттык: коэффициентсиз',
+    'algebra-manipulation-factorise-double-quadratic-with-coefficients': 'Квадраттык: коэффициент менен',
+    'algebra-manipulation-factorise-double-with-expanding': 'Ачуу менен',
+    'algebra-manipulation-factorise-double-completing-square': 'Толук квадратка келтирүү',
+    'algebra-manipulation-factorise-double-difference-squares': 'Эки квадраттын айырмасы',
+    'algebra-manipulation-factorise-double-mixed': 'Аралаш ажыратуу',
+    'algebra-manipulation-factorise-double-grouping': 'Топтоштуруу',
+
+    # Өзгөртүп түзүү > Белгилөө (was previously a flat leaf, see
+    # 'algebra-manipulation-notation' above, now orphaned - left in
+    # place, same as 'algebra-quadratic-rational') before a further
+    # screenshot showed it has its own chevron children - all 14
+    # slots, none with a real page yet.
+    'algebra-manipulation-notation-adding': 'Кошуу',
+    'algebra-manipulation-notation-adding-brackets': 'Кошуу: кашаа менен',
+    'algebra-manipulation-notation-adding-indices': 'Кошуу: даража менен',
+    'algebra-manipulation-notation-multiplying': 'Көбөйтүү',
+    'algebra-manipulation-notation-multiplying-adding': 'Көбөйтүү жана кошуу',
+    'algebra-manipulation-notation-dividing': 'Бөлүү',
+    'algebra-manipulation-notation-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'algebra-manipulation-notation-squared-cubed': 'Квадрат жана куб',
+    'algebra-manipulation-notation-mixed-arithmetic': 'Аралаш арифметика',
+    'algebra-manipulation-notation-negative-fractional-indices': 'Терс жана бөлчөк даражалар менен',
+    'algebra-manipulation-notation-rational-with-factorisation': 'Рационалдык: көбөйтүүчүлөргө ажыратуу менен',
+    'algebra-manipulation-notation-rational-difference-squares': 'Рационалдык: эки квадраттын айырмасы',
+    'algebra-manipulation-notation-mixed': 'Аралаш',
+    'algebra-manipulation-notation-mixed-all': 'Аралаш: баары',
 }
 
 

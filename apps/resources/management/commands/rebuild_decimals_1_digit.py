@@ -1568,20 +1568,86 @@ GROUPS = [
         # repeatedly - removed from target_items, one-time-cleaned via
         # 'displaced_url_names', recreated as a category via
         # CHILD_ORDER_FIXES, protected via 'promoted_titles', filled by
-        # its own dedicated GROUPS entry below.
+        # its own dedicated GROUPS entry below. A further screenshot
+        # then showed "Белгилөө" (Notation) ALSO has its own chevron
+        # children (14 of them) - same misread pattern yet again - same
+        # treatment.
         'parent_path': ('Алгебра', 'Өзгөртүп түзүү'),
-        'target_items': [
-            {'title': 'Белгилөө', 'url_name': 'algebra_manipulation_notation'},
-        ],
+        'target_items': [],
         'promoted_titles': [
             'Туюнтма түзүү', 'Алгебралык бөлчөктөр',
             'Бир кашааны ачуу', 'Эки жана үч кашааны ачуу',
             'Бир кашаага ажыратуу', 'Эки кашаага ажыратуу',
             'Далилдөөлөр', 'Туюнтмаларды жөнөкөйлөтүү', 'Аралаш',
-            'Формуланын өзгөрмөсүн алмаштыруу',
+            'Формуланын өзгөрмөсүн алмаштыруу', 'Белгилөө',
         ],
         'stale_subsubtopic_titles': [],
-        'displaced_url_names': ['algebra_manipulation_changing_subject'],
+        'displaced_url_names': [
+            'algebra_manipulation_changing_subject',
+            'algebra_manipulation_notation',
+        ],
+    },
+    {
+        # "Бир кашаага ажыратуу" (Factorising into Single Brackets)
+        # under Өзгөртүп түзүү was already an empty chevron-bearing
+        # category - reference (2 items, both flat): Without Indices,
+        # With Indices.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашаага ажыратуу'),
+        'target_items': [
+            {'title': 'Даражасыз', 'url_name': 'algebra_manipulation_factorise_single_without_indices'},
+            {'title': 'Даража менен', 'url_name': 'algebra_manipulation_factorise_single_with_indices'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Эки кашаага ажыратуу" (Factorising into Double Brackets)
+        # under Өзгөртүп түзүү was already an empty chevron-bearing
+        # category - reference (7 items, all flat): Quadratic Without
+        # Coefficients, Quadratic: With Coefficients, With Expanding,
+        # Completing the Square, Difference of Two Squares, Mixed
+        # Factorising, Grouping.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Эки кашаага ажыратуу'),
+        'target_items': [
+            {'title': 'Квадраттык: коэффициентсиз', 'url_name': 'algebra_manipulation_factorise_double_quadratic_without_coefficients'},
+            {'title': 'Квадраттык: коэффициент менен', 'url_name': 'algebra_manipulation_factorise_double_quadratic_with_coefficients'},
+            {'title': 'Ачуу менен', 'url_name': 'algebra_manipulation_factorise_double_with_expanding'},
+            {'title': 'Толук квадратка келтирүү', 'url_name': 'algebra_manipulation_factorise_double_completing_square'},
+            {'title': 'Эки квадраттын айырмасы', 'url_name': 'algebra_manipulation_factorise_double_difference_squares'},
+            {'title': 'Аралаш ажыратуу', 'url_name': 'algebra_manipulation_factorise_double_mixed'},
+            {'title': 'Топтоштуруу', 'url_name': 'algebra_manipulation_factorise_double_grouping'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Белгилөө" (Notation) is a fresh chevron-bearing category,
+        # created via 'create_subsubtopics' below. Reference (14 items,
+        # all flat): Adding, Adding: With Brackets, Adding: With
+        # Indices, Multiplying, Multiplying & Adding, Dividing,
+        # Multiplying & Dividing, Squared & Cubed, Mixed Arithmetic,
+        # With Negative & Fractional Indices, Rational: With
+        # Factorisation, Rational: Difference of Two Squares, Mixed,
+        # Mixed: All.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Белгилөө'),
+        'target_items': [
+            {'title': 'Кошуу', 'url_name': 'algebra_manipulation_notation_adding'},
+            {'title': 'Кошуу: кашаа менен', 'url_name': 'algebra_manipulation_notation_adding_brackets'},
+            {'title': 'Кошуу: даража менен', 'url_name': 'algebra_manipulation_notation_adding_indices'},
+            {'title': 'Көбөйтүү', 'url_name': 'algebra_manipulation_notation_multiplying'},
+            {'title': 'Көбөйтүү жана кошуу', 'url_name': 'algebra_manipulation_notation_multiplying_adding'},
+            {'title': 'Бөлүү', 'url_name': 'algebra_manipulation_notation_dividing'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'algebra_manipulation_notation_multiplying_dividing'},
+            {'title': 'Квадрат жана куб', 'url_name': 'algebra_manipulation_notation_squared_cubed'},
+            {'title': 'Аралаш арифметика', 'url_name': 'algebra_manipulation_notation_mixed_arithmetic'},
+            {'title': 'Терс жана бөлчөк даражалар менен', 'url_name': 'algebra_manipulation_notation_negative_fractional_indices'},
+            {'title': 'Рационалдык: көбөйтүүчүлөргө ажыратуу менен', 'url_name': 'algebra_manipulation_notation_rational_with_factorisation'},
+            {'title': 'Рационалдык: эки квадраттын айырмасы', 'url_name': 'algebra_manipulation_notation_rational_difference_squares'},
+            {'title': 'Аралаш', 'url_name': 'algebra_manipulation_notation_mixed'},
+            {'title': 'Аралаш: баары', 'url_name': 'algebra_manipulation_notation_mixed_all'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
     },
     {
         # "Сызыктуу" (Linear) under Барабарсыздыктар was already an
@@ -2334,13 +2400,13 @@ CHILD_ORDER_FIXES = [
         # кашаага ажыратуу", "Далилдөөлөр", "Туюнтмаларды жөнөкөйлөтүү",
         # "Аралаш" are created here (fresh chevron-bearing categories,
         # left empty pending screenshots of their own contents) - 2-run
-        # cross-run dependency. "Формуланын өзгөрмөсүн алмаштыруу" is
-        # re-created here too, now as a category, after the GROUPS
-        # entry above one-time-deletes its old flat MenuItem via
-        # 'displaced_url_names' (same pattern as the Equations/Graphs:
-        # Abstract fixes - both steps run in the same execution, so the
-        # delete-then-recreate completes in a single run; its own
-        # children still need a 2nd run).
+        # cross-run dependency. "Формуланын өзгөрмөсүн алмаштыруу" and
+        # "Белгилөө" are re-created here too, now as categories, after
+        # the GROUPS entry above one-time-deletes their old flat
+        # MenuItems via 'displaced_url_names' (same pattern as the
+        # Equations/Graphs: Abstract fixes - both steps run in the same
+        # execution, so the delete-then-recreate completes in a single
+        # run; their own children still need a 2nd run).
         'parent_path': ('Алгебра', 'Өзгөртүп түзүү'),
         'create_subsubtopics': [
             {'title': 'Туюнтма түзүү', 'slug': 'manipulation-forming-expressions'},
@@ -2353,6 +2419,7 @@ CHILD_ORDER_FIXES = [
             {'title': 'Туюнтмаларды жөнөкөйлөтүү', 'slug': 'manipulation-simplifying-expressions'},
             {'title': 'Аралаш', 'slug': 'manipulation-mixed'},
             {'title': 'Формуланын өзгөрмөсүн алмаштыруу', 'slug': 'manipulation-changing-subject'},
+            {'title': 'Белгилөө', 'slug': 'manipulation-notation'},
         ],
         'order': [
             'Белгилөө',
@@ -2647,6 +2714,52 @@ CHILD_ORDER_FIXES = [
             'Үч кашаа',
             'Аралаш ачуу',
             'Тамырлар менен',
+        ],
+    },
+    {
+        # Final order for Бир кашаага ажыратуу's own 2 children (under
+        # Өзгөртүп түзүү) - both flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашаага ажыратуу'),
+        'order': [
+            'Даражасыз',
+            'Даража менен',
+        ],
+    },
+    {
+        # Final order for Эки кашаага ажыратуу's own 7 children (under
+        # Өзгөртүп түзүү) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Эки кашаага ажыратуу'),
+        'order': [
+            'Квадраттык: коэффициентсиз',
+            'Квадраттык: коэффициент менен',
+            'Ачуу менен',
+            'Толук квадратка келтирүү',
+            'Эки квадраттын айырмасы',
+            'Аралаш ажыратуу',
+            'Топтоштуруу',
+        ],
+    },
+    {
+        # Final order for Белгилөө's own 14 children (under Өзгөртүп
+        # түзүү) - all flat, GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Белгилөө'),
+        'order': [
+            'Кошуу',
+            'Кошуу: кашаа менен',
+            'Кошуу: даража менен',
+            'Көбөйтүү',
+            'Көбөйтүү жана кошуу',
+            'Бөлүү',
+            'Көбөйтүү жана бөлүү',
+            'Квадрат жана куб',
+            'Аралаш арифметика',
+            'Терс жана бөлчөк даражалар менен',
+            'Рационалдык: көбөйтүүчүлөргө ажыратуу менен',
+            'Рационалдык: эки квадраттын айырмасы',
+            'Аралаш',
+            'Аралаш: баары',
         ],
     },
 ]
