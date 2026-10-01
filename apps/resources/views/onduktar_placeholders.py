@@ -931,6 +931,21 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-angles-polygons-irregular': 'Туура эмес',
     'geometry-angles-polygons-mixed-without-circle-theorems': 'Тегерек теоремаларысыз',
     'geometry-angles-polygons-mixed-with-circle-theorems': 'Тегерек теоремалары менен',
+
+    # Геометрия > Азимут - all 5 slots, none with a real page yet.
+    'geometry-bearings-cardinal-points': 'Негизги багыттар',
+    'geometry-bearings-measuring': 'Өлчөө',
+    'geometry-bearings-with-scale-drawings': 'Масштабдуу сүрөт менен',
+    'geometry-bearings-calculating': 'Эсептөө',
+    'geometry-bearings-with-trigonometry': 'Тригонометрия менен',
+
+    # Геометрия > Координаттар - all 6 slots, none with a real page yet.
+    'geometry-coordinates-reading': 'Окуу',
+    'geometry-coordinates-reading-plotting': 'Окуу жана белгилөө',
+    'geometry-coordinates-midpoint-endpoint': 'Кесиндинин орто жана чеки чекиттери',
+    'geometry-coordinates-line-segments-ratio': 'Кесиндилер жана катыш',
+    'geometry-coordinates-geometric-problems': 'Геометриялык маселелер',
+    'geometry-coordinates-with-pythagoras': 'Пифагор менен',
 }
 
 

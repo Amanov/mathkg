@@ -983,6 +983,21 @@ urlpatterns = [
     path('geometry-angles-polygons-mixed-without-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-mixed-without-circle-theorems'}, name='geometry_angles_polygons_mixed_without_circle_theorems'),
     path('geometry-angles-polygons-mixed-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-mixed-with-circle-theorems'}, name='geometry_angles_polygons_mixed_with_circle_theorems'),
 
+    # Геометрия > Азимут - all 5 slots, none with a real page yet.
+    path('geometry-bearings-cardinal-points/', operation_placeholder_view, {'operation_slug': 'geometry-bearings-cardinal-points'}, name='geometry_bearings_cardinal_points'),
+    path('geometry-bearings-measuring/', operation_placeholder_view, {'operation_slug': 'geometry-bearings-measuring'}, name='geometry_bearings_measuring'),
+    path('geometry-bearings-with-scale-drawings/', operation_placeholder_view, {'operation_slug': 'geometry-bearings-with-scale-drawings'}, name='geometry_bearings_with_scale_drawings'),
+    path('geometry-bearings-calculating/', operation_placeholder_view, {'operation_slug': 'geometry-bearings-calculating'}, name='geometry_bearings_calculating'),
+    path('geometry-bearings-with-trigonometry/', operation_placeholder_view, {'operation_slug': 'geometry-bearings-with-trigonometry'}, name='geometry_bearings_with_trigonometry'),
+
+    # Геометрия > Координаттар - all 6 slots, none with a real page yet.
+    path('geometry-coordinates-reading/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-reading'}, name='geometry_coordinates_reading'),
+    path('geometry-coordinates-reading-plotting/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-reading-plotting'}, name='geometry_coordinates_reading_plotting'),
+    path('geometry-coordinates-midpoint-endpoint/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-midpoint-endpoint'}, name='geometry_coordinates_midpoint_endpoint'),
+    path('geometry-coordinates-line-segments-ratio/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-line-segments-ratio'}, name='geometry_coordinates_line_segments_ratio'),
+    path('geometry-coordinates-geometric-problems/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-geometric-problems'}, name='geometry_coordinates_geometric_problems'),
+    path('geometry-coordinates-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-with-pythagoras'}, name='geometry_coordinates_with_pythagoras'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

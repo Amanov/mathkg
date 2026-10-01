@@ -2034,6 +2034,39 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Азимут" (Bearings) under Геометрия was an empty top-level
+        # category. Reference (5 items, all flat): Cardinal Points,
+        # Measuring, With Scale Drawings, Calculating, With
+        # Trigonometry.
+        'parent_path': ('Геометрия', 'Азимут'),
+        'target_items': [
+            {'title': 'Негизги багыттар', 'url_name': 'geometry_bearings_cardinal_points'},
+            {'title': 'Өлчөө', 'url_name': 'geometry_bearings_measuring'},
+            {'title': 'Масштабдуу сүрөт менен', 'url_name': 'geometry_bearings_with_scale_drawings'},
+            {'title': 'Эсептөө', 'url_name': 'geometry_bearings_calculating'},
+            {'title': 'Тригонометрия менен', 'url_name': 'geometry_bearings_with_trigonometry'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Координаттар" (Coordinates) under Геометрия was an empty
+        # top-level category. Reference (6 items, all flat): Reading,
+        # Reading & Plotting, Midpoint & Endpoint of a Line, Line
+        # Segments & Ratio, Geometric Problems, With Pythagoras.
+        'parent_path': ('Геометрия', 'Координаттар'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'geometry_coordinates_reading'},
+            {'title': 'Окуу жана белгилөө', 'url_name': 'geometry_coordinates_reading_plotting'},
+            {'title': 'Кесиндинин орто жана чеки чекиттери', 'url_name': 'geometry_coordinates_midpoint_endpoint'},
+            {'title': 'Кесиндилер жана катыш', 'url_name': 'geometry_coordinates_line_segments_ratio'},
+            {'title': 'Геометриялык маселелер', 'url_name': 'geometry_coordinates_geometric_problems'},
+            {'title': 'Пифагор менен', 'url_name': 'geometry_coordinates_with_pythagoras'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -3206,6 +3239,90 @@ CHILD_ORDER_FIXES = [
             'Туура',
             'Туура эмес',
             'Аралаш',
+        ],
+    },
+    {
+        # "Аянт жана периметр" (Area & Perimeter) under Геометрия was
+        # an empty top-level category. Reference (7 items), all
+        # chevron-bearing categories - created here via
+        # 'create_subsubtopics', left empty pending their own
+        # screenshots.
+        'parent_path': ('Геометрия', 'Аянт жана периметр'),
+        'create_subsubtopics': [
+            {'title': 'Тегеректер', 'slug': 'circles'},
+            {'title': 'Татаал: түз сызыктуу', 'slug': 'compound-rectilinear'},
+            {'title': 'Татаал: көп бурчтуктуу', 'slug': 'compound-polygonal'},
+            {'title': 'Татаал: тегеректер менен', 'slug': 'compound-with-circles'},
+            {'title': 'Төрт бурчтуктар', 'slug': 'quadrilaterals'},
+            {'title': 'Үч бурчтуктар', 'slug': 'triangles'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Тегеректер',
+            'Татаал: түз сызыктуу',
+            'Татаал: көп бурчтуктуу',
+            'Татаал: тегеректер менен',
+            'Төрт бурчтуктар',
+            'Үч бурчтуктар',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Классификациялоо жана терминология" (Classifying &
+        # Vocabulary) under Геометрия was an empty top-level category.
+        # Reference (2 items), both chevron-bearing categories -
+        # created here via 'create_subsubtopics', left empty pending
+        # their own screenshots.
+        'parent_path': ('Геометрия', 'Классификациялоо жана терминология'),
+        'create_subsubtopics': [
+            {'title': 'Фигураларды классификациялоо', 'slug': 'classifying-shapes'},
+            {'title': 'Терминология', 'slug': 'vocabulary'},
+        ],
+        'order': [
+            'Фигураларды классификациялоо',
+            'Терминология',
+        ],
+    },
+    {
+        # "Курулуштар" (Construction) under Геометрия was an empty
+        # top-level category. Reference screenshot showed 12 items
+        # (Angles, Compass Skills, Polygons, Bisectors, Loci, Bisectors
+        # & Loci, Nets, Plans & Elevations, Isometric Grids, Measuring
+        # Lines, Scale Drawings, Sketching Diagrams) all chevron-bearing
+        # - the last one ("Sketching Diagrams") was only partially
+        # visible at the very bottom edge of the screenshot, so there
+        # may be more below it; only these 12 are built for now,
+        # flagged to the user to confirm the rest. Created here via
+        # 'create_subsubtopics', left empty pending their own
+        # screenshots.
+        'parent_path': ('Геометрия', 'Курулуштар'),
+        'create_subsubtopics': [
+            {'title': 'Бурчтар', 'slug': 'angles'},
+            {'title': 'Циркуль көндүмдөрү', 'slug': 'compass-skills'},
+            {'title': 'Көп бурчтуктар', 'slug': 'polygons'},
+            {'title': 'Бисектрисалар', 'slug': 'bisectors'},
+            {'title': 'Геометриялык орундар', 'slug': 'loci'},
+            {'title': 'Бисектрисалар жана геометриялык орундар', 'slug': 'bisectors-loci'},
+            {'title': 'Жайылмалар', 'slug': 'nets'},
+            {'title': 'Пландар жана көрүнүштөр', 'slug': 'plans-elevations'},
+            {'title': 'Изометрикалык тор', 'slug': 'isometric-grids'},
+            {'title': 'Сызыктарды өлчөө', 'slug': 'measuring-lines'},
+            {'title': 'Масштабдуу сүрөттөр', 'slug': 'scale-drawings'},
+            {'title': 'Диаграммаларды чийүү', 'slug': 'sketching-diagrams'},
+        ],
+        'order': [
+            'Бурчтар',
+            'Циркуль көндүмдөрү',
+            'Көп бурчтуктар',
+            'Бисектрисалар',
+            'Геометриялык орундар',
+            'Бисектрисалар жана геометриялык орундар',
+            'Жайылмалар',
+            'Пландар жана көрүнүштөр',
+            'Изометрикалык тор',
+            'Сызыктарды өлчөө',
+            'Масштабдуу сүрөттөр',
+            'Диаграммаларды чийүү',
         ],
     },
 ]
