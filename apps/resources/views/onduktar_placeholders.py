@@ -887,6 +887,40 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-expressions-rational-with-factorisation': 'Рационалдык: көбөйтүүчүлөргө ажыратуу менен',
     'algebra-manipulation-expressions-rational-difference-squares': 'Рационалдык: эки квадраттын айырмасы',
     'algebra-manipulation-expressions-mixed-all': 'Аралаш: баары',
+
+    # Геометрия > Бурчтар > Бурч фактылары - 6 slots, none with a real
+    # page yet.
+    'geometry-angles-angle-facts-vocabulary': 'Терминология',
+    'geometry-angles-angle-facts-around-a-point': 'Чекиттин тегерегинде',
+    'geometry-angles-angle-facts-on-straight-lines': 'Түз сызыктарда',
+    'geometry-angles-angle-facts-vertically-opposite': 'Вертикаль бурчтар',
+    'geometry-angles-angle-facts-triangles': 'Үч бурчтуктар',
+    'geometry-angles-angle-facts-mixed': 'Аралаш',
+
+    # Геометрия > Бурчтар > Чийүү жана өлчөө - 4 slots, none with a
+    # real page yet.
+    'geometry-angles-drawing-measuring-drawing': 'Чийүү',
+    'geometry-angles-drawing-measuring-measuring': 'Өлчөө',
+    'geometry-angles-drawing-measuring-both': 'Чийүү жана өлчөө',
+    'geometry-angles-drawing-measuring-estimating': 'Болжолдоо',
+
+    # Геометрия > Бурчтар > Тегерек теоремалары - 10 slots, none with a
+    # real page yet.
+    'geometry-angles-circle-theorems-vocabulary': 'Терминология',
+    'geometry-angles-circle-theorems-alternate-segment': 'Алмашма сегмент',
+    'geometry-angles-circle-theorems-at-circumference': 'Тегеректин четинде',
+    'geometry-angles-circle-theorems-cyclic-quadrilaterals': 'Циклдик төрт бурчтуктар',
+    'geometry-angles-circle-theorems-tangents-chords': 'Жанамалар жана хордалар',
+    'geometry-angles-circle-theorems-combined': 'Айкалышкан',
+    'geometry-angles-circle-theorems-mixed': 'Аралаш',
+    'geometry-angles-circle-theorems-with-pythagoras': 'Пифагор менен',
+    'geometry-angles-circle-theorems-with-trigonometry': 'Тригонометрия менен',
+    'geometry-angles-circle-theorems-intersecting-chords': 'Кесилишкен хордалар (ЖРТ)',
+
+    # Геометрия > Бурчтар > Параллель сызыктар - 2 known slots
+    # (screenshot was cut off), none with a real page yet.
+    'geometry-angles-parallel-lines-introduction': 'Киришүү',
+    'geometry-angles-parallel-lines-solving-equations': 'Теңдемелерди чечүү',
 }
 
 

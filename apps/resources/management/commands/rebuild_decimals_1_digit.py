@@ -1920,6 +1920,83 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Бурч фактылары" (Angle Facts) under Геометрия > Бурчтар is a
+        # fresh chevron-bearing category, created via
+        # 'create_subsubtopics' in CHILD_ORDER_FIXES below (first run
+        # reports "not found" here, second run succeeds - the usual
+        # cross-run dependency for a parent created in the same
+        # command execution). Reference (6 items, all flat): Vocabulary,
+        # Around a Point, On Straight Lines, Vertically Opposite,
+        # Triangles, Mixed.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Бурч фактылары'),
+        'target_items': [
+            {'title': 'Терминология', 'url_name': 'geometry_angles_angle_facts_vocabulary'},
+            {'title': 'Чекиттин тегерегинде', 'url_name': 'geometry_angles_angle_facts_around_a_point'},
+            {'title': 'Түз сызыктарда', 'url_name': 'geometry_angles_angle_facts_on_straight_lines'},
+            {'title': 'Вертикаль бурчтар', 'url_name': 'geometry_angles_angle_facts_vertically_opposite'},
+            {'title': 'Үч бурчтуктар', 'url_name': 'geometry_angles_angle_facts_triangles'},
+            {'title': 'Аралаш', 'url_name': 'geometry_angles_angle_facts_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Чийүү жана өлчөө" (Drawing & Measuring) under Геометрия >
+        # Бурчтар - same cross-run dependency as Бурч фактылары above.
+        # Reference (4 items, all flat): Drawing, Measuring, Drawing &
+        # Measuring, Estimating - the 3rd item repeats the parent's own
+        # name verbatim on the reference site (a combined-skill drill
+        # alongside the 2 standalone ones), kept faithfully as shown.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Чийүү жана өлчөө'),
+        'target_items': [
+            {'title': 'Чийүү', 'url_name': 'geometry_angles_drawing_measuring_drawing'},
+            {'title': 'Өлчөө', 'url_name': 'geometry_angles_drawing_measuring_measuring'},
+            {'title': 'Чийүү жана өлчөө', 'url_name': 'geometry_angles_drawing_measuring_both'},
+            {'title': 'Болжолдоо', 'url_name': 'geometry_angles_drawing_measuring_estimating'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Тегерек теоремалары" (Circle Theorems) under Геометрия >
+        # Бурчтар - same cross-run dependency as its 2 siblings above.
+        # Reference (10 items, all flat): Vocabulary, Alternate Segment,
+        # At the Circumference, Cyclic Quadrilaterals, Tangents &
+        # Chords, Combined, Mixed, With Pythagoras, With Trigonometry,
+        # Intersecting Chords (IGCSE) - "IGCSE" localized to "ЖРТ" per
+        # the user's standing request.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
+        'target_items': [
+            {'title': 'Терминология', 'url_name': 'geometry_angles_circle_theorems_vocabulary'},
+            {'title': 'Алмашма сегмент', 'url_name': 'geometry_angles_circle_theorems_alternate_segment'},
+            {'title': 'Тегеректин четинде', 'url_name': 'geometry_angles_circle_theorems_at_circumference'},
+            {'title': 'Циклдик төрт бурчтуктар', 'url_name': 'geometry_angles_circle_theorems_cyclic_quadrilaterals'},
+            {'title': 'Жанамалар жана хордалар', 'url_name': 'geometry_angles_circle_theorems_tangents_chords'},
+            {'title': 'Айкалышкан', 'url_name': 'geometry_angles_circle_theorems_combined'},
+            {'title': 'Аралаш', 'url_name': 'geometry_angles_circle_theorems_mixed'},
+            {'title': 'Пифагор менен', 'url_name': 'geometry_angles_circle_theorems_with_pythagoras'},
+            {'title': 'Тригонометрия менен', 'url_name': 'geometry_angles_circle_theorems_with_trigonometry'},
+            {'title': 'Кесилишкен хордалар (ЖРТ)', 'url_name': 'geometry_angles_circle_theorems_intersecting_chords'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Параллель сызыктар" (Parallel Lines) under Геометрия >
+        # Бурчтар was already an empty chevron-bearing category (kept
+        # from the old import - see the Бурчтар entry above). Reference
+        # screenshot was cut off after 2 items (Introduction, Solving
+        # Equations) - only these are built for now, flagged to the
+        # user to confirm the rest.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Параллель сызыктар'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'geometry_angles_parallel_lines_introduction'},
+            {'title': 'Теңдемелерди чечүү', 'url_name': 'geometry_angles_parallel_lines_solving_equations'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -2988,6 +3065,87 @@ CHILD_ORDER_FIXES = [
             'Тригонометрия',
             'Векторлор',
             'Көлөм жана бет аянты',
+        ],
+    },
+    {
+        # "Бурчтар" (Angles) carried 3 children from the old coarser
+        # import (see the Геометрия entry above) - "Негизги бурчтар"
+        # (Basic Angles) isn't in the new reference's 6-item list at
+        # all, while "Параллель сызыктар" (Parallel Lines) and "Көп
+        # бурчтуктар" (Polygons) match 1:1 and are kept, reused as-is.
+        # Reference (6 items): Angle Facts, Drawing & Measuring, Circle
+        # Theorems, Parallel Lines, Polygons, Mixed are all
+        # chevron-bearing categories - the 4 new ones are created here
+        # via 'create_subsubtopics', left empty pending their own
+        # screenshots (which the next 3 entries below already fill in
+        # for Angle Facts, Drawing & Measuring, Circle Theorems).
+        'parent_path': ('Геометрия', 'Бурчтар'),
+        'create_subsubtopics': [
+            {'title': 'Бурч фактылары', 'slug': 'angle-facts'},
+            {'title': 'Чийүү жана өлчөө', 'slug': 'drawing-measuring'},
+            {'title': 'Тегерек теоремалары', 'slug': 'circle-theorems'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Бурч фактылары',
+            'Чийүү жана өлчөө',
+            'Тегерек теоремалары',
+            'Параллель сызыктар',
+            'Көп бурчтуктар',
+            'Аралаш',
+        ],
+    },
+    {
+        # Final order for Бурч фактылары's own 6 children (under
+        # Геометрия > Бурчтар) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Бурч фактылары'),
+        'order': [
+            'Терминология',
+            'Чекиттин тегерегинде',
+            'Түз сызыктарда',
+            'Вертикаль бурчтар',
+            'Үч бурчтуктар',
+            'Аралаш',
+        ],
+    },
+    {
+        # Final order for Чийүү жана өлчөө's own 4 children (under
+        # Геометрия > Бурчтар) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Чийүү жана өлчөө'),
+        'order': [
+            'Чийүү',
+            'Өлчөө',
+            'Чийүү жана өлчөө',
+            'Болжолдоо',
+        ],
+    },
+    {
+        # Final order for Тегерек теоремалары's own 10 children (under
+        # Геометрия > Бурчтар) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
+        'order': [
+            'Терминология',
+            'Алмашма сегмент',
+            'Тегеректин четинде',
+            'Циклдик төрт бурчтуктар',
+            'Жанамалар жана хордалар',
+            'Айкалышкан',
+            'Аралаш',
+            'Пифагор менен',
+            'Тригонометрия менен',
+            'Кесилишкен хордалар (ЖРТ)',
+        ],
+    },
+    {
+        # Final order for Параллель сызыктар's own 2 known children
+        # (under Геометрия > Бурчтар) - partial, screenshot was cut off.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Параллель сызыктар'),
+        'order': [
+            'Киришүү',
+            'Теңдемелерди чечүү',
         ],
     },
 ]

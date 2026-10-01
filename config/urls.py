@@ -951,6 +951,40 @@ urlpatterns = [
     path('algebra-manipulation-expressions-rational-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-rational-difference-squares'}, name='algebra_manipulation_expressions_rational_difference_squares'),
     path('algebra-manipulation-expressions-mixed-all/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expressions-mixed-all'}, name='algebra_manipulation_expressions_mixed_all'),
 
+    # Геометрия > Бурчтар > Бурч фактылары - 6 slots, none with a real
+    # page yet.
+    path('geometry-angles-angle-facts-vocabulary/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-vocabulary'}, name='geometry_angles_angle_facts_vocabulary'),
+    path('geometry-angles-angle-facts-around-a-point/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-around-a-point'}, name='geometry_angles_angle_facts_around_a_point'),
+    path('geometry-angles-angle-facts-on-straight-lines/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-on-straight-lines'}, name='geometry_angles_angle_facts_on_straight_lines'),
+    path('geometry-angles-angle-facts-vertically-opposite/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-vertically-opposite'}, name='geometry_angles_angle_facts_vertically_opposite'),
+    path('geometry-angles-angle-facts-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-triangles'}, name='geometry_angles_angle_facts_triangles'),
+    path('geometry-angles-angle-facts-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-angles-angle-facts-mixed'}, name='geometry_angles_angle_facts_mixed'),
+
+    # Геометрия > Бурчтар > Чийүү жана өлчөө - 4 slots, none with a
+    # real page yet.
+    path('geometry-angles-drawing-measuring-drawing/', operation_placeholder_view, {'operation_slug': 'geometry-angles-drawing-measuring-drawing'}, name='geometry_angles_drawing_measuring_drawing'),
+    path('geometry-angles-drawing-measuring-measuring/', operation_placeholder_view, {'operation_slug': 'geometry-angles-drawing-measuring-measuring'}, name='geometry_angles_drawing_measuring_measuring'),
+    path('geometry-angles-drawing-measuring-both/', operation_placeholder_view, {'operation_slug': 'geometry-angles-drawing-measuring-both'}, name='geometry_angles_drawing_measuring_both'),
+    path('geometry-angles-drawing-measuring-estimating/', operation_placeholder_view, {'operation_slug': 'geometry-angles-drawing-measuring-estimating'}, name='geometry_angles_drawing_measuring_estimating'),
+
+    # Геометрия > Бурчтар > Тегерек теоремалары - 10 slots, none with a
+    # real page yet.
+    path('geometry-angles-circle-theorems-vocabulary/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-vocabulary'}, name='geometry_angles_circle_theorems_vocabulary'),
+    path('geometry-angles-circle-theorems-alternate-segment/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-alternate-segment'}, name='geometry_angles_circle_theorems_alternate_segment'),
+    path('geometry-angles-circle-theorems-at-circumference/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-at-circumference'}, name='geometry_angles_circle_theorems_at_circumference'),
+    path('geometry-angles-circle-theorems-cyclic-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-cyclic-quadrilaterals'}, name='geometry_angles_circle_theorems_cyclic_quadrilaterals'),
+    path('geometry-angles-circle-theorems-tangents-chords/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-tangents-chords'}, name='geometry_angles_circle_theorems_tangents_chords'),
+    path('geometry-angles-circle-theorems-combined/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-combined'}, name='geometry_angles_circle_theorems_combined'),
+    path('geometry-angles-circle-theorems-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-mixed'}, name='geometry_angles_circle_theorems_mixed'),
+    path('geometry-angles-circle-theorems-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-with-pythagoras'}, name='geometry_angles_circle_theorems_with_pythagoras'),
+    path('geometry-angles-circle-theorems-with-trigonometry/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-with-trigonometry'}, name='geometry_angles_circle_theorems_with_trigonometry'),
+    path('geometry-angles-circle-theorems-intersecting-chords/', operation_placeholder_view, {'operation_slug': 'geometry-angles-circle-theorems-intersecting-chords'}, name='geometry_angles_circle_theorems_intersecting_chords'),
+
+    # Геометрия > Бурчтар > Параллель сызыктар - 2 known slots
+    # (screenshot was cut off), none with a real page yet.
+    path('geometry-angles-parallel-lines-introduction/', operation_placeholder_view, {'operation_slug': 'geometry-angles-parallel-lines-introduction'}, name='geometry_angles_parallel_lines_introduction'),
+    path('geometry-angles-parallel-lines-solving-equations/', operation_placeholder_view, {'operation_slug': 'geometry-angles-parallel-lines-solving-equations'}, name='geometry_angles_parallel_lines_solving_equations'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
