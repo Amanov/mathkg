@@ -726,6 +726,29 @@ OPERATION_PLACEHOLDER_TITLES = {
     # real page yet.
     'algebra-graphs-abstract-transformations-gcse': 'GCSE',
     'algebra-graphs-abstract-transformations-igcse': 'IGCSE',
+
+    # Графиктер: турмуштук > Айландыруу графиктери - 2 confirmed slots
+    # (reference screenshot was cut off after these, flagged to the
+    # user), none with a real page yet.
+    'algebra-graphs-real-life-conversion-reading': 'Окуу',
+    'algebra-graphs-real-life-conversion-plotting-reading': 'Чиймелөө жана окуу',
+
+    # Графиктер: турмуштук > Баа катыштары - 2 confirmed slots (cut off
+    # in the reference), none with a real page yet.
+    'algebra-graphs-real-life-cost-introduction': 'Киришүү',
+    'algebra-graphs-real-life-cost-with-equations': 'Теңдемелер менен',
+
+    # Графиктер: турмуштук > Аралык-Убакыт: турактуу ылдамдык - 2
+    # confirmed slots (cut off in the reference), none with a real page
+    # yet.
+    'algebra-graphs-real-life-distance-time-constant-reading': 'Окуу',
+    'algebra-graphs-real-life-distance-time-constant-plotting-reading': 'Чиймелөө жана окуу',
+
+    # Графиктер: турмуштук > Ылдамдык-Убакыт - all 3 slots, none with a
+    # real page yet.
+    'algebra-graphs-real-life-velocity-time-distance': 'Аралык',
+    'algebra-graphs-real-life-velocity-time-acceleration': 'Ылдамдануу',
+    'algebra-graphs-real-life-velocity-time-mixed': 'Аралаш',
 }
 
 
