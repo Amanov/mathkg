@@ -988,6 +988,42 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-volume-surface-area-vocabulary': 'Терминология',
     'geometry-volume-surface-area-introduction-to-volume': 'Көлөмгө киришүү',
     'geometry-volume-surface-area-nets': 'Жайылмалар',
+
+    # Геометрия > Бурчтар > Аралаш - all 2 slots, none with a real
+    # page yet.
+    'geometry-angles-mixed-without-circle-theorems': 'Тегерек теоремаларысыз',
+    'geometry-angles-mixed-with-circle-theorems': 'Тегерек теоремалары менен',
+
+    # Геометрия > Аянт жана периметр > Тегеректер - all 10 slots,
+    # none with a real page yet.
+    'geometry-area-perimeter-circles-vocabulary': 'Терминология',
+    'geometry-area-perimeter-circles-area': 'Аянт',
+    'geometry-area-perimeter-circles-area-in-terms-of-pi': 'π аркылуу аянт',
+    'geometry-area-perimeter-circles-circumference': 'Тегеректин узундугу',
+    'geometry-area-perimeter-circles-area-circumference': 'Аянт жана тегеректин узундугу',
+    'geometry-area-perimeter-circles-arc-length': 'Жаанын узундугу',
+    'geometry-area-perimeter-circles-sector-area': 'Сектордун аянты',
+    'geometry-area-perimeter-circles-arcs-sectors': 'Жаалар жана секторлор',
+    'geometry-area-perimeter-circles-mixed': 'Аралаш',
+    'geometry-area-perimeter-circles-comparative-pie-charts': 'Салыштырма тоорт диаграммалар',
+
+    # Геометрия > Аянт жана периметр > Татаал: түз сызыктуу - all 3
+    # slots, none with a real page yet.
+    'geometry-area-perimeter-compound-rectilinear-area': 'Аянт',
+    'geometry-area-perimeter-compound-rectilinear-perimeter': 'Периметр',
+    'geometry-area-perimeter-compound-rectilinear-mixed': 'Аралаш',
+
+    # Геометрия > Аянт жана периметр > Татаал: көп бурчтуктуу - all 3
+    # slots, none with a real page yet.
+    'geometry-area-perimeter-compound-polygonal-area': 'Аянт',
+    'geometry-area-perimeter-compound-polygonal-perimeter': 'Периметр',
+    'geometry-area-perimeter-compound-polygonal-perimeter-with-pythagoras': 'Периметр: Пифагор менен',
+
+    # Геометрия > Аянт жана периметр > Татаал: тегеректер менен - all
+    # 3 slots, none with a real page yet.
+    'geometry-area-perimeter-compound-with-circles-area': 'Аянт',
+    'geometry-area-perimeter-compound-with-circles-perimeter': 'Периметр',
+    'geometry-area-perimeter-compound-with-circles-mixed': 'Аралаш',
 }
 
 
