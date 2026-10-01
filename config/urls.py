@@ -789,6 +789,27 @@ urlpatterns = [
     path('algebra-graphs-abstract-transformations-gcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-gcse'}, name='algebra_graphs_abstract_transformations_gcse'),
     path('algebra-graphs-abstract-transformations-igcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-igcse'}, name='algebra_graphs_abstract_transformations_igcse'),
 
+    # Графиктер: турмуштук > Айландыруу графиктери - 2 confirmed slots
+    # (reference screenshot was cut off after these).
+    path('algebra-graphs-real-life-conversion-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-conversion-reading'}, name='algebra_graphs_real_life_conversion_reading'),
+    path('algebra-graphs-real-life-conversion-plotting-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-conversion-plotting-reading'}, name='algebra_graphs_real_life_conversion_plotting_reading'),
+
+    # Графиктер: турмуштук > Баа катыштары - 2 confirmed slots (cut off
+    # in the reference).
+    path('algebra-graphs-real-life-cost-introduction/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-cost-introduction'}, name='algebra_graphs_real_life_cost_introduction'),
+    path('algebra-graphs-real-life-cost-with-equations/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-cost-with-equations'}, name='algebra_graphs_real_life_cost_with_equations'),
+
+    # Графиктер: турмуштук > Аралык-Убакыт: турактуу ылдамдык - 2
+    # confirmed slots (cut off in the reference).
+    path('algebra-graphs-real-life-distance-time-constant-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-distance-time-constant-reading'}, name='algebra_graphs_real_life_distance_time_constant_reading'),
+    path('algebra-graphs-real-life-distance-time-constant-plotting-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-distance-time-constant-plotting-reading'}, name='algebra_graphs_real_life_distance_time_constant_plotting_reading'),
+
+    # Графиктер: турмуштук > Ылдамдык-Убакыт - all 3 slots, none with a
+    # real page yet.
+    path('algebra-graphs-real-life-velocity-time-distance/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-velocity-time-distance'}, name='algebra_graphs_real_life_velocity_time_distance'),
+    path('algebra-graphs-real-life-velocity-time-acceleration/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-velocity-time-acceleration'}, name='algebra_graphs_real_life_velocity_time_acceleration'),
+    path('algebra-graphs-real-life-velocity-time-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-velocity-time-mixed'}, name='algebra_graphs_real_life_velocity_time_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

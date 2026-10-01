@@ -1484,6 +1484,61 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Айландыруу графиктери" (Conversion Graphs) under Графиктер:
+        # турмуштук was already an empty chevron-bearing category -
+        # reference screenshot was cut off after 2 items (Reading,
+        # Plotting & Reading) - only these are built for now, flagged
+        # to the user to confirm the rest.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Айландыруу графиктери'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'algebra_graphs_real_life_conversion_reading'},
+            {'title': 'Чиймелөө жана окуу', 'url_name': 'algebra_graphs_real_life_conversion_plotting_reading'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Баа катыштары" (Cost Relationships) under Графиктер:
+        # турмуштук was already an empty chevron-bearing category -
+        # reference screenshot was cut off after 2 items (Introduction,
+        # With Equations) - only these are built for now, flagged to
+        # the user to confirm the rest.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Баа катыштары'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'algebra_graphs_real_life_cost_introduction'},
+            {'title': 'Теңдемелер менен', 'url_name': 'algebra_graphs_real_life_cost_with_equations'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралык-Убакыт: турактуу ылдамдык" (Distance-Time: Constant
+        # Speeds) under Графиктер: турмуштук was already an empty
+        # chevron-bearing category - reference screenshot was cut off
+        # after 2 items (Reading, Plotting & Reading) - only these are
+        # built for now, flagged to the user to confirm the rest.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Аралык-Убакыт: турактуу ылдамдык'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'algebra_graphs_real_life_distance_time_constant_reading'},
+            {'title': 'Чиймелөө жана окуу', 'url_name': 'algebra_graphs_real_life_distance_time_constant_plotting_reading'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Ылдамдык-Убакыт" (Velocity-Time) under Графиктер: турмуштук
+        # was already an empty chevron-bearing category - reference (3
+        # items, all flat): Distance, Acceleration, Mixed.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Ылдамдык-Убакыт'),
+        'target_items': [
+            {'title': 'Аралык', 'url_name': 'algebra_graphs_real_life_velocity_time_distance'},
+            {'title': 'Ылдамдануу', 'url_name': 'algebra_graphs_real_life_velocity_time_acceleration'},
+            {'title': 'Аралаш', 'url_name': 'algebra_graphs_real_life_velocity_time_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Барабарсыздыктар" (Inequalities) top-level was an empty
         # category. Reference (4 items): Quadratic, Trial &
         # Improvement are flat; Linear, Graphical are chevron-bearing
@@ -2320,6 +2375,46 @@ CHILD_ORDER_FIXES = [
         'order': [
             'GCSE',
             'IGCSE',
+        ],
+    },
+    {
+        # Partial order for Айландыруу графиктери's 2 confirmed children
+        # (reference screenshot was cut off after these, flagged to the
+        # user).
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Айландыруу графиктери'),
+        'order': [
+            'Окуу',
+            'Чиймелөө жана окуу',
+        ],
+    },
+    {
+        # Partial order for Баа катыштары's 2 confirmed children
+        # (reference screenshot was cut off after these, flagged to the
+        # user).
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Баа катыштары'),
+        'order': [
+            'Киришүү',
+            'Теңдемелер менен',
+        ],
+    },
+    {
+        # Partial order for Аралык-Убакыт: турактуу ылдамдык's 2
+        # confirmed children (reference screenshot was cut off after
+        # these, flagged to the user).
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Аралык-Убакыт: турактуу ылдамдык'),
+        'order': [
+            'Окуу',
+            'Чиймелөө жана окуу',
+        ],
+    },
+    {
+        # Final order for Ылдамдык-Убакыт's own 3 children - all flat,
+        # GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Графиктер: турмуштук', 'Ылдамдык-Убакыт'),
+        'order': [
+            'Аралык',
+            'Ылдамдануу',
+            'Аралаш',
         ],
     },
 ]
