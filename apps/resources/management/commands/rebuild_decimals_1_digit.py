@@ -1590,12 +1590,18 @@ GROUPS = [
     {
         # "Бир кашаага ажыратуу" (Factorising into Single Brackets)
         # under Өзгөртүп түзүү was already an empty chevron-bearing
-        # category - reference (2 items, both flat): Without Indices,
+        # category - a first screenshot showed only 2 items (Without
+        # Indices, With Indices); a fuller screenshot then revealed 2
+        # more (With Expanding: Without/With Indices) that had been
+        # missed - reference (4 items, all flat): Without Indices, With
+        # Indices, With Expanding: Without Indices, With Expanding:
         # With Indices.
         'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашаага ажыратуу'),
         'target_items': [
             {'title': 'Даражасыз', 'url_name': 'algebra_manipulation_factorise_single_without_indices'},
             {'title': 'Даража менен', 'url_name': 'algebra_manipulation_factorise_single_with_indices'},
+            {'title': 'Ачуу менен: даражасыз', 'url_name': 'algebra_manipulation_factorise_single_expanding_without_indices'},
+            {'title': 'Ачуу менен: даража менен', 'url_name': 'algebra_manipulation_factorise_single_expanding_with_indices'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1616,6 +1622,18 @@ GROUPS = [
             {'title': 'Эки квадраттын айырмасы', 'url_name': 'algebra_manipulation_factorise_double_difference_squares'},
             {'title': 'Аралаш ажыратуу', 'url_name': 'algebra_manipulation_factorise_double_mixed'},
             {'title': 'Топтоштуруу', 'url_name': 'algebra_manipulation_factorise_double_grouping'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Өзгөртүп түзүү was already an empty
+        # chevron-bearing category - reference (2 items, both flat):
+        # Foundation, Higher (exam-tier labels).
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'algebra_manipulation_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'algebra_manipulation_mixed_higher'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -2717,13 +2735,15 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # Final order for Бир кашаага ажыратуу's own 2 children (under
-        # Өзгөртүп түзүү) - both flat, GROUPS' target_items builds them
+        # Final order for Бир кашаага ажыратуу's own 4 children (under
+        # Өзгөртүп түзүү) - all flat, GROUPS' target_items builds them
         # directly.
         'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашаага ажыратуу'),
         'order': [
             'Даражасыз',
             'Даража менен',
+            'Ачуу менен: даражасыз',
+            'Ачуу менен: даража менен',
         ],
     },
     {
@@ -2760,6 +2780,16 @@ CHILD_ORDER_FIXES = [
             'Рационалдык: эки квадраттын айырмасы',
             'Аралаш',
             'Аралаш: баары',
+        ],
+    },
+    {
+        # Final order for Аралаш's own 2 children (under Өзгөртүп
+        # түзүү) - both flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Аралаш'),
+        'order': [
+            'Негизги деңгээл',
+            'Жогорку деңгээл',
         ],
     },
 ]

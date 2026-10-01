@@ -898,6 +898,15 @@ urlpatterns = [
     path('algebra-manipulation-notation-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-mixed'}, name='algebra_manipulation_notation_mixed'),
     path('algebra-manipulation-notation-mixed-all/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-mixed-all'}, name='algebra_manipulation_notation_mixed_all'),
 
+    # Өзгөртүп түзүү > Бир кашаага ажыратуу - 2 more slots found on a
+    # fuller screenshot.
+    path('algebra-manipulation-factorise-single-expanding-without-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-single-expanding-without-indices'}, name='algebra_manipulation_factorise_single_expanding_without_indices'),
+    path('algebra-manipulation-factorise-single-expanding-with-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-single-expanding-with-indices'}, name='algebra_manipulation_factorise_single_expanding_with_indices'),
+
+    # Өзгөртүп түзүү > Аралаш - both slots, none with a real page yet.
+    path('algebra-manipulation-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-mixed-foundation'}, name='algebra_manipulation_mixed_foundation'),
+    path('algebra-manipulation-mixed-higher/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-mixed-higher'}, name='algebra_manipulation_mixed_higher'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
