@@ -907,6 +907,12 @@ urlpatterns = [
     path('algebra-manipulation-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-mixed-foundation'}, name='algebra_manipulation_mixed_foundation'),
     path('algebra-manipulation-mixed-higher/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-mixed-higher'}, name='algebra_manipulation_mixed_higher'),
 
+    # Ырааттуулуктар > Сызыктуу - all 4 slots, none with a real page yet.
+    path('algebra-sequences-linear-introduction/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-introduction'}, name='algebra_sequences_linear_introduction'),
+    path('algebra-sequences-linear-evaluating-terms/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-evaluating-terms'}, name='algebra_sequences_linear_evaluating_terms'),
+    path('algebra-sequences-linear-from-2-terms/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-from-2-terms'}, name='algebra_sequences_linear_from_2_terms'),
+    path('algebra-sequences-linear-summing/', operation_placeholder_view, {'operation_slug': 'algebra-sequences-linear-summing'}, name='algebra_sequences_linear_summing'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
