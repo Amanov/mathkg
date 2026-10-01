@@ -843,6 +843,16 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-notation-rational-difference-squares': 'Рационалдык: эки квадраттын айырмасы',
     'algebra-manipulation-notation-mixed': 'Аралаш',
     'algebra-manipulation-notation-mixed-all': 'Аралаш: баары',
+
+    # Өзгөртүп түзүү > Бир кашаага ажыратуу - 2 more slots found on a
+    # fuller screenshot (the first one missed these), none with a real
+    # page yet.
+    'algebra-manipulation-factorise-single-expanding-without-indices': 'Ачуу менен: даражасыз',
+    'algebra-manipulation-factorise-single-expanding-with-indices': 'Ачуу менен: даража менен',
+
+    # Өзгөртүп түзүү > Аралаш - both slots, none with a real page yet.
+    'algebra-manipulation-mixed-foundation': 'Негизги деңгээл',
+    'algebra-manipulation-mixed-higher': 'Жогорку деңгээл',
 }
 
 
