@@ -2144,6 +2144,54 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Векторлор" (Vectors) under Геометрия carried 2 children
+        # ("Векторлор менен эсептөөлөр", "Векторлук геометрия") from the
+        # old coarser import (see the Геометрия root entry far above) -
+        # neither matches the new reference's 5-item flat list at all
+        # (0 resources attached to either), pruned by GROUPS' own
+        # exhaustive target_items set below like any other leftover.
+        # Reference (5 items, all flat): Translation, Expressing,
+        # Substitution, Around Shapes, Proofs.
+        'parent_path': ('Геометрия', 'Векторлор'),
+        'target_items': [
+            {'title': 'Жылдыруу', 'url_name': 'geometry_vectors_translation'},
+            {'title': 'Туюнтуу', 'url_name': 'geometry_vectors_expressing'},
+            {'title': 'Коюу', 'url_name': 'geometry_vectors_substitution'},
+            {'title': 'Фигуралардын тегерегинде', 'url_name': 'geometry_vectors_around_shapes'},
+            {'title': 'Далилдөөлөр', 'url_name': 'geometry_vectors_proofs'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Көлөм жана бет аянты" (Volume & Surface Area) under Геометрия
+        # was an empty top-level category. Reference (12 items):
+        # Vocabulary, Introduction to Volume, Nets are flat; Cone,
+        # Cuboid, Cylinder, Prism, Cylinder & Prism, Frustum, Pyramid,
+        # Sphere, Mixed are chevron-bearing categories (created via
+        # 'create_subsubtopics' below, left empty pending their own
+        # screenshots).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты'),
+        'target_items': [
+            {'title': 'Терминология', 'url_name': 'geometry_volume_surface_area_vocabulary'},
+            {'title': 'Көлөмгө киришүү', 'url_name': 'geometry_volume_surface_area_introduction_to_volume'},
+            {'title': 'Жайылмалар', 'url_name': 'geometry_volume_surface_area_nets'},
+        ],
+        'promoted_titles': [
+            'Конус',
+            'Параллелепипед',
+            'Цилиндр',
+            'Призма',
+            'Цилиндр жана призма',
+            'Кесилген конус',
+            'Пирамида',
+            'Сфера',
+            'Аралаш',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -3489,6 +3537,38 @@ CHILD_ORDER_FIXES = [
             'Тегерек теоремалары менен',
             'Аянт эрежеси',
             'Синус жана косинус эрежелери',
+        ],
+    },
+    {
+        # The 9 chevron-bearing categories under Көлөм жана бет аянты
+        # don't exist yet - created here via 'create_subsubtopics'. An
+        # 'order' entry is needed since 'create_subsubtopics' doesn't
+        # know where the 3 GROUPS-built flat siblings already sit.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты'),
+        'create_subsubtopics': [
+            {'title': 'Конус', 'slug': 'cone'},
+            {'title': 'Параллелепипед', 'slug': 'cuboid'},
+            {'title': 'Цилиндр', 'slug': 'cylinder'},
+            {'title': 'Призма', 'slug': 'prism'},
+            {'title': 'Цилиндр жана призма', 'slug': 'cylinder-prism'},
+            {'title': 'Кесилген конус', 'slug': 'frustum'},
+            {'title': 'Пирамида', 'slug': 'pyramid'},
+            {'title': 'Сфера', 'slug': 'sphere'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Терминология',
+            'Көлөмгө киришүү',
+            'Жайылмалар',
+            'Конус',
+            'Параллелепипед',
+            'Цилиндр',
+            'Призма',
+            'Цилиндр жана призма',
+            'Кесилген конус',
+            'Пирамида',
+            'Сфера',
+            'Аралаш',
         ],
     },
 ]
