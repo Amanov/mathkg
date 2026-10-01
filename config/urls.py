@@ -973,6 +973,16 @@ urlpatterns = [
     path('geometry-angles-parallel-lines-introduction/', operation_placeholder_view, {'operation_slug': 'geometry-angles-parallel-lines-introduction'}, name='geometry_angles_parallel_lines_introduction'),
     path('geometry-angles-parallel-lines-solving-equations/', operation_placeholder_view, {'operation_slug': 'geometry-angles-parallel-lines-solving-equations'}, name='geometry_angles_parallel_lines_solving_equations'),
 
+    # Геометрия > Бурчтар > Көп бурчтуктар - 5 flat slots plus "Аралаш"
+    # category's own 2 slots.
+    path('geometry-angles-polygons-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-triangles'}, name='geometry_angles_polygons_triangles'),
+    path('geometry-angles-polygons-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-quadrilaterals'}, name='geometry_angles_polygons_quadrilaterals'),
+    path('geometry-angles-polygons-special-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-special-quadrilaterals'}, name='geometry_angles_polygons_special_quadrilaterals'),
+    path('geometry-angles-polygons-regular/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-regular'}, name='geometry_angles_polygons_regular'),
+    path('geometry-angles-polygons-irregular/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-irregular'}, name='geometry_angles_polygons_irregular'),
+    path('geometry-angles-polygons-mixed-without-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-mixed-without-circle-theorems'}, name='geometry_angles_polygons_mixed_without_circle_theorems'),
+    path('geometry-angles-polygons-mixed-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-polygons-mixed-with-circle-theorems'}, name='geometry_angles_polygons_mixed_with_circle_theorems'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
