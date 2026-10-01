@@ -436,7 +436,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'ratio-dividing-fpr-non-calculator': 'Бөлчөк, пайыз жана катыш: калькуляторсуз',
     'ratio-dividing-fpr-frequency-trees': 'Бөлчөк, пайыз жана катыш: жыштык дарактары менен',
 
-    # Катыш > Түрлөндүрүү - all 4 slots, none with a real page yet.
+    # Катыш > Өзгөртүп түзүү - all 4 slots, none with a real page yet.
     'ratio-manipulation-1-to-n': '1:n',
     'ratio-manipulation-comparing-parts': 'Бөлүктөрдү салыштыруу',
     'ratio-manipulation-combining': 'Бириктирүү',
@@ -629,7 +629,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-inequalities-quadratic': 'Квадраттык',
     'algebra-inequalities-trial-improvement': 'Сыноо жана жакшыртуу',
 
-    # Түрлөндүрүү - 2 flat slots, none with a real page yet. The other
+    # Өзгөртүп түзүү - 2 flat slots, none with a real page yet. The other
     # 9 reference items are chevron-bearing categories left empty
     # pending screenshots of their own contents.
     'algebra-manipulation-notation': 'Белгилөө',
@@ -764,13 +764,13 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-inequalities-graphical-shade-wanted': 'Керектүү аймакты боёо',
     'algebra-inequalities-graphical-shade-unwanted': 'Керексиз аймакты боёо',
 
-    # Түрлөндүрүү > Туюнтма түзүү - all 3 slots, none with a real page
+    # Өзгөртүп түзүү > Туюнтма түзүү - all 3 slots, none with a real page
     # yet.
     'algebra-manipulation-forming-function-machines': 'Функция машиналары менен',
     'algebra-manipulation-forming-linear': 'Сызыктуу',
     'algebra-manipulation-forming-quadratic': 'Квадраттык',
 
-    # Түрлөндүрүү > Алгебралык бөлчөктөр - all 6 slots, none with a
+    # Өзгөртүп түзүү > Алгебралык бөлчөктөр - all 6 slots, none with a
     # real page yet.
     'algebra-manipulation-fractions-adding-subtracting': 'Кошуу жана кемитүү',
     'algebra-manipulation-fractions-multiplying-dividing': 'Көбөйтүү жана бөлүү',
@@ -779,7 +779,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-fractions-simplifying-with-factorisation': 'Жөнөкөйлөтүү: көбөйтүүчүлөргө ажыратуу менен',
     'algebra-manipulation-fractions-simplifying-difference-squares': 'Жөнөкөйлөтүү: эки квадраттын айырмасы',
 
-    # Түрлөндүрүү > Формуланын өзгөрмөсүн алмаштыруу (was previously a
+    # Өзгөртүп түзүү > Формуланын өзгөрмөсүн алмаштыруу (was previously a
     # flat leaf, see 'algebra-manipulation-changing-subject' above, now
     # orphaned - left in place, same as 'algebra-quadratic-rational')
     # before a further screenshot showed it has its own chevron
@@ -789,7 +789,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-changing-subject-without-factorisation': 'Көбөйтүүчүлөргө ажыратуусуз',
     'algebra-manipulation-changing-subject-with-factorisation': 'Көбөйтүүчүлөргө ажыратуу менен',
 
-    # Түрлөндүрүү > Бир кашааны ачуу - all 7 slots, none with a real
+    # Өзгөртүп түзүү > Бир кашааны ачуу - all 7 slots, none with a real
     # page yet.
     'algebra-manipulation-expand-single-without-coefficients': 'Коэффициентсиз',
     'algebra-manipulation-expand-single-with-coefficients': 'Коэффициент менен',
@@ -799,7 +799,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-expand-single-factorisation-without-indices': 'Көбөйтүүчүлөргө ажыратуу менен: даражасыз',
     'algebra-manipulation-expand-single-factorisation-with-indices': 'Көбөйтүүчүлөргө ажыратуу менен: даража менен',
 
-    # Түрлөндүрүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
+    # Өзгөртүп түзүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
     # real page yet.
     'algebra-manipulation-expand-double-triple-double-without-coefficients': 'Эки кашаа: коэффициентсиз',
     'algebra-manipulation-expand-double-triple-double-with-coefficients': 'Эки кашаа: коэффициент менен',
