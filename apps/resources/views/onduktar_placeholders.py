@@ -749,6 +749,45 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-graphs-real-life-velocity-time-distance': 'Аралык',
     'algebra-graphs-real-life-velocity-time-acceleration': 'Ылдамдануу',
     'algebra-graphs-real-life-velocity-time-mixed': 'Аралаш',
+
+    # Барабарсыздыктар > Сызыктуу - all 6 slots, none with a real page
+    # yet.
+    'algebra-inequalities-linear-forming': 'Түзүү',
+    'algebra-inequalities-linear-evaluating': 'Эсептөө',
+    'algebra-inequalities-linear-representing': 'Чагылдыруу',
+    'algebra-inequalities-linear-solving-single': 'Чечүү: жалгыз',
+    'algebra-inequalities-linear-solving-single-double': 'Чечүү: жалгыз жана кош',
+    'algebra-inequalities-linear-mixed': 'Аралаш',
+
+    # Барабарсыздыктар > Графикалык - 2 confirmed slots (reference
+    # screenshot was cut off after these, flagged to the user).
+    'algebra-inequalities-graphical-shade-wanted': 'Керектүү аймакты боёо',
+    'algebra-inequalities-graphical-shade-unwanted': 'Керексиз аймакты боёо',
+
+    # Түрлөндүрүү > Туюнтма түзүү - all 3 slots, none with a real page
+    # yet.
+    'algebra-manipulation-forming-function-machines': 'Функция машиналары менен',
+    'algebra-manipulation-forming-linear': 'Сызыктуу',
+    'algebra-manipulation-forming-quadratic': 'Квадраттык',
+
+    # Түрлөндүрүү > Алгебралык бөлчөктөр - all 6 slots, none with a
+    # real page yet.
+    'algebra-manipulation-fractions-adding-subtracting': 'Кошуу жана кемитүү',
+    'algebra-manipulation-fractions-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'algebra-manipulation-fractions-mixed': 'Аралаш',
+    'algebra-manipulation-fractions-simplifying': 'Жөнөкөйлөтүү',
+    'algebra-manipulation-fractions-simplifying-with-factorisation': 'Жөнөкөйлөтүү: көбөйтүүчүлөргө ажыратуу менен',
+    'algebra-manipulation-fractions-simplifying-difference-squares': 'Жөнөкөйлөтүү: эки квадраттын айырмасы',
+
+    # Түрлөндүрүү > Формуланын өзгөрмөсүн алмаштыруу (was previously a
+    # flat leaf, see 'algebra-manipulation-changing-subject' above, now
+    # orphaned - left in place, same as 'algebra-quadratic-rational')
+    # before a further screenshot showed it has its own chevron
+    # children - all 4 slots, none with a real page yet.
+    'algebra-manipulation-changing-subject-manipulating-formulae': 'Формулаларды түрлөндүрүү',
+    'algebra-manipulation-changing-subject-function-machine': 'Функция машинасын колдонуу',
+    'algebra-manipulation-changing-subject-without-factorisation': 'Көбөйтүүчүлөргө ажыратуусуз',
+    'algebra-manipulation-changing-subject-with-factorisation': 'Көбөйтүүчүлөргө ажыратуу менен',
 }
 
 

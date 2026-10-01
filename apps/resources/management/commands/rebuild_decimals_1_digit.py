@@ -1562,16 +1562,101 @@ GROUPS = [
         # Double Brackets, Proofs, Simplifying Expressions, Mixed are
         # chevron-bearing categories (created via 'create_subsubtopics'
         # below, left empty pending screenshots of their own contents).
+        # A further screenshot then showed "Формуланын өзгөрмөсүн
+        # алмаштыруу" (Changing the Subject of a Formula) ALSO has its
+        # own chevron children - same misread pattern already hit
+        # repeatedly - removed from target_items, one-time-cleaned via
+        # 'displaced_url_names', recreated as a category via
+        # CHILD_ORDER_FIXES, protected via 'promoted_titles', filled by
+        # its own dedicated GROUPS entry below.
         'parent_path': ('Алгебра', 'Түрлөндүрүү'),
         'target_items': [
             {'title': 'Белгилөө', 'url_name': 'algebra_manipulation_notation'},
-            {'title': 'Формуланын өзгөрмөсүн алмаштыруу', 'url_name': 'algebra_manipulation_changing_subject'},
         ],
         'promoted_titles': [
             'Туюнтма түзүү', 'Алгебралык бөлчөктөр',
             'Бир кашааны ачуу', 'Эки жана үч кашааны ачуу',
             'Бир кашаага ажыратуу', 'Эки кашаага ажыратуу',
             'Далилдөөлөр', 'Туюнтмаларды жөнөкөйлөтүү', 'Аралаш',
+            'Формуланын өзгөрмөсүн алмаштыруу',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': ['algebra_manipulation_changing_subject'],
+    },
+    {
+        # "Сызыктуу" (Linear) under Барабарсыздыктар was already an
+        # empty chevron-bearing category - reference (6 items, all
+        # flat): Forming, Evaluating, Representing, Solving: Single,
+        # Solving: Single & Double, Mixed.
+        'parent_path': ('Алгебра', 'Барабарсыздыктар', 'Сызыктуу'),
+        'target_items': [
+            {'title': 'Түзүү', 'url_name': 'algebra_inequalities_linear_forming'},
+            {'title': 'Эсептөө', 'url_name': 'algebra_inequalities_linear_evaluating'},
+            {'title': 'Чагылдыруу', 'url_name': 'algebra_inequalities_linear_representing'},
+            {'title': 'Чечүү: жалгыз', 'url_name': 'algebra_inequalities_linear_solving_single'},
+            {'title': 'Чечүү: жалгыз жана кош', 'url_name': 'algebra_inequalities_linear_solving_single_double'},
+            {'title': 'Аралаш', 'url_name': 'algebra_inequalities_linear_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Графикалык" (Graphical) under Барабарсыздыктар was already
+        # an empty chevron-bearing category - reference screenshot was
+        # cut off after 2 items (Shade Wanted, Shade Unwanted) - only
+        # these are built for now, flagged to the user to confirm the
+        # rest.
+        'parent_path': ('Алгебра', 'Барабарсыздыктар', 'Графикалык'),
+        'target_items': [
+            {'title': 'Керектүү аймакты боёо', 'url_name': 'algebra_inequalities_graphical_shade_wanted'},
+            {'title': 'Керексиз аймакты боёо', 'url_name': 'algebra_inequalities_graphical_shade_unwanted'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Туюнтма түзүү" (Forming Expressions) under Түрлөндүрүү was
+        # already an empty chevron-bearing category - reference (3
+        # items, all flat): With Function Machines, Linear, Quadratic.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Туюнтма түзүү'),
+        'target_items': [
+            {'title': 'Функция машиналары менен', 'url_name': 'algebra_manipulation_forming_function_machines'},
+            {'title': 'Сызыктуу', 'url_name': 'algebra_manipulation_forming_linear'},
+            {'title': 'Квадраттык', 'url_name': 'algebra_manipulation_forming_quadratic'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Алгебралык бөлчөктөр" (Algebraic Fractions) under
+        # Түрлөндүрүү was already an empty chevron-bearing category -
+        # reference (6 items, all flat): Adding & Subtracting,
+        # Multiplying & Dividing, Mixed, Simplifying, Simplifying: With
+        # Factorisation, Simplifying: Difference of Two Squares.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Алгебралык бөлчөктөр'),
+        'target_items': [
+            {'title': 'Кошуу жана кемитүү', 'url_name': 'algebra_manipulation_fractions_adding_subtracting'},
+            {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'algebra_manipulation_fractions_multiplying_dividing'},
+            {'title': 'Аралаш', 'url_name': 'algebra_manipulation_fractions_mixed'},
+            {'title': 'Жөнөкөйлөтүү', 'url_name': 'algebra_manipulation_fractions_simplifying'},
+            {'title': 'Жөнөкөйлөтүү: көбөйтүүчүлөргө ажыратуу менен', 'url_name': 'algebra_manipulation_fractions_simplifying_with_factorisation'},
+            {'title': 'Жөнөкөйлөтүү: эки квадраттын айырмасы', 'url_name': 'algebra_manipulation_fractions_simplifying_difference_squares'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Формуланын өзгөрмөсүн алмаштыруу" (Changing the Subject of a
+        # Formula) is a fresh chevron-bearing category, created via
+        # 'create_subsubtopics' below. Reference (4 items, all flat):
+        # Manipulating Formulae, Using a Function Machine, Without
+        # Factorisation, With Factorisation.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
+        'target_items': [
+            {'title': 'Формулаларды түрлөндүрүү', 'url_name': 'algebra_manipulation_changing_subject_manipulating_formulae'},
+            {'title': 'Функция машинасын колдонуу', 'url_name': 'algebra_manipulation_changing_subject_function_machine'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуусуз', 'url_name': 'algebra_manipulation_changing_subject_without_factorisation'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуу менен', 'url_name': 'algebra_manipulation_changing_subject_with_factorisation'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -2200,7 +2285,13 @@ CHILD_ORDER_FIXES = [
         # кашаага ажыратуу", "Далилдөөлөр", "Туюнтмаларды жөнөкөйлөтүү",
         # "Аралаш" are created here (fresh chevron-bearing categories,
         # left empty pending screenshots of their own contents) - 2-run
-        # cross-run dependency.
+        # cross-run dependency. "Формуланын өзгөрмөсүн алмаштыруу" is
+        # re-created here too, now as a category, after the GROUPS
+        # entry above one-time-deletes its old flat MenuItem via
+        # 'displaced_url_names' (same pattern as the Equations/Graphs:
+        # Abstract fixes - both steps run in the same execution, so the
+        # delete-then-recreate completes in a single run; its own
+        # children still need a 2nd run).
         'parent_path': ('Алгебра', 'Түрлөндүрүү'),
         'create_subsubtopics': [
             {'title': 'Туюнтма түзүү', 'slug': 'manipulation-forming-expressions'},
@@ -2212,6 +2303,7 @@ CHILD_ORDER_FIXES = [
             {'title': 'Далилдөөлөр', 'slug': 'manipulation-proofs'},
             {'title': 'Туюнтмаларды жөнөкөйлөтүү', 'slug': 'manipulation-simplifying-expressions'},
             {'title': 'Аралаш', 'slug': 'manipulation-mixed'},
+            {'title': 'Формуланын өзгөрмөсүн алмаштыруу', 'slug': 'manipulation-changing-subject'},
         ],
         'order': [
             'Белгилөө',
@@ -2415,6 +2507,67 @@ CHILD_ORDER_FIXES = [
             'Аралык',
             'Ылдамдануу',
             'Аралаш',
+        ],
+    },
+    {
+        # Final order for Сызыктуу's own 6 children (under
+        # Барабарсыздыктар) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Алгебра', 'Барабарсыздыктар', 'Сызыктуу'),
+        'order': [
+            'Түзүү',
+            'Эсептөө',
+            'Чагылдыруу',
+            'Чечүү: жалгыз',
+            'Чечүү: жалгыз жана кош',
+            'Аралаш',
+        ],
+    },
+    {
+        # Partial order for Графикалык's 2 confirmed children (under
+        # Барабарсыздыктар) - reference screenshot was cut off after
+        # these, flagged to the user.
+        'parent_path': ('Алгебра', 'Барабарсыздыктар', 'Графикалык'),
+        'order': [
+            'Керектүү аймакты боёо',
+            'Керексиз аймакты боёо',
+        ],
+    },
+    {
+        # Final order for Туюнтма түзүү's own 3 children (under
+        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Туюнтма түзүү'),
+        'order': [
+            'Функция машиналары менен',
+            'Сызыктуу',
+            'Квадраттык',
+        ],
+    },
+    {
+        # Final order for Алгебралык бөлчөктөр's own 6 children (under
+        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Алгебралык бөлчөктөр'),
+        'order': [
+            'Кошуу жана кемитүү',
+            'Көбөйтүү жана бөлүү',
+            'Аралаш',
+            'Жөнөкөйлөтүү',
+            'Жөнөкөйлөтүү: көбөйтүүчүлөргө ажыратуу менен',
+            'Жөнөкөйлөтүү: эки квадраттын айырмасы',
+        ],
+    },
+    {
+        # Final order for Формуланын өзгөрмөсүн алмаштыруу's own 4
+        # children (under Түрлөндүрүү) - all flat, GROUPS' target_items
+        # builds them directly.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
+        'order': [
+            'Формулаларды түрлөндүрүү',
+            'Функция машинасын колдонуу',
+            'Көбөйтүүчүлөргө ажыратуусуз',
+            'Көбөйтүүчүлөргө ажыратуу менен',
         ],
     },
 ]
