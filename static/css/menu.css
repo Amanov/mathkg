@@ -205,6 +205,24 @@
    of the list down, like a native accordion.
 ════════════════════════════════════════════ */
 @media (max-width: 991.98px) {
+    /* The header itself is .fixed-top (position: fixed, see
+       header.html) so page scroll never reaches it - that's fine while
+       it's short, but once a category's accordion opens, its total
+       height (nav chrome + category buttons + the open list) can
+       exceed the viewport. With no bound of its own, everything past
+       the screen edge was simply unreachable: not visible, and not
+       reachable by scrolling the page, since a fixed element doesn't
+       move with it. Capping its own height and giving it its own
+       scroll fixes that - this is a different, higher-up fix than
+       .dropdown-menu.show's 70vh cap below, which only bounds one
+       category's own list and doesn't help once the *header as a
+       whole* is taller than the screen. */
+    .fixed-top {
+        max-height: 100vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     /* The category bar's own markup hard-codes flex-row/flex-wrap/
        justify-content-center (see header.html) so it can sit as a single
        centered row on desktop. Below the breakpoint that made every
