@@ -1040,6 +1040,40 @@ urlpatterns = [
     path('geometry-volume-surface-area-introduction-to-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-introduction-to-volume'}, name='geometry_volume_surface_area_introduction_to_volume'),
     path('geometry-volume-surface-area-nets/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-nets'}, name='geometry_volume_surface_area_nets'),
 
+    # Геометрия > Бурчтар > Аралаш - all 2 slots.
+    path('geometry-angles-mixed-without-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-without-circle-theorems'}, name='geometry_angles_mixed_without_circle_theorems'),
+    path('geometry-angles-mixed-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-with-circle-theorems'}, name='geometry_angles_mixed_with_circle_theorems'),
+
+    # Геометрия > Аянт жана периметр > Тегеректер - all 10 slots.
+    path('geometry-area-perimeter-circles-vocabulary/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-vocabulary'}, name='geometry_area_perimeter_circles_vocabulary'),
+    path('geometry-area-perimeter-circles-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-area'}, name='geometry_area_perimeter_circles_area'),
+    path('geometry-area-perimeter-circles-area-in-terms-of-pi/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-area-in-terms-of-pi'}, name='geometry_area_perimeter_circles_area_in_terms_of_pi'),
+    path('geometry-area-perimeter-circles-circumference/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-circumference'}, name='geometry_area_perimeter_circles_circumference'),
+    path('geometry-area-perimeter-circles-area-circumference/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-area-circumference'}, name='geometry_area_perimeter_circles_area_circumference'),
+    path('geometry-area-perimeter-circles-arc-length/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-arc-length'}, name='geometry_area_perimeter_circles_arc_length'),
+    path('geometry-area-perimeter-circles-sector-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-sector-area'}, name='geometry_area_perimeter_circles_sector_area'),
+    path('geometry-area-perimeter-circles-arcs-sectors/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-arcs-sectors'}, name='geometry_area_perimeter_circles_arcs_sectors'),
+    path('geometry-area-perimeter-circles-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-mixed'}, name='geometry_area_perimeter_circles_mixed'),
+    path('geometry-area-perimeter-circles-comparative-pie-charts/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-circles-comparative-pie-charts'}, name='geometry_area_perimeter_circles_comparative_pie_charts'),
+
+    # Геометрия > Аянт жана периметр > Татаал: түз сызыктуу - all 3
+    # slots.
+    path('geometry-area-perimeter-compound-rectilinear-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-rectilinear-area'}, name='geometry_area_perimeter_compound_rectilinear_area'),
+    path('geometry-area-perimeter-compound-rectilinear-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-rectilinear-perimeter'}, name='geometry_area_perimeter_compound_rectilinear_perimeter'),
+    path('geometry-area-perimeter-compound-rectilinear-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-rectilinear-mixed'}, name='geometry_area_perimeter_compound_rectilinear_mixed'),
+
+    # Геометрия > Аянт жана периметр > Татаал: көп бурчтуктуу - all 3
+    # slots.
+    path('geometry-area-perimeter-compound-polygonal-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-polygonal-area'}, name='geometry_area_perimeter_compound_polygonal_area'),
+    path('geometry-area-perimeter-compound-polygonal-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-polygonal-perimeter'}, name='geometry_area_perimeter_compound_polygonal_perimeter'),
+    path('geometry-area-perimeter-compound-polygonal-perimeter-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-polygonal-perimeter-with-pythagoras'}, name='geometry_area_perimeter_compound_polygonal_perimeter_with_pythagoras'),
+
+    # Геометрия > Аянт жана периметр > Татаал: тегеректер менен - all
+    # 3 slots.
+    path('geometry-area-perimeter-compound-with-circles-area/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-with-circles-area'}, name='geometry_area_perimeter_compound_with_circles_area'),
+    path('geometry-area-perimeter-compound-with-circles-perimeter/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-with-circles-perimeter'}, name='geometry_area_perimeter_compound_with_circles_perimeter'),
+    path('geometry-area-perimeter-compound-with-circles-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-area-perimeter-compound-with-circles-mixed'}, name='geometry_area_perimeter_compound_with_circles_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

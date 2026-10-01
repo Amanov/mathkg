@@ -2192,6 +2192,85 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Аралаш" (Mixed) under Бурчтар (its own top-level Mixed, not
+        # the one nested under Көп бурчтуктар) was the one remaining
+        # empty category under Бурчтар. Reference (2 items, both flat):
+        # Without Circle Theorems, With Circle Theorems - same 2 titles
+        # as Көп бурчтуктар's own Mixed, but these sit at different
+        # nesting depths under differently-shaped parents (not parallel
+        # siblings the way Ордуна коюу's 3 categories were), so built as
+        # its own distinct pages rather than assumed shared.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Аралаш'),
+        'target_items': [
+            {'title': 'Тегерек теоремаларысыз', 'url_name': 'geometry_angles_mixed_without_circle_theorems'},
+            {'title': 'Тегерек теоремалары менен', 'url_name': 'geometry_angles_mixed_with_circle_theorems'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Тегеректер" (Circles) under Аянт жана периметр was an empty
+        # chevron-bearing category - reference (10 items, all flat):
+        # Vocabulary, Area, Area In Terms of π, Circumference, Area &
+        # Circumference, Arc Length, Sector Area, Arcs & Sectors, Mixed,
+        # Comparative Pie Charts.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Тегеректер'),
+        'target_items': [
+            {'title': 'Терминология', 'url_name': 'geometry_area_perimeter_circles_vocabulary'},
+            {'title': 'Аянт', 'url_name': 'geometry_area_perimeter_circles_area'},
+            {'title': 'π аркылуу аянт', 'url_name': 'geometry_area_perimeter_circles_area_in_terms_of_pi'},
+            {'title': 'Тегеректин узундугу', 'url_name': 'geometry_area_perimeter_circles_circumference'},
+            {'title': 'Аянт жана тегеректин узундугу', 'url_name': 'geometry_area_perimeter_circles_area_circumference'},
+            {'title': 'Жаанын узундугу', 'url_name': 'geometry_area_perimeter_circles_arc_length'},
+            {'title': 'Сектордун аянты', 'url_name': 'geometry_area_perimeter_circles_sector_area'},
+            {'title': 'Жаалар жана секторлор', 'url_name': 'geometry_area_perimeter_circles_arcs_sectors'},
+            {'title': 'Аралаш', 'url_name': 'geometry_area_perimeter_circles_mixed'},
+            {'title': 'Салыштырма тоорт диаграммалар', 'url_name': 'geometry_area_perimeter_circles_comparative_pie_charts'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Татаал: түз сызыктуу" (Compound: Rectilinear) under Аянт
+        # жана периметр was an empty chevron-bearing category -
+        # reference (3 items, all flat): Area, Perimeter, Mixed.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Татаал: түз сызыктуу'),
+        'target_items': [
+            {'title': 'Аянт', 'url_name': 'geometry_area_perimeter_compound_rectilinear_area'},
+            {'title': 'Периметр', 'url_name': 'geometry_area_perimeter_compound_rectilinear_perimeter'},
+            {'title': 'Аралаш', 'url_name': 'geometry_area_perimeter_compound_rectilinear_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Татаал: көп бурчтуктуу" (Compound: Polygonal) under Аянт
+        # жана периметр was an empty chevron-bearing category -
+        # reference (3 items, all flat): Area, Perimeter, Perimeter:
+        # With Pythagoras.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Татаал: көп бурчтуктуу'),
+        'target_items': [
+            {'title': 'Аянт', 'url_name': 'geometry_area_perimeter_compound_polygonal_area'},
+            {'title': 'Периметр', 'url_name': 'geometry_area_perimeter_compound_polygonal_perimeter'},
+            {'title': 'Периметр: Пифагор менен', 'url_name': 'geometry_area_perimeter_compound_polygonal_perimeter_with_pythagoras'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Татаал: тегеректер менен" (Compound: With Circles) under
+        # Аянт жана периметр was an empty chevron-bearing category -
+        # reference (3 items, all flat): Area, Perimeter, Mixed.
+        'parent_path': ('Геометрия', 'Аянт жана периметр', 'Татаал: тегеректер менен'),
+        'target_items': [
+            {'title': 'Аянт', 'url_name': 'geometry_area_perimeter_compound_with_circles_area'},
+            {'title': 'Периметр', 'url_name': 'geometry_area_perimeter_compound_with_circles_perimeter'},
+            {'title': 'Аралаш', 'url_name': 'geometry_area_perimeter_compound_with_circles_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
