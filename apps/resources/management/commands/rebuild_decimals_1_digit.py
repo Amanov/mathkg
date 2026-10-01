@@ -1413,6 +1413,53 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Тегеректер" (Circles) under Графиктер: абстракттуу was
+        # already an empty chevron-bearing category - reference (2
+        # items, both flat): Equation, Tangent.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Тегеректер'),
+        'target_items': [
+            {'title': 'Теңдеме', 'url_name': 'algebra_graphs_abstract_circles_equation'},
+            {'title': 'Жанама', 'url_name': 'algebra_graphs_abstract_circles_tangent'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Башка сызыктуу эмес" (Other Non-Linear) under Графиктер:
+        # абстракттуу was already an empty chevron-bearing category -
+        # reference (6 items, all flat): Plotting, Identifying:
+        # Non-Linear, Identifying: Proportional, Estimating Gradient,
+        # Exponential Functions, Trigonometric Functions.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Башка сызыктуу эмес'),
+        'target_items': [
+            {'title': 'Чиймелөө', 'url_name': 'algebra_graphs_abstract_other_nonlinear_plotting'},
+            {'title': 'Аныктоо: сызыктуу эмес', 'url_name': 'algebra_graphs_abstract_other_nonlinear_identifying_nonlinear'},
+            {'title': 'Аныктоо: пропорционалдык', 'url_name': 'algebra_graphs_abstract_other_nonlinear_identifying_proportional'},
+            {'title': 'Кыйшаюуну болжолдоо', 'url_name': 'algebra_graphs_abstract_other_nonlinear_estimating_gradient'},
+            {'title': 'Көрсөткүчтүү функциялар', 'url_name': 'algebra_graphs_abstract_other_nonlinear_exponential_functions'},
+            {'title': 'Тригонометриялык функциялар', 'url_name': 'algebra_graphs_abstract_other_nonlinear_trig_functions'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Түрлөндүрүүлөр" (Transformations) under Графиктер:
+        # абстракттуу was already an empty chevron-bearing category -
+        # reference (2 items, both flat): GCSE, IGCSE - kept as literal
+        # exam-board names (not localized to "ЖРТ" like Functions'
+        # IGCSE) since these are two distinct qualification-level
+        # labels here, not the single item the user asked to rename
+        # elsewhere - flagged to the user in case they want the same
+        # treatment here too.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
+        'target_items': [
+            {'title': 'GCSE', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
+            {'title': 'IGCSE', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Графиктер: турмуштук" (Graphs: Real-Life) was an empty
         # top-level category. Reference (9 items): Depth-Time,
         # Volume-Time, Mixed, Mixed: Distance & Velocity are flat;
@@ -2242,6 +2289,37 @@ CHILD_ORDER_FIXES = [
             'Толук квадратка келтирүү менен бурулуш чекиттери',
             'Кесилишүү аркылуу чечүү',
             'Теңдемелер системасы',
+        ],
+    },
+    {
+        # Final order for Тегеректер's own 2 children - both flat,
+        # GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Тегеректер'),
+        'order': [
+            'Теңдеме',
+            'Жанама',
+        ],
+    },
+    {
+        # Final order for Башка сызыктуу эмес's own 6 children - all
+        # flat, GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Башка сызыктуу эмес'),
+        'order': [
+            'Чиймелөө',
+            'Аныктоо: сызыктуу эмес',
+            'Аныктоо: пропорционалдык',
+            'Кыйшаюуну болжолдоо',
+            'Көрсөткүчтүү функциялар',
+            'Тригонометриялык функциялар',
+        ],
+    },
+    {
+        # Final order for Түрлөндүрүүлөр's own 2 children - both flat,
+        # GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
+        'order': [
+            'GCSE',
+            'IGCSE',
         ],
     },
 ]

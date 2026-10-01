@@ -707,6 +707,25 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-graphs-abstract-quadratic-turning-points': 'Толук квадратка келтирүү менен бурулуш чекиттери',
     'algebra-graphs-abstract-quadratic-solving-by-intersection': 'Кесилишүү аркылуу чечүү',
     'algebra-graphs-abstract-quadratic-simultaneous': 'Теңдемелер системасы',
+
+    # Графиктер: абстракттуу > Тегеректер - both slots, none with a
+    # real page yet.
+    'algebra-graphs-abstract-circles-equation': 'Теңдеме',
+    'algebra-graphs-abstract-circles-tangent': 'Жанама',
+
+    # Графиктер: абстракттуу > Башка сызыктуу эмес - all 6 slots, none
+    # with a real page yet.
+    'algebra-graphs-abstract-other-nonlinear-plotting': 'Чиймелөө',
+    'algebra-graphs-abstract-other-nonlinear-identifying-nonlinear': 'Аныктоо: сызыктуу эмес',
+    'algebra-graphs-abstract-other-nonlinear-identifying-proportional': 'Аныктоо: пропорционалдык',
+    'algebra-graphs-abstract-other-nonlinear-estimating-gradient': 'Кыйшаюуну болжолдоо',
+    'algebra-graphs-abstract-other-nonlinear-exponential-functions': 'Көрсөткүчтүү функциялар',
+    'algebra-graphs-abstract-other-nonlinear-trig-functions': 'Тригонометриялык функциялар',
+
+    # Графиктер: абстракттуу > Түрлөндүрүүлөр - both slots, none with a
+    # real page yet.
+    'algebra-graphs-abstract-transformations-gcse': 'GCSE',
+    'algebra-graphs-abstract-transformations-igcse': 'IGCSE',
 }
 
 
