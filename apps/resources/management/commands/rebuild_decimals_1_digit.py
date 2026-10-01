@@ -1997,6 +1997,43 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Көп бурчтуктар" (Polygons) under Геометрия > Бурчтар was
+        # already an empty chevron-bearing category. Reference (6
+        # items): Triangles, Quadrilaterals, Special Quadrilaterals,
+        # Regular, Irregular are flat; "Mixed" is itself a
+        # chevron-bearing category (2 children of its own, shown on the
+        # reference with the same mirror-arrow icon used elsewhere in
+        # this file - but unlike those cases this one isn't shared with
+        # any sibling, it's just this Polygons-specific Mixed page) -
+        # created via 'create_subsubtopics' below, filled in by the
+        # next GROUPS entry.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Көп бурчтуктар'),
+        'target_items': [
+            {'title': 'Үч бурчтуктар', 'url_name': 'geometry_angles_polygons_triangles'},
+            {'title': 'Төрт бурчтуктар', 'url_name': 'geometry_angles_polygons_quadrilaterals'},
+            {'title': 'Атайын төрт бурчтуктар', 'url_name': 'geometry_angles_polygons_special_quadrilaterals'},
+            {'title': 'Туура', 'url_name': 'geometry_angles_polygons_regular'},
+            {'title': 'Туура эмес', 'url_name': 'geometry_angles_polygons_irregular'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Көп бурчтуктар - created via
+        # 'create_subsubtopics' in CHILD_ORDER_FIXES below (first run
+        # reports "not found" here, second run succeeds). Reference (2
+        # items, both flat): Without Circle Theorems, With Circle
+        # Theorems.
+        'parent_path': ('Геометрия', 'Бурчтар', 'Көп бурчтуктар', 'Аралаш'),
+        'target_items': [
+            {'title': 'Тегерек теоремаларысыз', 'url_name': 'geometry_angles_polygons_mixed_without_circle_theorems'},
+            {'title': 'Тегерек теоремалары менен', 'url_name': 'geometry_angles_polygons_mixed_with_circle_theorems'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -3146,6 +3183,29 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Киришүү',
             'Теңдемелерди чечүү',
+        ],
+    },
+    {
+        # "Аралаш" under Көп бурчтуктар doesn't exist yet - created here
+        # via 'create_subsubtopics' (GROUPS' own target_items can only
+        # create flat url_name leaves, not a chevron-bearing category).
+        # An 'order' entry is needed too, unlike a purely-GROUPS-built
+        # parent: 'create_subsubtopics' doesn't know about the 5
+        # existing GROUPS-built siblings' order values, so without this
+        # it would default to the back of the queue by coincidence
+        # rather than by design - this pins it to its reference
+        # position (last).
+        'parent_path': ('Геометрия', 'Бурчтар', 'Көп бурчтуктар'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Үч бурчтуктар',
+            'Төрт бурчтуктар',
+            'Атайын төрт бурчтуктар',
+            'Туура',
+            'Туура эмес',
+            'Аралаш',
         ],
     },
 ]

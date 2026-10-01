@@ -921,6 +921,16 @@ OPERATION_PLACEHOLDER_TITLES = {
     # (screenshot was cut off), none with a real page yet.
     'geometry-angles-parallel-lines-introduction': 'Киришүү',
     'geometry-angles-parallel-lines-solving-equations': 'Теңдемелерди чечүү',
+
+    # Геометрия > Бурчтар > Көп бурчтуктар - 5 flat slots plus "Аралаш"
+    # category's own 2 slots, none with a real page yet.
+    'geometry-angles-polygons-triangles': 'Үч бурчтуктар',
+    'geometry-angles-polygons-quadrilaterals': 'Төрт бурчтуктар',
+    'geometry-angles-polygons-special-quadrilaterals': 'Атайын төрт бурчтуктар',
+    'geometry-angles-polygons-regular': 'Туура',
+    'geometry-angles-polygons-irregular': 'Туура эмес',
+    'geometry-angles-polygons-mixed-without-circle-theorems': 'Тегерек теоремаларысыз',
+    'geometry-angles-polygons-mixed-with-circle-theorems': 'Тегерек теоремалары менен',
 }
 
 
