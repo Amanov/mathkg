@@ -1445,16 +1445,17 @@ GROUPS = [
     {
         # "Түрлөндүрүүлөр" (Transformations) under Графиктер:
         # абстракттуу was already an empty chevron-bearing category -
-        # reference (2 items, both flat): GCSE, IGCSE - kept as literal
-        # exam-board names (not localized to "ЖРТ" like Functions'
-        # IGCSE) since these are two distinct qualification-level
-        # labels here, not the single item the user asked to rename
-        # elsewhere - flagged to the user in case they want the same
-        # treatment here too.
+        # reference (2 items, both flat): GCSE, IGCSE. "IGCSE" was
+        # initially kept as a literal exam-board name pending the
+        # user's call on whether to localize it like Functions' IGCSE ->
+        # ЖРТ - user confirmed the same treatment here, so "IGCSE" ->
+        # "ЖРТ" (self-correcting via url_name match); "GCSE" has no
+        # Kyrgyz equivalent requested and stays as-is, kept distinct
+        # from "ЖРТ" as its own sibling item.
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
         'target_items': [
             {'title': 'GCSE', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
-            {'title': 'IGCSE', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
+            {'title': 'ЖРТ', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -2600,7 +2601,7 @@ CHILD_ORDER_FIXES = [
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
         'order': [
             'GCSE',
-            'IGCSE',
+            'ЖРТ',
         ],
     },
     {

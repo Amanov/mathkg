@@ -725,7 +725,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Графиктер: абстракттуу > Түрлөндүрүүлөр - both slots, none with a
     # real page yet.
     'algebra-graphs-abstract-transformations-gcse': 'GCSE',
-    'algebra-graphs-abstract-transformations-igcse': 'IGCSE',
+    'algebra-graphs-abstract-transformations-igcse': 'ЖРТ',
 
     # Графиктер: турмуштук > Айландыруу графиктери - 2 confirmed slots
     # (reference screenshot was cut off after these, flagged to the
