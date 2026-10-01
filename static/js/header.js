@@ -31,10 +31,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Reset before measuring so a previous open's position
                 // (possibly computed at a different window size) never
-                // contaminates this measurement.
+                // contaminates this measurement. Clearing 'right' to ''
+                // (not 'auto') matters: an inline 'auto' is still an inline
+                // value, so it permanently outranks the stylesheet's own
+                // `right: calc(100% + 6px)` on .dropstart - once set here,
+                // no later flip could ever move the flyout again, which is
+                // what collapsed it back onto its own trigger's static
+                // position and read as the panel overlapping its ancestor.
                 menu.style.top = '';
                 menu.style.left = '';
-                menu.style.right = 'auto';
+                menu.style.right = '';
                 submenu.classList.remove('dropstart');
 
                 menu.classList.add('show');
