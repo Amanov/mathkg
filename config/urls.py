@@ -723,6 +723,16 @@ urlpatterns = [
     path('algebra-substitution-with-calculator/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-with-calculator'}, name='algebra_substitution_with_calculator'),
     path('algebra-substitution-vectors/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-vectors'}, name='algebra_substitution_vectors'),
 
+    # Ордуна коюу > Белгилерди колдонуу / Даражасыз / Даража менен - 6
+    # distinct Positive/Negative slots plus 1 shared Mixed slot.
+    path('algebra-substitution-symbols-positive/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-symbols-positive'}, name='algebra_substitution_symbols_positive'),
+    path('algebra-substitution-symbols-negative/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-symbols-negative'}, name='algebra_substitution_symbols_negative'),
+    path('algebra-substitution-without-indices-positive/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-without-indices-positive'}, name='algebra_substitution_without_indices_positive'),
+    path('algebra-substitution-without-indices-negative/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-without-indices-negative'}, name='algebra_substitution_without_indices_negative'),
+    path('algebra-substitution-with-indices-positive/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-with-indices-positive'}, name='algebra_substitution_with_indices_positive'),
+    path('algebra-substitution-with-indices-negative/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-with-indices-negative'}, name='algebra_substitution_with_indices_negative'),
+    path('algebra-substitution-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-mixed'}, name='algebra_substitution_mixed'),
+
     # Графиктер: абстракттуу > Координаттар - all 6 slots, none with a
     # real page yet.
     path('algebra-graphs-abstract-coordinates-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-reading'}, name='algebra_graphs_abstract_coordinates_reading'),

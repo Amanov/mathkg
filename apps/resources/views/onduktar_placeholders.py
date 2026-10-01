@@ -655,6 +655,17 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-substitution-with-calculator': 'Калькулятор менен',
     'algebra-substitution-vectors': 'Векторлор',
 
+    # Ордуна коюу > Белгилерди колдонуу / Даражасыз / Даража менен - 6
+    # distinct Positive/Negative slots plus 1 shared Mixed slot (same
+    # page, 3 nav locations), none with a real page yet.
+    'algebra-substitution-symbols-positive': 'Оң',
+    'algebra-substitution-symbols-negative': 'Терс',
+    'algebra-substitution-without-indices-positive': 'Оң',
+    'algebra-substitution-without-indices-negative': 'Терс',
+    'algebra-substitution-with-indices-positive': 'Оң',
+    'algebra-substitution-with-indices-negative': 'Терс',
+    'algebra-substitution-mixed': 'Аралаш',
+
     # Графиктер: абстракттуу > Координаттар - all 6 slots, none with a
     # real page yet. "Координаттар" itself was previously a flat leaf
     # (see 'algebra-graphs-abstract-coordinates' above, now orphaned -

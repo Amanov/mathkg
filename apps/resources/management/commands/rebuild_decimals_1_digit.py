@@ -1871,6 +1871,55 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Белгилерди колдонуу" (Using Symbols) under Ордуна коюу was an
+        # empty chevron-bearing category - reference (3 items, all
+        # flat): Positive, Negative, Mixed. Same shape repeats for its 2
+        # siblings below (Даражасыз/Without Indices, Даража менен/With
+        # Indices) - "Mixed" carries the reference site's own mirror
+        # icon there, since all 3 categories reuse the exact same Mixed
+        # page. This entry builds the canonical copy; the other 2 pick
+        # it up via MIRROR_LEAVES below instead of repeating it here -
+        # GROUPS' target_items can't safely share one url_name across
+        # sibling entries in the same run (whichever entry runs last
+        # would "steal" the single row via the url_name-reuse fallback
+        # a few lines above, since there's no existing row under the
+        # earlier entries' parents yet to prefer).
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Белгилерди колдонуу'),
+        'target_items': [
+            {'title': 'Оң', 'url_name': 'algebra_substitution_symbols_positive'},
+            {'title': 'Терс', 'url_name': 'algebra_substitution_symbols_negative'},
+            {'title': 'Аралаш', 'url_name': 'algebra_substitution_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Даражасыз" (Without Indices) under Ордуна коюу - same shape
+        # as Белгилерди колдонуу above, own distinct Positive/Negative;
+        # "Аралаш" is protected from this entry's own pruning via
+        # 'promoted_titles' and supplied by MIRROR_LEAVES below instead.
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даражасыз'),
+        'target_items': [
+            {'title': 'Оң', 'url_name': 'algebra_substitution_without_indices_positive'},
+            {'title': 'Терс', 'url_name': 'algebra_substitution_without_indices_negative'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Даража менен" (With Indices) under Ордуна коюу - same shape
+        # as its 2 siblings above; "Аралаш" handled the same way.
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даража менен'),
+        'target_items': [
+            {'title': 'Оң', 'url_name': 'algebra_substitution_with_indices_positive'},
+            {'title': 'Терс', 'url_name': 'algebra_substitution_with_indices_negative'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -2872,6 +2921,26 @@ CHILD_ORDER_FIXES = [
             'Аралаш: баары',
         ],
     },
+    {
+        # Final order for Белгилерди колдонуу's own 3 children (under
+        # Ордуна коюу) - GROUPS' target_items builds Оң/Терс directly;
+        # Аралаш is the canonical copy MIRROR_LEAVES mirrors elsewhere.
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Белгилерди колдонуу'),
+        'order': ['Оң', 'Терс', 'Аралаш'],
+    },
+    {
+        # Final order for Даражасыз's own 3 children (under Ордуна
+        # коюу) - Аралаш is supplied by MIRROR_LEAVES, which runs before
+        # this fix.
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даражасыз'),
+        'order': ['Оң', 'Терс', 'Аралаш'],
+    },
+    {
+        # Final order for Даража менен's own 3 children (under Ордуна
+        # коюу) - same as its 2 siblings above.
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даража менен'),
+        'order': ['Оң', 'Терс', 'Аралаш'],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
@@ -2968,6 +3037,32 @@ MIRROR_NODES = [
     {
         'target_parent_path': ('Пропорция', 'Катыш', 'Эквиваленттүүлүк'),
         'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү'),
+    },
+]
+
+# A single flat leaf item (not a whole node, not a whole children list)
+# that the reference site reuses verbatim across more than one parent -
+# e.g. Ордуна коюу's "Белгилерди колдонуу"/"Даражасыз"/"Даража менен"
+# siblings each keep their own distinct Positive/Negative pages but all
+# 3 share one "Аралаш" (Mixed) page, shown with the reference's own
+# mirror-arrow icon. Neither GROUPS (can't safely share a url_name
+# across sibling entries within one run - see that entry's own comment)
+# nor MIRROR_GROUPS/MIRROR_NODES (built for copying a whole children
+# list or a whole node, which would also drag along - and overwrite -
+# each target's own distinct siblings) fits this one-leaf-only case, so
+# it gets its own small, direct (parent, title) match instead.
+MIRROR_LEAVES = [
+    {
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даражасыз'),
+        'title': 'Аралаш',
+        'url_name': 'algebra_substitution_mixed',
+        'order': 3,
+    },
+    {
+        'parent_path': ('Алгебра', 'Ордуна коюу', 'Даража менен'),
+        'title': 'Аралаш',
+        'url_name': 'algebra_substitution_mixed',
+        'order': 3,
     },
 ]
 
@@ -3141,6 +3236,25 @@ class Command(BaseCommand):
                         f'(any underlying page/content is untouched).'
                     )
                     extra.delete()
+
+        for leaf in MIRROR_LEAVES:
+            label = ' > '.join(leaf['parent_path'])
+            self.stdout.write(f'=== Mirror leaf: {label} ===')
+            try:
+                parent = self.resolve_path(leaf['parent_path'])
+            except MenuItem.DoesNotExist:
+                self.stderr.write(f'  "{label}" not found.')
+                continue
+            mirrored, created = MenuItem.objects.get_or_create(
+                parent=parent, title=leaf['title'],
+                defaults={'url_name': leaf['url_name'], 'order': leaf['order']},
+            )
+            if created:
+                self.stdout.write(f'  Mirrored leaf: {leaf["title"]} ({leaf["url_name"]})')
+            elif mirrored.url_name != leaf['url_name']:
+                mirrored.url_name = leaf['url_name']
+                mirrored.save(update_fields=['url_name'])
+                self.stdout.write(f'  Updated mirrored leaf: {leaf["title"]} ({leaf["url_name"]})')
 
         for promo in PROMOTE_LEAVES:
             *ancestors, leaf_title = promo['leaf_path']
