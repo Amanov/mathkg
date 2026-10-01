@@ -860,6 +860,22 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-sequences-linear-evaluating-terms': 'Мүчөлөрдү эсептөө',
     'algebra-sequences-linear-from-2-terms': '2 мүчөдөн',
     'algebra-sequences-linear-summing': 'Суммалоо (ЖРТ)',
+
+    # Өзгөртүп түзүү > Туюнтмаларды жөнөкөйлөтүү - all 13 slots, none
+    # with a real page yet.
+    'algebra-manipulation-expressions-adding': 'Кошуу',
+    'algebra-manipulation-expressions-adding-brackets': 'Кошуу: кашаа менен',
+    'algebra-manipulation-expressions-adding-indices': 'Кошуу: даража менен',
+    'algebra-manipulation-expressions-multiplying': 'Көбөйтүү',
+    'algebra-manipulation-expressions-multiplying-adding': 'Көбөйтүү жана кошуу',
+    'algebra-manipulation-expressions-dividing': 'Бөлүү',
+    'algebra-manipulation-expressions-multiplying-dividing': 'Көбөйтүү жана бөлүү',
+    'algebra-manipulation-expressions-squared-cubed': 'Квадрат жана куб',
+    'algebra-manipulation-expressions-mixed-arithmetic': 'Аралаш арифметика',
+    'algebra-manipulation-expressions-negative-fractional-indices': 'Терс жана бөлчөк даражалар менен',
+    'algebra-manipulation-expressions-rational-with-factorisation': 'Рационалдык: көбөйтүүчүлөргө ажыратуу менен',
+    'algebra-manipulation-expressions-rational-difference-squares': 'Рационалдык: эки квадраттын айырмасы',
+    'algebra-manipulation-expressions-mixed-all': 'Аралаш: баары',
 }
 
 
