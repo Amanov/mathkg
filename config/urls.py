@@ -1010,6 +1010,35 @@ urlpatterns = [
     path('geometry-coordinates-geometric-problems/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-geometric-problems'}, name='geometry_coordinates_geometric_problems'),
     path('geometry-coordinates-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'geometry-coordinates-with-pythagoras'}, name='geometry_coordinates_with_pythagoras'),
 
+    # Геометрия > Пифагор - 11 flat slots, none with a real page yet.
+    path('geometry-pythagoras-introduction/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-introduction'}, name='geometry_pythagoras_introduction'),
+    path('geometry-pythagoras-finding-a-or-b/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-finding-a-or-b'}, name='geometry_pythagoras_finding_a_or_b'),
+    path('geometry-pythagoras-finding-a-b-or-c/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-finding-a-b-or-c'}, name='geometry_pythagoras_finding_a_b_or_c'),
+    path('geometry-pythagoras-isosceles-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-isosceles-triangles'}, name='geometry_pythagoras_isosceles_triangles'),
+    path('geometry-pythagoras-real-life/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-real-life'}, name='geometry_pythagoras_real_life'),
+    path('geometry-pythagoras-3d/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-3d'}, name='geometry_pythagoras_3d'),
+    path('geometry-pythagoras-coordinates/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-coordinates'}, name='geometry_pythagoras_coordinates'),
+    path('geometry-pythagoras-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-mixed'}, name='geometry_pythagoras_mixed'),
+    path('geometry-pythagoras-shape-perimeters/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-shape-perimeters'}, name='geometry_pythagoras_shape_perimeters'),
+    path('geometry-pythagoras-with-surds/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-surds'}, name='geometry_pythagoras_with_surds'),
+    path('geometry-pythagoras-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-circle-theorems'}, name='geometry_pythagoras_with_circle_theorems'),
+
+    # Геометрия > Окшоштук - all 4 slots, none with a real page yet.
+    path('geometry-similarity-similar-2d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-2d-shapes'}, name='geometry_similarity_similar_2d_shapes'),
+    path('geometry-similarity-similar-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-triangles'}, name='geometry_similarity_similar_triangles'),
+    path('geometry-similarity-congruent-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-congruent-triangles'}, name='geometry_similarity_congruent_triangles'),
+    path('geometry-similarity-length-area-volume-scale-factors/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-length-area-volume-scale-factors'}, name='geometry_similarity_length_area_volume_scale_factors'),
+
+    # Геометрия > Тригонометрия - 7 flat slots, none with a real page
+    # yet.
+    path('geometry-trigonometry-introduction/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-introduction'}, name='geometry_trigonometry_introduction'),
+    path('geometry-trigonometry-graphs/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-graphs'}, name='geometry_trigonometry_graphs'),
+    path('geometry-trigonometry-choosing-a-ratio/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-choosing-a-ratio'}, name='geometry_trigonometry_choosing_a_ratio'),
+    path('geometry-trigonometry-isosceles-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-isosceles-triangles'}, name='geometry_trigonometry_isosceles_triangles'),
+    path('geometry-trigonometry-without-calculator/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-without-calculator'}, name='geometry_trigonometry_without_calculator'),
+    path('geometry-trigonometry-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-with-circle-theorems'}, name='geometry_trigonometry_with_circle_theorems'),
+    path('geometry-trigonometry-area-rule/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-area-rule'}, name='geometry_trigonometry_area_rule'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
