@@ -878,6 +878,38 @@ urlpatterns = [
     path('algebra-manipulation-expand-double-triple-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-mixed'}, name='algebra_manipulation_expand_double_triple_mixed'),
     path('algebra-manipulation-expand-double-triple-with-surds/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-with-surds'}, name='algebra_manipulation_expand_double_triple_with_surds'),
 
+    # Өзгөртүп түзүү > Бир кашаага ажыратуу - both slots, none with a
+    # real page yet.
+    path('algebra-manipulation-factorise-single-without-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-single-without-indices'}, name='algebra_manipulation_factorise_single_without_indices'),
+    path('algebra-manipulation-factorise-single-with-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-single-with-indices'}, name='algebra_manipulation_factorise_single_with_indices'),
+
+    # Өзгөртүп түзүү > Эки кашаага ажыратуу - all 7 slots, none with a
+    # real page yet.
+    path('algebra-manipulation-factorise-double-quadratic-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-quadratic-without-coefficients'}, name='algebra_manipulation_factorise_double_quadratic_without_coefficients'),
+    path('algebra-manipulation-factorise-double-quadratic-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-quadratic-with-coefficients'}, name='algebra_manipulation_factorise_double_quadratic_with_coefficients'),
+    path('algebra-manipulation-factorise-double-with-expanding/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-with-expanding'}, name='algebra_manipulation_factorise_double_with_expanding'),
+    path('algebra-manipulation-factorise-double-completing-square/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-completing-square'}, name='algebra_manipulation_factorise_double_completing_square'),
+    path('algebra-manipulation-factorise-double-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-difference-squares'}, name='algebra_manipulation_factorise_double_difference_squares'),
+    path('algebra-manipulation-factorise-double-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-mixed'}, name='algebra_manipulation_factorise_double_mixed'),
+    path('algebra-manipulation-factorise-double-grouping/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-factorise-double-grouping'}, name='algebra_manipulation_factorise_double_grouping'),
+
+    # Өзгөртүп түзүү > Белгилөө - all 14 slots, none with a real page
+    # yet.
+    path('algebra-manipulation-notation-adding/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-adding'}, name='algebra_manipulation_notation_adding'),
+    path('algebra-manipulation-notation-adding-brackets/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-adding-brackets'}, name='algebra_manipulation_notation_adding_brackets'),
+    path('algebra-manipulation-notation-adding-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-adding-indices'}, name='algebra_manipulation_notation_adding_indices'),
+    path('algebra-manipulation-notation-multiplying/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-multiplying'}, name='algebra_manipulation_notation_multiplying'),
+    path('algebra-manipulation-notation-multiplying-adding/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-multiplying-adding'}, name='algebra_manipulation_notation_multiplying_adding'),
+    path('algebra-manipulation-notation-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-dividing'}, name='algebra_manipulation_notation_dividing'),
+    path('algebra-manipulation-notation-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-multiplying-dividing'}, name='algebra_manipulation_notation_multiplying_dividing'),
+    path('algebra-manipulation-notation-squared-cubed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-squared-cubed'}, name='algebra_manipulation_notation_squared_cubed'),
+    path('algebra-manipulation-notation-mixed-arithmetic/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-mixed-arithmetic'}, name='algebra_manipulation_notation_mixed_arithmetic'),
+    path('algebra-manipulation-notation-negative-fractional-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-negative-fractional-indices'}, name='algebra_manipulation_notation_negative_fractional_indices'),
+    path('algebra-manipulation-notation-rational-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-rational-with-factorisation'}, name='algebra_manipulation_notation_rational_with_factorisation'),
+    path('algebra-manipulation-notation-rational-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-rational-difference-squares'}, name='algebra_manipulation_notation_rational_difference_squares'),
+    path('algebra-manipulation-notation-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-mixed'}, name='algebra_manipulation_notation_mixed'),
+    path('algebra-manipulation-notation-mixed-all/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation-mixed-all'}, name='algebra_manipulation_notation_mixed_all'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
