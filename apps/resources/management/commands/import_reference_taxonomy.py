@@ -172,7 +172,7 @@ TAXONOMY = {
                     'Эквиваленттүүлүк': 'equivalence',
                     'Туюнтуу': 'expressing',
                     'Катыштар жана чоңдуктар': 'ratios-and-quantities',
-                    'Түрлөндүрүү': 'manipulation',
+                    'Өзгөртүп түзүү': 'manipulation',
                 },
             },
             'Турмуштук колдонуулар': {

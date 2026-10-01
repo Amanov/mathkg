@@ -835,11 +835,11 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
-        # "Түрлөндүрүү" (Manipulation) already exists as a chevron-bearing
+        # "Өзгөртүп түзүү" (Manipulation) already exists as a chevron-bearing
         # SubSubtopic under Катыш - it just had no children yet.
         # Reference (4 flat items): 1:n, Comparing Parts, Combining,
         # Changing.
-        'parent_path': ('Пропорция', 'Катыш', 'Түрлөндүрүү'),
+        'parent_path': ('Пропорция', 'Катыш', 'Өзгөртүп түзүү'),
         'target_items': [
             {'title': '1:n', 'url_name': 'ratio_manipulation_1_to_n'},
             {'title': 'Бөлүктөрдү салыштыруу', 'url_name': 'ratio_manipulation_comparing_parts'},
@@ -1554,7 +1554,7 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
-        # "Түрлөндүрүү" (Manipulation) was an empty top-level category.
+        # "Өзгөртүп түзүү" (Manipulation) was an empty top-level category.
         # Reference (11 items): Notation, Changing the Subject of a
         # Formula are flat; Forming Expressions, Algebraic Fractions,
         # Expanding Single Brackets, Expanding Double & Triple
@@ -1569,7 +1569,7 @@ GROUPS = [
         # 'displaced_url_names', recreated as a category via
         # CHILD_ORDER_FIXES, protected via 'promoted_titles', filled by
         # its own dedicated GROUPS entry below.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү'),
         'target_items': [
             {'title': 'Белгилөө', 'url_name': 'algebra_manipulation_notation'},
         ],
@@ -1615,10 +1615,10 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
-        # "Туюнтма түзүү" (Forming Expressions) under Түрлөндүрүү was
+        # "Туюнтма түзүү" (Forming Expressions) under Өзгөртүп түзүү was
         # already an empty chevron-bearing category - reference (3
         # items, all flat): With Function Machines, Linear, Quadratic.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Туюнтма түзүү'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Туюнтма түзүү'),
         'target_items': [
             {'title': 'Функция машиналары менен', 'url_name': 'algebra_manipulation_forming_function_machines'},
             {'title': 'Сызыктуу', 'url_name': 'algebra_manipulation_forming_linear'},
@@ -1629,11 +1629,11 @@ GROUPS = [
     },
     {
         # "Алгебралык бөлчөктөр" (Algebraic Fractions) under
-        # Түрлөндүрүү was already an empty chevron-bearing category -
+        # Өзгөртүп түзүү was already an empty chevron-bearing category -
         # reference (6 items, all flat): Adding & Subtracting,
         # Multiplying & Dividing, Mixed, Simplifying, Simplifying: With
         # Factorisation, Simplifying: Difference of Two Squares.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Алгебралык бөлчөктөр'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Алгебралык бөлчөктөр'),
         'target_items': [
             {'title': 'Кошуу жана кемитүү', 'url_name': 'algebra_manipulation_fractions_adding_subtracting'},
             {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'algebra_manipulation_fractions_multiplying_dividing'},
@@ -1651,7 +1651,7 @@ GROUPS = [
         # 'create_subsubtopics' below. Reference (4 items, all flat):
         # Manipulating Formulae, Using a Function Machine, Without
         # Factorisation, With Factorisation.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
         'target_items': [
             {'title': 'Формулаларды түрлөндүрүү', 'url_name': 'algebra_manipulation_changing_subject_manipulating_formulae'},
             {'title': 'Функция машинасын колдонуу', 'url_name': 'algebra_manipulation_changing_subject_function_machine'},
@@ -1663,12 +1663,12 @@ GROUPS = [
     },
     {
         # "Бир кашааны ачуу" (Expanding Single Brackets) under
-        # Түрлөндүрүү was already an empty chevron-bearing category -
+        # Өзгөртүп түзүү was already an empty chevron-bearing category -
         # reference (7 items, all flat): Without Coefficients, With
         # Coefficients, With Indices, Multiple, Mixed, With
         # Factorisation: Without Indices, With Factorisation: With
         # Indices.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Бир кашааны ачуу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашааны ачуу'),
         'target_items': [
             {'title': 'Коэффициентсиз', 'url_name': 'algebra_manipulation_expand_single_without_coefficients'},
             {'title': 'Коэффициент менен', 'url_name': 'algebra_manipulation_expand_single_with_coefficients'},
@@ -1683,11 +1683,11 @@ GROUPS = [
     },
     {
         # "Эки жана үч кашааны ачуу" (Expanding Double & Triple
-        # Brackets) under Түрлөндүрүү was already an empty
+        # Brackets) under Өзгөртүп түзүү was already an empty
         # chevron-bearing category - reference (7 items, all flat):
         # Double: Without Coefficients, Double: With Coefficients, With
         # Factorisation, Squares, Triple, Mixed Expanding, With Surds.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Эки жана үч кашааны ачуу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Эки жана үч кашааны ачуу'),
         'target_items': [
             {'title': 'Эки кашаа: коэффициентсиз', 'url_name': 'algebra_manipulation_expand_double_triple_double_without_coefficients'},
             {'title': 'Эки кашаа: коэффициент менен', 'url_name': 'algebra_manipulation_expand_double_triple_double_with_coefficients'},
@@ -2043,21 +2043,27 @@ CHILD_ORDER_FIXES = [
     {
         # "Катыш" (Ratio) already has its own 4 chevron-bearing children
         # from import_reference_taxonomy.py (Эквиваленттүүлүк, Туюнтуу,
-        # Катыштар жана чоңдуктар, Түрлөндүрүү) - reference adds a 5th,
+        # Катыштар жана чоңдуктар, Өзгөртүп түзүү) - reference adds a 5th,
         # "Аралаш" (Mixed), same shape as its Percentages counterparts.
         # Unlike those, this reference "Mixed" itself shows a chevron
         # (its own further children) rather than being a flat leaf - left
         # as an empty placeholder for now, pending a screenshot of its
-        # contents.
+        # contents. "Түрлөндүрүү" (created by import_reference_taxonomy.py
+        # under its old name) has been renamed to "Өзгөртүп түзүү" per the
+        # user's request - Kazakh terminology that gets confused with
+        # Kyrgyz in this context.
         'parent_path': ('Пропорция', 'Катыш'),
         'create_subsubtopics': [
             {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'renames': [
+            {'from': 'Түрлөндүрүү', 'to': 'Өзгөртүп түзүү'},
         ],
         'order': [
             'Эквиваленттүүлүк',
             'Туюнтуу',
             'Катыштар жана чоңдуктар',
-            'Түрлөндүрүү',
+            'Өзгөртүп түзүү',
             'Аралаш',
         ],
     },
@@ -2084,7 +2090,7 @@ CHILD_ORDER_FIXES = [
         # Алгебра (root Topic) already had 6 children from the original
         # taxonomy import - reference adds 6 more chevron-bearing
         # siblings: Графиктер: абстракттуу, Графиктер: турмуштук,
-        # Барабарсыздыктар, Түрлөндүрүү, Ырааттуулуктар, Коюу.
+        # Барабарсыздыктар, Өзгөртүп түзүү, Ырааттуулуктар, Коюу.
         # "Туюнтмаларды түзүү" (Forming Expressions) isn't in the
         # reference at all - confirmed with the user to drop it, so it's
         # left out of 'order' below and pruned by this entry's own
@@ -2095,17 +2101,21 @@ CHILD_ORDER_FIXES = [
         # production (re-declaring it here would just create a
         # duplicate every run once its title no longer matches, same
         # reasoning as "Percentages: Non-Calculator" below), fixed via
-        # the 'renames' entry instead.
+        # the 'renames' entry instead. "Түрлөндүрүү" (Manipulation) has
+        # likewise been renamed to "Өзгөртүп түзүү" per the user's
+        # request - "Түрлөндүрүү" is Kazakh terminology that gets
+        # confused with Kyrgyz in this context - same
+        # removed-from-create_subsubtopics + renames-entry treatment.
         'parent_path': ('Алгебра',),
         'create_subsubtopics': [
             {'title': 'Графиктер: абстракттуу', 'slug': 'graphs-abstract'},
             {'title': 'Графиктер: турмуштук', 'slug': 'graphs-real-life'},
             {'title': 'Барабарсыздыктар', 'slug': 'inequalities'},
-            {'title': 'Түрлөндүрүү', 'slug': 'manipulation'},
             {'title': 'Ырааттуулуктар', 'slug': 'sequences'},
         ],
         'renames': [
             {'from': 'Коюу', 'to': 'Ордуна коюу'},
+            {'from': 'Түрлөндүрүү', 'to': 'Өзгөртүп түзүү'},
         ],
         'order': [
             'Киришүү',
@@ -2116,7 +2126,7 @@ CHILD_ORDER_FIXES = [
             'Графиктер: абстракттуу',
             'Графиктер: турмуштук',
             'Барабарсыздыктар',
-            'Түрлөндүрүү',
+            'Өзгөртүп түзүү',
             'Ырааттуулуктар',
             'Ордуна коюу',
         ],
@@ -2331,7 +2341,7 @@ CHILD_ORDER_FIXES = [
         # Abstract fixes - both steps run in the same execution, so the
         # delete-then-recreate completes in a single run; its own
         # children still need a 2nd run).
-        'parent_path': ('Алгебра', 'Түрлөндүрүү'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү'),
         'create_subsubtopics': [
             {'title': 'Туюнтма түзүү', 'slug': 'manipulation-forming-expressions'},
             {'title': 'Алгебралык бөлчөктөр', 'slug': 'manipulation-algebraic-fractions'},
@@ -2574,9 +2584,9 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Туюнтма түзүү's own 3 children (under
-        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # Өзгөртүп түзүү) - all flat, GROUPS' target_items builds them
         # directly.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Туюнтма түзүү'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Туюнтма түзүү'),
         'order': [
             'Функция машиналары менен',
             'Сызыктуу',
@@ -2585,9 +2595,9 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Алгебралык бөлчөктөр's own 6 children (under
-        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # Өзгөртүп түзүү) - all flat, GROUPS' target_items builds them
         # directly.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Алгебралык бөлчөктөр'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Алгебралык бөлчөктөр'),
         'order': [
             'Кошуу жана кемитүү',
             'Көбөйтүү жана бөлүү',
@@ -2599,9 +2609,9 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Формуланын өзгөрмөсүн алмаштыруу's own 4
-        # children (under Түрлөндүрүү) - all flat, GROUPS' target_items
+        # children (under Өзгөртүп түзүү) - all flat, GROUPS' target_items
         # builds them directly.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Формуланын өзгөрмөсүн алмаштыруу'),
         'order': [
             'Формулаларды түрлөндүрүү',
             'Функция машинасын колдонуу',
@@ -2611,9 +2621,9 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Бир кашааны ачуу's own 7 children (under
-        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # Өзгөртүп түзүү) - all flat, GROUPS' target_items builds them
         # directly.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Бир кашааны ачуу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Бир кашааны ачуу'),
         'order': [
             'Коэффициентсиз',
             'Коэффициент менен',
@@ -2626,9 +2636,9 @@ CHILD_ORDER_FIXES = [
     },
     {
         # Final order for Эки жана үч кашааны ачуу's own 7 children
-        # (under Түрлөндүрүү) - all flat, GROUPS' target_items builds
+        # (under Өзгөртүп түзүү) - all flat, GROUPS' target_items builds
         # them directly.
-        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Эки жана үч кашааны ачуу'),
+        'parent_path': ('Алгебра', 'Өзгөртүп түзүү', 'Эки жана үч кашааны ачуу'),
         'order': [
             'Эки кашаа: коэффициентсиз',
             'Эки кашаа: коэффициент менен',
