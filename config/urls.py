@@ -822,6 +822,42 @@ urlpatterns = [
     path('algebra-graphs-real-life-velocity-time-acceleration/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-velocity-time-acceleration'}, name='algebra_graphs_real_life_velocity_time_acceleration'),
     path('algebra-graphs-real-life-velocity-time-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-real-life-velocity-time-mixed'}, name='algebra_graphs_real_life_velocity_time_mixed'),
 
+    # Барабарсыздыктар > Сызыктуу - all 6 slots, none with a real page
+    # yet.
+    path('algebra-inequalities-linear-forming/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-forming'}, name='algebra_inequalities_linear_forming'),
+    path('algebra-inequalities-linear-evaluating/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-evaluating'}, name='algebra_inequalities_linear_evaluating'),
+    path('algebra-inequalities-linear-representing/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-representing'}, name='algebra_inequalities_linear_representing'),
+    path('algebra-inequalities-linear-solving-single/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-solving-single'}, name='algebra_inequalities_linear_solving_single'),
+    path('algebra-inequalities-linear-solving-single-double/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-solving-single-double'}, name='algebra_inequalities_linear_solving_single_double'),
+    path('algebra-inequalities-linear-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-linear-mixed'}, name='algebra_inequalities_linear_mixed'),
+
+    # Барабарсыздыктар > Графикалык - 2 confirmed slots (cut off in the
+    # reference).
+    path('algebra-inequalities-graphical-shade-wanted/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-graphical-shade-wanted'}, name='algebra_inequalities_graphical_shade_wanted'),
+    path('algebra-inequalities-graphical-shade-unwanted/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-graphical-shade-unwanted'}, name='algebra_inequalities_graphical_shade_unwanted'),
+
+    # Түрлөндүрүү > Туюнтма түзүү - all 3 slots, none with a real page
+    # yet.
+    path('algebra-manipulation-forming-function-machines/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-function-machines'}, name='algebra_manipulation_forming_function_machines'),
+    path('algebra-manipulation-forming-linear/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-linear'}, name='algebra_manipulation_forming_linear'),
+    path('algebra-manipulation-forming-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-quadratic'}, name='algebra_manipulation_forming_quadratic'),
+
+    # Түрлөндүрүү > Алгебралык бөлчөктөр - all 6 slots, none with a
+    # real page yet.
+    path('algebra-manipulation-fractions-adding-subtracting/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-adding-subtracting'}, name='algebra_manipulation_fractions_adding_subtracting'),
+    path('algebra-manipulation-fractions-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-multiplying-dividing'}, name='algebra_manipulation_fractions_multiplying_dividing'),
+    path('algebra-manipulation-fractions-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-mixed'}, name='algebra_manipulation_fractions_mixed'),
+    path('algebra-manipulation-fractions-simplifying/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-simplifying'}, name='algebra_manipulation_fractions_simplifying'),
+    path('algebra-manipulation-fractions-simplifying-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-simplifying-with-factorisation'}, name='algebra_manipulation_fractions_simplifying_with_factorisation'),
+    path('algebra-manipulation-fractions-simplifying-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-simplifying-difference-squares'}, name='algebra_manipulation_fractions_simplifying_difference_squares'),
+
+    # Түрлөндүрүү > Формуланын өзгөрмөсүн алмаштыруу - all 4 slots,
+    # none with a real page yet.
+    path('algebra-manipulation-changing-subject-manipulating-formulae/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-manipulating-formulae'}, name='algebra_manipulation_changing_subject_manipulating_formulae'),
+    path('algebra-manipulation-changing-subject-function-machine/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-function-machine'}, name='algebra_manipulation_changing_subject_function_machine'),
+    path('algebra-manipulation-changing-subject-without-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-without-factorisation'}, name='algebra_manipulation_changing_subject_without_factorisation'),
+    path('algebra-manipulation-changing-subject-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-with-factorisation'}, name='algebra_manipulation_changing_subject_with_factorisation'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
