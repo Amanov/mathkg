@@ -1270,18 +1270,144 @@ GROUPS = [
         # Linear: Mixed are flat; Quadratic, Circles, Other Non-Linear,
         # Transformations, Differentiation are chevron-bearing
         # categories (created via 'create_subsubtopics' below, left
-        # empty pending screenshots of their own contents).
+        # empty pending screenshots of their own contents). Further
+        # screenshots then showed "Координаттар" (Coordinates),
+        # "Сызыктуу: эсептөө" (Linear: Calculating), "Сызыктуу:
+        # чиймелөө" (Linear: Plotting) and "Сызыктуу: окуу" (Linear:
+        # Reading) ALL have their own chevron children too - the same
+        # misread pattern already fixed for the Equations topics -
+        # removed from target_items, one-time-cleaned via
+        # 'displaced_url_names', recreated as categories via
+        # CHILD_ORDER_FIXES, protected via 'promoted_titles', each
+        # filled by its own dedicated GROUPS entry below. "Сызыктуу:
+        # окуу"'s reference screenshot was cut off after 4 items
+        # (5th row read "Identifying..." with nothing after) - only
+        # those 4 are built for now, flagged to the user to confirm the
+        # rest.
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу'),
         'target_items': [
-            {'title': 'Координаттар', 'url_name': 'algebra_graphs_abstract_coordinates'},
-            {'title': 'Сызыктуу: эсептөө', 'url_name': 'algebra_graphs_abstract_linear_calculating'},
-            {'title': 'Сызыктуу: чиймелөө', 'url_name': 'algebra_graphs_abstract_linear_plotting'},
-            {'title': 'Сызыктуу: окуу', 'url_name': 'algebra_graphs_abstract_linear_reading'},
             {'title': 'Сызыктуу: аралаш', 'url_name': 'algebra_graphs_abstract_linear_mixed'},
         ],
         'promoted_titles': [
             'Квадраттык', 'Тегеректер', 'Башка сызыктуу эмес',
             'Түрлөндүрүүлөр', 'Дифференциалдоо',
+            'Координаттар', 'Сызыктуу: эсептөө', 'Сызыктуу: чиймелөө',
+            'Сызыктуу: окуу',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [
+            'algebra_graphs_abstract_coordinates',
+            'algebra_graphs_abstract_linear_calculating',
+            'algebra_graphs_abstract_linear_plotting',
+            'algebra_graphs_abstract_linear_reading',
+        ],
+    },
+    {
+        # "Координаттар" (Coordinates) is a fresh chevron-bearing
+        # category, created via 'create_subsubtopics' below. Reference
+        # (6 items, all flat): Reading, Reading & Plotting, Midpoint &
+        # Endpoint of a Line, Line Segments & Ratio, Geometric
+        # Problems, With Pythagoras.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Координаттар'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'algebra_graphs_abstract_coordinates_reading'},
+            {'title': 'Окуу жана чиймелөө', 'url_name': 'algebra_graphs_abstract_coordinates_reading_plotting'},
+            {'title': 'Кесиндинин орто жана учтук чекиттери', 'url_name': 'algebra_graphs_abstract_coordinates_midpoint_endpoint'},
+            {'title': 'Кесиндилер жана катыш', 'url_name': 'algebra_graphs_abstract_coordinates_segments_ratio'},
+            {'title': 'Геометриялык маселелер', 'url_name': 'algebra_graphs_abstract_coordinates_geometric_problems'},
+            {'title': 'Пифагор менен', 'url_name': 'algebra_graphs_abstract_coordinates_with_pythagoras'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Сызыктуу: эсептөө" (Linear: Calculating) is a fresh
+        # chevron-bearing category, created via 'create_subsubtopics'
+        # below. Reference (10 items): Functions & Graphs, Identifying
+        # Gradient & Intercept, Evaluating Coordinates, Evaluating
+        # Intersections, Parallel, Perpendicular, Parallel &
+        # Perpendicular, Mixed, Identifying Graphs are flat; From
+        # Coordinates is a chevron-bearing category left empty pending
+        # a screenshot of its own contents.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: эсептөө'),
+        'target_items': [
+            {'title': 'Функциялар жана графиктер', 'url_name': 'algebra_graphs_abstract_linear_calc_functions_graphs'},
+            {'title': 'Кыйшаюусун жана кесилиш чекитин аныктоо', 'url_name': 'algebra_graphs_abstract_linear_calc_gradient_intercept'},
+            {'title': 'Координаттарды эсептөө', 'url_name': 'algebra_graphs_abstract_linear_calc_evaluating_coordinates'},
+            {'title': 'Кесилишүүлөрдү эсептөө', 'url_name': 'algebra_graphs_abstract_linear_calc_evaluating_intersections'},
+            {'title': 'Параллель', 'url_name': 'algebra_graphs_abstract_linear_calc_parallel'},
+            {'title': 'Перпендикуляр', 'url_name': 'algebra_graphs_abstract_linear_calc_perpendicular'},
+            {'title': 'Параллель жана перпендикуляр', 'url_name': 'algebra_graphs_abstract_linear_calc_parallel_perpendicular'},
+            {'title': 'Аралаш', 'url_name': 'algebra_graphs_abstract_linear_calc_mixed'},
+            {'title': 'Графиктерди аныктоо', 'url_name': 'algebra_graphs_abstract_linear_calc_identifying_graphs'},
+        ],
+        'promoted_titles': ['Координаттардан'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Координаттардан" (From Coordinates) under Сызыктуу: эсептөө
+        # is a fresh chevron-bearing category, created via
+        # 'create_subsubtopics' below. Left empty pending a screenshot
+        # of its own contents.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: эсептөө', 'Координаттардан'),
+        'target_items': [],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Сызыктуу: чиймелөө" (Linear: Plotting) is a fresh
+        # chevron-bearing category, created via 'create_subsubtopics'
+        # below. Reference (8 items, all flat): With Functions, With
+        # Sequences, Cover-Up Method, Gradient of a Line,
+        # Gradient-Intercept Method, Table of Values Method,
+        # Inequalities, Simultaneous Equations.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: чиймелөө'),
+        'target_items': [
+            {'title': 'Функциялар менен', 'url_name': 'algebra_graphs_abstract_linear_plot_with_functions'},
+            {'title': 'Ырааттуулуктар менен', 'url_name': 'algebra_graphs_abstract_linear_plot_with_sequences'},
+            {'title': 'Жабуу ыкмасы', 'url_name': 'algebra_graphs_abstract_linear_plot_cover_up'},
+            {'title': 'Сызыктын кыйшаюусу', 'url_name': 'algebra_graphs_abstract_linear_plot_gradient'},
+            {'title': 'Кыйшаюу-кесилиш ыкмасы', 'url_name': 'algebra_graphs_abstract_linear_plot_gradient_intercept_method'},
+            {'title': 'Маанилер таблицасы ыкмасы', 'url_name': 'algebra_graphs_abstract_linear_plot_table_of_values'},
+            {'title': 'Барабарсыздыктар', 'url_name': 'algebra_graphs_abstract_linear_plot_inequalities'},
+            {'title': 'Теңдемелер системасы', 'url_name': 'algebra_graphs_abstract_linear_plot_simultaneous'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Сызыктуу: окуу" (Linear: Reading) is a fresh chevron-bearing
+        # category, created via 'create_subsubtopics' below. Reference
+        # screenshot was cut off after 4 items (Horizontal & Vertical,
+        # Gradient of a Line, Equation of a Line, Evaluating
+        # Intersections) - a 5th row read "Identifying..." with nothing
+        # after, so only these 4 are built for now. Flagged to the user
+        # to confirm the rest.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: окуу'),
+        'target_items': [
+            {'title': 'Горизонталдык жана вертикалдык', 'url_name': 'algebra_graphs_abstract_linear_read_horizontal_vertical'},
+            {'title': 'Сызыктын кыйшаюусу', 'url_name': 'algebra_graphs_abstract_linear_read_gradient'},
+            {'title': 'Сызыктын теңдемеси', 'url_name': 'algebra_graphs_abstract_linear_read_equation'},
+            {'title': 'Кесилишүүлөрдү эсептөө', 'url_name': 'algebra_graphs_abstract_linear_read_evaluating_intersections'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Квадраттык" (Quadratic) under Графиктер: абстракттуу was
+        # already an empty chevron-bearing category (created earlier,
+        # see the Algebra-level CHILD_ORDER_FIXES entry above) -
+        # reference (5 items, all flat): Plotting, Significant Points,
+        # Turning Points by Completing the Square, Solving by
+        # Intersection, Simultaneous Equations.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Квадраттык'),
+        'target_items': [
+            {'title': 'Чиймелөө', 'url_name': 'algebra_graphs_abstract_quadratic_plotting'},
+            {'title': 'Маанилүү чекиттер', 'url_name': 'algebra_graphs_abstract_quadratic_significant_points'},
+            {'title': 'Толук квадратка келтирүү менен бурулуш чекиттери', 'url_name': 'algebra_graphs_abstract_quadratic_turning_points'},
+            {'title': 'Кесилишүү аркылуу чечүү', 'url_name': 'algebra_graphs_abstract_quadratic_solving_by_intersection'},
+            {'title': 'Теңдемелер системасы', 'url_name': 'algebra_graphs_abstract_quadratic_simultaneous'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1890,7 +2016,15 @@ CHILD_ORDER_FIXES = [
         # chevron-bearing categories, left empty pending screenshots of
         # their own contents) before their own GROUPS entry can find
         # them - 2-run cross-run dependency, same pattern as the
-        # Quadratic/Simultaneous fixes above.
+        # Quadratic/Simultaneous fixes above. "Координаттар", "Сызыктуу:
+        # эсептөө", "Сызыктуу: чиймелөө" and "Сызыктуу: окуу" are
+        # re-created here too, now as categories, after the GROUPS
+        # entry above one-time-deletes each one's old flat MenuItem via
+        # 'displaced_url_names' - both steps run in the same execution
+        # (GROUPS phase runs entirely before CHILD_ORDER_FIXES), so the
+        # delete-then-recreate completes in a single run; their own
+        # children still need a 2nd run, same as the brand-new
+        # categories above.
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу'),
         'create_subsubtopics': [
             {'title': 'Квадраттык', 'slug': 'graphs-abstract-quadratic'},
@@ -1898,6 +2032,10 @@ CHILD_ORDER_FIXES = [
             {'title': 'Башка сызыктуу эмес', 'slug': 'graphs-abstract-other-non-linear'},
             {'title': 'Түрлөндүрүүлөр', 'slug': 'graphs-abstract-transformations'},
             {'title': 'Дифференциалдоо', 'slug': 'graphs-abstract-differentiation'},
+            {'title': 'Координаттар', 'slug': 'graphs-abstract-coordinates'},
+            {'title': 'Сызыктуу: эсептөө', 'slug': 'graphs-abstract-linear-calculating'},
+            {'title': 'Сызыктуу: чиймелөө', 'slug': 'graphs-abstract-linear-plotting'},
+            {'title': 'Сызыктуу: окуу', 'slug': 'graphs-abstract-linear-reading'},
         ],
         'order': [
             'Координаттар',
@@ -2028,6 +2166,82 @@ CHILD_ORDER_FIXES = [
             'Даража менен',
             'Калькулятор менен',
             'Векторлор',
+        ],
+    },
+    {
+        # Final order for Координаттар's own 6 children - all flat,
+        # GROUPS' target_items builds them directly, no
+        # 'create_subsubtopics' needed here.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Координаттар'),
+        'order': [
+            'Окуу',
+            'Окуу жана чиймелөө',
+            'Кесиндинин орто жана учтук чекиттери',
+            'Кесиндилер жана катыш',
+            'Геометриялык маселелер',
+            'Пифагор менен',
+        ],
+    },
+    {
+        # "Координаттардан" (From Coordinates) is a fresh
+        # chevron-bearing category, created here, left empty pending a
+        # screenshot of its own contents - 2-run cross-run dependency
+        # for the 9 flat leaves GROUPS' target_items builds.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: эсептөө'),
+        'create_subsubtopics': [
+            {'title': 'Координаттардан', 'slug': 'graphs-abstract-linear-calc-from-coordinates'},
+        ],
+        'order': [
+            'Функциялар жана графиктер',
+            'Кыйшаюусун жана кесилиш чекитин аныктоо',
+            'Координаттарды эсептөө',
+            'Кесилишүүлөрдү эсептөө',
+            'Координаттардан',
+            'Параллель',
+            'Перпендикуляр',
+            'Параллель жана перпендикуляр',
+            'Аралаш',
+            'Графиктерди аныктоо',
+        ],
+    },
+    {
+        # Final order for Сызыктуу: чиймелөө's own 8 children - all
+        # flat, GROUPS' target_items builds them directly.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: чиймелөө'),
+        'order': [
+            'Функциялар менен',
+            'Ырааттуулуктар менен',
+            'Жабуу ыкмасы',
+            'Сызыктын кыйшаюусу',
+            'Кыйшаюу-кесилиш ыкмасы',
+            'Маанилер таблицасы ыкмасы',
+            'Барабарсыздыктар',
+            'Теңдемелер системасы',
+        ],
+    },
+    {
+        # Partial order for Сызыктуу: окуу's 4 confirmed children (a 5th
+        # row, "Identifying...", was cut off in the reference screenshot
+        # - not built yet, flagged to the user).
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Сызыктуу: окуу'),
+        'order': [
+            'Горизонталдык жана вертикалдык',
+            'Сызыктын кыйшаюусу',
+            'Сызыктын теңдемеси',
+            'Кесилишүүлөрдү эсептөө',
+        ],
+    },
+    {
+        # Final order for Квадраттык's own 5 children (under Графиктер:
+        # абстракттуу) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Квадраттык'),
+        'order': [
+            'Чиймелөө',
+            'Маанилүү чекиттер',
+            'Толук квадратка келтирүү менен бурулуш чекиттери',
+            'Кесилишүү аркылуу чечүү',
+            'Теңдемелер системасы',
         ],
     },
 ]

@@ -654,6 +654,59 @@ OPERATION_PLACEHOLDER_TITLES = {
     # left empty pending screenshots of their own contents.
     'algebra-substitution-with-calculator': 'Калькулятор менен',
     'algebra-substitution-vectors': 'Векторлор',
+
+    # Графиктер: абстракттуу > Координаттар - all 6 slots, none with a
+    # real page yet. "Координаттар" itself was previously a flat leaf
+    # (see 'algebra-graphs-abstract-coordinates' above, now orphaned -
+    # left in place, same as 'algebra-quadratic-rational') before a
+    # further screenshot showed it has its own chevron children.
+    'algebra-graphs-abstract-coordinates-reading': 'Окуу',
+    'algebra-graphs-abstract-coordinates-reading-plotting': 'Окуу жана чиймелөө',
+    'algebra-graphs-abstract-coordinates-midpoint-endpoint': 'Кесиндинин орто жана учтук чекиттери',
+    'algebra-graphs-abstract-coordinates-segments-ratio': 'Кесиндилер жана катыш',
+    'algebra-graphs-abstract-coordinates-geometric-problems': 'Геометриялык маселелер',
+    'algebra-graphs-abstract-coordinates-with-pythagoras': 'Пифагор менен',
+
+    # Графиктер: абстракттуу > Сызыктуу: эсептөө - 9 flat slots, none
+    # with a real page yet. The remaining reference item (From
+    # Coordinates) is a chevron-bearing category left empty pending a
+    # screenshot of its own contents.
+    'algebra-graphs-abstract-linear-calc-functions-graphs': 'Функциялар жана графиктер',
+    'algebra-graphs-abstract-linear-calc-gradient-intercept': 'Кыйшаюусун жана кесилиш чекитин аныктоо',
+    'algebra-graphs-abstract-linear-calc-evaluating-coordinates': 'Координаттарды эсептөө',
+    'algebra-graphs-abstract-linear-calc-evaluating-intersections': 'Кесилишүүлөрдү эсептөө',
+    'algebra-graphs-abstract-linear-calc-parallel': 'Параллель',
+    'algebra-graphs-abstract-linear-calc-perpendicular': 'Перпендикуляр',
+    'algebra-graphs-abstract-linear-calc-parallel-perpendicular': 'Параллель жана перпендикуляр',
+    'algebra-graphs-abstract-linear-calc-mixed': 'Аралаш',
+    'algebra-graphs-abstract-linear-calc-identifying-graphs': 'Графиктерди аныктоо',
+
+    # Графиктер: абстракттуу > Сызыктуу: чиймелөө - all 8 slots, none
+    # with a real page yet.
+    'algebra-graphs-abstract-linear-plot-with-functions': 'Функциялар менен',
+    'algebra-graphs-abstract-linear-plot-with-sequences': 'Ырааттуулуктар менен',
+    'algebra-graphs-abstract-linear-plot-cover-up': 'Жабуу ыкмасы',
+    'algebra-graphs-abstract-linear-plot-gradient': 'Сызыктын кыйшаюусу',
+    'algebra-graphs-abstract-linear-plot-gradient-intercept-method': 'Кыйшаюу-кесилиш ыкмасы',
+    'algebra-graphs-abstract-linear-plot-table-of-values': 'Маанилер таблицасы ыкмасы',
+    'algebra-graphs-abstract-linear-plot-inequalities': 'Барабарсыздыктар',
+    'algebra-graphs-abstract-linear-plot-simultaneous': 'Теңдемелер системасы',
+
+    # Графиктер: абстракттуу > Сызыктуу: окуу - only 4 slots built so
+    # far (reference screenshot was cut off after these - a 5th row
+    # read "Identifying..." with nothing after, flagged to the user).
+    'algebra-graphs-abstract-linear-read-horizontal-vertical': 'Горизонталдык жана вертикалдык',
+    'algebra-graphs-abstract-linear-read-gradient': 'Сызыктын кыйшаюусу',
+    'algebra-graphs-abstract-linear-read-equation': 'Сызыктын теңдемеси',
+    'algebra-graphs-abstract-linear-read-evaluating-intersections': 'Кесилишүүлөрдү эсептөө',
+
+    # Графиктер: абстракттуу > Квадраттык - all 5 slots, none with a
+    # real page yet.
+    'algebra-graphs-abstract-quadratic-plotting': 'Чиймелөө',
+    'algebra-graphs-abstract-quadratic-significant-points': 'Маанилүү чекиттер',
+    'algebra-graphs-abstract-quadratic-turning-points': 'Толук квадратка келтирүү менен бурулуш чекиттери',
+    'algebra-graphs-abstract-quadratic-solving-by-intersection': 'Кесилишүү аркылуу чечүү',
+    'algebra-graphs-abstract-quadratic-simultaneous': 'Теңдемелер системасы',
 }
 
 

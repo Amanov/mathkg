@@ -723,6 +723,53 @@ urlpatterns = [
     path('algebra-substitution-with-calculator/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-with-calculator'}, name='algebra_substitution_with_calculator'),
     path('algebra-substitution-vectors/', operation_placeholder_view, {'operation_slug': 'algebra-substitution-vectors'}, name='algebra_substitution_vectors'),
 
+    # Графиктер: абстракттуу > Координаттар - all 6 slots, none with a
+    # real page yet.
+    path('algebra-graphs-abstract-coordinates-reading/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-reading'}, name='algebra_graphs_abstract_coordinates_reading'),
+    path('algebra-graphs-abstract-coordinates-reading-plotting/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-reading-plotting'}, name='algebra_graphs_abstract_coordinates_reading_plotting'),
+    path('algebra-graphs-abstract-coordinates-midpoint-endpoint/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-midpoint-endpoint'}, name='algebra_graphs_abstract_coordinates_midpoint_endpoint'),
+    path('algebra-graphs-abstract-coordinates-segments-ratio/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-segments-ratio'}, name='algebra_graphs_abstract_coordinates_segments_ratio'),
+    path('algebra-graphs-abstract-coordinates-geometric-problems/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-geometric-problems'}, name='algebra_graphs_abstract_coordinates_geometric_problems'),
+    path('algebra-graphs-abstract-coordinates-with-pythagoras/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-coordinates-with-pythagoras'}, name='algebra_graphs_abstract_coordinates_with_pythagoras'),
+
+    # Графиктер: абстракттуу > Сызыктуу: эсептөө - 9 flat slots, none
+    # with a real page yet.
+    path('algebra-graphs-abstract-linear-calc-functions-graphs/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-functions-graphs'}, name='algebra_graphs_abstract_linear_calc_functions_graphs'),
+    path('algebra-graphs-abstract-linear-calc-gradient-intercept/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-gradient-intercept'}, name='algebra_graphs_abstract_linear_calc_gradient_intercept'),
+    path('algebra-graphs-abstract-linear-calc-evaluating-coordinates/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-evaluating-coordinates'}, name='algebra_graphs_abstract_linear_calc_evaluating_coordinates'),
+    path('algebra-graphs-abstract-linear-calc-evaluating-intersections/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-evaluating-intersections'}, name='algebra_graphs_abstract_linear_calc_evaluating_intersections'),
+    path('algebra-graphs-abstract-linear-calc-parallel/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-parallel'}, name='algebra_graphs_abstract_linear_calc_parallel'),
+    path('algebra-graphs-abstract-linear-calc-perpendicular/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-perpendicular'}, name='algebra_graphs_abstract_linear_calc_perpendicular'),
+    path('algebra-graphs-abstract-linear-calc-parallel-perpendicular/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-parallel-perpendicular'}, name='algebra_graphs_abstract_linear_calc_parallel_perpendicular'),
+    path('algebra-graphs-abstract-linear-calc-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-mixed'}, name='algebra_graphs_abstract_linear_calc_mixed'),
+    path('algebra-graphs-abstract-linear-calc-identifying-graphs/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-calc-identifying-graphs'}, name='algebra_graphs_abstract_linear_calc_identifying_graphs'),
+
+    # Графиктер: абстракттуу > Сызыктуу: чиймелөө - all 8 slots, none
+    # with a real page yet.
+    path('algebra-graphs-abstract-linear-plot-with-functions/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-with-functions'}, name='algebra_graphs_abstract_linear_plot_with_functions'),
+    path('algebra-graphs-abstract-linear-plot-with-sequences/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-with-sequences'}, name='algebra_graphs_abstract_linear_plot_with_sequences'),
+    path('algebra-graphs-abstract-linear-plot-cover-up/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-cover-up'}, name='algebra_graphs_abstract_linear_plot_cover_up'),
+    path('algebra-graphs-abstract-linear-plot-gradient/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-gradient'}, name='algebra_graphs_abstract_linear_plot_gradient'),
+    path('algebra-graphs-abstract-linear-plot-gradient-intercept-method/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-gradient-intercept-method'}, name='algebra_graphs_abstract_linear_plot_gradient_intercept_method'),
+    path('algebra-graphs-abstract-linear-plot-table-of-values/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-table-of-values'}, name='algebra_graphs_abstract_linear_plot_table_of_values'),
+    path('algebra-graphs-abstract-linear-plot-inequalities/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-inequalities'}, name='algebra_graphs_abstract_linear_plot_inequalities'),
+    path('algebra-graphs-abstract-linear-plot-simultaneous/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-plot-simultaneous'}, name='algebra_graphs_abstract_linear_plot_simultaneous'),
+
+    # Графиктер: абстракттуу > Сызыктуу: окуу - only 4 slots built so
+    # far (reference screenshot was cut off, flagged to the user).
+    path('algebra-graphs-abstract-linear-read-horizontal-vertical/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-read-horizontal-vertical'}, name='algebra_graphs_abstract_linear_read_horizontal_vertical'),
+    path('algebra-graphs-abstract-linear-read-gradient/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-read-gradient'}, name='algebra_graphs_abstract_linear_read_gradient'),
+    path('algebra-graphs-abstract-linear-read-equation/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-read-equation'}, name='algebra_graphs_abstract_linear_read_equation'),
+    path('algebra-graphs-abstract-linear-read-evaluating-intersections/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-linear-read-evaluating-intersections'}, name='algebra_graphs_abstract_linear_read_evaluating_intersections'),
+
+    # Графиктер: абстракттуу > Квадраттык - all 5 slots, none with a
+    # real page yet.
+    path('algebra-graphs-abstract-quadratic-plotting/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-plotting'}, name='algebra_graphs_abstract_quadratic_plotting'),
+    path('algebra-graphs-abstract-quadratic-significant-points/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-significant-points'}, name='algebra_graphs_abstract_quadratic_significant_points'),
+    path('algebra-graphs-abstract-quadratic-turning-points/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-turning-points'}, name='algebra_graphs_abstract_quadratic_turning_points'),
+    path('algebra-graphs-abstract-quadratic-solving-by-intersection/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-solving-by-intersection'}, name='algebra_graphs_abstract_quadratic_solving_by_intersection'),
+    path('algebra-graphs-abstract-quadratic-simultaneous/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-quadratic-simultaneous'}, name='algebra_graphs_abstract_quadratic_simultaneous'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
