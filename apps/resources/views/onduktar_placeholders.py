@@ -788,6 +788,26 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-manipulation-changing-subject-function-machine': 'Функция машинасын колдонуу',
     'algebra-manipulation-changing-subject-without-factorisation': 'Көбөйтүүчүлөргө ажыратуусуз',
     'algebra-manipulation-changing-subject-with-factorisation': 'Көбөйтүүчүлөргө ажыратуу менен',
+
+    # Түрлөндүрүү > Бир кашааны ачуу - all 7 slots, none with a real
+    # page yet.
+    'algebra-manipulation-expand-single-without-coefficients': 'Коэффициентсиз',
+    'algebra-manipulation-expand-single-with-coefficients': 'Коэффициент менен',
+    'algebra-manipulation-expand-single-with-indices': 'Даражалар менен',
+    'algebra-manipulation-expand-single-multiple': 'Көп кашаалар',
+    'algebra-manipulation-expand-single-mixed': 'Аралаш',
+    'algebra-manipulation-expand-single-factorisation-without-indices': 'Көбөйтүүчүлөргө ажыратуу менен: даражасыз',
+    'algebra-manipulation-expand-single-factorisation-with-indices': 'Көбөйтүүчүлөргө ажыратуу менен: даража менен',
+
+    # Түрлөндүрүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
+    # real page yet.
+    'algebra-manipulation-expand-double-triple-double-without-coefficients': 'Эки кашаа: коэффициентсиз',
+    'algebra-manipulation-expand-double-triple-double-with-coefficients': 'Эки кашаа: коэффициент менен',
+    'algebra-manipulation-expand-double-triple-with-factorisation': 'Көбөйтүүчүлөргө ажыратуу менен',
+    'algebra-manipulation-expand-double-triple-squares': 'Квадраттар',
+    'algebra-manipulation-expand-double-triple-triple': 'Үч кашаа',
+    'algebra-manipulation-expand-double-triple-mixed': 'Аралаш ачуу',
+    'algebra-manipulation-expand-double-triple-with-surds': 'Тамырлар менен',
 }
 
 

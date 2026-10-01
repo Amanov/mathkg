@@ -858,6 +858,26 @@ urlpatterns = [
     path('algebra-manipulation-changing-subject-without-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-without-factorisation'}, name='algebra_manipulation_changing_subject_without_factorisation'),
     path('algebra-manipulation-changing-subject-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-with-factorisation'}, name='algebra_manipulation_changing_subject_with_factorisation'),
 
+    # Түрлөндүрүү > Бир кашааны ачуу - all 7 slots, none with a real
+    # page yet.
+    path('algebra-manipulation-expand-single-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-without-coefficients'}, name='algebra_manipulation_expand_single_without_coefficients'),
+    path('algebra-manipulation-expand-single-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-with-coefficients'}, name='algebra_manipulation_expand_single_with_coefficients'),
+    path('algebra-manipulation-expand-single-with-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-with-indices'}, name='algebra_manipulation_expand_single_with_indices'),
+    path('algebra-manipulation-expand-single-multiple/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-multiple'}, name='algebra_manipulation_expand_single_multiple'),
+    path('algebra-manipulation-expand-single-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-mixed'}, name='algebra_manipulation_expand_single_mixed'),
+    path('algebra-manipulation-expand-single-factorisation-without-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-factorisation-without-indices'}, name='algebra_manipulation_expand_single_factorisation_without_indices'),
+    path('algebra-manipulation-expand-single-factorisation-with-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-factorisation-with-indices'}, name='algebra_manipulation_expand_single_factorisation_with_indices'),
+
+    # Түрлөндүрүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
+    # real page yet.
+    path('algebra-manipulation-expand-double-triple-double-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-double-without-coefficients'}, name='algebra_manipulation_expand_double_triple_double_without_coefficients'),
+    path('algebra-manipulation-expand-double-triple-double-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-double-with-coefficients'}, name='algebra_manipulation_expand_double_triple_double_with_coefficients'),
+    path('algebra-manipulation-expand-double-triple-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-with-factorisation'}, name='algebra_manipulation_expand_double_triple_with_factorisation'),
+    path('algebra-manipulation-expand-double-triple-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-squares'}, name='algebra_manipulation_expand_double_triple_squares'),
+    path('algebra-manipulation-expand-double-triple-triple/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-triple'}, name='algebra_manipulation_expand_double_triple_triple'),
+    path('algebra-manipulation-expand-double-triple-mixed/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-mixed'}, name='algebra_manipulation_expand_double_triple_mixed'),
+    path('algebra-manipulation-expand-double-triple-with-surds/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-with-surds'}, name='algebra_manipulation_expand_double_triple_with_surds'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

@@ -1662,6 +1662,45 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Бир кашааны ачуу" (Expanding Single Brackets) under
+        # Түрлөндүрүү was already an empty chevron-bearing category -
+        # reference (7 items, all flat): Without Coefficients, With
+        # Coefficients, With Indices, Multiple, Mixed, With
+        # Factorisation: Without Indices, With Factorisation: With
+        # Indices.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Бир кашааны ачуу'),
+        'target_items': [
+            {'title': 'Коэффициентсиз', 'url_name': 'algebra_manipulation_expand_single_without_coefficients'},
+            {'title': 'Коэффициент менен', 'url_name': 'algebra_manipulation_expand_single_with_coefficients'},
+            {'title': 'Даражалар менен', 'url_name': 'algebra_manipulation_expand_single_with_indices'},
+            {'title': 'Көп кашаалар', 'url_name': 'algebra_manipulation_expand_single_multiple'},
+            {'title': 'Аралаш', 'url_name': 'algebra_manipulation_expand_single_mixed'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуу менен: даражасыз', 'url_name': 'algebra_manipulation_expand_single_factorisation_without_indices'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуу менен: даража менен', 'url_name': 'algebra_manipulation_expand_single_factorisation_with_indices'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Эки жана үч кашааны ачуу" (Expanding Double & Triple
+        # Brackets) under Түрлөндүрүү was already an empty
+        # chevron-bearing category - reference (7 items, all flat):
+        # Double: Without Coefficients, Double: With Coefficients, With
+        # Factorisation, Squares, Triple, Mixed Expanding, With Surds.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Эки жана үч кашааны ачуу'),
+        'target_items': [
+            {'title': 'Эки кашаа: коэффициентсиз', 'url_name': 'algebra_manipulation_expand_double_triple_double_without_coefficients'},
+            {'title': 'Эки кашаа: коэффициент менен', 'url_name': 'algebra_manipulation_expand_double_triple_double_with_coefficients'},
+            {'title': 'Көбөйтүүчүлөргө ажыратуу менен', 'url_name': 'algebra_manipulation_expand_double_triple_with_factorisation'},
+            {'title': 'Квадраттар', 'url_name': 'algebra_manipulation_expand_double_triple_squares'},
+            {'title': 'Үч кашаа', 'url_name': 'algebra_manipulation_expand_double_triple_triple'},
+            {'title': 'Аралаш ачуу', 'url_name': 'algebra_manipulation_expand_double_triple_mixed'},
+            {'title': 'Тамырлар менен', 'url_name': 'algebra_manipulation_expand_double_triple_with_surds'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Ырааттуулуктар" (Sequences) was an empty top-level category.
         # Reference (10 items): Introduction, With Graphs, With
         # Equations & Functions, Quadratic, Linear & Quadratic,
@@ -2568,6 +2607,36 @@ CHILD_ORDER_FIXES = [
             'Функция машинасын колдонуу',
             'Көбөйтүүчүлөргө ажыратуусуз',
             'Көбөйтүүчүлөргө ажыратуу менен',
+        ],
+    },
+    {
+        # Final order for Бир кашааны ачуу's own 7 children (under
+        # Түрлөндүрүү) - all flat, GROUPS' target_items builds them
+        # directly.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Бир кашааны ачуу'),
+        'order': [
+            'Коэффициентсиз',
+            'Коэффициент менен',
+            'Даражалар менен',
+            'Көп кашаалар',
+            'Аралаш',
+            'Көбөйтүүчүлөргө ажыратуу менен: даражасыз',
+            'Көбөйтүүчүлөргө ажыратуу менен: даража менен',
+        ],
+    },
+    {
+        # Final order for Эки жана үч кашааны ачуу's own 7 children
+        # (under Түрлөндүрүү) - all flat, GROUPS' target_items builds
+        # them directly.
+        'parent_path': ('Алгебра', 'Түрлөндүрүү', 'Эки жана үч кашааны ачуу'),
+        'order': [
+            'Эки кашаа: коэффициентсиз',
+            'Эки кашаа: коэффициент менен',
+            'Көбөйтүүчүлөргө ажыратуу менен',
+            'Квадраттар',
+            'Үч кашаа',
+            'Аралаш ачуу',
+            'Тамырлар менен',
         ],
     },
 ]
