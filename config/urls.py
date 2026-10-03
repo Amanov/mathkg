@@ -1310,10 +1310,11 @@ urlpatterns = [
     path('data-analysing-mode-range-mode/', operation_placeholder_view, {'operation_slug': 'data-analysing-mode-range-mode'}, name='data_analysing_mode_range_mode'),
     path('data-analysing-mode-range-range/', operation_placeholder_view, {'operation_slug': 'data-analysing-mode-range-range'}, name='data_analysing_mode_range_range'),
 
-    # Дата > Талдоо > Квартилдер - 2 flat slots, none with a real page
+    # Дата > Талдоо > Кварталдар - 3 flat slots, none with a real page
     # yet.
     path('data-analysing-quartiles-introduction/', operation_placeholder_view, {'operation_slug': 'data-analysing-quartiles-introduction'}, name='data_analysing_quartiles_introduction'),
     path('data-analysing-quartiles-with-box-plots/', operation_placeholder_view, {'operation_slug': 'data-analysing-quartiles-with-box-plots'}, name='data_analysing_quartiles_with_box_plots'),
+    path('data-analysing-quartiles-box-plots/', operation_placeholder_view, {'operation_slug': 'data-analysing-quartiles-box-plots'}, name='data_analysing_quartiles_box_plots'),
 
     # Дата > Чогултуу - 6 flat slots, none with a real page yet.
     path('data-collecting-introduction/', operation_placeholder_view, {'operation_slug': 'data-collecting-introduction'}, name='data_collecting_introduction'),

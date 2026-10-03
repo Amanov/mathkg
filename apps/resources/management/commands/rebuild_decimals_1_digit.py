@@ -2820,7 +2820,13 @@ GROUPS = [
             {'title': 'Салыштыруу: орточо, медиана, мода жана диапазон менен', 'url_name': 'data_analysing_comparing_using_mmmr'},
         ],
         'promoted_titles': [
-            'Орточо', 'Мода жана диапазон', 'Аралаш', 'Квартилдер',
+            # "Квартилдер" is the old (pre-rename) title - kept here too
+            # since GROUPS pruning runs before CHILD_ORDER_FIXES's own
+            # 'renames' step, so the old-named row needs protecting on
+            # any run where the rename hasn't happened yet (production,
+            # before this ships). Harmless to keep indefinitely once
+            # every row is renamed - it will just never match anything.
+            'Орточо', 'Мода жана диапазон', 'Аралаш', 'Квартилдер', 'Кварталдар',
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -2853,13 +2859,18 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
-        # "Квартилдер" (Quartiles) under Талдоо - empty chevron-bearing
-        # category, reference (2 items, both flat): Introduction, With
-        # Box Plots.
-        'parent_path': ('Дата', 'Талдоо', 'Квартилдер'),
+        # "Кварталдар" (Quartiles) under Талдоо - empty chevron-bearing
+        # category. "Квартилдер" was the initial translation - corrected
+        # to "Кварталдар" per user direction. A later screenshot also
+        # confirmed a 3rd child beyond the first 2 confirmed:
+        # Introduction, With Box Plots, Box Plots (all 3 blue-bordered
+        # list items, same styling - "Box Plots" is a genuine sibling,
+        # not background page content as first assumed).
+        'parent_path': ('Дата', 'Талдоо', 'Кварталдар'),
         'target_items': [
             {'title': 'Киришүү', 'url_name': 'data_analysing_quartiles_introduction'},
             {'title': 'Куту диаграммалары менен', 'url_name': 'data_analysing_quartiles_with_box_plots'},
+            {'title': 'Куту диаграммалары', 'url_name': 'data_analysing_quartiles_box_plots'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -4600,17 +4611,26 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # "Орточо", "Мода жана диапазон", "Аралаш" and "Квартилдер" are
+        # "Орточо", "Мода жана диапазон", "Аралаш" and "Кварталдар" are
         # created here (fresh chevron-bearing categories under Талдоо) -
         # 2-run cross-run dependency for their own children (Орточо,
-        # Мода жана диапазон and Квартилдер already filled via GROUPS
+        # Мода жана диапазон and Кварталдар already filled via GROUPS
         # above; "Аралаш" left empty pending its own screenshot).
         'parent_path': ('Дата', 'Талдоо'),
         'create_subsubtopics': [
             {'title': 'Орточо', 'slug': 'mean'},
             {'title': 'Мода жана диапазон', 'slug': 'mode-range'},
             {'title': 'Аралаш', 'slug': 'mixed'},
-            {'title': 'Квартилдер', 'slug': 'quartiles'},
+        ],
+        'renames': [
+            # "Квартилдер" (created by this same entry's own
+            # 'create_subsubtopics', under its old name) was the initial
+            # translation, corrected per user direction - removed from
+            # 'create_subsubtopics' now that it exists with real
+            # children (re-declaring it there would just create a
+            # duplicate every run once its title no longer matches),
+            # fixed via this 'renames' entry instead.
+            {'from': 'Квартилдер', 'to': 'Кварталдар'},
         ],
         'order': [
             'Орточо',
@@ -4620,7 +4640,7 @@ CHILD_ORDER_FIXES = [
             'Тилке диаграммадан',
             'Орточону тандоо',
             'Салыштыруу: орточо, медиана, мода жана диапазон менен',
-            'Квартилдер',
+            'Кварталдар',
         ],
     },
     {
