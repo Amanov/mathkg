@@ -18,9 +18,12 @@ Subtopic / Sub-subtopic blank too: those fields override url_name and
 would send the menu link away from this page.
 """
 
+# Section order shared with topic pages. A heading with no cards is
+# left out, so Презентациялар, Көрсөтмө суроолор and Сынак суроолору
+# are not rendered here.
 SUBTRACTING_1_DIGIT_SECTIONS = [
     {
-        "header": "Даяр иш барактар",
+        "header": "Иш барактар",
         "blocks": [
             {
                 "title": "Ылдам эсеп",
@@ -53,11 +56,6 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
                 ],
                 "fallback_image": "img/kemituu-1orun-katany-tap.png",
             },
-        ],
-    },
-    {
-        "header": "Сабак учурундагы иш-чаралар",
-        "blocks": [
             {
                 "title": "Чоң санды түз",
                 "subtitle": "Орун наркы боюнча жуп оюн",
@@ -71,6 +69,11 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
                 ],
                 "fallback_image": "img/kemituu-1orun-chong-san.png",
             },
+        ],
+    },
+    {
+        "header": "Иш-чаралар",
+        "blocks": [
             {
                 "title": "Тарсия курак",
                 "files": [

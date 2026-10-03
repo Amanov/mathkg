@@ -48,10 +48,17 @@ class SubtractingOneDigitPageTests(TestCase):
     """
 
     SECTIONS = [
-        'Даяр иш барактар',
-        'Сабак учурундагы иш-чаралар',
+        'Иш барактар',
+        'Иш-чаралар',
         'Мугалим жетектеген иш-чаралар',
         'Көрсөтмө куралдар',
+    ]
+    EMPTY_SECTIONS = [
+        'Презентациялар',
+        'Көрсөтмө суроолор',
+        'Сынак суроолору',
+        'Даяр иш барактар',
+        'Сабак учурундагы иш-чаралар',
     ]
     CARDS = [
         ('Ылдам эсеп', 'Кемитүү торчосу · 3 деңгээлде', 'kemituu-1orun-yldam-esep.png'),
@@ -85,19 +92,18 @@ class SubtractingOneDigitPageTests(TestCase):
         self.assertIn('Кемитүү — 1 орундуу сандар', html)
         self.assertNotIn('Бул бөлүм үчүн материалдар даярдалууда.', html)
         for header in self.SECTIONS:
-            self.assertIn(header, html)
-        self.assertLess(
-            html.index(self.SECTIONS[0]),
-            html.index(self.SECTIONS[1]),
-        )
-        self.assertLess(
-            html.index(self.SECTIONS[1]),
-            html.index(self.SECTIONS[2]),
-        )
-        self.assertLess(
-            html.index(self.SECTIONS[2]),
-            html.index(self.SECTIONS[3]),
-        )
+            self.assertIn(f'>{header}<', html)
+        for header in self.EMPTY_SECTIONS:
+            self.assertNotIn(header, html)
+        # "Иш-чаралар" is also inside the later heading, so compare the
+        # standalone heading mark rather than the first substring hit.
+        positions = [html.index(f'>{header}<') for header in self.SECTIONS]
+        self.assertEqual(positions, sorted(positions))
+        self.assertLess(html.index('Ылдам эсеп'), html.index('Катаны тап'))
+        self.assertLess(html.index('Катаны тап'), html.index('Чоң санды түз'))
+        self.assertLess(html.index('Чоң санды түз'), positions[1])
+        self.assertLess(positions[1], html.index('Тарсия курак'))
+        self.assertLess(html.index('Тарсия курак'), positions[2])
         for title, subtitle, image in self.CARDS:
             self.assertIn(title, html)
             self.assertIn(f'/static/img/{image}', html)
