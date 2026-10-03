@@ -1295,7 +1295,7 @@ GROUPS = [
         ],
         'promoted_titles': [
             'Квадраттык', 'Тегеректер', 'Башка сызыктуу эмес',
-            'Түрлөндүрүүлөр', 'Дифференциалдоо',
+            'Өзгөртүүлөр', 'Дифференциалдоо',
             'Координаттар', 'Сызыктуу: эсептөө', 'Сызыктуу: чиймелөө',
             'Сызыктуу: окуу',
         ],
@@ -1448,7 +1448,7 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
-        # "Түрлөндүрүүлөр" (Transformations) under Графиктер:
+        # "Өзгөртүүлөр" (Transformations) under Графиктер:
         # абстракттуу was already an empty chevron-bearing category -
         # reference (2 items, both flat): GCSE, IGCSE. "IGCSE" was
         # initially kept as a literal exam-board name pending the
@@ -1457,7 +1457,7 @@ GROUPS = [
         # "ЖРТ" (self-correcting via url_name match); "GCSE" has no
         # Kyrgyz equivalent requested and stays as-is, kept distinct
         # from "ЖРТ" as its own sibling item.
-        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'target_items': [
             {'title': 'GCSE', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
             {'title': 'ЖРТ', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
@@ -2906,7 +2906,7 @@ CHILD_ORDER_FIXES = [
     },
     {
         # "Квадраттык", "Тегеректер", "Башка сызыктуу эмес",
-        # "Түрлөндүрүүлөр", "Дифференциалдоо" are created here (fresh
+        # "Өзгөртүүлөр", "Дифференциалдоо" are created here (fresh
         # chevron-bearing categories, left empty pending screenshots of
         # their own contents) before their own GROUPS entry can find
         # them - 2-run cross-run dependency, same pattern as the
@@ -2924,12 +2924,22 @@ CHILD_ORDER_FIXES = [
             {'title': 'Квадраттык', 'slug': 'graphs-abstract-quadratic'},
             {'title': 'Тегеректер', 'slug': 'graphs-abstract-circles'},
             {'title': 'Башка сызыктуу эмес', 'slug': 'graphs-abstract-other-non-linear'},
-            {'title': 'Түрлөндүрүүлөр', 'slug': 'graphs-abstract-transformations'},
             {'title': 'Дифференциалдоо', 'slug': 'graphs-abstract-differentiation'},
             {'title': 'Координаттар', 'slug': 'graphs-abstract-coordinates'},
             {'title': 'Сызыктуу: эсептөө', 'slug': 'graphs-abstract-linear-calculating'},
             {'title': 'Сызыктуу: чиймелөө', 'slug': 'graphs-abstract-linear-plotting'},
             {'title': 'Сызыктуу: окуу', 'slug': 'graphs-abstract-linear-reading'},
+        ],
+        'renames': [
+            # "Түрлөндүрүүлөр" (created by this same entry's own
+            # 'create_subsubtopics', under its old name) is Kazakh
+            # terminology that gets confused with Kyrgyz in this context -
+            # removed from 'create_subsubtopics' now that it exists with
+            # 2 real children (re-declaring it there would just create a
+            # duplicate every run once its title no longer matches, same
+            # reasoning as "Коюу"/"Түрлөндүрүү" above), fixed via this
+            # 'renames' entry instead.
+            {'from': 'Түрлөндүрүүлөр', 'to': 'Өзгөртүүлөр'},
         ],
         'order': [
             'Координаттар',
@@ -2940,7 +2950,7 @@ CHILD_ORDER_FIXES = [
             'Квадраттык',
             'Тегеректер',
             'Башка сызыктуу эмес',
-            'Түрлөндүрүүлөр',
+            'Өзгөртүүлөр',
             'Дифференциалдоо',
         ],
     },
@@ -3169,9 +3179,9 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # Final order for Түрлөндүрүүлөр's own 2 children - both flat,
+        # Final order for Өзгөртүүлөр's own 2 children - both flat,
         # GROUPS' target_items builds them directly.
-        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Түрлөндүрүүлөр'),
+        'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'order': [
             'GCSE',
             'ЖРТ',
@@ -3427,18 +3437,20 @@ CHILD_ORDER_FIXES = [
         # Area into one. The new reference site's own top-level menu
         # instead shows 13 separate categories, so this entry rebuilds
         # Геометрия's direct children to match it exactly: Бурчтар
-        # (Angles), Түрлөндүрүүлөр (Transformations) and Векторлор
-        # (Vectors) already matched 1:1 and are left untouched; the
-        # other 10 are created fresh as empty Subtopic-level categories
-        # via 'create_subsubtopics' (which, same as for a root-Topic
-        # parent elsewhere in this file, creates a new Subtopic + its
-        # MenuItem rather than a SubSubtopic when the parent itself has
-        # no subtopic_id). The 3 old merged Subtopics (and their now-
-        # orphaned SubSubtopic children, all with 0 resources attached)
-        # are then pruned by the exhaustive 'order' list below like any
-        # other leftover - only the navigation entries go; the
-        # underlying Subtopic/SubSubtopic rows are left in place,
-        # unreferenced, same as every other prune in this file.
+        # (Angles), Түрлөндүрүүлөр (Transformations, renamed below to
+        # "Өзгөртүүлөр" - the old name was Kazakh terminology) and
+        # Векторлор (Vectors) already matched 1:1 and are left
+        # untouched; the other 10 are created fresh as empty
+        # Subtopic-level categories via 'create_subsubtopics' (which,
+        # same as for a root-Topic parent elsewhere in this file,
+        # creates a new Subtopic + its MenuItem rather than a
+        # SubSubtopic when the parent itself has no subtopic_id). The 3
+        # old merged Subtopics (and their now-orphaned SubSubtopic
+        # children, all with 0 resources attached) are then pruned by
+        # the exhaustive 'order' list below like any other leftover -
+        # only the navigation entries go; the underlying
+        # Subtopic/SubSubtopic rows are left in place, unreferenced,
+        # same as every other prune in this file.
         'parent_path': ('Геометрия',),
         'create_subsubtopics': [
             {'title': 'Аянт жана периметр', 'slug': 'area-perimeter'},
@@ -3452,6 +3464,14 @@ CHILD_ORDER_FIXES = [
             {'title': 'Тригонометрия', 'slug': 'trigonometry'},
             {'title': 'Көлөм жана бет аянты', 'slug': 'volume-surface-area'},
         ],
+        'renames': [
+            # "Түрлөндүрүүлөр" is Kazakh terminology that gets confused
+            # with Kyrgyz in this context - this row predates this
+            # command (from the old coarser import) so there's no
+            # 'create_subsubtopics' entry to update; renamed in place
+            # here instead so its 10 real children survive untouched.
+            {'from': 'Түрлөндүрүүлөр', 'to': 'Өзгөртүүлөр'},
+        ],
         'order': [
             'Бурчтар',
             'Аянт жана периметр',
@@ -3462,7 +3482,7 @@ CHILD_ORDER_FIXES = [
             'Өлчөмдөр',
             'Пифагор',
             'Окшоштук',
-            'Түрлөндүрүүлөр',
+            'Өзгөртүүлөр',
             'Тригонометрия',
             'Векторлор',
             'Көлөм жана бет аянты',
@@ -3682,14 +3702,14 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
-        # "Түрлөндүрүүлөр" (Transformations) under Геометрия carried 1
-        # child ("2D түрлөндүрүүлөр") from the old coarser import - not
+        # "Өзгөртүүлөр" (Transformations) under Геометрия carried 1
+        # child ("2D өзгөртүүлөр") from the old coarser import - not
         # in the new reference's 10-item list at all (0 resources
         # attached), pruned by the exhaustive order list below. All 10
         # reference items are chevron-bearing categories, created here
         # via 'create_subsubtopics', left empty pending their own
         # screenshots.
-        'parent_path': ('Геометрия', 'Түрлөндүрүүлөр'),
+        'parent_path': ('Геометрия', 'Өзгөртүүлөр'),
         'create_subsubtopics': [
             {'title': 'Чоңойтуу', 'slug': 'enlargement'},
             {'title': 'Чагылдыруу', 'slug': 'reflection'},

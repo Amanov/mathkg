@@ -243,10 +243,10 @@ TAXONOMY = {
                     'Көлөм жана бет аянты': 'volume-and-surface-area',
                 },
             },
-            'Түрлөндүрүүлөр': {
+            'Өзгөртүүлөр': {
                 'slug': 'transformations',
                 'subsubtopics': {
-                    '2D түрлөндүрүүлөр': '2d-transformations',
+                    '2D өзгөртүүлөр': '2d-transformations',
                 },
             },
             'Пифагор жана тригонометрия': {
