@@ -1251,10 +1251,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-analysing-mode-range-mode': 'Мода',
     'data-analysing-mode-range-range': 'Диапазон',
 
-    # Дата > Талдоо > Квартилдер - 2 flat slots, none with a real page
+    # Дата > Талдоо > Кварталдар - 3 flat slots, none with a real page
     # yet.
     'data-analysing-quartiles-introduction': 'Киришүү',
     'data-analysing-quartiles-with-box-plots': 'Куту диаграммалары менен',
+    'data-analysing-quartiles-box-plots': 'Куту диаграммалары',
 
     # Дата > Чогултуу - 6 flat slots, none with a real page yet.
     'data-collecting-introduction': 'Киришүү',
