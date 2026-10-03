@@ -1184,6 +1184,12 @@ urlpatterns = [
     path('geometry-volume-surface-area-sphere-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-foundation'}, name='geometry_volume_surface_area_sphere_mixed_foundation'),
     path('geometry-volume-surface-area-sphere-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-higher'}, name='geometry_volume_surface_area_sphere_mixed_higher'),
 
+    # Геометрия > Көлөм жана бет аянты > Аралаш (top-level sibling to
+    # Конус/Параллелепипед/etc) - 2 flat slots, none with a real page
+    # yet.
+    path('geometry-volume-surface-area-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-mixed-foundation'}, name='geometry_volume_surface_area_mixed_foundation'),
+    path('geometry-volume-surface-area-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-mixed-higher'}, name='geometry_volume_surface_area_mixed_higher'),
+
     # Геометрия > Бурчтар > Аралаш - all 2 slots.
     path('geometry-angles-mixed-without-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-without-circle-theorems'}, name='geometry_angles_mixed_without_circle_theorems'),
     path('geometry-angles-mixed-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-with-circle-theorems'}, name='geometry_angles_mixed_with_circle_theorems'),

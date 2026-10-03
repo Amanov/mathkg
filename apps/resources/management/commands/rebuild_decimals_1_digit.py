@@ -2565,6 +2565,21 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Аралаш" (Mixed) under Көлөм жана бет аянты directly (its own
+        # top-level sibling to Конус/Параллелепипед/etc, distinct from
+        # each shape's own "Аралаш" sub-item) was the last remaining
+        # empty item in this topic's full 12-item list, confirmed by
+        # the user re-checking the complete reference list - same
+        # Foundation/Higher shape as every shape's own "Аралаш" above.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Аралаш" (Mixed) under Бурчтар (its own top-level Mixed, not
         # the one nested under Көп бурчтуктар) was the one remaining
         # empty category under Бурчтар. Reference (2 items, both flat):

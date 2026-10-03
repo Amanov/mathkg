@@ -1128,6 +1128,12 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-volume-surface-area-sphere-mixed-foundation': 'Негизги деңгээл',
     'geometry-volume-surface-area-sphere-mixed-higher': 'Жогорку деңгээл',
 
+    # Геометрия > Көлөм жана бет аянты > Аралаш (top-level sibling to
+    # Конус/Параллелепипед/etc) - 2 flat slots, none with a real page
+    # yet.
+    'geometry-volume-surface-area-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-mixed-higher': 'Жогорку деңгээл',
+
     # Геометрия > Бурчтар > Аралаш - all 2 slots, none with a real
     # page yet.
     'geometry-angles-mixed-without-circle-theorems': 'Тегерек теоремаларысыз',
