@@ -2270,6 +2270,41 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Турмуштук маселелер" (Real-Life) under Геометрия >
+        # Тригонометрия was an empty chevron-bearing category -
+        # reference (4 items, all flat): Elevation & Depression,
+        # Practical Problems, 3D, With Bearings.
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Турмуштук маселелер'),
+        'target_items': [
+            {'title': 'Көтөрүлүү жана түшүү бурчтары', 'url_name': 'geometry_trigonometry_real_life_elevation_depression'},
+            {'title': 'Практикалык маселелер', 'url_name': 'geometry_trigonometry_real_life_practical_problems'},
+            {'title': '3D', 'url_name': 'geometry_trigonometry_real_life_3d'},
+            {'title': 'Азимут менен', 'url_name': 'geometry_trigonometry_real_life_with_bearings'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Синус жана косинус эрежелери" (Sine & Cosine Rules) under
+        # Геометрия > Тригонометрия was an empty chevron-bearing
+        # category - reference (6 items): Sine Rule, Cosine Rule:
+        # Lengths, Cosine Rule: Angles, Cosine Rule: Mixed, Solving Any
+        # Triangle are flat; Mixed is itself chevron-bearing (created
+        # via 'create_subsubtopics' below, left empty pending its own
+        # screenshot).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Синус жана косинус эрежелери'),
+        'target_items': [
+            {'title': 'Синус эрежеси', 'url_name': 'geometry_trigonometry_sine_cosine_rules_sine_rule'},
+            {'title': 'Косинус эрежеси: узундуктар', 'url_name': 'geometry_trigonometry_sine_cosine_rules_cosine_rule_lengths'},
+            {'title': 'Косинус эрежеси: бурчтар', 'url_name': 'geometry_trigonometry_sine_cosine_rules_cosine_rule_angles'},
+            {'title': 'Косинус эрежеси: аралаш', 'url_name': 'geometry_trigonometry_sine_cosine_rules_cosine_rule_mixed'},
+            {'title': 'Каалаган үч бурчтукту чыгаруу', 'url_name': 'geometry_trigonometry_sine_cosine_rules_solving_any_triangle'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Тригонометрия" (Trigonometry) under Геометрия was an empty
         # top-level category. Reference (13 items): Introduction,
         # Graphs, Choosing a Ratio, Isosceles Triangles, Without a
@@ -3986,6 +4021,25 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
+        # "Аралаш" under Синус жана косинус эрежелери doesn't exist yet
+        # - created here via 'create_subsubtopics'. An 'order' entry is
+        # needed since 'create_subsubtopics' doesn't know where the 5
+        # GROUPS-built flat siblings already sit. Left empty pending its
+        # own screenshot.
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Синус жана косинус эрежелери'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Синус эрежеси',
+            'Косинус эрежеси: узундуктар',
+            'Косинус эрежеси: бурчтар',
+            'Косинус эрежеси: аралаш',
+            'Аралаш',
+            'Каалаган үч бурчтукту чыгаруу',
+        ],
+    },
+    {
         # The 9 chevron-bearing categories under Көлөм жана бет аянты
         # don't exist yet - created here via 'create_subsubtopics'. An
         # 'order' entry is needed since 'create_subsubtopics' doesn't
@@ -4048,6 +4102,17 @@ MIRROR_GROUPS = [
         # pages needed.
         'parent_path': ('Геометрия', 'Өлчөмдөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр'),
+    },
+    {
+        # "Пифагор менен" (With Pythagoras) under Тригонометрия is the
+        # exact same 2-item set (Trig. OR/AND Pythag.) as Геометрия >
+        # Пифагор's own "Тригонометрия менен" (With Trigonometry) - the
+        # reference site cross-links the same combined-practice pages
+        # from both topics, confirmed by the user spotting the
+        # duplicate directly from the reference site's own menu. Reuses
+        # those same real pages rather than building duplicates.
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Пифагор менен'),
+        'source_parent_path': ('Геометрия', 'Пифагор', 'Тригонометрия менен'),
     },
     {
         # "Масштабдуу сүрөттөр" (Scale Drawings) under Курулуштар is
