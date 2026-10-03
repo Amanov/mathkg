@@ -1282,6 +1282,39 @@ urlpatterns = [
     path('geometry-construction-bisectors-angle/', operation_placeholder_view, {'operation_slug': 'geometry-construction-bisectors-angle'}, name='geometry_construction_bisectors_angle'),
     path('geometry-construction-bisectors-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-construction-bisectors-mixed'}, name='geometry_construction_bisectors_mixed'),
 
+    # Дата > Талдоо - 4 flat slots, none with a real page yet.
+    path('data-analysing-median/', operation_placeholder_view, {'operation_slug': 'data-analysing-median'}, name='data_analysing_median'),
+    path('data-analysing-from-a-bar-chart/', operation_placeholder_view, {'operation_slug': 'data-analysing-from-a-bar-chart'}, name='data_analysing_from_a_bar_chart'),
+    path('data-analysing-choosing-an-average/', operation_placeholder_view, {'operation_slug': 'data-analysing-choosing-an-average'}, name='data_analysing_choosing_an_average'),
+    path('data-analysing-comparing-using-mmmr/', operation_placeholder_view, {'operation_slug': 'data-analysing-comparing-using-mmmr'}, name='data_analysing_comparing_using_mmmr'),
+
+    # Дата > Талдоо > Орточо - 3 flat slots, none with a real page yet.
+    path('data-analysing-mean-from-a-list/', operation_placeholder_view, {'operation_slug': 'data-analysing-mean-from-a-list'}, name='data_analysing_mean_from_a_list'),
+    path('data-analysing-mean-reverse/', operation_placeholder_view, {'operation_slug': 'data-analysing-mean-reverse'}, name='data_analysing_mean_reverse'),
+    path('data-analysing-mean-adjusting/', operation_placeholder_view, {'operation_slug': 'data-analysing-mean-adjusting'}, name='data_analysing_mean_adjusting'),
+
+    # Дата > Талдоо > Мода жана диапазон - 2 flat slots, none with a
+    # real page yet.
+    path('data-analysing-mode-range-mode/', operation_placeholder_view, {'operation_slug': 'data-analysing-mode-range-mode'}, name='data_analysing_mode_range_mode'),
+    path('data-analysing-mode-range-range/', operation_placeholder_view, {'operation_slug': 'data-analysing-mode-range-range'}, name='data_analysing_mode_range_range'),
+
+    # Дата > Талдоо > Квартилдер - 2 flat slots, none with a real page
+    # yet.
+    path('data-analysing-quartiles-introduction/', operation_placeholder_view, {'operation_slug': 'data-analysing-quartiles-introduction'}, name='data_analysing_quartiles_introduction'),
+    path('data-analysing-quartiles-with-box-plots/', operation_placeholder_view, {'operation_slug': 'data-analysing-quartiles-with-box-plots'}, name='data_analysing_quartiles_with_box_plots'),
+
+    # Дата > Чогултуу - 6 flat slots, none with a real page yet.
+    path('data-collecting-introduction/', operation_placeholder_view, {'operation_slug': 'data-collecting-introduction'}, name='data_collecting_introduction'),
+    path('data-collecting-vocabulary/', operation_placeholder_view, {'operation_slug': 'data-collecting-vocabulary'}, name='data_collecting_vocabulary'),
+    path('data-collecting-types-of-data/', operation_placeholder_view, {'operation_slug': 'data-collecting-types-of-data'}, name='data_collecting_types_of_data'),
+    path('data-collecting-questionnaires/', operation_placeholder_view, {'operation_slug': 'data-collecting-questionnaires'}, name='data_collecting_questionnaires'),
+    path('data-collecting-stratified-sampling/', operation_placeholder_view, {'operation_slug': 'data-collecting-stratified-sampling'}, name='data_collecting_stratified_sampling'),
+    path('data-collecting-capture-recapture/', operation_placeholder_view, {'operation_slug': 'data-collecting-capture-recapture'}, name='data_collecting_capture_recapture'),
+
+    # Дата > Жыштык таблицалары - 1 flat slot, none with a real page
+    # yet.
+    path('data-frequency-tables-grouped-data/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-grouped-data'}, name='data_frequency_tables_grouped_data'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

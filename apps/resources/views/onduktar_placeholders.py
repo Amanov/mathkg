@@ -1234,6 +1234,39 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-construction-bisectors-line': 'Сызык',
     'geometry-construction-bisectors-angle': 'Бурч',
     'geometry-construction-bisectors-mixed': 'Аралаш',
+
+    # Дата > Талдоо - 4 flat slots, none with a real page yet.
+    'data-analysing-median': 'Медиана',
+    'data-analysing-from-a-bar-chart': 'Тилке диаграммадан',
+    'data-analysing-choosing-an-average': 'Орточону тандоо',
+    'data-analysing-comparing-using-mmmr': 'Салыштыруу: орточо, медиана, мода жана диапазон менен',
+
+    # Дата > Талдоо > Орточо - 3 flat slots, none with a real page yet.
+    'data-analysing-mean-from-a-list': 'Тизмеден',
+    'data-analysing-mean-reverse': 'Тескери',
+    'data-analysing-mean-adjusting': 'Тууралоо',
+
+    # Дата > Талдоо > Мода жана диапазон - 2 flat slots, none with a
+    # real page yet.
+    'data-analysing-mode-range-mode': 'Мода',
+    'data-analysing-mode-range-range': 'Диапазон',
+
+    # Дата > Талдоо > Квартилдер - 2 flat slots, none with a real page
+    # yet.
+    'data-analysing-quartiles-introduction': 'Киришүү',
+    'data-analysing-quartiles-with-box-plots': 'Куту диаграммалары менен',
+
+    # Дата > Чогултуу - 6 flat slots, none with a real page yet.
+    'data-collecting-introduction': 'Киришүү',
+    'data-collecting-vocabulary': 'Терминология',
+    'data-collecting-types-of-data': 'Маалымат түрлөрү',
+    'data-collecting-questionnaires': 'Анкеталар',
+    'data-collecting-stratified-sampling': 'Катмарланган тандоо',
+    'data-collecting-capture-recapture': 'Кармап-кайра кармоо',
+
+    # Дата > Жыштык таблицалары - 1 flat slot, none with a real page
+    # yet.
+    'data-frequency-tables-grouped-data': 'Топтоштурулган берилиштер',
 }
 
 
