@@ -1030,6 +1030,21 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-trigonometry-all-ratios-mixed-or': 'Узундуктар же бурчтар',
     'geometry-trigonometry-all-ratios-mixed-and': 'Узундуктар жана бурчтар',
 
+    # Геометрия > Тригонометрия > Турмуштук маселелер - 4 flat slots,
+    # none with a real page yet.
+    'geometry-trigonometry-real-life-elevation-depression': 'Көтөрүлүү жана түшүү бурчтары',
+    'geometry-trigonometry-real-life-practical-problems': 'Практикалык маселелер',
+    'geometry-trigonometry-real-life-3d': '3D',
+    'geometry-trigonometry-real-life-with-bearings': 'Азимут менен',
+
+    # Геометрия > Тригонометрия > Синус жана косинус эрежелери - 5 flat
+    # slots, none with a real page yet.
+    'geometry-trigonometry-sine-cosine-rules-sine-rule': 'Синус эрежеси',
+    'geometry-trigonometry-sine-cosine-rules-cosine-rule-lengths': 'Косинус эрежеси: узундуктар',
+    'geometry-trigonometry-sine-cosine-rules-cosine-rule-angles': 'Косинус эрежеси: бурчтар',
+    'geometry-trigonometry-sine-cosine-rules-cosine-rule-mixed': 'Косинус эрежеси: аралаш',
+    'geometry-trigonometry-sine-cosine-rules-solving-any-triangle': 'Каалаган үч бурчтукту чыгаруу',
+
     # Геометрия > Векторлор - all 5 slots, none with a real page yet.
     'geometry-vectors-translation': 'Жылдыруу',
     'geometry-vectors-expressing': 'Туюнтуу',

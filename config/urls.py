@@ -1098,6 +1098,21 @@ urlpatterns = [
     path('geometry-trigonometry-all-ratios-mixed-or/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-mixed-or'}, name='geometry_trigonometry_all_ratios_mixed_or'),
     path('geometry-trigonometry-all-ratios-mixed-and/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-mixed-and'}, name='geometry_trigonometry_all_ratios_mixed_and'),
 
+    # Геометрия > Тригонометрия > Турмуштук маселелер - 4 flat slots,
+    # none with a real page yet.
+    path('geometry-trigonometry-real-life-elevation-depression/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-real-life-elevation-depression'}, name='geometry_trigonometry_real_life_elevation_depression'),
+    path('geometry-trigonometry-real-life-practical-problems/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-real-life-practical-problems'}, name='geometry_trigonometry_real_life_practical_problems'),
+    path('geometry-trigonometry-real-life-3d/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-real-life-3d'}, name='geometry_trigonometry_real_life_3d'),
+    path('geometry-trigonometry-real-life-with-bearings/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-real-life-with-bearings'}, name='geometry_trigonometry_real_life_with_bearings'),
+
+    # Геометрия > Тригонометрия > Синус жана косинус эрежелери - 5 flat
+    # slots, none with a real page yet.
+    path('geometry-trigonometry-sine-cosine-rules-sine-rule/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-rules-sine-rule'}, name='geometry_trigonometry_sine_cosine_rules_sine_rule'),
+    path('geometry-trigonometry-sine-cosine-rules-cosine-rule-lengths/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-rules-cosine-rule-lengths'}, name='geometry_trigonometry_sine_cosine_rules_cosine_rule_lengths'),
+    path('geometry-trigonometry-sine-cosine-rules-cosine-rule-angles/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-rules-cosine-rule-angles'}, name='geometry_trigonometry_sine_cosine_rules_cosine_rule_angles'),
+    path('geometry-trigonometry-sine-cosine-rules-cosine-rule-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-rules-cosine-rule-mixed'}, name='geometry_trigonometry_sine_cosine_rules_cosine_rule_mixed'),
+    path('geometry-trigonometry-sine-cosine-rules-solving-any-triangle/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-rules-solving-any-triangle'}, name='geometry_trigonometry_sine_cosine_rules_solving_any_triangle'),
+
     # Геометрия > Векторлор - all 5 slots, none with a real page yet.
     path('geometry-vectors-translation/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-translation'}, name='geometry_vectors_translation'),
     path('geometry-vectors-expressing/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-expressing'}, name='geometry_vectors_expressing'),
