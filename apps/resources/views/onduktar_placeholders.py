@@ -1058,6 +1058,76 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-volume-surface-area-introduction-to-volume': 'Көлөмгө киришүү',
     'geometry-volume-surface-area-nets': 'Жайылмалар',
 
+    # Геометрия > Көлөм жана бет аянты > Конус - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-cone-volume': 'Көлөм',
+    'geometry-volume-surface-area-cone-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Конус > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-cone-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-cone-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Параллелепипед - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-cuboid-volume': 'Көлөм',
+    'geometry-volume-surface-area-cuboid-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Параллелепипед > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-cuboid-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-cuboid-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-cylinder-volume': 'Көлөм',
+    'geometry-volume-surface-area-cylinder-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-cylinder-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-cylinder-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Призма - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-prism-volume': 'Көлөм',
+    'geometry-volume-surface-area-prism-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Призма > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-prism-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-prism-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Кесилген конус - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-frustum-volume': 'Көлөм',
+    'geometry-volume-surface-area-frustum-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Кесилген конус > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-frustum-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-frustum-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Пирамида - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-pyramid-volume': 'Көлөм',
+    'geometry-volume-surface-area-pyramid-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Пирамида > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-pyramid-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-pyramid-mixed-higher': 'Жогорку деңгээл',
+
+    # Геометрия > Көлөм жана бет аянты > Сфера - 2 flat slots,
+    # none with a real page yet.
+    'geometry-volume-surface-area-sphere-volume': 'Көлөм',
+    'geometry-volume-surface-area-sphere-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Сфера > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-sphere-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-sphere-mixed-higher': 'Жогорку деңгээл',
+
     # Геометрия > Бурчтар > Аралаш - all 2 slots, none with a real
     # page yet.
     'geometry-angles-mixed-without-circle-theorems': 'Тегерек теоремаларысыз',

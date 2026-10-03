@@ -1114,6 +1114,76 @@ urlpatterns = [
     path('geometry-volume-surface-area-introduction-to-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-introduction-to-volume'}, name='geometry_volume_surface_area_introduction_to_volume'),
     path('geometry-volume-surface-area-nets/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-nets'}, name='geometry_volume_surface_area_nets'),
 
+    # Геометрия > Көлөм жана бет аянты > Конус - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-cone-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cone-volume'}, name='geometry_volume_surface_area_cone_volume'),
+    path('geometry-volume-surface-area-cone-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cone-surface-area'}, name='geometry_volume_surface_area_cone_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Конус > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-cone-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cone-mixed-foundation'}, name='geometry_volume_surface_area_cone_mixed_foundation'),
+    path('geometry-volume-surface-area-cone-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cone-mixed-higher'}, name='geometry_volume_surface_area_cone_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Параллелепипед - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-cuboid-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cuboid-volume'}, name='geometry_volume_surface_area_cuboid_volume'),
+    path('geometry-volume-surface-area-cuboid-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cuboid-surface-area'}, name='geometry_volume_surface_area_cuboid_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Параллелепипед > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-cuboid-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cuboid-mixed-foundation'}, name='geometry_volume_surface_area_cuboid_mixed_foundation'),
+    path('geometry-volume-surface-area-cuboid-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cuboid-mixed-higher'}, name='geometry_volume_surface_area_cuboid_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-cylinder-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-volume'}, name='geometry_volume_surface_area_cylinder_volume'),
+    path('geometry-volume-surface-area-cylinder-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-surface-area'}, name='geometry_volume_surface_area_cylinder_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-cylinder-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-mixed-foundation'}, name='geometry_volume_surface_area_cylinder_mixed_foundation'),
+    path('geometry-volume-surface-area-cylinder-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-mixed-higher'}, name='geometry_volume_surface_area_cylinder_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Призма - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-prism-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-prism-volume'}, name='geometry_volume_surface_area_prism_volume'),
+    path('geometry-volume-surface-area-prism-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-prism-surface-area'}, name='geometry_volume_surface_area_prism_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Призма > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-prism-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-prism-mixed-foundation'}, name='geometry_volume_surface_area_prism_mixed_foundation'),
+    path('geometry-volume-surface-area-prism-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-prism-mixed-higher'}, name='geometry_volume_surface_area_prism_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Кесилген конус - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-frustum-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-frustum-volume'}, name='geometry_volume_surface_area_frustum_volume'),
+    path('geometry-volume-surface-area-frustum-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-frustum-surface-area'}, name='geometry_volume_surface_area_frustum_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Кесилген конус > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-frustum-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-frustum-mixed-foundation'}, name='geometry_volume_surface_area_frustum_mixed_foundation'),
+    path('geometry-volume-surface-area-frustum-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-frustum-mixed-higher'}, name='geometry_volume_surface_area_frustum_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Пирамида - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-pyramid-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-pyramid-volume'}, name='geometry_volume_surface_area_pyramid_volume'),
+    path('geometry-volume-surface-area-pyramid-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-pyramid-surface-area'}, name='geometry_volume_surface_area_pyramid_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Пирамида > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-pyramid-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-pyramid-mixed-foundation'}, name='geometry_volume_surface_area_pyramid_mixed_foundation'),
+    path('geometry-volume-surface-area-pyramid-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-pyramid-mixed-higher'}, name='geometry_volume_surface_area_pyramid_mixed_higher'),
+
+    # Геометрия > Көлөм жана бет аянты > Сфера - 2 flat slots,
+    # none with a real page yet.
+    path('geometry-volume-surface-area-sphere-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-volume'}, name='geometry_volume_surface_area_sphere_volume'),
+    path('geometry-volume-surface-area-sphere-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-surface-area'}, name='geometry_volume_surface_area_sphere_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Сфера > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-sphere-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-foundation'}, name='geometry_volume_surface_area_sphere_mixed_foundation'),
+    path('geometry-volume-surface-area-sphere-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-higher'}, name='geometry_volume_surface_area_sphere_mixed_higher'),
+
     # Геометрия > Бурчтар > Аралаш - all 2 slots.
     path('geometry-angles-mixed-without-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-without-circle-theorems'}, name='geometry_angles_mixed_without_circle_theorems'),
     path('geometry-angles-mixed-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-angles-mixed-with-circle-theorems'}, name='geometry_angles_mixed_with_circle_theorems'),
