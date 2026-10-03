@@ -60,6 +60,13 @@
         {% endblock content %}
     </div>
 
+    {# ── Related topics (prev/next sibling nav) ──────────────────────────── #}
+    {# Renders nothing unless the current page is a real leaf/content page   #}
+    {# reachable from the MenuItem tree - see related_topics() in           #}
+    {# custom_tags.py. Safe to include on every page for that reason.       #}
+    {% load custom_tags %}
+    {% related_topics %}
+
     {# ── Footer ──────────────────────────────────────────────────────────── #}
     {# Footer is outside {% block content %} so child templates cannot       #}
     {# accidentally override or remove it.                                   #}

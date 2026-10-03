@@ -1,0 +1,27 @@
+{% load custom_tags %}
+{% with children=item.children.all %}
+{% if children %}
+<details class="topics-tree-node">
+    <summary>
+        {% if item.url_name or item.topic_id %}
+            <a href="{% menu_item_url item %}">{{ item.title }}</a>
+        {% else %}
+            <span>{{ item.title }}</span>
+        {% endif %}
+    </summary>
+    <div class="topics-tree-children">
+        {% for child in children %}
+            {% include 'resources/_topic_tree_node.html' with item=child %}
+        {% endfor %}
+    </div>
+</details>
+{% else %}
+<div class="topics-tree-leaf">
+    {% if item.url_name or item.topic_id %}
+        <a href="{% menu_item_url item %}">{{ item.title }}</a>
+    {% else %}
+        <span>{{ item.title }}</span>
+    {% endif %}
+</div>
+{% endif %}
+{% endwith %}

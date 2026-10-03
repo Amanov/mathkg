@@ -1,0 +1,92 @@
+/* Prev/next sibling navigation, shown before the footer on every real
+   leaf/content page (templates/snippets/related_topics.html). Shares
+   tokens with account.css/auth.css/subscribe.css instead of introducing
+   new colors/radii/timings. */
+
+.related-topics {
+    border-top: 1px solid #e6ebf1;
+    margin-top: 56px;
+    padding: 28px 0;
+}
+
+.related-topics-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.related-topics-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    padding: 16px 20px;
+    text-decoration: none;
+    transition: border-color var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease),
+                transform var(--transition-fast, 150ms ease);
+}
+
+.related-topics-link:hover,
+.related-topics-link:focus-visible {
+    border-color: var(--color-border-accent, #2285c3);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
+    transform: translateY(-1px);
+}
+
+.related-topics-next {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.related-topics-arrow {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    color: var(--color-border-accent, #2285c3);
+}
+
+.related-topics-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.related-topics-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+
+.related-topics-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-navy, #0f3c58);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .related-topics-inner {
+        grid-template-columns: 1fr;
+    }
+    .related-topics-next {
+        justify-content: flex-start;
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .related-topics-link {
+        transition: none;
+    }
+    .related-topics-link:hover,
+    .related-topics-link:focus-visible {
+        transform: none;
+    }
+}

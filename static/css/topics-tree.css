@@ -1,0 +1,102 @@
+/* /topics/ - full menu hierarchy as collapsible <details> trees. Shares
+   tokens with account.css/related-topics.css instead of introducing new
+   colors/radii/timings. */
+
+.topics-tree-page {
+    max-width: 900px;
+}
+
+.topics-tree-root {
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .06));
+    padding: 4px 20px;
+    margin-bottom: 16px;
+}
+
+.topics-tree-root > summary {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+    padding: 16px 0;
+}
+
+.topics-tree-root .topics-tree-children {
+    padding: 4px 0 16px 4px;
+}
+
+.topics-tree-node {
+    margin: 2px 0;
+}
+
+summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: '\25B8';
+    display: inline-block;
+    width: 1em;
+    margin-right: 6px;
+    color: var(--color-border-accent, #2285c3);
+    transition: transform var(--transition-fast, 150ms ease);
+}
+
+details[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+.topics-tree-children {
+    margin-left: 22px;
+    padding-left: 14px;
+    border-left: 1px solid #e6ebf1;
+}
+
+.topics-tree-node > summary {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #334155;
+    padding: 7px 0;
+}
+
+.topics-tree-node > summary a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.topics-tree-node > summary a:hover {
+    color: var(--color-border-accent, #2285c3);
+    text-decoration: underline;
+}
+
+.topics-tree-leaf {
+    margin-left: 22px;
+    padding: 6px 0 6px 14px;
+    border-left: 1px solid #e6ebf1;
+    font-size: 0.9rem;
+}
+
+.topics-tree-leaf a {
+    color: var(--color-bootstrap-primary, #0d6efd);
+    text-decoration: none;
+}
+
+.topics-tree-leaf a:hover {
+    text-decoration: underline;
+}
+
+.topics-tree-leaf span {
+    color: #64748b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    summary::before {
+        transition: none;
+    }
+}
