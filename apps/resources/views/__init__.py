@@ -5,6 +5,7 @@ from .operations import (
     directed_numbers_view,
     four_basic_operations_view,
     koshuu_1_digit_view,
+    subtracting_1_digit_view,
 )
 
 from .downloads import (

@@ -16,17 +16,31 @@
         <div class="h-100 p-5">
             {% if user.is_authenticated %}
                 {% for file in block.files %}
-                    {% with r=res|get_item:file %}
-                        {% if r %}
-                            <a class="btn btn-outline-primary anchorNew mb-2"
-                               href="{% url 'download_resource' pk=r.id %}">
-                                {% if 'pptx' in file %}PPT
-                                {% else %}{{ file|slice:"-4:"|upper }}{% endif %}
-                            </a><br>
-                        {% else %}
-                            <small style="color: red;">Not found: {{ file }}</small>
-                        {% endif %}
-                    {% endwith %}
+                    {% if file.name %}
+                        {# Explicit label/variant (subtracting-1-digit). A plain filename string has no .name, so existing pages stay on the branch below. #}
+                        {% with filename=file.name %}
+                            {% with r=res|get_item:filename %}
+                                {% if r %}
+                                    <a class="btn btn-outline-primary anchorNew mb-2"
+                                       href="{% url 'download_resource' pk=r.id %}">{{ file.button }}</a>{% if file.variant %} {{ file.variant }}{% endif %}<br>
+                                {% else %}
+                                    <small style="color: red;">Not found: {{ filename }}</small>
+                                {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                    {% else %}
+                        {% with r=res|get_item:file %}
+                            {% if r %}
+                                <a class="btn btn-outline-primary anchorNew mb-2"
+                                   href="{% url 'download_resource' pk=r.id %}">
+                                    {% if 'pptx' in file %}PPT
+                                    {% else %}{{ file|slice:"-4:"|upper }}{% endif %}
+                                </a><br>
+                            {% else %}
+                                <small style="color: red;">Not found: {{ file }}</small>
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
@@ -40,17 +54,33 @@
         <div class="h-100 rounded-1">
             <div class="d-flex flex-column zoom">
                 {% with first_file=block.files.0 %}
-                    {% with r=res|get_item:first_file %}
-                        {% if r and r.image %}
-                            <img class="img-fluid mx-auto mainshadow"
-                                 src="{{ r.image.url }}"
-                                 alt="{{ r.title }}" style="border-radius:3%;">
-                        {% else %}
-                            <img class="img-fluid mx-auto mainshadow"
-                                 src="{% static block.fallback_image %}"
-                                 alt="{{ block.title }}" style="border-radius:3%;">
-                        {% endif %}
-                    {% endwith %}
+                    {% if first_file.name %}
+                        {% with lookup_name=first_file.name %}
+                            {% with r=res|get_item:lookup_name %}
+                                {% if r and r.image %}
+                                    <img class="img-fluid mx-auto mainshadow"
+                                         src="{{ r.image.url }}"
+                                         alt="{{ r.title }}" style="border-radius:3%;">
+                                {% else %}
+                                    <img class="img-fluid mx-auto mainshadow"
+                                         src="{% static block.fallback_image %}"
+                                         alt="{{ block.title }}" style="border-radius:3%;">
+                                {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                    {% else %}
+                        {% with r=res|get_item:first_file %}
+                            {% if r and r.image %}
+                                <img class="img-fluid mx-auto mainshadow"
+                                     src="{{ r.image.url }}"
+                                     alt="{{ r.title }}" style="border-radius:3%;">
+                            {% else %}
+                                <img class="img-fluid mx-auto mainshadow"
+                                     src="{% static block.fallback_image %}"
+                                     alt="{{ block.title }}" style="border-radius:3%;">
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
                 {% endwith %}
             </div>
         </div>
