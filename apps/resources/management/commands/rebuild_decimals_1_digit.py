@@ -2804,6 +2804,99 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Талдоо" (Analysing) under Дата was an empty top-level
+        # category. Reference (8 items): Median, From a Bar Chart,
+        # Choosing an Average, Comparing: Using MMMR are flat; Mean,
+        # Mode & Range, Mixed, Quartiles are chevron-bearing categories
+        # (created via 'create_subsubtopics' below, left empty pending
+        # their own screenshots except Mean/Mode & Range/Quartiles,
+        # already confirmed).
+        'parent_path': ('Дата', 'Талдоо'),
+        'target_items': [
+            {'title': 'Медиана', 'url_name': 'data_analysing_median'},
+            {'title': 'Тилке диаграммадан', 'url_name': 'data_analysing_from_a_bar_chart'},
+            {'title': 'Орточону тандоо', 'url_name': 'data_analysing_choosing_an_average'},
+            {'title': 'Салыштыруу: орточо, медиана, мода жана диапазон менен', 'url_name': 'data_analysing_comparing_using_mmmr'},
+        ],
+        'promoted_titles': [
+            'Орточо', 'Мода жана диапазон', 'Аралаш', 'Квартилдер',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Орточо" (Mean) under Талдоо - empty chevron-bearing category,
+        # reference (3 items, all flat): From a List, Reverse, Adjusting.
+        'parent_path': ('Дата', 'Талдоо', 'Орточо'),
+        'target_items': [
+            {'title': 'Тизмеден', 'url_name': 'data_analysing_mean_from_a_list'},
+            {'title': 'Тескери', 'url_name': 'data_analysing_mean_reverse'},
+            {'title': 'Тууралоо', 'url_name': 'data_analysing_mean_adjusting'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Мода жана диапазон" (Mode & Range) under Талдоо - empty
+        # chevron-bearing category, reference (3 items): Mode, Range are
+        # flat; Mixed is itself chevron-bearing (created via
+        # 'create_subsubtopics' below, left empty pending its own
+        # screenshot).
+        'parent_path': ('Дата', 'Талдоо', 'Мода жана диапазон'),
+        'target_items': [
+            {'title': 'Мода', 'url_name': 'data_analysing_mode_range_mode'},
+            {'title': 'Диапазон', 'url_name': 'data_analysing_mode_range_range'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Квартилдер" (Quartiles) under Талдоо - empty chevron-bearing
+        # category, reference (2 items, both flat): Introduction, With
+        # Box Plots.
+        'parent_path': ('Дата', 'Талдоо', 'Квартилдер'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'data_analysing_quartiles_introduction'},
+            {'title': 'Куту диаграммалары менен', 'url_name': 'data_analysing_quartiles_with_box_plots'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Чогултуу" (Collecting) under Дата was an empty top-level
+        # category - reference (6 items, all flat): Introduction,
+        # Vocabulary, Types of Data, Questionnaires, Stratified
+        # Sampling, Capture Recapture.
+        'parent_path': ('Дата', 'Чогултуу'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'data_collecting_introduction'},
+            {'title': 'Терминология', 'url_name': 'data_collecting_vocabulary'},
+            {'title': 'Маалымат түрлөрү', 'url_name': 'data_collecting_types_of_data'},
+            {'title': 'Анкеталар', 'url_name': 'data_collecting_questionnaires'},
+            {'title': 'Катмарланган тандоо', 'url_name': 'data_collecting_stratified_sampling'},
+            {'title': 'Кармап-кайра кармоо', 'url_name': 'data_collecting_capture_recapture'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Жыштык таблицалары" (Frequency Tables) under Дата was an
+        # empty top-level category - reference (3 items): Grouped Data
+        # is flat; Ungrouped Data, Two-Way Tables are chevron-bearing
+        # categories (created via 'create_subsubtopics' below, left
+        # empty pending their own screenshots).
+        'parent_path': ('Дата', 'Жыштык таблицалары'),
+        'target_items': [
+            {'title': 'Топтоштурулган берилиштер', 'url_name': 'data_frequency_tables_grouped_data'},
+        ],
+        'promoted_titles': [
+            'Топтоштурулбаган берилиштер', 'Эки багыттуу таблицалар',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -4428,6 +4521,59 @@ CHILD_ORDER_FIXES = [
             'Чогултуу',
             'Жыштык таблицалары',
             'Көрсөтүү',
+        ],
+    },
+    {
+        # "Орточо", "Мода жана диапазон", "Аралаш" and "Квартилдер" are
+        # created here (fresh chevron-bearing categories under Талдоо) -
+        # 2-run cross-run dependency for their own children (Орточо,
+        # Мода жана диапазон and Квартилдер already filled via GROUPS
+        # above; "Аралаш" left empty pending its own screenshot).
+        'parent_path': ('Дата', 'Талдоо'),
+        'create_subsubtopics': [
+            {'title': 'Орточо', 'slug': 'mean'},
+            {'title': 'Мода жана диапазон', 'slug': 'mode-range'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+            {'title': 'Квартилдер', 'slug': 'quartiles'},
+        ],
+        'order': [
+            'Орточо',
+            'Медиана',
+            'Мода жана диапазон',
+            'Аралаш',
+            'Тилке диаграммадан',
+            'Орточону тандоо',
+            'Салыштыруу: орточо, медиана, мода жана диапазон менен',
+            'Квартилдер',
+        ],
+    },
+    {
+        # "Аралаш" under Мода жана диапазон doesn't exist yet - created
+        # here via 'create_subsubtopics'. Left empty pending its own
+        # screenshot.
+        'parent_path': ('Дата', 'Талдоо', 'Мода жана диапазон'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Мода',
+            'Диапазон',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Топтоштурулбаган берилиштер" and "Эки багыттуу таблицалар"
+        # are created here (fresh chevron-bearing categories under
+        # Жыштык таблицалары), left empty pending their own screenshots.
+        'parent_path': ('Дата', 'Жыштык таблицалары'),
+        'create_subsubtopics': [
+            {'title': 'Топтоштурулбаган берилиштер', 'slug': 'ungrouped-data'},
+            {'title': 'Эки багыттуу таблицалар', 'slug': 'two-way-tables'},
+        ],
+        'order': [
+            'Топтоштурулбаган берилиштер',
+            'Топтоштурулган берилиштер',
+            'Эки багыттуу таблицалар',
         ],
     },
     {
