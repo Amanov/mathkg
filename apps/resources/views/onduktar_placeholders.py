@@ -1345,6 +1345,23 @@ OPERATION_PLACEHOLDER_TITLES = {
     'probability-single-event-exhaustive-events': 'Толук окуялар',
     'probability-single-event-expectation': 'Математикалык күтүү',
     'probability-single-event-experimental': 'Тажрыйбалык',
+
+    # Ыктымалдуулук > Бир нече окуя - 8 flat slots, none with a real
+    # page yet.
+    'probability-multiple-event-systematic-listing': 'Системалуу тизмелөө',
+    'probability-multiple-event-product-rule-for-counting': 'Эсептөө үчүн көбөйтүндү эрежеси',
+    'probability-multiple-event-or': 'ЖЕ',
+    'probability-multiple-event-and': 'ЖАНА',
+    'probability-multiple-event-and-or-with-listing': 'ЖАНА менен ЖЕ: тизмелөө менен',
+    'probability-multiple-event-sample-space-diagrams': 'Тандоо мейкиндиги диаграммалары',
+    'probability-multiple-event-mixed-with-single-event': 'Аралаш: Бир окуя менен',
+    'probability-multiple-event-general-addition-law': 'Жалпы кошуу мыйзамы',
+
+    # Ыктымалдуулук > Ыктымалдуулук дарак диаграммалары - 3 flat slots,
+    # none with a real page yet.
+    'probability-probability-tree-diagrams-unconditional': 'Шартсыз',
+    'probability-probability-tree-diagrams-conditional': 'Шарттуу',
+    'probability-probability-tree-diagrams-with-frequency-trees': 'Жыштык дарактары менен',
 }
 
 
