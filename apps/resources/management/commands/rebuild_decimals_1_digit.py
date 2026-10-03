@@ -2100,21 +2100,85 @@ GROUPS = [
     },
     {
         # "Окшоштук" (Similarity) under Геометрия was an empty
-        # top-level category. Reference screenshot clearly showed 4
-        # items (all flat): Similar 2D Shapes, Similar Triangles,
-        # Congruent Triangles, Length/Area/Volume Scale Factors - a 5th
-        # row ("Area & Volume Conversion") appeared above these at the
-        # same row position as Measures' own matching item one
-        # screenshot earlier, which doesn't fit this topic at all and
-        # is very likely a stale render artifact from the previous
-        # hover rather than a genuine child - left out, flagged to the
-        # user to confirm.
+        # top-level category. Initial screenshot showed 4 flat items
+        # (Similar 2D Shapes, Similar Triangles, Congruent Triangles,
+        # Length/Area/Volume Scale Factors) with a 5th row ("Area &
+        # Volume Conversion") above them that was assumed to be a stale
+        # render artifact from the previous hover and left out. Later
+        # screenshots (showing Окшош үч бурчтуктар's own Abstract/
+        # Real-Life children, Узундук.../Scale Factors' own Length &
+        # Area/Length & Volume/Length Area & Volume children, and the
+        # same Area & Volume Conversion children already built under
+        # Геометрия > Өлчөмдөр) confirmed that guess was wrong: all 3
+        # are genuine chevron-bearing categories, and "Area & Volume
+        # Conversion" is a real 5th sibling, not a hover artifact.
+        # Corrected here: "Окшош үч бурчтуктар" and "Узундук, аянт жана
+        # көлөм масштаб көбөйткүчтөрү" removed from target_items,
+        # one-time-cleaned via 'displaced_url_names', recreated as
+        # categories via CHILD_ORDER_FIXES below (protected via
+        # 'promoted_titles'), each filled by its own dedicated GROUPS
+        # entry below; "Аянт жана көлөм бирдиктерин алмаштыруу" created
+        # fresh the same way and filled via MIRROR_GROUPS (the same
+        # 4-item Area/Volume/Mixed/Scale Areas set already built under
+        # Геометрия > Өлчөмдөр, reused rather than duplicated).
         'parent_path': ('Геометрия', 'Окшоштук'),
         'target_items': [
             {'title': 'Окшош 2D фигуралар', 'url_name': 'geometry_similarity_similar_2d_shapes'},
-            {'title': 'Окшош үч бурчтуктар', 'url_name': 'geometry_similarity_similar_triangles'},
             {'title': 'Тең үч бурчтуктар', 'url_name': 'geometry_similarity_congruent_triangles'},
-            {'title': 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү', 'url_name': 'geometry_similarity_length_area_volume_scale_factors'},
+        ],
+        'promoted_titles': [
+            'Окшош үч бурчтуктар',
+            'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү',
+            'Аянт жана көлөм бирдиктерин алмаштыруу',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [
+            'geometry_similarity_similar_triangles',
+            'geometry_similarity_length_area_volume_scale_factors',
+        ],
+    },
+    {
+        # "Окшош үч бурчтуктар" (Similar Triangles) under Окшоштук -
+        # confirmed by a later screenshot to be a chevron-bearing
+        # category, not flat (see the Окшоштук entry above). Reference
+        # (2 items, both flat): Abstract, Real-Life.
+        'parent_path': ('Геометрия', 'Окшоштук', 'Окшош үч бурчтуктар'),
+        'target_items': [
+            {'title': 'Абстракттуу', 'url_name': 'geometry_similarity_similar_triangles_abstract'},
+            {'title': 'Турмуштук', 'url_name': 'geometry_similarity_similar_triangles_real_life'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Узундук, аянт жана көлөм масштаб көбөйткүчтөрү" (Length,
+        # Area & Volume Scale Factors) under Окшоштук - confirmed by a
+        # later screenshot to be a chevron-bearing category, not flat
+        # (see the Окшоштук entry above). Reference (3 items, all
+        # flat): Length & Area, Length & Volume, Length, Area & Volume.
+        'parent_path': ('Геометрия', 'Окшоштук', 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү'),
+        'target_items': [
+            {'title': 'Узундук жана аянт', 'url_name': 'geometry_similarity_length_area_volume_scale_factors_length_area'},
+            {'title': 'Узундук жана көлөм', 'url_name': 'geometry_similarity_length_area_volume_scale_factors_length_volume'},
+            {'title': 'Узундук, аянт жана көлөм', 'url_name': 'geometry_similarity_length_area_volume_scale_factors_length_area_volume'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Чоңойтуу" (Enlargement) under Геометрия > Өзгөртүүлөр was an
+        # empty chevron-bearing category - reference (7 items, all
+        # flat): Positive, Negative, Fractional, Negative Fractional,
+        # Ray Method, Mixed: Foundation, Mixed: Higher.
+        'parent_path': ('Геометрия', 'Өзгөртүүлөр', 'Чоңойтуу'),
+        'target_items': [
+            {'title': 'Оң', 'url_name': 'geometry_transformations_enlargement_positive'},
+            {'title': 'Терс', 'url_name': 'geometry_transformations_enlargement_negative'},
+            {'title': 'Бөлчөк', 'url_name': 'geometry_transformations_enlargement_fractional'},
+            {'title': 'Терс бөлчөк', 'url_name': 'geometry_transformations_enlargement_negative_fractional'},
+            {'title': 'Нур ыкмасы', 'url_name': 'geometry_transformations_enlargement_ray_method'},
+            {'title': 'Аралаш: Негизги деңгээл', 'url_name': 'geometry_transformations_enlargement_mixed_foundation'},
+            {'title': 'Аралаш: Жогорку деңгээл', 'url_name': 'geometry_transformations_enlargement_mixed_higher'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -3702,6 +3766,31 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
+        # "Окшош үч бурчтуктар" and "Узундук, аянт жана көлөм масштаб
+        # көбөйткүчтөрү" are re-created here as fresh categories (the
+        # GROUPS entry above one-time-deleted each one's old flat
+        # MenuItem via 'displaced_url_names'); "Аянт жана көлөм
+        # бирдиктерин алмаштыруу" is a brand new sibling, also created
+        # here. All 3 need a 2nd run before their own children exist:
+        # the first two via their own dedicated GROUPS entries above,
+        # the third via a MIRROR_GROUPS entry below (reusing the same
+        # Area/Volume/Mixed/Scale Areas pages already built under
+        # Геометрия > Өлчөмдөр, since it's the identical 4-item set).
+        'parent_path': ('Геометрия', 'Окшоштук'),
+        'create_subsubtopics': [
+            {'title': 'Окшош үч бурчтуктар', 'slug': 'similar-triangles'},
+            {'title': 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү', 'slug': 'length-area-volume-scale-factors'},
+            {'title': 'Аянт жана көлөм бирдиктерин алмаштыруу', 'slug': 'area-volume-conversion'},
+        ],
+        'order': [
+            'Аянт жана көлөм бирдиктерин алмаштыруу',
+            'Окшош 2D фигуралар',
+            'Окшош үч бурчтуктар',
+            'Тең үч бурчтуктар',
+            'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү',
+        ],
+    },
+    {
         # "Өзгөртүүлөр" (Transformations) under Геометрия carried 1
         # child ("2D өзгөртүүлөр") from the old coarser import - not
         # in the new reference's 10-item list at all (0 resources
@@ -3836,6 +3925,16 @@ MIRROR_GROUPS = [
         # those same real pages rather than building duplicates.
         'parent_path': ('Геометрия', 'Курулуштар', 'Масштабдуу сүрөттөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Масштабдуу сүрөттөр'),
+    },
+    {
+        # "Аянт жана көлөм бирдиктерин алмаштыруу" (Area & Volume
+        # Conversion) under Окшоштук is the exact same 4-item set
+        # (Area, Volume, Mixed, Scale Areas) as Сандар > Өлчөмдөр's own
+        # Аянт жана көлөм бирдиктерин алмаштыруу, confirmed by a later
+        # screenshot of Окшоштук's own hover-through - reuses those same
+        # real pages rather than building duplicates.
+        'parent_path': ('Геометрия', 'Окшоштук', 'Аянт жана көлөм бирдиктерин алмаштыруу'),
+        'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Аянт жана көлөм бирдиктерин алмаштыруу'),
     },
     {
         # "Барабардык" (Equivalence) under Пайыздар: калькуляторсуз is

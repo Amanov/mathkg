@@ -961,11 +961,34 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-pythagoras-with-surds': 'Тамырлар менен',
     'geometry-pythagoras-with-circle-theorems': 'Тегерек теоремалары менен',
 
-    # Геометрия > Окшоштук - all 4 slots, none with a real page yet.
+    # Геометрия > Окшоштук - "Окшош үч бурчтуктар" and "Узундук, аянт
+    # жана көлөм масштаб көбөйткүчтөрү" turned out to be categories,
+    # their url_name entries below are now orphaned (see urls.py).
     'geometry-similarity-similar-2d-shapes': 'Окшош 2D фигуралар',
     'geometry-similarity-similar-triangles': 'Окшош үч бурчтуктар',
     'geometry-similarity-congruent-triangles': 'Тең үч бурчтуктар',
     'geometry-similarity-length-area-volume-scale-factors': 'Узундук, аянт жана көлөм масштаб көбөйткүчтөрү',
+
+    # Геометрия > Окшоштук > Окшош үч бурчтуктар - 2 flat slots, none
+    # with a real page yet.
+    'geometry-similarity-similar-triangles-abstract': 'Абстракттуу',
+    'geometry-similarity-similar-triangles-real-life': 'Турмуштук',
+
+    # Геометрия > Окшоштук > Узундук, аянт жана көлөм масштаб
+    # көбөйткүчтөрү - 3 flat slots, none with a real page yet.
+    'geometry-similarity-length-area-volume-scale-factors-length-area': 'Узундук жана аянт',
+    'geometry-similarity-length-area-volume-scale-factors-length-volume': 'Узундук жана көлөм',
+    'geometry-similarity-length-area-volume-scale-factors-length-area-volume': 'Узундук, аянт жана көлөм',
+
+    # Геометрия > Өзгөртүүлөр > Чоңойтуу - 7 flat slots, none with a
+    # real page yet.
+    'geometry-transformations-enlargement-positive': 'Оң',
+    'geometry-transformations-enlargement-negative': 'Терс',
+    'geometry-transformations-enlargement-fractional': 'Бөлчөк',
+    'geometry-transformations-enlargement-negative-fractional': 'Терс бөлчөк',
+    'geometry-transformations-enlargement-ray-method': 'Нур ыкмасы',
+    'geometry-transformations-enlargement-mixed-foundation': 'Аралаш: Негизги деңгээл',
+    'geometry-transformations-enlargement-mixed-higher': 'Аралаш: Жогорку деңгээл',
 
     # Геометрия > Тригонометрия - 7 flat slots, none with a real page
     # yet.

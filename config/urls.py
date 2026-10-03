@@ -1024,11 +1024,39 @@ urlpatterns = [
     path('geometry-pythagoras-with-surds/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-surds'}, name='geometry_pythagoras_with_surds'),
     path('geometry-pythagoras-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-circle-theorems'}, name='geometry_pythagoras_with_circle_theorems'),
 
-    # Геометрия > Окшоштук - all 4 slots, none with a real page yet.
+    # Геометрия > Окшоштук - "Окшош 2D фигуралар" and "Тең үч
+    # бурчтуктар" are flat; "Окшош үч бурчтуктар" and "Узундук, аянт
+    # жана көлөм масштаб көбөйткүчтөрү" turned out to be categories
+    # (see rebuild_decimals_1_digit.py) - their own leaf slots are
+    # below. geometry_similarity_similar_triangles and
+    # geometry_similarity_length_area_volume_scale_factors above are
+    # now orphaned (no menu item points to them any more, same as
+    # every other displaced_url_names case in this file).
     path('geometry-similarity-similar-2d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-2d-shapes'}, name='geometry_similarity_similar_2d_shapes'),
     path('geometry-similarity-similar-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-triangles'}, name='geometry_similarity_similar_triangles'),
     path('geometry-similarity-congruent-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-congruent-triangles'}, name='geometry_similarity_congruent_triangles'),
     path('geometry-similarity-length-area-volume-scale-factors/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-length-area-volume-scale-factors'}, name='geometry_similarity_length_area_volume_scale_factors'),
+
+    # Геометрия > Окшоштук > Окшош үч бурчтуктар - 2 flat slots, none
+    # with a real page yet.
+    path('geometry-similarity-similar-triangles-abstract/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-triangles-abstract'}, name='geometry_similarity_similar_triangles_abstract'),
+    path('geometry-similarity-similar-triangles-real-life/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-similar-triangles-real-life'}, name='geometry_similarity_similar_triangles_real_life'),
+
+    # Геометрия > Окшоштук > Узундук, аянт жана көлөм масштаб
+    # көбөйткүчтөрү - 3 flat slots, none with a real page yet.
+    path('geometry-similarity-length-area-volume-scale-factors-length-area/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-length-area-volume-scale-factors-length-area'}, name='geometry_similarity_length_area_volume_scale_factors_length_area'),
+    path('geometry-similarity-length-area-volume-scale-factors-length-volume/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-length-area-volume-scale-factors-length-volume'}, name='geometry_similarity_length_area_volume_scale_factors_length_volume'),
+    path('geometry-similarity-length-area-volume-scale-factors-length-area-volume/', operation_placeholder_view, {'operation_slug': 'geometry-similarity-length-area-volume-scale-factors-length-area-volume'}, name='geometry_similarity_length_area_volume_scale_factors_length_area_volume'),
+
+    # Геометрия > Өзгөртүүлөр > Чоңойтуу - 7 flat slots, none with a
+    # real page yet.
+    path('geometry-transformations-enlargement-positive/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-positive'}, name='geometry_transformations_enlargement_positive'),
+    path('geometry-transformations-enlargement-negative/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-negative'}, name='geometry_transformations_enlargement_negative'),
+    path('geometry-transformations-enlargement-fractional/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-fractional'}, name='geometry_transformations_enlargement_fractional'),
+    path('geometry-transformations-enlargement-negative-fractional/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-negative-fractional'}, name='geometry_transformations_enlargement_negative_fractional'),
+    path('geometry-transformations-enlargement-ray-method/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-ray-method'}, name='geometry_transformations_enlargement_ray_method'),
+    path('geometry-transformations-enlargement-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-mixed-foundation'}, name='geometry_transformations_enlargement_mixed_foundation'),
+    path('geometry-transformations-enlargement-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-mixed-higher'}, name='geometry_transformations_enlargement_mixed_higher'),
 
     # Геометрия > Тригонометрия - 7 flat slots, none with a real page
     # yet.
