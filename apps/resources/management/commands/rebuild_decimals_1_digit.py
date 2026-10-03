@@ -3153,6 +3153,20 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Аралаш" (Mixed) under Ыктымалдуулук directly (its own
+        # top-level sibling to Бир окуя/Бир нече окуя/etc) was the last
+        # remaining empty item in this topic's full 7-item list - same
+        # Foundation/Higher shape as every other top-level Mixed in this
+        # file.
+        'parent_path': ('Ыктымалдуулук', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'probability_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'probability_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
