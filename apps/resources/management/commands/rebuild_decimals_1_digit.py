@@ -546,11 +546,16 @@ GROUPS = [
         # The top-level "Аянт жана көлөм бирдиктерин алмаштыруу" sibling
         # (distinct from Compound's own child of the same name) already
         # exists as an Өлчөмдөр sub-subtopic - it just had no children yet.
+        # "Масштабдуу аянттар" (Scale Areas) was missing here (found via
+        # Геометрия > Өлчөмдөр's mirror of this same parent, which
+        # surfaced the gap in the reference screenshot) - added here at
+        # the source so the Geometry mirror picks it up automatically.
         'parent_path': ('Сандар', 'Өлчөмдөр', 'Аянт жана көлөм бирдиктерин алмаштыруу'),
         'target_items': [
             {'title': 'Аянт', 'url_name': 'area_volume_conversion_area'},
             {'title': 'Көлөм', 'url_name': 'area_volume_conversion_volume'},
             {'title': 'Аралаш', 'url_name': 'area_volume_conversion_mixed'},
+            {'title': 'Масштабдуу аянттар', 'url_name': 'area_volume_conversion_scale_areas'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],

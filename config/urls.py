@@ -387,6 +387,7 @@ urlpatterns = [
     path('area-volume-conversion-area/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-area'}, name='area_volume_conversion_area'),
     path('area-volume-conversion-volume/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-volume'}, name='area_volume_conversion_volume'),
     path('area-volume-conversion-mixed/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-mixed'}, name='area_volume_conversion_mixed'),
+    path('area-volume-conversion-scale-areas/', operation_placeholder_view, {'operation_slug': 'area-volume-conversion-scale-areas'}, name='area_volume_conversion_scale_areas'),
 
     # Өлчөмдөр > Убакыт (Time) - all 5 slots, none with a real page yet.
     path('time-reading-clocks/', operation_placeholder_view, {'operation_slug': 'time-reading-clocks'}, name='time_reading_clocks'),
