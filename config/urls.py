@@ -1382,6 +1382,29 @@ urlpatterns = [
     path('data-representing-pie-charts-scaling-method/', operation_placeholder_view, {'operation_slug': 'data-representing-pie-charts-scaling-method'}, name='data_representing_pie_charts_scaling_method'),
     path('data-representing-pie-charts-proportional-method/', operation_placeholder_view, {'operation_slug': 'data-representing-pie-charts-proportional-method'}, name='data_representing_pie_charts_proportional_method'),
 
+    # Дата > Көрсөтүү > Аралаш (top-level sibling to Тилке диаграммалары/
+    # Куту диаграммалары/etc) - 2 flat slots, none with a real page yet.
+    path('data-representing-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'data-representing-mixed-foundation'}, name='data_representing_mixed_foundation'),
+    path('data-representing-mixed-higher/', operation_placeholder_view, {'operation_slug': 'data-representing-mixed-higher'}, name='data_representing_mixed_higher'),
+
+    # Дата > Көрсөтүү > Венн диаграммалары - 5 flat slots, none with a
+    # real page yet.
+    path('data-representing-venn-diagrams-creating-reading/', operation_placeholder_view, {'operation_slug': 'data-representing-venn-diagrams-creating-reading'}, name='data_representing_venn_diagrams_creating_reading'),
+    path('data-representing-venn-diagrams-with-probability/', operation_placeholder_view, {'operation_slug': 'data-representing-venn-diagrams-with-probability'}, name='data_representing_venn_diagrams_with_probability'),
+    path('data-representing-venn-diagrams-sets-with-notation/', operation_placeholder_view, {'operation_slug': 'data-representing-venn-diagrams-sets-with-notation'}, name='data_representing_venn_diagrams_sets_with_notation'),
+    path('data-representing-venn-diagrams-sets-with-notation-igcse/', operation_placeholder_view, {'operation_slug': 'data-representing-venn-diagrams-sets-with-notation-igcse'}, name='data_representing_venn_diagrams_sets_with_notation_igcse'),
+    path('data-representing-venn-diagrams-notation-probability/', operation_placeholder_view, {'operation_slug': 'data-representing-venn-diagrams-notation-probability'}, name='data_representing_venn_diagrams_notation_probability'),
+
+    # Ыктымалдуулук > Бир окуя - 7 flat slots, none with a real page
+    # yet.
+    path('probability-single-event-probability-scale/', operation_placeholder_view, {'operation_slug': 'probability-single-event-probability-scale'}, name='probability_single_event_probability_scale'),
+    path('probability-single-event-calculating/', operation_placeholder_view, {'operation_slug': 'probability-single-event-calculating'}, name='probability_single_event_calculating'),
+    path('probability-single-event-will-not-happen/', operation_placeholder_view, {'operation_slug': 'probability-single-event-will-not-happen'}, name='probability_single_event_will_not_happen'),
+    path('probability-single-event-addition-law-or/', operation_placeholder_view, {'operation_slug': 'probability-single-event-addition-law-or'}, name='probability_single_event_addition_law_or'),
+    path('probability-single-event-exhaustive-events/', operation_placeholder_view, {'operation_slug': 'probability-single-event-exhaustive-events'}, name='probability_single_event_exhaustive_events'),
+    path('probability-single-event-expectation/', operation_placeholder_view, {'operation_slug': 'probability-single-event-expectation'}, name='probability_single_event_expectation'),
+    path('probability-single-event-experimental/', operation_placeholder_view, {'operation_slug': 'probability-single-event-experimental'}, name='probability_single_event_experimental'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

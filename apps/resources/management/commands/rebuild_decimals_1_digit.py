@@ -3062,6 +3062,57 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Аралаш" (Mixed) under Көрсөтүү directly (its own top-level
+        # sibling to Тилке диаграммалары/Куту диаграммалары/etc) was the
+        # last remaining empty item in this topic's full 14-item list -
+        # same Foundation/Higher shape as elsewhere in this file.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'data_representing_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'data_representing_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Венн диаграммалары" (Venn Diagrams) under Көрсөтүү was an
+        # empty chevron-bearing category - reference (5 items, all
+        # flat): Creating & Reading, With Probability, Sets with
+        # Notation, Sets With Notation (IGCSE), Notation & Probability.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Венн диаграммалары'),
+        'target_items': [
+            {'title': 'Түзүү жана окуу', 'url_name': 'data_representing_venn_diagrams_creating_reading'},
+            {'title': 'Ыктымалдуулук менен', 'url_name': 'data_representing_venn_diagrams_with_probability'},
+            {'title': 'Жыйындар белгилөө менен', 'url_name': 'data_representing_venn_diagrams_sets_with_notation'},
+            {'title': 'Жыйындар белгилөө менен (ЖРТ)', 'url_name': 'data_representing_venn_diagrams_sets_with_notation_igcse'},
+            {'title': 'Белгилөө жана ыктымалдуулук', 'url_name': 'data_representing_venn_diagrams_notation_probability'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Бир окуя" (Single Event) under Ыктымалдуулук was an empty
+        # top-level category - reference (8 items): The Probability
+        # Scale, Calculating, An Event Will Not Happen, Addition Law
+        # (OR), Exhaustive Events, Expectation, Experimental are flat;
+        # Mixed is itself chevron-bearing (created via
+        # 'create_subsubtopics' below, left empty pending its own
+        # screenshot).
+        'parent_path': ('Ыктымалдуулук', 'Бир окуя'),
+        'target_items': [
+            {'title': 'Ыктымалдуулук шкаласы', 'url_name': 'probability_single_event_probability_scale'},
+            {'title': 'Эсептөө', 'url_name': 'probability_single_event_calculating'},
+            {'title': 'Окуя болбойт', 'url_name': 'probability_single_event_will_not_happen'},
+            {'title': 'Кошуу мыйзамы (ЖЕ)', 'url_name': 'probability_single_event_addition_law_or'},
+            {'title': 'Толук окуялар', 'url_name': 'probability_single_event_exhaustive_events'},
+            {'title': 'Математикалык күтүү', 'url_name': 'probability_single_event_expectation'},
+            {'title': 'Тажрыйбалык', 'url_name': 'probability_single_event_experimental'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -4826,6 +4877,24 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
+        # "Аралаш" under Бир окуя doesn't exist yet - created here via
+        # 'create_subsubtopics'. Left empty pending its own screenshot.
+        'parent_path': ('Ыктымалдуулук', 'Бир окуя'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Ыктымалдуулук шкаласы',
+            'Эсептөө',
+            'Окуя болбойт',
+            'Кошуу мыйзамы (ЖЕ)',
+            'Толук окуялар',
+            'Математикалык күтүү',
+            'Тажрыйбалык',
+            'Аралаш',
+        ],
+    },
+    {
         # "Ыктымалдуулук" (Probability) was a root Topic carrying 2
         # merged categories from the old coarser import (Негизги
         # ыктымалдуулук, Айкалышкан окуялар - both with 0 resources
@@ -4902,6 +4971,17 @@ MIRROR_GROUPS = [
         # those same real pages rather than building duplicates.
         'parent_path': ('Геометрия', 'Тригонометрия', 'Пифагор менен'),
         'source_parent_path': ('Геометрия', 'Пифагор', 'Тригонометрия менен'),
+    },
+    {
+        # "Эки багыттуу таблицалар" (Two-Way Tables) under Дата >
+        # Көрсөтүү is the exact same 3-item set (Creating & Reading,
+        # With Probability, With Bar Charts) as Дата > Жыштык
+        # таблицалары's own "Эки багыттуу таблицалар" - confirmed by
+        # screenshot, same cross-linking pattern as Pythagoras/
+        # Trigonometry above. Reuses those same real pages rather than
+        # building duplicates.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Эки багыттуу таблицалар'),
+        'source_parent_path': ('Дата', 'Жыштык таблицалары', 'Эки багыттуу таблицалар'),
     },
     {
         # "Масштабдуу сүрөттөр" (Scale Drawings) under Курулуштар is
