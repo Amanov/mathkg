@@ -2184,6 +2184,92 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Тригонометрия менен" (With Trigonometry) under Геометрия >
+        # Пифагор was an empty chevron-bearing category - reference (2
+        # items, both flat): Trig. OR Pythag., Trig. AND Pythag.
+        'parent_path': ('Геометрия', 'Пифагор', 'Тригонометрия менен'),
+        'target_items': [
+            {'title': 'Тригонометрия же Пифагор', 'url_name': 'geometry_pythagoras_with_trigonometry_or'},
+            {'title': 'Тригонометрия жана Пифагор', 'url_name': 'geometry_pythagoras_with_trigonometry_and'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Геометрия > Өзгөртүүлөр was an empty
+        # chevron-bearing category - reference (2 items, both flat):
+        # Foundation, Higher (exam-tier labels, same convention as
+        # elsewhere in this file).
+        'parent_path': ('Геометрия', 'Өзгөртүүлөр', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_transformations_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_transformations_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Синус жана косинус катыштары" (Sine & Cosine Ratios) under
+        # Геометрия > Тригонометрия was an empty chevron-bearing
+        # category - reference (3 items): Lengths, Angles are flat;
+        # Mixed is itself chevron-bearing (created via
+        # 'create_subsubtopics' in CHILD_ORDER_FIXES below, left empty
+        # pending its own screenshot).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Синус жана косинус катыштары'),
+        'target_items': [
+            {'title': 'Узундуктар', 'url_name': 'geometry_trigonometry_sine_cosine_ratios_lengths'},
+            {'title': 'Бурчтар', 'url_name': 'geometry_trigonometry_sine_cosine_ratios_angles'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Тангенс катышы" (Tangent Ratio) under Геометрия >
+        # Тригонометрия was an empty chevron-bearing category -
+        # reference (3 items): Lengths, Angles are flat; Mixed is
+        # itself chevron-bearing (created via 'create_subsubtopics' in
+        # CHILD_ORDER_FIXES below, left empty pending its own
+        # screenshot).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Тангенс катышы'),
+        'target_items': [
+            {'title': 'Узундуктар', 'url_name': 'geometry_trigonometry_tangent_ratio_lengths'},
+            {'title': 'Бурчтар', 'url_name': 'geometry_trigonometry_tangent_ratio_angles'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Бардык катыштар" (All Ratios) under Геометрия > Тригонометрия
+        # was an empty chevron-bearing category - reference (3 items):
+        # Lengths, Angles are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' in CHILD_ORDER_FIXES
+        # below), with its own 2 children confirmed by the same
+        # screenshot: Lengths OR Angles, Lengths AND Angles (filled in
+        # by the next GROUPS entry).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Бардык катыштар'),
+        'target_items': [
+            {'title': 'Узундуктар', 'url_name': 'geometry_trigonometry_all_ratios_lengths'},
+            {'title': 'Бурчтар', 'url_name': 'geometry_trigonometry_all_ratios_angles'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Бардык катыштар - confirmed by the
+        # same screenshot to have 2 flat children: Lengths OR Angles,
+        # Lengths AND Angles.
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Бардык катыштар', 'Аралаш'),
+        'target_items': [
+            {'title': 'Узундуктар же бурчтар', 'url_name': 'geometry_trigonometry_all_ratios_mixed_or'},
+            {'title': 'Узундуктар жана бурчтар', 'url_name': 'geometry_trigonometry_all_ratios_mixed_and'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Тригонометрия" (Trigonometry) under Геометрия was an empty
         # top-level category. Reference (13 items): Introduction,
         # Graphs, Choosing a Ratio, Isosceles Triangles, Without a
@@ -3852,6 +3938,51 @@ CHILD_ORDER_FIXES = [
             'Тегерек теоремалары менен',
             'Аянт эрежеси',
             'Синус жана косинус эрежелери',
+        ],
+    },
+    {
+        # "Аралаш" under Синус жана косинус катыштары doesn't exist yet
+        # - created here via 'create_subsubtopics'. Left empty pending
+        # its own screenshot (not yet confirmed to share "Бардык
+        # катыштар"'s own Lengths OR/AND Angles shape).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Синус жана косинус катыштары'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Узундуктар',
+            'Бурчтар',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Тангенс катышы doesn't exist yet - created here
+        # via 'create_subsubtopics'. Left empty pending its own
+        # screenshot (same caveat as Синус жана косинус катыштары above).
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Тангенс катышы'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Узундуктар',
+            'Бурчтар',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Бардык катыштар doesn't exist yet - created
+        # here via 'create_subsubtopics'. Its own 2 children (Lengths
+        # OR Angles, Lengths AND Angles) are filled by a GROUPS entry
+        # above - a 2-run cross-run dependency, same pattern as
+        # elsewhere in this file.
+        'parent_path': ('Геометрия', 'Тригонометрия', 'Бардык катыштар'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Узундуктар',
+            'Бурчтар',
+            'Аралаш',
         ],
     },
     {

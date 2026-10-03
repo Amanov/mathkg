@@ -1012,6 +1012,11 @@ urlpatterns = [
     path('geometry-pythagoras-with-surds/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-surds'}, name='geometry_pythagoras_with_surds'),
     path('geometry-pythagoras-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-circle-theorems'}, name='geometry_pythagoras_with_circle_theorems'),
 
+    # Геометрия > Пифагор > Тригонометрия менен - 2 flat slots, none
+    # with a real page yet.
+    path('geometry-pythagoras-with-trigonometry-or/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-trigonometry-or'}, name='geometry_pythagoras_with_trigonometry_or'),
+    path('geometry-pythagoras-with-trigonometry-and/', operation_placeholder_view, {'operation_slug': 'geometry-pythagoras-with-trigonometry-and'}, name='geometry_pythagoras_with_trigonometry_and'),
+
     # Геометрия > Окшоштук - "Окшош 2D фигуралар" and "Тең үч
     # бурчтуктар" are flat; "Окшош үч бурчтуктар" and "Узундук, аянт
     # жана көлөм масштаб көбөйткүчтөрү" turned out to be categories
@@ -1046,6 +1051,11 @@ urlpatterns = [
     path('geometry-transformations-enlargement-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-mixed-foundation'}, name='geometry_transformations_enlargement_mixed_foundation'),
     path('geometry-transformations-enlargement-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-enlargement-mixed-higher'}, name='geometry_transformations_enlargement_mixed_higher'),
 
+    # Геометрия > Өзгөртүүлөр > Аралаш - 2 flat slots, none with a real
+    # page yet.
+    path('geometry-transformations-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-mixed-foundation'}, name='geometry_transformations_mixed_foundation'),
+    path('geometry-transformations-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-transformations-mixed-higher'}, name='geometry_transformations_mixed_higher'),
+
     # Геометрия > Тригонометрия - 7 flat slots, none with a real page
     # yet.
     path('geometry-trigonometry-introduction/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-introduction'}, name='geometry_trigonometry_introduction'),
@@ -1055,6 +1065,26 @@ urlpatterns = [
     path('geometry-trigonometry-without-calculator/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-without-calculator'}, name='geometry_trigonometry_without_calculator'),
     path('geometry-trigonometry-with-circle-theorems/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-with-circle-theorems'}, name='geometry_trigonometry_with_circle_theorems'),
     path('geometry-trigonometry-area-rule/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-area-rule'}, name='geometry_trigonometry_area_rule'),
+
+    # Геометрия > Тригонометрия > Синус жана косинус катыштары - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-trigonometry-sine-cosine-ratios-lengths/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-ratios-lengths'}, name='geometry_trigonometry_sine_cosine_ratios_lengths'),
+    path('geometry-trigonometry-sine-cosine-ratios-angles/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-sine-cosine-ratios-angles'}, name='geometry_trigonometry_sine_cosine_ratios_angles'),
+
+    # Геометрия > Тригонометрия > Тангенс катышы - 2 flat slots, none
+    # with a real page yet.
+    path('geometry-trigonometry-tangent-ratio-lengths/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-tangent-ratio-lengths'}, name='geometry_trigonometry_tangent_ratio_lengths'),
+    path('geometry-trigonometry-tangent-ratio-angles/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-tangent-ratio-angles'}, name='geometry_trigonometry_tangent_ratio_angles'),
+
+    # Геометрия > Тригонометрия > Бардык катыштар - 2 flat slots, none
+    # with a real page yet.
+    path('geometry-trigonometry-all-ratios-lengths/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-lengths'}, name='geometry_trigonometry_all_ratios_lengths'),
+    path('geometry-trigonometry-all-ratios-angles/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-angles'}, name='geometry_trigonometry_all_ratios_angles'),
+
+    # Геометрия > Тригонометрия > Бардык катыштар > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-trigonometry-all-ratios-mixed-or/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-mixed-or'}, name='geometry_trigonometry_all_ratios_mixed_or'),
+    path('geometry-trigonometry-all-ratios-mixed-and/', operation_placeholder_view, {'operation_slug': 'geometry-trigonometry-all-ratios-mixed-and'}, name='geometry_trigonometry_all_ratios_mixed_and'),
 
     # Геометрия > Векторлор - all 5 slots, none with a real page yet.
     path('geometry-vectors-translation/', operation_placeholder_view, {'operation_slug': 'geometry-vectors-translation'}, name='geometry_vectors_translation'),

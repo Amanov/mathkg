@@ -961,6 +961,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-pythagoras-with-surds': 'Тамырлар менен',
     'geometry-pythagoras-with-circle-theorems': 'Тегерек теоремалары менен',
 
+    # Геометрия > Пифагор > Тригонометрия менен - 2 flat slots, none
+    # with a real page yet.
+    'geometry-pythagoras-with-trigonometry-or': 'Тригонометрия же Пифагор',
+    'geometry-pythagoras-with-trigonometry-and': 'Тригонометрия жана Пифагор',
+
     # Геометрия > Окшоштук - "Окшош үч бурчтуктар" and "Узундук, аянт
     # жана көлөм масштаб көбөйткүчтөрү" turned out to be categories,
     # their url_name entries below are now orphaned (see urls.py).
@@ -990,6 +995,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-transformations-enlargement-mixed-foundation': 'Аралаш: Негизги деңгээл',
     'geometry-transformations-enlargement-mixed-higher': 'Аралаш: Жогорку деңгээл',
 
+    # Геометрия > Өзгөртүүлөр > Аралаш - 2 flat slots, none with a real
+    # page yet.
+    'geometry-transformations-mixed-foundation': 'Негизги деңгээл',
+    'geometry-transformations-mixed-higher': 'Жогорку деңгээл',
+
     # Геометрия > Тригонометрия - 7 flat slots, none with a real page
     # yet.
     'geometry-trigonometry-introduction': 'Киришүү',
@@ -999,6 +1009,26 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-trigonometry-without-calculator': 'Калькуляторсуз',
     'geometry-trigonometry-with-circle-theorems': 'Тегерек теоремалары менен',
     'geometry-trigonometry-area-rule': 'Аянт эрежеси',
+
+    # Геометрия > Тригонометрия > Синус жана косинус катыштары - 2 flat
+    # slots, none with a real page yet.
+    'geometry-trigonometry-sine-cosine-ratios-lengths': 'Узундуктар',
+    'geometry-trigonometry-sine-cosine-ratios-angles': 'Бурчтар',
+
+    # Геометрия > Тригонометрия > Тангенс катышы - 2 flat slots, none
+    # with a real page yet.
+    'geometry-trigonometry-tangent-ratio-lengths': 'Узундуктар',
+    'geometry-trigonometry-tangent-ratio-angles': 'Бурчтар',
+
+    # Геометрия > Тригонометрия > Бардык катыштар - 2 flat slots, none
+    # with a real page yet.
+    'geometry-trigonometry-all-ratios-lengths': 'Узундуктар',
+    'geometry-trigonometry-all-ratios-angles': 'Бурчтар',
+
+    # Геометрия > Тригонометрия > Бардык катыштар > Аралаш - 2 flat
+    # slots, none with a real page yet.
+    'geometry-trigonometry-all-ratios-mixed-or': 'Узундуктар же бурчтар',
+    'geometry-trigonometry-all-ratios-mixed-and': 'Узундуктар жана бурчтар',
 
     # Геометрия > Векторлор - all 5 slots, none with a real page yet.
     'geometry-vectors-translation': 'Жылдыруу',
