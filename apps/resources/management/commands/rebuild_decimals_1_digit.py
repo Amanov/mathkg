@@ -4392,6 +4392,41 @@ CHILD_ORDER_FIXES = [
             'Көрсөтүү',
         ],
     },
+    {
+        # "Ыктымалдуулук" (Probability) was a root Topic carrying 2
+        # merged categories from the old coarser import (Негизги
+        # ыктымалдуулук, Айкалышкан окуялар - both with 0 resources
+        # attached anywhere in their subtrees, including their own
+        # nested sub-items: Жеке окуялар, Диаграммалар, Дарак
+        # диаграммалары). The new reference site's own top-level menu
+        # instead shows 7 separate categories: Single Event, Multiple
+        # Event, Frequency Tree Diagrams, Probability Tree Diagrams,
+        # Two-Way Tables, Venn Diagrams, Mixed - created fresh here via
+        # 'create_subsubtopics' (same pattern as the Геометрия and Дата
+        # root entries above); the exhaustive 'order' list below prunes
+        # the 2 old merged categories like any other leftover. "Аралаш"
+        # (Mixed) is itself chevron-bearing, left empty pending its own
+        # screenshot.
+        'parent_path': ('Ыктымалдуулук',),
+        'create_subsubtopics': [
+            {'title': 'Бир окуя', 'slug': 'single-event'},
+            {'title': 'Бир нече окуя', 'slug': 'multiple-event'},
+            {'title': 'Жыштык дарак диаграммалары', 'slug': 'frequency-tree-diagrams'},
+            {'title': 'Ыктымалдуулук дарак диаграммалары', 'slug': 'probability-tree-diagrams'},
+            {'title': 'Эки багыттуу таблицалар', 'slug': 'two-way-tables'},
+            {'title': 'Венн диаграммалары', 'slug': 'venn-diagrams'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Бир окуя',
+            'Бир нече окуя',
+            'Жыштык дарак диаграммалары',
+            'Ыктымалдуулук дарак диаграммалары',
+            'Эки багыттуу таблицалар',
+            'Венн диаграммалары',
+            'Аралаш',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
