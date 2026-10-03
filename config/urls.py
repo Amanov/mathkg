@@ -1323,9 +1323,31 @@ urlpatterns = [
     path('data-collecting-stratified-sampling/', operation_placeholder_view, {'operation_slug': 'data-collecting-stratified-sampling'}, name='data_collecting_stratified_sampling'),
     path('data-collecting-capture-recapture/', operation_placeholder_view, {'operation_slug': 'data-collecting-capture-recapture'}, name='data_collecting_capture_recapture'),
 
-    # Дата > Жыштык таблицалары - 1 flat slot, none with a real page
-    # yet.
+    # Дата > Жыштык таблицалары > Топтоштурулбаган берилиштер -
+    # "Топтоштурулган берилиштер" turned out to be a category, its own
+    # url_name entry below is now orphaned (see rebuild_decimals_1_digit.py).
     path('data-frequency-tables-grouped-data/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-grouped-data'}, name='data_frequency_tables_grouped_data'),
+    path('data-frequency-tables-ungrouped-data-creating-reading/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-ungrouped-data-creating-reading'}, name='data_frequency_tables_ungrouped_data_creating_reading'),
+    path('data-frequency-tables-ungrouped-data-calculating-averages/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-ungrouped-data-calculating-averages'}, name='data_frequency_tables_ungrouped_data_calculating_averages'),
+
+    # Дата > Жыштык таблицалары > Топтоштурулган берилиштер - 2 flat
+    # slots, none with a real page yet.
+    path('data-frequency-tables-grouped-data-creating-reading/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-grouped-data-creating-reading'}, name='data_frequency_tables_grouped_data_creating_reading'),
+    path('data-frequency-tables-grouped-data-calculating-averages/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-grouped-data-calculating-averages'}, name='data_frequency_tables_grouped_data_calculating_averages'),
+
+    # Дата > Жыштык таблицалары > Эки багыттуу таблицалар - 3 flat
+    # slots, none with a real page yet.
+    path('data-frequency-tables-two-way-tables-creating-reading/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-two-way-tables-creating-reading'}, name='data_frequency_tables_two_way_tables_creating_reading'),
+    path('data-frequency-tables-two-way-tables-with-probability/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-two-way-tables-with-probability'}, name='data_frequency_tables_two_way_tables_with_probability'),
+    path('data-frequency-tables-two-way-tables-with-bar-charts/', operation_placeholder_view, {'operation_slug': 'data-frequency-tables-two-way-tables-with-bar-charts'}, name='data_frequency_tables_two_way_tables_with_bar_charts'),
+
+    # Дата > Көрсөтүү - 6 flat slots, none with a real page yet.
+    path('data-representing-frequency-polygons/', operation_placeholder_view, {'operation_slug': 'data-representing-frequency-polygons'}, name='data_representing_frequency_polygons'),
+    path('data-representing-histograms/', operation_placeholder_view, {'operation_slug': 'data-representing-histograms'}, name='data_representing_histograms'),
+    path('data-representing-line-graphs-time-series/', operation_placeholder_view, {'operation_slug': 'data-representing-line-graphs-time-series'}, name='data_representing_line_graphs_time_series'),
+    path('data-representing-pictograms/', operation_placeholder_view, {'operation_slug': 'data-representing-pictograms'}, name='data_representing_pictograms'),
+    path('data-representing-scatter-graphs/', operation_placeholder_view, {'operation_slug': 'data-representing-scatter-graphs'}, name='data_representing_scatter_graphs'),
+    path('data-representing-stem-leaf-diagrams/', operation_placeholder_view, {'operation_slug': 'data-representing-stem-leaf-diagrams'}, name='data_representing_stem_leaf_diagrams'),
 
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
