@@ -3113,6 +3113,46 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Бир нече окуя" (Multiple Event) under Ыктымалдуулук was an
+        # empty top-level category - reference (9 items): Systematic
+        # Listing, Product Rule for Counting, OR, AND, AND & OR with
+        # Listing, Sample Space Diagrams, Mixed: With Single Event,
+        # General Addition Law are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below, left empty pending
+        # its own screenshot).
+        'parent_path': ('Ыктымалдуулук', 'Бир нече окуя'),
+        'target_items': [
+            {'title': 'Системалуу тизмелөө', 'url_name': 'probability_multiple_event_systematic_listing'},
+            {'title': 'Эсептөө үчүн көбөйтүндү эрежеси', 'url_name': 'probability_multiple_event_product_rule_for_counting'},
+            {'title': 'ЖЕ', 'url_name': 'probability_multiple_event_or'},
+            {'title': 'ЖАНА', 'url_name': 'probability_multiple_event_and'},
+            {'title': 'ЖАНА менен ЖЕ: тизмелөө менен', 'url_name': 'probability_multiple_event_and_or_with_listing'},
+            {'title': 'Тандоо мейкиндиги диаграммалары', 'url_name': 'probability_multiple_event_sample_space_diagrams'},
+            {'title': 'Аралаш: Бир окуя менен', 'url_name': 'probability_multiple_event_mixed_with_single_event'},
+            {'title': 'Жалпы кошуу мыйзамы', 'url_name': 'probability_multiple_event_general_addition_law'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Ыктымалдуулук дарак диаграммалары" (Probability Tree
+        # Diagrams) under Ыктымалдуулук was an empty top-level category -
+        # reference (4 items): Unconditional, Conditional, With
+        # Frequency Trees are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below, left empty pending
+        # its own screenshot).
+        'parent_path': ('Ыктымалдуулук', 'Ыктымалдуулук дарак диаграммалары'),
+        'target_items': [
+            {'title': 'Шартсыз', 'url_name': 'probability_probability_tree_diagrams_unconditional'},
+            {'title': 'Шарттуу', 'url_name': 'probability_probability_tree_diagrams_conditional'},
+            {'title': 'Жыштык дарактары менен', 'url_name': 'probability_probability_tree_diagrams_with_frequency_trees'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -4895,6 +4935,41 @@ CHILD_ORDER_FIXES = [
         ],
     },
     {
+        # "Аралаш" under Бир нече окуя doesn't exist yet - created here
+        # via 'create_subsubtopics'. Left empty pending its own
+        # screenshot.
+        'parent_path': ('Ыктымалдуулук', 'Бир нече окуя'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Системалуу тизмелөө',
+            'Эсептөө үчүн көбөйтүндү эрежеси',
+            'ЖЕ',
+            'ЖАНА',
+            'ЖАНА менен ЖЕ: тизмелөө менен',
+            'Тандоо мейкиндиги диаграммалары',
+            'Аралаш',
+            'Аралаш: Бир окуя менен',
+            'Жалпы кошуу мыйзамы',
+        ],
+    },
+    {
+        # "Аралаш" under Ыктымалдуулук дарак диаграммалары doesn't exist
+        # yet - created here via 'create_subsubtopics'. Left empty
+        # pending its own screenshot.
+        'parent_path': ('Ыктымалдуулук', 'Ыктымалдуулук дарак диаграммалары'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Шартсыз',
+            'Шарттуу',
+            'Аралаш',
+            'Жыштык дарактары менен',
+        ],
+    },
+    {
         # "Ыктымалдуулук" (Probability) was a root Topic carrying 2
         # merged categories from the old coarser import (Негизги
         # ыктымалдуулук, Айкалышкан окуялар - both with 0 resources
@@ -4982,6 +5057,34 @@ MIRROR_GROUPS = [
         # building duplicates.
         'parent_path': ('Дата', 'Көрсөтүү', 'Эки багыттуу таблицалар'),
         'source_parent_path': ('Дата', 'Жыштык таблицалары', 'Эки багыттуу таблицалар'),
+    },
+    {
+        # "Жыштык дарак диаграммалары" (Frequency Tree Diagrams) under
+        # Ыктымалдуулук is the exact same 3-item set (Introduction, With
+        # FPR, With Probability Trees) as Дата > Көрсөтүү's own "Жыштык
+        # дарактары" - confirmed by screenshot, same cross-topic
+        # cross-linking pattern as elsewhere in this file. Reuses those
+        # same real pages rather than building duplicates.
+        'parent_path': ('Ыктымалдуулук', 'Жыштык дарак диаграммалары'),
+        'source_parent_path': ('Дата', 'Көрсөтүү', 'Жыштык дарактары'),
+    },
+    {
+        # "Эки багыттуу таблицалар" (Two-Way Tables) under Ыктымалдуулук
+        # is the exact same 3-item set as Дата > Жыштык таблицалары's
+        # own "Эки багыттуу таблицалар" - confirmed by screenshot, same
+        # cross-topic cross-linking pattern. Reuses those same real
+        # pages rather than building duplicates.
+        'parent_path': ('Ыктымалдуулук', 'Эки багыттуу таблицалар'),
+        'source_parent_path': ('Дата', 'Жыштык таблицалары', 'Эки багыттуу таблицалар'),
+    },
+    {
+        # "Венн диаграммалары" (Venn Diagrams) under Ыктымалдуулук is
+        # the exact same 5-item set as Дата > Көрсөтүү's own "Венн
+        # диаграммалары" - confirmed by screenshot, same cross-topic
+        # cross-linking pattern. Reuses those same real pages rather
+        # than building duplicates.
+        'parent_path': ('Ыктымалдуулук', 'Венн диаграммалары'),
+        'source_parent_path': ('Дата', 'Көрсөтүү', 'Венн диаграммалары'),
     },
     {
         # "Масштабдуу сүрөттөр" (Scale Drawings) under Курулуштар is
