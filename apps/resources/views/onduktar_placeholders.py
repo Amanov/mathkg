@@ -1264,9 +1264,31 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-collecting-stratified-sampling': 'Катмарланган тандоо',
     'data-collecting-capture-recapture': 'Кармап-кайра кармоо',
 
-    # Дата > Жыштык таблицалары - 1 flat slot, none with a real page
-    # yet.
+    # Дата > Жыштык таблицалары > Топтоштурулбаган берилиштер -
+    # "Топтоштурулган берилиштер" turned out to be a category, its own
+    # entry below is now orphaned.
     'data-frequency-tables-grouped-data': 'Топтоштурулган берилиштер',
+    'data-frequency-tables-ungrouped-data-creating-reading': 'Түзүү жана окуу',
+    'data-frequency-tables-ungrouped-data-calculating-averages': 'Орточолорду эсептөө',
+
+    # Дата > Жыштык таблицалары > Топтоштурулган берилиштер - 2 flat
+    # slots, none with a real page yet.
+    'data-frequency-tables-grouped-data-creating-reading': 'Түзүү жана окуу',
+    'data-frequency-tables-grouped-data-calculating-averages': 'Орточолорду эсептөө',
+
+    # Дата > Жыштык таблицалары > Эки багыттуу таблицалар - 3 flat
+    # slots, none with a real page yet.
+    'data-frequency-tables-two-way-tables-creating-reading': 'Түзүү жана окуу',
+    'data-frequency-tables-two-way-tables-with-probability': 'Ыктымалдуулук менен',
+    'data-frequency-tables-two-way-tables-with-bar-charts': 'Тилке диаграммалар менен',
+
+    # Дата > Көрсөтүү - 6 flat slots, none with a real page yet.
+    'data-representing-frequency-polygons': 'Жыштык көп бурчтуктары',
+    'data-representing-histograms': 'Гистограммалар',
+    'data-representing-line-graphs-time-series': 'Сызыктуу графиктер / Убакыт катарлары',
+    'data-representing-pictograms': 'Пиктограммалар',
+    'data-representing-scatter-graphs': 'Чачыранды диаграммалар',
+    'data-representing-stem-leaf-diagrams': 'Сабак-жалбырак диаграммалары',
 }
 
 

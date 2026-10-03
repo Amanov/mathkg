@@ -2883,16 +2883,92 @@ GROUPS = [
     },
     {
         # "Жыштык таблицалары" (Frequency Tables) under Дата was an
-        # empty top-level category - reference (3 items): Grouped Data
-        # is flat; Ungrouped Data, Two-Way Tables are chevron-bearing
+        # empty top-level category - reference (3 items, all chevron-
+        # bearing): Ungrouped Data, Grouped Data, Two-Way Tables.
+        # "Топтоштурулган берилиштер" (Grouped Data) was initially
+        # guessed flat from an earlier screenshot - a later screenshot
+        # confirmed it's a category too (same 2-item shape as Ungrouped
+        # Data: Creating & Reading, Calculating Averages). Corrected
+        # here: removed from target_items, one-time-cleaned via
+        # 'displaced_url_names', recreated as a category via
+        # CHILD_ORDER_FIXES below (protected via 'promoted_titles'),
+        # filled by its own dedicated GROUPS entry below.
+        'parent_path': ('Дата', 'Жыштык таблицалары'),
+        'target_items': [],
+        'promoted_titles': [
+            'Топтоштурулбаган берилиштер', 'Топтоштурулган берилиштер',
+            'Эки багыттуу таблицалар',
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [
+            'data_frequency_tables_grouped_data',
+        ],
+    },
+    {
+        # "Топтоштурулбаган берилиштер" (Ungrouped Data) under Жыштык
+        # таблицалары - reference (2 items, both flat): Creating &
+        # Reading, Calculating Averages. The screenshot cut off right
+        # after these 2 items (a partial row was visible below), so
+        # this may not be the complete list - flagged to the user.
+        'parent_path': ('Дата', 'Жыштык таблицалары', 'Топтоштурулбаган берилиштер'),
+        'target_items': [
+            {'title': 'Түзүү жана окуу', 'url_name': 'data_frequency_tables_ungrouped_data_creating_reading'},
+            {'title': 'Орточолорду эсептөө', 'url_name': 'data_frequency_tables_ungrouped_data_calculating_averages'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Топтоштурулган берилиштер" (Grouped Data) under Жыштык
+        # таблицалары - confirmed by a later screenshot to be a
+        # chevron-bearing category, not flat (see the Жыштык таблицалары
+        # entry above). Reference (2 items, both flat): Creating &
+        # Reading, Calculating Averages - same shape as Ungrouped Data's
+        # own children, same cut-off caveat.
+        'parent_path': ('Дата', 'Жыштык таблицалары', 'Топтоштурулган берилиштер'),
+        'target_items': [
+            {'title': 'Түзүү жана окуу', 'url_name': 'data_frequency_tables_grouped_data_creating_reading'},
+            {'title': 'Орточолорду эсептөө', 'url_name': 'data_frequency_tables_grouped_data_calculating_averages'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Эки багыттуу таблицалар" (Two-Way Tables) under Жыштык
+        # таблицалары - reference (3 items, all flat): Creating &
+        # Reading, With Probability, With Bar Charts.
+        'parent_path': ('Дата', 'Жыштык таблицалары', 'Эки багыттуу таблицалар'),
+        'target_items': [
+            {'title': 'Түзүү жана окуу', 'url_name': 'data_frequency_tables_two_way_tables_creating_reading'},
+            {'title': 'Ыктымалдуулук менен', 'url_name': 'data_frequency_tables_two_way_tables_with_probability'},
+            {'title': 'Тилке диаграммалар менен', 'url_name': 'data_frequency_tables_two_way_tables_with_bar_charts'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Көрсөтүү" (Representing) under Дата was an empty top-level
+        # category. Reference (14 items): Frequency Polygons,
+        # Histograms, Line Graphs / Time Series, Pictograms, Scatter
+        # Graphs, Stem & Leaf Diagrams are flat; Bar Charts, Box Plots,
+        # Cumulative Frequency Graphs, Frequency Trees, Pie Charts,
+        # Two-Way Tables, Mixed, Venn Diagrams are chevron-bearing
         # categories (created via 'create_subsubtopics' below, left
         # empty pending their own screenshots).
-        'parent_path': ('Дата', 'Жыштык таблицалары'),
+        'parent_path': ('Дата', 'Көрсөтүү'),
         'target_items': [
-            {'title': 'Топтоштурулган берилиштер', 'url_name': 'data_frequency_tables_grouped_data'},
+            {'title': 'Жыштык көп бурчтуктары', 'url_name': 'data_representing_frequency_polygons'},
+            {'title': 'Гистограммалар', 'url_name': 'data_representing_histograms'},
+            {'title': 'Сызыктуу графиктер / Убакыт катарлары', 'url_name': 'data_representing_line_graphs_time_series'},
+            {'title': 'Пиктограммалар', 'url_name': 'data_representing_pictograms'},
+            {'title': 'Чачыранды диаграммалар', 'url_name': 'data_representing_scatter_graphs'},
+            {'title': 'Сабак-жалбырак диаграммалары', 'url_name': 'data_representing_stem_leaf_diagrams'},
         ],
         'promoted_titles': [
-            'Топтоштурулбаган берилиштер', 'Эки багыттуу таблицалар',
+            'Тилке диаграммалары', 'Куту диаграммалары',
+            'Топтолгон жыштык графиктери', 'Жыштык дарактары',
+            'Тегерек диаграммалар', 'Эки багыттуу таблицалар', 'Аралаш',
+            'Венн диаграммалары',
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -4565,15 +4641,56 @@ CHILD_ORDER_FIXES = [
         # "Топтоштурулбаган берилиштер" and "Эки багыттуу таблицалар"
         # are created here (fresh chevron-bearing categories under
         # Жыштык таблицалары), left empty pending their own screenshots.
+        # "Топтоштурулган берилиштер" (Grouped Data) is re-created here
+        # too, now as a category, after the GROUPS entry above one-time-
+        # deletes its old flat MenuItem via 'displaced_url_names' - both
+        # steps run in the same execution (GROUPS phase runs entirely
+        # before CHILD_ORDER_FIXES), so the delete-then-recreate
+        # completes in a single run; its own children still need a 2nd
+        # run, same as the brand-new categories above.
         'parent_path': ('Дата', 'Жыштык таблицалары'),
         'create_subsubtopics': [
             {'title': 'Топтоштурулбаган берилиштер', 'slug': 'ungrouped-data'},
+            {'title': 'Топтоштурулган берилиштер', 'slug': 'grouped-data'},
             {'title': 'Эки багыттуу таблицалар', 'slug': 'two-way-tables'},
         ],
         'order': [
             'Топтоштурулбаган берилиштер',
             'Топтоштурулган берилиштер',
             'Эки багыттуу таблицалар',
+        ],
+    },
+    {
+        # The 8 chevron-bearing categories under Көрсөтүү don't exist
+        # yet - created here via 'create_subsubtopics'. An 'order' entry
+        # is needed since 'create_subsubtopics' doesn't know where the
+        # 6 GROUPS-built flat siblings already sit.
+        'parent_path': ('Дата', 'Көрсөтүү'),
+        'create_subsubtopics': [
+            {'title': 'Тилке диаграммалары', 'slug': 'bar-charts'},
+            {'title': 'Куту диаграммалары', 'slug': 'box-plots'},
+            {'title': 'Топтолгон жыштык графиктери', 'slug': 'cumulative-frequency-graphs'},
+            {'title': 'Жыштык дарактары', 'slug': 'frequency-trees'},
+            {'title': 'Тегерек диаграммалар', 'slug': 'pie-charts'},
+            {'title': 'Эки багыттуу таблицалар', 'slug': 'two-way-tables'},
+            {'title': 'Аралаш', 'slug': 'mixed'},
+            {'title': 'Венн диаграммалары', 'slug': 'venn-diagrams'},
+        ],
+        'order': [
+            'Тилке диаграммалары',
+            'Куту диаграммалары',
+            'Топтолгон жыштык графиктери',
+            'Жыштык көп бурчтуктары',
+            'Жыштык дарактары',
+            'Гистограммалар',
+            'Сызыктуу графиктер / Убакыт катарлары',
+            'Пиктограммалар',
+            'Тегерек диаграммалар',
+            'Чачыранды диаграммалар',
+            'Сабак-жалбырак диаграммалары',
+            'Эки багыттуу таблицалар',
+            'Аралаш',
+            'Венн диаграммалары',
         ],
     },
     {
