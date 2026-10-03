@@ -1053,6 +1053,32 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-classifying-vocabulary-classifying-shapes-symmetry': 'Симметрия',
     'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals': 'Төрт бурчтуктар',
     'geometry-classifying-vocabulary-classifying-shapes-2d-shapes': '2D фигуралар',
+
+    # Геометрия > Классификациялоо жана терминология > Терминология -
+    # all 5 slots, none with a real page yet.
+    'geometry-classifying-vocabulary-vocabulary-angles': 'Бурчтар',
+    'geometry-classifying-vocabulary-vocabulary-circles': 'Тегеректер',
+    'geometry-classifying-vocabulary-vocabulary-2d-shapes': '2D фигуралар',
+    'geometry-classifying-vocabulary-vocabulary-3d-shapes': '3D фигуралар',
+    'geometry-classifying-vocabulary-vocabulary-sketching-diagrams': 'Диаграммаларды чийүү',
+
+    # Геометрия > Курулуштар > Бурчтар - all 4 slots, none with a
+    # real page yet.
+    'geometry-construction-angles-drawing': 'Чийүү',
+    'geometry-construction-angles-measuring': 'Өлчөө',
+    'geometry-construction-angles-both': 'Чийүү жана өлчөө',
+    'geometry-construction-angles-estimating': 'Болжолдоо',
+
+    # Геометрия > Курулуштар > Көп бурчтуктар - 2 known slots, none
+    # with a real page yet.
+    'geometry-construction-polygons-triangles': 'Үч бурчтуктар',
+    'geometry-construction-polygons-quadrilaterals': 'Төрт бурчтуктар',
+
+    # Геометрия > Курулуштар > Бисектрисалар - all 3 slots, none with
+    # a real page yet.
+    'geometry-construction-bisectors-line': 'Сызык',
+    'geometry-construction-bisectors-angle': 'Бурч',
+    'geometry-construction-bisectors-mixed': 'Аралаш',
 }
 
 
