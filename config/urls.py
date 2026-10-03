@@ -1111,6 +1111,29 @@ urlpatterns = [
     path('geometry-classifying-vocabulary-classifying-shapes-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals'}, name='geometry_classifying_vocabulary_classifying_shapes_quadrilaterals'),
     path('geometry-classifying-vocabulary-classifying-shapes-2d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-classifying-shapes-2d-shapes'}, name='geometry_classifying_vocabulary_classifying_shapes_2d_shapes'),
 
+    # Геометрия > Классификациялоо жана терминология > Терминология -
+    # all 5 slots.
+    path('geometry-classifying-vocabulary-vocabulary-angles/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-vocabulary-angles'}, name='geometry_classifying_vocabulary_vocabulary_angles'),
+    path('geometry-classifying-vocabulary-vocabulary-circles/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-vocabulary-circles'}, name='geometry_classifying_vocabulary_vocabulary_circles'),
+    path('geometry-classifying-vocabulary-vocabulary-2d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-vocabulary-2d-shapes'}, name='geometry_classifying_vocabulary_vocabulary_2d_shapes'),
+    path('geometry-classifying-vocabulary-vocabulary-3d-shapes/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-vocabulary-3d-shapes'}, name='geometry_classifying_vocabulary_vocabulary_3d_shapes'),
+    path('geometry-classifying-vocabulary-vocabulary-sketching-diagrams/', operation_placeholder_view, {'operation_slug': 'geometry-classifying-vocabulary-vocabulary-sketching-diagrams'}, name='geometry_classifying_vocabulary_vocabulary_sketching_diagrams'),
+
+    # Геометрия > Курулуштар > Бурчтар - all 4 slots.
+    path('geometry-construction-angles-drawing/', operation_placeholder_view, {'operation_slug': 'geometry-construction-angles-drawing'}, name='geometry_construction_angles_drawing'),
+    path('geometry-construction-angles-measuring/', operation_placeholder_view, {'operation_slug': 'geometry-construction-angles-measuring'}, name='geometry_construction_angles_measuring'),
+    path('geometry-construction-angles-both/', operation_placeholder_view, {'operation_slug': 'geometry-construction-angles-both'}, name='geometry_construction_angles_both'),
+    path('geometry-construction-angles-estimating/', operation_placeholder_view, {'operation_slug': 'geometry-construction-angles-estimating'}, name='geometry_construction_angles_estimating'),
+
+    # Геометрия > Курулуштар > Көп бурчтуктар - 2 known slots.
+    path('geometry-construction-polygons-triangles/', operation_placeholder_view, {'operation_slug': 'geometry-construction-polygons-triangles'}, name='geometry_construction_polygons_triangles'),
+    path('geometry-construction-polygons-quadrilaterals/', operation_placeholder_view, {'operation_slug': 'geometry-construction-polygons-quadrilaterals'}, name='geometry_construction_polygons_quadrilaterals'),
+
+    # Геометрия > Курулуштар > Бисектрисалар - all 3 slots.
+    path('geometry-construction-bisectors-line/', operation_placeholder_view, {'operation_slug': 'geometry-construction-bisectors-line'}, name='geometry_construction_bisectors_line'),
+    path('geometry-construction-bisectors-angle/', operation_placeholder_view, {'operation_slug': 'geometry-construction-bisectors-angle'}, name='geometry_construction_bisectors_angle'),
+    path('geometry-construction-bisectors-mixed/', operation_placeholder_view, {'operation_slug': 'geometry-construction-bisectors-mixed'}, name='geometry_construction_bisectors_mixed'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

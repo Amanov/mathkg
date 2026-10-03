@@ -2336,6 +2336,63 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Терминология" (Vocabulary) under Классификациялоо жана
+        # терминология was an empty chevron-bearing category -
+        # reference (5 items, all flat): Angles, Circles, 2D Shapes, 3D
+        # Shapes, Sketching Diagrams.
+        'parent_path': ('Геометрия', 'Классификациялоо жана терминология', 'Терминология'),
+        'target_items': [
+            {'title': 'Бурчтар', 'url_name': 'geometry_classifying_vocabulary_vocabulary_angles'},
+            {'title': 'Тегеректер', 'url_name': 'geometry_classifying_vocabulary_vocabulary_circles'},
+            {'title': '2D фигуралар', 'url_name': 'geometry_classifying_vocabulary_vocabulary_2d_shapes'},
+            {'title': '3D фигуралар', 'url_name': 'geometry_classifying_vocabulary_vocabulary_3d_shapes'},
+            {'title': 'Диаграммаларды чийүү', 'url_name': 'geometry_classifying_vocabulary_vocabulary_sketching_diagrams'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Бурчтар" (Angles) under Курулуштар was an empty
+        # chevron-bearing category - reference (4 items, all flat):
+        # Drawing, Measuring, Drawing & Measuring, Estimating - same
+        # shape as Геометрия > Бурчтар > Чийүү жана өлчөө.
+        'parent_path': ('Геометрия', 'Курулуштар', 'Бурчтар'),
+        'target_items': [
+            {'title': 'Чийүү', 'url_name': 'geometry_construction_angles_drawing'},
+            {'title': 'Өлчөө', 'url_name': 'geometry_construction_angles_measuring'},
+            {'title': 'Чийүү жана өлчөө', 'url_name': 'geometry_construction_angles_both'},
+            {'title': 'Болжолдоо', 'url_name': 'geometry_construction_angles_estimating'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Көп бурчтуктар" (Polygons) under Курулуштар was an empty
+        # chevron-bearing category - reference screenshot showed 2
+        # items, all flat, no indication of more below: Triangles,
+        # Quadrilaterals.
+        'parent_path': ('Геометрия', 'Курулуштар', 'Көп бурчтуктар'),
+        'target_items': [
+            {'title': 'Үч бурчтуктар', 'url_name': 'geometry_construction_polygons_triangles'},
+            {'title': 'Төрт бурчтуктар', 'url_name': 'geometry_construction_polygons_quadrilaterals'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Бисектрисалар" (Bisectors) under Курулуштар was an empty
+        # chevron-bearing category - reference (3 items, all flat):
+        # Line, Angle, Mixed.
+        'parent_path': ('Геометрия', 'Курулуштар', 'Бисектрисалар'),
+        'target_items': [
+            {'title': 'Сызык', 'url_name': 'geometry_construction_bisectors_line'},
+            {'title': 'Бурч', 'url_name': 'geometry_construction_bisectors_angle'},
+            {'title': 'Аралаш', 'url_name': 'geometry_construction_bisectors_mixed'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -3746,6 +3803,14 @@ MIRROR_GROUPS = [
         # pages needed.
         'parent_path': ('Геометрия', 'Өлчөмдөр'),
         'source_parent_path': ('Сандар', 'Өлчөмдөр'),
+    },
+    {
+        # "Масштабдуу сүрөттөр" (Scale Drawings) under Курулуштар is
+        # the exact same 4-item set as Сандар > Өлчөмдөр's own Масштабдуу
+        # сүрөттөр (Lengths, Estimation, With Bearings, Areas) - reuses
+        # those same real pages rather than building duplicates.
+        'parent_path': ('Геометрия', 'Курулуштар', 'Масштабдуу сүрөттөр'),
+        'source_parent_path': ('Сандар', 'Өлчөмдөр', 'Масштабдуу сүрөттөр'),
     },
     {
         # "Барабардык" (Equivalence) under Пайыздар: калькуляторсуз is
