@@ -2383,6 +2383,188 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Конус" (Cone) under Көлөм жана бет аянты was an empty
+        # chevron-bearing category - reference (3 items): Volume,
+        # Surface Area are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below), with its own 2
+        # children (Foundation, Higher) confirmed by the same
+        # screenshot set as Cuboid/Cylinder/Prism below.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Конус'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_cone_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_cone_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Конус - confirmed by the same
+        # screenshot to have 2 flat children: Foundation, Higher.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Конус', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_cone_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_cone_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Параллелепипед" (Cuboid) under Көлөм жана бет аянты was an
+        # empty chevron-bearing category - reference (3 items): Volume,
+        # Surface Area are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below), with its own 2
+        # children (Foundation, Higher) confirmed by the same
+        # screenshot.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Параллелепипед'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_cuboid_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_cuboid_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Параллелепипед - confirmed by the same
+        # screenshot to have 2 flat children: Foundation, Higher.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Параллелепипед', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_cuboid_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_cuboid_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Цилиндр" (Cylinder) under Көлөм жана бет аянты was an empty
+        # chevron-bearing category - reference (3 items): Volume,
+        # Surface Area are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below), with its own 2
+        # children (Foundation, Higher) confirmed by the same
+        # screenshot.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_cylinder_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_cylinder_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Цилиндр - confirmed by the same
+        # screenshot to have 2 flat children: Foundation, Higher.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_cylinder_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_cylinder_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Призма" (Prism) under Көлөм жана бет аянты was an empty
+        # chevron-bearing category - reference (3 items): Volume,
+        # Surface Area are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below), with its own 2
+        # children (Foundation, Higher) confirmed by the same
+        # screenshot.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Призма'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_prism_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_prism_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Призма - confirmed by the same
+        # screenshot to have 2 flat children: Foundation, Higher.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Призма', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_prism_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_prism_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Кесилген конус" (Frustum), "Пирамида" (Pyramid) and "Сфера"
+        # (Sphere) under Көлөм жана бет аянты were empty chevron-bearing
+        # categories - the user confirmed from the reference site
+        # directly that all 3 share the same shape as Конус/
+        # Параллелепипед/Цилиндр/Призма above: Volume, Surface Area are
+        # flat; Mixed is itself chevron-bearing with its own 2 children
+        # (Foundation, Higher).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Кесилген конус'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_frustum_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_frustum_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Кесилген конус - same Foundation/Higher
+        # shape as its siblings above (user-confirmed).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Кесилген конус', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_frustum_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_frustum_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Пирамида" (Pyramid) - same Volume/Surface Area/Mixed shape
+        # as its siblings above (user-confirmed).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Пирамида'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_pyramid_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_pyramid_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Пирамида - same Foundation/Higher shape
+        # as its siblings above (user-confirmed).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Пирамида', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_pyramid_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_pyramid_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Сфера" (Sphere) - same Volume/Surface Area/Mixed shape as its
+        # siblings above (user-confirmed).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Сфера'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_sphere_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_sphere_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Сфера - same Foundation/Higher shape as
+        # its siblings above (user-confirmed).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Сфера', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_sphere_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_sphere_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Аралаш" (Mixed) under Бурчтар (its own top-level Mixed, not
         # the one nested under Көп бурчтуктар) was the one remaining
         # empty category under Бурчтар. Reference (2 items, both flat):
@@ -4068,6 +4250,99 @@ CHILD_ORDER_FIXES = [
             'Кесилген конус',
             'Пирамида',
             'Сфера',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Конус doesn't exist yet - created here via
+        # 'create_subsubtopics'. Its own 2 children (Foundation, Higher)
+        # are filled by a GROUPS entry above - a 2-run cross-run
+        # dependency, same pattern as elsewhere in this file.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Конус'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Параллелепипед doesn't exist yet - created here
+        # via 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Параллелепипед'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Цилиндр doesn't exist yet - created here via
+        # 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Призма doesn't exist yet - created here via
+        # 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Призма'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Кесилген конус doesn't exist yet - created here
+        # via 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Кесилген конус'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Пирамида doesn't exist yet - created here via
+        # 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Пирамида'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Сфера doesn't exist yet - created here via
+        # 'create_subsubtopics'. Same 2-run cross-run dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Сфера'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
             'Аралаш',
         ],
     },
