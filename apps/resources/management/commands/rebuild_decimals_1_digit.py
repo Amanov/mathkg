@@ -2984,6 +2984,84 @@ GROUPS = [
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
     },
+    {
+        # "Тилке диаграммалары" (Bar Charts) under Көрсөтүү was an empty
+        # chevron-bearing category - reference (7 items): Single, Dual,
+        # Composite, Vertical Line Charts, Calculating Averages, With
+        # Two-Way Tables are flat; Mixed is itself chevron-bearing
+        # (created via 'create_subsubtopics' below, left empty pending
+        # its own screenshot).
+        'parent_path': ('Дата', 'Көрсөтүү', 'Тилке диаграммалары'),
+        'target_items': [
+            {'title': 'Жалгыз', 'url_name': 'data_representing_bar_charts_single'},
+            {'title': 'Кош', 'url_name': 'data_representing_bar_charts_dual'},
+            {'title': 'Татаал', 'url_name': 'data_representing_bar_charts_composite'},
+            {'title': 'Вертикалдуу сызык диаграммалары', 'url_name': 'data_representing_bar_charts_vertical_line_charts'},
+            {'title': 'Орточолорду эсептөө', 'url_name': 'data_representing_bar_charts_calculating_averages'},
+            {'title': 'Эки багыттуу таблицалар менен', 'url_name': 'data_representing_bar_charts_with_two_way_tables'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Куту диаграммалары" (Box Plots) under Көрсөтүү was an empty
+        # chevron-bearing category - reference (3 items, all flat): With
+        # Quartiles, Creating & Reading, With Graphs.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Куту диаграммалары'),
+        'target_items': [
+            {'title': 'Кварталдар менен', 'url_name': 'data_representing_box_plots_with_quartiles'},
+            {'title': 'Түзүү жана окуу', 'url_name': 'data_representing_box_plots_creating_reading'},
+            {'title': 'Графиктер менен', 'url_name': 'data_representing_box_plots_with_graphs'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Топтолгон жыштык графиктери" (Cumulative Frequency Graphs)
+        # under Көрсөтүү was an empty chevron-bearing category -
+        # reference (2 items, both flat so far): Introduction, With Box
+        # Plots. The screenshot cut off right after these 2 items (no
+        # partial row visible, but may not be the complete list) -
+        # flagged to the user.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Топтолгон жыштык графиктери'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'data_representing_cumulative_frequency_graphs_introduction'},
+            {'title': 'Куту диаграммалары менен', 'url_name': 'data_representing_cumulative_frequency_graphs_with_box_plots'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Жыштык дарактары" (Frequency Trees) under Көрсөтүү was an
+        # empty chevron-bearing category - reference (3 items, all
+        # flat): Introduction, With FPR, With Probability Trees.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Жыштык дарактары'),
+        'target_items': [
+            {'title': 'Киришүү', 'url_name': 'data_representing_frequency_trees_introduction'},
+            {'title': 'Бөлчөк, пайыз жана катыш менен', 'url_name': 'data_representing_frequency_trees_with_fpr'},
+            {'title': 'Ыктымалдуулук дарактары менен', 'url_name': 'data_representing_frequency_trees_with_probability_trees'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Тегерек диаграммалар" (Pie Charts) under Көрсөтүү was an
+        # empty chevron-bearing category - reference (4 items): Reading,
+        # Scaling Method, Proportional Method are flat; Mixed is itself
+        # chevron-bearing (created via 'create_subsubtopics' below, left
+        # empty pending its own screenshot - a partial glimpse showed a
+        # "Comparative" child, not enough to build with confidence).
+        'parent_path': ('Дата', 'Көрсөтүү', 'Тегерек диаграммалар'),
+        'target_items': [
+            {'title': 'Окуу', 'url_name': 'data_representing_pie_charts_reading'},
+            {'title': 'Масштабдоо ыкмасы', 'url_name': 'data_representing_pie_charts_scaling_method'},
+            {'title': 'Пропорциялык ыкма', 'url_name': 'data_representing_pie_charts_proportional_method'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
 ]
 
 # A flat GROUPS-built leaf that turns out to have its own sub-items on
@@ -4711,6 +4789,40 @@ CHILD_ORDER_FIXES = [
             'Эки багыттуу таблицалар',
             'Аралаш',
             'Венн диаграммалары',
+        ],
+    },
+    {
+        # "Аралаш" under Тилке диаграммалары doesn't exist yet - created
+        # here via 'create_subsubtopics'. Left empty pending its own
+        # screenshot.
+        'parent_path': ('Дата', 'Көрсөтүү', 'Тилке диаграммалары'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Жалгыз',
+            'Кош',
+            'Татаал',
+            'Вертикалдуу сызык диаграммалары',
+            'Аралаш',
+            'Орточолорду эсептөө',
+            'Эки багыттуу таблицалар менен',
+        ],
+    },
+    {
+        # "Аралаш" under Тегерек диаграммалар doesn't exist yet - created
+        # here via 'create_subsubtopics'. Left empty pending its own
+        # screenshot (a partial glimpse showed a "Comparative" child,
+        # not enough to build with confidence).
+        'parent_path': ('Дата', 'Көрсөтүү', 'Тегерек диаграммалар'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Окуу',
+            'Масштабдоо ыкмасы',
+            'Пропорциялык ыкма',
+            'Аралаш',
         ],
     },
     {
