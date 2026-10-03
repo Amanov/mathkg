@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{% if query %}«{{ query }}» боюнча издөө{% else %}Издөө{% endif %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/search-results.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 search-results-page">
+
+    <div class="mb-5">
+        <h1 class="display-6 fw-bold mb-1">
+            {% if query %}«{{ query }}» боюнча издөө{% else %}Издөө{% endif %}
+        </h1>
+        {% if query %}
+            <p class="text-muted mb-0">
+                {% if has_results %}
+                    Тема, материал жана жаңылыктардын арасынан табылган жыйынтыктар
+                {% else %}
+                    Эч нерсе табылган жок
+                {% endif %}
+            </p>
+        {% else %}
+            <p class="text-muted mb-0">Издөө үчүн жогорудагы талаага сөз жазыңыз.</p>
+        {% endif %}
+    </div>
+
+    {% if query and not has_results %}
+        <div class="alert alert-warning">
+            «{{ query }}» боюнча эч нерсе табылган жок. Башка сөз менен издеп көрүңүз.
+        </div>
+    {% endif %}
+
+    {% if topic_results %}
+    <section class="search-section">
+        <h2 class="search-section-title">Темалар</h2>
+        <div class="search-result-list">
+            {% for result in topic_results %}
+            <a class="search-result-card" href="{{ result.url }}">
+                {% if result.breadcrumb %}
+                <div class="search-result-breadcrumb">
+                    {{ result.breadcrumb|join:' › ' }}
+                </div>
+                {% endif %}
+                <div class="search-result-title">{{ result.title }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if resource_results %}
+    <section class="search-section">
+        <h2 class="search-section-title">Материалдар</h2>
+        <div class="search-result-list">
+            {% for result in resource_results %}
+            {% with resource=result.resource %}
+            {% if result.url %}
+            <a class="search-result-card" href="{{ result.url }}">
+                <div class="search-result-breadcrumb">{{ resource.get_category_display }}</div>
+                <div class="search-result-title">{{ resource.title }}</div>
+                {% if resource.description %}
+                <div class="search-result-snippet">{{ resource.description|truncatewords:28 }}</div>
+                {% endif %}
+            </a>
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if news_results %}
+    <section class="search-section">
+        <h2 class="search-section-title">Жаңылыктар</h2>
+        <div class="search-result-list">
+            {% for post in news_results %}
+            <a class="search-result-card" href="{% url 'news_list' %}">
+                <div class="search-result-breadcrumb">{{ post.formatted_date }}</div>
+                <div class="search-result-title">{{ post.title }}</div>
+                <div class="search-result-snippet">{{ post.body|truncatewords:28 }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+{% endblock %}

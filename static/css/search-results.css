@@ -1,0 +1,74 @@
+/* /search/ - site-wide search results, grouped by content type. Shares
+   tokens with account.css/topics-tree.css instead of introducing new
+   colors/radii/timings. */
+
+.search-results-page {
+    max-width: 820px;
+}
+
+.search-section {
+    margin-bottom: 36px;
+}
+
+.search-section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-navy, #0f3c58);
+    margin-bottom: 14px;
+}
+
+.search-result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-result-card {
+    display: block;
+    background: #fff;
+    border: 1px solid #e6ebf1;
+    border-radius: var(--radius-md, 12px);
+    padding: 14px 18px;
+    text-decoration: none;
+    transition: border-color var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease),
+                transform var(--transition-fast, 150ms ease);
+}
+
+.search-result-card:hover,
+.search-result-card:focus-visible {
+    border-color: var(--color-border-accent, #2285c3);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
+    transform: translateY(-1px);
+}
+
+.search-result-breadcrumb {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: #94a3b8;
+    margin-bottom: 3px;
+}
+
+.search-result-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-navy, #0f3c58);
+}
+
+.search-result-snippet {
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-result-card {
+        transition: none;
+    }
+    .search-result-card:hover,
+    .search-result-card:focus-visible {
+        transform: none;
+    }
+}

@@ -50,6 +50,7 @@ from apps.resources.views import (
     news_list_view,
     about_view,
     topics_tree_view,
+    search_view,
 
     # question bank / online tests
     question_bank_view,
@@ -1441,6 +1442,7 @@ urlpatterns = [
     path('news/', news_list_view, name='news_list'),
     path('about/', about_view, name='about'),
     path('topics/', topics_tree_view, name='topics_tree'),
+    path('search/', search_view, name='search'),
 
     # Question bank / online tests
     path('questions/', question_bank_view, name='question_bank'),

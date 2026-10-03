@@ -48,8 +48,8 @@
           </li> -->
           
           <li class="nav-item" id="searchForm">
-            <form class="d-flex my-1 my-lg-0">
-              <input class="form-control me-2" type="search" placeholder="Издөө" style="width: 150px;" aria-label="Search">
+            <form class="d-flex my-1 my-lg-0" action="{% url 'search' %}" method="get">
+              <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Издөө" style="width: 150px;" aria-label="Search">
               <button class="btn btn-success" type="submit" data-track="Издөө"><i class="fas fa-fw fa-magnifying-glass"></i></button>
             </form>
           </li>
