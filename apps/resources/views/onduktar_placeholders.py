@@ -1322,6 +1322,29 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-representing-pie-charts-reading': 'Окуу',
     'data-representing-pie-charts-scaling-method': 'Масштабдоо ыкмасы',
     'data-representing-pie-charts-proportional-method': 'Пропорциялык ыкма',
+
+    # Дата > Көрсөтүү > Аралаш (top-level sibling to Тилке диаграммалары/
+    # Куту диаграммалары/etc) - 2 flat slots, none with a real page yet.
+    'data-representing-mixed-foundation': 'Негизги деңгээл',
+    'data-representing-mixed-higher': 'Жогорку деңгээл',
+
+    # Дата > Көрсөтүү > Венн диаграммалары - 5 flat slots, none with a
+    # real page yet.
+    'data-representing-venn-diagrams-creating-reading': 'Түзүү жана окуу',
+    'data-representing-venn-diagrams-with-probability': 'Ыктымалдуулук менен',
+    'data-representing-venn-diagrams-sets-with-notation': 'Жыйындар белгилөө менен',
+    'data-representing-venn-diagrams-sets-with-notation-igcse': 'Жыйындар белгилөө менен (ЖРТ)',
+    'data-representing-venn-diagrams-notation-probability': 'Белгилөө жана ыктымалдуулук',
+
+    # Ыктымалдуулук > Бир окуя - 7 flat slots, none with a real page
+    # yet.
+    'probability-single-event-probability-scale': 'Ыктымалдуулук шкаласы',
+    'probability-single-event-calculating': 'Эсептөө',
+    'probability-single-event-will-not-happen': 'Окуя болбойт',
+    'probability-single-event-addition-law-or': 'Кошуу мыйзамы (ЖЕ)',
+    'probability-single-event-exhaustive-events': 'Толук окуялар',
+    'probability-single-event-expectation': 'Математикалык күтүү',
+    'probability-single-event-experimental': 'Тажрыйбалык',
 }
 
 
