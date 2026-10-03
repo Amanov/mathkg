@@ -1128,6 +1128,16 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-volume-surface-area-sphere-mixed-foundation': 'Негизги деңгээл',
     'geometry-volume-surface-area-sphere-mixed-higher': 'Жогорку деңгээл',
 
+    # Геометрия > Көлөм жана бет аянты > Цилиндр жана призма - 2 flat
+    # slots, none with a real page yet.
+    'geometry-volume-surface-area-cylinder-prism-volume': 'Көлөм',
+    'geometry-volume-surface-area-cylinder-prism-surface-area': 'Бет аянты',
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр жана призма > Аралаш -
+    # 2 flat slots, none with a real page yet.
+    'geometry-volume-surface-area-cylinder-prism-mixed-foundation': 'Негизги деңгээл',
+    'geometry-volume-surface-area-cylinder-prism-mixed-higher': 'Жогорку деңгээл',
+
     # Геометрия > Көлөм жана бет аянты > Аралаш (top-level sibling to
     # Конус/Параллелепипед/etc) - 2 flat slots, none with a real page
     # yet.
