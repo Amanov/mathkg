@@ -1410,6 +1410,11 @@ urlpatterns = [
     path('probability-probability-tree-diagrams-conditional/', operation_placeholder_view, {'operation_slug': 'probability-probability-tree-diagrams-conditional'}, name='probability_probability_tree_diagrams_conditional'),
     path('probability-probability-tree-diagrams-with-frequency-trees/', operation_placeholder_view, {'operation_slug': 'probability-probability-tree-diagrams-with-frequency-trees'}, name='probability_probability_tree_diagrams_with_frequency_trees'),
 
+    # Ыктымалдуулук > Аралаш (top-level sibling to Бир окуя/Бир нече
+    # окуя/etc) - 2 flat slots, none with a real page yet.
+    path('probability-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'probability-mixed-foundation'}, name='probability_mixed_foundation'),
+    path('probability-mixed-higher/', operation_placeholder_view, {'operation_slug': 'probability-mixed-higher'}, name='probability_mixed_higher'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),

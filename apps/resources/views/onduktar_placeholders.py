@@ -1362,6 +1362,11 @@ OPERATION_PLACEHOLDER_TITLES = {
     'probability-probability-tree-diagrams-unconditional': 'Шартсыз',
     'probability-probability-tree-diagrams-conditional': 'Шарттуу',
     'probability-probability-tree-diagrams-with-frequency-trees': 'Жыштык дарактары менен',
+
+    # Ыктымалдуулук > Аралаш (top-level sibling to Бир окуя/Бир нече
+    # окуя/etc) - 2 flat slots, none with a real page yet.
+    'probability-mixed-foundation': 'Негизги деңгээл',
+    'probability-mixed-higher': 'Жогорку деңгээл',
 }
 
 
