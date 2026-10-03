@@ -4361,6 +4361,37 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
         ],
     },
+    {
+        # "Дата" (Data) was a root Topic carrying 3 merged categories
+        # from the old coarser import (Орточо маанилер жана чачыроо,
+        # Маалыматтарды сүрөттөө, Маалымат чогултуу - all with 0
+        # resources attached anywhere in their subtrees). The new
+        # reference site's own top-level menu instead shows 4 separate
+        # categories: Analysing, Collecting, Frequency Tables,
+        # Representing - created fresh here via 'create_subsubtopics'
+        # (same as the Геометрия root entry above, since Дата is itself
+        # a root Topic with no subtopic_id); the exhaustive 'order'
+        # list below prunes the 3 old merged categories like any other
+        # leftover. "Жыштык таблицалары" (Frequency Tables) happens to
+        # match an old nested sub-item's title exactly, but that row
+        # sits one level deeper (under Орточо маанилер жана чачыроо,
+        # not directly under Дата) so it can't be reused via 'renames'
+        # (which only changes title, not parent) - left in place,
+        # unreferenced, same as every other prune in this file.
+        'parent_path': ('Дата',),
+        'create_subsubtopics': [
+            {'title': 'Талдоо', 'slug': 'analysing'},
+            {'title': 'Чогултуу', 'slug': 'collecting'},
+            {'title': 'Жыштык таблицалары', 'slug': 'frequency-tables'},
+            {'title': 'Көрсөтүү', 'slug': 'representing'},
+        ],
+        'order': [
+            'Талдоо',
+            'Чогултуу',
+            'Жыштык таблицалары',
+            'Көрсөтүү',
+        ],
+    },
 ]
 
 # The reference site cross-links some groups from two different places
