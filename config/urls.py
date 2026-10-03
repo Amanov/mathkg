@@ -533,7 +533,7 @@ urlpatterns = [
     path('ratio-dividing-fpr-non-calculator/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-non-calculator'}, name='ratio_dividing_fpr_non_calculator'),
     path('ratio-dividing-fpr-frequency-trees/', operation_placeholder_view, {'operation_slug': 'ratio-dividing-fpr-frequency-trees'}, name='ratio_dividing_fpr_frequency_trees'),
 
-    # Катыш > Түрлөндүрүү - all 4 slots, none with a real page yet.
+    # Катыш > Өзгөртүп түзүү - all 4 slots, none with a real page yet.
     path('ratio-manipulation-1-to-n/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-1-to-n'}, name='ratio_manipulation_1_to_n'),
     path('ratio-manipulation-comparing-parts/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-comparing-parts'}, name='ratio_manipulation_comparing_parts'),
     path('ratio-manipulation-combining/', operation_placeholder_view, {'operation_slug': 'ratio-manipulation-combining'}, name='ratio_manipulation_combining'),
@@ -716,7 +716,7 @@ urlpatterns = [
     path('algebra-inequalities-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-quadratic'}, name='algebra_inequalities_quadratic'),
     path('algebra-inequalities-trial-improvement/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-trial-improvement'}, name='algebra_inequalities_trial_improvement'),
 
-    # Түрлөндүрүү - 2 flat slots, none with a real page yet.
+    # Өзгөртүп түзүү - 2 flat slots, none with a real page yet.
     path('algebra-manipulation-notation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-notation'}, name='algebra_manipulation_notation'),
     path('algebra-manipulation-changing-subject/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject'}, name='algebra_manipulation_changing_subject'),
 
@@ -807,7 +807,7 @@ urlpatterns = [
     path('algebra-graphs-abstract-other-nonlinear-exponential-functions/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-exponential-functions'}, name='algebra_graphs_abstract_other_nonlinear_exponential_functions'),
     path('algebra-graphs-abstract-other-nonlinear-trig-functions/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-other-nonlinear-trig-functions'}, name='algebra_graphs_abstract_other_nonlinear_trig_functions'),
 
-    # Графиктер: абстракттуу > Түрлөндүрүүлөр - both slots, none with a
+    # Графиктер: абстракттуу > Өзгөртүүлөр - both slots, none with a
     # real page yet.
     path('algebra-graphs-abstract-transformations-gcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-gcse'}, name='algebra_graphs_abstract_transformations_gcse'),
     path('algebra-graphs-abstract-transformations-igcse/', operation_placeholder_view, {'operation_slug': 'algebra-graphs-abstract-transformations-igcse'}, name='algebra_graphs_abstract_transformations_igcse'),
@@ -847,13 +847,13 @@ urlpatterns = [
     path('algebra-inequalities-graphical-shade-wanted/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-graphical-shade-wanted'}, name='algebra_inequalities_graphical_shade_wanted'),
     path('algebra-inequalities-graphical-shade-unwanted/', operation_placeholder_view, {'operation_slug': 'algebra-inequalities-graphical-shade-unwanted'}, name='algebra_inequalities_graphical_shade_unwanted'),
 
-    # Түрлөндүрүү > Туюнтма түзүү - all 3 slots, none with a real page
+    # Өзгөртүп түзүү > Туюнтма түзүү - all 3 slots, none with a real page
     # yet.
     path('algebra-manipulation-forming-function-machines/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-function-machines'}, name='algebra_manipulation_forming_function_machines'),
     path('algebra-manipulation-forming-linear/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-linear'}, name='algebra_manipulation_forming_linear'),
     path('algebra-manipulation-forming-quadratic/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-forming-quadratic'}, name='algebra_manipulation_forming_quadratic'),
 
-    # Түрлөндүрүү > Алгебралык бөлчөктөр - all 6 slots, none with a
+    # Өзгөртүп түзүү > Алгебралык бөлчөктөр - all 6 slots, none with a
     # real page yet.
     path('algebra-manipulation-fractions-adding-subtracting/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-adding-subtracting'}, name='algebra_manipulation_fractions_adding_subtracting'),
     path('algebra-manipulation-fractions-multiplying-dividing/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-multiplying-dividing'}, name='algebra_manipulation_fractions_multiplying_dividing'),
@@ -862,14 +862,14 @@ urlpatterns = [
     path('algebra-manipulation-fractions-simplifying-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-simplifying-with-factorisation'}, name='algebra_manipulation_fractions_simplifying_with_factorisation'),
     path('algebra-manipulation-fractions-simplifying-difference-squares/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-fractions-simplifying-difference-squares'}, name='algebra_manipulation_fractions_simplifying_difference_squares'),
 
-    # Түрлөндүрүү > Формуланын өзгөрмөсүн алмаштыруу - all 4 slots,
+    # Өзгөртүп түзүү > Формуланын өзгөрмөсүн алмаштыруу - all 4 slots,
     # none with a real page yet.
     path('algebra-manipulation-changing-subject-manipulating-formulae/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-manipulating-formulae'}, name='algebra_manipulation_changing_subject_manipulating_formulae'),
     path('algebra-manipulation-changing-subject-function-machine/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-function-machine'}, name='algebra_manipulation_changing_subject_function_machine'),
     path('algebra-manipulation-changing-subject-without-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-without-factorisation'}, name='algebra_manipulation_changing_subject_without_factorisation'),
     path('algebra-manipulation-changing-subject-with-factorisation/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-changing-subject-with-factorisation'}, name='algebra_manipulation_changing_subject_with_factorisation'),
 
-    # Түрлөндүрүү > Бир кашааны ачуу - all 7 slots, none with a real
+    # Өзгөртүп түзүү > Бир кашааны ачуу - all 7 slots, none with a real
     # page yet.
     path('algebra-manipulation-expand-single-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-without-coefficients'}, name='algebra_manipulation_expand_single_without_coefficients'),
     path('algebra-manipulation-expand-single-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-with-coefficients'}, name='algebra_manipulation_expand_single_with_coefficients'),
@@ -879,7 +879,7 @@ urlpatterns = [
     path('algebra-manipulation-expand-single-factorisation-without-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-factorisation-without-indices'}, name='algebra_manipulation_expand_single_factorisation_without_indices'),
     path('algebra-manipulation-expand-single-factorisation-with-indices/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-single-factorisation-with-indices'}, name='algebra_manipulation_expand_single_factorisation_with_indices'),
 
-    # Түрлөндүрүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
+    # Өзгөртүп түзүү > Эки жана үч кашааны ачуу - all 7 slots, none with a
     # real page yet.
     path('algebra-manipulation-expand-double-triple-double-without-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-double-without-coefficients'}, name='algebra_manipulation_expand_double_triple_double_without_coefficients'),
     path('algebra-manipulation-expand-double-triple-double-with-coefficients/', operation_placeholder_view, {'operation_slug': 'algebra-manipulation-expand-double-triple-double-with-coefficients'}, name='algebra_manipulation_expand_double_triple_double_with_coefficients'),

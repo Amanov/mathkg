@@ -734,7 +734,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-graphs-abstract-other-nonlinear-exponential-functions': 'Көрсөткүчтүү функциялар',
     'algebra-graphs-abstract-other-nonlinear-trig-functions': 'Тригонометриялык функциялар',
 
-    # Графиктер: абстракттуу > Түрлөндүрүүлөр - both slots, none with a
+    # Графиктер: абстракттуу > Өзгөртүүлөр - both slots, none with a
     # real page yet.
     'algebra-graphs-abstract-transformations-gcse': 'GCSE',
     'algebra-graphs-abstract-transformations-igcse': 'ЖРТ',
