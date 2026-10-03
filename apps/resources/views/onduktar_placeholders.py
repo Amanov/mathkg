@@ -1290,6 +1290,38 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-representing-pictograms': 'Пиктограммалар',
     'data-representing-scatter-graphs': 'Чачыранды диаграммалар',
     'data-representing-stem-leaf-diagrams': 'Сабак-жалбырак диаграммалары',
+
+    # Дата > Көрсөтүү > Тилке диаграммалары - 6 flat slots, none with a
+    # real page yet.
+    'data-representing-bar-charts-single': 'Жалгыз',
+    'data-representing-bar-charts-dual': 'Кош',
+    'data-representing-bar-charts-composite': 'Татаал',
+    'data-representing-bar-charts-vertical-line-charts': 'Вертикалдуу сызык диаграммалары',
+    'data-representing-bar-charts-calculating-averages': 'Орточолорду эсептөө',
+    'data-representing-bar-charts-with-two-way-tables': 'Эки багыттуу таблицалар менен',
+
+    # Дата > Көрсөтүү > Куту диаграммалары - 3 flat slots, none with a
+    # real page yet.
+    'data-representing-box-plots-with-quartiles': 'Кварталдар менен',
+    'data-representing-box-plots-creating-reading': 'Түзүү жана окуу',
+    'data-representing-box-plots-with-graphs': 'Графиктер менен',
+
+    # Дата > Көрсөтүү > Топтолгон жыштык графиктери - 2 flat slots, none
+    # with a real page yet.
+    'data-representing-cumulative-frequency-graphs-introduction': 'Киришүү',
+    'data-representing-cumulative-frequency-graphs-with-box-plots': 'Куту диаграммалары менен',
+
+    # Дата > Көрсөтүү > Жыштык дарактары - 3 flat slots, none with a
+    # real page yet.
+    'data-representing-frequency-trees-introduction': 'Киришүү',
+    'data-representing-frequency-trees-with-fpr': 'Бөлчөк, пайыз жана катыш менен',
+    'data-representing-frequency-trees-with-probability-trees': 'Ыктымалдуулук дарактары менен',
+
+    # Дата > Көрсөтүү > Тегерек диаграммалар - 3 flat slots, none with a
+    # real page yet.
+    'data-representing-pie-charts-reading': 'Окуу',
+    'data-representing-pie-charts-scaling-method': 'Масштабдоо ыкмасы',
+    'data-representing-pie-charts-proportional-method': 'Пропорциялык ыкма',
 }
 
 

@@ -1350,6 +1350,38 @@ urlpatterns = [
     path('data-representing-scatter-graphs/', operation_placeholder_view, {'operation_slug': 'data-representing-scatter-graphs'}, name='data_representing_scatter_graphs'),
     path('data-representing-stem-leaf-diagrams/', operation_placeholder_view, {'operation_slug': 'data-representing-stem-leaf-diagrams'}, name='data_representing_stem_leaf_diagrams'),
 
+    # Дата > Көрсөтүү > Тилке диаграммалары - 6 flat slots, none with a
+    # real page yet.
+    path('data-representing-bar-charts-single/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-single'}, name='data_representing_bar_charts_single'),
+    path('data-representing-bar-charts-dual/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-dual'}, name='data_representing_bar_charts_dual'),
+    path('data-representing-bar-charts-composite/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-composite'}, name='data_representing_bar_charts_composite'),
+    path('data-representing-bar-charts-vertical-line-charts/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-vertical-line-charts'}, name='data_representing_bar_charts_vertical_line_charts'),
+    path('data-representing-bar-charts-calculating-averages/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-calculating-averages'}, name='data_representing_bar_charts_calculating_averages'),
+    path('data-representing-bar-charts-with-two-way-tables/', operation_placeholder_view, {'operation_slug': 'data-representing-bar-charts-with-two-way-tables'}, name='data_representing_bar_charts_with_two_way_tables'),
+
+    # Дата > Көрсөтүү > Куту диаграммалары - 3 flat slots, none with a
+    # real page yet.
+    path('data-representing-box-plots-with-quartiles/', operation_placeholder_view, {'operation_slug': 'data-representing-box-plots-with-quartiles'}, name='data_representing_box_plots_with_quartiles'),
+    path('data-representing-box-plots-creating-reading/', operation_placeholder_view, {'operation_slug': 'data-representing-box-plots-creating-reading'}, name='data_representing_box_plots_creating_reading'),
+    path('data-representing-box-plots-with-graphs/', operation_placeholder_view, {'operation_slug': 'data-representing-box-plots-with-graphs'}, name='data_representing_box_plots_with_graphs'),
+
+    # Дата > Көрсөтүү > Топтолгон жыштык графиктери - 2 flat slots, none
+    # with a real page yet.
+    path('data-representing-cumulative-frequency-graphs-introduction/', operation_placeholder_view, {'operation_slug': 'data-representing-cumulative-frequency-graphs-introduction'}, name='data_representing_cumulative_frequency_graphs_introduction'),
+    path('data-representing-cumulative-frequency-graphs-with-box-plots/', operation_placeholder_view, {'operation_slug': 'data-representing-cumulative-frequency-graphs-with-box-plots'}, name='data_representing_cumulative_frequency_graphs_with_box_plots'),
+
+    # Дата > Көрсөтүү > Жыштык дарактары - 3 flat slots, none with a
+    # real page yet.
+    path('data-representing-frequency-trees-introduction/', operation_placeholder_view, {'operation_slug': 'data-representing-frequency-trees-introduction'}, name='data_representing_frequency_trees_introduction'),
+    path('data-representing-frequency-trees-with-fpr/', operation_placeholder_view, {'operation_slug': 'data-representing-frequency-trees-with-fpr'}, name='data_representing_frequency_trees_with_fpr'),
+    path('data-representing-frequency-trees-with-probability-trees/', operation_placeholder_view, {'operation_slug': 'data-representing-frequency-trees-with-probability-trees'}, name='data_representing_frequency_trees_with_probability_trees'),
+
+    # Дата > Көрсөтүү > Тегерек диаграммалар - 3 flat slots, none with a
+    # real page yet.
+    path('data-representing-pie-charts-reading/', operation_placeholder_view, {'operation_slug': 'data-representing-pie-charts-reading'}, name='data_representing_pie_charts_reading'),
+    path('data-representing-pie-charts-scaling-method/', operation_placeholder_view, {'operation_slug': 'data-representing-pie-charts-scaling-method'}, name='data_representing_pie_charts_scaling_method'),
+    path('data-representing-pie-charts-proportional-method/', operation_placeholder_view, {'operation_slug': 'data-representing-pie-charts-proportional-method'}, name='data_representing_pie_charts_proportional_method'),
+
     # Dashboard
     path('dashboard/', dashboard_view, name='dashboard'),
     path('analytics/', analytics_dashboard_view, name='analytics_dashboard'),
