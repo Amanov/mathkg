@@ -2565,6 +2565,30 @@ GROUPS = [
         'displaced_url_names': [],
     },
     {
+        # "Цилиндр жана призма" (Cylinder & Prism) - same Volume/Surface
+        # Area/Mixed shape as its siblings above, confirmed by its own
+        # screenshot (the one shape left unbuilt pending confirmation).
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр жана призма'),
+        'target_items': [
+            {'title': 'Көлөм', 'url_name': 'geometry_volume_surface_area_cylinder_prism_volume'},
+            {'title': 'Бет аянты', 'url_name': 'geometry_volume_surface_area_cylinder_prism_surface_area'},
+        ],
+        'promoted_titles': ['Аралаш'],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
+        # "Аралаш" (Mixed) under Цилиндр жана призма - same
+        # Foundation/Higher shape as its siblings above.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр жана призма', 'Аралаш'),
+        'target_items': [
+            {'title': 'Негизги деңгээл', 'url_name': 'geometry_volume_surface_area_cylinder_prism_mixed_foundation'},
+            {'title': 'Жогорку деңгээл', 'url_name': 'geometry_volume_surface_area_cylinder_prism_mixed_higher'},
+        ],
+        'stale_subsubtopic_titles': [],
+        'displaced_url_names': [],
+    },
+    {
         # "Аралаш" (Mixed) under Көлөм жана бет аянты directly (its own
         # top-level sibling to Конус/Параллелепипед/etc, distinct from
         # each shape's own "Аралаш" sub-item) was the last remaining
@@ -4352,6 +4376,20 @@ CHILD_ORDER_FIXES = [
         # "Аралаш" under Сфера doesn't exist yet - created here via
         # 'create_subsubtopics'. Same 2-run cross-run dependency.
         'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Сфера'),
+        'create_subsubtopics': [
+            {'title': 'Аралаш', 'slug': 'mixed'},
+        ],
+        'order': [
+            'Көлөм',
+            'Бет аянты',
+            'Аралаш',
+        ],
+    },
+    {
+        # "Аралаш" under Цилиндр жана призма doesn't exist yet - created
+        # here via 'create_subsubtopics'. Same 2-run cross-run
+        # dependency.
+        'parent_path': ('Геометрия', 'Көлөм жана бет аянты', 'Цилиндр жана призма'),
         'create_subsubtopics': [
             {'title': 'Аралаш', 'slug': 'mixed'},
         ],

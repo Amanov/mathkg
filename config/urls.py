@@ -1184,6 +1184,16 @@ urlpatterns = [
     path('geometry-volume-surface-area-sphere-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-foundation'}, name='geometry_volume_surface_area_sphere_mixed_foundation'),
     path('geometry-volume-surface-area-sphere-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-sphere-mixed-higher'}, name='geometry_volume_surface_area_sphere_mixed_higher'),
 
+    # Геометрия > Көлөм жана бет аянты > Цилиндр жана призма - 2 flat
+    # slots, none with a real page yet.
+    path('geometry-volume-surface-area-cylinder-prism-volume/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-prism-volume'}, name='geometry_volume_surface_area_cylinder_prism_volume'),
+    path('geometry-volume-surface-area-cylinder-prism-surface-area/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-prism-surface-area'}, name='geometry_volume_surface_area_cylinder_prism_surface_area'),
+
+    # Геометрия > Көлөм жана бет аянты > Цилиндр жана призма > Аралаш -
+    # 2 flat slots, none with a real page yet.
+    path('geometry-volume-surface-area-cylinder-prism-mixed-foundation/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-prism-mixed-foundation'}, name='geometry_volume_surface_area_cylinder_prism_mixed_foundation'),
+    path('geometry-volume-surface-area-cylinder-prism-mixed-higher/', operation_placeholder_view, {'operation_slug': 'geometry-volume-surface-area-cylinder-prism-mixed-higher'}, name='geometry_volume_surface_area_cylinder_prism_mixed_higher'),
+
     # Геометрия > Көлөм жана бет аянты > Аралаш (top-level sibling to
     # Конус/Параллелепипед/etc) - 2 flat slots, none with a real page
     # yet.
