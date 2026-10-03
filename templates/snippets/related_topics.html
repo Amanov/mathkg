@@ -1,0 +1,29 @@
+{% load static custom_tags %}
+{% if prev_item or next_item %}
+<link rel="stylesheet" href="{% static 'css/related-topics.css' %}">
+<nav class="related-topics" aria-label="Байланыштуу темалар">
+    <div class="container related-topics-inner">
+        {% if prev_item %}
+        <a class="related-topics-link related-topics-prev" href="{% menu_item_url prev_item %}">
+            <span class="related-topics-arrow">&larr;</span>
+            <span class="related-topics-text">
+                <span class="related-topics-label">Мурунку тема</span>
+                <span class="related-topics-title">{{ prev_item.title }}</span>
+            </span>
+        </a>
+        {% else %}
+        <span></span>
+        {% endif %}
+
+        {% if next_item %}
+        <a class="related-topics-link related-topics-next" href="{% menu_item_url next_item %}">
+            <span class="related-topics-text">
+                <span class="related-topics-label">Кийинки тема</span>
+                <span class="related-topics-title">{{ next_item.title }}</span>
+            </span>
+            <span class="related-topics-arrow">&rarr;</span>
+        </a>
+        {% endif %}
+    </div>
+</nav>
+{% endif %}

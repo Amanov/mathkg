@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static custom_tags %}
+
+{% block title %}Темалар дарагы{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/topics-tree.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 topics-tree-page">
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Темалар дарагы</h1>
+        <p class="text-muted">Сайттагы бардык бөлүм жана темалардын толук тизмеси</p>
+    </div>
+
+    <div class="topics-tree">
+        {% for root in roots %}
+        <details class="topics-tree-root" open>
+            <summary>{{ root.title }}</summary>
+            <div class="topics-tree-children">
+                {% for child in root.children.all %}
+                    {% include 'resources/_topic_tree_node.html' with item=child %}
+                {% endfor %}
+            </div>
+        </details>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

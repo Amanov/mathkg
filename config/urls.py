@@ -49,6 +49,7 @@ from apps.resources.views import (
     # pages
     news_list_view,
     about_view,
+    topics_tree_view,
 
     # question bank / online tests
     question_bank_view,
@@ -1439,6 +1440,7 @@ urlpatterns = [
     # Pages
     path('news/', news_list_view, name='news_list'),
     path('about/', about_view, name='about'),
+    path('topics/', topics_tree_view, name='topics_tree'),
 
     # Question bank / online tests
     path('questions/', question_bank_view, name='question_bank'),
