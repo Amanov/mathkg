@@ -51,6 +51,7 @@ from apps.resources.views import (
     about_view,
     topics_tree_view,
     search_view,
+    search_suggest_view,
 
     # question bank / online tests
     question_bank_view,
@@ -1443,6 +1444,7 @@ urlpatterns = [
     path('about/', about_view, name='about'),
     path('topics/', topics_tree_view, name='topics_tree'),
     path('search/', search_view, name='search'),
+    path('search/suggest/', search_suggest_view, name='search_suggest'),
 
     # Question bank / online tests
     path('questions/', question_bank_view, name='question_bank'),

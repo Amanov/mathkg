@@ -47,7 +47,9 @@ from .big4 import big4_view
 
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
 
-from .pages import news_list_view, about_view, topics_tree_view, search_view
+from .pages import (
+    news_list_view, about_view, topics_tree_view, search_view, search_suggest_view,
+)
 
 from .exams import (
     question_bank_view,
