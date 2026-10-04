@@ -45,7 +45,12 @@ h6 {
     background-color: bisque;
 }
 :root[data-theme="dark"] .placeholder-panel {
-    background-color: #3a2f22;
+    /* Not a darkened bisque - an unrelated warm brown read as muddy and
+       out of place next to the site's blue-gray dark palette. Reusing
+       the same neutral surface every other card on the site uses in
+       dark mode keeps this one page consistent with the rest instead
+       of introducing a one-off color. */
+    background-color: var(--surface-alt);
 }
 
 .custom_border h1 {
