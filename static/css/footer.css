@@ -1,0 +1,164 @@
+/* Site footer. Previously an inline <style> block in footer.html with a
+   3-stop blue/olive/orange diagonal gradient, a decorative radial "glow"
+   blob, and glassmorphism (backdrop-filter blur + translucent fills) on
+   the social icons - all flagged as patterns to avoid (see CLAUDE.md).
+
+   Rebuilt as a flat, solid brand-blue band - the same blue as the header's
+   top bar (.top-navbar in header.css) - so the page reads as bookended by
+   one deliberate brand color instead of blending into whichever surface
+   token the current theme happens to use. Like that bar, it's intentionally
+   the same in both themes rather than toggling with dark mode. */
+
+.site-footer {
+    background: #3761c2;
+    color: #fff;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    margin-bottom: 16px;
+}
+
+.footer-logo .accent {
+    color: var(--color-heading-accent);
+}
+
+.footer-description {
+    color: rgba(255, 255, 255, .78);
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 420px;
+}
+
+.footer-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-heading-accent);
+    display: inline-block;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 14px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, .78);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: #fff;
+}
+
+.footer-links a i {
+    font-size: 0.7rem;
+    color: var(--color-heading-accent);
+}
+
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, .78);
+}
+
+.footer-contact-item i {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, .12);
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-social a:hover,
+.footer-social a:focus-visible {
+    background: rgba(255, 255, 255, .22);
+    transform: translateY(-1px);
+}
+
+.footer-bottom {
+    margin-top: 48px;
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, .65);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        text-align: center;
+    }
+    .footer-description {
+        margin: 0 auto;
+    }
+    .footer-heading {
+        display: block;
+        text-align: center;
+    }
+    .footer-contact-item {
+        justify-content: center;
+    }
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-links a,
+    .footer-social a {
+        transition: none;
+    }
+    .footer-social a:hover {
+        transform: none;
+    }
+}
