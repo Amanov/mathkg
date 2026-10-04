@@ -51,6 +51,7 @@ from apps.resources.views import (
     about_view,
     topics_tree_view,
     search_view,
+    search_suggest_view,
 )
 
 from apps.account.views import (
@@ -1431,6 +1432,7 @@ urlpatterns = [
     path('about/', about_view, name='about'),
     path('topics/', topics_tree_view, name='topics_tree'),
     path('search/', search_view, name='search'),
+    path('search/suggest/', search_suggest_view, name='search_suggest'),
 
     # Password management
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),

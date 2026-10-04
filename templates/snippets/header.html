@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="{% static 'css/header.css' %}">
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/search-suggest.css' %}">
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
 <div class="fixed-top shadow-sm">
@@ -48,9 +49,10 @@
           </li> -->
           
           <li class="nav-item" id="searchForm">
-            <form class="d-flex my-1 my-lg-0" action="{% url 'search' %}" method="get">
-              <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Издөө" style="width: 150px;" aria-label="Search">
+            <form class="d-flex my-1 my-lg-0 position-relative" action="{% url 'search' %}" method="get" autocomplete="off">
+              <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Издөө" style="width: 150px;" aria-label="Search" id="siteSearchInput" data-suggest-url="{% url 'search_suggest' %}" role="combobox" aria-expanded="false" aria-controls="siteSearchSuggest" aria-autocomplete="list">
               <button class="btn btn-success" type="submit" data-track="Издөө"><i class="fas fa-fw fa-magnifying-glass"></i></button>
+              <div class="search-suggest-panel" id="siteSearchSuggest" role="listbox" hidden></div>
             </form>
           </li>
 
@@ -105,3 +107,4 @@
 {% include 'partials/subscribe_modal.html' %}
 
 <script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/search-suggest.js' %}"></script>

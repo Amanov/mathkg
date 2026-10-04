@@ -1,0 +1,95 @@
+/* Live suggestion dropdown under the header search box (#searchForm). Same
+   panel language as the mega-menu's .dropdown-menu (menu.css) - bordered,
+   shadowed, same radius/timing tokens - so it reads as the same site
+   component instead of a one-off widget. */
+
+.search-suggest-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 2000;
+    width: max(280px, 100%);
+    max-width: min(360px, calc(100vw - 32px));
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 4px;
+    background: var(--color-menu-surface);
+    border: 1px solid var(--color-menu-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-dropdown);
+}
+
+.search-suggest-panel[hidden] {
+    display: none;
+}
+
+.search-suggest-item {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--color-menu-text);
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.search-suggest-item:hover,
+.search-suggest-item:focus-visible,
+.search-suggest-item.is-active {
+    background: var(--color-menu-hover);
+    color: var(--color-bootstrap-primary);
+}
+
+.search-suggest-breadcrumb {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-suggest-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-suggest-empty {
+    padding: 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.search-suggest-footer {
+    display: block;
+    margin-top: 2px;
+    padding: 10px 12px;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-bootstrap-primary);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+}
+
+.search-suggest-footer:hover,
+.search-suggest-footer:focus-visible {
+    background: var(--color-menu-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-suggest-item,
+    .search-suggest-footer {
+        transition: none;
+    }
+}

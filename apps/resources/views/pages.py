@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, NoReverseMatch
 
@@ -70,18 +71,64 @@ def _resource_resolved_url(resource):
     return None
 
 
-def search_view(request):
-    """Site-wide search: the topic menu, the resource library (title and
-    description) and the news feed - the three kinds of text content on
-    the site a visitor might be looking for.
+def _topic_search_results(query_lower, limit):
+    """Menu entries (and the "Темалар" bucket of the full results page use
+    the same matching) whose title contains the query, most specific first
+    by title, deduped by (title, url) since the same page can be reachable
+    through more than one menu node.
 
     Matching is done in Python, not via a SQL icontains filter: SQLite's
     (and, depending on locale, Postgres's) case-insensitive LIKE only
     case-folds ASCII, so a lowercase Cyrillic query would silently miss
     every title stored with a capital letter. Python's str.lower() folds
-    Cyrillic correctly, and these tables are small enough (low thousands
-    of rows) that filtering them in Python per request is cheap.
+    Cyrillic correctly, and this table is small enough (low thousands of
+    rows) that filtering it in Python per request is cheap.
     """
+    menu_matches = [
+        item for item in MenuItem.objects.select_related(
+            'parent', 'topic', 'subtopic', 'subsubtopic'
+        )
+        if query_lower in item.title.lower()
+    ]
+    menu_matches.sort(key=lambda item: item.title)
+
+    results = []
+    seen = set()
+    for item in menu_matches:
+        url = _menu_item_resolved_url(item)
+        if not url or (item.title, url) in seen:
+            continue
+        seen.add((item.title, url))
+        results.append({
+            'title': item.title,
+            'url': url,
+            'breadcrumb': _menu_item_breadcrumb(item),
+        })
+        if len(results) >= limit:
+            break
+    return results
+
+
+def search_suggest_view(request):
+    """Backs the live dropdown under the header search box: as the visitor
+    types, this returns a short list of matching topic pages as JSON so the
+    page itself never reloads. The full /search/ page (below) still does
+    the complete, all-content-types search for when they submit the form."""
+    query = request.GET.get('q', '').strip()
+    query_lower = query.lower()
+
+    results = _topic_search_results(query_lower, limit=8) if len(query_lower) >= 2 else []
+
+    return JsonResponse({
+        'query': query,
+        'results': results,
+    })
+
+
+def search_view(request):
+    """Site-wide search: the topic menu, the resource library (title and
+    description) and the news feed - the three kinds of text content on
+    the site a visitor might be looking for."""
     query = request.GET.get('q', '').strip()
     query_lower = query.lower()
 
@@ -90,27 +137,7 @@ def search_view(request):
     news_results = []
 
     if query:
-        menu_matches = [
-            item for item in MenuItem.objects.select_related(
-                'parent', 'topic', 'subtopic', 'subsubtopic'
-            )
-            if query_lower in item.title.lower()
-        ]
-        menu_matches.sort(key=lambda item: item.title)
-
-        seen = set()
-        for item in menu_matches:
-            url = _menu_item_resolved_url(item)
-            if not url or (item.title, url) in seen:
-                continue
-            seen.add((item.title, url))
-            topic_results.append({
-                'title': item.title,
-                'url': url,
-                'breadcrumb': _menu_item_breadcrumb(item),
-            })
-            if len(topic_results) >= 40:
-                break
+        topic_results = _topic_search_results(query_lower, limit=40)
 
         resource_matches = [
             resource for resource in Resource.objects.filter(
