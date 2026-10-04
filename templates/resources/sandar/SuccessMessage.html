@@ -9,12 +9,15 @@
   body {
     background: linear-gradient(135deg, #f5f9ff, #eef6ff);
   }
+  :root[data-theme="dark"] body {
+    background: var(--bg);
+  }
 
   .success-card {
     max-width: 650px;
     border-radius: 20px;
     padding: 40px 30px;
-    background: rgb(242, 246, 243);
+    background: var(--surface);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   }
 
@@ -26,16 +29,16 @@
   .success-title {
     font-weight: 700;
     font-size: 1.8rem;
-    color: hwb(144 8% 28%);
+    color: var(--text);
   }
 
   .success-text {
-    color: hwb(150 5% 95%);
+    color: var(--text);
     line-height: 1.6;
   }
 
   .info-box {
-    background: #f8fbff;
+    background: var(--surface-alt);
     border-radius: 12px;
     padding: 20px;
   }

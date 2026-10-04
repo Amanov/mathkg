@@ -22,7 +22,7 @@
   .topbar a {
     font-size: 13px;
     padding: 6px 14px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-subtle);
     border-radius: 8px;
     text-decoration: none;
   }
@@ -33,13 +33,13 @@
     margin-bottom: 2rem;
   }
   .stat {
-    background: #f5f5f5;
+    background: var(--surface-alt);
     border-radius: 8px;
     padding: 1rem;
   }
   .stat-label {
     font-size: 12px;
-    color: #888;
+    color: var(--text-muted);
     margin-bottom: 6px;
   }
   .stat-value {
@@ -48,11 +48,11 @@
   }
   .stat-sub {
     font-size: 12px;
-    color: #888;
+    color: var(--text-muted);
     margin-top: 4px;
   }
   .section {
-    border: 1px solid #eee;
+    border: 1px solid var(--border-subtle);
     border-radius: 12px;
     margin-bottom: 1.5rem;
     overflow: hidden;
@@ -61,7 +61,7 @@
     display: flex;
     align-items: center;
     padding: 14px 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-subtle);
     gap: 8px;
     font-size: 14px;
     font-weight: 500;
@@ -92,20 +92,20 @@
   th {
     text-align: left;
     padding: 10px 16px;
-    color: #888;
+    color: var(--text-muted);
     font-weight: 400;
     font-size: 12px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-subtle);
   }
   td {
     padding: 10px 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-subtle);
   }
   tr:last-child td {
     border-bottom: none;
   }
   tr:hover td {
-    background: #fafafa;
+    background: var(--surface-alt);
   }
   .pill {
     font-size: 11px;
@@ -118,15 +118,15 @@
     color: #1a4a1a;
   }
   .pill-off {
-    background: #f0f0f0;
-    color: #888;
+    background: var(--border-subtle);
+    color: var(--text-muted);
   }
   .edit-btn {
     font-size: 12px;
-    color: #555;
+    color: var(--text-muted);
     text-decoration: none;
     padding: 4px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-subtle);
     border-radius: 6px;
   }
   .dl-bar-wrap {
@@ -182,7 +182,7 @@
       <tbody>
         {% for r in presentations %}
         <tr>
-          <td style="color: #aaa">{{ r.id }}</td>
+          <td style="color: var(--text-muted)">{{ r.id }}</td>
           <td>{{ r.title }}</td>
           <td>
             <div class="dl-bar-wrap">
@@ -229,7 +229,7 @@
       <tbody>
         {% for r in worksheets %}
         <tr>
-          <td style="color: #aaa">{{ r.id }}</td>
+          <td style="color: var(--text-muted)">{{ r.id }}</td>
           <td>{{ r.title }}</td>
           <td>
             <div class="dl-bar-wrap">
@@ -277,7 +277,7 @@
       <tbody>
         {% for r in activities %}
         <tr>
-          <td style="color: #aaa">{{ r.id }}</td>
+          <td style="color: var(--text-muted)">{{ r.id }}</td>
           <td>{{ r.title }}</td>
           <td>
             <div class="dl-bar-wrap">

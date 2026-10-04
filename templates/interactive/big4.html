@@ -13,8 +13,8 @@
 <style>
     #big4-app-container {
         font-family: 'Fredoka', sans-serif;
-        background-color: #f8fafc;
-        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-color: var(--bg);
+        background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
         background-size: 30px 30px;
         min-height: 100vh;
         padding-top: 135px; 
@@ -26,9 +26,9 @@
 
     .question-card {
         border-radius: 1.25rem;
-        border: 3px solid #f1f5f9;
+        border: 3px solid var(--border-subtle);
         transition: all 0.2s ease;
-        background: #ffffff;
+        background: var(--surface);
     }
     
     .question-card:hover {
@@ -38,8 +38,8 @@
     }
 
     .target-number-box {
-        border: 4px dashed #94a3b8;
-        background: #ffffff;
+        border: 4px dashed var(--text-muted);
+        background: var(--surface);
         box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
     }
 
