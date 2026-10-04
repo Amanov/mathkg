@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    min-width: 0;
     background: var(--surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);

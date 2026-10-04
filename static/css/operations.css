@@ -1,5 +1,15 @@
 /* operations.css */
 
+/* The page wrapper is a column flex container (.container.d-flex...), and
+   a flex item's default min-width is auto (its content's natural width),
+   not 0 - so a long title or wide inner box could force this child wider
+   than the viewport instead of wrapping/shrinking, causing a horizontal
+   scrollbar on narrow screens. */
+.container.d-flex.flex-column > .position-relative {
+    min-width: 0;
+    width: 100%;
+}
+
 .mainshadow {
     box-shadow: 0 0 20px var(--color-heading-accent);
 }
