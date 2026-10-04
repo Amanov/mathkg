@@ -19,8 +19,8 @@
     align-items: center;
     gap: 6px;
     padding: 28px 16px;
-    background: #f6f8fa;
-    border: 2px solid #e6ebf1;
+    background: var(--surface-alt);
+    border: 2px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     cursor: pointer;
     transition: border-color var(--transition-fast, 150ms ease),
@@ -29,7 +29,7 @@
 }
 .subscribe-plan-card:hover {
     border-color: var(--color-bootstrap-primary, #0d6efd);
-    background: #fff;
+    background: var(--surface);
     transform: translateY(-2px);
 }
 .subscribe-plan-card:focus-visible {
@@ -39,6 +39,9 @@
 .subscribe-plan-card.featured {
     border-color: var(--color-bootstrap-primary, #0d6efd);
     background: #eef5ff;
+}
+:root[data-theme="dark"] .subscribe-plan-card.featured {
+    background: #16293f;
 }
 .subscribe-plan-badge {
     position: absolute;
@@ -62,7 +65,7 @@
 }
 .subscribe-plan-note {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 .subscribe-back-btn {
@@ -85,7 +88,7 @@
 .subscribe-qr-img {
     max-width: 240px;
     width: 100%;
-    border: 1px solid #e6ebf1;
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm, 8px);
     padding: 12px;
     background: #fff;
@@ -97,13 +100,17 @@
     color: #664d03;
     font-size: 0.9rem;
 }
+:root[data-theme="dark"] .subscribe-qr-missing {
+    background: #4d3c05;
+    color: #ffe69c;
+}
 .subscribe-qr-text {
     margin-top: 16px;
     font-size: 0.95rem;
 }
 .subscribe-qr-hint {
     font-size: 0.825rem;
-    color: #64748b;
+    color: var(--text-muted);
     margin-bottom: 16px;
 }
 

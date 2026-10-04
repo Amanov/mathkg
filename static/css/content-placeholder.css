@@ -11,7 +11,7 @@
 }
 
 .content-placeholder__intro {
-    color: #5b6572;
+    color: var(--text-muted, #5b6572);
     font-size: 1rem;
     margin-bottom: 24px;
 }
@@ -35,14 +35,14 @@
     text-align: center;
     gap: 10px;
     padding: 28px 20px;
-    border: 1.5px dashed #cbd3db;
+    border: 1.5px dashed var(--border-subtle, #cbd3db);
     border-radius: var(--radius-md, 12px);
-    background: #fafbfc;
+    background: var(--surface-alt, #fafbfc);
 }
 
 .content-placeholder__icon {
     font-size: 1.6rem;
-    color: #9aa4b1;
+    color: var(--text-muted, #9aa4b1);
 }
 
 .content-placeholder__title {
@@ -54,8 +54,8 @@
 
 .content-placeholder__badge {
     font-size: .8rem;
-    color: #6b7684;
-    background: #eef1f4;
+    color: var(--text-muted, #6b7684);
+    background: var(--border-subtle, #eef1f4);
     border-radius: 999px;
     padding: 4px 12px;
 }

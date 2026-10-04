@@ -31,6 +31,13 @@ h6 {
     box-sizing: border-box;
 }
 
+.placeholder-panel {
+    background-color: bisque;
+}
+:root[data-theme="dark"] .placeholder-panel {
+    background-color: #3a2f22;
+}
+
 .custom_border h1 {
     white-space: normal;
     word-wrap: break-word;
@@ -127,7 +134,7 @@ hr {
 .negative-numbers h1 {
     font-size: 2.2rem;
     margin: 30px 0 15px 0;
-    color: #333;
+    color: var(--text, #333);
 }
 
 /* Make titles inside blocks consistent */

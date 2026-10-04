@@ -4,7 +4,7 @@
    new colors/radii/timings. */
 
 .related-topics {
-    border-top: 1px solid #e6ebf1;
+    border-top: 1px solid var(--border-subtle);
     margin-top: 56px;
     padding: 28px 0;
 }
@@ -19,8 +19,8 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    background: #fff;
-    border: 1px solid #e6ebf1;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     padding: 16px 20px;
     text-decoration: none;
@@ -59,7 +59,7 @@
     font-weight: 600;
     letter-spacing: .03em;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 
 .related-topics-title {

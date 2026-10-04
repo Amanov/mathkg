@@ -14,8 +14,8 @@
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    background: #fff;
-    border: 1px solid #e6ebf1;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
     padding: 24px;
@@ -44,7 +44,7 @@
 .account-header-info p {
     margin: 0;
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--text-muted);
 }
 .btn-account-subscribe {
     display: inline-flex;
@@ -76,8 +76,8 @@
     .account-status-grid { grid-template-columns: 1fr; }
 }
 .account-status-card {
-    background: #fff;
-    border: 1px solid #e6ebf1;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-left: 4px solid #cbd5e1;
     border-radius: var(--radius-md, 12px);
     padding: 18px 20px;
@@ -94,17 +94,17 @@
     font-weight: 600;
     letter-spacing: .03em;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 .account-status-value {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-navy, #0f3c58);
 }
-.account-status-value.account-status-muted { color: #94a3b8; }
+.account-status-value.account-status-muted { color: var(--text-muted); }
 .account-status-sub {
     font-size: 0.8125rem;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 .account-badge {
@@ -119,8 +119,8 @@
 
 /* ── Cards (profile form / contact) ── */
 .account-card {
-    background: #fff;
-    border: 1px solid #e6ebf1;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
     padding: 24px;
@@ -145,11 +145,11 @@
 .account-card .form-label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #334155;
+    color: var(--text);
 }
 .account-card .form-control {
-    background: #f6f8fa;
-    border: 1.5px solid #e6ebf1;
+    background: var(--surface-alt);
+    border: 1.5px solid var(--border-subtle);
     border-radius: var(--radius-sm, 8px);
     padding: 10px 14px;
     font-size: 0.9375rem;
@@ -157,7 +157,7 @@
                 box-shadow var(--transition-fast, 150ms ease);
 }
 .account-card .form-control:focus {
-    background: #fff;
+    background: var(--surface);
     border-color: var(--color-bootstrap-primary, #0d6efd);
     box-shadow: 0 0 0 3px rgba(13, 110, 253, .12);
 }
@@ -178,7 +178,7 @@
 }
 
 .account-divider {
-    border-top: 1px solid #e6ebf1;
+    border-top: 1px solid var(--border-subtle);
     margin: 22px 0;
 }
 
@@ -194,13 +194,13 @@
     font-size: 0.95rem;
 }
 .account-muted {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.8125rem;
     margin: 2px 0 0;
 }
 .btn-account-secondary {
     display: inline-block;
-    background: #fff;
+    background: var(--surface);
     color: var(--color-bootstrap-primary, #0d6efd);
     border: 1.5px solid var(--color-bootstrap-primary, #0d6efd);
     border-radius: var(--radius-sm, 8px);
@@ -238,3 +238,10 @@
         transform: none;
     }
 }
+
+/* The pending/confirmed badges use light Bootstrap-ish status colors
+   (pale yellow/green backgrounds, dark text) that read fine on a white
+   card but lose contrast on a dark one - swapped for a darker, more
+   saturated version of the same hue pair. */
+:root[data-theme="dark"] .account-badge-pending { background: #4d3c05; color: #ffe69c; }
+:root[data-theme="dark"] .account-badge-confirmed { background: #0a3622; color: #9eeac0; }
