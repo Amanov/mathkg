@@ -31,7 +31,7 @@ TAXONOMY = {
                     'Эсептөөлөр: бүтүн сандар менен': 'arithmetic-with-integers',
                     'Эквиваленттүүлүк': 'equivalence',
                     'Акча': 'money',
-                    'Ондуктарды иреттөө': 'ordering-decimals',
+                    'Ондуктарды ирээттөө': 'ordering-decimals',
                     'Ондуктун орун наркы': 'place-value',
                     'Мезгилдүү ондуктар': 'recurring',
                 },
@@ -40,7 +40,7 @@ TAXONOMY = {
                 'slug': 'directed-numbers',
                 'subsubtopics': {
                     'Эсептөөлөр': 'arithmetic',
-                    'Багытталган сандарды иреттөө': 'ordering',
+                    'Багытталган сандарды ирээттөө': 'ordering',
                 },
             },
             'Эквиваленттүүлүк': {
@@ -51,7 +51,7 @@ TAXONOMY = {
                     'Пайыздарды айландыруу': 'converting-percentages',
                     'Катыштарды айландыруу': 'converting-ratios',
                     'Бөлчөк, ондук жана пайыз эквиваленттүүлүгү': 'fraction-decimal-percentage',
-                    'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө': 'ordering-fractions-decimals-percentages',
+                    'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө': 'ordering-fractions-decimals-percentages',
                     'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү': 'fraction-percentage-ratio',
                     'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү': 'fraction-decimal-percentage-ratio',
                 },
@@ -107,7 +107,7 @@ TAXONOMY = {
             'Бүтүн сандар': {
                 'slug': 'integers',
                 'subsubtopics': {
-                    'Бүтүн сандардын орун наркы жана иреттөө': 'place-value-ordering',
+                    'Бүтүн сандардын орун наркы жана ирээттөө': 'place-value-ordering',
                     'Бүтүн сандарды сөз менен туюнтуу': 'integers-as-words',
                     'Бөлүнүү белгилери': 'divisibility-rules',
                     'Эсептөөлөр: 1 жана 2 орундук': 'arithmetic-1-2-digit',

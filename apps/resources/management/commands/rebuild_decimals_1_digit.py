@@ -2,6 +2,19 @@ from django.core.management.base import BaseCommand
 
 from apps.resources.models import MenuItem, SubSubtopic, Subtopic
 
+# Straggler title fixes for nodes created only by import_reference_taxonomy.py
+# (which matches by title, so correcting a typo there doesn't touch a row an
+# earlier run already created with the old title) and that don't belong to
+# any GROUPS/CHILD_ORDER_FIXES entry of their own. Applied before GROUPS so a
+# MIRROR_GROUPS 'source_path' later in the same run already sees the fix.
+STRAY_RENAMES = [
+    {
+        'path': ('Сандар', 'Эквиваленттүүлүк'),
+        'from': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө',
+        'to': 'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө',
+    },
+]
+
 # Each entry rebuilds one sub-subtopic's children as a reference-ordered
 # list of real pages (see apps/resources/views/onduktar_placeholders.py +
 # templates/resources/onduktar/operation_placeholder.html - all share
@@ -92,7 +105,7 @@ GROUPS = [
             {'title': 'Бөлчөктөрдү жана ондуктарды ортосунда айландыруу', 'url_name': 'with_fractions'},
             {'title': 'Бөлчөктөрдүн жана пайыздардын ортосунда айландыруу', 'url_name': 'with_percentages'},
             {'title': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк', 'url_name': 'fdp'},
-            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө', 'url_name': 'fdp_ordering'},
+            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө', 'url_name': 'fdp_ordering'},
             {'title': 'Бөлчөк, ондук, пайыздык жана катыштын эквиваленттүүлүгү', 'url_name': 'fdpr'},
         ],
         'stale_subsubtopic_titles': [],
@@ -115,7 +128,7 @@ GROUPS = [
         # Neither of these 2 have a real hand-built page yet.
         'parent_path': ('Сандар', 'Ондуктар', 'Мезгилдүү ондуктар'),
         'target_items': [
-            {'title': 'Мезгилдүү ондуктарды иреттөө', 'url_name': 'recurring_decimals_ordering'},
+            {'title': 'Мезгилдүү ондуктарды ирээттөө', 'url_name': 'recurring_decimals_ordering'},
             {'title': 'Мезгилдүү ондуктарды бөлчөккө айландыруу', 'url_name': 'recurring_converting_to_fractions'},
         ],
         'stale_subsubtopic_titles': [],
@@ -328,7 +341,7 @@ GROUPS = [
             {'title': 'Пайыздар менен', 'url_name': 'fractions_equiv_with_percentages'},
             {'title': 'Катыштар менен', 'url_name': 'fractions_equiv_with_ratios'},
             {'title': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк', 'url_name': 'fractions_equiv_fdp'},
-            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө', 'url_name': 'fractions_equiv_fdp_ordering'},
+            {'title': 'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө', 'url_name': 'fractions_equiv_fdp_ordering'},
             {'title': 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү', 'url_name': 'fractions_equiv_fpr'},
             {'title': 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү', 'url_name': 'fractions_equiv_fdpr'},
         ],
@@ -340,7 +353,7 @@ GROUPS = [
         'parent_path': ('Сандар', 'Бөлчөктөр', 'Барабар бөлчөктөр'),
         'target_items': [
             {'title': 'Жөнөкөйлөтүү', 'url_name': 'equivalent_fractions_simplifying'},
-            {'title': 'Салыштыруу жана иреттөө', 'url_name': 'equivalent_fractions_comparing_ordering'},
+            {'title': 'Салыштыруу жана ирээттөө', 'url_name': 'equivalent_fractions_comparing_ordering'},
             {'title': 'Барабарсыздык белгилери менен салыштыруу', 'url_name': 'equivalent_fractions_comparing_inequality'},
             {'title': 'Эсептөөлөр менен', 'url_name': 'equivalent_fractions_with_calculations'},
         ],
@@ -3205,22 +3218,28 @@ CHILD_ORDER_FIXES = [
     {
         # Money, then Recurring, then Ordering/Place Value swapped.
         'parent_path': ('Сандар', 'Ондуктар'),
+        'renames': [
+            {'from': 'Ондуктарды иреттөө', 'to': 'Ондуктарды ирээттөө'},
+        ],
         'order': [
             'Эсептөөлөр: 1 орундук сандар',
             'Эсептөөлөр: 1 жана 2 орундук сандар',
             'Эсептөөлөр: бүтүн сандар менен',
             'Эквиваленттүүлүк',
             'Акча',
-            'Ондуктарды иреттөө',
+            'Ондуктарды ирээттөө',
             'Ондуктун орун наркы',
             'Мезгилдүү ондуктар',
         ],
     },
     {
         'parent_path': ('Сандар', 'Багытталган сандар'),
+        'renames': [
+            {'from': 'Багытталган сандарды иреттөө', 'to': 'Багытталган сандарды ирээттөө'},
+        ],
         'order': [
             'Эсептөөлөр',
-            'Багытталган сандарды иреттөө',
+            'Багытталган сандарды ирээттөө',
         ],
     },
     {
@@ -3308,8 +3327,11 @@ CHILD_ORDER_FIXES = [
         # (invisible to a fresh local dev DB), pruned by the exhaustive
         # order list below like any other leftover.
         'parent_path': ('Сандар', 'Бүтүн сандар'),
+        'renames': [
+            {'from': 'Бүтүн сандардын орун наркы жана иреттөө', 'to': 'Бүтүн сандардын орун наркы жана ирээттөө'},
+        ],
         'order': [
-            'Бүтүн сандардын орун наркы жана иреттөө',
+            'Бүтүн сандардын орун наркы жана ирээттөө',
             'Бүтүн сандарды сөз менен туюнтуу',
             'Бөлүнүү белгилери',
             'Эсептөөлөр: 1 жана 2 орундук',
@@ -5166,7 +5188,7 @@ MIRROR_NODES = [
     },
     {
         'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
-        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө'),
+        'source_path': ('Сандар', 'Эквиваленттүүлүк', 'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө'),
     },
     {
         'target_parent_path': ('Пропорция', 'Пайыздар: калькуляторсуз', 'Барабардык'),
@@ -5293,6 +5315,22 @@ class Command(BaseCommand):
                 extra.delete()
 
     def handle(self, *args, **options):
+        for rename in STRAY_RENAMES:
+            for title in (rename['to'], rename['from']):
+                try:
+                    item = self.resolve_path(rename['path'] + (title,))
+                except MenuItem.DoesNotExist:
+                    continue
+                if item.title != rename['to']:
+                    item.title = rename['to']
+                    item.save(update_fields=['title'])
+                    self.stdout.write(f'Renamed: "{rename["from"]}" -> "{rename["to"]}"')
+                if item.subsubtopic_id and item.subsubtopic.title != rename['to']:
+                    item.subsubtopic.title = rename['to']
+                    item.subsubtopic.save(update_fields=['title'])
+                    self.stdout.write(f'  Renamed underlying SubSubtopic to "{rename["to"]}"')
+                break
+
         for group in GROUPS:
             # Usually a 3-tuple (Topic, Subtopic, Sub-subtopic), but a
             # root Topic's own direct child (e.g. "Түз жана тескери

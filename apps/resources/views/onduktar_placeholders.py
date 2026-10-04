@@ -49,7 +49,7 @@ OPERATION_PLACEHOLDER_TITLES = {
 
     # Ондуктар > Мезгилдүү ондуктар - neither of these 2 have a real
     # hand-built page yet.
-    'recurring-decimals-ordering': 'Мезгилдүү ондуктарды иреттөө',
+    'recurring-decimals-ordering': 'Мезгилдүү ондуктарды ирээттөө',
     'recurring-converting-to-fractions': 'Мезгилдүү ондуктарды бөлчөккө айландыруу',
 
     # Багытталган сандар > Эсептөөлөр - none of these 7 have a real
@@ -173,14 +173,14 @@ OPERATION_PLACEHOLDER_TITLES = {
     'fractions-equiv-with-percentages': 'Пайыздар менен',
     'fractions-equiv-with-ratios': 'Катыштар менен',
     'fractions-equiv-fdp': 'Бөлчөк, ондук жана пайыздык эквиваленттүүлүк',
-    'fractions-equiv-fdp-ordering': 'Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө',
+    'fractions-equiv-fdp-ordering': 'Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө',
     'fractions-equiv-fpr': 'Бөлчөк, пайыз жана катыш эквиваленттүүлүгү',
     'fractions-equiv-fdpr': 'Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү',
 
     # Бөлчөктөр > Барабар бөлчөктөр (Equivalent Fractions) - none of these
     # 4 have a real hand-built page yet.
     'equivalent-fractions-simplifying': 'Жөнөкөйлөтүү',
-    'equivalent-fractions-comparing-ordering': 'Салыштыруу жана иреттөө',
+    'equivalent-fractions-comparing-ordering': 'Салыштыруу жана ирээттөө',
     'equivalent-fractions-comparing-inequality': 'Барабарсыздык белгилери менен салыштыруу',
     'equivalent-fractions-with-calculations': 'Эсептөөлөр менен',
 

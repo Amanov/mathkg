@@ -1,21 +1,18 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Ондуктарды иреттөө {%endblock%}
+{% block title %} Ондуктарды ирээттөө {%endblock%}
 
 {% load static %}
 
 {% block content %}
 <style type="text/css">
-  body{   
-    margin-left: 250px;    
-  }
   .mainshadow{
     box-shadow: 0 0 20px rgb(13, 167, 255);   
   }
   h1 {
   display: flex;
   align-items: center;
-  font-size:3vw;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
 }
 
 h1::after {
@@ -48,7 +45,7 @@ h1::before{
 }
 h3{
   display: inline-block !important;
-  font-size:2vw;
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
 }
 .custom_border{
   border: 3px solid rgb(34, 133 , 195);
@@ -238,7 +235,7 @@ h3{
 
 <div class="container">
   <div class="position-relative p-5 text-center" >
-    <h3 style="font-size: 3rem;     color: var(--text);  text-align: center;"> Ондуктарды иреттөө  </h3> 
+    <h3 style="font-size: 3rem;     color: var(--text);  text-align: center;"> Ондуктарды ирээттөө  </h3> 
     <div class="row align-items-md-stretch custom_border placeholder-panel">
       <h1>Сабакка даяр презентациялар</h1> 
 
