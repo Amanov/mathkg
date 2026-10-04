@@ -1,484 +1,92 @@
-<style>
-
-  /* =========================================
-   MODERN FOOTER
-========================================= */
-
-.modern-footer{
-
-position: relative;
-
-background:
-linear-gradient(
-    135deg,
-    #3761c2,
-    #1e2711,
-    #ab5e17
-);
-
-color: white;
-
-overflow: hidden;
-
-margin-top: 80px;
-}
-
-/* Decorative Glow */
-
-.footer-glow{
-
-position: absolute;
-
-width: 500px;
-height: 500px;
-
-background:
-radial-gradient(
-    circle,
-    rgba(255, 98, 0, 0.18),
-    transparent 70%
-);
-
-top: -150px;
-right: -150px;
-
-pointer-events: none;
-}
-
-/* Logo */
-
-.footer-logo h2{
-
-font-size: 2.5rem;
-font-weight: 800;
-
-margin-bottom: 20px;
-}
-
-.footer-logo .math{
-
-background: linear-gradient(
-    to right,
-    #38bdf8,
-    #0ea5e9
-);
-
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-
-.footer-description{
-
-color: #cbd5e1;
-
-line-height: 1.9;
-
-font-size: 1rem;
-
-max-width: 420px;
-}
-
-/* Titles */
-
-.footer-heading{
-
-font-size: 1.2rem;
-
-margin-bottom: 25px;
-
-font-weight: 700;
-
-position: relative;
-}
-
-.footer-heading::after{
-
-content: "";
-
-position: absolute;
-
-left: 0;
-bottom: -10px;
-
-width: 50px;
-height: 3px;
-
-border-radius: 20px;
-
-background:
-linear-gradient(
-    to right,
-    #38bdf8,
-    #0ea5e9
-);
-}
-
-/* Links */
-
-.footer-links{
-
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-.footer-links li{
-
-margin-bottom: 16px;
-}
-
-.footer-links a{
-
-text-decoration: none;
-
-color: #cbd5e1;
-
-transition: all 0.3s ease;
-
-display: inline-flex;
-
-align-items: center;
-
-gap: 10px;
-}
-
-.footer-links a:hover{
-
-color: #38bdf8;
-
-transform: translateX(6px);
-}
-
-/* Contact */
-
-.contact-box{
-
-display: flex;
-
-flex-direction: column;
-
-gap: 18px;
-}
-
-.contact-item{
-
-display: flex;
-
-align-items: center;
-
-gap: 15px;
-
-color: #cbd5e1;
-}
-
-.contact-item i{
-
-width: 42px;
-height: 42px;
-
-border-radius: 12px;
-
-display: flex;
-
-justify-content: center;
-align-items: center;
-
-background:
-rgba(150, 85, 62, 0.08);
-
-color: #38bdf8;
-}
-
-/* Social */
-
-.social-icons{
-
-display: flex;
-
-gap: 15px;
-}
-
-.social-icons a{
-
-width: 45px;
-height: 45px;
-
-border-radius: 14px;
-
-display: flex;
-
-justify-content: center;
-align-items: center;
-
-text-decoration: none;
-
-color: white;
-
-background:
-rgba(255,255,255,0.08);
-
-backdrop-filter: blur(10px);
-
-transition: all 0.3s ease;
-}
-
-.social-icons a:hover{
-
-transform:
-translateY(-5px)
-scale(1.05);
-
-background:
-linear-gradient(
-    to right,
-    #0ea5e9,
-    #38bdf8
-);
-
-box-shadow:
-0 10px 30px rgba(14,165,233,0.4);
-}
-
-/* Bottom */
-
-.footer-bottom{
-
-margin-top: 50px;
-
-border-top:
-1px solid rgba(255,255,255,0.08);
-
-padding: 25px 0;
-
-background:
-rgba(255,255,255,0.02);
-
-backdrop-filter: blur(10px);
-}
-
-.bottom-content{
-
-display: flex;
-
-justify-content: space-between;
-
-align-items: center;
-
-flex-wrap: wrap;
-
-gap: 10px;
-}
-
-.bottom-content p{
-
-margin: 0;
-
-color: #94a3b8;
-
-font-size: 0.95rem;
-}
-
-.made-with{
-
-color: #38bdf8 !important;
-}
-
-/* =========================================
-MOBILE
-========================================= */
-
-@media(max-width:768px){
-
-.modern-footer{
-
-    text-align: center;
-}
-
-.footer-description{
-
-    margin: auto;
-}
-
-.footer-heading::after{
-
-    left: 50%;
-
-    transform: translateX(-50%);
-}
-
-.contact-item{
-
-    justify-content: center;
-}
-
-.social-icons{
-
-    justify-content: center;
-}
-
-.bottom-content{
-
-    flex-direction: column;
-}
-
-}
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
 {# Font Awesome is already loaded once in base.html's <head> - don't duplicate it here. #}
-<!-- ================= MODERN FOOTER ================= -->
 
-<footer class="modern-footer">
-
-  <!-- Decorative Glow -->
-  <div class="footer-glow"></div>
-
+<footer class="site-footer">
   <div class="container py-5">
 
-      <div class="row gy-5">
+    <div class="row gy-5">
 
-          <!-- Brand -->
-          <div class="col-lg-4">
-
-              <div class="footer-logo">
-
-                  <h2>
-                      <span class="math">Math</span>KGZ
-                  </h2>
-
-                  <p class="footer-description">
-
-                      Кыргыз тилиндеги заманбап математикалык
-                      билим берүү платформасы.
-
-                      Интерактивдүү ресурстар, презентациялар,
-                      worksheet'тер жана мугалимдер үчүн
-                      профессионалдык материалдар.
-
-                  </p>
-
-              </div>
-
-          </div>
-
-          <!-- Quick Links -->
-          <div class="col-lg-4 col-md-6">
-
-              <h5 class="footer-heading">
-                  Навигация
-              </h5>
-
-              <ul class="footer-links">
-
-                  <li>
-                      <a href="{% url 'news_list' %}">
-                          <i class="fa-solid fa-chevron-right"></i>
-                          Сайттагы жаңылыктар
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="{% url 'about' %}">
-                          <i class="fa-solid fa-chevron-right"></i>
-                          MathKGZ жөнүндө
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="{% url 'topics_tree' %}">
-                          <i class="fa-solid fa-chevron-right"></i>
-                          Темалар дарагы
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="#">
-                          <i class="fa-solid fa-chevron-right"></i>
-                          Мугалимдердин пикирлери
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="#">
-                          <i class="fa-solid fa-chevron-right"></i>
-                          Шарттар жана жоболор
-                      </a>
-                  </li>
-
-              </ul>
-
-          </div>
-
-          <!-- Contact -->
-          <div class="col-lg-4 col-md-6">
-
-              <h5 class="footer-heading">
-                  Байланыш
-              </h5>
-
-              <div class="contact-box">
-
-                  <div class="contact-item">
-                      <i class="fa-solid fa-envelope"></i>
-
-                      <span>
-                          mathematicskgz@gmail.com
-                      </span>
-                  </div>
-
-                  <div class="contact-item">
-                      <i class="fa-solid fa-globe"></i>
-
-                      <span>
-                          www.mathkg.com
-                      </span>
-                  </div>
-
-              </div>
-
-              <!-- Social -->
-              <div class="social-icons mt-4">
-
-                  <a href="#">
-                      <i class="fab fa-facebook-f"></i>
-                  </a>
-
-                  <a href="#">
-                      <i class="fab fa-instagram"></i>
-                  </a>
-
-                  <a href="#">
-                      <i class="fab fa-youtube"></i>
-                  </a>
-
-                  <a href="#">
-                      <i class="fab fa-telegram"></i>
-                  </a>
-
-              </div>
-
-          </div>
-
+      <!-- Brand -->
+      <div class="col-lg-4">
+        <div class="footer-logo">
+          <span class="accent">Math</span>KGZ
+        </div>
+        <p class="footer-description">
+          Кыргыз тилиндеги заманбап математикалык
+          билим берүү платформасы.
+          Интерактивдүү ресурстар, презентациялар,
+          worksheet'тер жана мугалимдер үчүн
+          профессионалдык материалдар.
+        </p>
       </div>
 
+      <!-- Quick Links -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="footer-heading">Навигация</h5>
+        <ul class="footer-links">
+          <li>
+            <a href="{% url 'news_list' %}">
+              <i class="fa-solid fa-chevron-right"></i>
+              Сайттагы жаңылыктар
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'about' %}">
+              <i class="fa-solid fa-chevron-right"></i>
+              MathKGZ жөнүндө
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'topics_tree' %}">
+              <i class="fa-solid fa-chevron-right"></i>
+              Темалар дарагы
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-chevron-right"></i>
+              Мугалимдердин пикирлери
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-chevron-right"></i>
+              Шарттар жана жоболор
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="footer-heading">Байланыш</h5>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>mathematicskgz@gmail.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-globe"></i>
+            <span>www.mathkg.com</span>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- Bottom -->
   <div class="footer-bottom">
-
-      <div class="container">
-
-          <div class="bottom-content" style="text-align: center;">
-
-              <p>
-                  © 2023–{% now "Y" %} MathKGZ.
-                  Бардык укуктар корголгон.
-              </p>
-
-              
-
-          </div>
-
-      </div>
-
+    <div class="container">
+      <p>© 2023–{% now "Y" %} MathKGZ. Бардык укуктар корголгон.</p>
+    </div>
   </div>
 
 </footer>

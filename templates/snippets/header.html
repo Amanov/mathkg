@@ -11,20 +11,19 @@
 
 <div class="fixed-top shadow-sm">
 
-  <nav class="navbar navbar-expand-lg py-4" aria-label="Top navbar" 
-       style="background: linear-gradient(135deg, #3761c2, #3761c2, #3761c2);">
+  <nav class="navbar navbar-expand-lg py-4 top-navbar" aria-label="Top navbar">
     <div class="container-fluid">
-      <button class="navbar-toggler"  
-              type="button" 
-              data-bs-toggle="collapse" 
-              data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" 
-              aria-expanded="false" 
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target=".site-nav-collapse"
+              aria-controls="navbarNav categoryNav"
+              aria-expanded="false"
               aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
+
+      <div class="collapse navbar-collapse site-nav-collapse" id="navbarNav">
          <ul class="navbar-nav ms-auto align-items-center">
           <!--<li class="nav-item dropdown box">
             <a class="nav-link dropdown-toggle text-black " href="#" id="starterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,21 +55,17 @@
             </form>
           </li>
 
-          <li class="nav-item d-flex flex-wrap gap-1 ms-lg-2">
+          <li class="nav-item d-flex flex-wrap gap-2 ms-lg-2">
             {% if request.user.is_authenticated %}
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}" data-track="Башкы бет (header)">
-                <i class="fas fa-fw fa-house" style="color:red"></i> Башкы бет
+              <a class="header-action-btn" href="{% url 'account' %}" data-track="Аккаунт (header)">
+                <i class="fas fa-fw fa-user"></i> {{ request.user.username }}
               </a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'logout' %}" data-track="Чыгуу">
-                <i class="fas fa-right-from-bracket" style="color:red"></i> Чыгуу
-              </a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'account' %}" data-track="Аккаунт (header)">
-                <i class="fas fa-user" style="color:red;"></i> {{ request.user.username }}
+              <a class="header-action-btn header-action-btn--primary" href="{% url 'logout' %}" data-track="Чыгуу">
+                <i class="fas fa-fw fa-right-from-bracket"></i> Чыгуу
               </a>
             {% else %}
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'home' %}" data-track="Башкы бет (header)"><i class="fas fa-fw fa-house" style="color:red;"></i> Башкы бет</a>
-              <a class="btn btn-success btn-sm topMenu text-uppercase" href="{% url 'login' %}" data-track="Кирүү (header)"><i class="fas fa-fw fa-user" style="color:red;"></i>Кирүү</a>
-              <button type="button" class="btn btn-success btn-sm topMenu text-uppercase" data-bs-toggle="modal" data-bs-target="#subscribeModal" data-track="Катталуу (header)"><i class="fas fa-user-plus" style="color:red;"></i> Катталуу</button>
+              <a class="header-action-btn" href="{% url 'login' %}" data-track="Кирүү (header)">Кирүү</a>
+              <button type="button" class="header-action-btn header-action-btn--primary" data-bs-toggle="modal" data-bs-target="#subscribeModal" data-track="Катталуу (header)">Катталуу</button>
             {% endif %}
           </li>
 
@@ -86,14 +81,11 @@
     </div>
   </nav>
 
-  <nav class="navbar navbar-expand-lg bg-light border-top">
+  <nav class="navbar navbar-expand-lg category-navbar border-top">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">MathKGZ</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#categoryNav" aria-controls="categoryNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand-mathkgz" href="{% url 'home' %}"><span class="accent">Math</span>KGZ</a>
 
-      <div class="collapse navbar-collapse" id="categoryNav">
+      <div class="collapse navbar-collapse site-nav-collapse" id="categoryNav">
         <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 d-flex flex-row flex-wrap gap-2">
           {% include "partials/menu_node.html" with nodes=menu_items parent=False only %}
           <!-- {# CORRECT — `only` blocks the outer context from leaking in #} -->

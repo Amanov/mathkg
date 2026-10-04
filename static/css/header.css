@@ -16,6 +16,35 @@ html {
     z-index: 200;
 }
 
+/* The brand-blue top bar is deliberately the same color in both themes
+   (like a flag, not a surface) - previously an inline 3-stop gradient of
+   one repeated color, kept here as the flat color it actually rendered as. */
+.top-navbar {
+    background: #3761c2;
+}
+
+/* Second row (category menu + brand). Used to be Bootstrap's bare .bg-light,
+   which never adapted to dark mode - the row stayed white while the text
+   above it followed --text to light, so the "MathKGZ" brand went
+   white-on-white and read as blank. */
+.category-navbar {
+    background: var(--surface);
+    border-color: var(--border-subtle) !important;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.navbar-brand-mathkgz {
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    color: var(--text);
+    text-decoration: none;
+}
+.navbar-brand-mathkgz .accent {
+    color: var(--color-heading-accent);
+}
+
 /* ════════════════════════════════════════════
    TOP UTILITY BAR — search + login/register/
    account pills. Bootstrap's default .btn-success
@@ -65,34 +94,55 @@ html {
 :root[data-theme="dark"] .theme-toggle-icon--dark { display: none; }
 :root[data-theme="dark"] .theme-toggle-icon--light { display: inline; }
 
-.topMenu {
+/* The two primary header actions (Кирүү / Катталуу when signed out,
+   Аккаунт / Чыгуу when signed in) - deliberately just two buttons instead
+   of the previous cluster that also repeated "Башкы бет" (the brand/logo
+   link already goes home, so a separate button for it was redundant). */
+.header-action-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    padding: 10px 20px;
     border-radius: var(--radius-sm);
-    padding: 8px 14px;
-    font-weight: 600;
-    letter-spacing: .02em;
-    transition: transform var(--transition-fast), filter var(--transition-fast),
-                box-shadow var(--transition-fast);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: .01em;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, .12);
+    border: 1.5px solid rgba(255, 255, 255, .55);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
 }
-.topMenu:hover {
+.header-action-btn:hover,
+.header-action-btn:focus-visible {
+    background: rgba(255, 255, 255, .22);
+    color: #fff;
     transform: translateY(-1px);
-    filter: brightness(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
-.topMenu:focus-visible {
+.header-action-btn:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
 
+.header-action-btn--primary {
+    background: #fff;
+    color: #3761c2;
+    border-color: #fff;
+}
+.header-action-btn--primary:hover,
+.header-action-btn--primary:focus-visible {
+    background: rgba(255, 255, 255, .88);
+    color: #3761c2;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .topMenu,
+    .header-action-btn,
     #searchForm .btn,
     .theme-toggle-btn {
         transition: none !important;
     }
-    .topMenu:hover,
+    .header-action-btn:hover,
     #searchForm .btn:hover,
     .theme-toggle-btn:hover {
         transform: none;
