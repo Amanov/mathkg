@@ -109,6 +109,22 @@ def _topic_search_results(query_lower, limit):
     return results
 
 
+def _grouped_topic_results(results):
+    """Group flat topic matches by their top-level menu category (Сандар,
+    Пропорция, ...), in the same order as the main nav / /topics/ page,
+    so the full results page reads as a page of topics - sectioned by
+    category - rather than one undifferentiated list."""
+    root_order = {
+        item.title: item.order
+        for item in MenuItem.objects.filter(parent__isnull=True)
+    }
+    groups = {}
+    for result in results:
+        category = result['breadcrumb'][0] if result['breadcrumb'] else 'Башка'
+        groups.setdefault(category, []).append(result)
+    return sorted(groups.items(), key=lambda pair: root_order.get(pair[0], 9999))
+
+
 def search_suggest_view(request):
     """Backs the live dropdown under the header search box: as the visitor
     types, this returns a short list of matching topic pages as JSON so the
@@ -126,18 +142,19 @@ def search_suggest_view(request):
 
 
 def search_view(request):
-    """Site-wide search: the topic menu, the resource library (title and
-    description) and the news feed - the three kinds of text content on
-    the site a visitor might be looking for."""
+    """Site-wide search: the topic menu and the resource library (title
+    and description) - the content a visitor is actually looking for when
+    they search for a topic. The news feed is a changelog, not curriculum
+    content, so it's deliberately left out of search."""
     query = request.GET.get('q', '').strip()
     query_lower = query.lower()
 
-    topic_results = []
+    grouped_topic_results = []
     resource_results = []
-    news_results = []
 
     if query:
-        topic_results = _topic_search_results(query_lower, limit=40)
+        topic_results = _topic_search_results(query_lower, limit=300)
+        grouped_topic_results = _grouped_topic_results(topic_results)
 
         resource_matches = [
             resource for resource in Resource.objects.filter(
@@ -154,18 +171,10 @@ def search_view(request):
                 'url': _resource_resolved_url(resource),
             })
 
-        news_matches = [
-            post for post in NewsPost.objects.all()
-            if query_lower in post.title.lower() or query_lower in post.body.lower()
-        ]
-        news_matches.sort(key=lambda post: post.published_date, reverse=True)
-        news_results = news_matches[:20]
-
     context = {
         'query': query,
-        'topic_results': topic_results,
+        'grouped_topic_results': grouped_topic_results,
         'resource_results': resource_results,
-        'news_results': news_results,
-        'has_results': bool(topic_results or resource_results or news_results),
+        'has_results': bool(grouped_topic_results or resource_results),
     }
     return render(request, 'resources/search_results.html', context)
