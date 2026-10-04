@@ -8,6 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Математика мугалимдери үчүн окуу материалдары">
 
+    {# ── Dark/light theme — applied before any CSS loads so the page     #}
+    {# never flashes light-then-dark. The toggle button (header.html)    #}
+    {# writes the same localStorage key when clicked.                    #}
+    <script>
+        (function () {
+            var theme = 'light';
+            try {
+                theme = localStorage.getItem('mathkg-theme') || 'light';
+            } catch (e) {}
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+    </script>
+
     {# ── Google Fonts ───────────────────────────────────────────────────── #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,6 +143,7 @@
     {% block extra_scripts %}
     <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/click-tracking.js' %}"></script>
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
     {% endblock %}
 
 

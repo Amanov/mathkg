@@ -38,7 +38,7 @@
         <h2 class="search-section-title">Темалар</h2>
         <div class="search-result-list">
             {% for result in topic_results %}
-            <a class="search-result-card" href="{{ result.url }}">
+            <a class="search-result-row" href="{{ result.url }}">
                 {% if result.breadcrumb %}
                 <div class="search-result-breadcrumb">
                     {{ result.breadcrumb|join:' › ' }}
@@ -58,7 +58,7 @@
             {% for result in resource_results %}
             {% with resource=result.resource %}
             {% if result.url %}
-            <a class="search-result-card" href="{{ result.url }}">
+            <a class="search-result-row" href="{{ result.url }}">
                 <div class="search-result-breadcrumb">{{ resource.get_category_display }}</div>
                 <div class="search-result-title">{{ resource.title }}</div>
                 {% if resource.description %}
@@ -77,7 +77,7 @@
         <h2 class="search-section-title">Жаңылыктар</h2>
         <div class="search-result-list">
             {% for post in news_results %}
-            <a class="search-result-card" href="{% url 'news_list' %}">
+            <a class="search-result-row" href="{% url 'news_list' %}">
                 <div class="search-result-breadcrumb">{{ post.formatted_date }}</div>
                 <div class="search-result-title">{{ post.title }}</div>
                 <div class="search-result-snippet">{{ post.body|truncatewords:28 }}</div>

@@ -21,6 +21,38 @@
     --shadow-dropdown: 0 16px 32px rgba(15, 23, 42, .12), 0 2px 8px rgba(15, 23, 42, .06);
     --transition-fast: 150ms ease;
     --transition-base: 200ms cubic-bezier(.22, .8, .32, 1);
+
+    /* Dark-mode tokens. Light values here match what every page already
+       used as literal colors (#fff cards, #e6ebf1 borders, inherited
+       black text) - switching a card's hardcoded #fff to var(--surface)
+       is a no-op in light mode and only takes effect once [data-theme]
+       flips these below. Toggled by the header button (header.html),
+       which sets data-theme on <html> and persists it to localStorage;
+       an inline script in base.html's <head> applies the saved choice
+       before first paint to avoid a light-mode flash. */
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f8f7f4;
+    --text: #1a1a2e;
+    --text-muted: #5c6b73;
+    --border-subtle: #e6ebf1;
+}
+
+:root[data-theme="dark"] {
+    --color-navy: rgb(205, 221, 232);
+    --color-menu-text: #e7ecef;
+    --color-menu-surface: #1b222b;
+    --color-menu-hover: #28343f;
+    --color-menu-active: #233038;
+
+    --bg: #12161b;
+    --surface: #1b222b;
+    --surface-alt: #202933;
+    --text: #e7ecef;
+    --text-muted: #9aa7b2;
+    --border-subtle: #2c3842;
+
+    color-scheme: dark;
 }
 
 /* Single source of truth for body - this used to be declared three times
@@ -30,12 +62,14 @@
    changes. */
 body {
     font-family: 'Alegreya Sans', Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
     min-height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* Decorative blue bars flanking every h1 - previously duplicated between

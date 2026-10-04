@@ -8,8 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
-    border: 1px solid #e6ebf1;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
     padding: 32px;
