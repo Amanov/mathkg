@@ -17,7 +17,7 @@
         {% if query %}
             <p class="text-muted mb-0">
                 {% if has_results %}
-                    Тема, материал жана жаңылыктардын арасынан табылган жыйынтыктар
+                    Тема жана материалдардын арасынан табылган жыйынтыктар
                 {% else %}
                     Эч нерсе табылган жок
                 {% endif %}
@@ -33,21 +33,26 @@
         </div>
     {% endif %}
 
-    {% if topic_results %}
+    {% if grouped_topic_results %}
     <section class="search-section">
         <h2 class="search-section-title">Темалар</h2>
-        <div class="search-result-list">
-            {% for result in topic_results %}
-            <a class="search-result-row" href="{{ result.url }}">
-                {% if result.breadcrumb %}
-                <div class="search-result-breadcrumb">
-                    {{ result.breadcrumb|join:' › ' }}
-                </div>
-                {% endif %}
-                <div class="search-result-title">{{ result.title }}</div>
-            </a>
-            {% endfor %}
+        {% for category, results in grouped_topic_results %}
+        <div class="search-category-group">
+            <h3 class="search-category-heading">{{ category }}</h3>
+            <div class="search-result-list">
+                {% for result in results %}
+                <a class="search-result-row" href="{{ result.url }}">
+                    {% if result.breadcrumb|length > 1 %}
+                    <div class="search-result-breadcrumb">
+                        {{ result.breadcrumb|slice:"1:"|join:' › ' }}
+                    </div>
+                    {% endif %}
+                    <div class="search-result-title">{{ result.title }}</div>
+                </a>
+                {% endfor %}
+            </div>
         </div>
+        {% endfor %}
     </section>
     {% endif %}
 
@@ -67,21 +72,6 @@
             </a>
             {% endif %}
             {% endwith %}
-            {% endfor %}
-        </div>
-    </section>
-    {% endif %}
-
-    {% if news_results %}
-    <section class="search-section">
-        <h2 class="search-section-title">Жаңылыктар</h2>
-        <div class="search-result-list">
-            {% for post in news_results %}
-            <a class="search-result-row" href="{% url 'news_list' %}">
-                <div class="search-result-breadcrumb">{{ post.formatted_date }}</div>
-                <div class="search-result-title">{{ post.title }}</div>
-                <div class="search-result-snippet">{{ post.body|truncatewords:28 }}</div>
-            </a>
             {% endfor %}
         </div>
     </section>
