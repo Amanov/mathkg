@@ -101,3 +101,21 @@ class DownloadLimitEnforcementTests(TestCase):
         resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
         self.assertContains(resp, 'мөөнөтү бүткөн')
         self.assertNotContains(resp, 'чегине жеттиңиз')
+
+
+class PricingPageTests(TestCase):
+    def test_pricing_page_loads_and_shows_all_plans(self):
+        resp = self.client.get(reverse('pricing'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, '3 ай')
+        self.assertContains(resp, '6 ай')
+        self.assertContains(resp, '1 жыл')
+        self.assertContains(resp, '1499 сом')
+        self.assertContains(resp, '2999 сом')
+        self.assertContains(resp, '4999 сом')
+        self.assertContains(resp, 'Чексиз')
+
+    def test_footer_links_to_pricing_page(self):
+        resp = self.client.get(reverse('about'))
+        self.assertContains(resp, reverse('pricing'))
+        self.assertContains(resp, 'Баалар')

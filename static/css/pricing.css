@@ -1,0 +1,46 @@
+/* /pricing/ - plan comparison table. Built from the same tokens as the
+   rest of the site - no new one-off colors or gradients. */
+
+.pricing-table-wrap {
+    overflow-x: auto;
+}
+
+.pricing-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 14px 18px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.pricing-table thead th {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    background: var(--surface-alt);
+}
+
+.pricing-table thead th.pricing-featured {
+    color: var(--color-bootstrap-primary);
+}
+
+.pricing-table tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface-alt);
+}
+
+.pricing-table tbody td {
+    color: var(--text);
+}
+
+.pricing-cta {
+    max-width: 900px;
+    margin: 0 auto;
+}

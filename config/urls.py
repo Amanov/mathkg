@@ -52,6 +52,7 @@ from apps.resources.views import (
     topics_tree_view,
     search_view,
     search_suggest_view,
+    pricing_view,
 )
 
 from apps.account.views import (
@@ -1431,6 +1432,7 @@ urlpatterns = [
     path('news/', news_list_view, name='news_list'),
     path('about/', about_view, name='about'),
     path('topics/', topics_tree_view, name='topics_tree'),
+    path('pricing/', pricing_view, name='pricing'),
     path('search/', search_view, name='search'),
     path('search/suggest/', search_suggest_view, name='search_suggest'),
 
