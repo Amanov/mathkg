@@ -1,0 +1,38 @@
+{% comment %}
+Full pricing cards for the standalone /pricing/ page - plan name, price,
+a feature checklist, and a CTA that opens the subscribe modal. Separate
+from pricing_cards.html (the compact plan picker used inside the modal
+and the homepage preview) so that one stays untouched.
+{% endcomment %}
+<div class="pricing-cards">
+    {% for plan in plans %}
+    <div class="pricing-card{% if plan.code == featured_code %} featured{% endif %}">
+        {% if plan.code == featured_code %}
+        <span class="pricing-card-badge">Сунушталат</span>
+        {% endif %}
+
+        <div class="pricing-card-header">
+            <h3 class="pricing-card-name">{{ plan.name }}</h3>
+            <p class="pricing-card-price">{{ plan.price_som }} <span>сом</span></p>
+            <p class="pricing-card-duration">{{ plan.months }} ай колдонуу</p>
+        </div>
+
+        <ul class="pricing-card-features">
+            {% if plan.limits.presentation == 'Чексиз' %}
+            <li><i class="fas fa-check" aria-hidden="true"></i> Чексиз жүктөп алуу</li>
+            {% else %}
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө {{ plan.limits.presentation }} презентация</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө {{ plan.limits.activity }} ишмердик</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө {{ plan.limits.worksheet }} иш барак</li>
+            {% endif %}
+        </ul>
+
+        <button type="button"
+                class="pricing-card-cta{% if plan.code == featured_code %} pricing-card-cta--primary{% endif %}"
+                data-bs-toggle="modal" data-bs-target="#subscribeModal"
+                data-track="Баалар барагы: {{ plan.name }} план">
+            Тандоо
+        </button>
+    </div>
+    {% endfor %}
+</div>
