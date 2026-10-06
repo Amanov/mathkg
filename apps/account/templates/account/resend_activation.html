@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% block title %} АКТИВДЕШТИРҮҮ {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="auth-page">
+  <div class="auth-card">
+
+    <h1>Активдештирүү шилтемесин кайра жөнөтүү</h1>
+    <p class="text-muted">
+      Катталууда жиберилген шилтеме мөөнөтүн өткөрүп же жеткен эмес болсо,
+      электрондук почтаңызды төмөн жазыңыз - жаңы шилтеме жиберебиз.
+    </p>
+
+    <form method="post" action="{% url 'resend_activation' %}">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="id_email" class="form-label">Электрондук почта</label>
+        <input type="email" name="email" id="id_email" class="form-control" required>
+      </div>
+
+      <button class="w-100 btn btn-lg btn-auth-submit" type="submit">
+        Шилтемени жөнөтүү
+      </button>
+    </form>
+
+    <div class="auth-switch">
+      <a href="{% url 'login' %}">Кирүү бетине кайтуу</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

@@ -92,6 +92,59 @@ class LoginTests(TestCase):
         })
         self.assertNotIn('_auth_user_id', self.client.session)
 
+    def test_inactive_user_with_correct_password_sees_activation_message_not_wrong_password(self):
+        self.user.is_active = False
+        self.user.save(update_fields=['is_active'])
+        response = self.client.post(reverse('login'), {
+            'email': 'existing@example.com',
+            'password': 'SuperSecret123!',
+        })
+        self.assertContains(response, 'активдештирилген эмес')
+        self.assertNotContains(response, 'туура эмес')
+
+    def test_inactive_user_with_wrong_password_still_sees_generic_message(self):
+        # An inactive account doesn't leak "your password would have been
+        # right" to someone who doesn't actually know the password.
+        self.user.is_active = False
+        self.user.save(update_fields=['is_active'])
+        response = self.client.post(reverse('login'), {
+            'email': 'existing@example.com',
+            'password': 'wrong-password',
+        })
+        self.assertContains(response, 'туура эмес')
+        self.assertNotContains(response, 'активдештирилген эмес')
+
+
+class ResendActivationTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='pending@example.com', username='pending', password='SuperSecret123!'
+        )
+        self.user.is_active = False
+        self.user.save(update_fields=['is_active'])
+
+    def test_resend_sends_a_fresh_activation_email_for_an_inactive_account(self):
+        response = self.client.post(reverse('resend_activation'), {'email': 'pending@example.com'})
+        self.assertRedirects(response, reverse('login'))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn('/activate/', mail.outbox[0].body)
+
+    def test_resend_shows_the_same_message_for_an_unknown_email(self):
+        response = self.client.post(
+            reverse('resend_activation'), {'email': 'nobody@example.com'}, follow=True,
+        )
+        self.assertEqual(len(mail.outbox), 0)
+        self.assertContains(response, 'жиберилди')
+
+    def test_resend_does_not_email_an_already_active_account(self):
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+        response = self.client.post(
+            reverse('resend_activation'), {'email': 'pending@example.com'}, follow=True,
+        )
+        self.assertEqual(len(mail.outbox), 0)
+        self.assertContains(response, 'жиберилди')
+
 
 class AccountUpdateTests(TestCase):
     def setUp(self):
@@ -216,6 +269,28 @@ class DownloadLimitTests(TestCase):
     def test_explicit_subscription_end_overrides_trial(self):
         self.user.subscription_end = timezone.now().date() - timedelta(days=1)
         self.assertEqual(self.user.subscription_end_date, self.user.subscription_end)
+
+
+class SubscriptionRequestNotificationTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='payer@example.com', username='payer', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+
+    def test_creating_a_request_emails_the_admin(self):
+        SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn('payer@example.com', mail.outbox[0].body)
+        from django.conf import settings
+        self.assertEqual(mail.outbox[0].to, [settings.ADMIN_NOTIFICATION_EMAIL])
+
+    def test_activating_an_existing_request_does_not_send_a_second_notification(self):
+        request = SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)
+        mail.outbox.clear()
+        request.activate()
+        self.assertEqual(len(mail.outbox), 0)
 
 
 class RepairSubscriptionsBackfillsCurrentPlanTests(TestCase):

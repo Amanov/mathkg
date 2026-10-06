@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -68,13 +67,13 @@ class AccountAuthenticationForm(forms.Form):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        password = cleaned_data.get('password')
-        if email and password and not authenticate(email=email, password=password):
-            raise forms.ValidationError('Кирүү жараксыз же админ сиздин аккаунтуңузду активдештирген эмес, админге кайрылыңыз ')
-        return cleaned_data
+    # No clean() override: this form only validates shape (a well-formed
+    # email, a non-empty password). Actually authenticating - and telling
+    # a wrong password apart from a correct one on a not-yet-activated
+    # account - is login_view's job, since only it can show a different
+    # message for each case. A clean() here that called authenticate()
+    # itself used to make form.is_valid() False for both failure modes
+    # before the view ever got a chance to tell them apart.
 
 #Account[user info] Update
 

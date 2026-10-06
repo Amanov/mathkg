@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 
 from apps.resources.models import LoginEvent
+from apps.resources.utils.request_helpers import get_client_ip
 
 from .models import Account, SubscriptionRequest
 from .forms import (
@@ -25,25 +26,40 @@ from .forms import (
 
 logger = getLogger(__name__)
 
-
-def get_client_ip(request):
-    # Railway terminates TLS and proxies every request to this app, so
-    # REMOTE_ADDR is always Railway's edge IP, never the visitor's -
-    # django-ratelimit's built-in key='ip' would key every single
-    # visitor's rate limit off that one shared address, meaning one
-    # person mistyping their password could lock out everyone else
-    # trying to log in. Railway is the only hop in front of this app
-    # (same trust assumption production.py already makes for
-    # X-Forwarded-Proto), so the first X-Forwarded-For value is the
-    # real client IP.
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        return x_forwarded_for.split(',')[0].strip()
-    return request.META.get('REMOTE_ADDR')
+# django-ratelimit's built-in key='ip' would read REMOTE_ADDR, which is
+# always Railway's edge IP (never the visitor's) once TLS is terminated
+# and proxied upstream of this app - that would key every visitor's rate
+# limit off one shared address, so one person mistyping their password
+# could lock out everyone else trying to log in. get_client_ip reads the
+# real client IP from X-Forwarded-For instead (same trust assumption
+# production.py already makes for X-Forwarded-Proto).
 
 
 def ratelimit_key(group, request):
     return get_client_ip(request)
+
+
+def send_activation_email(request, user):
+    # Shared by registration (first send) and resend_activation_view (a
+    # fresh link after the first one expired or never arrived) - one
+    # place to generate the token and send the email, so the two can
+    # never drift into sending different message text.
+    uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+    token = default_token_generator.make_token(user)
+    domain = get_current_site(request).domain
+    activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
+    message = f"Dear {user.username},\n\nActivate: {activation_link}"
+
+    try:
+        send_mail(
+            'Account Activation',
+            message,
+            None,  # uses settings.DEFAULT_FROM_EMAIL
+            [user.email],
+            fail_silently=False
+        )
+    except Exception as e:
+        logger.error(f"Failed to send activation email to {user.email}: {e}")
 
 
 # NOTE: with no CACHES setting configured, Django's implicit default is
@@ -71,22 +87,7 @@ def registration_view(request):
             if plan in valid_plans:
                 SubscriptionRequest.objects.create(user=user, plan=plan)
 
-            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-            token = default_token_generator.make_token(user)
-            domain = get_current_site(request).domain
-            activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
-            message = f"Dear {user.username},\n\nActivate: {activation_link}"
-
-            try:
-                send_mail(
-                    'Account Activation',
-                    message,
-                    None,  # uses settings.DEFAULT_FROM_EMAIL
-                    [user.email],
-                    fail_silently=False
-                )
-            except Exception as e:
-                logger.error(f"Failed to send activation email to {user.email}: {e}")
+            send_activation_email(request, user)
 
             messages.success(
                 request,
@@ -150,7 +151,25 @@ def login_view(request):
                 messages.success(request, 'Кирүү ийгиликтүү аяктады!')
                 return redirect("home")
             else:
-                messages.error(request, 'Электрондук почта же сырсөз туура эмес.')
+                # authenticate() returns None both for a wrong password and
+                # for a correct one on an is_active=False account (Django's
+                # ModelBackend checks both) - without this check, someone
+                # who registered but hasn't clicked their activation link
+                # yet sees "wrong password" for credentials that are
+                # actually correct, with no indication of what's really
+                # going on or how to fix it.
+                try:
+                    existing = Account.objects.get(email=email)
+                except Account.DoesNotExist:
+                    existing = None
+                if existing is not None and not existing.is_active and existing.check_password(password):
+                    messages.error(
+                        request,
+                        'Аккаунтуңуз азырынча активдештирилген эмес. Электрондук почтаңызга '
+                        'жиберилген шилтемени басыңыз же жаңы шилтеме сураңыз.'
+                    )
+                else:
+                    messages.error(request, 'Электрондук почта же сырсөз туура эмес.')
     else:
         form = AccountAuthenticationForm()
 
@@ -255,6 +274,31 @@ def activation_view(request, uidb64, token):
         messages.error(request, 'Invalid activation link.')
 
     return redirect('login')
+
+
+@ratelimit(key=ratelimit_key, rate='5/h', method='POST', block=True)
+def resend_activation_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', '').strip().lower()
+        try:
+            user = Account.objects.get(email=email, is_active=False)
+        except Account.DoesNotExist:
+            user = None
+
+        if user is not None:
+            send_activation_email(request, user)
+
+        # Same message whether the account exists, is already active, or
+        # was never registered at all - telling them apart would let this
+        # form be used to check which emails are registered.
+        messages.success(
+            request,
+            "Эгер бул дарек менен катталган, бирок азырынча активдештирилбеген "
+            "аккаунт бар болсо, жаңы активдештирүү шилтемеси жиберилди."
+        )
+        return redirect('login')
+
+    return render(request, 'account/resend_activation.html')
 
 
 @method_decorator(
