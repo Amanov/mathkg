@@ -39,6 +39,16 @@ def download_resource_view(request, pk):
         is_active=True
     )
 
+    remaining = request.user.downloads_remaining_today(resource.category)
+    if remaining is not None and remaining <= 0:
+        messages.error(
+            request,
+            f"Бүгүнкү «{resource.get_category_display()}» жүктөп алуу "
+            "чегине жеттиңиз. Эртең кайра аракет кылыңыз же планыңызды "
+            "жаңыртыңыз."
+        )
+        return redirect('account')
+
     ResourceDownload.objects.create(
         resource=resource,
         user=request.user,
