@@ -6,6 +6,7 @@ from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
 from apps.resources.data.four_basic_operations_data import FOUR_BASIC_OPERATIONS_SECTIONS
 from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
 from apps.resources.data.koshuu_1_digit_data import KOSHUU_1_DIGIT_SECTIONS
+from apps.resources.data.algebra_linear_data import ALGEBRA_LINEAR_VAR1SIDE_NONCALC_1STEP_SECTIONS
 
 
 def four_basic_operations_view(request):
@@ -49,5 +50,17 @@ def koshuu_1_digit_view(request):
             'res': get_active_resources(),
             'sections': KOSHUU_1_DIGIT_SECTIONS,
             'page_title': 'Кошуу — 1 орундуу сандар',
+        }
+    )
+
+
+def algebra_linear_var1side_noncalc_1step_view(request):
+    return render(
+        request,
+        'resources/algebra/linear_var1side_noncalc_1step.html',
+        {
+            'res': get_active_resources(),
+            'sections': ALGEBRA_LINEAR_VAR1SIDE_NONCALC_1STEP_SECTIONS,
+            'page_title': 'Белгисиз бир жагында: 1-кадам',
         }
     )

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Теңдеме тараза катары">
+  <line x1="80" y1="30" x2="80" y2="128" stroke="#0f3c58" stroke-width="4" stroke-linecap="round"/>
+  <rect x="68" y="122" width="24" height="10" rx="2" fill="#0f3c58"/>
+  <path d="M80 30 L28 48 M80 30 L132 48" stroke="#0f3c58" stroke-width="4" stroke-linecap="round"/>
+  <path d="M18 48 L38 48 L34 70 Q28 78 18 70 Z" fill="#fff" stroke="#94a3b8" stroke-width="3"/>
+  <path d="M122 48 L142 48 L138 70 Q132 78 122 70 Z" fill="#fff" stroke="#94a3b8" stroke-width="3"/>
+  <rect x="20" y="52" width="10" height="10" rx="1.5" fill="#0d6efd"/>
+  <text x="30" y="61" text-anchor="middle" font-family="Arial" font-weight="700" font-size="9" fill="#fff">x</text>
+  <rect x="31" y="52" width="10" height="10" rx="1.5" fill="#0d6efd"/>
+  <text x="124" y="61" text-anchor="middle" font-family="Arial" font-weight="700" font-size="10" fill="#0f3c58">8</text>
+  <circle cx="80" cy="30" r="6" fill="#0d6efd"/>
+</svg>
