@@ -52,8 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party extensions
-    'rest_framework',
-    'rest_framework.authtoken',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_extensions',
@@ -61,19 +59,6 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5' #added by me
-
-#REST_FRAMEWORK Settings
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        
-    ]
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,6 +112,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # host to turn on real activation/password-reset emails.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@mathkg.com')
+
+# Where operational notifications go (a new SubscriptionRequest, etc.) -
+# the site owner's own inbox, already shown as the public contact address
+# throughout the site's templates. Overridable via env var for the same
+# reason DEFAULT_FROM_EMAIL is.
+ADMIN_NOTIFICATION_EMAIL = os.environ.get('ADMIN_NOTIFICATION_EMAIL', 'mathematicskgz@gmail.com')
 
 if os.environ.get('EMAIL_HOST'):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

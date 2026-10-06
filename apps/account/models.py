@@ -1,14 +1,15 @@
 import calendar
 from datetime import timedelta
+from logging import getLogger
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 # Create your models here.
 from django.conf import settings
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.core.mail import send_mail
 from django.utils import timezone
-from rest_framework.authtoken.models import Token
+
+logger = getLogger(__name__)
 
 from config.storage_backends import persistent_media_storage
 
@@ -184,13 +185,6 @@ def add_months(base_date, months):
     return base_date.replace(year=year, month=month, day=day)
 
 
-@receiver(post_save,sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False,**kwargs):
-    if created:
-        Token.objects.create(user=instance)
-    else:
-        pass
-
 ## I want to count how many times file is downloaded
 
 class DownloadFile(models.Model):
@@ -296,6 +290,30 @@ class SubscriptionRequest(models.Model):
 
     def __str__(self):
         return f"{self.user.email} - {self.get_plan_display()} ({self.get_status_display()})"
+
+    def save(self, *args, **kwargs):
+        is_new = self._state.adding
+        super().save(*args, **kwargs)
+        if is_new:
+            self._notify_admin()
+
+    def _notify_admin(self):
+        # Previously the only way to learn a payment needed confirming was
+        # to go check Django admin - easy to miss, especially since the
+        # confirm step is entirely manual (no payment gateway webhook).
+        # Best-effort: a failed notification email must never block the
+        # request itself from being created.
+        try:
+            send_mail(
+                'Жаңы жазылуу суранычы',
+                f'{self.user.email} колдонуучусу "{self.get_plan_display()}" '
+                'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.',
+                None,  # uses settings.DEFAULT_FROM_EMAIL
+                [settings.ADMIN_NOTIFICATION_EMAIL],
+                fail_silently=False,
+            )
+        except Exception as e:
+            logger.error(f"Failed to send subscription-request notification: {e}")
 
     def activate(self):
         # Idempotent on purpose: this runs from more than one admin path
