@@ -254,3 +254,68 @@ class RepairSubscriptionsBackfillsCurrentPlanTests(TestCase):
         second_run_output = StringIO()
         call_command('repair_subscriptions', '--apply', stdout=second_run_output)
         self.assertIn('Fixed 0 of', second_run_output.getvalue())
+
+
+class BackfillCurrentPlanMigrationTests(TestCase):
+    """The repair_subscriptions command only backfills current_plan when
+    someone runs it by hand in production - a review finding on this
+    feature pointed out that leaves every pre-existing paying account
+    capped at trial limits (1/day) from the moment this ships until that
+    manual step happens. This data migration closes that gap by running
+    the same backfill automatically as part of `manage.py migrate`."""
+
+    def test_backfills_current_plan_from_latest_confirmed_request(self):
+        from apps.account.migration_utils import backfill_current_plan as _backfill_current_plan
+
+        user = Account.objects.create_user(
+            email='migrate1@example.com', username='migrate1', password='SuperSecret123!'
+        )
+        SubscriptionRequest.objects.create(
+            user=user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+            status=SubscriptionRequest.STATUS_CONFIRMED,
+        )
+        SubscriptionRequest.objects.create(
+            user=user, plan=SubscriptionRequest.PLAN_ONE_YEAR,
+            status=SubscriptionRequest.STATUS_CONFIRMED,
+        )
+        user.current_plan = None
+        user.save(update_fields=['current_plan'])
+
+        _backfill_current_plan(Account)
+
+        user.refresh_from_db()
+        self.assertEqual(user.current_plan, SubscriptionRequest.PLAN_ONE_YEAR)
+
+    def test_does_not_touch_an_account_with_no_confirmed_request(self):
+        from apps.account.migration_utils import backfill_current_plan as _backfill_current_plan
+
+        user = Account.objects.create_user(
+            email='migrate2@example.com', username='migrate2', password='SuperSecret123!'
+        )
+        SubscriptionRequest.objects.create(
+            user=user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+            status=SubscriptionRequest.STATUS_PENDING,
+        )
+
+        _backfill_current_plan(Account)
+
+        user.refresh_from_db()
+        self.assertIsNone(user.current_plan)
+
+    def test_does_not_overwrite_an_already_set_current_plan(self):
+        from apps.account.migration_utils import backfill_current_plan as _backfill_current_plan
+
+        user = Account.objects.create_user(
+            email='migrate3@example.com', username='migrate3', password='SuperSecret123!'
+        )
+        SubscriptionRequest.objects.create(
+            user=user, plan=SubscriptionRequest.PLAN_ONE_YEAR,
+            status=SubscriptionRequest.STATUS_CONFIRMED,
+        )
+        user.current_plan = SubscriptionRequest.PLAN_THREE_MONTHS
+        user.save(update_fields=['current_plan'])
+
+        _backfill_current_plan(Account)
+
+        user.refresh_from_db()
+        self.assertEqual(user.current_plan, SubscriptionRequest.PLAN_THREE_MONTHS)
