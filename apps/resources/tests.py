@@ -159,6 +159,22 @@ class DownloadLimitEnforcementTests(TestCase):
         resp = self.client.get(reverse('download_resource', args=[worksheet.pk]))
         self.assertEqual(resp.status_code, 200)
 
+    def test_redownloading_the_same_resource_is_never_blocked(self):
+        # Review finding: a retry or accidental double-click used to be
+        # blocked as "limit reached" on the very file the user just got.
+        resource = self._make_resource('presentation', 'P')
+        self.client.get(reverse('download_resource', args=[resource.pk]))
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_a_different_resource_is_still_blocked_after_the_limit_is_used(self):
+        first = self._make_resource('presentation', 'First')
+        second = self._make_resource('presentation', 'Second')
+        self.client.get(reverse('download_resource', args=[first.pk]))
+        self.client.get(reverse('download_resource', args=[first.pk]))
+        resp = self.client.get(reverse('download_resource', args=[second.pk]), follow=True)
+        self.assertContains(resp, 'чегине жеттиңиз')
+
     def test_one_year_plan_has_no_limit(self):
         self.user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
         self.user.save(update_fields=['current_plan'])

@@ -256,6 +256,15 @@ class DownloadLimitTests(TestCase):
         self.assertEqual(self.user.downloads_remaining_today('presentation'), 0)
         self.assertEqual(self.user.downloads_remaining_today('worksheet'), 1)
 
+    def test_redownloading_the_same_resource_only_counts_once(self):
+        # Review finding: a retry or accidental double-click used to burn
+        # a second slot of the daily quota for the exact same file.
+        self.user.current_plan = SubscriptionRequest.PLAN_SIX_MONTHS
+        resource = self._make_resource('worksheet')
+        ResourceDownload.objects.create(resource=resource, user=self.user)
+        ResourceDownload.objects.create(resource=resource, user=self.user)
+        self.assertEqual(self.user.downloads_remaining_today('worksheet'), 4)
+
     def test_yesterdays_download_does_not_count_against_todays_limit(self):
         resource = self._make_resource('worksheet')
         download = ResourceDownload.objects.create(resource=resource, user=self.user)
