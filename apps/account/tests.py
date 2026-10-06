@@ -1,10 +1,16 @@
 import re
+import tempfile
+from datetime import timedelta
 
 from django.core import mail
-from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase, override_settings
 from django.urls import reverse
+from django.utils import timezone
 
-from .models import Account, School
+from apps.resources.models import Resource, ResourceDownload
+
+from .models import Account, School, SubscriptionRequest
 
 
 class RegistrationAndActivationTests(TestCase):
@@ -200,3 +206,70 @@ class SchoolDashboardTests(TestCase):
         })
         self.teacher.refresh_from_db()
         self.assertIsNone(self.teacher.school_id)
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class DownloadLimitTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='limits@example.com', username='limitsuser', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+
+    def _make_resource(self, category, title='R'):
+        return Resource.objects.create(
+            title=title, category=category, is_active=True,
+            file=SimpleUploadedFile(f'{title}.txt', b'data'),
+        )
+
+    def test_trial_user_has_3month_tier_limits(self):
+        self.assertEqual(self.user.daily_download_limit('presentation'), 1)
+        self.assertEqual(self.user.daily_download_limit('worksheet'), 1)
+        self.assertEqual(self.user.daily_download_limit('activity'), 1)
+
+    def test_three_month_plan_has_same_limits_as_trial(self):
+        self.user.current_plan = SubscriptionRequest.PLAN_THREE_MONTHS
+        self.assertEqual(self.user.daily_download_limit('presentation'), 1)
+
+    def test_six_month_plan_allows_five_per_category(self):
+        self.user.current_plan = SubscriptionRequest.PLAN_SIX_MONTHS
+        self.assertEqual(self.user.daily_download_limit('presentation'), 5)
+        self.assertEqual(self.user.daily_download_limit('worksheet'), 5)
+        self.assertEqual(self.user.daily_download_limit('activity'), 5)
+
+    def test_one_year_plan_is_unlimited(self):
+        self.user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
+        self.assertIsNone(self.user.daily_download_limit('presentation'))
+        self.assertIsNone(self.user.downloads_remaining_today('presentation'))
+
+    def test_downloads_remaining_today_counts_todays_downloads(self):
+        resource = self._make_resource('worksheet')
+        ResourceDownload.objects.create(resource=resource, user=self.user)
+        self.assertEqual(self.user.downloads_remaining_today('worksheet'), 0)
+
+    def test_categories_are_tracked_independently(self):
+        presentation = self._make_resource('presentation', 'P')
+        ResourceDownload.objects.create(resource=presentation, user=self.user)
+        self.assertEqual(self.user.downloads_remaining_today('presentation'), 0)
+        self.assertEqual(self.user.downloads_remaining_today('worksheet'), 1)
+
+    def test_yesterdays_download_does_not_count_against_todays_limit(self):
+        resource = self._make_resource('worksheet')
+        download = ResourceDownload.objects.create(resource=resource, user=self.user)
+        ResourceDownload.objects.filter(pk=download.pk).update(
+            downloaded_at=timezone.now() - timedelta(days=1)
+        )
+        self.assertEqual(self.user.downloads_remaining_today('worksheet'), 1)
+
+    def test_trial_days_defaults_to_seven_for_new_accounts(self):
+        self.assertEqual(self.user.trial_days, 7)
+
+    def test_subscription_end_date_uses_trial_days(self):
+        self.user.trial_days = 30
+        expected = self.user.date_joined.date() + timedelta(days=30)
+        self.assertEqual(self.user.subscription_end_date, expected)
+
+    def test_explicit_subscription_end_overrides_trial(self):
+        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.assertEqual(self.user.subscription_end_date, self.user.subscription_end)
