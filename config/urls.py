@@ -35,6 +35,9 @@ from apps.resources.views import (
     onedigitarithmetics_view,
     operation_placeholder_view,
 
+    # algebra
+    algebra_linear_var1side_noncalc_1step_view,
+
     # ekvivalenttuuluk
     to_fractions_view,
     to_percentages_view,
@@ -629,7 +632,7 @@ urlpatterns = [
 
     # Теңдемелер: сызыктуу > Белгисиз бир жагында: калькуляторсуз - all
     # 4 slots, none with a real page yet.
-    path('algebra-linear-var1side-noncalc-1step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-1step'}, name='algebra_linear_var1side_noncalc_1step'),
+    path('algebra-linear-var1side-noncalc-1step/', algebra_linear_var1side_noncalc_1step_view, name='algebra_linear_var1side_noncalc_1step'),
     path('algebra-linear-var1side-noncalc-2step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-2step'}, name='algebra_linear_var1side_noncalc_2step'),
     path('algebra-linear-var1side-noncalc-3step/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-3step'}, name='algebra_linear_var1side_noncalc_3step'),
     path('algebra-linear-var1side-noncalc-rational/', operation_placeholder_view, {'operation_slug': 'algebra-linear-var1side-noncalc-rational'}, name='algebra_linear_var1side_noncalc_rational'),

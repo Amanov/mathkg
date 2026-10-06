@@ -5,6 +5,7 @@ from .operations import (
     directed_numbers_view,
     four_basic_operations_view,
     koshuu_1_digit_view,
+    algebra_linear_var1side_noncalc_1step_view,
 )
 
 from .downloads import (

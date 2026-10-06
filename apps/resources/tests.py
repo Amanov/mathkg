@@ -88,6 +88,33 @@ class DownloadEligibilityDisplayTests(TestCase):
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class AlgebraLinearLessonPageTests(TestCase):
+    """The one-step-equations lesson page (algebra-linear-var1side-noncalc-1step)
+    used to be a bare 'materials being prepared' placeholder - it now has a
+    real presentation wired up through the same operation_block.html pattern
+    as four_basic_operations/koshuu_1_digit."""
+
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='algebra@example.com', username='algebrauser', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+        self.client.login(email='algebra@example.com', password='SuperSecret123!')
+
+    def test_page_shows_real_download_once_the_resource_exists(self):
+        Resource.objects.create(
+            title='Algebra-OneStepVar1Side-NonCalc.pptx',
+            category='presentation', is_active=True,
+            file=SimpleUploadedFile('Algebra-OneStepVar1Side-NonCalc.pptx', b'data'),
+        )
+        resp = self.client.get(reverse('algebra_linear_var1side_noncalc_1step'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Белгисиз бир жагында')
+        self.assertContains(resp, 'PPT')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class SearchViewTests(TestCase):
     def setUp(self):
         cache.clear()
