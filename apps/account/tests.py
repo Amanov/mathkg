@@ -1,9 +1,11 @@
 import re
 import tempfile
 from datetime import timedelta
+from io import StringIO
 
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.management import call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -205,3 +207,50 @@ class DownloadLimitTests(TestCase):
     def test_explicit_subscription_end_overrides_trial(self):
         self.user.subscription_end = timezone.now().date() - timedelta(days=1)
         self.assertEqual(self.user.subscription_end_date, self.user.subscription_end)
+
+
+class RepairSubscriptionsBackfillsCurrentPlanTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='backfill@example.com', username='backfilluser', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+        # .activate() is what realistically sets subscription_end/is_active
+        # (and, after Task 1, current_plan) from a confirmed request. Null
+        # current_plan back out afterward to simulate a payment that was
+        # confirmed *before* current_plan existed as a field - exactly the
+        # account repair_subscriptions needs to backfill.
+        self.request = SubscriptionRequest.objects.create(
+            user=self.user, plan=SubscriptionRequest.PLAN_ONE_YEAR,
+            status=SubscriptionRequest.STATUS_PENDING,
+        )
+        self.request.activate()
+        self.user.current_plan = None
+        self.user.save(update_fields=['current_plan'])
+
+    def test_dry_run_does_not_write(self):
+        call_command('repair_subscriptions', stdout=StringIO())
+        self.user.refresh_from_db()
+        self.assertIsNone(self.user.current_plan)
+
+    def test_apply_backfills_current_plan_from_last_confirmed_request(self):
+        call_command('repair_subscriptions', '--apply', stdout=StringIO())
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.current_plan, SubscriptionRequest.PLAN_ONE_YEAR)
+
+    def test_apply_uses_the_latest_of_multiple_confirmed_requests(self):
+        SubscriptionRequest.objects.create(
+            user=self.user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+            status=SubscriptionRequest.STATUS_CONFIRMED,
+            activated_at=timezone.now(),
+        )
+        call_command('repair_subscriptions', '--apply', stdout=StringIO())
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.current_plan, SubscriptionRequest.PLAN_THREE_MONTHS)
+
+    def test_rerunning_apply_is_idempotent(self):
+        call_command('repair_subscriptions', '--apply', stdout=StringIO())
+        second_run_output = StringIO()
+        call_command('repair_subscriptions', '--apply', stdout=second_run_output)
+        self.assertIn('Fixed 0 of', second_run_output.getvalue())
