@@ -1,3 +1,5 @@
+from logging import getLogger
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
@@ -8,20 +10,9 @@ from apps.resources.models import (
     Resource,
     ResourceDownload
 )
+from apps.resources.utils.request_helpers import get_client_ip
 
-
-def get_client_ip(request):
-
-    x_forwarded_for = request.META.get(
-        'HTTP_X_FORWARDED_FOR'
-    )
-
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-
-    return ip
+logger = getLogger(__name__)
 
 
 @login_required(login_url='login')
@@ -59,6 +50,22 @@ def download_resource_view(request, pk):
             )
             return redirect('account')
 
+    # Opened before logging the download or counting it against the daily
+    # quota - a file missing from disk (the resource library isn't on
+    # persistent storage yet - see docs/deployment-notes.md) must not
+    # silently use up a slot or get counted as a successful download the
+    # user never actually received.
+    try:
+        file_handle = resource.file.open('rb')
+    except (FileNotFoundError, OSError):
+        logger.error('Resource file missing on disk: resource_id=%s, file=%s', resource.pk, resource.file.name)
+        messages.error(
+            request,
+            'Бул файл учурда жеткиликсиз. Бир аздан кийин кайра аракет '
+            'кылыңыз же бизге жазыңыз: mathematicskgz@gmail.com'
+        )
+        return redirect('account')
+
     ResourceDownload.objects.create(
         resource=resource,
         user=request.user,
@@ -71,7 +78,4 @@ def download_resource_view(request, pk):
 
     resource.increment_download()
 
-    return FileResponse(
-        resource.file.open('rb'),
-        as_attachment=True
-    )
+    return FileResponse(file_handle, as_attachment=True)

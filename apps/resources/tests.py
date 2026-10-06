@@ -1,6 +1,7 @@
 import tempfile
 from datetime import date, timedelta
 
+from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -127,6 +128,71 @@ class ResourceCategoryLabelTests(TestCase):
         self.assertEqual(Resource(category='activity').get_category_display(), 'Мугалим жетектеген ишмердик')
 
 
+class DownloadEligibilityDisplayTests(TestCase):
+    """A download button used to show identically whether or not the
+    user's subscription was actually still active, only erroring after
+    the click. These pages should show the real state upfront instead."""
+
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='eligibility@example.com', username='eligibility', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+        self.client.login(email='eligibility@example.com', password='SuperSecret123!')
+
+    def _expire_subscription(self):
+        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.save(update_fields=['subscription_end'])
+
+    def test_operation_block_shows_renewal_prompt_when_subscription_expired(self):
+        self._expire_subscription()
+        resp = self.client.get(reverse('koshuu_1_digit'))
+        self.assertContains(resp, 'Жазылууңуздун мөөнөтү бүткөн')
+
+    def test_operation_block_does_not_show_renewal_prompt_with_active_subscription(self):
+        resp = self.client.get(reverse('koshuu_1_digit'))
+        self.assertNotContains(resp, 'Жазылууңуздун мөөнөтү бүткөн')
+
+    def test_directed_numbers_shows_renewal_prompt_when_subscription_expired(self):
+        self._expire_subscription()
+        resp = self.client.get(reverse('directed_numbers'))
+        self.assertContains(resp, 'Жазылууңуздун мөөнөтү бүткөн')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class SearchViewTests(TestCase):
+    def setUp(self):
+        cache.clear()
+
+    def tearDown(self):
+        cache.clear()
+
+    def _make_resource(self, title, description=''):
+        return Resource.objects.create(
+            title=title, description=description, category='presentation', is_active=True,
+            file=SimpleUploadedFile(f'{title}.txt', b'data'),
+        )
+
+    def test_query_below_the_minimum_length_runs_no_search(self):
+        self._make_resource('Алгебра')
+        resp = self.client.get(reverse('search'), {'q': 'а'})
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(resp.context['has_results'])
+
+    def test_query_at_the_minimum_length_finds_a_matching_resource(self):
+        self._make_resource('Алгебра: киришүү')
+        resp = self.client.get(reverse('search'), {'q': 'ал'})
+        self.assertTrue(resp.context['has_results'])
+
+    def test_repeated_requests_beyond_the_rate_limit_are_blocked(self):
+        for _ in range(30):
+            resp = self.client.get(reverse('search'), {'q': 'математика'})
+            self.assertEqual(resp.status_code, 200)
+        resp = self.client.get(reverse('search'), {'q': 'математика'})
+        self.assertEqual(resp.status_code, 403)
+
+
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class DownloadLimitEnforcementTests(TestCase):
     def setUp(self):
@@ -166,6 +232,15 @@ class DownloadLimitEnforcementTests(TestCase):
         self.client.get(reverse('download_resource', args=[resource.pk]))
         resp = self.client.get(reverse('download_resource', args=[resource.pk]))
         self.assertEqual(resp.status_code, 200)
+
+    def test_a_file_missing_from_disk_shows_a_friendly_error_instead_of_crashing(self):
+        resource = self._make_resource('presentation', 'Gone')
+        import os
+        os.remove(resource.file.path)
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'жеткиликсиз')
+        self.assertEqual(ResourceDownload.objects.filter(resource=resource).count(), 0)
 
     def test_a_different_resource_is_still_blocked_after_the_limit_is_used(self):
         first = self._make_resource('presentation', 'First')
