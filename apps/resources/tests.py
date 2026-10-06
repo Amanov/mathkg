@@ -9,7 +9,7 @@ from django.utils import timezone
 
 from apps.account.models import Account, SubscriptionRequest
 
-from .models import Exam, ExamQuestion, NewsPost, Question, Resource, ResourceDownload
+from .models import Exam, ExamQuestion, NewsPost, Question, Resource, ResourceDownload, SearchQuery
 
 
 class ExamFlowTests(TestCase):
@@ -219,6 +219,23 @@ class SearchViewTests(TestCase):
         resp = self.client.get(reverse('search'), {'q': 'математика'})
         self.assertEqual(resp.status_code, 403)
 
+    def test_submitting_a_search_logs_a_search_query(self):
+        self._make_resource('Алгебра: киришүү')
+        self.client.get(reverse('search'), {'q': 'алгебра'})
+        self.assertEqual(SearchQuery.objects.count(), 1)
+        logged = SearchQuery.objects.get()
+        self.assertEqual(logged.query, 'алгебра')
+        self.assertEqual(logged.results_count, 1)
+
+    def test_zero_result_search_is_logged_with_a_zero_count(self):
+        self.client.get(reverse('search'), {'q': 'жокнерсе'})
+        logged = SearchQuery.objects.get()
+        self.assertEqual(logged.results_count, 0)
+
+    def test_query_below_the_minimum_length_is_not_logged(self):
+        self.client.get(reverse('search'), {'q': 'а'})
+        self.assertEqual(SearchQuery.objects.count(), 0)
+
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class DownloadLimitEnforcementTests(TestCase):
@@ -292,6 +309,26 @@ class DownloadLimitEnforcementTests(TestCase):
         resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
         self.assertContains(resp, 'мөөнөтү бүткөн')
         self.assertNotContains(resp, 'чегине жеттиңиз')
+
+
+class AnalyticsDashboardTests(TestCase):
+    def setUp(self):
+        self.staff = Account.objects.create_user(
+            email='staff@example.com', username='staffuser', password='SuperSecret123!'
+        )
+        self.staff.is_active = True
+        self.staff.is_staff = True
+        self.staff.save(update_fields=['is_active', 'is_staff'])
+        self.client.login(email='staff@example.com', password='SuperSecret123!')
+
+    def test_dashboard_renders_with_the_search_queries_section(self):
+        SearchQuery.objects.create(query='алгебра', results_count=3)
+        SearchQuery.objects.create(query='жокнерсе', results_count=0)
+        resp = self.client.get(reverse('analytics_dashboard'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Top search queries')
+        self.assertContains(resp, 'Searches with no results')
+        self.assertContains(resp, 'жокнерсе')
 
 
 class PricingPageTests(TestCase):

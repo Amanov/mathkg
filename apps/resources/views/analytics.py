@@ -13,6 +13,7 @@ from apps.resources.models import (
     ResourceDownload,
     SiteVisit,
     ButtonClick,
+    SearchQuery,
     LoginEvent,
 )
 
@@ -256,6 +257,30 @@ def analytics_dashboard_view(request):
     )
 
     # =========================
+    # Search Queries
+    # =========================
+
+    total_searches = SearchQuery.objects.count()
+
+    top_queries = (
+        SearchQuery.objects
+        .values('query')
+        .annotate(searches=Count('id'))
+        .order_by('-searches')[:15]
+    )
+
+    # Queries that came back empty, most-repeated first - a direct signal
+    # of content gaps (what teachers are looking for but the site doesn't
+    # have yet), not just a usage stat.
+    zero_result_queries = (
+        SearchQuery.objects
+        .filter(results_count=0)
+        .values('query')
+        .annotate(searches=Count('id'))
+        .order_by('-searches')[:15]
+    )
+
+    # =========================
     # Policy Watch - possible ToS violations
     # =========================
 
@@ -476,6 +501,8 @@ def analytics_dashboard_view(request):
     chart_button_counts = [b['clicks'] for b in top_buttons]
     chart_folder_labels = [d['folder'] for d in downloads_by_folder]
     chart_folder_counts = [d['total'] for d in downloads_by_folder]
+    chart_query_labels = [q['query'] for q in top_queries]
+    chart_query_counts = [q['searches'] for q in top_queries]
 
     # =========================
     # Context
@@ -508,6 +535,9 @@ def analytics_dashboard_view(request):
         'daily_visit_stats': daily_visit_stats,
         'total_clicks': total_clicks,
         'top_buttons': top_buttons,
+        'total_searches': total_searches,
+        'top_queries': top_queries,
+        'zero_result_queries': zero_result_queries,
         'flagged_shared_ip_accounts': flagged_shared_ip_accounts,
         'flagged_bulk_download_accounts': flagged_bulk_download_accounts,
         'flagged_same_file_multi_ip': flagged_same_file_multi_ip,
@@ -554,6 +584,8 @@ def analytics_dashboard_view(request):
         'chart_button_counts': chart_button_counts,
         'chart_folder_labels': chart_folder_labels,
         'chart_folder_counts': chart_folder_counts,
+        'chart_query_labels': chart_query_labels,
+        'chart_query_counts': chart_query_counts,
     }
 
     return render(

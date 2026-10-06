@@ -41,7 +41,7 @@
             <h3 class="search-category-heading">{{ category }}</h3>
             <div class="search-result-list">
                 {% for result in results %}
-                <a class="search-result-row" href="{{ result.url }}">
+                <a class="search-result-row" href="{{ result.url }}" data-track="Издөө жыйынтыгы: Тема">
                     {% if result.breadcrumb|length > 1 %}
                     <div class="search-result-breadcrumb">
                         {{ result.breadcrumb|slice:"1:"|join:' › ' }}
@@ -63,7 +63,7 @@
             {% for result in resource_results %}
             {% with resource=result.resource %}
             {% if result.url %}
-            <a class="search-result-row" href="{{ result.url }}">
+            <a class="search-result-row" href="{{ result.url }}" data-track="Издөө жыйынтыгы: Материал">
                 <div class="search-result-breadcrumb">{{ resource.get_category_display }}</div>
                 <div class="search-result-title">{{ resource.title }}</div>
                 {% if resource.description %}
