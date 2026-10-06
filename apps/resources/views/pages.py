@@ -2,6 +2,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, NoReverseMatch
 
+from apps.account.models import SubscriptionRequest, DAILY_DOWNLOAD_LIMITS
+
 from ..models import MenuItem, NewsPost, Resource
 
 
@@ -12,6 +14,29 @@ def news_list_view(request):
 
 def about_view(request):
     return render(request, 'resources/about.html')
+
+
+def pricing_view(request):
+    plan_names = {
+        SubscriptionRequest.PLAN_THREE_MONTHS: '3 ай',
+        SubscriptionRequest.PLAN_SIX_MONTHS: '6 ай',
+        SubscriptionRequest.PLAN_ONE_YEAR: '1 жыл',
+    }
+    unlimited_display = {'presentation': 'Чексиз', 'worksheet': 'Чексиз', 'activity': 'Чексиз'}
+    plans = []
+    for code, name in plan_names.items():
+        limits = DAILY_DOWNLOAD_LIMITS[code]
+        plans.append({
+            'code': code,
+            'name': name,
+            'price_som': SubscriptionRequest.PLAN_PRICE_SOM[code],
+            'months': SubscriptionRequest.PLAN_MONTHS[code],
+            'limits': limits or unlimited_display,
+        })
+    return render(request, 'resources/pricing.html', {
+        'plans': plans,
+        'featured_code': SubscriptionRequest.PLAN_ONE_YEAR,
+    })
 
 
 def topics_tree_view(request):

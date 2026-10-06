@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Баалар{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 pricing-page">
+    <div class="text-center mb-5">
+        <h1 class="display-6 fw-bold">Баалар</h1>
+        <p class="text-muted">Өзүңүзгө ылайыктуу планды тандаңыз</p>
+    </div>
+
+    <div class="pricing-table-wrap">
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for plan in plans %}
+                    <th class="{% if plan.code == featured_code %}pricing-featured{% endif %}">{{ plan.name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Баасы</th>
+                    {% for plan in plans %}<td>{{ plan.price_som }} сом</td>{% endfor %}
+                </tr>
+                <tr>
+                    <th>Узактыгы</th>
+                    {% for plan in plans %}<td>{{ plan.months }} ай</td>{% endfor %}
+                </tr>
+                <tr>
+                    <th>Презентация (күнүнө)</th>
+                    {% for plan in plans %}<td>{{ plan.limits.presentation }}</td>{% endfor %}
+                </tr>
+                <tr>
+                    <th>Мугалим жетектеген ишмердик (күнүнө)</th>
+                    {% for plan in plans %}<td>{{ plan.limits.activity }}</td>{% endfor %}
+                </tr>
+                <tr>
+                    <th>Иш барак (күнүнө)</th>
+                    {% for plan in plans %}<td>{{ plan.limits.worksheet }}</td>{% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pricing-cta mt-5">
+        {% include 'partials/pricing_cards.html' with mode='preview' %}
+    </div>
+</div>
+{% endblock %}
