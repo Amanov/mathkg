@@ -410,6 +410,41 @@
         </table>
       </details>
     </div>
+    <div class="chart-card">
+      <h3>Top search queries</h3>
+      <p class="chart-caption">All time · {{ total_searches }} total searches</p>
+      <div class="chart-wrap"><canvas id="chart-queries"></canvas></div>
+      <details class="view-data">
+        <summary>View data</summary>
+        <table>
+          <thead><tr><th>Query</th><th>Searches</th></tr></thead>
+          <tbody>
+            {% for q in top_queries %}
+            <tr><td>{{ q.query }}</td><td>{{ q.searches }}</td></tr>
+            {% empty %}
+            <tr><td colspan="2" style="color: var(--ink-muted)">No searches yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      Searches with no results
+      <span class="badge badge-neutral">{{ zero_result_queries|length }}</span>
+    </div>
+    <table>
+      <thead><tr><th>Query</th><th>Times searched</th></tr></thead>
+      <tbody>
+        {% for q in zero_result_queries %}
+        <tr><td>{{ q.query }}</td><td>{{ q.searches }}</td></tr>
+        {% empty %}
+        <tr><td colspan="2" style="color: var(--ink-muted)">No empty-result searches yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
   <div class="two-col">
@@ -541,6 +576,8 @@
 {{ chart_folder_counts|json_script:"chart-folder-counts" }}
 {{ chart_button_labels|json_script:"chart-button-labels" }}
 {{ chart_button_counts|json_script:"chart-button-counts" }}
+{{ chart_query_labels|json_script:"chart-query-labels" }}
+{{ chart_query_counts|json_script:"chart-query-counts" }}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
@@ -687,6 +724,27 @@
       datasets: [{
         label: 'Clicks', data: readJSON('chart-button-counts'),
         backgroundColor: SERIES_2, borderRadius: 4, borderSkipped: 'left',
+        maxBarThickness: 22, categoryPercentage: 0.7, barPercentage: 0.9,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, grid: { color: GRID }, border: { display: false } },
+        y: { grid: { display: false } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+
+  new Chart(document.getElementById('chart-queries'), {
+    type: 'bar',
+    data: {
+      labels: readJSON('chart-query-labels'),
+      datasets: [{
+        label: 'Searches', data: readJSON('chart-query-counts'),
+        backgroundColor: GREEN, borderRadius: 4, borderSkipped: 'left',
         maxBarThickness: 22, categoryPercentage: 0.7, barPercentage: 0.9,
       }],
     },

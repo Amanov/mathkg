@@ -6,7 +6,7 @@ from django_ratelimit.decorators import ratelimit
 from apps.account.models import SubscriptionRequest, DAILY_DOWNLOAD_LIMITS
 from apps.resources.utils.request_helpers import get_client_ip
 
-from ..models import MenuItem, NewsPost, Resource
+from ..models import MenuItem, NewsPost, Resource, SearchQuery
 
 # Below this, a query is too unspecific to be worth running at all - every
 # title/description in the catalog gets scanned in Python per request (see
@@ -210,6 +210,19 @@ def search_view(request):
                 'resource': resource,
                 'url': _resource_resolved_url(resource),
             })
+
+        # Logged only for a submitted search (not search_suggest_view's
+        # per-keystroke dropdown, which would flood this table with
+        # partial, non-deliberate queries).
+        if not request.session.session_key:
+            request.session.save()
+        SearchQuery.objects.create(
+            query=query,
+            results_count=len(topic_results) + len(resource_matches),
+            session_key=request.session.session_key or '',
+            user=request.user if request.user.is_authenticated else None,
+            ip_address=get_client_ip(request),
+        )
 
     context = {
         'query': query,

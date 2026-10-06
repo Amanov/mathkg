@@ -8,6 +8,7 @@ from .models import (
     ResourceDownload,
     SiteVisit,
     ButtonClick,
+    SearchQuery,
     LoginEvent,
     MenuItem,
     NewsPost,
@@ -206,6 +207,48 @@ class ButtonClickAdmin(admin.ModelAdmin):
     )
 
     date_hierarchy = "clicked_at"
+
+    list_per_page = 50
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(SearchQuery)
+class SearchQueryAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "query",
+        "results_count",
+        "user",
+        "ip_address",
+        "searched_at",
+    )
+
+    list_filter = (
+        "searched_at",
+    )
+
+    search_fields = (
+        "query",
+        "user__username",
+        "ip_address",
+    )
+
+    readonly_fields = (
+        "query",
+        "results_count",
+        "session_key",
+        "user",
+        "ip_address",
+        "searched_at",
+    )
+
+    ordering = (
+        "-searched_at",
+    )
+
+    date_hierarchy = "searched_at"
 
     list_per_page = 50
 

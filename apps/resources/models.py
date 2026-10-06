@@ -386,6 +386,45 @@ class ButtonClick(models.Model):
         return f"{self.label} - {self.clicked_at:%Y-%m-%d %H:%M}"
 
 
+class SearchQuery(models.Model):
+    query = models.CharField(
+        max_length=255
+    )
+
+    results_count = models.PositiveIntegerField(
+        default=0
+    )
+
+    session_key = models.CharField(
+        max_length=40,
+        blank=True
+    )
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    ip_address = models.GenericIPAddressField(
+        null=True,
+        blank=True
+    )
+
+    searched_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ['-searched_at']
+        verbose_name = 'Search Query'
+        verbose_name_plural = 'Search Queries'
+
+    def __str__(self):
+        return f"{self.query} ({self.results_count}) - {self.searched_at:%Y-%m-%d %H:%M}"
+
+
 class LoginEvent(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
