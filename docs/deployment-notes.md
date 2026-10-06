@@ -65,6 +65,74 @@ separately from the persistence question. Downloads themselves still work
 today regardless, since `download_resource_view` streams the file directly
 rather than relying on that URL.
 
+## Railway Volume shadows `/app/media` — caused a production incident (2026-10-06)
+
+**Status: recovered, root cause still open.** `/app/media` in production is
+a mounted Railway Volume (persistent disk), created around 2026-09-30. A
+mounted volume completely shadows whatever the container image has baked
+into that same path — so from that point on, the git-tracked
+`media/resources/files/` and `media/resources/images/` content was
+invisible to the running app, which saw only whatever was on the empty
+volume instead. In practice this meant resource downloads were likely
+broken for everyone from ~Sep 30 onward, not just for newly-added files —
+it was only noticed when a newly-shipped lesson's download button showed
+"Not found."
+
+**How it was found:** `ls -la /app/media/` in a Railway shell showed a
+`lost+found` directory — the tell-tale sign of an ext-family filesystem
+freshly `mkfs`'d for a volume, not a path backed by the container image.
+
+**Recovery performed:**
+1. `git clone --depth 1` the repo into `/tmp` on the Railway container
+   (outside the volume-shadowed path), to get the real git-tracked files
+   back.
+2. `cp -rn` (no-clobber) the recovered `media/resources/{files,images}/`
+   trees into the volume-backed `/app/media/resources/...` paths.
+3. Ran `python manage.py import_resources` to create the one missing
+   `Resource` row for the newly-added lesson file.
+
+**Secondary incident this caused:** step 3 above was a mistake run against
+an already-populated database without first checking that `Resource.title`
+values still matched their on-disk filenames. `import_resources`'s only
+existence check is `Resource.objects.filter(title=filename).exists()` —
+naive string matching with no fallback. Because a sizeable fraction of
+production's resource titles had been hand-edited in Django admin at some
+point (to show nicer, non-filename titles) and no longer matched their
+literal filenames, the re-run treated ~1112 already-resourced files as
+brand new, creating 1112 duplicate `Resource` rows and 1112 duplicate
+files (Django's storage silently appends a random suffix on a filename
+collision). This was diagnosed and cleaned up the same day: every
+template and data file in the codebase was scanned for titles they
+reference by exact string (244 total), cross-referenced against the
+duplicates, and the 1111 confirmed-unreferenced duplicates were deleted
+(DB rows + files). One duplicate was deliberately kept because
+`directed_numbers.html` references that exact title and no other resource
+with a matching title exists (a separate, pre-existing, still-open bug —
+see below).
+
+**Pre-existing bug surfaced by this, not yet fixed:** `directed_numbers.html`
+looks up a resource titled `4-amal-BagyttalganSandarJenilOrtoOor-Screenshot.png`
+by exact title (`res|get_item:'...'`), but before the above incident no
+`Resource` had that exact title — meaning that image lookup was silently
+returning nothing. It's unknown how many other pages/images have the same
+silent-miss problem elsewhere in the catalog, since `import_resources`'s
+title-matching can't tell "already imported, just renamed" apart from
+"genuinely new."
+
+**Root cause, still open — two options, either works:**
+1. Narrow the Railway Volume's mount path to only what actually needs
+   persistent writes (e.g. `payment_qr/`), instead of all of `/app/media`,
+   so git-tracked resource files are never shadowed again.
+2. Finish the R2/S3 migration already scaffolded in `config/storage_backends.py`
+   (see "Persistent media storage" above) for `Resource.file`/`Resource.image`
+   — once resources live in a bucket instead of local disk, volume-shadowing
+   stops being a risk for them entirely.
+
+Either way, `import_resources` should also be made to not silently create
+duplicates — e.g. matching on file content hash or on-disk path in addition
+to title, or just retiring the command in favor of manual admin uploads
+once persistent storage is in place.
+
 ## Other open items from the full QA audit (2026-09-17)
 
 Lower priority, not yet acted on:
