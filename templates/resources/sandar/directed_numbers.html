@@ -71,12 +71,17 @@
       <div class="col-md-4">
         <div class="h-100 p-5  ">
           {% if user.is_authenticated %}
-          {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenJenilOrtoOOR.pptx' %}
-                {% if r %}
-                    <a class="btn btn-outline-primary anchorNew" 
-                      href="{% url 'download_resource' pk=r.id %}">PPT</a>
-                {% endif %}
-            {% endwith %}
+            {% if user.has_active_subscription %}
+              {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenJenilOrtoOOR.pptx' %}
+                    {% if r %}
+                        <a class="btn btn-outline-primary anchorNew"
+                          href="{% url 'download_resource' pk=r.id %}">PPT</a>
+                    {% endif %}
+                {% endwith %}
+            {% else %}
+              <h5>Жазылууңуздун мөөнөтү бүткөн</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+            {% endif %}
           {% else %}
             <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
             <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
@@ -106,9 +111,14 @@
       <div class="col-md-4">
         <div class="h-100 p-5  ">
           {% if user.is_authenticated %}
-            {% with r=res|get_item:'4-Amal-BagyttalganSandarMenen1234.pptx' %}
-              <a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>
-            {% endwith %}
+            {% if user.has_active_subscription %}
+              {% with r=res|get_item:'4-Amal-BagyttalganSandarMenen1234.pptx' %}
+                <a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>
+              {% endwith %}
+            {% else %}
+              <h5>Жазылууңуздун мөөнөтү бүткөн</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+            {% endif %}
           {% else %}
             <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
             <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>
@@ -137,8 +147,13 @@
       <div class="col-md-4">
         <div class="h-100 p-5  ">
           {% if user.is_authenticated %}
-            {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenKataryMNTort.pptx' %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endwith %}<br>
-            <!-- Add other PDFs similarly -->
+            {% if user.has_active_subscription %}
+              {% with r=res|get_item:'4-Amal-BagyttalganSandarMenenKataryMNTort.pptx' %}<a class="btn btn-outline-primary anchorNew" href="{% url 'download_resource' pk=r.id %}">PPT</a>{% endwith %}<br>
+              <!-- Add other PDFs similarly -->
+            {% else %}
+              <h5>Жазылууңуздун мөөнөтү бүткөн</h5>
+              <a class="btn btn-primary anchorNew" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+            {% endif %}
           {% else %}
             <h5>Файлды жүктөп алуу үчүн катталыңыз</h5>
             <a class="btn btn-primary anchorNew" href="{% url 'register' %}">PPT</a>

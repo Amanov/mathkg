@@ -15,19 +15,26 @@
     <div class="col-md-4">
         <div class="h-100 p-5">
             {% if user.is_authenticated %}
-                {% for file in block.files %}
-                    {% with r=res|get_item:file %}
-                        {% if r %}
-                            <a class="btn btn-outline-primary anchorNew mb-2"
-                               href="{% url 'download_resource' pk=r.id %}">
-                                {% if 'pptx' in file %}PPT
-                                {% else %}{{ file|slice:"-4:"|upper }}{% endif %}
-                            </a><br>
-                        {% else %}
-                            <small style="color: red;">Not found: {{ file }}</small>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
+                {% if user.has_active_subscription %}
+                    {% for file in block.files %}
+                        {% with r=res|get_item:file %}
+                            {% if r %}
+                                <a class="btn btn-outline-primary anchorNew mb-2"
+                                   href="{% url 'download_resource' pk=r.id %}">
+                                    {% if 'pptx' in file %}PPT
+                                    {% else %}{{ file|slice:"-4:"|upper }}{% endif %}
+                                </a><br>
+                            {% else %}
+                                <small style="color: red;">Not found: {{ file }}</small>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                {% else %}
+                    {# Same condition download_resource_view itself checks - shown      #}
+                    {# here too so a visitor sees it before clicking, not after.        #}
+                    <h5>Жазылууңуздун мөөнөтү бүткөн</h5>
+                    <a class="btn btn-primary anchorNew" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+                {% endif %}
             {% else %}
                 <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
                 <a class="btn btn-primary anchorNew" href="{% url 'register' %}">Катталуу</a>

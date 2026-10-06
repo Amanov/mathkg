@@ -1,10 +1,23 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, NoReverseMatch
+from django_ratelimit.decorators import ratelimit
 
 from apps.account.models import SubscriptionRequest, DAILY_DOWNLOAD_LIMITS
+from apps.resources.utils.request_helpers import get_client_ip
 
 from ..models import MenuItem, NewsPost, Resource
+
+# Below this, a query is too unspecific to be worth running at all - every
+# title/description in the catalog gets scanned in Python per request (see
+# _topic_search_results's docstring for why that's not a DB-level
+# icontains), so a 1-character or empty query is the cheapest way to make
+# that scan run for nothing. search_suggest_view enforces the same floor.
+MIN_SEARCH_QUERY_LENGTH = 2
+
+
+def _search_ratelimit_key(group, request):
+    return get_client_ip(request)
 
 
 def news_list_view(request):
@@ -150,6 +163,7 @@ def _grouped_topic_results(results):
     return sorted(groups.items(), key=lambda pair: root_order.get(pair[0], 9999))
 
 
+@ratelimit(key=_search_ratelimit_key, rate='30/m', method='GET', block=True)
 def search_suggest_view(request):
     """Backs the live dropdown under the header search box: as the visitor
     types, this returns a short list of matching topic pages as JSON so the
@@ -158,7 +172,7 @@ def search_suggest_view(request):
     query = request.GET.get('q', '').strip()
     query_lower = query.lower()
 
-    results = _topic_search_results(query_lower, limit=8) if len(query_lower) >= 2 else []
+    results = _topic_search_results(query_lower, limit=8) if len(query_lower) >= MIN_SEARCH_QUERY_LENGTH else []
 
     return JsonResponse({
         'query': query,
@@ -166,6 +180,7 @@ def search_suggest_view(request):
     })
 
 
+@ratelimit(key=_search_ratelimit_key, rate='30/m', method='GET', block=True)
 def search_view(request):
     """Site-wide search: the topic menu and the resource library (title
     and description) - the content a visitor is actually looking for when
@@ -177,7 +192,7 @@ def search_view(request):
     grouped_topic_results = []
     resource_results = []
 
-    if query:
+    if len(query_lower) >= MIN_SEARCH_QUERY_LENGTH:
         topic_results = _topic_search_results(query_lower, limit=300)
         grouped_topic_results = _grouped_topic_results(topic_results)
 
