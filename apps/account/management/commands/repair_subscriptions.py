@@ -20,7 +20,9 @@ class Command(BaseCommand):
         "request shouldn't leave login blocked on a separate, unrelated "
         "email-activation step. Dry-run by default; pass --apply to write. "
         "Ignores any admin adjustment to subscription_end that isn't "
-        "backed by a SubscriptionRequest."
+        "backed by a SubscriptionRequest. Also backfills current_plan "
+        "from the last confirmed request in that same replayed chain, "
+        "for accounts that paid before current_plan existed as a field."
     )
 
     def add_arguments(self, parser):
@@ -60,11 +62,14 @@ class Command(BaseCommand):
                     anchor = max(anchor, simulated_end)
                 simulated_end = add_months(anchor, SubscriptionRequest.PLAN_MONTHS[req.plan])
 
+            simulated_plan = confirmed[-1].plan if confirmed else None
+
             actual_end = account.subscription_end
             needs_date_fix = actual_end != simulated_end
             needs_activation = not account.is_active
+            needs_plan_fix = account.current_plan != simulated_plan
 
-            if not needs_date_fix and not needs_activation:
+            if not needs_date_fix and not needs_activation and not needs_plan_fix:
                 continue
 
             fixed += 1
@@ -73,6 +78,8 @@ class Command(BaseCommand):
                 changes.append(f"subscription_end {actual_end} -> {simulated_end}")
             if needs_activation:
                 changes.append("is_active False -> True")
+            if needs_plan_fix:
+                changes.append(f"current_plan {account.current_plan} -> {simulated_plan}")
             self.stdout.write(
                 f"{account.email}: {'; '.join(changes)} "
                 f"({len(confirmed)} confirmed request(s))"
@@ -81,7 +88,8 @@ class Command(BaseCommand):
             if apply_fix:
                 account.subscription_end = simulated_end
                 account.is_active = True
-                account.save(update_fields=['subscription_end', 'is_active'])
+                account.current_plan = simulated_plan
+                account.save(update_fields=['subscription_end', 'is_active', 'current_plan'])
                 for req in confirmed:
                     if req.activated_at is None:
                         req.activated_at = req.created_at
