@@ -12,6 +12,35 @@ from rest_framework.authtoken.models import Token
 
 from config.storage_backends import persistent_media_storage
 
+# Kept at module level, instead of a separate settings/constants file,
+# since a plan here is meaningless without both a duration and a price.
+# Durations are exact calendar months (via add_months), not a fixed
+# day-count approximation - "6 months" from different starting dates
+# isn't always the same number of days. SubscriptionRequest below keeps
+# its own same-named class attributes as aliases to these, so every
+# existing SubscriptionRequest.PLAN_* reference elsewhere keeps working.
+PLAN_THREE_MONTHS = '3m'
+PLAN_SIX_MONTHS = '6m'
+PLAN_ONE_YEAR = '1y'
+PLAN_CHOICES = [
+    (PLAN_THREE_MONTHS, '3 ай - 1499 сом'),
+    (PLAN_SIX_MONTHS, '6 ай - 2999 сом'),
+    (PLAN_ONE_YEAR, '1 жыл - 4999 сом'),
+]
+PLAN_MONTHS = {PLAN_THREE_MONTHS: 3, PLAN_SIX_MONTHS: 6, PLAN_ONE_YEAR: 12}
+PLAN_PRICE_SOM = {PLAN_THREE_MONTHS: 1499, PLAN_SIX_MONTHS: 2999, PLAN_ONE_YEAR: 4999}
+
+# Per-category daily download cap by plan tier. None (no confirmed
+# payment yet - the free trial) gets the same restrictive numbers as the
+# 3-month plan; the 1-year plan's None value means unlimited.
+DAILY_DOWNLOAD_LIMITS = {
+    None: {'presentation': 1, 'worksheet': 1, 'activity': 1},  # trial
+    PLAN_THREE_MONTHS: {'presentation': 1, 'worksheet': 1, 'activity': 1},
+    PLAN_SIX_MONTHS: {'presentation': 5, 'worksheet': 5, 'activity': 5},
+    PLAN_ONE_YEAR: None,  # unlimited
+}
+
+
 #creating custom users
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -58,7 +87,17 @@ class Account(AbstractBaseUser):
     # first_name              =models.CharField(max_length=30) 
     # 
     # ✅ Subscription end date field
-    subscription_end = models.DateField(null=True, blank=True)           
+    subscription_end = models.DateField(null=True, blank=True)
+    current_plan = models.CharField(
+        max_length=2, choices=PLAN_CHOICES, null=True, blank=True,
+        help_text="Акыркы ырасталган төлөм планы. Акы төлөнбөгөн "
+                   "аккаунттар үчүн бош (сыноо мөөнөтү).",
+    )
+    trial_days = models.PositiveIntegerField(
+        default=7,
+        help_text="Акысыз сыноо мөөнөтү (күн). Катталган күндөн тартып "
+                   "эсептелет (subscription_end коюлбаса).",
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]  #'first_name' we can add a list
@@ -78,13 +117,34 @@ class Account(AbstractBaseUser):
     @property
     def subscription_end_date(self):
         # Hybrid: an explicit subscription_end wins; otherwise every
-        # account gets a 1-year trial from signup. Shared here so the
-        # account page and any access-gating check agree on the same date.
-        return self.subscription_end or (self.date_joined.date() + timedelta(days=365))
+        # account gets a free trial from signup, for its own trial_days
+        # (grandfathered accounts keep the original 365; new ones get 7 -
+        # see the trial_days field). Shared here so the account page and
+        # any access-gating check agree on the same date.
+        return self.subscription_end or (self.date_joined.date() + timedelta(days=self.trial_days))
 
     @property
     def has_active_subscription(self):
         return self.subscription_end_date >= timezone.now().date()
+
+    def daily_download_limit(self, category):
+        """Per-day cap for this resource category under the account's
+        current plan, or None for unlimited."""
+        limits = DAILY_DOWNLOAD_LIMITS.get(self.current_plan, DAILY_DOWNLOAD_LIMITS[None])
+        return limits[category] if limits else None
+
+    def downloads_remaining_today(self, category):
+        """None means unlimited. Otherwise the daily limit minus how many
+        of this category this user has already downloaded today."""
+        limit = self.daily_download_limit(category)
+        if limit is None:
+            return None
+        from apps.resources.models import ResourceDownload
+        used = ResourceDownload.objects.filter(
+            user=self, resource__category=category,
+            downloaded_at__date=timezone.now().date(),
+        ).count()
+        return max(0, limit - used)
 
 
 def add_months(base_date, months):
@@ -174,21 +234,14 @@ class PaymentQRCode(models.Model):
 
 
 class SubscriptionRequest(models.Model):
-    PLAN_THREE_MONTHS = '3m'
-    PLAN_SIX_MONTHS = '6m'
-    PLAN_ONE_YEAR = '1y'
-    PLAN_CHOICES = [
-        (PLAN_THREE_MONTHS, '3 ай - 1499 сом'),
-        (PLAN_SIX_MONTHS, '6 ай - 2999 сом'),
-        (PLAN_ONE_YEAR, '1 жыл - 4999 сом'),
-    ]
-    # Kept next to the choices they describe, instead of a separate
-    # settings/constants file, since a plan here is meaningless without
-    # both a duration and a price. Durations are exact calendar months
-    # (via add_months), not a fixed day-count approximation - "6 months"
-    # from different starting dates isn't always the same number of days.
-    PLAN_MONTHS = {PLAN_THREE_MONTHS: 3, PLAN_SIX_MONTHS: 6, PLAN_ONE_YEAR: 12}
-    PLAN_PRICE_SOM = {PLAN_THREE_MONTHS: 1499, PLAN_SIX_MONTHS: 2999, PLAN_ONE_YEAR: 4999}
+    # Aliases to the module-level constants above, kept so every existing
+    # SubscriptionRequest.PLAN_* reference elsewhere keeps working.
+    PLAN_THREE_MONTHS = PLAN_THREE_MONTHS
+    PLAN_SIX_MONTHS = PLAN_SIX_MONTHS
+    PLAN_ONE_YEAR = PLAN_ONE_YEAR
+    PLAN_CHOICES = PLAN_CHOICES
+    PLAN_MONTHS = PLAN_MONTHS
+    PLAN_PRICE_SOM = PLAN_PRICE_SOM
 
     STATUS_PENDING = 'pending'
     STATUS_CONFIRMED = 'confirmed'
@@ -245,7 +298,8 @@ class SubscriptionRequest(models.Model):
         # activates the account, rather than leaving login blocked on an
         # unrelated step a paying user may never have completed.
         self.user.is_active = True
-        self.user.save(update_fields=['subscription_end', 'is_active'])
+        self.user.current_plan = self.plan
+        self.user.save(update_fields=['subscription_end', 'is_active', 'current_plan'])
         self.status = self.STATUS_CONFIRMED
         self.activated_at = timezone.now()
         self.save(update_fields=['status', 'activated_at'])
