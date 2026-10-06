@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.http import FileResponse
+from django.utils import timezone
 
 from apps.resources.models import (
     Resource,
@@ -39,15 +40,24 @@ def download_resource_view(request, pk):
         is_active=True
     )
 
-    remaining = request.user.downloads_remaining_today(resource.category)
-    if remaining is not None and remaining <= 0:
-        messages.error(
-            request,
-            f"Бүгүнкү «{resource.get_category_display()}» жүктөп алуу "
-            "чегине жеттиңиз. Эртең кайра аракет кылыңыз же планыңызды "
-            "жаңыртыңыз."
-        )
-        return redirect('account')
+    # A resource already downloaded today never gets blocked by the daily
+    # limit, even once that limit is used up - a retry or an accidental
+    # double-click shouldn't cost the user the very file they just got.
+    already_downloaded_today = ResourceDownload.objects.filter(
+        user=request.user, resource=resource,
+        downloaded_at__date=timezone.now().date(),
+    ).exists()
+
+    if not already_downloaded_today:
+        remaining = request.user.downloads_remaining_today(resource.category)
+        if remaining is not None and remaining <= 0:
+            messages.error(
+                request,
+                f"Бүгүнкү «{resource.get_category_display()}» жүктөп алуу "
+                "чегине жеттиңиз. Эртең кайра аракет кылыңыз же планыңызды "
+                "жаңыртыңыз."
+            )
+            return redirect('account')
 
     ResourceDownload.objects.create(
         resource=resource,

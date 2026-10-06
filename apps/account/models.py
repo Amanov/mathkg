@@ -135,7 +135,10 @@ class Account(AbstractBaseUser):
 
     def downloads_remaining_today(self, category):
         """None means unlimited. Otherwise the daily limit minus how many
-        of this category this user has already downloaded today."""
+        distinct resources of this category this user has already
+        downloaded today - counting distinct resources (not raw download
+        events) so re-downloading the same file twice doesn't use up two
+        slots of the quota."""
         limit = self.daily_download_limit(category)
         if limit is None:
             return None
@@ -143,7 +146,7 @@ class Account(AbstractBaseUser):
         used = ResourceDownload.objects.filter(
             user=self, resource__category=category,
             downloaded_at__date=timezone.now().date(),
-        ).count()
+        ).values('resource').distinct().count()
         return max(0, limit - used)
 
 
