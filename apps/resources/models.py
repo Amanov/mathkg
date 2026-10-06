@@ -122,9 +122,9 @@ DIFFICULTY_CHOICES = [
 
 class Resource(models.Model):
     CATEGORY_CHOICES = [
-        ('presentation', 'Presentation'),
-        ('worksheet', 'Worksheet'),
-        ('activity', 'Activity'),
+        ('presentation', 'Презентация'),
+        ('worksheet', 'Иш барак'),
+        ('activity', 'Мугалим жетектеген ишмердик'),
         ]
 
     topic = models.ForeignKey(

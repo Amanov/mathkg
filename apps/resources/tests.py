@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from apps.account.models import Account
 
-from .models import Exam, ExamQuestion, NewsPost, Question
+from .models import Exam, ExamQuestion, NewsPost, Question, Resource
 
 
 class ExamFlowTests(TestCase):
@@ -109,3 +109,10 @@ class PagesTests(TestCase):
         resp = self.client.get(reverse('about'))
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, 'MathKGZ')
+
+
+class ResourceCategoryLabelTests(TestCase):
+    def test_category_labels_are_kyrgyz(self):
+        self.assertEqual(Resource(category='presentation').get_category_display(), 'Презентация')
+        self.assertEqual(Resource(category='worksheet').get_category_display(), 'Иш барак')
+        self.assertEqual(Resource(category='activity').get_category_display(), 'Мугалим жетектеген ишмердик')
