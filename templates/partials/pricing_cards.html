@@ -6,7 +6,8 @@ here updates both places, so they can never drift apart again.
 mode='modal': plain buttons, clicked by subscribe.js to advance the
 modal to its QR step. mode='preview': the same cards, but each one
 opens the modal itself (data-bs-toggle/target) since they live
-outside it.
+outside it. Markup mirrors pricing_feature_cards.html (the standalone
+/pricing/ page) so the plan cards look identical everywhere they appear.
 {% endcomment %}
 <div class="subscribe-plans">
 
@@ -14,20 +15,34 @@ outside it.
             data-plan="3m" data-price="1499 сом"
             {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
             data-track="Тандоо: 3 ай план">
-        <span class="subscribe-plan-name">3 ай</span>
-        <span class="subscribe-plan-price">1499 сом</span>
-        <p class="subscribe-plan-limits">Күнүнө: 1 презентация, 1 ишмердик, 1 иш барак</p>
-        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+        <div class="subscribe-plan-header">
+            <span class="subscribe-plan-name">3 ай</span>
+            <span class="subscribe-plan-price">1499 <small>сом</small></span>
+            <span class="subscribe-plan-duration">3 ай колдонуу</span>
+        </div>
+        <ul class="subscribe-plan-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 1 презентация</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 1 ишмердик</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 1 иш барак</li>
+        </ul>
+        <span class="subscribe-plan-cta">Тандоо</span>
     </button>
 
     <button type="button" class="subscribe-plan-card"
             data-plan="6m" data-price="2999 сом"
             {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
             data-track="Тандоо: 6 ай план">
-        <span class="subscribe-plan-name">6 ай</span>
-        <span class="subscribe-plan-price">2999 сом</span>
-        <p class="subscribe-plan-limits">Күнүнө: 5 презентация, 5 ишмердик, 5 иш барак</p>
-        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+        <div class="subscribe-plan-header">
+            <span class="subscribe-plan-name">6 ай</span>
+            <span class="subscribe-plan-price">2999 <small>сом</small></span>
+            <span class="subscribe-plan-duration">6 ай колдонуу</span>
+        </div>
+        <ul class="subscribe-plan-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 5 презентация</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 5 ишмердик</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Күнүнө 5 иш барак</li>
+        </ul>
+        <span class="subscribe-plan-cta">Тандоо</span>
     </button>
 
     <button type="button" class="subscribe-plan-card featured"
@@ -35,10 +50,15 @@ outside it.
             {% if mode == 'preview' %}data-bs-toggle="modal" data-bs-target="#subscribeModal"{% endif %}
             data-track="Тандоо: 1 жыл план">
         <span class="subscribe-plan-badge">Сунуштайбыз</span>
-        <span class="subscribe-plan-name">1 жыл</span>
-        <span class="subscribe-plan-price">4999 сом</span>
-        <p class="subscribe-plan-limits">Чексиз жүктөп алуу</p>
-        <span class="subscribe-plan-note">Тандоо үчүн басыңыз</span>
+        <div class="subscribe-plan-header">
+            <span class="subscribe-plan-name">1 жыл</span>
+            <span class="subscribe-plan-price">4999 <small>сом</small></span>
+            <span class="subscribe-plan-duration">12 ай колдонуу</span>
+        </div>
+        <ul class="subscribe-plan-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Чексиз жүктөп алуу</li>
+        </ul>
+        <span class="subscribe-plan-cta subscribe-plan-cta--primary">Тандоо</span>
     </button>
 
 </div>
