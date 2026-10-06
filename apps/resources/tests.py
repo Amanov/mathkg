@@ -1,11 +1,14 @@
-from datetime import date
+import tempfile
+from datetime import date, timedelta
 
-from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase, override_settings
 from django.urls import reverse
+from django.utils import timezone
 
-from apps.account.models import Account
+from apps.account.models import Account, SubscriptionRequest
 
-from .models import Exam, ExamQuestion, NewsPost, Question, Resource
+from .models import Exam, ExamQuestion, NewsPost, Question, Resource, ResourceDownload
 
 
 class ExamFlowTests(TestCase):
@@ -116,3 +119,52 @@ class ResourceCategoryLabelTests(TestCase):
         self.assertEqual(Resource(category='presentation').get_category_display(), 'Презентация')
         self.assertEqual(Resource(category='worksheet').get_category_display(), 'Иш барак')
         self.assertEqual(Resource(category='activity').get_category_display(), 'Мугалим жетектеген ишмердик')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class DownloadLimitEnforcementTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='dl@example.com', username='dluser', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.current_plan = SubscriptionRequest.PLAN_THREE_MONTHS
+        self.user.save(update_fields=['is_active', 'current_plan'])
+        self.client.login(email='dl@example.com', password='SuperSecret123!')
+
+    def _make_resource(self, category, title='R'):
+        return Resource.objects.create(
+            title=title, category=category, is_active=True,
+            file=SimpleUploadedFile(f'{title}.txt', b'data'),
+        )
+
+    def test_second_same_day_download_in_same_category_is_blocked(self):
+        first = self._make_resource('presentation', 'First')
+        second = self._make_resource('presentation', 'Second')
+        self.client.get(reverse('download_resource', args=[first.pk]))
+        resp = self.client.get(reverse('download_resource', args=[second.pk]), follow=True)
+        self.assertContains(resp, 'чегине жеттиңиз')
+        self.assertEqual(ResourceDownload.objects.filter(resource=second).count(), 0)
+
+    def test_different_category_is_unaffected_by_other_categorys_limit(self):
+        presentation = self._make_resource('presentation', 'P')
+        worksheet = self._make_resource('worksheet', 'W')
+        self.client.get(reverse('download_resource', args=[presentation.pk]))
+        resp = self.client.get(reverse('download_resource', args=[worksheet.pk]))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_one_year_plan_has_no_limit(self):
+        self.user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
+        self.user.save(update_fields=['current_plan'])
+        for i in range(6):
+            r = self._make_resource('presentation', f'P{i}')
+            resp = self.client.get(reverse('download_resource', args=[r.pk]))
+            self.assertEqual(resp.status_code, 200)
+
+    def test_expired_subscription_blocks_before_the_limit_check_runs(self):
+        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.save(update_fields=['subscription_end'])
+        resource = self._make_resource('presentation', 'P')
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
+        self.assertContains(resp, 'мөөнөтү бүткөн')
+        self.assertNotContains(resp, 'чегине жеттиңиз')
