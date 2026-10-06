@@ -33,9 +33,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-# Start HSTS conservatively (1 hour) - raise once HTTPS is confirmed
-# stable, since browsers cache this and a long value is hard to undo.
-SECURE_HSTS_SECONDS = 3600
+# Started conservatively at 1 hour while HTTPS was first confirmed
+# stable (a long value is hard to undo - browsers cache it and refuse
+# plain HTTP for the full duration even if something regresses). HTTPS
+# has been live and stable since, so this is now a full year with
+# subdomains included - the standard "passes a security scanner" value.
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # This app was persisting its SQLite database only by committing
 # db.sqlite3 to git and redeploying it each time - once that file was
