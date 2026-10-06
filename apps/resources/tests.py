@@ -3,7 +3,7 @@ from datetime import date
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.resources.models import NewsPost
+from apps.resources.models import NewsPost, Resource
 
 
 class PagesTests(TestCase):
@@ -35,3 +35,10 @@ class PagesTests(TestCase):
     def test_about_page_loads(self):
         response = self.client.get(reverse('about'))
         self.assertEqual(response.status_code, 200)
+
+
+class ResourceCategoryLabelTests(TestCase):
+    def test_category_labels_are_kyrgyz(self):
+        self.assertEqual(Resource(category='presentation').get_category_display(), 'Презентация')
+        self.assertEqual(Resource(category='worksheet').get_category_display(), 'Иш барак')
+        self.assertEqual(Resource(category='activity').get_category_display(), 'Мугалим жетектеген ишмердик')

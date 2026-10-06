@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("account", "0010_school_admin"),
+        ("account", "0009_subscriptionrequest_activated_at_and_more"),
     ]
 
     operations = [
