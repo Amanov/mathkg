@@ -42,8 +42,8 @@ class PagesTests(TestCase):
 
     def test_homepage_shows_plan_download_limits(self):
         resp = self.client.get(reverse('home'))
-        self.assertContains(resp, 'Күнүнө: 1 презентация, 1 ишмердик, 1 иш барак')
-        self.assertContains(resp, 'Күнүнө: 5 презентация, 5 ишмердик, 5 иш барак')
+        self.assertContains(resp, 'Күнүнө 1 презентация')
+        self.assertContains(resp, 'Күнүнө 5 презентация')
         self.assertContains(resp, 'Чексиз жүктөп алуу')
 
 

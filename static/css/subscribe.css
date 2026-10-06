@@ -16,21 +16,20 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 28px 16px;
+    text-align: left;
+    padding: 24px 20px;
     background: var(--surface-alt);
     border: 2px solid var(--border-subtle);
     border-radius: var(--radius-md, 12px);
     cursor: pointer;
     transition: border-color var(--transition-fast, 150ms ease),
-                background var(--transition-fast, 150ms ease),
-                transform var(--transition-fast, 150ms ease);
+                transform var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease);
 }
 .subscribe-plan-card:hover {
     border-color: var(--color-bootstrap-primary, #0d6efd);
-    background: var(--surface);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .08));
 }
 .subscribe-plan-card:focus-visible {
     outline: 2px solid var(--color-bootstrap-primary, #0d6efd);
@@ -46,6 +45,7 @@
 .subscribe-plan-badge {
     position: absolute;
     top: -12px;
+    left: 20px;
     background: var(--color-bootstrap-primary, #0d6efd);
     color: #fff;
     font-size: 12px;
@@ -53,26 +53,68 @@
     padding: 3px 10px;
     border-radius: 999px;
 }
+.subscribe-plan-header {
+    text-align: center;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+}
 .subscribe-plan-name {
-    font-size: 1.1rem;
+    display: block;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--color-navy, #0f3c58);
+    margin-bottom: 6px;
 }
 .subscribe-plan-price {
-    font-size: 1.5rem;
+    display: block;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--color-bootstrap-primary, #0d6efd);
 }
-.subscribe-plan-note {
+.subscribe-plan-price small {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.subscribe-plan-duration {
+    display: block;
     font-size: 0.8rem;
     color: var(--text-muted);
+    margin-top: 2px;
 }
-.subscribe-plan-limits {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+.subscribe-plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    flex-grow: 1;
+}
+.subscribe-plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    color: var(--text);
+    font-size: 0.875rem;
+}
+.subscribe-plan-features li i {
+    color: var(--color-bootstrap-primary, #0d6efd);
+    margin-top: 3px;
+}
+.subscribe-plan-cta {
+    display: block;
+    width: 100%;
     text-align: center;
-    margin: 4px 0 0;
-    line-height: 1.4;
+    padding: 9px 16px;
+    background: var(--surface);
+    color: var(--color-bootstrap-primary, #0d6efd);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 2px solid var(--color-bootstrap-primary, #0d6efd);
+    border-radius: var(--radius-sm, 8px);
+}
+.subscribe-plan-cta--primary {
+    background: var(--color-bootstrap-primary, #0d6efd);
+    color: #fff;
 }
 
 .subscribe-back-btn {
