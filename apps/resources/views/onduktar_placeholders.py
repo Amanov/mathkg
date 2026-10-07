@@ -1,8 +1,9 @@
 from django.http import Http404
 from django.shortcuts import render
 
-# The other 7 slots of Decimals > Arithmetic: 1 Digit (Кошуу/Adding is the
-# one real hand-built page - see koshuu_1_digit_view - the rest have no
+# The other 6 slots of Decimals > Arithmetic: 1 Digit (Кошуу/Adding and
+# Кемитүү/Subtracting are the two real hand-built pages - see
+# koshuu_1_digit_view and subtracting_1_digit_view - the rest have no
 # material yet). Shares that page's exact visual chrome (see
 # templates/resources/onduktar/operation_placeholder.html) so navigating
 # between a real operation and a "coming soon" one feels like the same
@@ -10,7 +11,6 @@ from django.shortcuts import render
 # (config/urls.py), matching koshuu-1-digit/'s own convention, instead of
 # the long generic /resources/topic/number/... path.
 OPERATION_PLACEHOLDER_TITLES = {
-    'subtracting-1-digit': 'Кемитүү — 1 орундуу сандар',
     'adding-subtracting-1-digit': 'Кошуу жана кемитүү — 1 орундуу сандар',
     'multiplying-1-digit': 'Көбөйтүү — 1 орундуу сандар',
     'dividing-1-digit': 'Бөлүү — 1 орундуу сандар',

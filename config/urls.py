@@ -29,6 +29,7 @@ from apps.resources.views import (
     four_basic_operations_view,
     all_operations_view,
     koshuu_1_digit_view,
+    subtracting_1_digit_view,
     big4_view,
 
     # onduktar
@@ -121,11 +122,12 @@ urlpatterns = [
     #onduktar
     path('onedigitarithmetics/', onedigitarithmetics_view, name='onedigitarithmetics'),
 
-    # Ондуктар > Эсептөөлөр: 1 орундук сандар - the other 7 operation
-    # slots (Кошуу/Adding is the one real page, koshuu-1-digit above).
-    # Short flat URLs matching koshuu-1-digit/'s own convention, not the
-    # long generic /resources/topic/number/... path.
-    path('subtracting-1-digit/', operation_placeholder_view, {'operation_slug': 'subtracting-1-digit'}, name='subtracting_1_digit'),
+    # Ондуктар > Эсептөөлөр: 1 орундук сандар - the other 6 operation
+    # slots (Кошуу/Adding and Кемитүү/Subtracting are the two real pages,
+    # koshuu-1-digit and subtracting-1-digit above/below). Short flat URLs
+    # matching koshuu-1-digit/'s own convention, not the long generic
+    # /resources/topic/number/... path.
+    path('subtracting-1-digit/', subtracting_1_digit_view, name='subtracting_1_digit'),
     path('adding-subtracting-1-digit/', operation_placeholder_view, {'operation_slug': 'adding-subtracting-1-digit'}, name='adding_subtracting_1_digit'),
     path('multiplying-1-digit/', operation_placeholder_view, {'operation_slug': 'multiplying-1-digit'}, name='multiplying_1_digit'),
     path('dividing-1-digit/', operation_placeholder_view, {'operation_slug': 'dividing-1-digit'}, name='dividing_1_digit'),
