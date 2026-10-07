@@ -6,6 +6,7 @@ from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
 from apps.resources.data.four_basic_operations_data import FOUR_BASIC_OPERATIONS_SECTIONS
 from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
 from apps.resources.data.koshuu_1_digit_data import KOSHUU_1_DIGIT_SECTIONS
+from apps.resources.data.subtracting_1_digit_data import SUBTRACTING_1_DIGIT_SECTIONS
 from apps.resources.data.algebra_linear_data import ALGEBRA_LINEAR_VAR1SIDE_NONCALC_1STEP_SECTIONS
 
 
@@ -50,6 +51,18 @@ def koshuu_1_digit_view(request):
             'res': get_active_resources(),
             'sections': KOSHUU_1_DIGIT_SECTIONS,
             'page_title': 'Кошуу — 1 орундуу сандар',
+        }
+    )
+
+
+def subtracting_1_digit_view(request):
+    return render(
+        request,
+        'resources/onduktar/subtracting_1_digit.html',
+        {
+            'res': get_active_resources(),
+            'sections': SUBTRACTING_1_DIGIT_SECTIONS,
+            'page_title': 'Кемитүү — 1 орундуу сандар',
         }
     )
 

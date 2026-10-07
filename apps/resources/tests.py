@@ -115,6 +115,32 @@ class AlgebraLinearLessonPageTests(TestCase):
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class SubtractingOneDigitPageTests(TestCase):
+    """subtracting-1-digit used to be a bare 'materials being prepared'
+    placeholder - it now has real resources wired up through the same
+    operation_block.html pattern as koshuu_1_digit."""
+
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='subtracting@example.com', username='subtractinguser', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.save(update_fields=['is_active'])
+        self.client.login(email='subtracting@example.com', password='SuperSecret123!')
+
+    def test_page_shows_real_download_once_the_resource_exists(self):
+        Resource.objects.create(
+            title='Onduktar_KemituuBingo.pptx',
+            category='presentation', is_active=True,
+            file=SimpleUploadedFile('Onduktar_KemituuBingo.pptx', b'data'),
+        )
+        resp = self.client.get(reverse('subtracting_1_digit'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'Бинго')
+        self.assertContains(resp, 'PPT')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class SearchViewTests(TestCase):
     def setUp(self):
         cache.clear()
