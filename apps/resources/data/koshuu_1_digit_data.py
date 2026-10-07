@@ -11,7 +11,7 @@ KOSHUU_1_DIGIT_SECTIONS = [
                     "Onduktar_KoshuuKutuchalary.pdf",
                     "Onduktar_KoshuuKutuchalary.xlsx",
                 ],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
@@ -26,7 +26,7 @@ KOSHUU_1_DIGIT_SECTIONS = [
                     "Onduktar_KoshuuTarsiaKurakA4.pdf",
                     "Onduktar_KoshuuTarsiaKurakA5.pdf",
                 ],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
@@ -37,12 +37,12 @@ KOSHUU_1_DIGIT_SECTIONS = [
             {
                 "title": "Бинго",
                 "files": ["Onduktar_KoshuuBingo.pptx"],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
             {
                 "title": "3кө туташтыруу",
                 "files": ["Onduktar_Koshuu3Tutashtyr.pptx"],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
