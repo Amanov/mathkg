@@ -11,7 +11,7 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
                     "Onduktar_KemituuKutuchalary.pdf",
                     "Onduktar_KemituuKutuchalary.xlsx",
                 ],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
             {
                 "title": "Катаны тап",
@@ -20,7 +20,7 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
                     "Onduktar_KemituuKatanyTapA4.pdf",
                     "Onduktar_KemituuKatanyTapA5.pdf",
                 ],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
@@ -35,7 +35,7 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
                     "Onduktar_KemituuTarsiaKurakA4.pdf",
                     "Onduktar_KemituuTarsiaKurakA5.pdf",
                 ],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
@@ -46,12 +46,12 @@ SUBTRACTING_1_DIGIT_SECTIONS = [
             {
                 "title": "Бинго",
                 "files": ["Onduktar_KemituuBingo.pptx"],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
             {
                 "title": "3кө туташтыруу",
                 "files": ["Onduktar_Kemituu3Tutashtyr.pptx"],
-                "fallback_image": "img/placeholder.png"
+                "fallback_image": "img/resource-placeholder.svg"
             },
         ]
     },
