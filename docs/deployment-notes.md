@@ -12,6 +12,24 @@ When you do: Railway supports custom domains on the **Trial plan**, no
 upgrade required — you just need to own the domain and point its DNS at
 Railway (Settings → Networking → Custom Domain on the app service).
 
+## Resource thumbnails auto-convert to WebP (2026-10-08)
+
+`Resource.save()` now re-encodes any newly-uploaded `.image` (the
+thumbnail shown on topic pages and the curated lesson-pack pages) as
+lossless WebP before storing it — same pixels, but measured 40-60%
+smaller than the PNG it replaces on real resource screenshots (73KB PNG
+→ 28KB WebP in one real test, zero visible quality loss since it's
+lossless). This is automatic: upload a PNG/JPEG through admin as normal,
+it gets converted on save, `.image.name` ends up `...webp`. An image
+that's already `.webp` is left alone (not re-converted on every save).
+A corrupted/unreadable upload is logged and left unconverted rather than
+blocking the save — the Resource still saves, it just keeps whatever was
+uploaded.
+
+Only applies to `Resource.image`, not `Resource.file` (the actual
+downloadable pptx/pdf/etc., which obviously shouldn't be touched) or any
+other model's image field (`Question.image`, `PaymentQRCode.image`).
+
 ## Persistent media storage (Cloudflare R2)
 
 **Status: code is in, not yet activated.** `PaymentQRCode.image` is wired

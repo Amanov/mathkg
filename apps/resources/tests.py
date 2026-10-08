@@ -300,3 +300,50 @@ class PricingPageTests(TestCase):
         resp = self.client.get(reverse('about'))
         self.assertContains(resp, reverse('pricing'))
         self.assertContains(resp, 'Баалар')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class ResourceImageWebPConversionTests(TestCase):
+    """Resource.save() re-encodes any newly-uploaded image as lossless
+    WebP (see docs/deployment-notes.md) - same pixels, usually 40-60%
+    smaller than the PNG/JPEG it replaces."""
+
+    def _make_png_bytes(self):
+        from io import BytesIO
+        from PIL import Image as PILImage
+        buf = BytesIO()
+        PILImage.new('RGBA', (20, 10), (255, 0, 0, 255)).save(buf, format='PNG')
+        return buf.getvalue()
+
+    def test_uploaded_png_is_converted_to_webp_on_save(self):
+        resource = Resource.objects.create(
+            title='WebpTest.pptx', category='presentation', is_active=True,
+            file=SimpleUploadedFile('WebpTest.pptx', b'data'),
+            image=SimpleUploadedFile('shot.png', self._make_png_bytes(), content_type='image/png'),
+        )
+        self.assertTrue(resource.image.name.endswith('.webp'))
+
+        from PIL import Image as PILImage
+        with resource.image.open('rb') as f:
+            decoded = PILImage.open(f)
+            decoded.load()
+            self.assertEqual(decoded.format, 'WEBP')
+            self.assertEqual(decoded.size, (20, 10))
+
+    def test_resource_without_an_image_is_unaffected(self):
+        resource = Resource.objects.create(
+            title='NoImage.pptx', category='presentation', is_active=True,
+            file=SimpleUploadedFile('NoImage.pptx', b'data'),
+        )
+        self.assertFalse(resource.image)
+
+    def test_an_already_webp_image_is_not_reconverted(self):
+        resource = Resource.objects.create(
+            title='AlreadyWebp.pptx', category='presentation', is_active=True,
+            file=SimpleUploadedFile('AlreadyWebp.pptx', b'data'),
+            image=SimpleUploadedFile('shot.png', self._make_png_bytes(), content_type='image/png'),
+        )
+        webp_name = resource.image.name
+        resource.title = 'AlreadyWebp renamed'
+        resource.save()
+        self.assertEqual(resource.image.name, webp_name)

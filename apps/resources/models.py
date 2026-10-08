@@ -1,7 +1,16 @@
+import os
+from io import BytesIO
+from logging import getLogger
+
+from PIL import Image as PILImage
+
 from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
 from django.db import models
 from django.conf import settings
 from django.urls import reverse, NoReverseMatch
+
+logger = getLogger(__name__)
 
 # =====================================================
 
@@ -199,6 +208,38 @@ class Resource(models.Model):
     def increment_download(self):
         self.download_count += 1
         self.save(update_fields=['download_count'])
+
+    def save(self, *args, **kwargs):
+        if self.image and not self.image.name.lower().endswith('.webp'):
+            converted = self._image_as_webp()
+            if converted is not None:
+                self.image = converted
+        super().save(*args, **kwargs)
+
+    def _image_as_webp(self):
+        """Re-encode the currently-assigned image upload as lossless WebP
+        (same pixels, usually 40-60% smaller than the PNG/JPEG it replaces -
+        see docs/deployment-notes.md). Returns None (leaving the original
+        upload untouched) if the file can't be read as an image, rather
+        than raising - a bad upload should fail loudly elsewhere (or just
+        not get a thumbnail), not block saving the whole Resource."""
+        try:
+            self.image.seek(0)
+            pil_image = PILImage.open(self.image)
+            pil_image.load()
+        except Exception as e:
+            logger.error('Could not read image for WebP conversion: %s', e)
+            return None
+
+        buffer = BytesIO()
+        try:
+            pil_image.save(buffer, format='WEBP', lossless=True)
+        except Exception as e:
+            logger.error('Could not encode image as WebP: %s', e)
+            return None
+
+        new_name = os.path.splitext(self.image.name)[0] + '.webp'
+        return ContentFile(buffer.getvalue(), name=new_name)
 
     def clean(self):
         if self.subtopic_id and not self.topic_id:
