@@ -6,6 +6,7 @@ from .operations import (
     four_basic_operations_view,
     koshuu_1_digit_view,
     subtracting_1_digit_view,
+    adding_subtracting_1_digit_view,
     algebra_linear_var1side_noncalc_1step_view,
 )
 
