@@ -14,6 +14,7 @@ from apps.resources.views import topic_view
 
 from apps.resources.views import (
     home_screen_view,
+    lesson_stage_view,
     success_view,
     dashboard_view,
     analytics_dashboard_view,
@@ -82,6 +83,7 @@ urlpatterns = [
     path(ADMIN_URL_PATH, admin.site.urls),
     path('', home_screen_view, name='home'),
     path('home/', home_screen_view, name='home'),
+    path('sabak/<slug:stage_slug>/', lesson_stage_view, name='lesson_stage'),
     path('register/', registration_view, name='register'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_view, name='login'),

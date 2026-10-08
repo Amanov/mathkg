@@ -1,4 +1,4 @@
-from .home import home_screen_view, success_view
+from .home import home_screen_view, lesson_stage_view, success_view
 
 from .operations import (
     all_operations_view,

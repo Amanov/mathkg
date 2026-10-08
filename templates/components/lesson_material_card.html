@@ -1,0 +1,25 @@
+{% load static %}
+{# One material on the landing page / a stage page. `m` comes from      #}
+{# apps/resources/lesson_flow.py (all_materials).                        #}
+<a class="material-card" href="{{ m.url }}" data-stage="{{ m.stage.slug }}"
+   data-track="Материал: {{ m.title }} ({{ m.page_title }})">
+  <div class="material-card__thumb">
+    {% if m.image %}
+      <img src="{% if m.image_is_static %}{% static m.image %}{% else %}{{ m.image }}{% endif %}"
+           alt="" loading="lazy">
+    {% else %}
+      <i class="fas {{ m.stage.icon }}" aria-hidden="true"></i>
+    {% endif %}
+    <span class="material-card__stage material-card__stage--{{ m.stage.group }}">
+      {% if m.stage.group == '5e' %}{{ m.stage.number }}. {% endif %}{{ m.stage.name }}
+    </span>
+  </div>
+  <div class="material-card__body">
+    <div class="material-card__title">{{ m.title }}</div>
+    <div class="material-card__topic">{{ m.page_title }}</div>
+    <div class="material-card__meta">
+      {% for level in m.bloom %}<span class="bloom-chip">{{ level.name }}</span>{% endfor %}
+      {% for f in m.formats %}<span class="format-chip">{{ f }}</span>{% endfor %}
+    </div>
+  </div>
+</a>

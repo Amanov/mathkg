@@ -1,0 +1,302 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}MathKGZ — математика мугалимдери үчүн сабак материалдары{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="landing">
+
+  {# ── Hero ──────────────────────────────────────────────────────── #}
+  <section class="landing-hero">
+    <div class="landing-wrap landing-hero__grid">
+      <div>
+        <p class="landing-eyebrow">Математика мугалимдери үчүн · кыргыз тилинде</p>
+        <h1 class="landing-hero__title">Сабагыңызды этап-этабы менен даярдаңыз</h1>
+        <p class="landing-hero__lead">
+          Презентациялар, иш барактар жана оюндар 5E+3C модели жана Блумдун
+          таксономиясы боюнча иреттелген. Сабактын этабын тандаңыз, ага ылайык
+          материал дароо чыгат.
+        </p>
+        <div class="landing-hero__actions">
+          <a class="btn-landing btn-landing--primary" href="#lesson-path" data-track="Landing: Сабак куруу">
+            Сабак куруу <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a class="btn-landing" href="#materials" data-track="Landing: Бардык материалдар">
+            Бардык материалдар
+          </a>
+        </div>
+        <form class="landing-search" action="{% url 'search' %}" method="get" role="search">
+          <label class="visually-hidden" for="landingSearch">Тема же материал издөө</label>
+          <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="landingSearch" type="search" name="q" placeholder="Мисалы: бөлчөк, кошуу, тарсия…">
+          <button type="submit" data-track="Landing: Издөө">Издөө</button>
+        </form>
+        <ul class="landing-stats">
+          <li><strong>{{ material_count }}</strong> даяр материал</li>
+          <li><strong>{{ topic_count }}</strong> тема менюда</li>
+          <li><strong>PPT · PDF</strong> A4, A5, A6</li>
+        </ul>
+      </div>
+
+      {# A lesson at a glance: the five steps in the order they're taught. #}
+      <aside class="lesson-glance" aria-label="Сабактын түзүлүшү">
+        <div class="lesson-glance__title">Бир сабактын жолу</div>
+        <ol class="lesson-glance__list">
+          {% for stage in stages_5e %}
+          <li>
+            <a href="{% url 'lesson_stage' stage.slug %}" data-track="Landing glance: {{ stage.name }}">
+              <span class="lesson-glance__num">{{ stage.number }}</span>
+              <span class="lesson-glance__name">{{ stage.name }}<small>{{ stage.name_en }}</small></span>
+              <span class="lesson-glance__bloom">{% for level in stage.bloom_levels %}{{ level.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+        <div class="lesson-glance__3c">
+          <span>3C ар бир этапта:</span>
+          {% for stage in stages_3c %}<a href="{% url 'lesson_stage' stage.slug %}">{{ stage.name }}</a>{% endfor %}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {# ── 5E path ───────────────────────────────────────────────────── #}
+  <section class="landing-section" id="lesson-path">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">5E модели</p>
+        <h2>Сабактын беш этабы</h2>
+        <p>Ар бир этапта окуучу Блумдун бир деңгээлинен экинчисине көтөрүлөт. Этапты басып, ага ылайык материалдарды көрүңүз.</p>
+      </div>
+      <ol class="stage-path">
+        {% for stage in stages_5e %}
+        <li class="stage-card">
+          <div class="stage-card__top">
+            <span class="stage-card__num">{{ stage.number }}</span>
+            <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+          </div>
+          <h3 class="stage-card__name">{{ stage.name }} <span>{{ stage.name_en }}</span></h3>
+          <div class="stage-card__bloom">
+            {% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}
+          </div>
+          <p class="stage-card__summary">{{ stage.summary }}</p>
+          <ul class="stage-card__types">
+            {% for item in stage.activity_types %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+          <a class="stage-card__link" href="{% url 'lesson_stage' stage.slug %}" data-track="Landing 5E: {{ stage.name }}">
+            {{ stage.count }} материал <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  {# ── 3C ────────────────────────────────────────────────────────── #}
+  <section class="landing-section landing-section--alt">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">3C</p>
+        <h2>Ар бир этапты байыткан үч көндүм</h2>
+        <p>Бул көндүмдөр бир этапка байланбайт: аларды сабактын каалаган жеринде колдонсоңуз болот.</p>
+      </div>
+      <div class="c3-grid">
+        {% for stage in stages_3c %}
+        <a class="c3-card" href="{% url 'lesson_stage' stage.slug %}" data-track="Landing 3C: {{ stage.name }}">
+          <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+          <div>
+            <h3>{{ stage.name }} <span>{{ stage.name_en }}</span></h3>
+            <p>{{ stage.summary }}</p>
+            <div class="c3-card__meta">
+              {% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}
+              <span class="c3-card__count">{% if stage.count %}{{ stage.count }} материал{% else %}Жакында{% endif %}</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# ── Bloom ladder ──────────────────────────────────────────────── #}
+  <section class="landing-section">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">Блумдун таксономиясы</p>
+        <h2>Ойлоонун алты деңгээли</h2>
+        <p>Төмөндөн жогору карай: эстеп калуудан жаратууга чейин. Ар бир деңгээлге суроо үлгүсү жана аны иштеткен этаптар.</p>
+      </div>
+      <ol class="bloom-ladder">
+        {% for level in bloom_ladder %}
+        <li class="bloom-ladder__row">
+          <span class="bloom-ladder__num">{{ level.number }}</span>
+          <span class="bloom-ladder__name">{{ level.name }}</span>
+          <span class="bloom-ladder__stem">«{{ level.stems.0 }}»</span>
+          <span class="bloom-ladder__stages">
+            {% for stage in level.stages %}<a href="{% url 'lesson_stage' stage.slug %}">{% if stage.group == '5e' %}{{ stage.number }}. {% endif %}{{ stage.name }}</a>{% endfor %}
+          </span>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  {# ── All materials ─────────────────────────────────────────────── #}
+  <section class="landing-section landing-section--alt" id="materials">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">Бардык материалдар</p>
+        <h2>Сабакка даяр ресурстар</h2>
+        <p>Этап боюнча чыпкалаңыз. Карточканы басканда теманын барагы ачылат, ал жерден PPT же PDF жүктөп аласыз.</p>
+      </div>
+
+      <div class="material-filter" role="group" aria-label="Этап боюнча чыпкалоо">
+        <button type="button" class="material-filter__btn is-active" data-filter="all" aria-pressed="true">
+          Баары <span>{{ material_count }}</span>
+        </button>
+        {% for stage in stages_5e %}
+        <button type="button" class="material-filter__btn" data-filter="{{ stage.slug }}" aria-pressed="false">
+          {{ stage.number }}. {{ stage.name }} <span>{{ stage.count }}</span>
+        </button>
+        {% endfor %}
+        {% for stage in stages_3c %}{% if stage.count %}
+        <button type="button" class="material-filter__btn material-filter__btn--3c" data-filter="{{ stage.slug }}" aria-pressed="false">
+          {{ stage.name }} <span>{{ stage.count }}</span>
+        </button>
+        {% endif %}{% endfor %}
+      </div>
+
+      <div class="material-grid" id="materialGrid">
+        {% for m in materials %}
+          {% include 'components/lesson_material_card.html' with m=m %}
+        {% endfor %}
+      </div>
+      <div class="material-more" id="materialMore" hidden>
+        <button type="button" class="btn-landing" data-track="Landing: Дагы материалдар">
+          Дагы көрсөтүү <span id="materialMoreCount"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  {# ── Topics ────────────────────────────────────────────────────── #}
+  {% if menu_items %}
+  <section class="landing-section">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">Темалар боюнча</p>
+        <h2>Программанын бөлүмдөрү</h2>
+        <p>Материалды тема аркылуу издегиңиз келсе, бөлүмдү тандаңыз.</p>
+      </div>
+      <div class="topic-grid">
+        {% for item in menu_items %}
+        <div class="topic-card">
+          <h3>{{ item.title }}</h3>
+          {% with children=item.children.all %}
+          {% if children %}
+          <ul>
+            {% for child in children|slice:":6" %}<li>{% menu_item_url child as child_url %}{% if child_url and child_url != '#' %}<a href="{{ child_url }}">{{ child.title }}</a>{% else %}{{ child.title }}{% endif %}</li>{% endfor %}
+          </ul>
+          <div class="topic-card__more">{{ children|length }} бөлүм</div>
+          {% endif %}
+          {% endwith %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="landing-center">
+        <a class="btn-landing" href="{% url 'topics_tree' %}" data-track="Landing: Бардык темалар">Бардык темалардын картасы <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {# ── Pricing (visitors only) ───────────────────────────────────── #}
+  {% if not user.is_authenticated %}
+  <section class="landing-section landing-section--alt">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">Жазылуу</p>
+        <h2>Жазылуу планын тандаңыз</h2>
+      </div>
+      {% include 'partials/pricing_cards.html' with mode='preview' %}
+    </div>
+  </section>
+  {% endif %}
+
+  {# ── News ──────────────────────────────────────────────────────── #}
+  {% if latest_news %}
+  <section class="landing-section">
+    <div class="landing-wrap">
+      <div class="landing-section__head">
+        <p class="landing-eyebrow">Жаңылыктар</p>
+        <h2>Сайтка акыркы кошулгандар</h2>
+      </div>
+      <div class="news-grid">
+        {% for post in latest_news %}
+        <article class="news-card">
+          <div class="news-card__date">{{ post.formatted_date }}</div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.body|truncatewords:28 }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="landing-center">
+        <a class="btn-landing" href="{% url 'news_list' %}">Бардык жаңылыктар <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+{{ block.super }}
+<script>
+  // Stage filter + "show more" for the materials grid. Without JS every
+  // card is simply shown.
+  (function () {
+    var PAGE = 12;
+    var buttons = document.querySelectorAll('.material-filter__btn');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#materialGrid .material-card'));
+    var more = document.getElementById('materialMore');
+    var moreCount = document.getElementById('materialMoreCount');
+    var filter = 'all';
+    var limit = PAGE;
+
+    function render() {
+      var matching = cards.filter(function (card) {
+        return filter === 'all' || card.dataset.stage === filter;
+      });
+      cards.forEach(function (card) { card.hidden = true; });
+      matching.forEach(function (card, i) { card.hidden = i >= limit; });
+      var rest = matching.length - limit;
+      more.hidden = rest <= 0;
+      moreCount.textContent = rest > 0 ? '(' + rest + ')' : '';
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filter = btn.dataset.filter;
+        limit = PAGE;
+        buttons.forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        render();
+      });
+    });
+    more.querySelector('button').addEventListener('click', function () {
+      limit = cards.length;
+      render();
+    });
+    render();
+  })();
+</script>
+{% endblock %}

@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 <link rel="stylesheet" href="{% static 'css/search-suggest.css' %}">
 <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'css/lesson-nav.css' %}">
 
 <div class="fixed-top shadow-sm">
 
@@ -24,6 +25,7 @@
       </button>
 
       <div class="collapse navbar-collapse site-nav-collapse" id="navbarNav">
+        {% include "partials/lesson_nav.html" %}
          <ul class="navbar-nav ms-auto align-items-center">
           <!--<li class="nav-item dropdown box">
             <a class="nav-link dropdown-toggle text-black " href="#" id="starterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
