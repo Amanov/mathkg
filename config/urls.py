@@ -30,6 +30,7 @@ from apps.resources.views import (
     all_operations_view,
     koshuu_1_digit_view,
     subtracting_1_digit_view,
+    adding_subtracting_1_digit_view,
     big4_view,
 
     # onduktar
@@ -116,7 +117,7 @@ urlpatterns = [
     # matching koshuu-1-digit/'s own convention, not the long generic
     # /resources/topic/number/... path.
     path('subtracting-1-digit/', subtracting_1_digit_view, name='subtracting_1_digit'),
-    path('adding-subtracting-1-digit/', operation_placeholder_view, {'operation_slug': 'adding-subtracting-1-digit'}, name='adding_subtracting_1_digit'),
+    path('adding-subtracting-1-digit/', adding_subtracting_1_digit_view, name='adding_subtracting_1_digit'),
     path('multiplying-1-digit/', operation_placeholder_view, {'operation_slug': 'multiplying-1-digit'}, name='multiplying_1_digit'),
     path('dividing-1-digit/', operation_placeholder_view, {'operation_slug': 'dividing-1-digit'}, name='dividing_1_digit'),
     path('multiplying-dividing-1-digit/', operation_placeholder_view, {'operation_slug': 'multiplying-dividing-1-digit'}, name='multiplying_dividing_1_digit'),
