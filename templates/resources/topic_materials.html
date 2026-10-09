@@ -22,7 +22,15 @@
 
   {% for section in page.sections %}
   <section class="topic-section">
-    <h2 class="topic-section__title">{{ section.title }}</h2>
+    <header class="topic-section__head">
+      <span class="stage-tag">{{ section.stage }}</span>
+      <h2 class="topic-section__title">{{ section.title }} <span class="topic-section__en">{{ section.title_en }}</span></h2>
+      <p class="topic-section__summary">{{ section.summary }}</p>
+      <div class="bloom-row" aria-label="Блумдун таксономиясы">
+        <span class="bloom-row__label">Блум:</span>
+        {% for level in section.bloom %}<span class="bloom-chip">{{ level }}</span>{% endfor %}
+      </div>
+    </header>
     <div class="topic-list">
       {% for item in section.items %}
       <article class="topic-row">

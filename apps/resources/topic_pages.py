@@ -6,8 +6,13 @@ and download buttons. A button only shows when its file exists as an
 active Resource, matched by `Resource.title` the same way the older
 hand-built templates do with `res|get_item:'filename'`.
 """
+
 from django.urls import reverse
 
+# Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
+# levels it mainly works on. Stage names, summaries and Bloom levels match
+# STAGES in apps/resources/lesson_flow.py on the landing-5e-3c-bloom branch
+# (PR #3). Only stages this page has materials for are listed.
 TO_FRACTIONS = {
     'title': 'Ондуктарды бөлчөккө айландыруу',
     'breadcrumb': ['Сандар', 'Ондуктар', 'Эквиваленттүүлүк'],
@@ -15,7 +20,11 @@ TO_FRACTIONS = {
     'file_prefix': 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-',
     'sections': [
         {
-            'title': 'Көрсөтмө суроолору',
+            'stage': '5E · 1',
+            'title': 'Кызыктыруу',
+            'title_en': 'Engage',
+            'bloom': ['Эстеп калуу'],
+            'summary': 'Мурунку билимди эске салып, сабакка кызыгууну ойготуу.',
             'items': [
                 {
                     'title': 'Жеңил, орто, оор',
@@ -32,7 +41,11 @@ TO_FRACTIONS = {
             ],
         },
         {
-            'title': 'Сабакка даяр иш барактар',
+            'stage': '5E · 4',
+            'title': 'Тереңдетүү',
+            'title_en': 'Elaborate',
+            'bloom': ['Колдонуу', 'Талдоо'],
+            'summary': 'Билимди жаңы маселелерде бышыктоо, деңгээл боюнча машыгуу.',
             'items': [
                 {
                     'title': 'Катары менен төрт',
@@ -46,16 +59,6 @@ TO_FRACTIONS = {
                     ],
                 },
                 {
-                    'title': 'Катаны тап',
-                    'note': 'Окуучулар чечилген мисалдагы катаны издешет',
-                    'svg': 'katany-tap',
-                    'files': [
-                        ('PPT', 'KatanyTap.pptx'),
-                        ('PDF A4', 'KatanyTapA4.pdf'),
-                        ('PDF A5', 'KatanyTapA5.pdf'),
-                    ],
-                },
-                {
                     'title': 'Сандар менен лабиринт',
                     'note': 'Туура жоопторду ээрчип, чыгууну табышат',
                     'svg': 'sandar-labyrinth',
@@ -66,11 +69,6 @@ TO_FRACTIONS = {
                         ('PDF A6', 'SandarMNLabyrinthA6.pdf'),
                     ],
                 },
-            ],
-        },
-        {
-            'title': 'Класстык көнүгүүлөр',
-            'items': [
                 {
                     'title': 'Тарсиа курак',
                     'note': 'Жооптору дал келген үч бурчтуктарды бириктиришет',
@@ -81,6 +79,49 @@ TO_FRACTIONS = {
                         ('PDF A5', 'TarsiaKurakA5.pdf'),
                     ],
                 },
+            ],
+        },
+        {
+            'stage': '5E · 5',
+            'title': 'Баалоо',
+            'title_en': 'Evaluate',
+            'bloom': ['Баалоо'],
+            'summary': 'Түшүнүүнү текшерүү жана кийинки кадамды чечүү.',
+            'items': [
+                {
+                    'title': 'Катаны тап',
+                    'note': 'Окуучулар чечилген мисалдагы катаны издешет',
+                    'svg': 'katany-tap',
+                    'files': [
+                        ('PPT', 'KatanyTap.pptx'),
+                        ('PDF A4', 'KatanyTapA4.pdf'),
+                        ('PDF A5', 'KatanyTapA5.pdf'),
+                    ],
+                }
+            ],
+        },
+        {
+            'stage': '3C · 1',
+            'title': 'Байланыштыруу',
+            'title_en': 'Connect',
+            'bloom': ['Талдоо'],
+            'summary': 'Түшүнүктөрдү бири-бирине жана турмушка байланыштыруу.',
+            'items': [
+                {
+                    'title': '3-ту туташтыр',
+                    'note': 'Суроо жана жооп тору',
+                    'svg': '3-tutashtyr',
+                    'files': [('PPT', '3Tutashtyr.pptx')],
+                }
+            ],
+        },
+        {
+            'stage': '3C · 2',
+            'title': 'Кызматташуу',
+            'title_en': 'Collaborate',
+            'bloom': ['Колдонуу', 'Талдоо'],
+            'summary': 'Топтук жана жуп менен иштөө, мугалим жетектеген оюндар.',
+            'items': [
                 {
                     'title': 'Казына издөө',
                     'note': 'Жеңил',
@@ -94,16 +135,8 @@ TO_FRACTIONS = {
                     'title': 'Казына издөө',
                     'note': 'Оор',
                     'svg': 'kazyna-oor',
-                    'files': [
-                        ('PPT', 'KazynaIzdoo_Oor.pptx'),
-                        ('PDF A4', 'KazynaIzdoo_OorA4.pdf'),
-                    ],
+                    'files': [('PPT', 'KazynaIzdoo_Oor.pptx'), ('PDF A4', 'KazynaIzdoo_OorA4.pdf')],
                 },
-            ],
-        },
-        {
-            'title': 'Мугалим жетектеген көндүмдөр',
-            'items': [
                 {
                     'title': 'Бинго',
                     'note': 'Бүт класс менен, слайддар',
@@ -115,12 +148,6 @@ TO_FRACTIONS = {
                     'note': 'Орундук мааниси менен',
                     'svg': 'bingo-orun',
                     'files': [('PPT', 'BingoOyunuOrundardynMaanisiMenen.pptx')],
-                },
-                {
-                    'title': '3-ту туташтыр',
-                    'note': 'Суроо жана жооп тору',
-                    'svg': '3-tutashtyr',
-                    'files': [('PPT', '3Tutashtyr.pptx')],
                 },
                 {
                     'title': 'Жыдымай',
@@ -155,13 +182,15 @@ def build_topic_page(page, resources, user):
                 else:
                     url = register_url
                 links.append({'label': label, 'url': url})
-            items.append({
-                'title': item['title'],
-                'note': item['note'],
-                'svg': f"{page['svg_dir']}/{item['svg']}.svg",
-                'links': links,
-            })
-        sections.append({'title': section['title'], 'items': items})
+            items.append(
+                {
+                    'title': item['title'],
+                    'note': item['note'],
+                    'svg': f"{page['svg_dir']}/{item['svg']}.svg",
+                    'links': links,
+                }
+            )
+        sections.append({**section, 'items': items})
     return {
         'title': page['title'],
         'breadcrumb': page['breadcrumb'],
