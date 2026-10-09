@@ -4,6 +4,5 @@
 <g clip-path="url(#crc)"><rect width="160" height="104" fill="url(#crg)"/>
 <path d="M0 82C40 70 90 96 160 80V104H0Z" fill="#fff" opacity=".14"/></g>
 <circle cx="9" cy="95" r="2.2" fill="#fff" opacity=".85"/><circle cx="151" cy="93" r="1.6" fill="#fff" opacity=".7"/>
-<g transform="translate(146 14)"><path d="M0-8C1-2 2-1 8 0 2 1 1 2 0 8-1 2-2 1-8 0-2-1-1-2 0-8Z" fill="#fff"/></g>
 <rect x="26" y="14" width="64" height="76" rx="5" fill="#fff"/><text x="58" y="44" font-family="Inter,system-ui,sans-serif" font-weight="700" text-anchor="middle" font-size="26" fill="#D63A7A" >?</text><text x="46" y="72" font-family="Inter,system-ui,sans-serif" font-weight="700" text-anchor="middle" font-size="10" fill="#1F2A44" >0,□ =</text><g font-family="Inter,system-ui,sans-serif" font-weight="700" text-anchor="middle" font-size="10" fill="#1F2A44"><text x="76" y="65.5">□</text><text x="76" y="77.5">20</text></g><path d="M67.8 68H84.2" stroke="#1F2A44" stroke-width="1.4" stroke-linecap="round"/><g transform="translate(104 78) rotate(-50)"><rect x="0" y="-5" width="44" height="10" rx="2" fill="#FFCD29"/><path d="M44-5l10 5-10 5z" fill="#FBE3C4"/><path d="M50-2l4 2-4 2z" fill="#3A3A3A"/><rect x="-6" y="-5" width="7" height="10" rx="2" fill="#F48FB1"/></g>
 </svg>

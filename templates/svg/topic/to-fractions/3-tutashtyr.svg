@@ -4,6 +4,5 @@
 <g clip-path="url(#c3c)"><rect width="160" height="104" fill="url(#c3g)"/>
 <path d="M0 82C40 70 90 96 160 80V104H0Z" fill="#fff" opacity=".14"/></g>
 <circle cx="9" cy="95" r="2.2" fill="#fff" opacity=".85"/><circle cx="151" cy="93" r="1.6" fill="#fff" opacity=".7"/>
-<g transform="translate(146 14)"><path d="M0-8C1-2 2-1 8 0 2 1 1 2 0 8-1 2-2 1-8 0-2-1-1-2 0-8Z" fill="#fff"/></g>
 <rect x="18" y="14" width="110" height="68" rx="9" fill="#fff" opacity=".22"/><circle cx="36" cy="30" r="6" fill="#E6D9FF"/><circle cx="61" cy="30" r="6" fill="#E6D9FF"/><circle cx="86" cy="30" r="6" fill="#E6D9FF"/><circle cx="111" cy="30" r="6" fill="#E6D9FF"/><circle cx="36" cy="48" r="6" fill="#E6D9FF"/><circle cx="61" cy="48" r="6" fill="#E6D9FF"/><circle cx="86" cy="48" r="6" fill="#E6D9FF"/><circle cx="111" cy="48" r="6" fill="#E6D9FF"/><circle cx="36" cy="66" r="6" fill="#E6D9FF"/><circle cx="61" cy="66" r="6" fill="#E6D9FF"/><circle cx="86" cy="66" r="6" fill="#E6D9FF"/><circle cx="111" cy="66" r="6" fill="#E6D9FF"/><path d="M36 66L86 30" stroke="#fff" stroke-width="3" stroke-linecap="round"/><g fill="#FFCD29" stroke="#fff" stroke-width="1.5"><circle cx="36" cy="66" r="6"/><circle cx="61" cy="48" r="6"/><circle cx="86" cy="30" r="6"/></g><circle cx="111" cy="66" r="6" fill="#F0384B"/>
 </svg>

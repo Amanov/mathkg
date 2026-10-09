@@ -4,6 +4,5 @@
 <g clip-path="url(#tjc)"><rect width="160" height="104" fill="url(#tjg)"/>
 <path d="M0 82C40 70 90 96 160 80V104H0Z" fill="#fff" opacity=".14"/></g>
 <circle cx="9" cy="95" r="2.2" fill="#fff" opacity=".85"/><circle cx="151" cy="93" r="1.6" fill="#fff" opacity=".7"/>
-<g transform="translate(146 14)"><path d="M0-8C1-2 2-1 8 0 2 1 1 2 0 8-1 2-2 1-8 0-2-1-1-2 0-8Z" fill="#fff"/></g>
 <path d="M18 18L50 12L82 18L114 12V84L82 90L50 84L18 90Z" fill="#FFF4D9"/><path d="M50 12V84M82 18V90" stroke="#E9D3A3" stroke-width="1.2"/><path d="M28 74 L46 50 L70 62 L96 34" fill="none" stroke="#8A5A1F" stroke-width="2" stroke-dasharray="4 3"/><circle cx="28" cy="74" r="3" fill="#8A5A1F"/><circle cx="46" cy="50" r="3" fill="#8A5A1F"/><circle cx="70" cy="62" r="3" fill="#8A5A1F"/><circle cx="96" cy="34" r="3" fill="#8A5A1F"/><path d="M90 28l12 12M102 28l-12 12" stroke="#E8434B" stroke-width="3.2" stroke-linecap="round"/><rect x="118" y="52" width="28" height="20" rx="3" fill="#C9782B"/><path d="M118 58h28" stroke="#8A4B16" stroke-width="2"/><rect x="129" y="56" width="6" height="6" rx="1" fill="#FFCD29"/>
 </svg>
