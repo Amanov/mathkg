@@ -10,7 +10,7 @@
     {% else %}
       <i class="fas {{ m.stage.icon }}" aria-hidden="true"></i>
     {% endif %}
-    <span class="material-card__stage material-card__stage--{{ m.stage.group }}">
+    <span class="material-card__stage material-card__stage--{{ m.stage.group }} stage--{{ m.stage.slug }}">
       {% if m.stage.group == '5e' %}{{ m.stage.number }}. {% endif %}{{ m.stage.name }}
     </span>
   </div>

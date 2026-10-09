@@ -5,6 +5,7 @@
 {% block title %}MathKGZ — математика мугалимдери үчүн сабак материалдары{% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 
@@ -16,7 +17,7 @@
     <div class="landing-wrap landing-hero__grid">
       <div>
         <p class="landing-eyebrow">Математика мугалимдери үчүн · кыргыз тилинде</p>
-        <h1 class="landing-hero__title">Сабагыңызды этап-этабы менен даярдаңыз</h1>
+        <h1 class="landing-hero__title">Сабагыңызды <span class="hl">этап-этабы</span> менен даярдаңыз</h1>
         <p class="landing-hero__lead">
           Презентациялар, иш барактар жана оюндар 5E+3C модели жана Блумдун
           таксономиясы боюнча иреттелген. Сабактын этабын тандаңыз, ага ылайык
@@ -48,7 +49,7 @@
         <div class="lesson-glance__title">Бир сабактын жолу</div>
         <ol class="lesson-glance__list">
           {% for stage in stages_5e %}
-          <li>
+          <li class="stage--{{ stage.slug }}">
             <a href="{% url 'lesson_stage' stage.slug %}" data-track="Landing glance: {{ stage.name }}">
               <span class="lesson-glance__num">{{ stage.number }}</span>
               <span class="lesson-glance__name">{{ stage.name }}<small>{{ stage.name_en }}</small></span>
@@ -75,7 +76,7 @@
       </div>
       <ol class="stage-path">
         {% for stage in stages_5e %}
-        <li class="stage-card">
+        <li class="stage-card stage--{{ stage.slug }}">
           <div class="stage-card__top">
             <span class="stage-card__num">{{ stage.number }}</span>
             <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
@@ -107,7 +108,7 @@
       </div>
       <div class="c3-grid">
         {% for stage in stages_3c %}
-        <a class="c3-card" href="{% url 'lesson_stage' stage.slug %}" data-track="Landing 3C: {{ stage.name }}">
+        <a class="c3-card stage--{{ stage.slug }}" href="{% url 'lesson_stage' stage.slug %}" data-track="Landing 3C: {{ stage.name }}">
           <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
           <div>
             <h3>{{ stage.name }} <span>{{ stage.name_en }}</span></h3>
@@ -138,7 +139,7 @@
           <span class="bloom-ladder__name">{{ level.name }}</span>
           <span class="bloom-ladder__stem">«{{ level.stems.0 }}»</span>
           <span class="bloom-ladder__stages">
-            {% for stage in level.stages %}<a href="{% url 'lesson_stage' stage.slug %}">{% if stage.group == '5e' %}{{ stage.number }}. {% endif %}{{ stage.name }}</a>{% endfor %}
+            {% for stage in level.stages %}<a class="stage--{{ stage.slug }}" href="{% url 'lesson_stage' stage.slug %}">{% if stage.group == '5e' %}{{ stage.number }}. {% endif %}{{ stage.name }}</a>{% endfor %}
           </span>
         </li>
         {% endfor %}
@@ -160,12 +161,12 @@
           Баары <span>{{ material_count }}</span>
         </button>
         {% for stage in stages_5e %}
-        <button type="button" class="material-filter__btn" data-filter="{{ stage.slug }}" aria-pressed="false">
+        <button type="button" class="material-filter__btn stage--{{ stage.slug }}" data-filter="{{ stage.slug }}" aria-pressed="false">
           {{ stage.number }}. {{ stage.name }} <span>{{ stage.count }}</span>
         </button>
         {% endfor %}
         {% for stage in stages_3c %}{% if stage.count %}
-        <button type="button" class="material-filter__btn material-filter__btn--3c" data-filter="{{ stage.slug }}" aria-pressed="false">
+        <button type="button" class="material-filter__btn material-filter__btn--3c stage--{{ stage.slug }}" data-filter="{{ stage.slug }}" aria-pressed="false">
           {{ stage.name }} <span>{{ stage.count }}</span>
         </button>
         {% endif %}{% endfor %}

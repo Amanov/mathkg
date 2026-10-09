@@ -4,6 +4,7 @@
 {% block title %}{{ stage.name }} — сабактын этабы{% endblock %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 
@@ -22,7 +23,7 @@
     {# Where this stage sits in the whole lesson. #}
     <ol class="stage-stepper" aria-label="5E жана 3C этаптары">
       {% for s in stages %}
-      <li class="{% if s.slug == stage.slug %}is-current{% endif %} stage-stepper__item--{{ s.group }}">
+      <li class="{% if s.slug == stage.slug %}is-current{% endif %} stage-stepper__item--{{ s.group }} stage--{{ s.slug }}">
         <a href="{% url 'lesson_stage' s.slug %}" {% if s.slug == stage.slug %}aria-current="step"{% endif %}>
           <span class="stage-stepper__num">{% if s.group == '5e' %}{{ s.number }}{% else %}<i class="fas {{ s.icon }}" aria-hidden="true"></i>{% endif %}</span>
           <span class="stage-stepper__name">{{ s.name }}</span>
@@ -31,7 +32,7 @@
       {% endfor %}
     </ol>
 
-    <header class="stage-hero">
+    <header class="stage-hero stage--{{ stage.slug }}">
       <div class="stage-hero__icon"><i class="fas {{ stage.icon }}" aria-hidden="true"></i></div>
       <div>
         <p class="landing-eyebrow">{% if stage.group == '5e' %}5E · {{ stage.number }}-этап{% else %}3C · көндүм{% endif %}</p>

@@ -884,3 +884,246 @@
     .btn-landing, .c3-card, .material-card { transition: none; }
     .btn-landing:hover, .c3-card:hover, .material-card:hover { transform: none; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   PAPER-NOTEBOOK STYLE (2026-10-09)
+   Taken from Refero Styles' education-friendly systems: Notion ("warm
+   paper notebook": paper canvas, white hairline cards, one blue action,
+   flat accent blocks, pills) with Superr's schoolbook marker highlight.
+   Scoped to .landing, so only the landing and stage pages change; the
+   header and every other page keep the site's own look.
+════════════════════════════════════════════════════════════════════ */
+.landing {
+    --paper: #f6f5f4;
+    --card: #ffffff;
+    --hairline: rgba(0, 0, 0, .08);
+    --ink: rgba(0, 0, 0, .92);
+    --ink-soft: #615d59;
+    --ink-muted: #757575;
+    --action: #0075de;
+    --action-tint: #e6f3fe;
+    --marker: #ffb110;
+
+    font-family: 'Inter', 'Alegreya Sans', Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+}
+:root[data-theme="dark"] .landing {
+    --paper: var(--bg);
+    --card: var(--surface);
+    --hairline: var(--border-subtle);
+    --ink: var(--text);
+    --ink-soft: var(--text-muted);
+    --ink-muted: var(--text-muted);
+    --action: #3d9bf0;
+    --action-tint: #1d3347;
+}
+
+/* Stage accents: flat fills, one per stage, with readable text on top. */
+.stage--kyzyktyruu     { --accent: #ffb110; --on-accent: #1a1100; }
+.stage--izildoo        { --accent: #62aef0; --on-accent: #001a33; }
+.stage--tushunduruu    { --accent: #0075de; --on-accent: #ffffff; }
+.stage--terendetuu     { --accent: #f64932; --on-accent: #1a0400; }
+.stage--baaloo         { --accent: #02093a; --on-accent: #ffffff; }
+.stage--bailanyshtyruu { --accent: #b18164; --on-accent: #1a0f08; }
+.stage--kyzmattashuu   { --accent: #e89d01; --on-accent: #1a1100; }
+.stage--jaratuu        { --accent: #e32d14; --on-accent: #ffffff; }
+:root[data-theme="dark"] .stage--baaloo { --accent: #8ea2ff; --on-accent: #02093a; }
+
+/* ── Type ────────────────────────────────────── */
+.landing h1, .landing h2, .landing h3 { font-family: inherit; }
+.landing-eyebrow {
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: var(--ink-muted);
+}
+.landing-hero__title,
+.stage-hero__title {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+}
+.landing-hero__title { font-size: clamp(2.1rem, 4.4vw, 3.3rem); line-height: 1.12; }
+.landing-hero__title .hl {
+    padding: 0 .28em;
+    border-radius: 9999px;
+    background: var(--marker);
+    color: #1a1100;
+    white-space: nowrap;
+}
+.landing-hero__lead,
+.landing-section__head p:last-child,
+.stage-hero__lead { color: var(--ink-soft); }
+.landing-section__head h2,
+.stage-materials h2,
+.stage-guide__box h2 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+.landing-stats strong { color: var(--ink); }
+
+/* ── Surfaces: paper canvas, white cards, hairlines, no shadows ── */
+.landing-hero { border-bottom: none; }
+.landing-section--alt { background: transparent; }
+.landing-section { padding: 64px 0; }
+.lesson-glance,
+.stage-card,
+.c3-card,
+.bloom-ladder__row,
+.material-card,
+.topic-card,
+.news-card,
+.stage-guide__box,
+.landing-search,
+.stage-stepper a,
+.material-filter__btn,
+.btn-landing {
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    box-shadow: none;
+}
+.lesson-glance,
+.stage-card,
+.c3-card,
+.material-card,
+.topic-card,
+.news-card,
+.stage-guide__box { border-radius: 12px; }
+
+/* ── Buttons: one blue action, the rest quiet ── */
+.btn-landing {
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: .98rem;
+    color: var(--ink);
+}
+.btn-landing:hover {
+    background: var(--action-tint);
+    border-color: var(--action-tint);
+    color: var(--action);
+    transform: none;
+}
+.btn-landing--primary,
+.btn-landing--primary:hover,
+:root[data-theme="dark"] .btn-landing--primary:hover {
+    background: var(--action);
+    border-color: var(--action);
+    color: #fff;
+}
+.btn-landing--primary:hover { filter: brightness(1.08); }
+.landing-search button { background: var(--action); border-radius: 8px; font-weight: 500; }
+.landing-search:focus-within { border-color: var(--action); box-shadow: 0 0 0 3px var(--action-tint); }
+
+/* ── Hero glance card: accent number discs ── */
+.lesson-glance__list::before { background: var(--hairline); }
+.lesson-glance__title { color: var(--ink); }
+.lesson-glance__num {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+.lesson-glance__list a:hover { background: var(--paper); }
+.lesson-glance__3c a { color: var(--action); }
+
+/* ── 5E cards: a flat accent block on top, like a notebook tab ── */
+.stage-card {
+    padding: 0;
+    overflow: hidden;
+    border-top: 1px solid var(--hairline);
+}
+.stage-card__top {
+    margin: 0;
+    padding: 18px 18px 16px;
+    background: var(--accent);
+    color: var(--on-accent);
+}
+.stage-card__num {
+    width: auto;
+    height: auto;
+    background: none;
+    color: inherit;
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+.stage-card__top i { color: inherit; font-size: 1.4rem; opacity: .9; }
+.stage-card > :not(.stage-card__top) { margin-left: 18px; margin-right: 18px; }
+.stage-card__name { margin-top: 16px; color: var(--ink); letter-spacing: -0.01em; }
+.stage-card__link { margin-bottom: 18px; color: var(--action); font-weight: 600; }
+.stage-card__types li,
+.lesson-panel__types li { background: var(--paper); border-color: var(--hairline); }
+
+/* ── 3C cards ── */
+.c3-card > i { background: var(--accent); color: var(--on-accent); border-radius: 8px; }
+:root[data-theme="dark"] .c3-card > i { color: var(--on-accent); }
+.c3-card:hover { border-color: var(--accent); transform: none; }
+.c3-card h3 { color: var(--ink); }
+.c3-card__count { color: var(--action); }
+
+/* ── Chips and pills ── */
+.landing .bloom-chip {
+    background: var(--paper);
+    border-color: var(--hairline);
+    color: var(--ink-soft);
+    font-weight: 600;
+}
+.bloom-ladder__row { border-left: 1px solid var(--hairline); }
+.bloom-ladder__num { border: none; background: var(--paper); color: var(--ink); }
+.bloom-ladder__name { color: var(--ink); }
+.bloom-ladder__stages a {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+.bloom-ladder__stages a:hover { background: var(--accent); filter: brightness(1.05); }
+
+/* ── Materials ── */
+.material-filter__btn { font-weight: 500; }
+.material-filter__btn::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent, var(--ink-muted));
+}
+.material-filter__btn[data-filter="all"]::before { display: none; }
+.material-filter__btn.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+}
+.material-filter__btn.is-active span { color: inherit; opacity: .7; }
+.material-card:hover {
+    border-color: var(--accent, var(--action));
+    box-shadow: none;
+    transform: none;
+}
+.material-card { --accent: var(--action); }
+.material-card__thumb { background: var(--paper); border-bottom-color: var(--hairline); }
+.material-card__stage,
+.material-card__stage--3c,
+:root[data-theme="dark"] .material-card__stage--3c {
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+}
+.material-card__title { font-weight: 600; letter-spacing: -0.01em; }
+.material-card__topic { color: var(--ink-muted); }
+.format-chip { background: transparent; border-color: var(--hairline); color: var(--ink-muted); }
+
+/* ── Topics and news ── */
+.topic-card h3, .news-card h3 { color: var(--ink); font-weight: 700 !important; }
+.topic-card li a { color: var(--action); }
+
+/* ── Stage page ── */
+.stage-crumbs a { color: var(--action); }
+.stage-stepper a { font-weight: 500; }
+.stage-stepper__num { background: var(--accent); color: var(--on-accent); }
+.stage-stepper .is-current a { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.stage-stepper .is-current .stage-stepper__num { background: var(--accent); color: var(--on-accent); }
+.stage-hero__icon { background: var(--accent); color: var(--on-accent); border-radius: 12px; }
+.stage-guide__box h3 { color: var(--ink-muted); }
+.stage-pager a { color: var(--action); }
+.stage-empty { border-color: var(--hairline); background: var(--card); }
+.stage-hero__title { line-height: 1.15; }
+.stage-hero__title span { margin-top: 6px; }
