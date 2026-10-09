@@ -11,8 +11,6 @@
 }
 :root[data-theme="dark"] .topic-page { --topic-accent: #3d8ef5; --topic-shadow: rgba(0, 0, 0, .45); }
 
-.topic-page__crumb { color: var(--text-muted); font-size: 14px; }
-
 /* main.css draws blue bars around every h1; this page's title doesn't use them */
 .topic-page__title {
     display: block;
@@ -38,7 +36,6 @@
 .topic-page__notice a { color: var(--topic-accent); font-weight: 600; }
 
 /* Top of the page is centred; sections stay left-aligned */
-.topic-page__crumb,
 .topic-page__title,
 .topic-page__notice { text-align: center; }
 .topic-page__notice { max-width: 640px; margin-inline: auto; }
@@ -145,4 +142,21 @@
 @media (prefers-reduced-motion: reduce) {
     .topic-row, .topic-row__thumb { transition: none; }
     .topic-row__thumb:hover { transform: scale(2); }
+}
+
+/* Prev/next topic links (snippets/related_topics.html) as plain text links
+   on this page only. `body` raises specificity over related-topics.css,
+   which loads later in the page. */
+body .related-topics .related-topics-link {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    transform: none;
+}
+body .related-topics .related-topics-link:hover .related-topics-title,
+body .related-topics .related-topics-link:focus-visible .related-topics-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
