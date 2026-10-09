@@ -14,7 +14,8 @@ from django.urls import reverse
 # PPTX (2026-10-09 review: /mnt/project-files/topic-page-svg/to-fractions/
 # 5e-3c-analysis.md), not from the activity's name. Stage names match
 # STAGES in apps/resources/lesson_flow.py on the landing-5e-3c-bloom branch
-# (PR #3). This page has no Explore, Explain or Create materials yet.
+# (PR #3). Explore, Explain and Create materials were added 2026-10-09 to
+# fill the gaps the review found.
 TO_FRACTIONS = {
     'title': 'Ондуктарды бөлчөккө айландыруу',
     'svg_dir': 'svg/topic/to-fractions',
@@ -39,6 +40,53 @@ TO_FRACTIONS = {
                     'note': 'Бүт класс менен: мугалим ондукту айтат, окуучулар бөлчөгүн табат',
                     'svg': 'bingo',
                     'files': [('PPT', 'BingoOyunu.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 2',
+            'title': 'Изилдөө',
+            'title_en': 'Explore',
+            'bloom': ['Түшүнүү', 'Талдоо'],
+            'summary': 'Эрежени айтпай туруп, окуучулар ондук менен бөлчөктүн байланышын өздөрү '
+            'табышат.',
+            'items': [
+                {
+                    'title': 'Көрсөт / Ооба, жок, балким',
+                    'note': 'Тактачага жооп көрсөтүп, ар бир пикирди негиздешет',
+                    'svg': 'korsot-ooba-jok',
+                    'files': [
+                        ('PPT', 'IzildooKorsotOobaJok.pptx'),
+                        ('PDF', 'IzildooKorsotOobaJok.pdf'),
+                    ],
+                },
+                {
+                    'title': 'Цифра табышмагы',
+                    'note': 'Бош кутучаларга цифра коюп, ½ке барабар бөлчөктөрдү издешет',
+                    'svg': 'cifra-tabyshmagy',
+                    'files': [
+                        ('PPT', 'CifraTabyshmagy.pptx'),
+                        ('PDF A5', 'CifraTabyshmagy.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 3',
+            'title': 'Түшүндүрүү',
+            'title_en': 'Explain',
+            'bloom': ['Түшүнүү', 'Колдонуу'],
+            'summary': 'Орундук маани → бөлүмү 10, 100, 1000 → жөнөкөйлөтүү: үлгү жана «Сенин '
+            'кезегиң».',
+            'items': [
+                {
+                    'title': 'Түшүндүрүү презентациясы',
+                    'note': 'Эреже, үч үлгү (0,6; 0,35; 0,125) жана ар биринен кийин өз алдынча мисал',
+                    'svg': 'tushunduruu',
+                    'files': [
+                        ('PPT', 'TushunduruuPrezentaciya.pptx'),
+                        ('PDF', 'TushunduruuPrezentaciya.pdf'),
+                    ],
                 },
             ],
         },
@@ -157,6 +205,26 @@ TO_FRACTIONS = {
                     'note': 'Команда же жекеме-жеке: туура жоопту биринчи басышат',
                     'svg': 'jydymai',
                     'files': [('PPT', 'Jydymai.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '3C · 3',
+            'title': 'Жаратуу',
+            'title_en': 'Create',
+            'bloom': ['Жаратуу'],
+            'summary': 'Окуучулар өздөрү суроо, домино карталарын түзүп, классташтарына беришет.',
+            'items': [
+                {
+                    'title': 'Суроо түз',
+                    'note': 'Ондукту бөлчөккө айландырып, жөнөкөйлөтүүнү талап кылган суроо жана '
+                    'өз домино карталарын түзүшөт',
+                    'svg': 'suroo-tuz',
+                    'files': [
+                        ('PPT', 'SurooTuz.pptx'),
+                        ('Домино', 'SurooTuzKartalar.pptx'),
+                        ('PDF A5', 'SurooTuz.pdf'),
+                    ],
                 },
             ],
         },
