@@ -76,11 +76,12 @@
 
 .topic-row {
     display: grid;
-    grid-template-columns: 160px minmax(0, 1fr) auto;
+    /* Three equal columns like the older topic pages: picture, text, buttons */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: center;
-    gap: 22px;
+    gap: 28px;
     position: relative;
-    padding: 14px 28px 14px 20px;
+    padding: 24px 28px;
     border-top: 1px solid var(--border-subtle);
     transition: background-color var(--transition-base);
 }
@@ -88,8 +89,7 @@
 .topic-row:hover { background: var(--surface-alt); z-index: 5; }
 
 .topic-row__thumb {
-    width: 160px;
-    max-width: 100%;
+    width: 100%;
     aspect-ratio: 160 / 104;
     padding: 3px;
     background: var(--surface);
@@ -109,14 +109,15 @@
 }
 
 .topic-row__text { text-align: center; }
-.topic-row__title { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
-.topic-row__note { margin: 0; color: var(--text-muted); font-size: 13.5px; }
+.topic-row__title { font-size: 19px; font-weight: 700; margin: 0 0 4px; }
+.topic-row__note { margin: 0; color: var(--text-muted); font-size: 15px; }
 
-.topic-row__files { display: flex; flex-direction: column; gap: 6px; width: 84px; }
+.topic-row__files { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.topic-row__files .file-pill { width: 120px; }
 .file-pill {
-    font-size: 12.5px;
+    font-size: 14px;
     font-weight: 500;
-    padding: 7px 10px;
+    padding: 9px 12px;
     border: 1px solid var(--border-subtle);
     border-radius: 6px;
     background: var(--surface);
@@ -133,10 +134,10 @@
 .topic-row__soon { color: var(--text-muted); font-size: 13px; }
 
 @media (max-width: 680px) {
-    .topic-row { grid-template-columns: 120px minmax(0, 1fr); padding: 14px 16px; gap: 14px; }
-    .topic-row__thumb { width: 120px; }
-    .topic-row__files { grid-column: 1 / -1; width: auto; align-items: center; }
-    .topic-row__files .file-pill { width: 84px; }
+    /* Phones: picture, text and buttons stack in one column */
+    .topic-row { grid-template-columns: minmax(0, 1fr); padding: 18px 16px; gap: 14px; }
+    .topic-row__thumb { max-width: 320px; margin: 0 auto; transform-origin: center; }
+    .topic-row__thumb:hover { transform: rotate(0) scale(1.1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
