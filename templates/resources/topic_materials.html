@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
+{% endblock %}
+
+{% block content %}
+{# Layout and data: apps/resources/topic_pages.py. Thumbnails: templates/svg/topic/. #}
+<main class="topic-page">
+  <nav class="topic-page__crumb" aria-label="Бөлүм">{{ page.breadcrumb|join:" › " }}</nav>
+  <h1 class="topic-page__title">{{ page.title }}</h1>
+
+  {% if not user.is_authenticated %}
+  <p class="topic-page__notice">
+    Файлды жүктөп алуу үчүн сайтка катталышыңыз керек.
+    <a href="{% url 'register' %}">Катталуу</a>
+  </p>
+  {% endif %}
+
+  {% for section in page.sections %}
+  <section class="topic-section">
+    <h2 class="topic-section__title">{{ section.title }}</h2>
+    <div class="topic-list">
+      {% for item in section.items %}
+      <article class="topic-row">
+        <div class="topic-row__thumb">{% include item.svg %}</div>
+        <div class="topic-row__text">
+          <h3 class="topic-row__title">{{ item.title }}</h3>
+          <p class="topic-row__note">{{ item.note }}</p>
+        </div>
+        <div class="topic-row__files">
+          {% for link in item.links %}
+          <a class="file-pill{% if forloop.first %} file-pill--main{% endif %}" href="{{ link.url }}">{{ link.label }}</a>
+          {% empty %}
+          <span class="topic-row__soon">Жакында</span>
+          {% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</main>
+{% endblock content %}

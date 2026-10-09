@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from apps.resources.topic_pages import TO_FRACTIONS, build_topic_page
 from apps.resources.utils.resource_helpers import get_active_resources
 
 # The 9 real hand-built pages under Ондуктар > Эквиваленттүүлүк (see
@@ -14,11 +15,11 @@ from apps.resources.utils.resource_helpers import get_active_resources
 
 
 def to_fractions_view(request):
-    return render(
-        request,
-        'resources/ekvivalenttuuluk/Bolchoktorgo_Ekvivalenttuluk.html',
-        {'res': get_active_resources()},
-    )
+    # First page on the new topic-page layout (SVG thumbnails, download
+    # buttons per format). The old template, Bolchoktorgo_Ekvivalenttuluk.html,
+    # is kept so this can be switched back by restoring the render below.
+    page = build_topic_page(TO_FRACTIONS, get_active_resources(), request.user)
+    return render(request, 'resources/topic_materials.html', {'page': page})
 
 
 def to_percentages_view(request):
