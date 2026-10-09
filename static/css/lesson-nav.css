@@ -1,0 +1,269 @@
+/* ════════════════════════════════════════════
+   LESSON-STAGE ROW (5E + 3C) in the blue top bar
+   templates/partials/lesson_nav.html
+════════════════════════════════════════════ */
+.lesson-nav {
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.lesson-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.98rem;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--transition-fast);
+}
+.lesson-nav__link:hover,
+.lesson-nav__link:focus-visible,
+.lesson-nav__link[aria-expanded="true"] {
+    background: rgba(255, 255, 255, .16);
+    color: #fff;
+}
+.lesson-nav__link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+.lesson-nav__link.dropdown-toggle::after {
+    border: none;
+    content: "\25BE";
+    font-size: 12px;
+    margin-left: 0;
+    opacity: .8;
+    transition: transform var(--transition-base);
+}
+.lesson-nav__link[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+/* Step number: white disc, so the 1-5 order reads before the words. */
+.lesson-nav__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 12px;
+    background: #fff;
+    color: #3761c2;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+.lesson-nav__num--3c {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+}
+
+/* ── Panel ───────────────────────────────────── */
+.dropdown-menu.lesson-panel {
+    min-width: 300px;
+    max-width: 340px;
+    padding: 16px;
+    color: var(--text);
+}
+.dropdown-menu.lesson-panel--3c {
+    max-width: 380px;
+    padding: 10px;
+}
+
+.lesson-panel__head {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.lesson-panel__head > i,
+.lesson-panel__row > i {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-menu-active);
+    color: var(--color-bootstrap-primary);
+    font-size: 1rem;
+}
+.lesson-panel__title {
+    display: block;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--color-menu-text);
+}
+.lesson-panel__title span {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+.lesson-panel__bloom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.bloom-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--color-navy);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.lesson-panel__text {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text);
+}
+.lesson-panel__types {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.lesson-panel__types li {
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+}
+.lesson-panel__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bootstrap-primary);
+    color: #fff !important;
+    font-weight: 700;
+    text-decoration: none;
+    transition: filter var(--transition-fast);
+}
+.lesson-panel__cta:hover { filter: brightness(1.08); }
+
+.lesson-panel__eyebrow {
+    padding: 4px 8px 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-muted);
+}
+.lesson-panel__row {
+    display: flex;
+    gap: 12px;
+    padding: 10px 8px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text);
+    transition: background var(--transition-fast);
+}
+.lesson-panel__row:hover,
+.lesson-panel__row:focus-visible {
+    background: var(--color-menu-hover);
+}
+.lesson-panel__row > i {
+    color: var(--color-navy);
+}
+.lesson-panel__row-text {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    color: var(--text);
+}
+
+/* Compact single dropdown, only on narrow desktops (see the template). */
+.lesson-nav__compact { display: none; }
+.lesson-panel__step {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #3761c2;
+    color: #fff;
+    font-weight: 800;
+}
+.lesson-panel__eyebrow--split {
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.lesson-panel--compact .lesson-panel__row {
+    align-items: center;
+    padding: 6px 8px;
+}
+.lesson-panel--compact .lesson-panel__row > i,
+.lesson-panel--compact .lesson-panel__step {
+    width: 30px;
+    height: 30px;
+}
+.lesson-panel--compact .lesson-panel__title { display: inline; }
+.lesson-panel--compact .lesson-panel__bloom {
+    display: inline-flex;
+    margin: 0 0 0 6px;
+}
+
+/* 1200-1399px: everything still fits on one line once it's tightened. */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .lesson-nav { gap: 2px; flex-wrap: nowrap; }
+    .lesson-nav__link { padding: 6px 7px; font-size: 0.9rem; gap: 6px; }
+    .lesson-nav__link.dropdown-toggle::after { display: none; }
+    .lesson-nav__word { display: none; }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .lesson-nav__full { display: none; }
+    .lesson-nav__compact { display: block; }
+}
+
+/* ── Phone / tablet: stacked inside the hamburger ── */
+@media (max-width: 991.98px) {
+    .lesson-nav {
+        width: 100%;
+        gap: 2px;
+        padding-bottom: 10px;
+        margin-bottom: 6px;
+        border-bottom: 1px solid rgba(255, 255, 255, .25);
+    }
+    .lesson-nav > li { width: 100%; }
+    .lesson-nav__link {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 1.05rem;
+    }
+    .lesson-nav__link.dropdown-toggle::after { margin-left: auto; }
+    .dropdown-menu.lesson-panel {
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+    }
+    /* menu.css collapses closed panels to zero height on phones; the
+       panel's own padding above would otherwise keep a gap open. */
+    .dropdown-menu.lesson-panel:not(.show) {
+        padding: 0;
+    }
+}

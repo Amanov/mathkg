@@ -1,0 +1,89 @@
+{# The 5E + 3C lesson-stage row in the blue top bar. Each stage opens a  #}
+{# small panel: its Bloom level, what the teacher does, typical          #}
+{# activities, and a link to every material for that stage. Data comes   #}
+{# from apps/resources/lesson_flow.py via the lesson_nav context         #}
+{# processor, so it is the same on every page.                           #}
+<ul class="navbar-nav lesson-nav me-lg-auto" aria-label="Сабактын этаптары">
+  {# Narrow desktops (992-1199px) can't fit six items next to search and #}
+  {# login, so there all eight stages share this one dropdown instead.   #}
+  <li class="nav-item dropdown lesson-nav__compact">
+    <a href="#" class="lesson-nav__link dropdown-toggle"
+       role="button" data-bs-toggle="dropdown" aria-expanded="false" data-track="5E+3C меню">
+      <span class="lesson-nav__num" aria-hidden="true">5E</span>
+      <span>Сабактын этаптары</span>
+    </a>
+    <div class="dropdown-menu lesson-panel lesson-panel--3c lesson-panel--compact">
+      <div class="lesson-panel__eyebrow">5E · сабактын жолу</div>
+      {% for stage in lesson_nav_5e %}
+      <a class="lesson-panel__row" href="{% url 'lesson_stage' stage.slug %}">
+        <span class="lesson-panel__step">{{ stage.number }}</span>
+        <span>
+          <span class="lesson-panel__title">{{ stage.name }} <span>{{ stage.name_en }}</span></span>
+          <span class="lesson-panel__bloom">{% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}</span>
+        </span>
+      </a>
+      {% endfor %}
+      <div class="lesson-panel__eyebrow lesson-panel__eyebrow--split">3C · ар бир этапта</div>
+      {% for stage in lesson_nav_3c %}
+      <a class="lesson-panel__row" href="{% url 'lesson_stage' stage.slug %}">
+        <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+        <span>
+          <span class="lesson-panel__title">{{ stage.name }} <span>{{ stage.name_en }}</span></span>
+          <span class="lesson-panel__bloom">{% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}</span>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </li>
+
+  {% for stage in lesson_nav_5e %}
+  <li class="nav-item dropdown lesson-nav__full">
+    <a href="{% url 'lesson_stage' stage.slug %}"
+       class="lesson-nav__link dropdown-toggle"
+       role="button" data-bs-toggle="dropdown" aria-expanded="false"
+       data-track="5E: {{ stage.name }}">
+      <span class="lesson-nav__num" aria-hidden="true">{{ stage.number }}</span>
+      <span>{{ stage.name }}</span>
+    </a>
+    <div class="dropdown-menu lesson-panel">
+      <div class="lesson-panel__head">
+        <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+        <div>
+          <div class="lesson-panel__title">{{ stage.number }}. {{ stage.name }} <span>{{ stage.name_en }}</span></div>
+          <div class="lesson-panel__bloom">Блум:
+            {% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}
+          </div>
+        </div>
+      </div>
+      <p class="lesson-panel__text">{{ stage.summary }}</p>
+      <ul class="lesson-panel__types">
+        {% for item in stage.activity_types %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+      <a class="lesson-panel__cta" href="{% url 'lesson_stage' stage.slug %}" data-track="5E материалдар: {{ stage.name }}">
+        Материалдарды көрүү <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </li>
+  {% endfor %}
+
+  <li class="nav-item dropdown lesson-nav__full">
+    <a href="#" class="lesson-nav__link lesson-nav__link--3c dropdown-toggle"
+       role="button" data-bs-toggle="dropdown" aria-expanded="false" data-track="3C меню">
+      <span class="lesson-nav__num lesson-nav__num--3c" aria-hidden="true">3C</span>
+      <span class="lesson-nav__word">Көндүмдөр</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg-end lesson-panel lesson-panel--3c">
+      <div class="lesson-panel__eyebrow">Ар бир этапта колдонулат</div>
+      {% for stage in lesson_nav_3c %}
+      <a class="lesson-panel__row" href="{% url 'lesson_stage' stage.slug %}" data-track="3C: {{ stage.name }}">
+        <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+        <span>
+          <span class="lesson-panel__title">{{ stage.name }} <span>{{ stage.name_en }}</span></span>
+          <span class="lesson-panel__row-text">{{ stage.summary }}</span>
+          <span class="lesson-panel__bloom">{% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}</span>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </li>
+</ul>

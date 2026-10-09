@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{{ stage.name }} — сабактын этабы{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="landing">
+  <div class="landing-wrap stage-page">
+
+    <nav aria-label="breadcrumb" class="stage-crumbs">
+      <a href="{% url 'home' %}">Башкы бет</a>
+      <span aria-hidden="true">/</span>
+      <a href="{% url 'home' %}#lesson-path">Сабактын этаптары</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ stage.name }}</span>
+    </nav>
+
+    {# Where this stage sits in the whole lesson. #}
+    <ol class="stage-stepper" aria-label="5E жана 3C этаптары">
+      {% for s in stages %}
+      <li class="{% if s.slug == stage.slug %}is-current{% endif %} stage-stepper__item--{{ s.group }} stage--{{ s.slug }}">
+        <a href="{% url 'lesson_stage' s.slug %}" {% if s.slug == stage.slug %}aria-current="step"{% endif %}>
+          <span class="stage-stepper__num">{% if s.group == '5e' %}{{ s.number }}{% else %}<i class="fas {{ s.icon }}" aria-hidden="true"></i>{% endif %}</span>
+          <span class="stage-stepper__name">{{ s.name }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+
+    <header class="stage-hero stage--{{ stage.slug }}">
+      <div class="stage-hero__icon"><i class="fas {{ stage.icon }}" aria-hidden="true"></i></div>
+      <div>
+        <p class="landing-eyebrow">{% if stage.group == '5e' %}5E · {{ stage.number }}-этап{% else %}3C · көндүм{% endif %}</p>
+        <h1 class="stage-hero__title">{{ stage.name }} <span>{{ stage.name_en }}</span></h1>
+        <p class="stage-hero__lead">{{ stage.summary }}</p>
+        <div class="stage-hero__bloom">
+          <span>Блумдун деңгээли:</span>
+          {% for level in stage.bloom_levels %}<span class="bloom-chip">{{ level.number }} · {{ level.name }}</span>{% endfor %}
+        </div>
+      </div>
+    </header>
+
+    <div class="stage-guide">
+      <div class="stage-guide__box">
+        <h2>Мугалим эмне кылат</h2>
+        <p>{{ stage.teacher_does }}</p>
+        <h3>Ушул этаптагы иштер</h3>
+        <ul class="stage-card__types">
+          {% for item in stage.activity_types %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+      <div class="stage-guide__box">
+        <h2>Суроо үлгүлөрү</h2>
+        {% for level in stage.bloom_levels %}
+        <h3>{{ level.name }}</h3>
+        <ul class="stage-guide__stems">
+          {% for stem in level.stems %}<li>«{{ stem }}»</li>{% endfor %}
+        </ul>
+        {% endfor %}
+      </div>
+    </div>
+
+    <section class="stage-materials">
+      <h2>Материалдар <span>{{ materials|length }}</span></h2>
+      {% if materials %}
+      <div class="material-grid">
+        {% for m in materials %}
+          {% include 'components/lesson_material_card.html' with m=m %}
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="stage-empty">
+        <i class="fas {{ stage.icon }}" aria-hidden="true"></i>
+        <p>Бул этап үчүн материалдар жакында кошулат. Азырынча жогорудагы суроо үлгүлөрүн каалаган теманын иш барагы менен колдонсоңуз болот.</p>
+        <a class="btn-landing" href="{% url 'home' %}#materials">Бардык материалдар</a>
+      </div>
+      {% endif %}
+    </section>
+
+    <nav class="stage-pager" aria-label="Кийинки этап">
+      {% if prev_stage %}
+      <a href="{% url 'lesson_stage' prev_stage.slug %}"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ prev_stage.name }}</a>
+      {% else %}<span></span>{% endif %}
+      {% if next_stage %}
+      <a href="{% url 'lesson_stage' next_stage.slug %}">{{ next_stage.name }} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+      {% endif %}
+    </nav>
+
+  </div>
+</div>
+{% endblock content %}
