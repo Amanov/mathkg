@@ -16,6 +16,8 @@ from django.urls import reverse
 # STAGES in apps/resources/lesson_flow.py on the landing-5e-3c-bloom branch
 # (PR #3). Explore, Explain and Create materials were added 2026-10-09 to
 # fill the gaps the review found.
+BLOOM_LEVELS = ['Эстеп калуу', 'Түшүнүү', 'Колдонуу', 'Талдоо', 'Баалоо', 'Жаратуу']
+
 TO_FRACTIONS = {
     'title': 'Ондуктарды бөлчөккө айландыруу',
     'svg_dir': 'svg/topic/to-fractions',
@@ -33,12 +35,14 @@ TO_FRACTIONS = {
                     'title': '1234',
                     'note': 'Төрт кутуча: жөнөкөй ондуктан баштап үч орундуу ондукка чейин',
                     'svg': '1234',
+                    'level': 'Эстеп калуу',
                     'files': [('PPT', '1234.pptx')],
                 },
                 {
                     'title': 'Бинго',
                     'note': 'Бүт класс менен: мугалим ондукту айтат, окуучулар бөлчөгүн табат',
                     'svg': 'bingo',
+                    'level': 'Эстеп калуу',
                     'files': [('PPT', 'BingoOyunu.pptx')],
                 },
             ],
@@ -55,6 +59,7 @@ TO_FRACTIONS = {
                     'title': 'Көрсөт / Ооба, жок, балким',
                     'note': 'Тактачага жооп көрсөтүп, ар бир пикирди негиздешет',
                     'svg': 'korsot-ooba-jok',
+                    'level': 'Түшүнүү',
                     'files': [
                         ('PPT', 'IzildooKorsotOobaJok.pptx'),
                         ('PDF', 'IzildooKorsotOobaJok.pdf'),
@@ -64,6 +69,7 @@ TO_FRACTIONS = {
                     'title': 'Цифра табышмагы',
                     'note': 'Бош кутучаларга цифра коюп, ½ке барабар бөлчөктөрдү издешет',
                     'svg': 'cifra-tabyshmagy',
+                    'level': 'Талдоо',
                     'files': [
                         ('PPT', 'CifraTabyshmagy.pptx'),
                         ('PDF A5', 'CifraTabyshmagy.pdf'),
@@ -83,6 +89,7 @@ TO_FRACTIONS = {
                     'title': 'Түшүндүрүү презентациясы',
                     'note': 'Эреже, үч үлгү (0,6; 0,35; 0,125) жана ар биринен кийин өз алдынча мисал',
                     'svg': 'tushunduruu',
+                    'level': 'Түшүнүү',
                     'files': [
                         ('PPT', 'TushunduruuPrezentaciya.pptx'),
                         ('PDF', 'TushunduruuPrezentaciya.pdf'),
@@ -101,12 +108,14 @@ TO_FRACTIONS = {
                     'title': 'Жеңил, орто, оор',
                     'note': 'Үч деңгээлде 6дан суроо, деңгээлин окуучу өзү тандайт',
                     'svg': 'jenil-orto-oor',
+                    'level': 'Колдонуу',
                     'files': [('PPT', 'JenilOrtoOor.pptx')],
                 },
                 {
                     'title': 'Казына издөө',
                     'note': 'Жеңил: плакаттан плакатка, жооп кийинки суроону көрсөтөт',
                     'svg': 'kazyna-jenil',
+                    'level': 'Колдонуу',
                     'files': [
                         ('PPT', 'KazynaIzdoo_Jenil.pptx'),
                         ('PDF A4', 'KazynaIzdoo_Jenil.pdf'),
@@ -116,12 +125,14 @@ TO_FRACTIONS = {
                     'title': 'Казына издөө',
                     'note': 'Оор: плакаттан плакатка, жооп кийинки суроону көрсөтөт',
                     'svg': 'kazyna-oor',
+                    'level': 'Колдонуу',
                     'files': [('PPT', 'KazynaIzdoo_Oor.pptx'), ('PDF A4', 'KazynaIzdoo_OorA4.pdf')],
                 },
                 {
                     'title': 'Бинго',
                     'note': 'Цифранын орундук маанисин жөнөкөйлөтүлгөн бөлчөк менен жазышат',
                     'svg': 'bingo-orun',
+                    'level': 'Түшүнүү',
                     'files': [('PPT', 'BingoOyunuOrundardynMaanisiMenen.pptx')],
                 },
             ],
@@ -137,6 +148,7 @@ TO_FRACTIONS = {
                     'title': 'Катаны тап',
                     'note': 'Чечилген мисалдагы каталарды таап, оңдошот',
                     'svg': 'katany-tap',
+                    'level': 'Баалоо',
                     'files': [
                         ('PPT', 'KatanyTap.pptx'),
                         ('PDF A4', 'KatanyTapA4.pdf'),
@@ -148,6 +160,7 @@ TO_FRACTIONS = {
                     'note': 'Туура айландырылган бөлмөлөр аркылуу гана өтүшөт; аягында өз лабиринтин '
                     'түзүшөт',
                     'svg': 'sandar-labyrinth',
+                    'level': 'Баалоо',
                     'files': [
                         ('PPT', 'SandarMNLabyrinth.pptx'),
                         ('PDF A4', 'SandarMNLabyrinthA4.pdf'),
@@ -168,6 +181,7 @@ TO_FRACTIONS = {
                     'title': 'Тарсиа курак',
                     'note': 'Ондукту барабар бөлчөгү менен жанаштырып, үч бурчтук түзүшөт',
                     'svg': 'tarsia-kurak',
+                    'level': 'Талдоо',
                     'files': [
                         ('PPT', 'TarsiaKurak.pptx'),
                         ('PDF A4', 'TarsiaKurakA4.pdf'),
@@ -187,6 +201,7 @@ TO_FRACTIONS = {
                     'title': 'Катары менен төрт',
                     'note': 'Жуп болуп: суроону тандап, жоопту торчодон белгилешет',
                     'svg': 'katary-menen-tort',
+                    'level': 'Колдонуу',
                     'files': [
                         ('PPT', 'KataryMenenTort.pptx'),
                         ('PDF A4', 'KataryMenenTortA4.pdf'),
@@ -198,12 +213,14 @@ TO_FRACTIONS = {
                     'title': '3-ту туташтыр',
                     'note': 'Эки команда кезек менен жооп берип, торчодон орун алат',
                     'svg': '3-tutashtyr',
+                    'level': 'Колдонуу',
                     'files': [('PPT', '3Tutashtyr.pptx')],
                 },
                 {
                     'title': 'Жыдымай',
                     'note': 'Команда же жекеме-жеке: туура жоопту биринчи басышат',
                     'svg': 'jydymai',
+                    'level': 'Колдонуу',
                     'files': [('PPT', 'Jydymai.pptx')],
                 },
             ],
@@ -220,6 +237,7 @@ TO_FRACTIONS = {
                     'note': 'Ондукту бөлчөккө айландырып, жөнөкөйлөтүүнү талап кылган суроо жана '
                     'өз домино карталарын түзүшөт',
                     'svg': 'suroo-tuz',
+                    'level': 'Жаратуу',
                     'files': [
                         ('PPT', 'SurooTuz.pptx'),
                         ('Домино', 'SurooTuzKartalar.pptx'),
@@ -258,11 +276,25 @@ def build_topic_page(page, resources, user):
                     'title': item['title'],
                     'note': item['note'],
                     'svg': f"{page['svg_dir']}/{item['svg']}.svg",
+                    'level': item['level'],
                     'links': links,
                 }
             )
         sections.append({**section, 'items': items})
+    # Grid view: Bloom levels as rows, lesson stages as columns. Each item
+    # sits in the row of the main Bloom level it reaches ('level').
+    grid = [
+        {
+            'level': level,
+            'cells': [
+                [item for item in section['items'] if item['level'] == level]
+                for section in sections
+            ],
+        }
+        for level in BLOOM_LEVELS
+    ]
     return {
         'title': page['title'],
         'sections': sections,
+        'grid': grid,
     }
