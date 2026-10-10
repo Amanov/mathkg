@@ -19,20 +19,62 @@
   </p>
   {% endif %}
 
-  <div class="view-toggle" role="group" aria-label="Көрүнүш">
-    <button type="button" class="view-toggle__btn" data-view="list" aria-pressed="true">Тизме</button>
-    <button type="button" class="view-toggle__btn" data-view="grid" aria-pressed="false">5E + 3C торчосу</button>
+  <div class="topic-controls">
+    <button type="button" class="model-switch" id="model-switch" aria-pressed="true">
+      <span class="model-switch__track" aria-hidden="true"></span>
+      5E + 3C жана Блум
+    </button>
+    <div class="view-toggle lesson-meta" role="group" aria-label="Көрүнүш">
+      <button type="button" class="view-toggle__btn" data-view="list" aria-pressed="true">Тизме</button>
+      <button type="button" class="view-toggle__btn" data-view="grid" aria-pressed="false">Торчо</button>
+    </div>
   </div>
 
+  <details class="teacher-guide lesson-meta">
+    <summary>Мугалимге: бул баракты сабакта кантип колдонуу керек</summary>
+    <div class="teacher-guide__body">
+      {% if page.standard %}
+      <div class="teacher-guide__std">
+        <h3>Кыргыз Республикасынын программасы менен байланыш</h3>
+        <ul>
+          <li>{{ page.standard.document }}</li>
+          <li>{{ page.standard.grade }}</li>
+          <li>{{ page.standard.competency }}</li>
+        </ul>
+      </div>
+      {% endif %}
+      <div class="teacher-guide__cols">
+        <div>
+          <h3>Сабактын этаптары (5E + 3C)</h3>
+          <dl class="guide-list">
+            {% for section in page.sections %}
+            <dt><span class="stage-tag">{{ section.stage }}</span> {{ section.title }}</dt>
+            <dd>{{ section.when }}</dd>
+            {% endfor %}
+          </dl>
+        </div>
+        <div>
+          <h3>Блумдун деңгээлдери</h3>
+          <dl class="guide-list">
+            {% for level, text in page.bloom_guide %}
+            <dt>{{ level }}</dt>
+            <dd>{{ text }}</dd>
+            {% endfor %}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </details>
+
   {# Grid view: Bloom levels (rows) × lesson stages (columns), same files as the list #}
-  <div class="topic-grid" id="topic-grid" hidden>
+  <div class="topic-grid lesson-meta" id="topic-grid" hidden>
     <div class="topic-grid__scroll">
       <table class="topic-grid__table">
         <thead>
           <tr>
             <th scope="col" class="topic-grid__corner">Блум</th>
             {% for section in page.sections %}
-            <th scope="col" class="topic-grid__stage">
+            <th scope="col" class="topic-grid__stage" title="{{ section.when }}">
               <span class="stage-tag">{{ section.stage }}</span>
               <span class="topic-grid__stage-title">{{ section.title }}</span>
               <span class="topic-grid__stage-en">{{ section.title_en }}</span>
@@ -48,7 +90,7 @@
             <td class="topic-grid__cell">
               {% for item in cell %}
               <article class="grid-card">
-                <div class="grid-card__thumb">{% include item.svg %}</div>
+                <div class="grid-card__thumb"><img src="{{ item.svg_img }}" alt="" loading="lazy"></div>
                 <h3 class="grid-card__title">{{ item.title }}</h3>
                 <div class="grid-card__files">
                   {% for link in item.links %}
@@ -72,10 +114,11 @@
   {% for section in page.sections %}
   <section class="topic-section">
     <header class="topic-section__head">
-      <span class="stage-tag">{{ section.stage }}</span>
-      <h2 class="topic-section__title">{{ section.title }} <span class="topic-section__en">{{ section.title_en }}</span></h2>
+      <span class="stage-tag lesson-meta">{{ section.stage }}</span>
+      <h2 class="topic-section__title">{{ section.title }} <span class="topic-section__en lesson-meta">{{ section.title_en }}</span></h2>
       <p class="topic-section__summary">{{ section.summary }}</p>
-      <div class="bloom-row" aria-label="Блумдун таксономиясы">
+      <p class="topic-section__when lesson-meta">{{ section.when }}</p>
+      <div class="bloom-row lesson-meta" aria-label="Блумдун таксономиясы">
         <span class="bloom-row__label">Блум:</span>
         {% for level in section.bloom %}<span class="bloom-chip">{{ level }}</span>{% endfor %}
       </div>
@@ -120,6 +163,22 @@
     });
   });
   try { if (localStorage.getItem(key) === 'grid') show('grid'); } catch (e) {}
+
+  // Show or hide every 5E + 3C / Bloom label, the guide and the grid.
+  var page = document.querySelector('.topic-page');
+  var sw = document.getElementById('model-switch');
+  function setModel(on) {
+    page.classList.toggle('model-off', !on);
+    sw.setAttribute('aria-pressed', String(on));
+    if (!on) show('list');
+  }
+  sw.addEventListener('click', function () {
+    var on = sw.getAttribute('aria-pressed') !== 'true';
+    setModel(on);
+    if (on) { try { if (localStorage.getItem(key) === 'grid') show('grid'); } catch (e) {} }
+    try { localStorage.setItem('topicPageModel', on ? 'on' : 'off'); } catch (e) {}
+  });
+  try { if (localStorage.getItem('topicPageModel') === 'off') setModel(false); } catch (e) {}
 })();
 </script>
 {% endblock content %}

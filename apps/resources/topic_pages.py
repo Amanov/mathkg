@@ -7,6 +7,9 @@ active Resource, matched by `Resource.title` the same way the older
 hand-built templates do with `res|get_item:'filename'`.
 """
 
+import base64
+
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
@@ -18,15 +21,40 @@ from django.urls import reverse
 # fill the gaps the review found.
 BLOOM_LEVELS = ['Эстеп калуу', 'Түшүнүү', 'Колдонуу', 'Талдоо', 'Баалоо', 'Жаратуу']
 
+# What each Bloom level asks of the pupil. The 2018 programme (below) names
+# three levels of results: понимание, применение, анализ.
+BLOOM_GUIDE = {
+    'Эстеп калуу': 'Эрежени, фактыны эстейт',
+    'Түшүнүү': 'Өз сөзү менен түшүндүрөт (программанын 1-деңгээли: түшүнүү)',
+    'Колдонуу': 'Эрежени жаңы мисалдарда колдонот (2-деңгээл: колдонуу)',
+    'Талдоо': 'Салыштырат, мыйзам ченемин табат (3-деңгээл: талдоо)',
+    'Баалоо': 'Жооптун туура же ката экенин негиздейт',
+    'Жаратуу': 'Өз тапшырмасын, суроосун түзөт',
+}
+
+# Source: МОН КР / Кыргызская академия образования, «Математика. Программа для
+# общеобразовательных организаций 5–9 классы», Бишкек 2018. It has no outcome
+# codes, so none are shown.
+STANDARD_REF = {
+    'document': 'КР Билим берүү жана илим министрлиги, Кыргыз билим берүү академиясы: '
+    '«Математика. Программа для общеобразовательных организаций, 5–9 классы» (2018)',
+    'grade': '5-класс, «Десятичные дроби и действия над ними»: «перевод десятичных дробей '
+    'в обыкновенные»',
+    'competency': 'Предметтик компетенттүүлүк: эсептөө («Вычислительная: различает числа. '
+    'Производит арифметические … операции над числами»)',
+}
+
 TO_FRACTIONS = {
     'title': 'Ондуктарды бөлчөккө айландыруу',
     'svg_dir': 'svg/topic/to-fractions',
     'file_prefix': 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-',
+    'standard': STANDARD_REF,
     'sections': [
         {
             'stage': '5E · 1',
             'title': 'Кызыктыруу',
             'title_en': 'Engage',
+            'when': 'Сабактын башында, 5–7 мүнөт: мурунку билимди текшерип, кызыгууну ойготуу.',
             'bloom': ['Эстеп калуу'],
             'summary': 'Мурунку билимди эске салуу: окуучулар 0,1 = 1/10 сыяктуу негизги айландырууларды '
             'билеби?',
@@ -51,6 +79,7 @@ TO_FRACTIONS = {
             'stage': '5E · 2',
             'title': 'Изилдөө',
             'title_en': 'Explore',
+            'when': 'Эрежени айтуудан мурун: окуучулар жуп же топ болуп мисалдарды изилдеп, мыйзам ченемдүүлүктү өздөрү табышат.',
             'bloom': ['Түшүнүү', 'Талдоо'],
             'summary': 'Эрежени айтпай туруп, окуучулар ондук менен бөлчөктүн байланышын өздөрү '
             'табышат.',
@@ -81,6 +110,7 @@ TO_FRACTIONS = {
             'stage': '5E · 3',
             'title': 'Түшүндүрүү',
             'title_en': 'Explain',
+            'when': 'Изилдөөдөн кийин: мугалим эрежени жана үлгүнү көрсөтөт, окуучулар «Сенин кезегиң» менен текшерет.',
             'bloom': ['Түшүнүү', 'Колдонуу'],
             'summary': 'Орундук маани → бөлүмү 10, 100, 1000 → жөнөкөйлөтүү: үлгү жана «Сенин '
             'кезегиң».',
@@ -101,6 +131,7 @@ TO_FRACTIONS = {
             'stage': '5E · 4',
             'title': 'Тереңдетүү',
             'title_en': 'Elaborate',
+            'when': 'Негизги машыгуу: окуучу өз деңгээлиндеги тапшырманы аткарат (программа сунуштаган деңгээлдик дифференциация).',
             'bloom': ['Колдонуу', 'Түшүнүү'],
             'summary': 'Айландырууну деңгээл боюнча машыгуу жана орундук маани аркылуу тереңдетүү.',
             'items': [
@@ -141,6 +172,7 @@ TO_FRACTIONS = {
             'stage': '5E · 5',
             'title': 'Баалоо',
             'title_en': 'Evaluate',
+            'when': 'Сабактын аягында же темадан кийин: окуучулар каталарды таап, жоопту негиздешет.',
             'bloom': ['Талдоо', 'Баалоо', 'Жаратуу'],
             'summary': 'Окуучулар даяр жоопторду текшерип, туура же ката экенин негиздешет.',
             'items': [
@@ -174,6 +206,7 @@ TO_FRACTIONS = {
             'stage': '3C · 1',
             'title': 'Байланыштыруу',
             'title_en': 'Connect',
+            'when': 'Бир эле санды ондук жана бөлчөк түрүндө байланыштырып, тема аралык байланышты көрүшөт.',
             'bloom': ['Талдоо'],
             'summary': 'Бир эле санды ондук жана бөлчөк түрүндө байланыштыруу.',
             'items': [
@@ -194,6 +227,7 @@ TO_FRACTIONS = {
             'stage': '3C · 2',
             'title': 'Кызматташуу',
             'title_en': 'Collaborate',
+            'when': 'Жуп же топ менен оюн: программа жуп, топтук жана фронталдык иштөөнү сунуштайт.',
             'bloom': ['Колдонуу'],
             'summary': 'Жуп жана команда менен оюндар.',
             'items': [
@@ -229,6 +263,7 @@ TO_FRACTIONS = {
             'stage': '3C · 3',
             'title': 'Жаратуу',
             'title_en': 'Create',
+            'when': 'Тереңдетилген деңгээл же үй тапшырмасы: окуучулар өз суроосун, карталарын түзүшөт.',
             'bloom': ['Жаратуу'],
             'summary': 'Окуучулар өздөрү суроо, домино карталарын түзүп, классташтарына беришет.',
             'items': [
@@ -271,11 +306,16 @@ def build_topic_page(page, resources, user):
                 else:
                     url = register_url
                 links.append({'label': label, 'url': url})
+            svg_path = f"{page['svg_dir']}/{item['svg']}.svg"
             items.append(
                 {
                     'title': item['title'],
                     'note': item['note'],
-                    'svg': f"{page['svg_dir']}/{item['svg']}.svg",
+                    'svg': svg_path,
+                    # The grid repeats each picture; as an <img> its gradient ids
+                    # can't clash with the inline copy in the list.
+                    'svg_img': 'data:image/svg+xml;base64,'
+                    + base64.b64encode(render_to_string(svg_path).encode()).decode(),
                     'level': item['level'],
                     'links': links,
                 }
@@ -297,4 +337,6 @@ def build_topic_page(page, resources, user):
         'title': page['title'],
         'sections': sections,
         'grid': grid,
+        'bloom_guide': [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
+        'standard': page.get('standard'),
     }
