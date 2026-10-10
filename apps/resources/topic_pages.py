@@ -7,9 +7,6 @@ active Resource, matched by `Resource.title` the same way the older
 hand-built templates do with `res|get_item:'filename'`.
 """
 
-import base64
-
-from django.template.loader import render_to_string
 from django.urls import reverse
 
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
@@ -312,31 +309,14 @@ def build_topic_page(page, resources, user):
                     'title': item['title'],
                     'note': item['note'],
                     'svg': svg_path,
-                    # The grid repeats each picture; as an <img> its gradient ids
-                    # can't clash with the inline copy in the list.
-                    'svg_img': 'data:image/svg+xml;base64,'
-                    + base64.b64encode(render_to_string(svg_path).encode()).decode(),
                     'level': item['level'],
                     'links': links,
                 }
             )
         sections.append({**section, 'items': items})
-    # Grid view: Bloom levels as rows, lesson stages as columns. Each item
-    # sits in the row of the main Bloom level it reaches ('level').
-    grid = [
-        {
-            'level': level,
-            'cells': [
-                [item for item in section['items'] if item['level'] == level]
-                for section in sections
-            ],
-        }
-        for level in BLOOM_LEVELS
-    ]
     return {
         'title': page['title'],
         'sections': sections,
-        'grid': grid,
         'bloom_guide': [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
         'standard': page.get('standard'),
     }

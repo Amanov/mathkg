@@ -24,10 +24,6 @@
       <span class="model-switch__track" aria-hidden="true"></span>
       5E + 3C жана Блум
     </button>
-    <div class="view-toggle lesson-meta" role="group" aria-label="Көрүнүш">
-      <button type="button" class="view-toggle__btn" data-view="list" aria-pressed="true">Тизме</button>
-      <button type="button" class="view-toggle__btn" data-view="grid" aria-pressed="false">Торчо</button>
-    </div>
   </div>
 
   <details class="teacher-guide lesson-meta">
@@ -66,50 +62,6 @@
     </div>
   </details>
 
-  {# Grid view: Bloom levels (rows) × lesson stages (columns), same files as the list #}
-  <div class="topic-grid lesson-meta" id="topic-grid" hidden>
-    <div class="topic-grid__scroll">
-      <table class="topic-grid__table">
-        <thead>
-          <tr>
-            <th scope="col" class="topic-grid__corner">Блум</th>
-            {% for section in page.sections %}
-            <th scope="col" class="topic-grid__stage" title="{{ section.when }}">
-              <span class="stage-tag">{{ section.stage }}</span>
-              <span class="topic-grid__stage-title">{{ section.title }}</span>
-              <span class="topic-grid__stage-en">{{ section.title_en }}</span>
-            </th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in page.grid %}
-          <tr>
-            <th scope="row" class="topic-grid__level">{{ row.level }}</th>
-            {% for cell in row.cells %}
-            <td class="topic-grid__cell">
-              {% for item in cell %}
-              <article class="grid-card">
-                <div class="grid-card__thumb"><img src="{{ item.svg_img }}" alt="" loading="lazy"></div>
-                <h3 class="grid-card__title">{{ item.title }}</h3>
-                <div class="grid-card__files">
-                  {% for link in item.links %}
-                  <a class="file-pill{% if forloop.first %} file-pill--main{% endif %}" href="{{ link.url }}">{{ link.label }}</a>
-                  {% empty %}
-                  <span class="topic-row__soon">Жакында</span>
-                  {% endfor %}
-                </div>
-              </article>
-              {% endfor %}
-            </td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-
   <div class="topic-sections" id="topic-list">
   {% for section in page.sections %}
   <section class="topic-section">
@@ -147,35 +99,16 @@
 </main>
 <script>
 (function () {
-  var key = 'topicPageView';
-  var grid = document.getElementById('topic-grid');
-  var list = document.getElementById('topic-list');
-  var buttons = document.querySelectorAll('.view-toggle__btn');
-  function show(view) {
-    grid.hidden = view !== 'grid';
-    list.hidden = view === 'grid';
-    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === view)); });
-  }
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () {
-      show(b.dataset.view);
-      try { localStorage.setItem(key, b.dataset.view); } catch (e) {}
-    });
-  });
-  try { if (localStorage.getItem(key) === 'grid') show('grid'); } catch (e) {}
-
-  // Show or hide every 5E + 3C / Bloom label, the guide and the grid.
+  // Show or hide every 5E + 3C / Bloom label and the guide.
   var page = document.querySelector('.topic-page');
   var sw = document.getElementById('model-switch');
   function setModel(on) {
     page.classList.toggle('model-off', !on);
     sw.setAttribute('aria-pressed', String(on));
-    if (!on) show('list');
   }
   sw.addEventListener('click', function () {
     var on = sw.getAttribute('aria-pressed') !== 'true';
     setModel(on);
-    if (on) { try { if (localStorage.getItem(key) === 'grid') show('grid'); } catch (e) {} }
     try { localStorage.setItem('topicPageModel', on ? 'on' : 'off'); } catch (e) {}
   });
   try { if (localStorage.getItem('topicPageModel') === 'off') setModel(false); } catch (e) {}

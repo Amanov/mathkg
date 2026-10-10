@@ -146,36 +146,9 @@
     .topic-row__thumb:hover { transform: rotate(0) scale(1.1); }
 }
 
-/* List / grid switch under the title */
-.view-toggle {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin: 0;
-    width: max-content;
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 3px;
-    background: var(--surface);
-}
-.view-toggle__btn {
-    font: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 7px 16px;
-    border: 0;
-    border-radius: 6px;
-    background: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-.view-toggle__btn:hover { color: var(--text); }
-.view-toggle__btn[aria-pressed="true"] { background: var(--topic-accent); color: #fff; }
-.view-toggle__btn:focus-visible { outline: 2px solid var(--topic-accent); outline-offset: 2px; }
 .topic-page [hidden] { display: none !important; }
 
-/* Controls under the title: 5E + 3C / Bloom switch and list / grid toggle */
+/* Control under the title: 5E + 3C / Bloom switch */
 .topic-controls {
     display: flex;
     flex-wrap: wrap;
@@ -184,7 +157,6 @@
     gap: 12px 20px;
     margin-top: 24px;
 }
-.topic-controls .view-toggle { margin: 0; }
 .model-switch {
     display: inline-flex;
     align-items: center;
@@ -253,64 +225,6 @@
 .guide-list dd { margin: 2px 0 0; color: var(--text-muted); }
 .topic-section__when { margin: 0; font-size: 13.5px; color: var(--text); }
 @media (max-width: 680px) { .teacher-guide__cols { grid-template-columns: 1fr; gap: 0; } }
-
-/* Grid view: Bloom levels (rows) x lesson stages (columns) */
-.topic-grid {
-    /* Wider than the list so 8 stage columns have room */
-    width: min(1360px, calc(100vw - 32px));
-    margin: 28px 0 0 50%;
-    transform: translateX(-50%);
-}
-.topic-grid__scroll {
-    overflow-x: auto;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    background: var(--surface);
-}
-.topic-grid__table { border-collapse: collapse; width: 100%; min-width: 1100px; table-layout: fixed; }
-.topic-grid__table th,
-.topic-grid__table td { border: 1px solid var(--border-subtle); vertical-align: top; }
-.topic-grid__table tr > :first-child { border-left: 0; }
-.topic-grid__table tr > :last-child { border-right: 0; }
-.topic-grid__table thead th { border-top: 0; }
-.topic-grid__table tbody tr:last-child > * { border-bottom: 0; }
-.topic-grid__corner,
-.topic-grid__level {
-    width: 92px;
-    padding: 10px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-align: left;
-    background: var(--surface-alt);
-    vertical-align: middle;
-}
-.topic-grid__stage {
-    padding: 10px 8px;
-    text-align: center;
-    background: var(--surface-alt);
-    font-weight: 400;
-}
-.topic-grid__stage .stage-tag { display: inline-block; font-size: 11px; padding: 1px 8px; }
-.topic-grid__stage-title { display: block; margin-top: 6px; font-size: 13px; overflow-wrap: anywhere; font-weight: 700; color: var(--text); }
-.topic-grid__stage-en { display: block; font-size: 12px; color: var(--text-muted); }
-.topic-grid__cell { padding: 8px; }
-/* Keep the Bloom column in view when the grid scrolls sideways on phones */
-.topic-grid__corner,
-.topic-grid__level { position: sticky; left: 0; z-index: 1; }
-.grid-card + .grid-card { margin-top: 8px; }
-.grid-card {
-    padding: 8px;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    text-align: center;
-}
-.grid-card__thumb { aspect-ratio: 160 / 104; border-radius: 6px; overflow: hidden; }
-.grid-card__thumb img { display: block; width: 100%; height: 100%; }
-.grid-card__title { margin: 6px 0; font-size: 13px; font-weight: 600; line-height: 1.25; text-wrap: balance; }
-.grid-card__files { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
-.grid-card__files .file-pill { font-size: 11.5px; padding: 4px 7px; }
 
 @media (prefers-reduced-motion: reduce) {
     .topic-row, .topic-row__thumb { transition: none; }
