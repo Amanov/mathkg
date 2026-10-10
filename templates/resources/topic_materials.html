@@ -62,9 +62,20 @@
     </div>
   </details>
 
+  {# Bloom staircase: one step per level, with how many materials reach it #}
+  <ol class="bloom-steps lesson-meta" aria-label="Блумдун деңгээлдери">
+    {% for step in page.bloom_steps %}
+    <li class="bloom-step lv-{{ step.num }}">
+      <span class="bloom-step__name">{{ step.level }}</span>
+      <span class="bloom-step__count">{{ step.count }} материал</span>
+    </li>
+    {% endfor %}
+  </ol>
+
   <div class="topic-sections" id="topic-list">
   {% for section in page.sections %}
   <section class="topic-section">
+    <span class="timeline-dot lesson-meta" aria-hidden="true"></span>
     <header class="topic-section__head">
       <span class="stage-tag lesson-meta">{{ section.stage }}</span>
       <h2 class="topic-section__title">{{ section.title }} <span class="topic-section__en lesson-meta">{{ section.title_en }}</span></h2>
@@ -77,11 +88,15 @@
     </header>
     <div class="topic-list">
       {% for item in section.items %}
-      <article class="topic-row">
+      <article class="topic-row lv-{{ item.level_num }}">
         <div class="topic-row__thumb">{% include item.svg %}</div>
         <div class="topic-row__text">
           <h3 class="topic-row__title">{{ item.title }}</h3>
           <p class="topic-row__note">{{ item.note }}</p>
+          <p class="bloom-tag lesson-meta">
+            <span class="bloom-ladder" aria-hidden="true">{% for n in "123456" %}<i{% if forloop.counter <= item.level_num %} class="on"{% endif %}></i>{% endfor %}</span>
+            Блум: {{ item.level }}
+          </p>
         </div>
         <div class="topic-row__files">
           {% for link in item.links %}

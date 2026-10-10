@@ -11,6 +11,31 @@
 }
 :root[data-theme="dark"] .topic-page { --topic-accent: #3d8ef5; --topic-shadow: rgba(0, 0, 0, .45); }
 
+/* Bloom's levels, lowest to highest (Эстеп калуу ... Жаратуу). Muted so the
+   thumbnails stay the brightest thing in each row. */
+.topic-page {
+    --bloom-1: #7d8799;
+    --bloom-2: #3b7fc0;
+    --bloom-3: #2b8f64;
+    --bloom-4: #b57c0f;
+    --bloom-5: #c4572a;
+    --bloom-6: #7f55b8;
+}
+:root[data-theme="dark"] .topic-page {
+    --bloom-1: #98a2b3;
+    --bloom-2: #5d9ad6;
+    --bloom-3: #45b080;
+    --bloom-4: #d39a2c;
+    --bloom-5: #e0764a;
+    --bloom-6: #a07ad6;
+}
+.lv-1 { --lv: var(--bloom-1); }
+.lv-2 { --lv: var(--bloom-2); }
+.lv-3 { --lv: var(--bloom-3); }
+.lv-4 { --lv: var(--bloom-4); }
+.lv-5 { --lv: var(--bloom-5); }
+.lv-6 { --lv: var(--bloom-6); }
+
 /* main.css draws blue bars around every h1; this page's title doesn't use them */
 .topic-page__title {
     display: block;
@@ -225,6 +250,90 @@
 .guide-list dd { margin: 2px 0 0; color: var(--text-muted); }
 .topic-section__when { margin: 0; font-size: 13.5px; color: var(--text); }
 @media (max-width: 680px) { .teacher-guide__cols { grid-template-columns: 1fr; gap: 0; } }
+
+/* Option C: Bloom staircase, lesson timeline and a Bloom colour per row */
+.bloom-steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: end;
+    gap: 6px;
+    margin: 28px 0 8px;
+    padding: 0;
+}
+.bloom-step {
+    display: grid;
+    align-content: start;
+    gap: 2px;
+    padding: 8px 6px;
+    border-radius: 6px 6px 0 0;
+    background: var(--lv);
+    color: #fff;
+    text-align: center;
+}
+.bloom-step__name { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+.bloom-step__count { font-size: 12px; opacity: .92; }
+.bloom-step.lv-1 { min-height: 48px; }
+.bloom-step.lv-2 { min-height: 58px; }
+.bloom-step.lv-3 { min-height: 68px; }
+.bloom-step.lv-4 { min-height: 78px; }
+.bloom-step.lv-5 { min-height: 88px; }
+.bloom-step.lv-6 { min-height: 98px; }
+
+.topic-sections { position: relative; padding-left: 40px; }
+.topic-sections::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 52px;
+    bottom: 40px;
+    width: 2px;
+    background: var(--border-subtle);
+}
+.topic-section { position: relative; }
+.timeline-dot {
+    position: absolute;
+    left: -36px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border-accent);
+    background: var(--surface);
+}
+.topic-page.model-off .topic-sections { padding-left: 0; }
+.topic-page.model-off .topic-sections::before { display: none; }
+
+.topic-page:not(.model-off) .topic-row { box-shadow: inset 5px 0 0 var(--lv); }
+.topic-page:not(.model-off) .topic-row:first-child { border-top-left-radius: var(--radius-md); }
+.topic-page:not(.model-off) .topic-row:last-child { border-bottom-left-radius: var(--radius-md); }
+
+.bloom-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--lv);
+}
+.bloom-ladder { display: inline-flex; align-items: flex-end; gap: 3px; height: 24px; }
+.bloom-ladder i { width: 8px; border-radius: 2px; background: var(--border-subtle); }
+.bloom-ladder i:nth-child(1) { height: 8px; }
+.bloom-ladder i:nth-child(2) { height: 11px; }
+.bloom-ladder i:nth-child(3) { height: 14px; }
+.bloom-ladder i:nth-child(4) { height: 17px; }
+.bloom-ladder i:nth-child(5) { height: 20px; }
+.bloom-ladder i:nth-child(6) { height: 23px; }
+.bloom-ladder i.on { background: var(--lv); }
+
+@media (max-width: 680px) {
+    .bloom-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bloom-step { border-radius: 6px; min-height: 0 !important; }
+    .topic-sections { padding-left: 26px; }
+    .topic-sections::before { left: 6px; }
+    .timeline-dot { left: -28px; width: 16px; height: 16px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
     .topic-row, .topic-row__thumb { transition: none; }

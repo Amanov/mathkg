@@ -310,6 +310,7 @@ def build_topic_page(page, resources, user):
                     'note': item['note'],
                     'svg': svg_path,
                     'level': item['level'],
+                    'level_num': BLOOM_LEVELS.index(item['level']) + 1,
                     'links': links,
                 }
             )
@@ -318,5 +319,14 @@ def build_topic_page(page, resources, user):
         'title': page['title'],
         'sections': sections,
         'bloom_guide': [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
+        # Staircase above the list: how many materials reach each level.
+        'bloom_steps': [
+            {
+                'num': n,
+                'level': level,
+                'count': sum(1 for s in sections for i in s['items'] if i['level'] == level),
+            }
+            for n, level in enumerate(BLOOM_LEVELS, 1)
+        ],
         'standard': page.get('standard'),
     }
