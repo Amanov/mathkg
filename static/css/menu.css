@@ -5,6 +5,15 @@
 .navbar-nav { gap: 8px; }
 .navbar-nav > li { position: relative; }
 
+/* Bootstrap's reboot sets border-box globally, but the table-style
+   dropdown rows below size themselves to exactly 100% of their row
+   and would overflow it under padding on a content-box default -
+   don't depend on that being loaded. */
+.dropdown-menu,
+.dropdown-menu * {
+    box-sizing: border-box;
+}
+
 /* ════════════════════════════════════════════
    ROOT BUTTON
 ════════════════════════════════════════════ */
@@ -59,21 +68,29 @@
 }
 
 /* ════════════════════════════════════════════
-   DROPDOWN PANEL — always in the layout, faded/
+   DROPDOWN PANEL — a bordered table, not a
+   floating card: flat edges, a solid rule, no
+   drop shadow. Always in the layout, faded/
    scaled out until .show is applied, so opening
    it is an animation rather than an instant swap.
 ════════════════════════════════════════════ */
 .dropdown-menu {
     display: block;
     position: absolute;
-    padding: 4px;
-    min-width: 190px;
-    max-width: 260px;
+    padding: 0;
+    min-width: 210px;
+    max-width: 280px;
     width: max-content;
-    border: 1px solid var(--color-menu-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-dropdown);
+    border: 1.5px solid var(--color-menu-border);
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, .08);
     z-index: 9999;
+    /* visible, not hidden: a flyout submenu is an absolutely-positioned
+       descendant anchored outside this panel's own box (see "FLYOUT
+       PANEL" below) - clipping overflow here would cut it off. Rows have
+       no border-radius of their own, so the only place this matters is
+       the panel's own rounded corners, handled on the first/last row
+       below instead. */
     overflow: visible;
     background: var(--color-menu-surface);
 
@@ -95,12 +112,24 @@
 }
 
 /* ════════════════════════════════════════════
-   ALL LI — uniform rows, quiet dividers
+   ALL LI — table rows, ruled off from each other
 ════════════════════════════════════════════ */
 .dropdown-menu li {
     position: relative;
     padding: 0;
     margin: 0;
+    border-bottom: 1px solid var(--color-menu-border);
+}
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+/* Round the panel's own corners via its first/last row instead of
+   clipping (see overflow: visible above). */
+.dropdown-menu li:first-child > a {
+    border-radius: 4.5px 4.5px 0 0;
+}
+.dropdown-menu li:last-child > a {
+    border-radius: 0 0 4.5px 4.5px;
 }
 
 /* ════════════════════════════════════════════
@@ -110,9 +139,9 @@
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 34px;
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
+    min-height: 44px;
+    padding: 8px 14px;
+    border-radius: 0;
     font-size: 14.5px;
     font-weight: 600;
     line-height: 1.25;
@@ -143,9 +172,9 @@
     justify-content: space-between;
     gap: 10px;
     width: 100%;
-    min-height: 34px;
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
+    min-height: 44px;
+    padding: 8px 14px;
+    border-radius: 0;
     font-size: 14.5px;
     font-weight: 600;
     line-height: 1.25;
@@ -162,37 +191,39 @@
     color: var(--color-bootstrap-primary);
 }
 
-/* Right arrow */
+/* Right arrow — only submenu toggles get one, matching the reference's
+   "chevron means this row opens a further level" convention. */
 .dropdown-submenu > a::after {
     content: "\203A";
     border: none;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 700;
     line-height: 1;
     flex-shrink: 0;
-    color: var(--color-menu-border);
-    transition: color var(--transition-fast), transform var(--transition-base);
+    color: var(--color-bootstrap-primary);
+    transition: transform var(--transition-base);
 }
 .dropdown-submenu > a:hover::after {
-    color: var(--color-bootstrap-primary);
     transform: translateX(2px);
 }
 
 /* ════════════════════════════════════════════
-   FLYOUT PANEL — same fade/scale treatment as
-   the root dropdown, just anchored to the side.
+   FLYOUT PANEL — sits flush against the parent
+   panel's edge (shared border line) like an
+   adjoining table column, not a separate
+   floating card off to the side.
 ════════════════════════════════════════════ */
 .dropdown-submenu > .dropdown-menu {
     position: absolute;
-    top: -6px;
-    left: calc(100% + 6px);
+    top: -1.5px;
+    left: calc(100% - 1.5px);
     margin: 0;
     transform-origin: top left;
 }
 
 .dropdown-submenu.dropstart > .dropdown-menu {
     left: auto;
-    right: calc(100% + 6px);
+    right: calc(100% - 1.5px);
     transform-origin: top right;
 }
 
@@ -265,8 +296,8 @@
     .dropdown-menu.show {
         max-height: 70vh;
         overflow-y: auto;
-        padding: 6px;
-        border-width: 1px;
+        padding: 0;
+        border-width: 1.5px;
         transition: max-height var(--transition-base), opacity var(--transition-base),
                     padding var(--transition-base), border-width var(--transition-base),
                     visibility 0s linear 0s;

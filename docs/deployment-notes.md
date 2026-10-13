@@ -128,14 +128,21 @@ duplicates, and the 1111 confirmed-unreferenced duplicates were deleted
 with a matching title exists (a separate, pre-existing, still-open bug —
 see below).
 
-**Pre-existing bug surfaced by this, not yet fixed:** `directed_numbers.html`
+**Checked 2026-10-13, not actually a live bug:** `directed_numbers.html`
 looks up a resource titled `4-amal-BagyttalganSandarJenilOrtoOor-Screenshot.png`
-by exact title (`res|get_item:'...'`), but before the above incident no
-`Resource` had that exact title — meaning that image lookup was silently
-returning nothing. It's unknown how many other pages/images have the same
-silent-miss problem elsewhere in the catalog, since `import_resources`'s
-title-matching can't tell "already imported, just renamed" apart from
-"genuinely new."
+by exact title (`res|get_item:'...'`). Even when that lookup misses, the
+template already falls back to a static file
+(`{% if img and img.image %}...{% else %}{% static '...' %}{% endif %}`,
+`directed_numbers.html:96`) which exists on disk and renders the real
+screenshot — this is the established pattern for every "Screenshot"
+resource on the site (none of them have `Resource.image` populated; they
+all render from `static/img/`). A full scan of all 142 `get_item` lookups
+across every template against the current database turned up only one
+other miss (`Ekvivalenettuuluk_BOP_KatanyTap.pptx` in
+`Bolchok_Onduk_Payiz.html`), which is guarded by `{% if r %}` and just
+omits a download button rather than breaking visibly. `import_resources`'s
+title-matching fragility (see above) is still worth hardening if it's
+ever run again, but there's no known silent-miss currently live.
 
 **Root cause, still open — two options, either works:**
 1. Narrow the Railway Volume's mount path to only what actually needs
