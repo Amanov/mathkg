@@ -100,9 +100,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (rect.right > window.innerWidth - 10) {
                         menu.style.left = `${Math.max(10, triggerRect.left - rect.width + 1.5)}px`;
                     }
+                    // Shifting up to fit must never go higher than the
+                    // capped ancestor's own top - that panel already sits
+                    // below the fixed header (Bootstrap positioned it
+                    // there), so this stays below the header too. A flat
+                    // 10px-from-viewport-top floor doesn't know the header
+                    // exists and tucks this flyout's first rows underneath
+                    // it, unreachable.
                     const afterFlipRect = menu.getBoundingClientRect();
                     if (afterFlipRect.bottom > window.innerHeight - 10) {
-                        const shiftedTop = Math.max(10, window.innerHeight - 10 - afterFlipRect.height);
+                        const minTop = cappedAncestor.getBoundingClientRect().top;
+                        const shiftedTop = Math.max(minTop, window.innerHeight - 10 - afterFlipRect.height);
                         menu.style.top = `${shiftedTop}px`;
                     }
                     capHeightToViewport(menu);
