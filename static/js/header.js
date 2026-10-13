@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 menu.style.left = '';
                 menu.style.right = '';
                 menu.style.transform = '';
+                menu.style.transition = '';
                 menu.style.maxHeight = '';
                 menu.style.overflowY = '';
                 submenu.classList.remove('dropstart');
@@ -111,6 +112,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         ancestorMenu.style.transform = 'none';
                         ancestorMenu = ancestorMenu.parentElement && ancestorMenu.parentElement.closest('.dropdown-menu');
                     }
+
+                    // .dropdown-menu's stylesheet transition covers
+                    // transform (the open/close scale animation) - setting
+                    // transform: none above doesn't jump there instantly,
+                    // it transitions toward it over --transition-base
+                    // (200ms). Every getBoundingClientRect() read below,
+                    // taken synchronously, would land mid-transition and
+                    // report an interpolated (wrong) box - which the flip/
+                    // fit checks below would then act on, baking a bad
+                    // decision (e.g. flipping to the left edge when there
+                    // was no overflow to begin with) into inline styles
+                    // that never get revisited once the transition actually
+                    // finishes. Killing the transition up front makes
+                    // every measurement from here on reflect the real,
+                    // final geometry immediately.
+                    menu.style.transition = 'none';
 
                     const triggerRect = submenu.getBoundingClientRect();
                     menu.style.position = 'fixed';
@@ -230,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 m.style.overflowY = '';
                 m.style.transform = '';
                 m.style.position = '';
+                m.style.transition = '';
                 delete m.dataset.capped;
             });
         });
