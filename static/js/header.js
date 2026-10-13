@@ -89,6 +89,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 // already drops this ancestor's transform to allow.
                 const cappedAncestor = submenu.closest('.dropdown-menu[data-capped="true"]');
                 if (cappedAncestor) {
+                    // position: fixed is positioned relative to the viewport
+                    // UNLESS some ancestor has a transform (even a no-op
+                    // one like scale(1)), in which case THAT ancestor
+                    // becomes the containing block instead - silently
+                    // turning "fixed, viewport-relative" into "fixed,
+                    // relative to whichever transformed box happens to be
+                    // nearest". Every .dropdown-menu carries a transform by
+                    // default (the open/close scale animation), including
+                    // ordinary uncapped ones this flyout may be nested
+                    // inside - clearing only the matched capped ancestor's
+                    // transform isn't enough if a closer, uncapped one sits
+                    // between it and this flyout. Clear every ancestor
+                    // panel's transform, not just the capped one, so this
+                    // is reliably viewport-relative regardless of depth.
+                    // Harmless to leave cleared: translateY(0) scale(1) is
+                    // the identity transform, so this never changes how
+                    // any ancestor itself looks.
+                    let ancestorMenu = submenu.parentElement && submenu.parentElement.closest('.dropdown-menu');
+                    while (ancestorMenu) {
+                        ancestorMenu.style.transform = 'none';
+                        ancestorMenu = ancestorMenu.parentElement && ancestorMenu.parentElement.closest('.dropdown-menu');
+                    }
+
                     const triggerRect = submenu.getBoundingClientRect();
                     menu.style.position = 'fixed';
                     menu.style.transform = 'none';
