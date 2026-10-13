@@ -98,5 +98,10 @@
 
 {% include 'partials/subscribe_modal.html' %}
 
-<script src="{% static 'js/header.js' %}"></script>
+{# header.js is loaded once, in base.html's extra_scripts block, after    #}
+{# Bootstrap's own JS (see the comment there) - a second copy here ran    #}
+{# before Bootstrap loaded and, more importantly, registered every one    #}
+{# of its shown.bs.dropdown/hidden.bs.dropdown listeners twice, which is  #}
+{# exactly the kind of bug that makes "run this measurement once when the #}
+{# dropdown opens" logic fire twice and silently undo its own second half.#}
 <script src="{% static 'js/search-suggest.js' %}"></script>

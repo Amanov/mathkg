@@ -1,5 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // A long panel (many items) can be taller than the space left below
+    // where it opens - without this, its bottom items are simply cut off
+    // past the screen edge with no way to reach them. Caps it to whatever
+    // vertical room is actually available and lets it scroll internally
+    // instead. Shared by the root dropdown and its flyout submenus.
+    function capHeightToViewport(menu) {
+        const rect = menu.getBoundingClientRect();
+        const available = window.innerHeight - 10 - rect.top;
+        if (rect.height > available) {
+            menu.style.maxHeight = `${Math.max(available, 100)}px`;
+            menu.style.overflowY = 'auto';
+            // overflow-y: auto forces overflow-x to compute as auto too
+            // (CSS can't have one axis visible and the other not), which
+            // would clip any flyout escaping to the right of this panel -
+            // transform also has to go, since it (even at scale(1)) makes
+            // this panel the containing block for a position: fixed
+            // descendant, pinning a "fixed" flyout to its clipped box
+            // instead of letting it escape to the viewport. Flagged via
+            // data-capped so a flyout opening inside here (below) knows to
+            // switch to fixed positioning instead of the normal relative one.
+            menu.style.transform = 'none';
+            menu.dataset.capped = 'true';
+        } else {
+            menu.style.maxHeight = '';
+            menu.style.overflowY = '';
+            menu.style.transform = '';
+            delete menu.dataset.capped;
+        }
+    }
+
     function initSubmenus(root) {
         root.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
             // shown.bs.dropdown fires every time the parent dropdown opens;
@@ -38,14 +68,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 // no later flip could ever move the flyout again, which is
                 // what collapsed it back onto its own trigger's static
                 // position and read as the panel overlapping its ancestor.
+                menu.style.position = '';
                 menu.style.top = '';
                 menu.style.left = '';
                 menu.style.right = '';
+                menu.style.transform = '';
                 menu.style.maxHeight = '';
                 menu.style.overflowY = '';
                 submenu.classList.remove('dropstart');
 
                 menu.classList.add('show');
+
+                // A panel this opens inside of may itself be scrolling
+                // (capHeightToViewport above, applied to a tall top-level
+                // category) - its overflow: auto clips anything escaping
+                // its box, including this flyout's normal position:
+                // absolute/right-of-trigger placement. Pin it to the
+                // viewport with fixed, computed coordinates instead, which
+                // escapes that clipping the same way capHeightToViewport
+                // already drops this ancestor's transform to allow.
+                const cappedAncestor = submenu.closest('.dropdown-menu[data-capped="true"]');
+                if (cappedAncestor) {
+                    const triggerRect = submenu.getBoundingClientRect();
+                    menu.style.position = 'fixed';
+                    menu.style.transform = 'none';
+                    menu.style.top = `${triggerRect.top}px`;
+                    menu.style.left = `${triggerRect.right - 1.5}px`;
+                    menu.style.right = 'auto';
+
+                    const rect = menu.getBoundingClientRect();
+                    if (rect.right > window.innerWidth - 10) {
+                        menu.style.left = `${Math.max(10, triggerRect.left - rect.width + 1.5)}px`;
+                    }
+                    const afterFlipRect = menu.getBoundingClientRect();
+                    if (afterFlipRect.bottom > window.innerHeight - 10) {
+                        const shiftedTop = Math.max(10, window.innerHeight - 10 - afterFlipRect.height);
+                        menu.style.top = `${shiftedTop}px`;
+                    }
+                    capHeightToViewport(menu);
+                    return;
+                }
 
                 // Flip left if off right edge
                 const rect = menu.getBoundingClientRect();
@@ -66,18 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     menu.style.top = `${currentTop - shift}px`;
                 }
 
-                // A long panel (many items) can still be taller than the
-                // viewport even after shifting up as far as the ancestor
-                // boundary allows - without this, its remaining items are
-                // simply cut off past the screen edge with no way to reach
-                // them. Cap its height to whatever space is actually left
-                // and let it scroll internally instead.
-                const finalRect = menu.getBoundingClientRect();
-                const available = window.innerHeight - 10 - finalRect.top;
-                if (finalRect.height > available) {
-                    menu.style.maxHeight = `${Math.max(available, 100)}px`;
-                    menu.style.overflowY = 'auto';
-                }
+                // Still taller than the viewport even after shifting up as
+                // far as the ancestor boundary allows - cap and scroll.
+                capHeightToViewport(menu);
             });
 
             submenu.addEventListener('mouseleave', function () {
@@ -128,10 +181,26 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.dropdown').forEach(function (dropdown) {
         dropdown.addEventListener('shown.bs.dropdown', function () {
             initSubmenus(dropdown);
+
+            // The root panel itself can be taller than the room left below
+            // it (e.g. a category with a dozen+ children) - same reachability
+            // problem as a tall flyout, same fix.
+            const menu = dropdown.querySelector(':scope > .dropdown-menu');
+            if (menu) capHeightToViewport(menu);
         });
-        // Also close all submenus when root dropdown closes
+        // Also close all submenus when root dropdown closes, and clear any
+        // height cap so the next open re-measures fresh (the viewport may
+        // have been resized, or this dropdown opened from a different
+        // scroll position, since the last time it was shown).
         dropdown.addEventListener('hidden.bs.dropdown', function () {
-            dropdown.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+            dropdown.querySelectorAll('.dropdown-menu').forEach(function (m) {
+                m.classList.remove('show');
+                m.style.maxHeight = '';
+                m.style.overflowY = '';
+                m.style.transform = '';
+                m.style.position = '';
+                delete m.dataset.capped;
+            });
         });
     });
 

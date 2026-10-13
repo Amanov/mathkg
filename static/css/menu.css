@@ -3,7 +3,17 @@
    NAVBAR
 ════════════════════════════════════════════ */
 .navbar-nav { gap: 8px; }
-.navbar-nav > li { position: relative; }
+
+/* z-index: 0 (any explicit value, not just "auto") makes each item its
+   own stacking context - without it, an open dropdown's z-index: 9999
+   (below) escapes past its own <li> and renders above *every* sibling
+   button, including ones wrapped onto a second row directly beneath it,
+   making them unclickable. With it, a dropdown only ever outranks
+   page content below the header, never a sibling category button. */
+.navbar-nav > li {
+    position: relative;
+    z-index: 0;
+}
 
 /* Bootstrap's reboot sets border-box globally, but the table-style
    dropdown rows below size themselves to exactly 100% of their row
