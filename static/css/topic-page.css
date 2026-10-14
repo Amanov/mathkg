@@ -253,6 +253,23 @@
 .topic-section__when { margin: 0; font-size: 14px; color: var(--text); }
 @media (max-width: 680px) { .teacher-guide__cols { grid-template-columns: 1fr; gap: 0; } }
 
+.teacher-guide__extra { margin-top: 18px; }
+.teacher-guide__extra-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-alt);
+}
+.teacher-guide__extra-title { margin: 0; font-weight: 600; font-size: 14px; }
+.teacher-guide__extra-note { margin: 2px 0 0; color: var(--text-muted); font-size: 13.5px; max-width: 52ch; }
+.teacher-guide__extra-links { display: flex; gap: 8px; flex-shrink: 0; }
+.teacher-guide__extra-links .file-pill { padding: 6px 12px; font-size: 13px; }
+
 /* Option C: Bloom staircase, lesson timeline and a Bloom colour per row */
 .bloom-steps {
     list-style: none;

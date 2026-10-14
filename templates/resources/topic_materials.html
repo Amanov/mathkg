@@ -59,6 +59,24 @@
           </dl>
         </div>
       </div>
+      {% if page.teacher_resources %}
+      <div class="teacher-guide__extra">
+        <h3>Класстык ыкмалар боюнча көмөкчү материал</h3>
+        {% for res in page.teacher_resources %}
+        <div class="teacher-guide__extra-item">
+          <div>
+            <p class="teacher-guide__extra-title">{{ res.title }}</p>
+            <p class="teacher-guide__extra-note">{{ res.note }}</p>
+          </div>
+          <div class="teacher-guide__extra-links">
+            {% for link in res.links %}
+            <a class="file-pill" href="{{ link.url }}">{{ link.label }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
   </details>
 

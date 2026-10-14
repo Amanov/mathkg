@@ -46,6 +46,16 @@ TO_FRACTIONS = {
     'svg_dir': 'svg/topic/to-fractions',
     'file_prefix': 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-',
     'standard': STANDARD_REF,
+    # Pedagogy guides that cut across every stage above, rather than
+    # belonging to one - shown in the teacher guide panel.
+    'teacher_resources': [
+        {
+            'title': 'Сингапур математикасынын ыкмалары',
+            'note': '6 класстык ыкма: КСБ прогресс, бар-модель, сан байланыштары, жумалык '
+            'кайталоо, 4 кадамдуу ой жүгүртүү, математикалык сүйлөшүү.',
+            'files': [('PPT', 'SingaporeMathYkmalary.pptx')],
+        },
+    ],
     'sections': [
         {
             'stage': '5E · 1',
@@ -282,6 +292,20 @@ TO_FRACTIONS = {
 }
 
 
+def _resolve_links(file_prefix, files, resources, user, register_url):
+    links = []
+    for label, name in files:
+        resource = resources.get(file_prefix + name)
+        if not resource:
+            continue
+        if user.is_authenticated:
+            url = reverse('download_resource', kwargs={'pk': resource.id})
+        else:
+            url = register_url
+        links.append({'label': label, 'url': url})
+    return links
+
+
 def build_topic_page(page, resources, user):
     """Resolve a page spec into template context: svg paths and real links.
 
@@ -293,16 +317,7 @@ def build_topic_page(page, resources, user):
     for section in page['sections']:
         items = []
         for item in section['items']:
-            links = []
-            for label, name in item['files']:
-                resource = resources.get(page['file_prefix'] + name)
-                if not resource:
-                    continue
-                if user.is_authenticated:
-                    url = reverse('download_resource', kwargs={'pk': resource.id})
-                else:
-                    url = register_url
-                links.append({'label': label, 'url': url})
+            links = _resolve_links(page['file_prefix'], item['files'], resources, user, register_url)
             svg_path = f"{page['svg_dir']}/{item['svg']}.svg"
             items.append(
                 {
@@ -315,6 +330,13 @@ def build_topic_page(page, resources, user):
                 }
             )
         sections.append({**section, 'items': items})
+
+    teacher_resources = []
+    for res in page.get('teacher_resources', []):
+        links = _resolve_links(page['file_prefix'], res['files'], resources, user, register_url)
+        if links:
+            teacher_resources.append({'title': res['title'], 'note': res['note'], 'links': links})
+
     return {
         'title': page['title'],
         'sections': sections,
@@ -329,4 +351,9 @@ def build_topic_page(page, resources, user):
             for n, level in enumerate(BLOOM_LEVELS, 1)
         ],
         'standard': page.get('standard'),
+        # Cross-cutting pedagogy guides (e.g. Singapore Math strategies)
+        # that apply across every Bloom stage - shown in the teacher
+        # guide panel, not tagged to one section, since they don't
+        # belong to a single stage the way a student activity does.
+        'teacher_resources': teacher_resources,
     }
