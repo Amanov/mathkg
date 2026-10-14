@@ -10,3 +10,8 @@ db.sqlite3
 
 # OS junk
 .DS_Store
+
+# Local AI coding-assistant tooling (skills, agent config) - not project code
+.agents/
+.claude/
+skills-lock.json
