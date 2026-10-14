@@ -306,8 +306,6 @@
 .topic-page.model-off .topic-sections { padding-left: 0; }
 .topic-page.model-off .topic-sections::before { display: none; }
 
-.topic-page:not(.model-off) .topic-row { box-shadow: inset 5px 0 0 var(--lv); }
-
 .bloom-tag {
     display: inline-flex;
     align-items: center;
