@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<title>{{ title }}</title>
+<style>
+  @page {
+    size: a4 landscape;
+    margin: 12mm;
+  }
+  body {
+    font-family: 'DejaVu Sans', Arial, sans-serif;
+    color: #1F2A44;
+    margin: 0;
+  }
+  h1 {
+    font-size: 16pt;
+    margin: 0 0 4mm;
+  }
+  .usage {
+    font-size: 10pt;
+    color: #5B6472;
+    margin: 0 0 6mm;
+  }
+  .usage p { margin: 0 0 2mm; }
+  .puzzle {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+  <h1>{{ title }}</h1>
+  {% if usage_lines %}
+  <div class="usage">
+    {% for line in usage_lines %}<p>{{ line }}</p>{% endfor %}
+  </div>
+  {% endif %}
+  <div class="puzzle">{{ svg|safe }}</div>
+</body>
+</html>

@@ -50,6 +50,8 @@ from .big4 import big4_view
 
 from .calculator import calculator_fractions_view
 
+from .tarsia_builder import tarsia_builder_view, tarsia_builder_export_view
+
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
 
 from .pages import (

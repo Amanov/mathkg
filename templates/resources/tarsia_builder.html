@@ -1,0 +1,250 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Тарсия куруучу{% endblock %}
+
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/tarsia-builder.css' %}">
+{% endblock %}
+
+{% block content %}
+{# Client geometry: static/js/tarsia-builder.js. Server mirrors (PDF/PPTX export) live in apps/resources/generators/. #}
+{% csrf_token %}
+<main class="tarsia-builder">
+  <header class="tarsia-builder__head">
+    <h1>Тарсия куруучу</h1>
+    <p>Өз суроо-жоопторуңузду киргизип, кесип-жанаштыруучу үч бурчтуктуу табышмак түзүңүз. Алдын ала көрүнүш өзгөртүүлөр менен бирге жаңыланат.</p>
+  </header>
+
+  <div class="tarsia-builder__layout">
+    <section class="tarsia-builder__controls">
+      <div class="tb-field">
+        <label for="tb-title">Аталышы</label>
+        <input type="text" id="tb-title" value="Тарсия табышмагы" maxlength="120">
+      </div>
+
+      <div class="tb-field">
+        <label for="tb-usage">Колдонуу көрсөтмөсү (ар бир сап - жаңы сүйлөм)</label>
+        <textarea id="tb-usage" rows="2" maxlength="400">Үч бурчтуктарды кесип, жооптору дал келгендерин жанаштырыңыз.</textarea>
+      </div>
+
+      <div class="tb-field">
+        <label for="tb-size">Тор өлчөмү</label>
+        <select id="tb-size">
+          {% for s in sizes %}
+          <option value="{{ s.n }}" data-edges="{{ s.edges }}" {% if s.n == default_n %}selected{% endif %}>
+            {{ s.n }}×{{ s.n }} ({{ s.triangles }} үч бурчтук, {{ s.edges }} жуп керек)
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="tb-field">
+        <div class="tb-field__row">
+          <label>Суроо-жооп жуптары</label>
+          <span id="tb-pair-count" class="tb-field__hint"></span>
+        </div>
+        <div id="tb-pairs" class="tb-pairs"></div>
+      </div>
+
+      <div id="tb-error" class="tb-error" hidden></div>
+
+      <div class="tb-actions">
+        <button type="button" id="tb-download-pdf" class="tb-btn tb-btn--primary">PDF жүктөп алуу</button>
+        <button type="button" id="tb-download-pptx" class="tb-btn">PPTX жүктөп алуу</button>
+      </div>
+    </section>
+
+    <section class="tarsia-builder__preview">
+      <div id="tb-preview" class="tb-preview-canvas" aria-label="Тарсия алдын ала көрүнүшү"></div>
+    </section>
+  </div>
+</main>
+
+<script src="{% static 'js/tarsia-builder.js' %}"></script>
+<script>
+(function () {
+  'use strict';
+
+  var sizeSelect = document.getElementById('tb-size');
+  var pairsContainer = document.getElementById('tb-pairs');
+  var pairCountEl = document.getElementById('tb-pair-count');
+  var preview = document.getElementById('tb-preview');
+  var titleInput = document.getElementById('tb-title');
+  var usageInput = document.getElementById('tb-usage');
+  var errorBox = document.getElementById('tb-error');
+
+  var STORAGE_KEY_PREFIX = 'tarsiaBuilderPairs:';
+
+  function currentN() {
+    return parseInt(sizeSelect.value, 10);
+  }
+
+  function loadSaved(n) {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY_PREFIX + n);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveCurrent() {
+    try {
+      localStorage.setItem(STORAGE_KEY_PREFIX + currentN(), JSON.stringify(readPairs()));
+    } catch (e) { /* private window / quota - fine, just not persisted */ }
+  }
+
+  function buildPairInputs(n) {
+    var need = window.TarsiaBuilder.edgeCount(n);
+    var saved = loadSaved(n) || [];
+    pairsContainer.innerHTML = '';
+    pairCountEl.textContent = need + ' жуп керек';
+    for (var i = 0; i < need; i++) {
+      var row = document.createElement('div');
+      row.className = 'tb-pair-row';
+
+      var num = document.createElement('span');
+      num.className = 'tb-pair-row__num';
+      num.textContent = (i + 1) + '.';
+
+      var q = document.createElement('input');
+      q.type = 'text';
+      q.placeholder = 'Суроо';
+      q.maxLength = 60;
+      q.className = 'tb-pair-row__q';
+      q.value = (saved[i] && saved[i][0]) || '';
+
+      var a = document.createElement('input');
+      a.type = 'text';
+      a.placeholder = 'Жооп';
+      a.maxLength = 60;
+      a.className = 'tb-pair-row__a';
+      a.value = (saved[i] && saved[i][1]) || '';
+
+      row.appendChild(num);
+      row.appendChild(q);
+      row.appendChild(a);
+      pairsContainer.appendChild(row);
+    }
+  }
+
+  function readPairs() {
+    var rows = pairsContainer.querySelectorAll('.tb-pair-row');
+    var pairs = [];
+    rows.forEach(function (row) {
+      var q = row.querySelector('.tb-pair-row__q').value.trim();
+      var a = row.querySelector('.tb-pair-row__a').value.trim();
+      pairs.push([q, a]);
+    });
+    return pairs;
+  }
+
+  function validate(pairs) {
+    var seenAnswers = {};
+    var filled = 0;
+    for (var i = 0; i < pairs.length; i++) {
+      var q = pairs[i][0], a = pairs[i][1];
+      if (q && a) {
+        filled++;
+        if (seenAnswers[a]) {
+          return { ok: false, error: 'Кайталанган жооп: "' + a + '". Ар бир жооп уникалдуу болушу керек.' };
+        }
+        seenAnswers[a] = true;
+      }
+    }
+    return { ok: filled === pairs.length, filled: filled, total: pairs.length };
+  }
+
+  function renderPreview() {
+    var n = currentN();
+    var pairs = readPairs();
+    var html = window.TarsiaBuilder.renderSVG(n, pairs);
+    preview.innerHTML = html;
+
+    var check = validate(pairs);
+    var downloadBtns = document.querySelectorAll('.tb-actions .tb-btn');
+    if (check.error) {
+      errorBox.textContent = check.error;
+      errorBox.hidden = false;
+      downloadBtns.forEach(function (b) { b.disabled = true; });
+    } else {
+      errorBox.hidden = true;
+      var ready = check.ok;
+      downloadBtns.forEach(function (b) { b.disabled = !ready; });
+    }
+    saveCurrent();
+  }
+
+  function getCookie(name) {
+    var match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function buildPayload() {
+    return {
+      n: currentN(),
+      pairs: readPairs(),
+      title: titleInput.value.trim() || 'Тарсия',
+      usageLines: usageInput.value.split('\n'),
+    };
+  }
+
+  function download(format, btn) {
+    var original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Даярдалууда…';
+    fetch('{% url "tarsia_builder_export" %}?format=' + format, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken'),
+      },
+      body: JSON.stringify(buildPayload()),
+    })
+      .then(function (resp) {
+        if (!resp.ok) {
+          return resp.text().then(function (t) { throw new Error(t || 'Ката кетти'); });
+        }
+        return resp.blob();
+      })
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = (titleInput.value.trim() || 'Tarsia').replace(/[\\/:*?"<>|]+/g, '_').trim() + '.' + format;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      })
+      .catch(function (err) {
+        errorBox.textContent = 'Жүктөп алууда ката кетти: ' + err.message;
+        errorBox.hidden = false;
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+      });
+  }
+
+  sizeSelect.addEventListener('change', function () {
+    buildPairInputs(currentN());
+    renderPreview();
+  });
+  pairsContainer.addEventListener('input', renderPreview);
+  titleInput.addEventListener('input', saveCurrent);
+  usageInput.addEventListener('input', saveCurrent);
+
+  document.getElementById('tb-download-pdf').addEventListener('click', function (e) {
+    download('pdf', e.currentTarget);
+  });
+  document.getElementById('tb-download-pptx').addEventListener('click', function (e) {
+    download('pptx', e.currentTarget);
+  });
+
+  buildPairInputs(currentN());
+  renderPreview();
+})();
+</script>
+{% endblock content %}

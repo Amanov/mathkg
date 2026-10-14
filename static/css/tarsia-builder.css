@@ -1,0 +1,193 @@
+.tarsia-builder {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 20px 72px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+}
+
+.tarsia-builder__head h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.tarsia-builder__head p {
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 0 0 28px;
+}
+
+.tarsia-builder__layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .tarsia-builder__layout { grid-template-columns: 1fr; }
+}
+
+.tarsia-builder__controls {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 160px;
+}
+
+@media (max-width: 860px) {
+    .tarsia-builder__controls { position: static; }
+}
+
+.tb-field { display: flex; flex-direction: column; gap: 6px; }
+
+.tb-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.tb-field__row { display: flex; align-items: baseline; justify-content: space-between; }
+
+.tb-field__hint { font-size: 12px; color: var(--text-muted); }
+
+.tb-field input[type="text"],
+.tb-field select,
+.tb-field textarea {
+    font: inherit;
+    font-size: 14px;
+    padding: 9px 10px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color var(--transition-fast);
+}
+
+.tb-field input[type="text"]:focus,
+.tb-field select:focus,
+.tb-field textarea:focus {
+    outline: none;
+    border-color: var(--color-border-accent);
+}
+
+.tb-field textarea { resize: vertical; }
+
+.tb-pairs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.tb-pair-row {
+    display: grid;
+    grid-template-columns: 20px 1fr 1fr;
+    gap: 6px;
+    align-items: center;
+}
+
+.tb-pair-row__num {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.tb-pair-row input {
+    font: inherit;
+    font-size: 13px;
+    padding: 7px 8px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.tb-pair-row input:focus {
+    outline: none;
+    border-color: var(--color-border-accent);
+}
+
+.tb-error {
+    font-size: 13px;
+    color: #b42318;
+    background: #fdecea;
+    border: 1px solid #f6c6c1;
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+}
+
+:root[data-theme="dark"] .tb-error {
+    color: #ffb4a8;
+    background: #3a211e;
+    border-color: #5c2c27;
+}
+
+.tb-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.tb-btn {
+    flex: 1;
+    font: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 11px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.tb-btn:hover:not(:disabled) { background: var(--surface-alt); }
+
+.tb-btn--primary {
+    background: var(--color-bootstrap-primary);
+    border-color: var(--color-bootstrap-primary);
+    color: #fff;
+}
+
+.tb-btn--primary:hover:not(:disabled) { background: #0b5ed7; }
+
+.tb-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.tarsia-builder__preview {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tb-preview-canvas {
+    width: 100%;
+}
+
+.tb-preview-canvas svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+:root[data-theme="dark"] .tb-preview-canvas svg text,
+:root[data-theme="dark"] .tb-preview-canvas svg path {
+    stroke: #e7ecef;
+}
+
+:root[data-theme="dark"] .tb-preview-canvas svg text {
+    fill: #e7ecef;
+}

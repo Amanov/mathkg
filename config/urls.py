@@ -54,6 +54,10 @@ from apps.resources.views import (
     # calculator
     calculator_fractions_view,
 
+    # interactive tools
+    tarsia_builder_view,
+    tarsia_builder_export_view,
+
     # pages
     news_list_view,
     about_view,
@@ -153,6 +157,8 @@ urlpatterns = [
     # placeholder groups above), each rewired from the old dead
     # `download_file` scheme onto the current download_resource system.
     path('calculator-fractions/', calculator_fractions_view, name='calculator_fractions'),
+    path('tarsia-builder/', tarsia_builder_view, name='tarsia_builder'),
+    path('tarsia-builder/export/', tarsia_builder_export_view, name='tarsia_builder_export'),
     path('to-fractions/', to_fractions_view, name='to_fractions'),
     path('to-percentages/', to_percentages_view, name='to_percentages'),
     path('to-both/', to_both_view, name='to_both'),
