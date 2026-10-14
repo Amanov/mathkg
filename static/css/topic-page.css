@@ -93,14 +93,12 @@
 }
 
 .topic-list {
-    background: var(--surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
+    /* Rows are separated by space, not a divider line - each gets its own
+       full radius, so no first/last/only-child radius overrides are needed. */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-/* No overflow:hidden here: the hover zoom has to spill over the page. */
-.topic-row:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
-.topic-row:last-child { border-radius: 0 0 var(--radius-md) var(--radius-md); }
-.topic-row:only-child { border-radius: var(--radius-md); }
 
 .topic-row {
     display: grid;
@@ -110,10 +108,11 @@
     gap: 28px;
     position: relative;
     padding: 24px 28px;
-    border-top: 1px solid var(--border-subtle);
+    background: var(--surface);
+    border-radius: var(--radius-md);
     transition: background-color var(--transition-base);
 }
-.topic-row:first-child { border-top: 0; }
+/* No overflow:hidden here: the hover zoom has to spill over the page. */
 .topic-row:hover { background: var(--surface-alt); z-index: 5; }
 
 .topic-row__thumb {
@@ -308,8 +307,6 @@
 .topic-page.model-off .topic-sections::before { display: none; }
 
 .topic-page:not(.model-off) .topic-row { box-shadow: inset 5px 0 0 var(--lv); }
-.topic-page:not(.model-off) .topic-row:first-child { border-top-left-radius: var(--radius-md); }
-.topic-page:not(.model-off) .topic-row:last-child { border-bottom-left-radius: var(--radius-md); }
 
 .bloom-tag {
     display: inline-flex;
