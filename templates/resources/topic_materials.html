@@ -127,6 +127,25 @@
     try { localStorage.setItem('topicPageModel', on ? 'on' : 'off'); } catch (e) {}
   });
   try { if (localStorage.getItem('topicPageModel') === 'off') setModel(false); } catch (e) {}
+
+  // Entrance animation (see topic-page.css): reveal each section head and
+  // row as it scrolls into view. If IntersectionObserver is unsupported,
+  // elements simply keep the .is-in they're given immediately below -
+  // nothing stays hidden without it.
+  var reveal = document.querySelectorAll('.topic-section__head, .topic-row');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveal.forEach(function (el) { io.observe(el); });
+  } else {
+    reveal.forEach(function (el) { el.classList.add('is-in'); });
+  }
 })();
 </script>
 {% endblock content %}

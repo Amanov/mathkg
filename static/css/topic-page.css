@@ -12,22 +12,25 @@
 :root[data-theme="dark"] .topic-page { --topic-accent: #3d8ef5; --topic-shadow: rgba(0, 0, 0, .45); }
 
 /* Bloom's levels, lowest to highest (Эстеп калуу ... Жаратуу). Muted so the
-   thumbnails stay the brightest thing in each row. */
+   thumbnails stay the brightest thing in each row. Darkened from the first
+   pass to clear 4.5:1 against white text (these colours are also used as
+   .bloom-tag's own text colour on the page background, so the same ratio
+   covers both directions). */
 .topic-page {
-    --bloom-1: #7d8799;
-    --bloom-2: #3b7fc0;
-    --bloom-3: #2b8f64;
-    --bloom-4: #b57c0f;
-    --bloom-5: #c4572a;
+    --bloom-1: #6d778b;
+    --bloom-2: #397ab8;
+    --bloom-3: #27835c;
+    --bloom-4: #9d6c0d;
+    --bloom-5: #c05529;
     --bloom-6: #7f55b8;
 }
 :root[data-theme="dark"] .topic-page {
-    --bloom-1: #98a2b3;
-    --bloom-2: #5d9ad6;
-    --bloom-3: #45b080;
-    --bloom-4: #d39a2c;
-    --bloom-5: #e0764a;
-    --bloom-6: #a07ad6;
+    --bloom-1: #8893a8;
+    --bloom-2: #4c8ecb;
+    --bloom-3: #3a9e74;
+    --bloom-4: #c08c28;
+    --bloom-5: #d26a40;
+    --bloom-6: #9770cc;
 }
 .lv-1 { --lv: var(--bloom-1); }
 .lv-2 { --lv: var(--bloom-2); }
@@ -67,9 +70,9 @@
 
 .topic-section__head { margin: 44px 0 14px; display: grid; gap: 6px; justify-items: start; }
 .stage-tag {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: .04em;
+    letter-spacing: .02em;
     color: var(--color-border-accent);
     border: 1px solid var(--color-border-accent);
     border-radius: 999px;
@@ -77,11 +80,11 @@
 }
 .topic-section__title { font-size: 21px; font-weight: 700; margin: 0; }
 .topic-section__en { font-weight: 500; color: var(--text-muted); font-size: 15px; margin-left: 6px; }
-.topic-section__summary { margin: 0; color: var(--text-muted); font-size: 14px; }
+.topic-section__summary { margin: 0; color: var(--text-muted); font-size: 15px; }
 .bloom-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.bloom-row__label { font-size: 12.5px; color: var(--text-muted); }
+.bloom-row__label { font-size: 13px; color: var(--text-muted); }
 .bloom-chip {
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 500;
     padding: 2px 10px;
     border-radius: 999px;
@@ -234,8 +237,8 @@
     cursor: pointer;
     text-align: center;
 }
-.teacher-guide__body { padding: 0 20px 20px; font-size: 14px; }
-.teacher-guide h3 { font-size: 14px; font-weight: 700; margin: 16px 0 8px; }
+.teacher-guide__body { padding: 0 20px 20px; font-size: 15px; }
+.teacher-guide h3 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; }
 .teacher-guide__std {
     padding: 4px 14px 10px;
     border-radius: var(--radius-sm);
@@ -246,9 +249,9 @@
 .teacher-guide__cols { display: grid; grid-template-columns: 3fr 2fr; gap: 28px; }
 .guide-list { margin: 0; }
 .guide-list dt { font-weight: 600; margin-top: 10px; }
-.guide-list dt .stage-tag { display: inline-block; font-size: 11px; padding: 0 7px; margin-right: 4px; }
+.guide-list dt .stage-tag { display: inline-block; font-size: 13px; padding: 0 7px; margin-right: 4px; }
 .guide-list dd { margin: 2px 0 0; color: var(--text-muted); }
-.topic-section__when { margin: 0; font-size: 13.5px; color: var(--text); }
+.topic-section__when { margin: 0; font-size: 14px; color: var(--text); }
 @media (max-width: 680px) { .teacher-guide__cols { grid-template-columns: 1fr; gap: 0; } }
 
 /* Option C: Bloom staircase, lesson timeline and a Bloom colour per row */
@@ -272,7 +275,7 @@
     text-align: center;
 }
 .bloom-step__name { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
-.bloom-step__count { font-size: 12px; opacity: .92; }
+.bloom-step__count { font-size: 13px; }
 .bloom-step.lv-1 { min-height: 48px; }
 .bloom-step.lv-2 { min-height: 58px; }
 .bloom-step.lv-3 { min-height: 68px; }
@@ -338,6 +341,24 @@
 @media (prefers-reduced-motion: reduce) {
     .topic-row, .topic-row__thumb { transition: none; }
     .topic-row__thumb:hover { transform: scale(2); }
+}
+
+/* Entrance: each section's head and rows rise in as they reach the
+   viewport (IntersectionObserver in topic_materials.html toggles
+   .is-in). Transform + opacity only, and the content is already fully
+   present without JS - .is-in is simply never removed if it doesn't run. */
+@media (prefers-reduced-motion: no-preference) {
+    .topic-section__head,
+    .topic-row {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity .5s ease, transform .5s ease;
+    }
+    .topic-section__head.is-in,
+    .topic-row.is-in { opacity: 1; transform: none; }
+    .topic-row:nth-child(2) { transition-delay: .06s; }
+    .topic-row:nth-child(3) { transition-delay: .12s; }
+    .topic-row:nth-child(4) { transition-delay: .18s; }
 }
 
 /* Prev/next topic links (snippets/related_topics.html) as plain text links
