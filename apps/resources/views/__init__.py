@@ -48,6 +48,8 @@ from .ekvivalenttuuluk import (
 
 from .big4 import big4_view
 
+from .calculator import calculator_fractions_view
+
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
 
 from .pages import (

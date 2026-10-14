@@ -22,7 +22,7 @@
   <div class="topic-controls">
     <button type="button" class="model-switch" id="model-switch" aria-pressed="true">
       <span class="model-switch__track" aria-hidden="true"></span>
-      5E + 3C жана Блум
+      {{ page.model_label }}
     </button>
   </div>
 
@@ -41,7 +41,7 @@
       {% endif %}
       <div class="teacher-guide__cols">
         <div>
-          <h3>Сабактын этаптары (5E + 3C)</h3>
+          <h3>{{ page.stages_label }}</h3>
           <dl class="guide-list">
             {% for section in page.sections %}
             <dt><span class="stage-tag">{{ section.stage }}</span> {{ section.title }}</dt>

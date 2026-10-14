@@ -292,6 +292,80 @@ TO_FRACTIONS = {
 }
 
 
+# A simpler page than TO_FRACTIONS: this skill (using a calculator with
+# fractions) isn't taught through the 5E + 3C lesson flow, so sections are
+# grouped by resource type instead of lesson stage. Items still carry a
+# Bloom level - the template needs it for the ladder/staircase - chosen by
+# what each activity actually asks the pupil to do.
+CALCULATOR_FRACTIONS = {
+    'title': 'Калькулятордо бөлчөктөр',
+    'svg_dir': 'svg/topic/calculator-fractions',
+    'file_prefix': 'KalkulyatorKoldonuu_Bolchoktor-',
+    'model_label': 'Блум',
+    'stages_label': 'Материалдардын түрлөрү',
+    'sections': [
+        {
+            'stage': '1',
+            'title': 'Иш баракчалар',
+            'title_en': 'Worksheets',
+            'when': 'Өз алдынча же үй тапшырмасы катары.',
+            'bloom': ['Баалоо'],
+            'summary': 'Эсептегич менен чыгарылган мисалдарды текшерип, каталарды табуу.',
+            'items': [
+                {
+                    'title': 'Катаны тап',
+                    'note': 'Эсептегич менен чыгарылган мисалдардагы каталарды таап, оңдошот',
+                    'svg': 'katany-tap',
+                    'level': 'Баалоо',
+                    'files': [('PPT', 'KatanyTap.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '2',
+            'title': 'Ишмердиктер',
+            'title_en': 'Activities',
+            'when': 'Жуп же кичине топ менен, 15-20 мүнөт.',
+            'bloom': ['Талдоо'],
+            'summary': 'Эсептегич менен чыгарылган жооптор боюнча дал келген кесимдерди табуу.',
+            'items': [
+                {
+                    'title': 'Тарсия курак',
+                    'note': 'Эсептегич менен чыгарылган жооптору дал келген үч бурчтуктарды жанаштырышат',
+                    'svg': 'tarsia-kurak',
+                    'level': 'Талдоо',
+                    'files': [('PPT', 'TarsiaKurak.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '3',
+            'title': 'Мугалим жетектеген оюндар',
+            'title_en': 'Teacher-led activities',
+            'when': 'Бүт класс менен, тактага чыгарылып ойнолот.',
+            'bloom': ['Колдонуу'],
+            'summary': 'Мугалим мисал окуйт же көрсөтөт, окуучулар эсептегич менен чыгарышат.',
+            'items': [
+                {
+                    'title': 'Бинго: Ыкма',
+                    'note': 'Мугалим мисал окуйт, окуучулар эсептегич менен чыгарып өз тактасынан табышат',
+                    'svg': 'bingo-ykma',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', 'BingoYkma.pptx')],
+                },
+                {
+                    'title': 'Атышуу',
+                    'note': 'Эки команда кезек-кезеги менен эсептегич менен тез жана так чыгарышат',
+                    'svg': 'atyshuu',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', 'Atyshuu.pptx')],
+                },
+            ],
+        },
+    ],
+}
+
+
 def _resolve_links(file_prefix, files, resources, user, register_url):
     links = []
     for label, name in files:
@@ -339,6 +413,8 @@ def build_topic_page(page, resources, user):
 
     return {
         'title': page['title'],
+        'model_label': page.get('model_label', '5E + 3C жана Блум'),
+        'stages_label': page.get('stages_label', 'Сабактын этаптары (5E + 3C)'),
         'sections': sections,
         'bloom_guide': [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
         # Staircase above the list: how many materials reach each level.

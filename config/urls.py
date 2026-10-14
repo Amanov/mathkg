@@ -51,6 +51,9 @@ from apps.resources.views import (
     fdp_ordering_view,
     fdpr_view,
 
+    # calculator
+    calculator_fractions_view,
+
     # pages
     news_list_view,
     about_view,
@@ -149,6 +152,7 @@ urlpatterns = [
     # Ондуктар > Эквиваленттүүлүк - 9 real, hand-built pages (unlike the
     # placeholder groups above), each rewired from the old dead
     # `download_file` scheme onto the current download_resource system.
+    path('calculator-fractions/', calculator_fractions_view, name='calculator_fractions'),
     path('to-fractions/', to_fractions_view, name='to_fractions'),
     path('to-percentages/', to_percentages_view, name='to_percentages'),
     path('to-both/', to_both_view, name='to_both'),
