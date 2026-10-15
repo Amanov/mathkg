@@ -1,37 +1,75 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
+{% load custom_tags %}
 {% block title %}Төрт амал{% endblock %}
 
-{% load static %}
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/four-basic-operations.css' %}">
+{% endblock %}
 
 {% block content %}
+{# Real content: apps/resources/data/four_basic_operations_data.py. Every item ships a #}
+{# real screenshot of its own slide (static/img/4-amal-*.png) - shown large, not an icon. #}
+<main class="fbo-page">
+  <h1 class="fbo-page__title">Төрт амал</h1>
+  <p class="fbo-page__lede">Кошуу, кемитүү, көбөйтүү жана бөлүү: сабакка киришүүдөн баштап, мугалим жетектеген оюндарга чейин.</p>
 
-<!-- Load External CSS -->
-<link rel="stylesheet" href="{% static 'css/operations.css' %}">
+  {% if not user.is_authenticated %}
+  <p class="fbo-page__notice">
+    Файлды жүктөп алуу үчүн сайтка катталышыңыз керек.
+    <a href="{% url 'register' %}">Катталуу</a>
+  </p>
+  {% endif %}
 
-<div class="container d-flex flex-column justify-content-center align-items-center four-operations">
+  {% for section in sections %}
+  <section class="fbo-section{% if forloop.first %} fbo-section--feature{% endif %}">
+    <h2 class="fbo-section__title">{{ section.header }}</h2>
 
-    <div class="position-relative p-5 text-center" style="margin-top: 10%;">
-
-        <h1 style="font-size: 3rem; text-align:center;">Төрт амал</h1>
-
-        <div class="row align-items-md-stretch custom_border placeholder-panel">
-
-            {% for section in sections %}
-
-                <h1 style="font-size: 3rem; text-align:center;">{{ section.header }}</h1>
-                <hr>
-
-                {% for block in section.blocks %}
-                    {% include 'components/operation_block.html' %}
-                {% endfor %}
-
-            {% endfor %}
-
+    <div class="fbo-grid{% if forloop.first %} fbo-grid--feature{% endif %}">
+      {% for block in section.blocks %}
+      <article class="fbo-card">
+        <div class="fbo-card__media">
+          {% with first_file=block.files.0 %}
+            {% with r=res|get_item:first_file %}
+              {% if r and r.image %}
+                <img src="{{ r.image.url }}" alt="{{ r.title }}" loading="lazy">
+              {% else %}
+                <img src="{% static block.fallback_image %}" alt="{{ block.title }}" loading="lazy">
+              {% endif %}
+            {% endwith %}
+          {% endwith %}
         </div>
+        <div class="fbo-card__body">
+          <h3 class="fbo-card__title">{{ block.title }}</h3>
+          {% if block.subtitle %}<p class="fbo-card__subtitle">{{ block.subtitle }}</p>{% endif %}
 
+          <div class="fbo-card__files">
+            {% if user.is_authenticated %}
+              {% if user.has_active_subscription %}
+                {% for file in block.files %}
+                  {% with r=res|get_item:file %}
+                    {% if r %}
+                      <a class="fbo-pill" href="{% url 'download_resource' pk=r.id %}">
+                        {% if 'pptx' in file %}PPT{% else %}{{ file|slice:"-4:"|upper }}{% endif %}
+                      </a>
+                    {% else %}
+                      <span class="fbo-pill fbo-pill--soon">Жакында</span>
+                    {% endif %}
+                  {% endwith %}
+                {% endfor %}
+              {% else %}
+                <a class="fbo-pill fbo-pill--accent" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+              {% endif %}
+            {% else %}
+              <a class="fbo-pill fbo-pill--accent" href="{% url 'register' %}">Катталуу</a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
     </div>
-
-</div>
-
+  </section>
+  {% endfor %}
+</main>
 {% endblock content %}
