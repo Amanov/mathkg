@@ -1,7 +1,7 @@
 /* Homepage section graphics (templates/resources/home.html).
-   Each .illustration-card holds one static SVG from static/img/home/.
-   The art fills its column so the detailed drawings stay readable;
-   the text columns beside them are unchanged. */
+   Each .illustration-card holds a 2x PNG of that section's illustration
+   (static/img/home/), rendered from the approved mockup. The image fills
+   its column; the text columns beside it are unchanged. */
 
 .illustration-card {
     display: flex;
