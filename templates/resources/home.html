@@ -4,6 +4,14 @@
 
 {% load static %}
 
+{% block body_attrs %} class="home-v2"{% endblock %}
+
+{% block extra_head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/illustrations.css' %}">
 <style>
@@ -243,6 +251,7 @@ hr{
 
 
 </style>
+<link rel="stylesheet" href="{% static 'css/home-v2.css' %}">
 
 <div class="container ">
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
