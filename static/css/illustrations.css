@@ -1,31 +1,31 @@
-/* Homepage topic icons (templates/resources/home.html) - replaces a single
-   cluttered stock illustration reused seven times with one clean,
-   on-brand SVG per section. Shared design tokens from main.css
-   (--color-navy, --radius-*, --shadow-dropdown, --transition-*), no
-   gradients, no one-off colors. */
+/* Homepage section graphics (templates/resources/home.html).
+   Each .illustration-card holds one static SVG from static/img/home/.
+   The art fills its column so the detailed drawings stay readable;
+   the text columns beside them are unchanged. */
 
 .illustration-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--surface);
-    border: 1px solid var(--border-subtle);
+    background: transparent;
+    border: none;
     border-radius: var(--radius-md, 12px);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, .06);
-    padding: 32px;
+    box-shadow: none;
+    padding: 8px;
     margin: 0 auto;
-    max-width: 320px;
-    transition: transform var(--transition-base, 250ms ease),
-                box-shadow var(--transition-base, 250ms ease);
+    max-width: 100%;
+    width: 100%;
+    transition: transform var(--transition-base, 250ms ease);
 }
 .illustration-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-dropdown, 0 16px 32px rgba(15, 23, 42, .12));
 }
-.illustration-card svg {
+.illustration-card svg,
+.illustration-card img {
     width: 100%;
     height: auto;
-    max-width: 200px;
+    max-width: none;
+    display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
