@@ -13,7 +13,7 @@
 <main class="tarsia-builder">
   <header class="tarsia-builder__head">
     <h1>Тарсия куруучу</h1>
-    <p>Өз суроо-жоопторуңузду киргизип, кесип-жанаштыруучу үч бурчтуктуу табышмак түзүңүз. Алдын ала көрүнүш өзгөртүүлөр менен бирге жаңыланат.</p>
+    <p>Өз суроо-жоопторуңузду киргизип, кесип-жанаштыруучу табышмак түзүңүз. Алдын ала көрүнүш өзгөртүүлөр менен бирге жаңыланат. Жүктөп алынган файлда бөлүктөр <strong>автоматтык түрдө аралаштырылат</strong> — класста колдонууга даяр, кайра аралаштыруунун кереги жок.</p>
   </header>
 
   <div class="tarsia-builder__layout">
@@ -29,6 +29,14 @@
       </div>
 
       <div class="tb-field">
+        <label for="tb-shape">Табышмактын формасы</label>
+        <select id="tb-shape">
+          <option value="triangle" selected>Тарсия (үч бурчтуктар)</option>
+          <option value="loop">Чынжыр карталар (тик бурчтуктар)</option>
+        </select>
+      </div>
+
+      <div class="tb-field" id="tb-size-field">
         <label for="tb-size">Тор өлчөмү</label>
         <select id="tb-size">
           {% for s in sizes %}
@@ -37,6 +45,11 @@
           </option>
           {% endfor %}
         </select>
+      </div>
+
+      <div class="tb-field" id="tb-count-field" hidden>
+        <label for="tb-count">Карталардын саны</label>
+        <input type="number" id="tb-count" min="{{ min_loop }}" max="{{ max_loop }}" value="8">
       </div>
 
       <div class="tb-field">
@@ -67,7 +80,11 @@
 (function () {
   'use strict';
 
+  var shapeSelect = document.getElementById('tb-shape');
+  var sizeField = document.getElementById('tb-size-field');
+  var countField = document.getElementById('tb-count-field');
   var sizeSelect = document.getElementById('tb-size');
+  var countInput = document.getElementById('tb-count');
   var pairsContainer = document.getElementById('tb-pairs');
   var pairCountEl = document.getElementById('tb-pair-count');
   var preview = document.getElementById('tb-preview');
@@ -77,13 +94,29 @@
 
   var STORAGE_KEY_PREFIX = 'tarsiaBuilderPairs:';
 
+  function currentShape() {
+    return shapeSelect.value;
+  }
+
   function currentN() {
     return parseInt(sizeSelect.value, 10);
   }
 
-  function loadSaved(n) {
+  function neededCount() {
+    return currentShape() === 'triangle'
+      ? window.TarsiaBuilder.edgeCount(currentN())
+      : parseInt(countInput.value, 10) || 0;
+  }
+
+  function storageKey() {
+    return currentShape() === 'triangle'
+      ? STORAGE_KEY_PREFIX + 'triangle:' + currentN()
+      : STORAGE_KEY_PREFIX + 'loop:' + neededCount();
+  }
+
+  function loadSaved() {
     try {
-      var raw = localStorage.getItem(STORAGE_KEY_PREFIX + n);
+      var raw = localStorage.getItem(storageKey());
       return raw ? JSON.parse(raw) : null;
     } catch (e) {
       return null;
@@ -92,13 +125,13 @@
 
   function saveCurrent() {
     try {
-      localStorage.setItem(STORAGE_KEY_PREFIX + currentN(), JSON.stringify(readPairs()));
+      localStorage.setItem(storageKey(), JSON.stringify(readPairs()));
     } catch (e) { /* private window / quota - fine, just not persisted */ }
   }
 
-  function buildPairInputs(n) {
-    var need = window.TarsiaBuilder.edgeCount(n);
-    var saved = loadSaved(n) || [];
+  function buildPairInputs() {
+    var need = neededCount();
+    var saved = loadSaved() || [];
     pairsContainer.innerHTML = '';
     pairCountEl.textContent = need + ' жуп керек';
     for (var i = 0; i < need; i++) {
@@ -158,9 +191,10 @@
   }
 
   function renderPreview() {
-    var n = currentN();
     var pairs = readPairs();
-    var html = window.TarsiaBuilder.renderSVG(n, pairs);
+    var html = currentShape() === 'triangle'
+      ? window.TarsiaBuilder.renderSVG(currentN(), pairs)
+      : window.TarsiaBuilder.renderLoopSVG(pairs);
     preview.innerHTML = html;
 
     var check = validate(pairs);
@@ -186,12 +220,18 @@
   }
 
   function buildPayload() {
-    return {
-      n: currentN(),
+    var payload = {
+      shape: currentShape(),
       pairs: readPairs(),
       title: titleInput.value.trim() || 'Тарсия',
       usageLines: usageInput.value.split('\n'),
     };
+    if (payload.shape === 'triangle') {
+      payload.n = currentN();
+    } else {
+      payload.count = neededCount();
+    }
+    return payload;
   }
 
   function download(format, btn) {
@@ -232,8 +272,34 @@
       });
   }
 
+  var DEFAULT_USAGE = {
+    triangle: 'Үч бурчтуктарды кесип, жооптору дал келгендерин жанаштырыңыз.',
+    loop: 'Карталарды кесип таратыңыз. Ар бир окуучу өз суроосун чыгарып, жообу жазылган картаны табат.',
+  };
+
+  function updateShapeUI() {
+    var isTriangle = currentShape() === 'triangle';
+    sizeField.hidden = !isTriangle;
+    countField.hidden = isTriangle;
+    if (usageInput.value.trim() === DEFAULT_USAGE.triangle || usageInput.value.trim() === DEFAULT_USAGE.loop) {
+      usageInput.value = isTriangle ? DEFAULT_USAGE.triangle : DEFAULT_USAGE.loop;
+    }
+  }
+
+  shapeSelect.addEventListener('change', function () {
+    updateShapeUI();
+    buildPairInputs();
+    renderPreview();
+  });
   sizeSelect.addEventListener('change', function () {
-    buildPairInputs(currentN());
+    buildPairInputs();
+    renderPreview();
+  });
+  countInput.addEventListener('change', function () {
+    var v = parseInt(countInput.value, 10) || {{ min_loop }};
+    v = Math.max({{ min_loop }}, Math.min({{ max_loop }}, v));
+    countInput.value = v;
+    buildPairInputs();
     renderPreview();
   });
   pairsContainer.addEventListener('input', renderPreview);
@@ -247,7 +313,8 @@
     download('pptx', e.currentTarget);
   });
 
-  buildPairInputs(currentN());
+  updateShapeUI();
+  buildPairInputs();
   renderPreview();
 })();
 </script>

@@ -46,6 +46,7 @@
 }
 
 .tb-field { display: flex; flex-direction: column; gap: 6px; }
+.tb-field[hidden] { display: none; }
 
 .tb-field label {
     font-size: 13px;

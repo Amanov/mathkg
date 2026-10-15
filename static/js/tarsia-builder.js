@@ -177,8 +177,56 @@
     return parts.join('');
   }
 
+  // ---- Loop cards (rectangle shape) ----
+  // Preview only: shows pairs in natural order (no shuffle), purely so the
+  // teacher can proofread question/answer text. The exported file picks a
+  // random loop order server-side - see apps/resources/generators/loop_cards.py.
+  function renderLoopSVG(pairs, opts) {
+    opts = opts || {};
+    var cols = opts.cols || 3;
+    var cardW = opts.cardW || 260;
+    var cardH = opts.cardH || 90;
+    var gap = opts.gap || 14;
+    var pad = opts.pad || 16;
+    var n = pairs.length;
+    var rows = Math.ceil(n / cols);
+    var width = cols * cardW + (cols - 1) * gap + 2 * pad;
+    var height = rows * cardH + (rows - 1) * gap + 2 * pad;
+
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    var parts = ['<svg viewBox="0 0 ' + width + ' ' + height + '" width="' + width + '" height="' + height +
+      '" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">'];
+
+    for (var i = 0; i < n; i++) {
+      var col = i % cols, row = Math.floor(i / cols);
+      var x = pad + col * (cardW + gap);
+      var y = pad + row * (cardH + gap);
+      var mid = x + cardW * 0.38;
+      var left = pairs[i][1] || '';
+      var right = pairs[i][0] || '';
+      parts.push('<rect x="' + x + '" y="' + y + '" width="' + cardW + '" height="' + cardH +
+        '" rx="8" fill="none" stroke="' + INK + '" stroke-width="2"/>');
+      parts.push('<line x1="' + mid + '" y1="' + y + '" x2="' + mid + '" y2="' + (y + cardH) +
+        '" stroke="' + INK + '" stroke-width="1.5"/>');
+      parts.push('<text x="' + (x + (mid - x) / 2) + '" y="' + (y + 20) +
+        '" text-anchor="middle" font-size="10" fill="#5B6472">Жообу</text>');
+      parts.push('<text x="' + (x + (mid - x) / 2) + '" y="' + (y + cardH / 2 + 8) +
+        '" text-anchor="middle" font-size="15" font-weight="700" fill="' + INK + '">' + esc(left) + '</text>');
+      parts.push('<text x="' + (mid + (x + cardW - mid) / 2) + '" y="' + (y + 20) +
+        '" text-anchor="middle" font-size="10" fill="#5B6472">Суроосу</text>');
+      parts.push('<text x="' + (mid + (x + cardW - mid) / 2) + '" y="' + (y + cardH / 2 + 8) +
+        '" text-anchor="middle" font-size="13" fill="' + INK + '">' + esc(right) + '</text>');
+    }
+    parts.push('</svg>');
+    return parts.join('');
+  }
+
   window.TarsiaBuilder = {
     edgeCount: edgeCount,
     renderSVG: renderSVG,
+    renderLoopSVG: renderLoopSVG,
   };
 })();
