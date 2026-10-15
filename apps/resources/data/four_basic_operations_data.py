@@ -35,7 +35,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
                 "subtitle": "3 деңгээлде",
                 "files": [
                     "4-amal-sandyk-bashkatyrma.pptx",
-                    "4-amal-sandyk-bashkatyrmaA6.pptx"
+                    "4-amal-sandyk-bashkatyrmaA6.pdf"
                 ],
                 "fallback_image": "img/4-amal-sandyk-bashkatyrma-Screenshot.png"
             },
