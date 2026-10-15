@@ -48,10 +48,11 @@
       </div>
 
       <div id="tb-error" class="tb-error" hidden></div>
+      <p id="tb-status" class="tb-status"></p>
 
       <div class="tb-actions">
         <button type="button" id="tb-download-pdf" class="tb-btn tb-btn--primary">PDF жүктөп алуу</button>
-        <button type="button" id="tb-download-pptx" class="tb-btn">PPTX жүктөп алуу</button>
+        <button type="button" id="tb-download-pptx" class="tb-btn tb-btn--secondary">PPTX жүктөп алуу</button>
       </div>
     </section>
 
@@ -164,13 +165,16 @@
 
     var check = validate(pairs);
     var downloadBtns = document.querySelectorAll('.tb-actions .tb-btn');
+    var statusEl = document.getElementById('tb-status');
     if (check.error) {
       errorBox.textContent = check.error;
       errorBox.hidden = false;
+      statusEl.textContent = '';
       downloadBtns.forEach(function (b) { b.disabled = true; });
     } else {
       errorBox.hidden = true;
       var ready = check.ok;
+      statusEl.textContent = ready ? '' : check.filled + ' / ' + check.total + ' жуп толтурулду — баары толтурулгандан кийин жүктөп алуу күйөт.';
       downloadBtns.forEach(function (b) { b.disabled = !ready; });
     }
     saveCurrent();

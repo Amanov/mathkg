@@ -160,7 +160,29 @@
 
 .tb-btn--primary:hover:not(:disabled) { background: #0b5ed7; }
 
-.tb-btn:disabled { opacity: .45; cursor: not-allowed; }
+.tb-btn--secondary {
+    border-color: var(--color-border-accent);
+    color: var(--color-border-accent);
+}
+
+.tb-btn--secondary:hover:not(:disabled) { background: var(--color-menu-hover); }
+
+/* Disabled state must read as clearly inert regardless of variant - a
+   flat opacity on the primary (blue) button barely changes its look, so
+   both buttons fall back to the same muted, unmistakably "off" style. */
+.tb-btn:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+    background: var(--surface-alt);
+    border-color: var(--border-subtle);
+    color: var(--text-muted);
+}
+
+.tb-status {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: -6px 0 0;
+}
 
 .tarsia-builder__preview {
     background: var(--surface);
