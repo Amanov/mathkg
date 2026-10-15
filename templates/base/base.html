@@ -57,7 +57,7 @@
 
 </head>
 
-<body>
+<body{% block body_attrs %}{% endblock %}>
     {# ── Navigation — FIRST thing in body, not in head ──────────────────── #}
     {# This is the critical fix. header.html contains <nav> elements which   #}
     {# are body-level content. They MUST be inside <body>, never in <head>.  #}
