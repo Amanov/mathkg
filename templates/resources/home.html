@@ -6,6 +6,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/illustrations.css' %}">
+<link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}">
 <style>
   
 .mainshadow{
@@ -273,7 +274,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">                
             <div class="illustration-card">
-              <img src="{% static 'img/home/intro.png' %}" alt="Даяр материалдардын китепканасы">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/intro.png' %}" alt="Даяр материалдардын китепканасы">
             </div>
           </div>
       </div>
@@ -311,7 +312,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img src="{% static 'img/home/presentations.png' %}" alt="Слайддагы диаграмма">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/presentations.png' %}" alt="Слайддагы диаграмма">
           </div>
         </div>
       </div>
@@ -344,7 +345,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img src="{% static 'img/home/worksheets.png' %}" alt="Иш барак жана калем">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/worksheets.png' %}" alt="Иш барак жана калем">
             </div>
           </div>
       </div>
@@ -359,7 +360,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img src="{% static 'img/home/activities.png' %}" alt="Оюн зарлары">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/activities.png' %}" alt="Оюн зарлары">
           </div>
         </div>
       </div>
@@ -392,7 +393,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img src="{% static 'img/home/teacher-led.png' %}" alt="Класс менен талкуу">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/teacher-led.png' %}" alt="Класс менен талкуу">
             </div>
           </div>
       </div>
@@ -405,7 +406,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img src="{% static 'img/home/exam.png' %}" alt="Убакыттуу экзамен суроолору">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/exam.png' %}" alt="Убакыттуу экзамен суроолору">
           </div>
         </div>
       </div>
@@ -444,7 +445,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img src="{% static 'img/home/revision.png' %}" alt="Кайталап көнүгүү">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/revision.png' %}" alt="Кайталап көнүгүү">
             </div>
           </div>
       </div>
@@ -453,3 +454,8 @@ hr{
 </div>
 
 {% endblock content %}
+
+{% block extra_scripts %}
+{{ block.super }}
+<script src="{% static 'js/mk-zoom.js' %}"></script>
+{% endblock %}
