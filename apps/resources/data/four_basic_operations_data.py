@@ -1,7 +1,7 @@
 FOUR_BASIC_OPERATIONS_SECTIONS = [
 
     {
-        "header": "Сабакка киришүү",
+        "header": "📖 Сабакка киришүү",
         "blocks": [
             {
                 "title": "Сабактын көрсөтүү - түшүндүрүү",
@@ -12,7 +12,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
     },
 
     {
-        "header": "Тактада чагылдыруу үчүн суроолор",
+        "header": "🧠 Тактада чагылдыруу үчүн суроолор",
         "blocks": [
             {
                 "title": "Жеңил, орто, оор",
@@ -28,7 +28,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
     },
 
     {
-        "header": "Даяр иш барактар",
+        "header": "✍ Даяр иш барактар",
         "blocks": [
             {
                 "title": "Цифралык табышмак",
@@ -80,7 +80,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
     },
 
     {
-        "header": "Сабак учурундагы иш-чаралар",
+        "header": "⚡ Сабак учурундагы иш-чаралар",
         "blocks": [
             {
                 "title": "Чечим чыгаруу",
@@ -114,7 +114,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
     },
 
     {
-        "header": "Мугалим жетектеген оюндар",
+        "header": "�� Мугалим жетектеген оюндар",
         "blocks": [
             {
                 "title": "Бинго",
