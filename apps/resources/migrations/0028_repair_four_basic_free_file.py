@@ -1,11 +1,9 @@
-"""Point the four_basic_operations free file at bytes that exist.
+"""Point four_basic_operations back at the v2 lesson.
 
-0026 and 0027 set the file column to a path. They did not copy the
-file onto the media volume, and they matched rows by the old filename
-title, not by id. This pass starts from the stored free-download row
-for that page. It sets the title to the v2 filename when that title is
-free, and it points `file` at a real file under resources/files/ when
-one is already there. A missing file is left alone.
+The page looks the file up by the exact title amaldar_tartibi_ozun_tuz_v2.pptx.
+After 0026/0027 the stored free row could fall out of that lookup, and the
+next visit then picked a different file. This pins the v2 row again and
+copies the bundled deck onto MEDIA_ROOT when that path is empty.
 """
 
 from django.db import migrations

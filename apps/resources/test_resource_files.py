@@ -77,55 +77,56 @@ class ResourceFileFallbackTests(TestCase):
             'resources/files/amaldar_tartibi_ozun_tuz_v2_Abcdef1.pptx',
         )
 
-    def test_two_collision_suffixes_stay_unavailable(self):
+    def test_two_collision_suffixes_are_not_guessed(self):
         resource = self._resource(
-            'amaldar_tartibi_ozun_tuz_v2.pptx',
-            'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx',
+            'unrelated.pptx',
+            'resources/files/unrelated.pptx',
         )
         folder = _files(self.media)
-        folder.joinpath('amaldar_tartibi_ozun_tuz_v2_Abcdef1.pptx').write_bytes(b'one')
-        folder.joinpath('amaldar_tartibi_ozun_tuz_v2_Zyxwvu2.pptx').write_bytes(b'two')
+        folder.joinpath('unrelated_Abcdef1.pptx').write_bytes(b'one')
+        folder.joinpath('unrelated_Zyxwvu2.pptx').write_bytes(b'two')
         self._pin(resource)
 
         resp = self.client.get(reverse('download_resource', args=[resource.pk]))
         self.assertEqual(resp.status_code, 302)
         self.assertIn('/account/', resp.url)
         resource.refresh_from_db()
-        self.assertEqual(resource.file.name, 'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx')
+        self.assertEqual(resource.file.name, 'resources/files/unrelated.pptx')
 
-    def test_repair_points_the_free_row_at_an_existing_file_and_leaves_a_missing_one(self):
-        from django.apps import apps
-        present = self._resource('old-name.pptx', 'resources/files/old-name.pptx')
-        absent = self._resource('other.pptx', 'resources/files/other.pptx')
-        _files(self.media).joinpath('amaldar_tartibi_ozun_tuz_v2.pptx').write_bytes(b'there')
-        self._pin(present)
-        changed = repair_four_basic_free_file(apps)
-        present.refresh_from_db()
-        self.assertEqual(present.title, 'amaldar_tartibi_ozun_tuz_v2.pptx')
-        self.assertEqual(present.file.name, 'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx')
-        self.assertEqual(changed, ['title', 'file'])
-
-        PageFreeDownload.objects.filter(page_key='four_basic_operations').update(resource=absent)
-        absent_changed = repair_four_basic_free_file(apps)
-        absent.refresh_from_db()
-        self.assertEqual(absent_changed, [])
-        self.assertEqual(absent.title, 'other.pptx')
-        self.assertEqual(absent.file.name, 'resources/files/other.pptx')
-
-    def test_repair_does_not_take_a_title_another_row_already_has(self):
-        from django.apps import apps
-        holder = self._resource(
-            'amaldar_tartibi_ozun_tuz_v2.pptx',
+    def test_missing_volume_file_is_served_from_the_bundled_deck(self):
+        from apps.resources.resource_files import BUNDLED_DIR
+        bundled = (BUNDLED_DIR / 'amaldar_tartibi_ozun_tuz_v2.pptx').read_bytes()
+        resource = self._resource(
+            'amaldar_tartibi_ozun_tuz.pptx',
             'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx',
-            b'kept',
         )
-        # The bytes for the holder's stored name were never written; write them.
-        _files(self.media).joinpath('amaldar_tartibi_ozun_tuz_v2.pptx').write_bytes(b'kept')
-        other = self._resource('4-amal-1234.pptx', 'resources/files/4-amal-1234.pptx')
-        self._pin(other)
-        changed = repair_four_basic_free_file(apps)
-        other.refresh_from_db()
-        holder.refresh_from_db()
-        self.assertEqual(changed, [])
-        self.assertEqual(other.title, '4-amal-1234.pptx')
-        self.assertEqual(holder.title, 'amaldar_tartibi_ozun_tuz_v2.pptx')
+        self._pin(resource)
+
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(b''.join(resp.streaming_content), bundled)
+        self.assertTrue(
+            (_files(self.media) / 'amaldar_tartibi_ozun_tuz_v2.pptx').read_bytes() == bundled
+        )
+
+    def test_repair_pins_the_v2_row_and_leaves_the_current_free_file_alone(self):
+        from django.apps import apps
+        level = self._resource(
+            '4-amal-JenilOrtoOor.pptx',
+            'resources/files/4-amal-JenilOrtoOor.pptx',
+        )
+        lesson = self._resource(
+            'amaldar_tartibi_ozun_tuz.pptx',
+            'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx',
+        )
+        self._pin(level)
+        repair_four_basic_free_file(apps)
+        level.refresh_from_db()
+        lesson.refresh_from_db()
+        free = PageFreeDownload.objects.get(page_key='four_basic_operations')
+        self.assertEqual(level.title, '4-amal-JenilOrtoOor.pptx')
+        self.assertEqual(lesson.title, 'amaldar_tartibi_ozun_tuz_v2.pptx')
+        self.assertEqual(lesson.file.name, 'resources/files/amaldar_tartibi_ozun_tuz_v2.pptx')
+        self.assertTrue((_files(self.media) / 'amaldar_tartibi_ozun_tuz_v2.pptx').is_file())
+        self.assertEqual(free.resource_id, lesson.pk)
+        self.assertTrue(free.pinned)
