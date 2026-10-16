@@ -1,5 +1,6 @@
-/* Keeps a .mk-zoom graphic inside the viewport when it scales to 2x.
-   Sets --mk-zoom-origin before hover. No effect when the device cannot hover. */
+/* Keeps a .mk-zoom graphic inside the viewport when it scales.
+   The scale comes from --mk-zoom-scale (1.3). Sets --mk-zoom-origin before
+   hover. No effect when the device cannot hover. */
 (function () {
     if (!window.matchMedia("(hover: hover)").matches) return;
 
@@ -7,9 +8,16 @@
         return document.querySelectorAll(".mk-zoom");
     };
 
-    function axis(start, size, limit) {
-        var min = (start + 2 * size - limit) / size;
-        var max = start / size;
+    function scaleOf(el) {
+        var raw = window.getComputedStyle(el).getPropertyValue("--mk-zoom-scale");
+        var scale = parseFloat(raw);
+        return scale > 1 ? scale : 1.3;
+    }
+
+    function axis(start, size, limit, scale) {
+        var span = (scale - 1) * size;
+        var min = (start + scale * size - limit) / span;
+        var max = start / span;
         if (min <= max) {
             var lo = Math.max(0, Math.min(1, min));
             var hi = Math.max(0, Math.min(1, max));
@@ -34,8 +42,9 @@
         var r = el.getBoundingClientRect();
         if (!r.width || !r.height) return;
         var inset = topInset() + 16;
-        var ox = axis(r.left - 8, r.width, document.documentElement.clientWidth - 16);
-        var oy = axis(r.top - inset, r.height, window.innerHeight - inset - 8);
+        var scale = scaleOf(el);
+        var ox = axis(r.left - 8, r.width, document.documentElement.clientWidth - 16, scale);
+        var oy = axis(r.top - inset, r.height, window.innerHeight - inset - 8, scale);
         el.style.setProperty("--mk-zoom-origin", (ox * 100) + "% " + (oy * 100) + "%");
     }
 
