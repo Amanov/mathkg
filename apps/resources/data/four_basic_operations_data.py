@@ -20,8 +20,8 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
                 "fallback_image": "img/4-amal-JenilOrtoOor-Screenshot.png"
             },
             {
-                "title": "1-2-3-4",
-                "files": ["4-amal-1234.pptx"],
+                "title": "Амалдар тартиби: Өзүң түз",
+                "files": ["amaldar_tartibi_ozun_tuz.pptx"],
                 "fallback_image": "img/4-amal-1234-Screenshot.png"
             },
         ]

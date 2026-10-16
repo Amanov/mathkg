@@ -322,12 +322,13 @@ TO_FRACTIONS = {
 
 # Same lesson-page shape as TO_FRACTIONS. Materials stay in the order they
 # had on the older four_basic_operations page; only the section they sit in
-# changes. `page_key` is the stored free-download row, so the file already
-# chosen for this page (1-2-3-4) is not replaced.
+# changes. `page_key` is the stored free-download row. That row still points
+# at this page's free file after 1-2-3-4 was replaced in place by
+# amaldar_tartibi_ozun_tuz.pptx.
 FOUR_BASIC_IMAGES = {
     'intro': 'img/four-basic-operations/01-intro.png',
     'jenil-orto-oor': 'img/four-basic-operations/02-jenil-orto-oor.png',
-    '1234': 'img/four-basic-operations/03-1234.png',
+    'amaldar-tartibi': 'img/four-basic-operations/03-amaldar-tartibi.png',
     'cifra': 'img/four-basic-operations/04-cifra.png',
     'katany-tap': 'img/four-basic-operations/05-katany-tap.png',
     'labyrinth': 'img/four-basic-operations/06-labyrinth.png',
@@ -385,19 +386,19 @@ FOUR_BASIC_OPERATIONS = {
             ],
         },
         {
-            'stage': '5E · 1',
-            'title': 'Кызыктыруу',
-            'title_en': 'Engage',
-            'when': 'Мурунку билимди текшерүү: төрт кутуча, жеңилден татаалыраакка.',
-            'bloom': ['Эстеп калуу'],
-            'summary': 'Төрт амалды төрт кутуча менен эске салуу.',
+            'stage': '3C · 3',
+            'title': 'Жаратуу',
+            'title_en': 'Create',
+            'when': 'Тереңдетилген деңгээл же үй тапшырмасы: окуучулар өз мисалын түзүшөт.',
+            'bloom': ['Жаратуу'],
+            'summary': 'Берилген сандардан жообу 10 болгон мисал түзүшөт.',
             'items': [
                 {
-                    'title': '1-2-3-4',
-                    'note': 'Төрт кутуча: жөнөкөй мисалдан татаалыраак мисалга чейин.',
-                    'svg': '1234',
-                    'level': 'Эстеп калуу',
-                    'files': [('PPT', '4-amal-1234.pptx')],
+                    'title': 'Амалдар тартиби: Өзүң түз',
+                    'note': '4, 2, 3 жана 6 сандарын бир жолудан колдонуп, жообу 10 болгон мисал түзүшөт.',
+                    'svg': 'amaldar-tartibi',
+                    'level': 'Жаратуу',
+                    'files': [('PPT', 'amaldar_tartibi_ozun_tuz.pptx')],
                 },
             ],
         },
