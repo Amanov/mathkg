@@ -158,6 +158,33 @@ duplicates — e.g. matching on file content hash or on-disk path in addition
 to title, or just retiring the command in favor of manual admin uploads
 once persistent storage is in place.
 
+## Copy missing resource files onto the volume after deploy
+
+A file added under `media/resources/files/` in git is not visible to the
+running app until it is copied onto the `/app/media` volume. The
+`copy_missing_resource_files` command reads those paths from git and
+writes a file only when that path is not already on the volume. A file
+already there, including one uploaded in admin under the same name, is
+left as it is. Nothing is deleted.
+
+From a Railway shell, with the app virtualenv active
+(`source /opt/venv/bin/activate` if `python` cannot import Django):
+
+```
+git clone --depth 1 https://github.com/Amanov/mathkg.git /tmp/mathkg-media
+python manage.py copy_missing_resource_files --source /tmp/mathkg-media
+```
+
+Clone the revision that was just deployed. If this container still has
+its own git history, the clone can be skipped:
+
+```
+python manage.py copy_missing_resource_files
+```
+
+`--dry-run` lists the files it would add and writes nothing. A volume
+that already holds the library only receives files that are new in git.
+
 ## Other open items from the full QA audit (2026-09-17)
 
 Lower priority, not yet acted on:

@@ -379,11 +379,48 @@ class FreeDownloadTests(TestCase):
 
     def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
         self._make_resource('4-Amal-intro.pptx')
-        self._make_resource('4-amal-1234.pptx')
+        one = self._make_resource('amaldar_tartibi_ozun_tuz_v2.pptx')
+        # The live page already stored this file. Pinning it here checks
+        # that a saved choice for page_key four_basic_operations still wins.
+        choose_free_resource('four_basic_operations', [one])
+        PageFreeDownload.objects.filter(page_key='four_basic_operations').update(
+            resource=one, pinned=True,
+        )
         resp = self.client.get(reverse('four_basic_operations'))
+        html = resp.content.decode()
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.content.decode().count('Акысыз'), 1)
-        self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыныз керек')
+        self.assertEqual(html.count('Акысыз'), 1)
+        self.assertIn(f'/resources/download/{one.pk}/', html)
+        self.assertRegex(
+            html,
+            rf'3C · 3[\s\S]*?Амалдар тартиби: Өзүң түз[\s\S]*?'
+            rf'/resources/download/{one.pk}/[\s\S]*?Акысыз',
+        )
+        self.assertNotIn('1-2-3-4', html)
+        self.assertIn('Жаратуу', html)
+        self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыңыз керек')
+        self.assertContains(resp, 'mk-zoom')
+
+    def test_four_basic_materials_keep_order_and_files(self):
+        from apps.resources.data.four_basic_operations_data import (
+            FOUR_BASIC_OPERATIONS_SECTIONS,
+        )
+        from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS
+        expected = [
+            (block['title'], list(block['files']))
+            for section in FOUR_BASIC_OPERATIONS_SECTIONS
+            for block in section['blocks']
+        ]
+        got = [
+            (item['title'], [name for _label, name in item['files']])
+            for section in FOUR_BASIC_OPERATIONS['sections']
+            for item in section['items']
+        ]
+        self.assertEqual(got, expected)
+        resp = self.client.get(reverse('four_basic_operations'))
+        html = resp.content.decode()
+        positions = [html.index(title) for title, _files in expected]
+        self.assertEqual(positions, sorted(positions))
 
 
 class AnalyticsDashboardTests(TestCase):

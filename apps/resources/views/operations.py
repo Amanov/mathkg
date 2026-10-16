@@ -1,10 +1,9 @@
 from django.shortcuts import render
 
-from apps.resources.free_download import operation_page_context
+from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS, build_topic_page
 from apps.resources.utils.resource_helpers import get_active_resources
 
 from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
-from apps.resources.data.four_basic_operations_data import FOUR_BASIC_OPERATIONS_SECTIONS
 from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
 from apps.resources.data.koshuu_1_digit_data import KOSHUU_1_DIGIT_SECTIONS
 from apps.resources.data.subtracting_1_digit_data import SUBTRACTING_1_DIGIT_SECTIONS
@@ -13,18 +12,10 @@ from apps.resources.data.algebra_linear_data import ALGEBRA_LINEAR_VAR1SIDE_NONC
 
 
 def four_basic_operations_view(request):
-    res = get_active_resources()
-    sections, _free_id = operation_page_context(
-        'four_basic_operations', FOUR_BASIC_OPERATIONS_SECTIONS, res,
+    page = build_topic_page(
+        FOUR_BASIC_OPERATIONS, get_active_resources(), request.user,
     )
-    return render(
-        request,
-        'resources/sandar/four_basic_operations.html',
-        {
-            'res': res,
-            'sections': sections,
-        }
-    )
+    return render(request, 'resources/topic_materials.html', {'page': page})
 
 
 def directed_numbers_view(request):
