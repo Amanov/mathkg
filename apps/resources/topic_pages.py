@@ -9,6 +9,8 @@ hand-built templates do with `res|get_item:'filename'`.
 
 from django.urls import reverse
 
+from apps.resources.free_download import choose_free_resource
+
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
 # levels its materials actually reach. Placement comes from reading each
 # PPTX (2026-10-09 review: /mnt/project-files/topic-page-svg/to-fractions/
@@ -392,17 +394,41 @@ CALCULATOR_FRACTIONS = {
 }
 
 
-def _resolve_links(file_prefix, files, resources, user, register_url):
+def _page_file_groups(page):
+    groups = []
+    for section in page['sections']:
+        for item in section['items']:
+            groups.append(item['files'])
+    for res in page.get('teacher_resources', []):
+        groups.append(res['files'])
+    return groups
+
+
+def _page_candidates(page, resources):
+    prefix = page['file_prefix']
+    ordered = []
+    seen = set()
+    for files in _page_file_groups(page):
+        for _label, name in files:
+            resource = resources.get(prefix + name)
+            if resource and resource.id not in seen:
+                seen.add(resource.id)
+                ordered.append(resource)
+    return ordered
+
+
+def _resolve_links(file_prefix, files, resources, user, register_url, free_id):
     links = []
     for label, name in files:
         resource = resources.get(file_prefix + name)
         if not resource:
             continue
-        if user.is_authenticated:
+        free = bool(free_id and resource.id == free_id)
+        if free or user.is_authenticated:
             url = reverse('download_resource', kwargs={'pk': resource.id})
         else:
             url = register_url
-        links.append({'label': label, 'url': url})
+        links.append({'label': label, 'url': url, 'free': free})
     return links
 
 
@@ -410,15 +436,21 @@ def build_topic_page(page, resources, user):
     """Resolve a page spec into template context: svg paths and real links.
 
     Logged-out visitors see the same buttons, pointing at registration,
-    so they can tell what formats exist before signing up.
+    so they can tell what formats exist before signing up. One file on
+    the page is the exception: it stays a real download for everyone.
     """
     register_url = reverse('register')
     images = page.get('images') or {}
+    page_key = page.get('page_key') or page['file_prefix']
+    free = choose_free_resource(page_key, _page_candidates(page, resources))
+    free_id = free.id if free else None
     sections = []
     for section in page['sections']:
         items = []
         for item in section['items']:
-            links = _resolve_links(page['file_prefix'], item['files'], resources, user, register_url)
+            links = _resolve_links(
+                page['file_prefix'], item['files'], resources, user, register_url, free_id,
+            )
             svg_path = f"{page['svg_dir']}/{item['svg']}.svg"
             items.append(
                 {
@@ -429,15 +461,23 @@ def build_topic_page(page, resources, user):
                     'level': item['level'],
                     'level_num': BLOOM_LEVELS.index(item['level']) + 1,
                     'links': links,
+                    'has_locked': any(not link['free'] for link in links),
                 }
             )
         sections.append({**section, 'items': items})
 
     teacher_resources = []
     for res in page.get('teacher_resources', []):
-        links = _resolve_links(page['file_prefix'], res['files'], resources, user, register_url)
+        links = _resolve_links(
+            page['file_prefix'], res['files'], resources, user, register_url, free_id,
+        )
         if links:
-            teacher_resources.append({'title': res['title'], 'note': res['note'], 'links': links})
+            teacher_resources.append({
+                'title': res['title'],
+                'note': res['note'],
+                'links': links,
+                'has_locked': any(not link['free'] for link in links),
+            })
 
     return {
         'title': page['title'],

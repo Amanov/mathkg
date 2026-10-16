@@ -343,6 +343,33 @@ class ResourceDownload(models.Model):
         return f"{user_str} - {self.resource.title}"
 
 
+class PageFreeDownload(models.Model):
+    """The one file a topic page gives away.
+
+    Filled with a random choice the first time that page is built, then
+    kept. Staff can point `resource` at a different file and leave
+    `pinned` on so the next visit does not replace their choice.
+    """
+
+    page_key = models.CharField(max_length=80, unique=True)
+    resource = models.ForeignKey(
+        Resource,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='free_on_pages',
+    )
+    pinned = models.BooleanField(
+        default=False,
+        help_text='Admin override. Leave this on to keep the file chosen above.',
+    )
+
+    class Meta:
+        verbose_name = 'Free download'
+        verbose_name_plural = 'Free downloads'
+
+    def __str__(self):
+        return f'{self.page_key}: {self.resource or "—"}'
 
 
 # =====================================================

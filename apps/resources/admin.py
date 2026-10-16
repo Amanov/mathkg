@@ -12,6 +12,7 @@ from .models import (
     LoginEvent,
     MenuItem,
     NewsPost,
+    PageFreeDownload,
 )
 
 
@@ -329,6 +330,21 @@ class MenuItemAdmin(admin.ModelAdmin):
         if obj.url_name:
             return obj.url_name
         return '—'
+
+
+@admin.register(PageFreeDownload)
+class PageFreeDownloadAdmin(admin.ModelAdmin):
+    list_display = ('page_key', 'resource', 'pinned')
+    list_editable = ('pinned',)
+    search_fields = ('page_key', 'resource__title')
+    autocomplete_fields = ('resource',)
+
+    def save_model(self, request, obj, form, change):
+        # Picking a different file in admin is an override. Pin it so the
+        # next page visit does not replace that choice with a new random one.
+        if 'resource' in form.changed_data and obj.resource_id:
+            obj.pinned = True
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(NewsPost)

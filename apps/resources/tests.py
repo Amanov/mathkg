@@ -8,7 +8,8 @@ from django.urls import reverse
 from django.utils import timezone
 
 from apps.account.models import Account, SubscriptionRequest
-from apps.resources.models import NewsPost, Resource, ResourceDownload, SearchQuery
+from apps.resources.free_download import choose_free_resource
+from apps.resources.models import NewsPost, PageFreeDownload, Resource, ResourceDownload, SearchQuery
 
 
 class PagesTests(TestCase):
@@ -295,6 +296,94 @@ class DownloadLimitEnforcementTests(TestCase):
         resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
         self.assertContains(resp, 'мөөнөтү бүткөн')
         self.assertNotContains(resp, 'чегине жеттиңиз')
+
+
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
+class FreeDownloadTests(TestCase):
+    def setUp(self):
+        self.free = self._make_resource('FreeFile')
+        self.paid = self._make_resource('PaidFile')
+        choose_free_resource('unit-page', [self.free, self.paid])
+        PageFreeDownload.objects.filter(page_key='unit-page').update(
+            resource=self.free, pinned=True,
+        )
+
+    def _make_resource(self, title, category='presentation'):
+        return Resource.objects.create(
+            title=title, category=category, is_active=True,
+            file=SimpleUploadedFile(f'{title}.bin', b'data'),
+        )
+
+    def _account(self, email, plan, end):
+        user = Account.objects.create_user(
+            email=email, username=email.split('@')[0], password='SuperSecret123!',
+        )
+        user.is_active = True
+        user.current_plan = plan
+        user.subscription_end = end
+        user.save(update_fields=['is_active', 'current_plan', 'subscription_end'])
+        return user
+
+    def test_anonymous_can_download_the_free_file(self):
+        resp = self.client.get(reverse('download_resource', args=[self.free.pk]))
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn('attachment', resp['Content-Disposition'])
+
+    def test_anonymous_other_file_redirects_to_login(self):
+        resp = self.client.get(reverse('download_resource', args=[self.paid.pk]))
+        self.assertEqual(resp.status_code, 302)
+        self.assertIn('/login/', resp.url)
+
+    def test_expired_can_download_the_free_file_and_is_refused_the_other(self):
+        self._account(
+            'expired-free@example.com',
+            SubscriptionRequest.PLAN_THREE_MONTHS,
+            timezone.now().date() - timedelta(days=1),
+        )
+        self.client.login(email='expired-free@example.com', password='SuperSecret123!')
+        free_resp = self.client.get(reverse('download_resource', args=[self.free.pk]))
+        self.assertEqual(free_resp.status_code, 200)
+        paid_resp = self.client.get(reverse('download_resource', args=[self.paid.pk]))
+        self.assertEqual(paid_resp.status_code, 302)
+        self.assertIn('/account/', paid_resp.url)
+
+    def test_active_subscription_can_download_both(self):
+        self._account(
+            'active-free@example.com',
+            SubscriptionRequest.PLAN_ONE_YEAR,
+            timezone.now().date() + timedelta(days=30),
+        )
+        self.client.login(email='active-free@example.com', password='SuperSecret123!')
+        for resource in (self.free, self.paid):
+            resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+            self.assertEqual(resp.status_code, 200)
+
+    def test_the_free_file_stays_the_same_and_an_admin_pin_wins(self):
+        first = choose_free_resource('stable-page', [self.free, self.paid])
+        second = choose_free_resource('stable-page', [self.free, self.paid])
+        self.assertEqual(first.id, second.id)
+        pinned = self.paid if first.id == self.free.id else self.free
+        PageFreeDownload.objects.filter(page_key='stable-page').update(
+            resource=pinned, pinned=True,
+        )
+        self.assertEqual(choose_free_resource('stable-page', [self.free, self.paid]).id, pinned.id)
+
+    def test_to_fractions_shows_one_free_badge_to_anonymous_visitors(self):
+        prefix = 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-'
+        self._make_resource(prefix + '1234.pptx')
+        self._make_resource(prefix + 'BingoOyunu.pptx')
+        resp = self.client.get(reverse('to_fractions'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content.decode().count('Акысыз'), 1)
+        self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыңыз керек')
+
+    def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
+        self._make_resource('4-Amal-intro.pptx')
+        self._make_resource('4-amal-1234.pptx')
+        resp = self.client.get(reverse('four_basic_operations'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content.decode().count('Акысыз'), 1)
+        self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыныз керек')
 
 
 class AnalyticsDashboardTests(TestCase):

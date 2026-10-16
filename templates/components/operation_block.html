@@ -14,7 +14,46 @@
     <!-- DOWNLOAD -->
     <div class="col-md-4">
         <div class="h-100 p-5">
-            {% if user.is_authenticated %}
+            {% if block.resolved_files %}
+                {% if user.is_authenticated and user.has_active_subscription %}
+                    {% for file in block.resolved_files %}
+                        {% if file.resource %}
+                            <span class="free-download">
+                                <a class="btn btn-outline-primary anchorNew mb-2"
+                                   href="{% url 'download_resource' pk=file.resource.id %}">
+                                    {% if 'pptx' in file.name %}PPT
+                                    {% else %}{{ file.name|slice:"-4:"|upper }}{% endif %}
+                                </a>
+                                {% if file.free %}<span class="free-badge">Акысыз</span>{% endif %}
+                            </span><br>
+                        {% else %}
+                            <small style="color: red;">Not found: {{ file.name }}</small>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% for file in block.resolved_files %}
+                        {% if file.free and file.resource %}
+                            <span class="free-download">
+                                <a class="btn btn-outline-primary anchorNew mb-2"
+                                   href="{% url 'download_resource' pk=file.resource.id %}">
+                                    {% if 'pptx' in file.name %}PPT
+                                    {% else %}{{ file.name|slice:"-4:"|upper }}{% endif %}
+                                </a>
+                                <span class="free-badge">Акысыз</span>
+                            </span><br>
+                        {% endif %}
+                    {% endfor %}
+                    {% if block.has_locked %}
+                        {% if user.is_authenticated %}
+                            <h5>Жазылууңуздун мөөнөтү бүткөн</h5>
+                            <a class="btn btn-primary anchorNew" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+                        {% else %}
+                            <h5>Файлды жүктөп алуу үчүн сайтка катталышыныз керек</h5>
+                            <a class="btn btn-primary anchorNew" href="{% url 'register' %}">Катталуу</a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% elif user.is_authenticated %}
                 {% if user.has_active_subscription %}
                     {% for file in block.files %}
                         {% with r=res|get_item:file %}
