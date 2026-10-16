@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from apps.resources.free_download import operation_page_context
 from apps.resources.utils.resource_helpers import get_active_resources
 
 from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
@@ -12,12 +13,16 @@ from apps.resources.data.algebra_linear_data import ALGEBRA_LINEAR_VAR1SIDE_NONC
 
 
 def four_basic_operations_view(request):
+    res = get_active_resources()
+    sections, _free_id = operation_page_context(
+        'four_basic_operations', FOUR_BASIC_OPERATIONS_SECTIONS, res,
+    )
     return render(
         request,
         'resources/sandar/four_basic_operations.html',
         {
-            'res': get_active_resources(),
-            'sections': FOUR_BASIC_OPERATIONS_SECTIONS,
+            'res': res,
+            'sections': sections,
         }
     )
 

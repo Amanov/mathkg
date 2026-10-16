@@ -111,3 +111,22 @@ h1::after {
     font-size: 0.95rem;
     line-height: 1.55;
 }
+
+/* The one file a topic page gives away. Sits beside that file's button. */
+.free-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.free-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--color-menu-active);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
