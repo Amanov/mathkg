@@ -320,6 +320,268 @@ TO_FRACTIONS = {
 }
 
 
+# Same lesson-page shape as TO_FRACTIONS. Materials stay in the order they
+# had on the older four_basic_operations page; only the section they sit in
+# changes. `page_key` is the stored free-download row, so the file already
+# chosen for this page (1-2-3-4) is not replaced.
+FOUR_BASIC_IMAGES = {
+    'intro': 'img/four-basic-operations/01-intro.png',
+    'jenil-orto-oor': 'img/four-basic-operations/02-jenil-orto-oor.png',
+    '1234': 'img/four-basic-operations/03-1234.png',
+    'cifra': 'img/four-basic-operations/04-cifra.png',
+    'katany-tap': 'img/four-basic-operations/05-katany-tap.png',
+    'labyrinth': 'img/four-basic-operations/06-labyrinth.png',
+    'practice-1': 'img/four-basic-operations/07-practice-1.png',
+    'practice-2': 'img/four-basic-operations/08-practice-2.png',
+    'decision': 'img/four-basic-operations/09-decision.png',
+    'tarsia': 'img/four-basic-operations/10-tarsia.png',
+    'compare': 'img/four-basic-operations/11-compare.png',
+    'bingo': 'img/four-basic-operations/12-bingo.png',
+    'penalty': 'img/four-basic-operations/13-penalty.png',
+    'race': 'img/four-basic-operations/14-race.png',
+    'show-example': 'img/four-basic-operations/15-show-example.png',
+}
+
+FOUR_BASIC_OPERATIONS = {
+    'title': 'Төрт амал',
+    'svg_dir': 'svg/topic/four-basic-operations',
+    'file_prefix': '',
+    'page_key': 'four_basic_operations',
+    'images': FOUR_BASIC_IMAGES,
+    'downloads_gated': True,
+    'sections': [
+        {
+            'stage': '5E · 3',
+            'title': 'Түшүндүрүү',
+            'title_en': 'Explain',
+            'when': 'Сабактын башында: мугалим төрт амалды үлгү менен көрсөтөт.',
+            'bloom': ['Түшүнүү'],
+            'summary': 'Кошуу, кемитүү, көбөйтүү жана бөлүүнүн үлгүсү.',
+            'items': [
+                {
+                    'title': 'Сабактын көрсөтүү - түшүндүрүү',
+                    'note': 'Мугалим төрт амалды (+ − × ÷) үлгү менен көрсөтөт.',
+                    'svg': 'intro',
+                    'level': 'Түшүнүү',
+                    'files': [('PPT', '4-Amal-intro.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 4',
+            'title': 'Тереңдетүү',
+            'title_en': 'Elaborate',
+            'when': 'Окуучу өз деңгээлиндеги тапшырманы тандайт.',
+            'bloom': ['Колдонуу'],
+            'summary': 'Жеңил, орто жана оор мисалдар.',
+            'items': [
+                {
+                    'title': 'Жеңил, орто, оор',
+                    'note': 'Үч деңгээл: жеңил, орто, оор.',
+                    'svg': 'jenil-orto-oor',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', '4-amal-JenilOrtoOor.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 1',
+            'title': 'Кызыктыруу',
+            'title_en': 'Engage',
+            'when': 'Мурунку билимди текшерүү: төрт кутуча, жеңилден татаалыраакка.',
+            'bloom': ['Эстеп калуу'],
+            'summary': 'Төрт амалды төрт кутуча менен эске салуу.',
+            'items': [
+                {
+                    'title': '1-2-3-4',
+                    'note': 'Төрт кутуча: жөнөкөй мисалдан татаалыраак мисалга чейин.',
+                    'svg': '1234',
+                    'level': 'Эстеп калуу',
+                    'files': [('PPT', '4-amal-1234.pptx')],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 2',
+            'title': 'Изилдөө',
+            'title_en': 'Explore',
+            'when': 'Бош кутучаларга цифра коюп, мисалды өздөрү толукташат.',
+            'bloom': ['Талдоо'],
+            'summary': 'Жетишпеген цифраны издөө.',
+            'items': [
+                {
+                    'title': 'Цифралык табышмак',
+                    'note': '3 деңгээлде.',
+                    'svg': 'cifra',
+                    'level': 'Талдоо',
+                    'files': [
+                        ('PPT', '4-amal-sandyk-bashkatyrma.pptx'),
+                        ('PDF A6', '4-amal-sandyk-bashkatyrmaA6.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 5',
+            'title': 'Баалоо',
+            'title_en': 'Evaluate',
+            'when': 'Даяр жоопту текшерип, туура же ката экенин негиздешет.',
+            'bloom': ['Баалоо'],
+            'summary': 'Катаны табуу жана туура мисалдар аркылуу өтүү.',
+            'items': [
+                {
+                    'title': 'Катаны тап',
+                    'note': 'Чечилген мисалдагы каталарды таап, оңдошот.',
+                    'svg': 'katany-tap',
+                    'level': 'Баалоо',
+                    'files': [
+                        ('PPT', '4-Amal-katanytapTarsia.pptx'),
+                        ('PDF A4', '4-Amal-katanytapTarsiaA4.pdf'),
+                        ('PDF A5', '4-Amal-katanytapTarsiaA5.pdf'),
+                    ],
+                },
+                {
+                    'title': 'Туура же Ката лабиринт',
+                    'note': 'Туура мисалдар аркылуу гана өтүшөт.',
+                    'svg': 'labyrinth',
+                    'level': 'Баалоо',
+                    'files': [
+                        ('PPT', '4-amal-tuuraKataLabirinth.pptx'),
+                        ('PDF A4', '4-amal-tuuraKataLabirinthA4.pdf'),
+                        ('PDF A5', '4-amal-tuuraKataLabirinthA5.pdf'),
+                        ('PDF A6', '4-amal-tuuraKataLabirinthA6.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 4',
+            'title': 'Тереңдетүү',
+            'title_en': 'Elaborate',
+            'when': 'Өз алдынча машыгуу.',
+            'bloom': ['Колдонуу'],
+            'summary': 'Тема боюнча көнүгүүлөр.',
+            'items': [
+                {
+                    'title': 'Теманын көнүгүүсү 1',
+                    'note': 'Тема боюнча биринчи көнүгүү.',
+                    'svg': 'practice-1',
+                    'level': 'Колдонуу',
+                    'files': [
+                        ('PPT', '4-amal-kondumA.pptx'),
+                        ('PDF A5', '4-amal-kondumAA5.pdf'),
+                    ],
+                },
+                {
+                    'title': 'Теманын көнүгүүсү 2',
+                    'note': 'Тема боюнча экинчи көнүгүү.',
+                    'svg': 'practice-2',
+                    'level': 'Колдонуу',
+                    'files': [
+                        ('PPT', '4-Amal - FourFour.pptx'),
+                        ('PDF A4', '4-Amal - FourFourA4.pdf'),
+                        ('PDF A5', '4-Amal - FourFourA5.pdf'),
+                        ('PDF A6', '4-Amal - FourFourA6.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '5E · 5',
+            'title': 'Баалоо',
+            'title_en': 'Evaluate',
+            'when': 'Мисал туурабы же катабы — окуучу чечим чыгарат.',
+            'bloom': ['Баалоо'],
+            'summary': 'Туура же ката жоопту айырмалоо.',
+            'items': [
+                {
+                    'title': 'Чечим чыгаруу',
+                    'note': 'Туура же ката экенин белгилешет.',
+                    'svg': 'decision',
+                    'level': 'Баалоо',
+                    'files': [
+                        ('PPT', '4-Amal-TuuraJeKata.pptx'),
+                        ('PDF A4', '4-Amal-TuuraJeKataA4.pdf'),
+                        ('PDF A5', '4-Amal-TuuraJeKataA5.pdf'),
+                        ('PDF A6', '4-Amal-TuuraJeKataA6.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '3C · 1',
+            'title': 'Байланыштыруу',
+            'title_en': 'Connect',
+            'when': 'Мисал менен жообун жана эки мисалды өз ара байланыштырышат.',
+            'bloom': ['Талдоо'],
+            'summary': 'Мисалды жообу менен жанаштыруу жана салыштыруу.',
+            'items': [
+                {
+                    'title': 'Тарсия курак',
+                    'note': 'Мисал менен жообун жанаштырып, үч бурчтук түзүшөт.',
+                    'svg': 'tarsia',
+                    'level': 'Талдоо',
+                    'files': [
+                        ('PPT', '4-Amal-TarsiaKurak.pptx'),
+                        ('PDF A4', '4-Amal-TarsiaKurakA4.pdf'),
+                        ('PDF A5', '4-Amal-TarsiaKurakA5.pdf'),
+                    ],
+                },
+                {
+                    'title': 'Салыштыруу',
+                    'note': 'Эки мисалды салыштырып, чоң, кичине же барабар экенин табышат.',
+                    'svg': 'compare',
+                    'level': 'Талдоо',
+                    'files': [
+                        ('PPT', '4-Amal - Salyshtyr.pptx'),
+                        ('PDF A4', '4-Amal - SalyshtyrA4.pdf'),
+                        ('PDF A5', '4-Amal - SalyshtyrA5.pdf'),
+                    ],
+                },
+            ],
+        },
+        {
+            'stage': '3C · 2',
+            'title': 'Кызматташуу',
+            'title_en': 'Collaborate',
+            'when': 'Бүт класс менен, мугалим жетектейт.',
+            'bloom': ['Колдонуу'],
+            'summary': 'Мугалим жетектеген оюндар.',
+            'items': [
+                {
+                    'title': 'Бинго',
+                    'note': 'Бүт класс менен: мугалим мисал айтат, окуучулар жообун табат.',
+                    'svg': 'bingo',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', '4-Amal-BingoOyunu.pptx')],
+                },
+                {
+                    'title': 'Айып сокку',
+                    'note': 'Туура жооп берсе, айып сокку урат.',
+                    'svg': 'penalty',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', '4-Amal-AyipSokku.pptx')],
+                },
+                {
+                    'title': 'Жыдымай оюну',
+                    'note': 'Туура жоопту биринчи басышат.',
+                    'svg': 'race',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', '4-Amal-JydymaiOyunu.pptx')],
+                },
+                {
+                    'title': 'Мисал көрсөт',
+                    'note': 'Мугалим мисал көрсөтөт, окуучулар жооп берет.',
+                    'svg': 'show-example',
+                    'level': 'Колдонуу',
+                    'files': [('PPT', '4-Amal-MisalKorsot.pptx')],
+                },
+            ],
+        },
+    ],
+}
+
+
 # A simpler page than TO_FRACTIONS: this skill (using a calculator with
 # fractions) isn't taught through the 5E + 3C lesson flow, so sections are
 # grouped by resource type instead of lesson stage. Items still carry a
