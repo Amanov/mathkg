@@ -323,8 +323,7 @@ TO_FRACTIONS = {
 # Same lesson-page shape as TO_FRACTIONS. Materials stay in the order they
 # had on the older four_basic_operations page; only the section they sit in
 # changes. `page_key` is the stored free-download row. That row still points
-# at this page's free file after 1-2-3-4 was replaced in place by
-# amaldar_tartibi_ozun_tuz.pptx.
+# at this page's free file: amaldar_tartibi_ozun_tuz_v2.pptx.
 FOUR_BASIC_IMAGES = {
     'intro': 'img/four-basic-operations/01-intro.png',
     'jenil-orto-oor': 'img/four-basic-operations/02-jenil-orto-oor.png',
@@ -398,7 +397,7 @@ FOUR_BASIC_OPERATIONS = {
                     'note': '4, 2, 3 жана 6 сандарын бир жолудан колдонуп, жообу 10 болгон мисал түзүшөт.',
                     'svg': 'amaldar-tartibi',
                     'level': 'Жаратуу',
-                    'files': [('PPT', 'amaldar_tartibi_ozun_tuz.pptx')],
+                    'files': [('PPT', 'amaldar_tartibi_ozun_tuz_v2.pptx')],
                 },
             ],
         },

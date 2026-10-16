@@ -379,7 +379,7 @@ class FreeDownloadTests(TestCase):
 
     def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
         self._make_resource('4-Amal-intro.pptx')
-        one = self._make_resource('amaldar_tartibi_ozun_tuz.pptx')
+        one = self._make_resource('amaldar_tartibi_ozun_tuz_v2.pptx')
         # The live page already stored this file. Pinning it here checks
         # that a saved choice for page_key four_basic_operations still wins.
         choose_free_resource('four_basic_operations', [one])

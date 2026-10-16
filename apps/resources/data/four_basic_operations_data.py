@@ -21,7 +21,7 @@ FOUR_BASIC_OPERATIONS_SECTIONS = [
             },
             {
                 "title": "Амалдар тартиби: Өзүң түз",
-                "files": ["amaldar_tartibi_ozun_tuz.pptx"],
+                "files": ["amaldar_tartibi_ozun_tuz_v2.pptx"],
                 "fallback_image": "img/4-amal-1234-Screenshot.png"
             },
         ]
