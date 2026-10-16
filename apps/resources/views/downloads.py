@@ -1,5 +1,3 @@
-from logging import getLogger
-
 from django.contrib import messages
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import get_object_or_404, redirect
@@ -12,9 +10,8 @@ from apps.resources.models import (
     Resource,
     ResourceDownload
 )
+from apps.resources.resource_files import open_resource_file
 from apps.resources.utils.request_helpers import get_client_ip
-
-logger = getLogger(__name__)
 
 
 def download_resource_view(request, pk):
@@ -66,9 +63,8 @@ def download_resource_view(request, pk):
     # silently use up a slot or get counted as a successful download the
     # user never actually received.
     try:
-        file_handle = resource.file.open('rb')
+        file_handle = open_resource_file(resource)
     except (FileNotFoundError, OSError):
-        logger.error('Resource file missing on disk: resource_id=%s, file=%s', resource.pk, resource.file.name)
         messages.error(
             request,
             'Бул файл учурда жеткиликсиз. Бир аздан кийин кайра аракет '
