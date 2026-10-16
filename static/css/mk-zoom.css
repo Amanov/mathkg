@@ -1,0 +1,36 @@
+/* Reusable hover zoom. Add class="mk-zoom" (and tabindex="0" if it
+   should zoom from the keyboard). static/js/mk-zoom.js sets
+   --mk-zoom-origin so a 2x scale stays inside the viewport, shifting
+   toward the page centre when the default centre origin would overflow.
+   Only pointer devices that can hover; touch layouts are unchanged. */
+
+@media (hover: hover) {
+    .mk-zoom {
+        cursor: zoom-in;
+        transform-origin: var(--mk-zoom-origin, center);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .mk-zoom:hover,
+    .mk-zoom:focus-visible {
+        transform: scale(2);
+        z-index: 40;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    /* Let the scaled graphic paint over neighbouring columns. */
+    :has(> .mk-zoom:hover),
+    :has(> .mk-zoom:focus-visible) {
+        position: relative;
+        z-index: 40;
+        overflow: visible;
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+    .mk-zoom {
+        transition: none;
+    }
+}
