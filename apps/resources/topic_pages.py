@@ -41,10 +41,36 @@ STANDARD_REF = {
     'Производит арифметические … операции над числами»)',
 }
 
+# Designed thumbnails for the 16 activity slots. Keys match each item's
+# `svg` name; values are static PNGs (960×624) that replace the inline SVG.
+TO_FRACTIONS_IMAGES = {
+    '1234': 'img/to-fractions/01-1234.png',
+    'bingo': 'img/to-fractions/02-bingo.png',
+    'korsot-ooba-jok': 'img/to-fractions/03-korsot.png',
+    'cifra-tabyshmagy': 'img/to-fractions/04-cifra.png',
+    'tushunduruu': 'img/to-fractions/05-tushundur.png',
+    'jenil-orto-oor': 'img/to-fractions/06-jenil-orto-oor.png',
+    'kazyna-jenil': 'img/to-fractions/07-kazyna-jenil.png',
+    'kazyna-oor': 'img/to-fractions/08-kazyna-oor.png',
+    'bingo-orun': 'img/to-fractions/09-bingo-orun.png',
+    'katany-tap': 'img/to-fractions/10-katany-tap.png',
+    'sandar-labyrinth': 'img/to-fractions/11-labirint.png',
+    'tarsia-kurak': 'img/to-fractions/12-tarsia.png',
+    'katary-menen-tort': 'img/to-fractions/13-katary-tort.png',
+    '3-tutashtyr': 'img/to-fractions/14-3-tutashtyr.png',
+    'jydymai': 'img/to-fractions/15-jydymai.png',
+    'suroo-tuz': 'img/to-fractions/16-suroo-tuz.png',
+}
+
 TO_FRACTIONS = {
     'title': 'Ондуктарды бөлчөккө айландыруу',
     'svg_dir': 'svg/topic/to-fractions',
     'file_prefix': 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-',
+    'images': TO_FRACTIONS_IMAGES,
+    # Same gate as templates/components/operation_block.html: logged-out
+    # visitors can see the page, but the file buttons become a register
+    # prompt, and an expired subscription shows the renew prompt.
+    'downloads_gated': True,
     'standard': STANDARD_REF,
     # Pedagogy guides that cut across every stage above, rather than
     # belonging to one - shown in the teacher guide panel.
@@ -387,6 +413,7 @@ def build_topic_page(page, resources, user):
     so they can tell what formats exist before signing up.
     """
     register_url = reverse('register')
+    images = page.get('images') or {}
     sections = []
     for section in page['sections']:
         items = []
@@ -398,6 +425,7 @@ def build_topic_page(page, resources, user):
                     'title': item['title'],
                     'note': item['note'],
                     'svg': svg_path,
+                    'image': images.get(item['svg']),
                     'level': item['level'],
                     'level_num': BLOOM_LEVELS.index(item['level']) + 1,
                     'links': links,
@@ -426,6 +454,8 @@ def build_topic_page(page, resources, user):
             }
             for n, level in enumerate(BLOOM_LEVELS, 1)
         ],
+        'downloads_gated': page.get('downloads_gated', False),
+        'uses_mk_zoom': bool(images),
         'standard': page.get('standard'),
         # Cross-cutting pedagogy guides (e.g. Singapore Math strategies)
         # that apply across every Bloom stage - shown in the teacher

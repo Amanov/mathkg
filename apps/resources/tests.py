@@ -281,6 +281,13 @@ class DownloadLimitEnforcementTests(TestCase):
             resp = self.client.get(reverse('download_resource', args=[r.pk]))
             self.assertEqual(resp.status_code, 200)
 
+    def test_anonymous_download_redirects_to_login(self):
+        resource = self._make_resource('presentation', 'Anon')
+        self.client.logout()
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(resp.status_code, 302)
+        self.assertIn('/login/', resp.url)
+
     def test_expired_subscription_blocks_before_the_limit_check_runs(self):
         self.user.subscription_end = timezone.now().date() - timedelta(days=1)
         self.user.save(update_fields=['subscription_end'])

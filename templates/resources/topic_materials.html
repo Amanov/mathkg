@@ -5,6 +5,9 @@
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
+{% if page.uses_mk_zoom %}
+<link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}">
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -69,9 +72,15 @@
             <p class="teacher-guide__extra-note">{{ res.note }}</p>
           </div>
           <div class="teacher-guide__extra-links">
+            {% if page.downloads_gated and not user.is_authenticated %}
+            <a class="file-pill" href="{% url 'register' %}">Катталуу</a>
+            {% elif page.downloads_gated and not user.has_active_subscription %}
+            <a class="file-pill" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+            {% else %}
             {% for link in res.links %}
             <a class="file-pill" href="{{ link.url }}">{{ link.label }}</a>
             {% endfor %}
+            {% endif %}
           </div>
         </div>
         {% endfor %}
@@ -107,7 +116,7 @@
     <div class="topic-list">
       {% for item in section.items %}
       <article class="topic-row lv-{{ item.level_num }}">
-        <div class="topic-row__thumb">{% include item.svg %}</div>
+        <div class="topic-row__thumb">{% if item.image %}<img class="mk-zoom" tabindex="0" src="{% static item.image %}" alt="{{ item.title }}">{% else %}{% include item.svg %}{% endif %}</div>
         <div class="topic-row__text">
           <h3 class="topic-row__title">{{ item.title }}</h3>
           <p class="topic-row__note">{{ item.note }}</p>
@@ -117,11 +126,19 @@
           </p>
         </div>
         <div class="topic-row__files">
+          {% if page.downloads_gated and not user.is_authenticated %}
+          <p class="topic-row__gate">Файлды жүктөп алуу үчүн сайтка катталышыңыз керек</p>
+          <a class="file-pill file-pill--main" href="{% url 'register' %}">Катталуу</a>
+          {% elif page.downloads_gated and not user.has_active_subscription %}
+          <p class="topic-row__gate">Жазылууңуздун мөөнөтү бүткөн</p>
+          <a class="file-pill file-pill--main" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+          {% else %}
           {% for link in item.links %}
           <a class="file-pill{% if forloop.first %} file-pill--main{% endif %}" href="{{ link.url }}">{{ link.label }}</a>
           {% empty %}
           <span class="topic-row__soon">Жакында</span>
           {% endfor %}
+          {% endif %}
         </div>
       </article>
       {% endfor %}
@@ -167,3 +184,10 @@
 })();
 </script>
 {% endblock content %}
+
+{% block extra_scripts %}
+{{ block.super }}
+{% if page.uses_mk_zoom %}
+<script src="{% static 'js/mk-zoom.js' %}"></script>
+{% endif %}
+{% endblock %}
