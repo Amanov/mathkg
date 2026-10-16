@@ -185,6 +185,15 @@ python manage.py copy_missing_resource_files
 `--dry-run` lists the files it would add and writes nothing. A volume
 that already holds the library only receives files that are new in git.
 
+Migrations `0026` and `0027` only wrote a path into the resource row.
+They did not copy `amaldar_tartibi_ozun_tuz_v2.pptx` onto the volume,
+which is why `/resources/download/603/` reports the file as unavailable.
+Migration `0028` repoints the `four_basic_operations` free row at a file
+that is already under `resources/files/`. It still does not copy bytes.
+Run the command above after deploy, or in admin open the change page
+whose URL ends in `/personal/resource/603/change/` and replace the
+**File** field (not Image).
+
 ## Other open items from the full QA audit (2026-09-17)
 
 Lower priority, not yet acted on:
