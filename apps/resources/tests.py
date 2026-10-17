@@ -347,6 +347,25 @@ class FreeDownloadTests(TestCase):
         self.assertEqual(paid_resp.status_code, 302)
         self.assertIn('/account/', paid_resp.url)
 
+    def test_free_download_does_not_spend_the_daily_allowance(self):
+        # 3-month plan: one presentation per day. The free sample must
+        # not be that one, or the paid file on the same page is blocked
+        # for the rest of the day.
+        self._account(
+            'quota-free@example.com',
+            SubscriptionRequest.PLAN_THREE_MONTHS,
+            timezone.now().date() + timedelta(days=30),
+        )
+        self.client.login(email='quota-free@example.com', password='SuperSecret123!')
+        free_resp = self.client.get(reverse('download_resource', args=[self.free.pk]))
+        self.assertEqual(free_resp.status_code, 200)
+        paid_resp = self.client.get(reverse('download_resource', args=[self.paid.pk]))
+        self.assertEqual(paid_resp.status_code, 200)
+        extra = self._make_resource('ExtraPaid')
+        blocked = self.client.get(reverse('download_resource', args=[extra.pk]), follow=True)
+        self.assertContains(blocked, 'чегине жеттиңиз')
+        self.assertEqual(ResourceDownload.objects.filter(resource=extra).count(), 0)
+
     def test_active_subscription_can_download_both(self):
         self._account(
             'active-free@example.com',

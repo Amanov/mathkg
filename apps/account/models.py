@@ -143,11 +143,18 @@ class Account(AbstractBaseUser):
         limit = self.daily_download_limit(category)
         if limit is None:
             return None
-        from apps.resources.models import ResourceDownload
+        from apps.resources.models import PageFreeDownload, ResourceDownload
+        # The one free file on a topic page is outside this cap: the
+        # download view lets it through even after the limit is used up.
+        # Counting that row here made the order matter — taking the free
+        # file first burned the only slot, so the paid file was refused.
+        free_ids = PageFreeDownload.objects.exclude(
+            resource_id__isnull=True,
+        ).values('resource_id')
         used = ResourceDownload.objects.filter(
             user=self, resource__category=category,
             downloaded_at__date=timezone.now().date(),
-        ).values('resource').distinct().count()
+        ).exclude(resource_id__in=free_ids).values('resource').distinct().count()
         return max(0, limit - used)
 
 
