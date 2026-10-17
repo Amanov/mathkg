@@ -1,142 +1,127 @@
 # Tarsia puzzle generator
 
-Builds the genuine Tarsia mechanic: a big equilateral triangle subdivided
-into an n-row grid of n² small triangles. Every **internal edge** (shared
-by two small triangles) carries one matching pair - a question on one
-triangle's side of the edge, its answer on the other triangle's side -
-each oriented so it reads upright with that edge as the triangle's local
-"bottom". Printed/exported, cut apart, and reassembled by matching edges.
+A big equilateral triangle split into an n-row grid of n² small triangles. Every internal edge (shared by two small triangles) carries one question/answer pair. Each string is rotated so it reads upright with that edge as its own triangle's bottom. Printed, cut apart, and reassembled by matching edges.
 
-This was derived by unpacking a real reference `.pptx`/`.pdf` Tarsia
-puzzle, extracting its embedded grid image, and confirming pixel-for-pixel
-that this module's rendered geometry and per-edge text rotation reproduce
-the same structure. It is not a guess at the convention.
+The geometry was checked against a real reference puzzle's embedded grid, not guessed. Three copies of that math must stay the same: `tools/tarsia/geom.py`, `apps/resources/generators/tarsia_geom.py`, and `static/js/tarsia-builder.js`.
 
-## When to use this
+## Site builder (what teachers use)
 
-Any time you need a cut-and-match triangle jigsaw for a math (or other)
-topic page - new content only. **Never reuse another publisher's actual
-problem numbers** (see Content rules below); use this to generate your
-own verified pairs and render them with the real geometry.
+`/tarsia-builder/` renders `templates/resources/tarsia_builder.html`. The preview is client-side SVG (`static/js/tarsia-builder.js`). Draft pairs are stored in `localStorage` under keys prefixed `tarsiaBuilderPairs:`.
 
-## Quick start
+Export is `POST /tarsia-builder/export/?format=pdf` or `format=pptx` (`apps/resources/views/tarsia_builder.py`). JSON body:
+
+| Field | Constraint |
+|---|---|
+| `shape` | `"triangle"` (default) or `"loop"` |
+| `n` | Triangle only. Integer 3..6 |
+| `count` | Loop only. Integer 4..24. This is the number of cards and of pairs |
+| `pairs` | List of `[question, answer]`. Length must be `edge_count(n)` for a triangle, or `count` for a loop. Each side is stripped and cut to 60 characters. Empty sides are rejected. Answers must be unique |
+| `title` | Optional, stripped, cut to 120 characters. Default `"Тарсия"` |
+| `usageLines` | Optional list. Up to 6 non-empty lines, each cut to 200 characters |
+
+A bad body returns 400 with a Kyrgyz sentence. An unknown `format` returns 400. An unexpected render error is logged and returns 500.
+
+Triangle export shuffles which pair lands on which edge before drawing, so the sheet is not already solved. Loop export builds a random cyclic order (`build_loop_order`) and does not use that shuffle: cutting the cards apart is what scrambles the activity.
+
+PDF is the SVG rendered by WeasyPrint (`tarsia_svg.py` or `loop_cards.py`) inside `templates/interactive/tarsia_print.html`. PPTX is native shapes from `python-pptx` (`tarsia_pptx.py`, `loop_cards.py`): a title/instructions slide, the puzzle or cards, and a closing slide whose email is `mathematicskgz@gmail.com`. The download name is the ASCII letters and digits of the title, or `Tarsia`, plus `_Tarsia.pptx` / `_Tarsia.pdf`.
+
+Server entry points:
 
 ```python
-import sys
-sys.path.insert(0, '/home/user/mathkg/.claude/skills/tarsia-puzzle/scripts')
-from build_tarsia_deck import build_tarsia_activity
-from geom import edge_count
+from apps.resources.generators.tarsia_geom import edge_count
+from apps.resources.generators.tarsia_pptx import build_tarsia_pptx
+from apps.resources.generators.tarsia_svg import build_tarsia_svg
+from apps.resources.generators.loop_cards import build_loop_cards_pptx, build_loop_cards_svg, build_loop_order
 
-n = 4                      # grid size: n=3 -> 9 pairs, n=4 -> 18, n=5 -> 30
-print(edge_count(n))       # exact number of (question, answer) pairs required
-
+n = 4
+print(edge_count(n))  # 18
 pairs = [
     ("0.3 + 0.4", "0.7"),
     ("0.8 - 0.5", "0.3"),
-    # ... exactly edge_count(n) pairs total
+    # ... 16 more pairs; 18 total, every answer unique
+]
+
+buf = build_tarsia_pptx(
+    n, pairs, "Ондуктарды кошуу — Тарсия",
+    ["Үч бурчтуктарды кесип, жооптору дал келгендерин жанаштырыңыз."],
+)
+svg = build_tarsia_svg(n, pairs)  # defaults: s=1.8, font_size=9, inset_frac=0.11
+```
+
+`build_tarsia_pptx` returns a `BytesIO`. It does not check pair count; pass `edge_count(n)` pairs. The view is what enforces the limits above.
+
+Menu row: `python manage.py add_tarsia_builder_menu_link` creates or updates the "Тарсия куруучу" item pointing at `tarsia_builder`. Safe to re-run.
+
+## Offline generator
+
+`tools/tarsia/` is the original matplotlib + pptxgenjs batch tool. The site builder does not call it. Matplotlib is not in `requirements.txt`. PPTX assembly needs Node and `TARSIA_PPTXGENJS` set to a `pptxgenjs` module path.
+
+```python
+import sys
+sys.path.insert(0, "tools/tarsia")
+from build_tarsia_deck import build_tarsia_activity
+from geom import edge_count
+
+n = 4
+print(edge_count(n))  # 18
+pairs = [
+    ("0.3 + 0.4", "0.7"),
+    ("0.8 - 0.5", "0.3"),
+    # ... 16 more pairs; 18 total, every answer unique
 ]
 
 out = build_tarsia_activity(
     n=n,
     pairs=pairs,
     title="Ондуктарды кошуу — Тарсия",
-    usage_lines=[
-        "Үч бурчтуктарды кесип, жооптору дал келгендерин жанаштырыңыз.",
-        "Жуп же кичине топ менен иштесе болот.",
-    ],
+    usage_lines=["Үч бурчтуктарды кесип, жооптору дал келгендерин жанаштырыңыз."],
     out_dir="/path/to/output",
     base_name="OnduktarduKoshuuTarsia",
-    closing_email="mathematicskgz@gmail.com",   # or None
+    closing_email="mathematicskgz@gmail.com",  # or None
 )
-# out == {'pptx': ..., 'pdf': ..., 'png': ...}
+# out == {"pptx": ..., "pdf": ..., "png": ...}
 ```
 
-`build_tarsia_activity` needs `TARSIA_PPTXGENJS` set to a `pptxgenjs`
-module path (or pass it via the environment before calling), since the
-PPTX assembly shells out to Node + pptxgenjs, same as the rest of this
-project's slide generation:
+Wrong pair count raises `ValueError`. Output is a 3-slide PPTX (title, full-bleed puzzle image, closing), a vector PDF of the puzzle, and `{base_name}_puzzle.png`. `render_tarsia` defaults are `s=1.8`, `fontsize=9`, `inset_frac=0.11`. Those were tuned so three texts can share one interior triangle. A larger `n` or a longer string needs a visual check of the busiest interior triangles.
 
-```bash
-export TARSIA_PPTXGENJS=/path/to/node_modules/pptxgenjs
-```
+This tool does not shuffle pairs and does not reject duplicate answers. Do that before calling it.
 
-Output: a 3-slide PPTX (title/instructions, full-bleed puzzle image,
-closing slide - no branding added beyond what you pass in), a vector PDF
-of the puzzle alone (crisp at any print size), and the raw PNG.
+## Loop cards
 
-## Content rules (copyright + correctness)
+Second shape on the builder, implemented in `apps/resources/generators/loop_cards.py`. Pieces are rectangles. For a permutation `order` of the pairs, card `k` shows `answer[order[k]]` on the left and `question[order[(k+1) % N]]` on the right. Solving the right-hand question leads to the card whose left side is that answer, once around the loop and back to the start.
 
-- **Never copy another source's exact numbers.** If you're working from a
-  reference deck (as with the GoTeachMaths-derived files), use its
-  *subject and difficulty* as a guide and write entirely new values.
-- **Verify every pair programmatically before rendering** - use
-  `fractions.Fraction` for fraction arithmetic, `decimal.Decimal` for
-  decimals (never raw `float`, which introduces rounding error). A wrong
-  pair ships a broken puzzle (no valid match exists).
-- **No duplicate answers** within one puzzle, or two different questions
-  could legitimately match the same triangle, breaking the "exactly one
-  valid match" property. Check for collisions before rendering (dedupe,
-  or require it isn't in `used_answers` as you generate).
-- Strip any branding/watermarks/links if you're using a real file only as
-  a *structural* reference - this skill's own output carries none.
+## Content rules
 
-## Picking grid size `n`
+- Write new numbers. A reference deck is a guide for subject and difficulty only.
+- Check every pair before rendering. Use `fractions.Fraction` or `decimal.Decimal`. A wrong pair has no valid match.
+- Keep answers unique inside one puzzle. Two questions with the same answer both match the same edge.
 
-| n | triangles (n²) | internal edges (pairs needed) |
+## Grid size
+
+Internal edges = `3n(n-1)/2`, which is what `edge_count` returns.
+
+| n | Triangles (n²) | Pairs |
 |---|---|---|
-| 3 | 9  | 9  |
+| 3 | 9 | 9 |
 | 4 | 16 | 18 |
 | 5 | 25 | 30 |
 | 6 | 36 | 45 |
 
-Matches the real decks' "Standard" (bigger, more problems) vs. "Small"
-(fewer, quicker) pattern - e.g. generate once at n=4 for Standard and
-again at n=3 with a subset of pairs for Small.
-
-## Tuned rendering defaults
-
-`tarsia.render_tarsia()` defaults (`s=1.8`, `fontsize=9`,
-`inset_frac=0.11`) were tuned empirically to avoid text collisions where
-3 pairs converge on one small triangle (an interior triangle can border
-up to 3 neighbors, so it can carry up to 3 separate texts). If you change
-`fontsize` or go to a larger `n` (smaller triangles per pair), re-check
-for overlap - render once, read the PNG back, and look at the busiest
-interior triangles before shipping.
+The builder stops at n=6. The offline `edge_count` accepts larger n; text collision gets worse as the triangles shrink.
 
 ## Files
 
-- `scripts/geom.py` - triangular grid math: vertices of every small
-  triangle, midpoint + angle of every internal edge, for a given `n`.
-- `scripts/tarsia.py` - `render_tarsia(n, pairs, ...)`: draws the grid and
-  places/rotates each pair's two texts correctly (matplotlib, outputs PNG
-  + vector PDF).
-- `scripts/build_tarsia_deck.py` - `build_tarsia_activity(...)`: wraps
-  `render_tarsia` plus a 3-slide PPTX (title/instructions, puzzle image,
-  closing) via Node + pptxgenjs.
-
-## External references (unreachable from this sandbox)
-
-The request for this tool also pointed at tarsia.ai, tarsiamaker.co.uk,
-classtools.net/tarsia, mrchapmanmaths.com/tools/tarsia-generator, and a
-YouTube tutorial (watch?v=K-YOXYAeDMM), to fold their conventions in.
-None could be fetched - this sandbox's network policy blocks outbound
-requests to hosts outside its allowlist (confirmed via repeated
-`WebFetch` attempts, all `ENOTFOUND`; see the project's `CLAUDE.md` for
-the same restriction noted against other reference sites). If you're
-picking this up with network access, worth checking those sites for:
-multi-size/difficulty export options, a "dummy edge" border convention,
-and whether they support shapes beyond triangles (some Tarsia-style
-tools also do rectangles/hexagons) - none of that is implemented here.
-What *is* implemented was reverse-engineered directly from the real
-uploaded `.pptx`/`.pdf` files instead (see above), which is why the
-geometry is exact rather than approximate.
+- `tools/tarsia/geom.py` — original grid math.
+- `tools/tarsia/tarsia.py` — matplotlib PNG + PDF.
+- `tools/tarsia/build_tarsia_deck.py` — PNG/PDF plus a pptxgenjs deck.
+- `apps/resources/generators/tarsia_geom.py` — server copy of the grid math.
+- `apps/resources/generators/tarsia_svg.py` — SVG for the PDF path. Defaults match the matplotlib renderer (`s=1.8`, `font_size=9`, `inset_frac=0.11`).
+- `apps/resources/generators/tarsia_pptx.py` — editable triangle shapes, not a placed PNG.
+- `apps/resources/generators/loop_cards.py` — loop-card SVG and PPTX.
+- `static/js/tarsia-builder.js` — live preview. Same vertex and edge construction as `tarsia_geom.py`.
 
 ## Known limits
 
-- This does not implement the "dummy edge" border convention some
-  commercial generators use (a border edge with a value that matches
-  nothing, just to vary the outline). Every internal edge here is a real,
-  solvable pair; the outer boundary of the big triangle has no text.
-- Designed for short text (fraction/decimal expressions, single
-  operations). A long question string in a small/crowded `n=5+` grid may
-  still need a bigger `s` or smaller `fontsize` - check the render.
+- Outer edges carry no text. There is no "dummy edge" border value.
+- The site builder rejects a side longer than 60 characters. The offline renderer will draw a longer string and may overlap.
+- Loop cards are on the site builder only. `tools/tarsia/` builds triangles.

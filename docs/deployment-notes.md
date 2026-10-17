@@ -195,15 +195,25 @@ Run the command above after deploy, or in admin open the change page
 whose URL ends in `/personal/resource/603/change/` and replace the
 **File** field (not Image).
 
+How topic pages choose their one free file, how `download_resource`
+applies subscription and daily limits, and how a missing stored path
+is resolved (title basename, one collision suffix, bundled v2 deck)
+is written up in `docs/topic-pages-and-downloads.md`.
+
 ## Other open items from the full QA audit (2026-09-17)
 
 Lower priority, not yet acted on:
 - No admin notification when a new `SubscriptionRequest` comes in — relies
   on manually checking Django admin. Worth an email to the site owner, or
   at least a dashboard badge.
-- The resource download button shows to any logged-in user regardless of
-  subscription status; it only redirects with an error at click-time
-  rather than showing the real state upfront.
+- Hand-built lesson templates still show a `download_resource` button
+  to anyone; subscription and the daily cap are enforced when the
+  button is clicked. Topic pages with `downloads_gated: True`
+  (`/to-fractions/`, `/four_basic_operations/`) hide non-free buttons
+  and show register/renew instead. `/calculator-fractions/` leaves
+  `downloads_gated` unset, so a logged-in visitor still sees the
+  buttons and hits the check in the view. See
+  `docs/topic-pages-and-downloads.md`.
 - `static_cdn/` and `media_cdn/` (~2700 files, from the very first commit)
   are dead weight — unreferenced by any current setting. Safe to delete.
 - `get_client_ip()` in `apps/resources/views/downloads.py` trusts a
