@@ -10,7 +10,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
-from apps.resources.models import Resource, ResourceDownload
+from apps.resources.models import PageFreeDownload, Resource, ResourceDownload
 
 from .models import Account, SubscriptionRequest
 
@@ -249,6 +249,14 @@ class DownloadLimitTests(TestCase):
         ResourceDownload.objects.create(resource=resource, user=self.user)
         ResourceDownload.objects.create(resource=resource, user=self.user)
         self.assertEqual(self.user.downloads_remaining_today('worksheet'), 4)
+
+    def test_a_page_free_file_does_not_count_against_todays_limit(self):
+        resource = self._make_resource('presentation', 'FreeSample')
+        PageFreeDownload.objects.create(
+            page_key='quota-page', resource=resource, pinned=True,
+        )
+        ResourceDownload.objects.create(resource=resource, user=self.user)
+        self.assertEqual(self.user.downloads_remaining_today('presentation'), 1)
 
     def test_yesterdays_download_does_not_count_against_todays_limit(self):
         resource = self._make_resource('worksheet')
