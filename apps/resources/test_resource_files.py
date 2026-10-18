@@ -77,6 +77,46 @@ class ResourceFileFallbackTests(TestCase):
             'resources/files/amaldar_tartibi_ozun_tuz_v2_Abcdef1.pptx',
         )
 
+    def test_a_reused_activity_name_is_not_stored_as_the_file(self):
+        # BoluuXO is 7 letters, the same shape as Django's collision
+        # suffix, but it is a different lesson reused across the library.
+        # A missing Onduktar_Koboytuu.pptx must not be permanently
+        # repointed at Onduktar_Koboytuu_BoluuXO.pptx.
+        resource = self._resource(
+            'Onduktar_Koboytuu.pptx',
+            'resources/files/Onduktar_Koboytuu.pptx',
+        )
+        folder = _files(self.media)
+        folder.joinpath('Onduktar_Koboytuu_BoluuXO.pptx').write_bytes(b'other-lesson')
+        folder.joinpath('Onduktar_Boluu_BoluuXO.pptx').write_bytes(b'also-other')
+        self._pin(resource)
+
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(resp.status_code, 302)
+        self.assertIn('/account/', resp.url)
+        resource.refresh_from_db()
+        self.assertEqual(resource.file.name, 'resources/files/Onduktar_Koboytuu.pptx')
+
+    def test_a_real_collision_still_wins_over_a_reused_activity_name(self):
+        resource = self._resource(
+            'Onduktar_Koboytuu.pptx',
+            'resources/files/Onduktar_Koboytuu.pptx',
+        )
+        folder = _files(self.media)
+        folder.joinpath('Onduktar_Koboytuu_BoluuXO.pptx').write_bytes(b'other-lesson')
+        folder.joinpath('Onduktar_Boluu_BoluuXO.pptx').write_bytes(b'also-other')
+        folder.joinpath('Onduktar_Koboytuu_Abcdef1.pptx').write_bytes(b'real-upload')
+        self._pin(resource)
+
+        resp = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(b''.join(resp.streaming_content), b'real-upload')
+        resource.refresh_from_db()
+        self.assertEqual(
+            resource.file.name,
+            'resources/files/Onduktar_Koboytuu_Abcdef1.pptx',
+        )
+
     def test_two_collision_suffixes_are_not_guessed(self):
         resource = self._resource(
             'unrelated.pptx',
