@@ -27,6 +27,9 @@ BUNDLED_DIR = Path(__file__).resolve().parent / 'bundled_files'
 PAGE_KEY = 'four_basic_operations'
 # Django's FileSystemStorage.get_alternative_name appends _ plus
 # get_random_string(7) before the extension when the name is taken.
+# The same shape also matches real activity names in this library
+# (Jydymai, KondumA, BoluuXO, Orunduk, ...). Those names are reused
+# across many files; a collision suffix is not.
 SUFFIX = re.compile(r'^[A-Za-z0-9]{7}$')
 
 
@@ -78,6 +81,7 @@ def locate_resource_file(resource):
             if path.is_file():
                 return path
 
+        reused = _reused_name_tokens(root)
         seen = set()
         for name in names:
             stem = Path(name).stem
@@ -85,7 +89,7 @@ def locate_resource_file(resource):
             if not stem or not ext or (stem, ext) in seen:
                 continue
             seen.add((stem, ext))
-            matches = _suffixed_files(root, stem, ext)
+            matches = _suffixed_files(root, stem, ext, reused)
             if len(matches) == 1:
                 return matches[0]
 
@@ -197,13 +201,34 @@ def _basename(name):
     return name
 
 
-def _suffixed_files(root, stem, ext):
+def _reused_name_tokens(root):
+    """7-character filename pieces that belong to more than one file.
+
+    Django's collision suffix is a one-off random string. Activity names
+    such as Jydymai or KondumA are the same length and alphabet, but they
+    are shared by many files. Treating a shared name as a collision would
+    serve that other file and, in open_resource_file, store the wrong path.
+    """
+    counts = {}
+    for path in root.iterdir():
+        if not path.is_file():
+            continue
+        seen_in_file = set()
+        for part in path.stem.split('_'):
+            if SUFFIX.fullmatch(part):
+                seen_in_file.add(part.lower())
+        for key in seen_in_file:
+            counts[key] = counts.get(key, 0) + 1
+    return {key for key, count in counts.items() if count > 1}
+
+
+def _suffixed_files(root, stem, ext, reused):
     prefix = stem + '_'
     found = []
     for path in root.iterdir():
         if not path.is_file() or path.suffix != ext or not path.name.startswith(prefix):
             continue
         middle = path.name[len(prefix):-len(ext)]
-        if SUFFIX.fullmatch(middle):
+        if SUFFIX.fullmatch(middle) and middle.lower() not in reused:
             found.append(path)
     return found
