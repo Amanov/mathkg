@@ -22,6 +22,14 @@
   </p>
   {% endif %}
 
+  {% if page.grades %}
+  <div class="grade-tabs" role="tablist" aria-label="Класс">
+    {% for g in page.grades %}
+    <button type="button" class="grade-tab" role="tab" data-grade="{{ g.num }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ g.label }}<span class="grade-tab__count">{{ g.count }}</span></button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <div class="topic-controls">
     <button type="button" class="model-switch" id="model-switch" aria-pressed="true">
       <span class="model-switch__track" aria-hidden="true"></span>
@@ -66,7 +74,7 @@
       <div class="teacher-guide__extra">
         <h3>Класстык ыкмалар боюнча көмөкчү материал</h3>
         {% for res in page.teacher_resources %}
-        <div class="teacher-guide__extra-item">
+        <div class="teacher-guide__extra-item"{% if page.grades %} data-grade="{{ res.grade }}"{% endif %}>
           <div>
             <p class="teacher-guide__extra-title">{{ res.title }}</p>
             <p class="teacher-guide__extra-note">{{ res.note }}</p>
@@ -100,7 +108,7 @@
     {% for step in page.bloom_steps %}
     <li class="bloom-step lv-{{ step.num }}">
       <span class="bloom-step__name">{{ step.level }}</span>
-      <span class="bloom-step__count">{{ step.count }} материал</span>
+      <span class="bloom-step__count" data-level="{{ step.num }}">{{ step.count }} материал</span>
     </li>
     {% endfor %}
   </ol>
@@ -121,9 +129,10 @@
     </header>
     <div class="topic-list">
       {% for item in section.items %}
-      <article class="topic-row lv-{{ item.level_num }}">
-        <div class="topic-row__thumb">{% if item.image %}<img class="mk-zoom" tabindex="0" src="{% static item.image %}" alt="{{ item.title }}">{% else %}{% include item.svg %}{% endif %}</div>
+      <article class="topic-row lv-{{ item.level_num }}"{% if page.grades %} data-grade="{{ item.grade }}" data-level="{{ item.level_num }}"{% endif %}>
+        <div class="topic-row__thumb">{% if item.image %}<img class="mk-zoom{% if item.grade %} mk-zoom--read{% endif %}" tabindex="0" src="{% static item.image %}" alt="{{ item.title }}" loading="lazy">{% else %}{% include item.svg %}{% endif %}</div>
         <div class="topic-row__text">
+          {% if item.subtopic %}<span class="subtopic-chip">{{ item.subtopic }}</span>{% endif %}
           <h3 class="topic-row__title">{{ item.title }}</h3>
           <p class="topic-row__note">{{ item.note }}</p>
           <p class="bloom-tag lesson-meta">
@@ -178,6 +187,33 @@
     try { localStorage.setItem('topicPageModel', on ? 'on' : 'off'); } catch (e) {}
   });
   try { if (localStorage.getItem('topicPageModel') === 'off') setModel(false); } catch (e) {}
+
+  // Grade tabs: show one grade's rows, hide empty sections and recount
+  // the Bloom staircase. The tab is kept in the URL (#klass-3).
+  var tabs = document.querySelectorAll('.grade-tab');
+  function showGrade(g) {
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.grade === g)); });
+    document.querySelectorAll('.topic-row').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
+    document.querySelectorAll('.topic-section').forEach(function (s) {
+      s.hidden = !s.querySelector('.topic-row:not([hidden])');
+    });
+    document.querySelectorAll('.teacher-guide__extra-item').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
+    document.querySelectorAll('.bloom-step__count').forEach(function (c) {
+      var n = document.querySelectorAll('.topic-row[data-grade="' + g + '"][data-level="' + c.dataset.level + '"]').length;
+      c.textContent = n + ' материал';
+    });
+  }
+  if (tabs.length) {
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        showGrade(t.dataset.grade);
+        try { history.replaceState(null, '', '#klass-' + t.dataset.grade); } catch (e) {}
+      });
+    });
+    var m = location.hash.match(/klass-(\d+)/);
+    var start = m && document.querySelector('.grade-tab[data-grade="' + m[1] + '"]') ? m[1] : tabs[0].dataset.grade;
+    showGrade(start);
+  }
 
   // Entrance animation (see topic-page.css): reveal each section head and
   // row as it scrolls into view. If IntersectionObserver is unsupported,

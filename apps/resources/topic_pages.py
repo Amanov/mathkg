@@ -9,6 +9,11 @@ hand-built templates do with `res|get_item:'filename'`.
 
 from django.urls import reverse
 
+from apps.resources.data.four_basic_operations_grades import (
+    GRADE_IMAGE_DIR,
+    GRADE_ITEMS,
+    GRADE_TEACHER_FILES,
+)
 from apps.resources.free_download import choose_free_resource
 
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
@@ -587,6 +592,35 @@ FOUR_BASIC_OPERATIONS = {
 # grouped by resource type instead of lesson stage. Items still carry a
 # Bloom level - the template needs it for the ladder/staircase - chosen by
 # what each activity actually asks the pupil to do.
+def _add_grade_items(page, grade_items, teacher_files, image_dir):
+    """Put grade-level items into the first section with the same title.
+
+    Items already on the page get grade 0 and show under the «Жалпы» tab.
+    """
+    for section in page['sections']:
+        for item in section['items']:
+            item.setdefault('grade', 0)
+    for section_title, item in grade_items:
+        section = next(s for s in page['sections'] if s['title'] == section_title)
+        section['items'].append(item)
+        page['images'][item['svg']] = f"{image_dir}{item['svg']}.webp"
+    page['teacher_resources'] = page.get('teacher_resources', []) + [
+        {
+            'title': f'{grade}-класс · {subtopic}: класста колдонуу',
+            'note': '40 мүнөттүк план, буюмдар, доска, трекер.',
+            'files': [('PDF', name)],
+            'grade': grade,
+        }
+        for grade, subtopic, name in teacher_files
+    ]
+
+
+_add_grade_items(FOUR_BASIC_OPERATIONS, GRADE_ITEMS, GRADE_TEACHER_FILES, GRADE_IMAGE_DIR)
+
+# Tab labels for pages whose items carry a grade; 0 = materials for any grade.
+GRADE_LABELS = {0: 'Жалпы', 1: '1-класс', 2: '2-класс', 3: '3-класс', 4: '4-класс', 5: '5-класс'}
+
+
 CALCULATOR_FRACTIONS = {
     'title': 'Калькулятордо бөлчөктөр',
     'svg_dir': 'svg/topic/calculator-fractions',
@@ -724,6 +758,8 @@ def build_topic_page(page, resources, user):
                     'level_num': BLOOM_LEVELS.index(item['level']) + 1,
                     'links': links,
                     'has_locked': any(not link['free'] for link in links),
+                    'grade': item.get('grade'),
+                    'subtopic': item.get('subtopic'),
                 }
             )
         sections.append({**section, 'items': items})
@@ -739,10 +775,25 @@ def build_topic_page(page, resources, user):
                 'note': res['note'],
                 'links': links,
                 'has_locked': any(not link['free'] for link in links),
+                'grade': res.get('grade', 0),
             })
+
+    grade_nums = sorted({i['grade'] for s in sections for i in s['items'] if i['grade'] is not None})
+    grades = []
+    if len(grade_nums) > 1:
+        grades = [
+            {
+                'num': g,
+                'label': GRADE_LABELS[g],
+                'count': sum(1 for s in sections for i in s['items'] if i['grade'] == g),
+            }
+            for g in grade_nums
+        ]
 
     return {
         'title': page['title'],
+        # Grade tabs (empty for pages without grade-level items).
+        'grades': grades,
         'model_label': page.get('model_label', '5E + 3C жана Блум'),
         'stages_label': page.get('stages_label', 'Сабактын этаптары (5E + 3C)'),
         'sections': sections,
