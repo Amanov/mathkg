@@ -4,16 +4,18 @@
 
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261019b">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261019c">
 {% if page.uses_mk_zoom %}
-<link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019b">
+<link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019c">
 {% endif %}
 {% endblock %}
 
 {% block content %}
 {# Layout and data: apps/resources/topic_pages.py. Thumbnails: templates/svg/topic/. #}
 <main class="topic-page">
+  {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
   <h1 class="topic-page__title">{{ page.title }}</h1>
+  {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
 
   {% if not user.is_authenticated %}
   <p class="topic-page__notice">
@@ -240,6 +242,6 @@
 {% block extra_scripts %}
 {{ block.super }}
 {% if page.uses_mk_zoom %}
-<script src="{% static 'js/mk-zoom.js' %}?v=20261019b"></script>
+<script src="{% static 'js/mk-zoom.js' %}?v=20261019c"></script>
 {% endif %}
 {% endblock %}
