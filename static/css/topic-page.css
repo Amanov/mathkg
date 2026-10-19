@@ -407,30 +407,61 @@ body .related-topics .related-topics-link:focus-visible .related-topics-title {
     text-underline-offset: 3px;
 }
 
-/* Grade tabs (pages whose materials carry a grade, e.g. «Төрт амал») */
+/* Grade tabs (pages whose materials carry a grade, e.g. «Төрт амал»):
+   one segmented control in the page's card style (border, surface, radius),
+   the selected grade filled with the topic accent like .file-pill--main. */
 .grade-tabs {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    margin: 20px 0 0;
+    gap: 4px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 20px auto 0;
+    padding: 4px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: 0 1px 2px var(--topic-shadow);
 }
 .grade-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 7px 14px;
     font: inherit;
     font-size: 15px;
-    font-weight: 500;
-    padding: 8px 14px;
-    border: 1px solid var(--border-subtle);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-muted);
+    background: transparent;
+    border: 0;
     border-radius: var(--radius-sm);
-    background: var(--surface);
-    color: var(--text);
+    box-shadow: none;
     cursor: pointer;
-    transition: border-color var(--transition-fast);
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
-.grade-tab:hover { border-color: var(--text-muted); }
+.grade-tab:hover { color: var(--text); background: var(--surface-alt); }
 .grade-tab:focus-visible { outline: 2px solid var(--topic-accent); outline-offset: 2px; }
-.grade-tab[aria-selected="true"] { background: var(--topic-accent); border-color: var(--topic-accent); color: #fff; }
-.grade-tab__count { margin-left: 6px; font-size: 12px; opacity: .75; }
+.grade-tab[aria-selected="true"] { color: #fff; background: var(--topic-accent); }
+.grade-tab__count {
+    min-width: 22px;
+    padding: 1px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    color: var(--text-muted);
+}
+.grade-tab[aria-selected="true"] .grade-tab__count { background: rgba(255, 255, 255, .22); color: #fff; }
+@media (max-width: 680px) {
+    .grade-tabs { width: auto; }
+    .grade-tab { padding: 6px 10px; font-size: 14px; }
+}
 .subtopic-chip {
     display: inline-block;
     margin: 0 0 6px;
@@ -440,5 +471,13 @@ body .related-topics .related-topics-link:focus-visible .related-topics-title {
     border-radius: 999px;
     color: var(--text-muted);
 }
-/* Inside-page previews: zoom far enough to read the tasks */
-.topic-row__thumb .mk-zoom--read { --mk-zoom-scale: 2.6; }
+/* Inside-page previews: the card takes the page's own shape, so the
+   preview fills the white card edge to edge, and zooms far enough to
+   read the tasks. Portrait sheets ship as a landscape crop of their top. */
+.topic-row__thumb:has(> .mk-zoom--read) { aspect-ratio: auto; padding: 0; background: #fff; }
+.topic-row__thumb img.mk-zoom--read {
+    height: auto;
+    object-fit: fill;
+    border-radius: inherit;
+    --mk-zoom-scale: 2.6;
+}
