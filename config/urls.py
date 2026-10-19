@@ -29,6 +29,8 @@ from apps.resources.views import (
     four_basic_operations_view,
     all_operations_view,
     koshuu_1_digit_view,
+    integers_adding_subtracting_1_2_digit_view,
+    hcf_lcm_prime_factorisation_mixed_view,
     subtracting_1_digit_view,
     adding_subtracting_1_digit_view,
     big4_view,
@@ -255,7 +257,7 @@ urlpatterns = [
     # көбөйтүүчүлөргө ажыратуу менен - all 3 slots, none with a real page yet.
     path('hcf-prime-factorisation/', operation_placeholder_view, {'operation_slug': 'hcf-prime-factorisation'}, name='hcf_prime_factorisation'),
     path('lcm-prime-factorisation/', operation_placeholder_view, {'operation_slug': 'lcm-prime-factorisation'}, name='lcm_prime_factorisation'),
-    path('hcf-lcm-prime-factorisation-mixed/', operation_placeholder_view, {'operation_slug': 'hcf-lcm-prime-factorisation-mixed'}, name='hcf_lcm_prime_factorisation_mixed'),
+    path('hcf-lcm-prime-factorisation-mixed/', hcf_lcm_prime_factorisation_mixed_view, name='hcf_lcm_prime_factorisation_mixed'),
 
     # Бөлчөктөр > Эсептөөлөр: бирдик бөлчөктөр - all 8 slots, none with a
     # real page yet.
@@ -340,7 +342,7 @@ urlpatterns = [
     # with a real page yet.
     path('integers-adding-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-1-2-digit'}, name='integers_adding_1_2_digit'),
     path('integers-subtracting-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-subtracting-1-2-digit'}, name='integers_subtracting_1_2_digit'),
-    path('integers-adding-subtracting-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-adding-subtracting-1-2-digit'}, name='integers_adding_subtracting_1_2_digit'),
+    path('integers-adding-subtracting-1-2-digit/', integers_adding_subtracting_1_2_digit_view, name='integers_adding_subtracting_1_2_digit'),
     path('integers-multiplying-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-1-2-digit'}, name='integers_multiplying_1_2_digit'),
     path('integers-dividing-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-dividing-1-2-digit'}, name='integers_dividing_1_2_digit'),
     path('integers-multiplying-dividing-1-2-digit/', operation_placeholder_view, {'operation_slug': 'integers-multiplying-dividing-1-2-digit'}, name='integers_multiplying_dividing_1_2_digit'),

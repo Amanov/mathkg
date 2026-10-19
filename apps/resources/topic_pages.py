@@ -618,7 +618,7 @@ def _add_grade_items(page, grade_items, teacher_files, image_dir):
 _add_grade_items(FOUR_BASIC_OPERATIONS, GRADE_ITEMS, GRADE_TEACHER_FILES, GRADE_IMAGE_DIR)
 
 # Tab labels for pages whose items carry a grade; 0 = materials for any grade.
-GRADE_LABELS = {0: 'Жалпы', 1: '1-класс', 2: '2-класс', 3: '3-класс', 4: '4-класс', 5: '5-класс'}
+GRADE_LABELS = {0: 'Жалпы', 1: '1-класс', 2: '2-класс', 3: '3-класс', 4: '4-класс', 5: '5-класс', 6: '6-класс'}
 
 
 CALCULATOR_FRACTIONS = {
@@ -792,6 +792,9 @@ def build_topic_page(page, resources, user):
 
     return {
         'title': page['title'],
+        # Menu path above the title and a grade badge for single-grade pages.
+        'crumb': page.get('crumb'),
+        'grade_badge': page.get('grade_badge'),
         # Grade tabs (empty for pages without grade-level items).
         'grades': grades,
         'model_label': page.get('model_label', '5E + 3C жана Блум'),

@@ -449,6 +449,28 @@ class FreeDownloadTests(TestCase):
             for _label, name in res['files']:
                 self.assertTrue((bundled / name).is_file(), name)
 
+    def test_grade_topic_pages_render_with_their_files(self):
+        from pathlib import Path
+        from django.contrib.staticfiles import finders
+        from apps.resources.data.grade_topic_pages import GRADE_TOPIC_PAGES, NEW_FILES
+        bundled = Path(__file__).resolve().parent / 'bundled_files'
+        for name in NEW_FILES:
+            self.assertTrue((bundled / name).is_file(), name)
+        found = set(Resource.objects.filter(title__in=NEW_FILES, is_active=True).values_list('title', flat=True))
+        self.assertEqual(found, set(NEW_FILES))
+        for spec in GRADE_TOPIC_PAGES:
+            for image in spec['images'].values():
+                self.assertIsNotNone(finders.find(image), image)
+        html = self.client.get(reverse('koshuu_1_digit')).content.decode()
+        self.assertIn('topic-page__grade', html)
+        self.assertIn('5-класс', html)
+        html = self.client.get(reverse('integers_adding_subtracting_1_2_digit')).content.decode()
+        self.assertIn('>1-класс<span class="grade-tab__count">', html)
+        self.assertIn('>2-класс<span class="grade-tab__count">', html)
+        html = self.client.get(reverse('hcf_lcm_prime_factorisation_mixed')).content.decode()
+        self.assertIn('6-класс', html)
+        self.assertIn('Атышуу', html)
+
     def test_grade_level_resources_exist_after_migrations(self):
         from apps.resources.data.four_basic_operations_grades import (
             GRADE_ITEMS,

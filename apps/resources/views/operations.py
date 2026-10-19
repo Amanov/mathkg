@@ -5,7 +5,11 @@ from apps.resources.utils.resource_helpers import get_active_resources
 
 from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
 from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
-from apps.resources.data.koshuu_1_digit_data import KOSHUU_1_DIGIT_SECTIONS
+from apps.resources.data.grade_topic_pages import (
+    HCF_LCM_PRIME_FACTORISATION,
+    INTEGERS_ADD_SUB_1_2_DIGIT,
+    KOSHUU_1_DIGIT,
+)
 from apps.resources.data.subtracting_1_digit_data import SUBTRACTING_1_DIGIT_SECTIONS
 from apps.resources.data.adding_subtracting_1_digit_data import ADDING_SUBTRACTING_1_DIGIT_SECTIONS
 from apps.resources.data.algebra_linear_data import ALGEBRA_LINEAR_VAR1SIDE_NONCALC_1STEP_SECTIONS
@@ -40,16 +44,21 @@ def all_operations_view(request):
     )
 
 
+def _topic_page(request, spec):
+    page = build_topic_page(spec, get_active_resources(), request.user)
+    return render(request, 'resources/topic_materials.html', {'page': page})
+
+
 def koshuu_1_digit_view(request):
-    return render(
-        request,
-        'resources/onduktar/koshuu_1_digit.html',
-        {
-            'res': get_active_resources(),
-            'sections': KOSHUU_1_DIGIT_SECTIONS,
-            'page_title': 'Кошуу — 1 орундуу сандар',
-        }
-    )
+    return _topic_page(request, KOSHUU_1_DIGIT)
+
+
+def integers_adding_subtracting_1_2_digit_view(request):
+    return _topic_page(request, INTEGERS_ADD_SUB_1_2_DIGIT)
+
+
+def hcf_lcm_prime_factorisation_mixed_view(request):
+    return _topic_page(request, HCF_LCM_PRIME_FACTORISATION)
 
 
 def subtracting_1_digit_view(request):

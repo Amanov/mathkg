@@ -5,6 +5,8 @@ from .operations import (
     directed_numbers_view,
     four_basic_operations_view,
     koshuu_1_digit_view,
+    integers_adding_subtracting_1_2_digit_view,
+    hcf_lcm_prime_factorisation_mixed_view,
     subtracting_1_digit_view,
     adding_subtracting_1_digit_view,
     algebra_linear_var1side_noncalc_1step_view,
