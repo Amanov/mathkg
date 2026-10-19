@@ -1,10 +1,12 @@
 from django.shortcuts import render
 
+from apps.resources.models import Resource
+
 from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS, build_topic_page
 from apps.resources.utils.resource_helpers import get_active_resources
 
 from apps.resources.data.all_operations_data import ALL_OPERATIONS_SECTIONS
-from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
+from apps.resources.data.directed_numbers_page import directed_numbers_spec
 from apps.resources.data.grade_topic_pages import (
     HCF_LCM_PRIME_FACTORISATION,
     INTEGERS_ADD_SUB_1_2_DIGIT,
@@ -23,14 +25,14 @@ def four_basic_operations_view(request):
 
 
 def directed_numbers_view(request):
-    return render(
-        request,
-        'resources/sandar/directed_numbers.html',
-        {
-            'res': get_active_resources(),
-            'sections': DIRECTED_NUMBERS_SECTIONS,
-        }
-    )
+    resources = get_active_resources()
+    older = Resource.objects.filter(
+        is_active=True,
+        subsubtopic__title='Эсептөөлөр',
+        subsubtopic__subtopic__title='Багытталган сандар',
+    ).values_list('title', flat=True)
+    page = build_topic_page(directed_numbers_spec(older), resources, request.user)
+    return render(request, 'resources/topic_materials.html', {'page': page})
 
 
 def all_operations_view(request):

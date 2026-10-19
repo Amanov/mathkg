@@ -471,6 +471,30 @@ class FreeDownloadTests(TestCase):
         self.assertIn('6-класс', html)
         self.assertIn('Атышуу', html)
 
+    def test_directed_numbers_page_has_grade_packs_and_older_activities(self):
+        from pathlib import Path
+        from django.contrib.staticfiles import finders
+        from apps.resources.data.directed_numbers_page import DIRECTED_NUMBERS, NEW_FILES
+        from apps.resources.models import SubSubtopic, Subtopic, Topic
+        bundled = Path(__file__).resolve().parent / 'bundled_files'
+        for name in NEW_FILES:
+            self.assertTrue((bundled / name).is_file(), name)
+        found = set(Resource.objects.filter(title__in=NEW_FILES, is_active=True).values_list('title', flat=True))
+        self.assertEqual(found, set(NEW_FILES))
+        for image in DIRECTED_NUMBERS['images'].values():
+            self.assertIsNotNone(finders.find(image), image)
+        topic = Topic.objects.create(title='Сандар', slug='sandar-dn-test')
+        subtopic = Subtopic.objects.create(title='Багытталган сандар', slug='bagyttalgan-dn-test', topic=topic)
+        sub = SubSubtopic.objects.create(title='Эсептөөлөр', slug='eseptoo-dn-test', subtopic=subtopic)
+        Resource.objects.create(title='4-Amal-BagyttalganSandarMenenBingo.pptx', file='resources/files/b.pptx',
+                                category='activity', is_active=True, topic=topic, subtopic=subtopic,
+                                subsubtopic=sub)
+        html = self.client.get(reverse('directed_numbers')).content.decode()
+        for label in ('>Жалпы<', '>5-класс<', '>6-класс<'):
+            self.assertIn(label, html)
+        self.assertIn('Бинго', html)
+        self.assertIn('Атышуу', html)
+
     def test_grade_level_resources_exist_after_migrations(self):
         from apps.resources.data.four_basic_operations_grades import (
             GRADE_ITEMS,
