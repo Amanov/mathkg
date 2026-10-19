@@ -415,12 +415,49 @@ class FreeDownloadTests(TestCase):
             (item['title'], [name for _label, name in item['files']])
             for section in FOUR_BASIC_OPERATIONS['sections']
             for item in section['items']
+            if item['grade'] == 0
         ]
         self.assertEqual(got, expected)
         resp = self.client.get(reverse('four_basic_operations'))
         html = resp.content.decode()
         positions = [html.index(title) for title, _files in expected]
         self.assertEqual(positions, sorted(positions))
+
+
+    def test_four_basic_operations_has_grade_tabs(self):
+        from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS
+        resp = self.client.get(reverse('four_basic_operations'))
+        html = resp.content.decode()
+        for label in ('Жалпы', '1-класс', '2-класс', '3-класс', '4-класс', '5-класс'):
+            self.assertIn(f'>{label}<span class="grade-tab__count">', html)
+        self.assertIn('data-grade="3"', html)
+        self.assertIn('Көбөйтүү жадыбалы', html)
+        self.assertIn('mk-zoom--read', html)
+        # Every grade-level file ships with the app and every thumbnail exists.
+        from pathlib import Path
+        from django.contrib.staticfiles import finders
+        bundled = Path(__file__).resolve().parent / 'bundled_files'
+        for section in FOUR_BASIC_OPERATIONS['sections']:
+            for item in section['items']:
+                if not item['grade']:
+                    continue
+                for _label, name in item['files']:
+                    self.assertTrue((bundled / name).is_file(), name)
+                image = FOUR_BASIC_OPERATIONS['images'][item['svg']]
+                self.assertIsNotNone(finders.find(image), image)
+        for res in FOUR_BASIC_OPERATIONS['teacher_resources']:
+            for _label, name in res['files']:
+                self.assertTrue((bundled / name).is_file(), name)
+
+    def test_grade_level_resources_exist_after_migrations(self):
+        from apps.resources.data.four_basic_operations_grades import (
+            GRADE_ITEMS,
+            GRADE_TEACHER_FILES,
+        )
+        names = {name for _s, item in GRADE_ITEMS for _l, name in item['files']}
+        names |= {name for _g, _s, name in GRADE_TEACHER_FILES}
+        found = set(Resource.objects.filter(title__in=names, is_active=True).values_list('title', flat=True))
+        self.assertEqual(found, names)
 
 
 class AnalyticsDashboardTests(TestCase):
