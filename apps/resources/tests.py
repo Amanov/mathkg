@@ -433,6 +433,10 @@ class FreeDownloadTests(TestCase):
         self.assertIn('data-grade="3"', html)
         self.assertIn('Көбөйтүү жадыбалы', html)
         self.assertIn('mk-zoom--read', html)
+        # Switching grades must mark the newly shown rows as revealed.
+        # They start hidden, and the scroll-in observer does not fire
+        # when `hidden` is removed, which left them at opacity 0.
+        self.assertIn("if (show) r.classList.add('is-in')", html)
         # Every grade-level file ships with the app and every thumbnail exists.
         from pathlib import Path
         from django.contrib.staticfiles import finders

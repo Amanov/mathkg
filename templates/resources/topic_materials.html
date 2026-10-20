@@ -195,9 +195,19 @@
   var tabs = document.querySelectorAll('.grade-tab');
   function showGrade(g) {
     tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.grade === g)); });
-    document.querySelectorAll('.topic-row').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
+    document.querySelectorAll('.topic-row').forEach(function (r) {
+      var show = r.dataset.grade === g;
+      r.hidden = !show;
+      // Other grades start hidden. The scroll-in observer never fires for
+      // them when the tab removes `hidden`, so they would stay at opacity 0.
+      if (show) r.classList.add('is-in');
+    });
     document.querySelectorAll('.topic-section').forEach(function (s) {
       s.hidden = !s.querySelector('.topic-row:not([hidden])');
+      if (!s.hidden) {
+        var head = s.querySelector('.topic-section__head');
+        if (head) head.classList.add('is-in');
+      }
     });
     document.querySelectorAll('.teacher-guide__extra-item').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
     document.querySelectorAll('.bloom-step__count').forEach(function (c) {
