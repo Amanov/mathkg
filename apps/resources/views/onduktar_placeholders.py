@@ -1370,13 +1370,18 @@ OPERATION_PLACEHOLDER_TITLES = {
 }
 
 
-def operation_placeholder_view(request, operation_slug):
-    try:
-        page_title = OPERATION_PLACEHOLDER_TITLES[operation_slug]
-    except KeyError:
-        raise Http404('Unknown operation')
+def placeholder_page(request, page_title):
+    """The «материалдар даярдалууда» page under a fixed title."""
     return render(
         request,
         'resources/onduktar/operation_placeholder.html',
         {'page_title': page_title},
     )
+
+
+def operation_placeholder_view(request, operation_slug):
+    try:
+        page_title = OPERATION_PLACEHOLDER_TITLES[operation_slug]
+    except KeyError:
+        raise Http404('Unknown operation')
+    return placeholder_page(request, page_title)
