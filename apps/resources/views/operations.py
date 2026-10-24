@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS, build_topic_page
 from apps.resources.utils.resource_helpers import get_active_resources
-from apps.resources.views.onduktar_placeholders import placeholder_page
+from apps.resources.views.onduktar_placeholders import pack_or_placeholder, placeholder_page
 
 from apps.resources.data.directed_numbers_page import DIRECTED_NUMBERS
 from apps.resources.data.grade_topic_pages import (
@@ -54,4 +54,4 @@ def adding_subtracting_1_digit_view(request):
 
 
 def algebra_linear_var1side_noncalc_1step_view(request):
-    return placeholder_page(request, 'Белгисиз бир жагында: 1-кадам')
+    return pack_or_placeholder(request, 'algebra-linear-var1side-noncalc-1step', 'Белгисиз бир жагында: 1-кадам')

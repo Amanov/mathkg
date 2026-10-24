@@ -112,8 +112,8 @@ class AlgebraLinearLessonPageTests(TestCase):
         resp = self.client.get(reverse('algebra_linear_var1side_noncalc_1step'))
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, 'Белгисиз бир жагында')
-        self.assertContains(resp, 'даярдалууда')
-        self.assertNotContains(resp, 'PPT')
+        self.assertContains(resp, '6-klass-tamgaluu-tuyuntmalar-tendemeler-sabak.webp')
+        self.assertNotContains(resp, 'OneStepVar1Side')
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
@@ -375,8 +375,10 @@ class FreeDownloadTests(TestCase):
         self._make_resource(prefix + 'BingoOyunu.pptx')
         resp = self.client.get(reverse('to_fractions'))
         self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, '6-klass-bolchok-ondu-procent-sabak.webp')
+        self.assertNotContains(resp, 'BingoOyunu')
+        resp = self.client.get(reverse('recurring_decimals_to_fractions'))
         self.assertContains(resp, 'даярдалууда')
-        self.assertNotContains(resp, 'Акысыз')
 
     def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
         self._make_resource('4-Amal-intro.pptx')
@@ -487,6 +489,34 @@ class FreeDownloadTests(TestCase):
         self.assertNotIn('>Жалпы<', html)
         self.assertNotIn('Бинго', html)
         self.assertIn('Атышуу', html)
+
+    def test_pack_pages_fill_only_the_pages_they_teach(self):
+        from pathlib import Path
+        from django.contrib.staticfiles import finders
+        from apps.resources.data.pack_pages import GROUPS, NEW_FILES
+        bundled = Path(__file__).resolve().parent / 'bundled_files'
+        for name in NEW_FILES:
+            self.assertTrue((bundled / name).is_file(), name)
+        found = set(Resource.objects.filter(title__in=NEW_FILES, is_active=True).values_list('title', flat=True))
+        self.assertEqual(found, set(NEW_FILES))
+        for group in GROUPS:
+            for image in group['spec']['images'].values():
+                self.assertIsNotNone(finders.find(image), image)
+        filled = {
+            'geometry_area_perimeter_quadrilaterals_rectangle_area': '5-klass-perimetr-jana-ayant-sabak.webp',
+            'geometry_angles_angle_facts_on_straight_lines': '5-klass-burchtar-sabak.webp',
+            'ratio_dividing_into_a_ratio': '6-klass-katysh-sabak.webp',
+            'fractions_to_decimals': '6-klass-bolchok-ondu-procent-sabak.webp',
+            'algebra_manipulation_expressions_adding': '6-klass-tamgaluu-tuyuntmalar-tendemeler-sabak.webp',
+            'data_analysing_median': '6-klass-maalymat-diagramma-orto-maani-sabak.webp',
+        }
+        for name, deck in filled.items():
+            html = self.client.get(reverse(name)).content.decode()
+            self.assertIn(deck, html, name)
+            self.assertIn('6-класс' if deck.startswith('6') else '5-класс', html, name)
+        for name in ('geometry_area_perimeter_circles_area', 'algebra_linear_inequalities',
+                     'data_representing_pie_charts_reading', 'ratio_quantities_reverse'):
+            self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 
     def test_all_operations_page_carries_grade_4_and_5_packs(self):
         html = self.client.get(reverse('all_operations')).content.decode()
