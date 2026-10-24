@@ -103,7 +103,7 @@ class AlgebraLinearLessonPageTests(TestCase):
         self.user.save(update_fields=['is_active'])
         self.client.login(email='algebra@example.com', password='SuperSecret123!')
 
-    def test_page_shows_real_download_once_the_resource_exists(self):
+    def test_page_no_longer_offers_the_template_based_file(self):
         Resource.objects.create(
             title='Algebra-OneStepVar1Side-NonCalc.pptx',
             category='presentation', is_active=True,
@@ -112,7 +112,8 @@ class AlgebraLinearLessonPageTests(TestCase):
         resp = self.client.get(reverse('algebra_linear_var1side_noncalc_1step'))
         self.assertEqual(resp.status_code, 200)
         self.assertContains(resp, 'Белгисиз бир жагында')
-        self.assertContains(resp, 'PPT')
+        self.assertContains(resp, 'даярдалууда')
+        self.assertNotContains(resp, 'PPT')
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
@@ -129,7 +130,7 @@ class SubtractingOneDigitPageTests(TestCase):
         self.user.save(update_fields=['is_active'])
         self.client.login(email='subtracting@example.com', password='SuperSecret123!')
 
-    def test_page_shows_real_download_once_the_resource_exists(self):
+    def test_page_no_longer_offers_the_template_based_files(self):
         Resource.objects.create(
             title='Onduktar_KemituuBingo.pptx',
             category='presentation', is_active=True,
@@ -137,8 +138,8 @@ class SubtractingOneDigitPageTests(TestCase):
         )
         resp = self.client.get(reverse('subtracting_1_digit'))
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'Бинго')
-        self.assertContains(resp, 'PPT')
+        self.assertContains(resp, 'даярдалууда')
+        self.assertNotContains(resp, 'Бинго')
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
@@ -155,7 +156,7 @@ class AddingSubtractingOneDigitPageTests(TestCase):
         self.user.save(update_fields=['is_active'])
         self.client.login(email='addsub@example.com', password='SuperSecret123!')
 
-    def test_page_shows_real_download_once_the_resource_exists(self):
+    def test_page_no_longer_offers_the_template_based_files(self):
         Resource.objects.create(
             title='Onduktar_Koshuu_Kemituu_Bingo.pptx',
             category='presentation', is_active=True,
@@ -163,8 +164,8 @@ class AddingSubtractingOneDigitPageTests(TestCase):
         )
         resp = self.client.get(reverse('adding_subtracting_1_digit'))
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'Бинго')
-        self.assertContains(resp, 'PPT')
+        self.assertContains(resp, 'даярдалууда')
+        self.assertNotContains(resp, 'Бинго')
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())
@@ -368,14 +369,14 @@ class FreeDownloadTests(TestCase):
         )
         self.assertEqual(choose_free_resource('stable-page', [self.free, self.paid]).id, pinned.id)
 
-    def test_to_fractions_shows_one_free_badge_to_anonymous_visitors(self):
+    def test_to_fractions_no_longer_offers_template_based_files(self):
         prefix = 'Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-'
         self._make_resource(prefix + '1234.pptx')
         self._make_resource(prefix + 'BingoOyunu.pptx')
         resp = self.client.get(reverse('to_fractions'))
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.content.decode().count('Акысыз'), 1)
-        self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыңыз керек')
+        self.assertContains(resp, 'даярдалууда')
+        self.assertNotContains(resp, 'Акысыз')
 
     def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
         self._make_resource('4-Amal-intro.pptx')
@@ -401,27 +402,18 @@ class FreeDownloadTests(TestCase):
         self.assertContains(resp, 'Файлды жүктөп алуу үчүн сайтка катталышыңыз керек')
         self.assertContains(resp, 'mk-zoom')
 
-    def test_four_basic_materials_keep_order_and_files(self):
-        from apps.resources.data.four_basic_operations_data import (
-            FOUR_BASIC_OPERATIONS_SECTIONS,
-        )
+    def test_four_basic_general_tab_keeps_only_our_own_deck(self):
         from apps.resources.topic_pages import FOUR_BASIC_OPERATIONS
-        expected = [
-            (block['title'], list(block['files']))
-            for section in FOUR_BASIC_OPERATIONS_SECTIONS
-            for block in section['blocks']
-        ]
-        got = [
-            (item['title'], [name for _label, name in item['files']])
+        general = [
+            [name for _label, name in item['files']]
             for section in FOUR_BASIC_OPERATIONS['sections']
             for item in section['items']
             if item['grade'] == 0
         ]
-        self.assertEqual(got, expected)
-        resp = self.client.get(reverse('four_basic_operations'))
-        html = resp.content.decode()
-        positions = [html.index(title) for title, _files in expected]
-        self.assertEqual(positions, sorted(positions))
+        self.assertEqual(general, [['amaldar_tartibi_ozun_tuz_v2.pptx']])
+        self._make_resource('4-Amal-intro.pptx')
+        html = self.client.get(reverse('four_basic_operations')).content.decode()
+        self.assertNotIn('Сабактын көрсөтүү - түшүндүрүү', html)
 
 
     def test_four_basic_operations_has_grade_tabs(self):
@@ -471,7 +463,7 @@ class FreeDownloadTests(TestCase):
         self.assertIn('6-класс', html)
         self.assertIn('Атышуу', html)
 
-    def test_directed_numbers_page_has_grade_packs_and_older_activities(self):
+    def test_directed_numbers_page_has_grade_packs_and_no_template_based_files(self):
         from pathlib import Path
         from django.contrib.staticfiles import finders
         from apps.resources.data.directed_numbers_page import DIRECTED_NUMBERS, NEW_FILES
@@ -490,10 +482,17 @@ class FreeDownloadTests(TestCase):
                                 category='activity', is_active=True, topic=topic, subtopic=subtopic,
                                 subsubtopic=sub)
         html = self.client.get(reverse('directed_numbers')).content.decode()
-        for label in ('>Жалпы<', '>5-класс<', '>6-класс<'):
+        for label in ('>5-класс<', '>6-класс<'):
             self.assertIn(label, html)
-        self.assertIn('Бинго', html)
+        self.assertNotIn('>Жалпы<', html)
+        self.assertNotIn('Бинго', html)
         self.assertIn('Атышуу', html)
+
+    def test_all_operations_page_carries_grade_4_and_5_packs(self):
+        html = self.client.get(reverse('all_operations')).content.decode()
+        self.assertIn('>4-класс<', html)
+        self.assertIn('>5-класс<', html)
+        self.assertNotIn('BaardykAmaldar', html)
 
     def test_grade_level_resources_exist_after_migrations(self):
         from apps.resources.data.four_basic_operations_grades import (

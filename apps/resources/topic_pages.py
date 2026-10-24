@@ -617,6 +617,23 @@ def _add_grade_items(page, grade_items, teacher_files, image_dir):
 
 _add_grade_items(FOUR_BASIC_OPERATIONS, GRADE_ITEMS, GRADE_TEACHER_FILES, GRADE_IMAGE_DIR)
 
+# The page's older «Жалпы» files were built on goteachmaths templates and
+# were taken off the site on 2026-10-24 (migration 0033 hides their rows).
+# Only our own «Өзүң түз» deck stays in Жалпы.
+KEEP_GENERAL_FILES = {'amaldar_tartibi_ozun_tuz_v2.pptx'}
+
+
+def _drop_old_general_items(page):
+    for section in page['sections']:
+        section['items'] = [
+            item for item in section['items']
+            if item.get('grade') or any(name in KEEP_GENERAL_FILES for _label, name in item['files'])
+        ]
+    page['sections'] = [s for s in page['sections'] if s['items']]
+
+
+_drop_old_general_items(FOUR_BASIC_OPERATIONS)
+
 # Tab labels for pages whose items carry a grade; 0 = materials for any grade.
 GRADE_LABELS = {0: 'Жалпы', 1: '1-класс', 2: '2-класс', 3: '3-класс', 4: '4-класс', 5: '5-класс', 6: '6-класс'}
 

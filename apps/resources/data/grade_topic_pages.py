@@ -1,21 +1,22 @@
 """Topic pages in the «Төрт амал» layout for single topics (2026-10-19).
 
 Three pages, as approved samples for moving the rest of the site:
-- /koshuu-1-digit/ keeps its four existing files and gains a lesson deck
-  and a worksheet; all of it is grade 5 (decimals with one decimal place).
+- /koshuu-1-digit/ has a lesson deck and a worksheet, grade 5 (decimals
+  with one decimal place). Its older files were built on goteachmaths
+  templates and were taken off the site on 2026-10-24.
 - /integers-adding-subtracting-1-2-digit/ reuses the grade 1 and grade 2
   packs already shipped for «Төрт амал», plus a two-digit lesson deck.
 - /hcf-lcm-prime-factorisation-mixed/ carries the grade 6 prime
   factorisation pack.
 
 New files ship in apps/resources/bundled_files/ (migration 0031 adds their
-Resource rows). Existing files on /koshuu-1-digit/ have no inside-page
-preview yet, so they keep the designed SVGs from svg/topic/to-fractions.
+Resource rows). /all_operations/ reuses the grade 4 and 5 packs from
+«Төрт амал».
 """
 
 import copy
 
-from apps.resources.data.four_basic_operations_grades import GRADE_IMAGE_DIR, GRADE_ITEMS
+from apps.resources.data.four_basic_operations_grades import GRADE_IMAGE_DIR, GRADE_ITEMS, GRADE_TEACHER_FILES
 
 IMAGE_DIR = 'img/topic-pages/'
 
@@ -77,16 +78,6 @@ KOSHUU_1_DIGIT = _page('Ондуктарды кошуу (1 ондук орун)'
           [('PPT', 'koshuu-1-digit-LessonDeck.pptx')], IMAGE_DIR + 'koshuu-1-digit-LessonDeck.webp'),
     _item('Тереңдетүү', 5, 'Иш барак: Жеңил, Орто, Оор', 'Үч деңгээл, жооп ачкычы менен.', 'Колдонуу',
           [('PDF A4', 'koshuu-1-digit-print.pdf')], IMAGE_DIR + 'koshuu-1-digit-print.webp'),
-    _item('Тереңдетүү', 5, 'Кутучалар', 'Ондуктарды кошуу көнүгүүсү.', 'Колдонуу',
-          [('PPT', 'Onduktar_KoshuuKutuchalary.pptx'), ('PDF', 'Onduktar_KoshuuKutuchalary.pdf'),
-           ('XLSX', 'Onduktar_KoshuuKutuchalary.xlsx')], svg='jenil-orto-oor'),
-    _item('Байланыштыруу', 5, 'Тарсия курак', 'Мисал менен жообун жанаштырышат.', 'Талдоо',
-          [('PPT', 'Onduktar_KoshuuTarsiaKurak.pptx'), ('PDF A4', 'Onduktar_KoshuuTarsiaKurakA4.pdf'),
-           ('PDF A5', 'Onduktar_KoshuuTarsiaKurakA5.pdf')], svg='tarsia-kurak'),
-    _item('Кызматташуу', 5, 'Бинго', 'Бүт класс менен ойнойт.', 'Колдонуу',
-          [('PPT', 'Onduktar_KoshuuBingo.pptx')], svg='bingo'),
-    _item('Кызматташуу', 5, '3кө туташтыр', 'Үч жоопту катар туташтырышат.', 'Колдонуу',
-          [('PPT', 'Onduktar_Koshuu3Tutashtyr.pptx')], svg='3-tutashtyr'),
 ])
 
 K1A, K1K, K2A = '10 ичинде кошуу', '10 ичинде кемитүү', '100 ичинде кошуу жана кемитүү'
@@ -141,7 +132,21 @@ HCF_LCM_PRIME_FACTORISATION = _page(
          'files': [('PDF', P6 + 'mugalim-kartasy.pdf')], 'grade': 6},
     ])
 
-GRADE_TOPIC_PAGES = (KOSHUU_1_DIGIT, INTEGERS_ADD_SUB_1_2_DIGIT, HCF_LCM_PRIME_FACTORISATION)
+# Аралаш амалдар: the grade 4 and 5 order-of-operations packs from «Төрт амал».
+_mixed = []
+for _section, _src in GRADE_ITEMS:
+    if _src['grade'] in (4, 5):
+        _i = copy.deepcopy(_src)
+        _mixed.append(_item(_section, _i['grade'], _i['title'], _i['note'], _i['level'], _i['files'],
+                            f"{GRADE_IMAGE_DIR}{_i['svg']}.webp", subtopic=_i['subtopic']))
+
+ALL_OPERATIONS = _page('Аралаш амалдар', 'all_operations', 'Сандар › Амалдардын тартиби', None, _mixed, teacher=[
+    {'title': f'{grade}-класс · {subtopic}: класста колдонуу', 'note': TEACHER_NOTE,
+     'files': [('PDF', name)], 'grade': grade}
+    for grade, subtopic, name in GRADE_TEACHER_FILES if grade in (4, 5)
+])
+
+GRADE_TOPIC_PAGES = (KOSHUU_1_DIGIT, INTEGERS_ADD_SUB_1_2_DIGIT, HCF_LCM_PRIME_FACTORISATION, ALL_OPERATIONS)
 
 # Files this module adds to the site (migration 0031 creates their rows).
 NEW_FILES = [
