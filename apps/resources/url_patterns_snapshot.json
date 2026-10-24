@@ -520,6 +520,48 @@
     },
     {
       "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/",
+      "name": "personal_topiccontinuum_changelist",
+      "defaults": {},
+      "callback": "django.contrib.admin.options.ModelAdmin.changelist_view"
+    },
+    {
+      "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/add/",
+      "name": "personal_topiccontinuum_add",
+      "defaults": {},
+      "callback": "django.contrib.admin.options.ModelAdmin.add_view"
+    },
+    {
+      "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/<path:object_id>/history/",
+      "name": "personal_topiccontinuum_history",
+      "defaults": {},
+      "callback": "django.contrib.admin.options.ModelAdmin.history_view"
+    },
+    {
+      "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/<path:object_id>/delete/",
+      "name": "personal_topiccontinuum_delete",
+      "defaults": {},
+      "callback": "django.contrib.admin.options.ModelAdmin.delete_view"
+    },
+    {
+      "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/<path:object_id>/change/",
+      "name": "personal_topiccontinuum_change",
+      "defaults": {},
+      "callback": "django.contrib.admin.options.ModelAdmin.change_view"
+    },
+    {
+      "namespace": "admin",
+      "pattern": "admin/personal/topiccontinuum/<path:object_id>/",
+      "name": null,
+      "defaults": {},
+      "callback": "django.views.generic.base.RedirectView"
+    },
+    {
+      "namespace": "admin",
       "pattern": "admin/auth/group/",
       "name": "auth_group_changelist",
       "defaults": {},
@@ -8083,6 +8125,96 @@
     },
     {
       "namespace": "",
+      "pattern": "algebra-tiles/",
+      "name": "algebra_tiles",
+      "defaults": {
+        "slug": "algebra-tiles"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "balance-method/",
+      "name": "balance_method",
+      "defaults": {
+        "slug": "balance-method"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "bar-model-comparison/",
+      "name": "bar_model_comparison",
+      "defaults": {
+        "slug": "bar-model-comparison"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "bar-model-part-whole/",
+      "name": "bar_model_part_whole",
+      "defaults": {
+        "slug": "bar-model-part-whole"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "bar-to-x/",
+      "name": "bar_to_x",
+      "defaults": {
+        "slug": "bar-to-x"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "before-after/",
+      "name": "before_after",
+      "defaults": {
+        "slug": "before-after"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "heuristics/",
+      "name": "heuristics",
+      "defaults": {
+        "slug": "heuristics"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "on-kozonoktuu-ramka/",
+      "name": "on_kozonoktuu_ramka",
+      "defaults": {
+        "slug": "on-kozonoktuu-ramka"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "san-kuramy/",
+      "name": "san_kuramy",
+      "defaults": {
+        "slug": "san-kuramy"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "word-problems-bar-model/",
+      "name": "word_problems_bar_model",
+      "defaults": {
+        "slug": "word-problems-bar-model"
+      },
+      "callback": "apps.resources.views.bridge.bridge_topic_view"
+    },
+    {
+      "namespace": "",
       "pattern": "password_change/done/",
       "name": "password_change_done",
       "defaults": {},
@@ -8515,6 +8647,37 @@
         "object_id": "sample/path"
       },
       "path": "/admin/personal/newspost/sample/path/change/"
+    },
+    {
+      "name": "admin:personal_topiccontinuum_changelist",
+      "kwargs": {},
+      "path": "/admin/personal/topiccontinuum/"
+    },
+    {
+      "name": "admin:personal_topiccontinuum_add",
+      "kwargs": {},
+      "path": "/admin/personal/topiccontinuum/add/"
+    },
+    {
+      "name": "admin:personal_topiccontinuum_history",
+      "kwargs": {
+        "object_id": "sample/path"
+      },
+      "path": "/admin/personal/topiccontinuum/sample/path/history/"
+    },
+    {
+      "name": "admin:personal_topiccontinuum_delete",
+      "kwargs": {
+        "object_id": "sample/path"
+      },
+      "path": "/admin/personal/topiccontinuum/sample/path/delete/"
+    },
+    {
+      "name": "admin:personal_topiccontinuum_change",
+      "kwargs": {
+        "object_id": "sample/path"
+      },
+      "path": "/admin/personal/topiccontinuum/sample/path/change/"
     },
     {
       "name": "admin:auth_group_changelist",
@@ -12815,6 +12978,61 @@
       "name": "search_suggest",
       "kwargs": {},
       "path": "/search/suggest/"
+    },
+    {
+      "name": "home_root",
+      "kwargs": {},
+      "path": "/"
+    },
+    {
+      "name": "algebra_tiles",
+      "kwargs": {},
+      "path": "/algebra-tiles/"
+    },
+    {
+      "name": "balance_method",
+      "kwargs": {},
+      "path": "/balance-method/"
+    },
+    {
+      "name": "bar_model_comparison",
+      "kwargs": {},
+      "path": "/bar-model-comparison/"
+    },
+    {
+      "name": "bar_model_part_whole",
+      "kwargs": {},
+      "path": "/bar-model-part-whole/"
+    },
+    {
+      "name": "bar_to_x",
+      "kwargs": {},
+      "path": "/bar-to-x/"
+    },
+    {
+      "name": "before_after",
+      "kwargs": {},
+      "path": "/before-after/"
+    },
+    {
+      "name": "heuristics",
+      "kwargs": {},
+      "path": "/heuristics/"
+    },
+    {
+      "name": "on_kozonoktuu_ramka",
+      "kwargs": {},
+      "path": "/on-kozonoktuu-ramka/"
+    },
+    {
+      "name": "san_kuramy",
+      "kwargs": {},
+      "path": "/san-kuramy/"
+    },
+    {
+      "name": "word_problems_bar_model",
+      "kwargs": {},
+      "path": "/word-problems-bar-model/"
     },
     {
       "name": "password_change_done",

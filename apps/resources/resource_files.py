@@ -89,10 +89,11 @@ def locate_resource_file(resource):
             if len(matches) == 1:
                 return matches[0]
 
-    for name in names:
-        bundled = BUNDLED_DIR / name
-        if bundled.is_file():
-            return _copy_bundled(bundled)
+    for folder in (BUNDLED_DIR, BUNDLED_DIR / 'bridge'):
+        for name in names:
+            bundled = folder / name
+            if bundled.is_file():
+                return _copy_bundled(bundled)
     return None
 
 

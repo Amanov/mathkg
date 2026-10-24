@@ -652,3 +652,28 @@ class NewsPost(models.Model):
 
     def __str__(self):
         return f"{self.published_date}: {self.title}"
+
+
+class TopicContinuum(models.Model):
+    """One row per topic href: grade band plus the learning-path neighbours.
+
+    Filled from the continuum CSVs by ``load_topic_continuum``. The href is
+    the public path, including the trailing slash (``/san-kuramy/``).
+    """
+
+    href = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=300)
+    grade_band = models.CharField(max_length=40, blank=True)
+    school_level = models.CharField(max_length=40, blank=True)
+    prev_href = models.CharField(max_length=255, blank=True)
+    next_href = models.CharField(max_length=255, blank=True)
+    path_name = models.CharField(max_length=300, blank=True)
+
+    class Meta:
+        ordering = ['href']
+        verbose_name = 'Окуу жолу'
+        verbose_name_plural = 'Окуу жолдору'
+
+    def __str__(self):
+        band = f' · {self.grade_band}' if self.grade_band else ''
+        return f'{self.title}{band}'

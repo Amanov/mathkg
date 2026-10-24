@@ -1,0 +1,33 @@
+{% load static %}
+{% if topic_continuum %}
+{% if topic_continuum.prev or topic_continuum.next %}
+<link rel="stylesheet" href="{% static 'css/topic-path.css' %}">
+<nav class="topic-path" aria-label="Окуу жолу">
+    {% if topic_continuum.path_label %}
+    <p class="topic-path__name">{{ topic_continuum.path_label }}</p>
+    {% endif %}
+    <div class="topic-path__links">
+        {% if topic_continuum.prev %}
+        <a class="topic-path__link topic-path__prev" href="{{ topic_continuum.prev.href }}">
+            <span class="topic-path__arrow" aria-hidden="true">&larr;</span>
+            <span class="topic-path__text">
+                <span class="topic-path__label">Мурунку тема</span>
+                <span class="topic-path__title">{{ topic_continuum.prev.title }}</span>
+            </span>
+        </a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        {% if topic_continuum.next %}
+        <a class="topic-path__link topic-path__next" href="{{ topic_continuum.next.href }}">
+            <span class="topic-path__text">
+                <span class="topic-path__label">Кийинки тема</span>
+                <span class="topic-path__title">{{ topic_continuum.next.title }}</span>
+            </span>
+            <span class="topic-path__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        {% endif %}
+    </div>
+</nav>
+{% endif %}
+{% endif %}

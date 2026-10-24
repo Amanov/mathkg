@@ -13,6 +13,7 @@ from .models import (
     MenuItem,
     NewsPost,
     PageFreeDownload,
+    TopicContinuum,
 )
 
 
@@ -353,3 +354,10 @@ class NewsPostAdmin(admin.ModelAdmin):
     list_editable = ("published_date",)
     search_fields = ("title", "body")
     ordering = ("-published_date",)
+
+
+@admin.register(TopicContinuum)
+class TopicContinuumAdmin(admin.ModelAdmin):
+    list_display = ('title', 'grade_band', 'href', 'prev_href', 'next_href')
+    search_fields = ('title', 'href', 'path_name', 'grade_band')
+    list_filter = ('grade_band', 'school_level')

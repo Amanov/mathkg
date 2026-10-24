@@ -494,3 +494,45 @@ body .related-topics .related-topics-link:focus-visible .related-topics-title {
     border-radius: inherit;
     --mk-zoom-scale: 2.6;
 }
+
+/* Singapore-method note inside the teacher panel, and CPA chips on a row.
+   Only pages that supply the data show these. */
+.sg-box {
+    margin: 12px 0 0;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-alt);
+}
+.sg-box h3 { margin-top: 0; }
+.sg-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 6px 12px;
+    margin: 0;
+    font-size: 14.5px;
+}
+.sg-grid dt { font-weight: 600; }
+.sg-grid dd { margin: 0; color: var(--text-muted); }
+.cpa-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 8px 0 0;
+}
+.cpa-chip {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 1px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+}
+.cpa-chip.on {
+    border-color: var(--color-border-accent, #2285c3);
+    color: var(--color-navy, #0f3c58);
+    background: var(--color-menu-active, transparent);
+    font-weight: 600;
+}
+@media (max-width: 575.98px) {
+    .sg-grid { grid-template-columns: 1fr; }
+}

@@ -13,3 +13,9 @@ def menu_items(request):
             "children__children__children", "children__children__children__children"
         ).order_by('order')
     }
+
+
+def topic_continuum(request):
+    from apps.resources.continuum import continuum_for_path
+
+    return {'topic_continuum': continuum_for_path(getattr(request, 'path', ''))}
