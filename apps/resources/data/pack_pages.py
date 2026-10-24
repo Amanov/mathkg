@@ -23,6 +23,12 @@ SUFFIXES = (
 )
 
 PACKS = {
+    'ubakyt': {
+        'prefix': '2-klass-ubakyt-', 'grade': 2, 'subtopic': 'Убакыт',
+        'sabak': '26 слайд: «Ишемби: Токмокко, Зуура апага» окуясы, кагаз табак саат, убакыт сызыгындагы секирүүлөр.',
+        'ish-barak': 'Саат окуу, жебелерди тартуу, октябрь календары; жооп ачкычы менен.',
+        'karta-sorttoo': 'Саат сүрөтү, сандык убакыт жана сөз менен жазылган убакыт.',
+    },
     'perimetr': {
         'prefix': '5-klass-perimetr-jana-ayant-', 'grade': 5, 'subtopic': 'Периметр жана аянт',
         'sabak': '26 слайд: «Кочкордогу шырдак» окуясы, жип жана кагаз чарчылар, L түрүндөгү фигура.',
@@ -104,6 +110,9 @@ def _group(key, title, crumb, pack_keys, slugs):
 
 
 GROUPS = [
+    _group('ubakyt', 'Убакыт', 'Өлчөмдөр › Убакыт', ['ubakyt'], [
+        'time-reading-clocks', 'time-days-months-years', 'time-timetables', 'time-calculations', 'time-converting',
+    ]),
     _group('perimetr', 'Периметр жана аянт', 'Геометрия › Периметр жана аянт', ['perimetr'], [
         'geometry-area-perimeter-quadrilaterals-rectangle-area',
         'geometry-area-perimeter-quadrilaterals-rectangle-perimeter',
