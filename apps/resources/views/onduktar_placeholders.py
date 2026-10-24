@@ -1384,4 +1384,17 @@ def operation_placeholder_view(request, operation_slug):
         page_title = OPERATION_PLACEHOLDER_TITLES[operation_slug]
     except KeyError:
         raise Http404('Unknown operation')
-    return placeholder_page(request, page_title)
+    return pack_or_placeholder(request, operation_slug, page_title)
+
+
+def pack_or_placeholder(request, slug, page_title):
+    """The grade pack page for this slug when one fits it (see
+    data/pack_pages.py), otherwise the «даярдалууда» placeholder."""
+    from apps.resources.data.pack_pages import page_for
+    spec = page_for(slug, page_title)
+    if spec is None:
+        return placeholder_page(request, page_title)
+    from apps.resources.topic_pages import build_topic_page
+    from apps.resources.utils.resource_helpers import get_active_resources
+    page = build_topic_page(spec, get_active_resources(), request.user)
+    return render(request, 'resources/topic_materials.html', {'page': page})
