@@ -76,12 +76,12 @@ Once a bucket exists (see above), the real fix is two steps, in order:
    used on `PaymentQRCode.image`), so any *new* resource uploaded via
    admin afterward also persists.
 
-Doing this also fixes the standing bug where `resource.image.url` likely
-404s in production today — nothing currently serves `/media/*` outside
-`DEBUG` mode, so those thumbnails have probably been broken since launch,
-separately from the persistence question. Downloads themselves still work
-today regardless, since `download_resource_view` streams the file directly
-rather than relying on that URL.
+`/media/` is an allowlist (`config/media_views.py`), in development and
+in production. Topic-page thumbnails (`resources/images/`) and the
+subscribe QR (`payment_qr/`) are served from the local media directory.
+Paid files (`resources/files/`, the older `downloads/` folder, and anything
+else) are not: a direct link returns 404. Download buttons still go
+through `download_resource_view`.
 
 ## Railway Volume shadows `/app/media` — caused a production incident (2026-10-06)
 
