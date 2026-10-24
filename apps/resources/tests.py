@@ -511,6 +511,10 @@ class FreeDownloadTests(TestCase):
             'data_analysing_median': '6-klass-maalymat-diagramma-orto-maani-sabak.webp',
             'time_reading_clocks': '2-klass-ubakyt-sabak.webp',
             'non_unit_fractions_dividing': '6-klass-bolchok-kobeytuu-boluu-sabak.webp',
+            'geometry_classifying_vocabulary_vocabulary_3d_shapes': '2-klass-figuralar-sabak.webp',
+            'systems_of_measurement_metric': '3-klass-olchomdor-sabak.webp',
+            'geometry_classifying_vocabulary_classifying_shapes_symmetry': '4-klass-simmetriya-sabak.webp',
+            'rounding_decimal_places': '5-klass-ondu-bolchok-orun-maani-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
@@ -520,6 +524,20 @@ class FreeDownloadTests(TestCase):
                      'data_representing_pie_charts_reading', 'ratio_quantities_reverse',
                      'unit_fractions_adding'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
+
+    def test_empty_database_page_shows_its_pack_until_it_has_files(self):
+        from apps.resources.models import SubSubtopic, Subtopic, Topic
+        topic = Topic.objects.create(title='Сандар', slug='number')
+        subtopic = Subtopic.objects.create(title='Ондуктар', slug='decimals', topic=topic)
+        sub = SubSubtopic.objects.create(title='Ондуктун орун наркы', slug='place-value', subtopic=subtopic)
+        url = reverse('subsubtopic_detail', args=['number', 'decimals', 'place-value'])
+        html = self.client.get(url).content.decode()
+        self.assertIn('5-klass-ondu-bolchok-orun-maani-sabak.webp', html)
+        self.assertIn('Ондуктун орун наркы', html)
+        Resource.objects.create(title='own-file.pdf', file='resources/files/own-file.pdf', category='worksheet',
+                                is_active=True, topic=topic, subtopic=subtopic, subsubtopic=sub)
+        html = self.client.get(url).content.decode()
+        self.assertNotIn('5-klass-ondu-bolchok-orun-maani-sabak.webp', html)
 
     def test_all_operations_page_carries_grade_4_and_5_packs(self):
         html = self.client.get(reverse('all_operations')).content.decode()
