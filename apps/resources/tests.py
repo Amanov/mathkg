@@ -510,13 +510,15 @@ class FreeDownloadTests(TestCase):
             'algebra_manipulation_expressions_adding': '6-klass-tamgaluu-tuyuntmalar-tendemeler-sabak.webp',
             'data_analysing_median': '6-klass-maalymat-diagramma-orto-maani-sabak.webp',
             'time_reading_clocks': '2-klass-ubakyt-sabak.webp',
+            'non_unit_fractions_dividing': '6-klass-bolchok-kobeytuu-boluu-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             self.assertIn(deck[0] + '-класс', html, name)
         for name in ('geometry_area_perimeter_circles_area', 'algebra_linear_inequalities',
-                     'data_representing_pie_charts_reading', 'ratio_quantities_reverse'):
+                     'data_representing_pie_charts_reading', 'ratio_quantities_reverse',
+                     'unit_fractions_adding'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 
     def test_all_operations_page_carries_grade_4_and_5_packs(self):

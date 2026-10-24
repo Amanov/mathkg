@@ -53,6 +53,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: барабар катыштар.',
     },
+    'bolchok_kb': {
+        'prefix': '6-klass-bolchok-kobeytuu-boluu-', 'grade': 6, 'subtopic': 'Бөлчөктөрдү көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Сокулуктагы тойго боорсок» окуясы, бүктөлгөн кагаз тилкелер, аянт модели, 4 1/2 ÷ 3/4.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: жообу 1ден кичине, 1ге барабар же 1ден чоң.',
+    },
     'algebra': {
         'prefix': '6-klass-tamgaluu-tuyuntmalar-tendemeler-', 'grade': 6, 'subtopic': 'Тамгалуу туюнтмалар жана теңдемелер',
         'sabak': '26 слайд: «Таластагы буурчак түшүмү» окуясы, чөйчөк жана капкак менен тараза, 2x + 5 = 17.',
@@ -156,6 +162,13 @@ GROUPS = [
         'percentages-to-fractions', 'percentages-to-decimals', 'percentages-with-fractions', 'percentages-with-decimals',
         'fractions-equiv-to-decimals', 'fractions-equiv-to-percentages', 'fractions-equiv-with-decimals',
         'fractions-equiv-with-percentages', 'fractions-equiv-fdp', 'fractions-equiv-fdp-ordering',
+    ]),
+    _group('bolchok_kb', 'Бөлчөктөрдү көбөйтүү жана бөлүү, аралаш сандар', 'Сандар › Бөлчөктөр › Эсептөөлөр',
+           ['bolchok_kb'], [
+        'unit-fractions-multiplying', 'unit-fractions-dividing', 'unit-fractions-multiplying-dividing',
+        'unit-fractions-with-integers',
+        'non-unit-fractions-multiplying', 'non-unit-fractions-dividing', 'non-unit-fractions-multiplying-dividing',
+        'non-unit-fractions-with-cancelling', 'non-unit-fractions-with-integers',
     ]),
     _group('algebra', 'Тамгалуу туюнтмалар жана теңдемелер', 'Алгебра', ['algebra'], [
         'algebra-intro-definitions',
