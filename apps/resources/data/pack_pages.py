@@ -9,7 +9,7 @@ placeholder. A pack goes only on pages whose content it actually teaches
 example the rectangle pack is not put on the circle or triangle pages.
 
 Every pack has the same eleven files; they ship in
-apps/resources/bundled_files/ (migration 0035 adds their Resource rows) and
+apps/resources/bundled_files/ (migrations 0035 onwards add their Resource rows) and
 their previews in static/img/topic-pages/.
 """
 
@@ -23,6 +23,37 @@ SUFFIXES = (
 )
 
 PACKS = {
+    'figuralar': {
+        'prefix': '2-klass-figuralar-', 'grade': 2, 'subtopic': 'Тегиз жана көлөмдүү фигуралар',
+        'sabak': '26 слайд: «Каракол: чоң атанын устаканасы» окуясы, таякча жана пластилин куб, кубдун жайылмасы.',
+        'ish-barak': 'Жактарды, чокуларды, беттерди жана кырларды санашат; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: фигураларды касиеттери боюнча топтошот.',
+        'puzzle': ('Таякча табышмагы', 'Үч деңгээл: таякчалардан фигура түзүшөт.'),
+    },
+    'olchomdor': {
+        'prefix': '3-klass-olchomdor-', 'grade': 3, 'subtopic': 'Узундук, масса жана көлөм',
+        'sabak': '26 слайд: «Арстанбаптагы жаңгак түшүмү» окуясы, сызгыч, тараза жана өлчөөчү идиш.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: 1 метрден кыска, так 1 метр же узун.',
+    },
+    'simmetriya': {
+        'prefix': '4-klass-simmetriya-', 'grade': 4, 'subtopic': 'Симметрия жана жылдыруу',
+        'sabak': '26 слайд: «Караколдогу оюу дубал» окуясы, кагазды бүктөп кесүү, чакмак кагазда чагылдыруу жана жылдыруу.',
+        'ish-barak': 'Үч бет: симметрия огу, чакмак кагазда чагылдыруу жана жылдыруу; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: симметрия огунун саны боюнча.',
+    },
+    'ondu_orun': {
+        'prefix': '5-klass-ondu-bolchok-orun-maani-', 'grade': 5, 'subtopic': 'Ондук бөлчөктөр: орун маанилери',
+        'sabak': '26 слайд: «Караколдогу спорт күнү» окуясы, бүктөлгөн метр тилкеси, орун маанилер таблицасы, сан огу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: салыштыруу жана тегеректөө.',
+    },
+    'ubakyt': {
+        'prefix': '2-klass-ubakyt-', 'grade': 2, 'subtopic': 'Убакыт',
+        'sabak': '26 слайд: «Ишемби: Токмокко, Зуура апага» окуясы, кагаз табак саат, убакыт сызыгындагы секирүүлөр.',
+        'ish-barak': 'Саат окуу, жебелерди тартуу, октябрь календары; жооп ачкычы менен.',
+        'karta-sorttoo': 'Саат сүрөтү, сандык убакыт жана сөз менен жазылган убакыт.',
+    },
     'perimetr': {
         'prefix': '5-klass-perimetr-jana-ayant-', 'grade': 5, 'subtopic': 'Периметр жана аянт',
         'sabak': '26 слайд: «Кочкордогу шырдак» окуясы, жип жана кагаз чарчылар, L түрүндөгү фигура.',
@@ -46,6 +77,12 @@ PACKS = {
         'sabak': '26 слайд: «Кочкордогу шырдак» окуясы, эки түстүү буурчак, тилке модели, 2 : 3 жана 2/5.',
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: барабар катыштар.',
+    },
+    'bolchok_kb': {
+        'prefix': '6-klass-bolchok-kobeytuu-boluu-', 'grade': 6, 'subtopic': 'Бөлчөктөрдү көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Сокулуктагы тойго боорсок» окуясы, бүктөлгөн кагаз тилкелер, аянт модели, 4 1/2 ÷ 3/4.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: жообу 1ден кичине, 1ге барабар же 1ден чоң.',
     },
     'algebra': {
         'prefix': '6-klass-tamgaluu-tuyuntmalar-tendemeler-', 'grade': 6, 'subtopic': 'Тамгалуу туюнтмалар жана теңдемелер',
@@ -71,7 +108,8 @@ def _pack_items(pack):
                      IMAGE_DIR + prefix + suffix + '.webp', subtopic=subtopic)
 
     return [
-        one('Изилдөө', 'Цифра табышмагы', 'Үч деңгээл: бош орунга цифра коюшат.', 'Талдоо', 'cifra-tabyshmagy'),
+        one('Изилдөө', *pack.get('puzzle', ('Цифра табышмагы', 'Үч деңгээл: бош орунга цифра коюшат.')),
+            'Талдоо', 'cifra-tabyshmagy'),
         one('Түшүндүрүү', 'Сабактын презентациясы', pack['sabak'], 'Түшүнүү', 'sabak', 'PPT'),
         one('Тереңдетүү', 'Иш барак: Жеңил, Орто, Оор', pack['ish-barak'], 'Колдонуу', 'ish-barak'),
         one('Баалоо', 'Катаны тап', 'Алты окуучунун чыгарылышы: катаны таап, оңдошот.', 'Баалоо', 'katany-tap'),
@@ -104,6 +142,24 @@ def _group(key, title, crumb, pack_keys, slugs):
 
 
 GROUPS = [
+    _group('ubakyt', 'Убакыт', 'Өлчөмдөр › Убакыт', ['ubakyt'], [
+        'time-reading-clocks', 'time-days-months-years', 'time-timetables', 'time-calculations', 'time-converting',
+    ]),
+    _group('figuralar', 'Тегиз жана көлөмдүү фигуралар', 'Геометрия › Фигуралар', ['figuralar'], [
+        'geometry-classifying-vocabulary-classifying-shapes-2d-shapes',
+        'geometry-classifying-vocabulary-vocabulary-2d-shapes',
+        'geometry-classifying-vocabulary-vocabulary-3d-shapes',
+    ]),
+    _group('olchomdor', 'Узундук, масса жана көлөм бирдиктери', 'Өлчөмдөр', ['olchomdor'], [
+        'systems-of-measurement-metric',
+        'systems-of-measurement-conversion-factors',
+    ]),
+    _group('simmetriya', 'Симметрия жана фигураларды жылдыруу', 'Геометрия › Өзгөртүүлөр', ['simmetriya'], [
+        'geometry-classifying-vocabulary-classifying-shapes-symmetry',
+    ]),
+    _group('ondu_orun', 'Ондук бөлчөктөр: орун маанилери, салыштыруу, тегеректөө', 'Сандар › Ондуктар', ['ondu_orun'], [
+        'rounding-decimal-places',
+    ]),
     _group('perimetr', 'Периметр жана аянт', 'Геометрия › Периметр жана аянт', ['perimetr'], [
         'geometry-area-perimeter-quadrilaterals-rectangle-area',
         'geometry-area-perimeter-quadrilaterals-rectangle-perimeter',
@@ -148,6 +204,13 @@ GROUPS = [
         'fractions-equiv-to-decimals', 'fractions-equiv-to-percentages', 'fractions-equiv-with-decimals',
         'fractions-equiv-with-percentages', 'fractions-equiv-fdp', 'fractions-equiv-fdp-ordering',
     ]),
+    _group('bolchok_kb', 'Бөлчөктөрдү көбөйтүү жана бөлүү, аралаш сандар', 'Сандар › Бөлчөктөр › Эсептөөлөр',
+           ['bolchok_kb'], [
+        'unit-fractions-multiplying', 'unit-fractions-dividing', 'unit-fractions-multiplying-dividing',
+        'unit-fractions-with-integers',
+        'non-unit-fractions-multiplying', 'non-unit-fractions-dividing', 'non-unit-fractions-multiplying-dividing',
+        'non-unit-fractions-with-cancelling', 'non-unit-fractions-with-integers',
+    ]),
     _group('algebra', 'Тамгалуу туюнтмалар жана теңдемелер', 'Алгебра', ['algebra'], [
         'algebra-intro-definitions',
         'algebra-intro-notation',
@@ -189,13 +252,36 @@ FDPR = next(g['spec'] for g in GROUPS if g['spec']['page_key'] == 'pack_fdpr')
 
 SLUG_PAGES = {slug: group['spec'] for group in GROUPS for slug in group['slugs']}
 
+# Database-driven pages (/resources/topic/<topic>/<subtopic>/[<subsubtopic>/])
+# that are still empty, keyed by their slugs. The pack shows only while the
+# page has no resources of its own (see views/topics.py).
+_BY_KEY = {group['spec']['page_key'][len('pack_'):]: group['spec'] for group in GROUPS}
+PATH_PAGES = {path: _BY_KEY[key] for path, key in [
+    (('number', 'decimals', 'place-value'), 'ondu_orun'),
+    (('number', 'decimals', 'ordering-decimals'), 'ondu_orun'),
+    (('number', 'equivalence', 'fraction-decimal-percentage'), 'fdp'),
+    (('number', 'equivalence', 'ordering-fractions-decimals-percentages'), 'fdp'),
+    (('number', 'equivalence', 'fraction-percentage-ratio'), 'fdpr'),
+    (('number', 'equivalence', 'fraction-decimal-percentage-ratio'), 'fdpr'),
+    (('number', 'fractions', 'mixed-numbers-improper-fractions'), 'bolchok_kb'),
+    (('number', 'fractions', 'reciprocals'), 'bolchok_kb'),
+    (('number', 'measures', 'measuring-lines'), 'olchomdor'),
+    (('number', 'measures', 'reading-scales'), 'olchomdor'),
+    (('geometry', 'transformations', 'reflection'), 'simmetriya'),
+    (('geometry', 'transformations', 'translation'), 'simmetriya'),
+    (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
+    (('statistics', 'analysing', 'mixed'), 'maalymat'),
+    (('statistics', 'representing', 'mixed'), 'maalymat'),
+]}
+
 NEW_FILES = [pack['prefix'] + suffix for pack in PACKS.values() for suffix in SUFFIXES]
 
 
 def page_for(slug, page_title):
-    """The group page for a placeholder slug, with the page's own title in
-    the menu path above the heading, or None if no pack fits it yet."""
-    spec = SLUG_PAGES.get(slug)
+    """The group page for a placeholder slug (or a PATH_PAGES key), with the
+    page's own title in the menu path above the heading, or None if no pack
+    fits it yet."""
+    spec = PATH_PAGES.get(slug) if isinstance(slug, tuple) else SLUG_PAGES.get(slug)
     if spec is None:
         return None
     spec = copy.copy(spec)
