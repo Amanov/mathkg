@@ -32,6 +32,7 @@ urlpatterns = [
     path('', include('apps.resources.urlconf.data')),
     path('', include('apps.resources.urlconf.probability')),
     path('', include('apps.resources.urlconf.pages')),
+    path('', include('apps.resources.urlconf.bridge')),
     path('', include('apps.account.password_urls')),
 ]
 

@@ -1,0 +1,308 @@
+{
+  "slug": "san-kuramy",
+  "url_name": "san_kuramy",
+  "page_key": "san_kuramy",
+  "title": "Сан курамы: 10го жана 20га чейин",
+  "crumb": "Сандар › Бүтүн сандар › Сан сезими",
+  "singapore": [
+    {
+      "label": "CPA баскычы",
+      "text": "Конкреттүү (фигуралар) → Сүрөт (бөлүк–бүтүн диаграммасы) → Абстракттуу (7 + 3 = 10)"
+    },
+    {
+      "label": "Модель",
+      "text": "Бөлүк–бүтүн диаграммасы (number bond); кийинки теманын тилке моделине негиз"
+    },
+    {
+      "label": "Көңүл бур",
+      "text": "Ар бир бүтүн үчүн бардык жуптарды системалуу тизмелөө (0 + 10, 1 + 9 …)"
+    }
+  ],
+  "bloom_guide": [
+    [
+      "Эстеп калуу",
+      "10 жуптарын эстейт"
+    ],
+    [
+      "Түшүнүү",
+      "Бүтүн менен бөлүктөрдү өз сөзү менен түшүндүрөт"
+    ],
+    [
+      "Колдонуу",
+      "Жетпеген бөлүктү табат"
+    ],
+    [
+      "Талдоо",
+      "Бардык жуптарды тизмелейт, мыйзам ченемин көрөт"
+    ],
+    [
+      "Жаратуу",
+      "Өз мисалын жана маселесин түзөт"
+    ]
+  ],
+  "sections": [
+    {
+      "stage": "5E · 1",
+      "title": "Кызыктыруу",
+      "title_en": "Engage",
+      "summary": "Фигураларды чачып, 10ду эки бөлүккө бөлүү.",
+      "when": "Сабактын башы, 5 мүнөт: ар бир жуп 10 фигураны чачат, канча жашыл, канча кызгылт сары экенин айтат.",
+      "bloom": [
+        "Түшүнүү"
+      ],
+      "items": [
+        {
+          "title": "Эки түстүү фигуралар",
+          "note": "40 фигура (эки тараптуу) + 2 жазуу барагы",
+          "level": "Түшүнүү",
+          "cpa": [
+            "Конкреттүү"
+          ],
+          "image": "img/bridge/san-kuramy-EkiTustuuFiguralar.png",
+          "files": [
+            [
+              "PDF A4",
+              "san-kuramy-EkiTustuuFiguralar-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 2",
+      "title": "Изилдөө",
+      "title_en": "Explore",
+      "summary": "Бир бүтүн үчүн бардык жуптарды табуу.",
+      "when": "Окуучулар диаграммага фигураларды коюп, 10дун бардык курамын системалуу тизмелешет.",
+      "bloom": [
+        "Талдоо"
+      ],
+      "items": [
+        {
+          "title": "Бөлүк–бүтүн диаграммасы",
+          "note": "Тегерек жана тилке модель + изилдөө барагы",
+          "level": "Талдоо",
+          "cpa": [
+            "Конкреттүү",
+            "Сүрөт"
+          ],
+          "image": "img/bridge/san-kuramy-BolukButunDiagrammasy.png",
+          "files": [
+            [
+              "PDF A4",
+              "san-kuramy-BolukButunDiagrammasy-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 3",
+      "title": "Түшүндүрүү",
+      "title_en": "Explain",
+      "summary": "Диаграммадан тилке моделине.",
+      "when": "Мугалим бөлүк–бүтүн диаграммасын жана тилкени катар көрсөтөт; окуучулар тактачага жооп жазышат.",
+      "bloom": [
+        "Түшүнүү"
+      ],
+      "items": [
+        {
+          "title": "Мага көрсөт: сан курамы",
+          "note": "20 слайд · бүт класс",
+          "level": "Түшүнүү",
+          "cpa": [
+            "Сүрөт"
+          ],
+          "image": "img/bridge/san-kuramy-MagaKorsotSanKuramy.png",
+          "files": [
+            [
+              "PPT",
+              "san-kuramy-MagaKorsotSanKuramy.pptx"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 4",
+      "title": "Тереңдетүү",
+      "title_en": "Elaborate",
+      "summary": "Сан курамы 10го жана 20га чейин.",
+      "when": "Өз алдынча иш: окуучу өз деңгээлин тандайт.",
+      "bloom": [
+        "Колдонуу"
+      ],
+      "items": [
+        {
+          "title": "Сан курамы торчосу",
+          "note": "3 деңгээл (Этек · Бел · Чоку) + жооптор · 15 слайд",
+          "level": "Колдонуу",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-SanKuramyTorchosu.png",
+          "files": [
+            [
+              "PPT",
+              "san-kuramy-SanKuramyTorchosu.pptx"
+            ],
+            [
+              "PDF A4",
+              "san-kuramy-SanKuramyTorchosu-A4.pdf"
+            ]
+          ]
+        },
+        {
+          "title": "Жетпеген бөлүк",
+          "note": "3 деңгээл + жооптор",
+          "level": "Колдонуу",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-ZhetpegenBoluk.png",
+          "files": [
+            [
+              "PDF A4",
+              "san-kuramy-ZhetpegenBoluk-A4.pdf"
+            ],
+            [
+              "PDF A5",
+              "san-kuramy-ZhetpegenBoluk-A5.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "3C · 1",
+      "title": "Байланыштыруу",
+      "title_en": "Connect",
+      "summary": "Сан курамын кошуу жана кемитүү менен байланыштыруу.",
+      "when": "Домино: санды анын курамы менен туташтырышат (10 ↔ 3 + 7).",
+      "bloom": [
+        "Талдоо"
+      ],
+      "items": [
+        {
+          "title": "Сан курамы домино",
+          "note": "Топ менен ойноо · 28 таш, 2 тизмек",
+          "level": "Талдоо",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-SanKuramyDomino.png",
+          "files": [
+            [
+              "PDF A4",
+              "san-kuramy-SanKuramyDomino-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "3C · 2",
+      "title": "Кызматташуу",
+      "title_en": "Collaborate",
+      "summary": "Жуп оюн.",
+      "when": "Жуптар 10 жуптарын табышат, бири-бирин текшеришет.",
+      "bloom": [
+        "Колдонуу"
+      ],
+      "items": [
+        {
+          "title": "10 жуптары",
+          "note": "Жуп оюн · 40 карта",
+          "level": "Колдонуу",
+          "cpa": [
+            "Сүрөт"
+          ],
+          "image": "img/bridge/san-kuramy-OnZhuptary.png",
+          "files": [
+            [
+              "PDF A5",
+              "san-kuramy-OnZhuptary-A5.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 5",
+      "title": "Баалоо",
+      "title_en": "Evaluate",
+      "summary": "Ылдам текшерүү.",
+      "when": "Сабактын аягы: бинго менен 10 жуптарын эстегенин текшерүү.",
+      "bloom": [
+        "Эстеп калуу"
+      ],
+      "items": [
+        {
+          "title": "Бинго: 10 жуптары",
+          "note": "Бүт класс · 22 мисал, 12 карточка",
+          "level": "Эстеп калуу",
+          "cpa": [
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-BingoOnZhuptary.png",
+          "files": [
+            [
+              "PPT",
+              "san-kuramy-BingoOnZhuptary.pptx"
+            ],
+            [
+              "PDF A4",
+              "san-kuramy-BingoOnZhuptary-A4.pdf"
+            ]
+          ]
+        },
+        {
+          "title": "Туурабы? Сан курамы",
+          "note": "Чыгуу билети · 2 вариант + жооптор",
+          "level": "Баалоо",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-Tuurabyi.png",
+          "files": [
+            [
+              "PDF A5",
+              "san-kuramy-Tuurabyi-A5.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "3C · 3",
+      "title": "Жаратуу",
+      "title_en": "Create",
+      "summary": "Өз мисалын түзүү.",
+      "when": "Үй тапшырма: окуучу бир бүтүн тандап, бардык курамдарын жазат жана маселе түзөт.",
+      "bloom": [
+        "Жаратуу"
+      ],
+      "items": [
+        {
+          "title": "Өзүң түз: курам",
+          "note": "Үй тапшырма · шаблон + мугалимге үлгү",
+          "level": "Жаратуу",
+          "cpa": [
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/san-kuramy-OzunTuzKuram.png",
+          "files": [
+            [
+              "PDF A4",
+              "san-kuramy-OzunTuzKuram-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
