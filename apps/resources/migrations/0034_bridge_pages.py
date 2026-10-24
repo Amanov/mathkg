@@ -25,7 +25,7 @@ def remove_resources(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0032_directed_numbers_page'),
+        ('personal', '0033_hide_template_derived_files'),
     ]
 
     operations = [
