@@ -50,7 +50,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0033_hide_template_derived_files'),
+        ('personal', '0034_bridge_pages'),
     ]
 
     operations = [

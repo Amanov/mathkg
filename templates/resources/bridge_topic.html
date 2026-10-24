@@ -1,0 +1,265 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261019c">
+<link rel="stylesheet" href="{% static 'css/bridge-topic.css' %}">
+{% if page.uses_mk_zoom %}
+<link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019c">
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{# Bridge pages only. Same topic layout, plus the grade badge and learning-path links. #}
+<main class="topic-page">
+  {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
+  <h1 class="topic-page__title">{{ page.title }}</h1>
+  {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
+  {% include 'snippets/topic_path_nav.html' %}
+
+  {% if not user.is_authenticated %}
+  <p class="topic-page__notice">
+    Файлды жүктөп алуу үчүн сайтка катталышыңыз керек.
+    <a href="{% url 'register' %}">Катталуу</a>
+  </p>
+  {% endif %}
+
+  {% if page.grades %}
+  <div class="grade-tabs" role="tablist" aria-label="Класс">
+    {% for g in page.grades %}
+    <button type="button" class="grade-tab" role="tab" data-grade="{{ g.num }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ g.label }}<span class="grade-tab__count">{{ g.count }}</span></button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="topic-controls">
+    <button type="button" class="model-switch" id="model-switch" aria-pressed="true">
+      <span class="model-switch__track" aria-hidden="true"></span>
+      {{ page.model_label }}
+    </button>
+  </div>
+
+  <details class="teacher-guide lesson-meta">
+    <summary>Мугалимге: бул баракты сабакта кантип колдонуу керек</summary>
+    <div class="teacher-guide__body">
+      {% if page.standard %}
+      <div class="teacher-guide__std">
+        <h3>Кыргыз Республикасынын программасы менен байланыш</h3>
+        <ul>
+          <li>{{ page.standard.document }}</li>
+          <li>{{ page.standard.grade }}</li>
+          <li>{{ page.standard.competency }}</li>
+        </ul>
+      </div>
+      {% endif %}
+      {% if page.singapore %}
+      <div class="sg-box">
+        <h3>Сингапур ыкмасы</h3>
+        <dl class="sg-grid">
+          {% for row in page.singapore %}
+          <dt>{{ row.label }}</dt>
+          <dd>{{ row.text }}</dd>
+          {% endfor %}
+        </dl>
+      </div>
+      {% endif %}
+      <div class="teacher-guide__cols">
+        <div>
+          <h3>{{ page.stages_label }}</h3>
+          <dl class="guide-list">
+            {% for section in page.sections %}
+            <dt><span class="stage-tag">{{ section.stage }}</span> {{ section.title }}</dt>
+            <dd>{{ section.when }}</dd>
+            {% endfor %}
+          </dl>
+        </div>
+        <div>
+          <h3>Блумдун деңгээлдери</h3>
+          <dl class="guide-list">
+            {% for level, text in page.bloom_guide %}
+            <dt>{{ level }}</dt>
+            <dd>{{ text }}</dd>
+            {% endfor %}
+          </dl>
+        </div>
+      </div>
+      {% if page.teacher_resources %}
+      <div class="teacher-guide__extra">
+        <h3>Класстык ыкмалар боюнча көмөкчү материал</h3>
+        {% for res in page.teacher_resources %}
+        <div class="teacher-guide__extra-item"{% if page.grades %} data-grade="{{ res.grade }}"{% endif %}>
+          <div>
+            <p class="teacher-guide__extra-title">{{ res.title }}</p>
+            <p class="teacher-guide__extra-note">{{ res.note }}</p>
+          </div>
+          <div class="teacher-guide__extra-links">
+            {% for link in res.links %}
+            {% if link.free or not page.downloads_gated or user.is_authenticated and user.has_active_subscription %}
+            <span class="free-download">
+              <a class="file-pill" href="{{ link.url }}">{{ link.label }}</a>
+              {% if link.free %}<span class="free-badge">Акысыз</span>{% endif %}
+            </span>
+            {% endif %}
+            {% endfor %}
+            {% if page.downloads_gated and res.has_locked %}
+              {% if not user.is_authenticated %}
+              <a class="file-pill" href="{% url 'register' %}">Катталуу</a>
+              {% elif not user.has_active_subscription %}
+              <a class="file-pill" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </details>
+
+  {# Bloom staircase: one step per level, with how many materials reach it #}
+  <ol class="bloom-steps lesson-meta" aria-label="Блумдун деңгээлдери">
+    {% for step in page.bloom_steps %}
+    <li class="bloom-step lv-{{ step.num }}">
+      <span class="bloom-step__name">{{ step.level }}</span>
+      <span class="bloom-step__count" data-level="{{ step.num }}">{{ step.count }} материал</span>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <div class="topic-sections" id="topic-list">
+  {% for section in page.sections %}
+  <section class="topic-section">
+    <span class="timeline-dot lesson-meta" aria-hidden="true"></span>
+    <header class="topic-section__head">
+      <span class="stage-tag lesson-meta">{{ section.stage }}</span>
+      <h2 class="topic-section__title">{{ section.title }} <span class="topic-section__en lesson-meta">{{ section.title_en }}</span></h2>
+      <p class="topic-section__summary">{{ section.summary }}</p>
+      <p class="topic-section__when lesson-meta">{{ section.when }}</p>
+      <div class="bloom-row lesson-meta" aria-label="Блумдун таксономиясы">
+        <span class="bloom-row__label">Блум:</span>
+        {% for level in section.bloom %}<span class="bloom-chip">{{ level }}</span>{% endfor %}
+      </div>
+    </header>
+    <div class="topic-list">
+      {% for item in section.items %}
+      <article class="topic-row lv-{{ item.level_num }}"{% if page.grades %} data-grade="{{ item.grade }}" data-level="{{ item.level_num }}"{% endif %}>
+        <div class="topic-row__thumb">{% if item.image %}<img class="mk-zoom{% if item.grade %} mk-zoom--read{% endif %}" tabindex="0" src="{% static item.image %}" alt="{{ item.title }}" loading="lazy">{% else %}{% include item.svg %}{% endif %}</div>
+        <div class="topic-row__text">
+          {% if item.subtopic %}<span class="subtopic-chip">{{ item.subtopic }}</span>{% endif %}
+          <h3 class="topic-row__title">{{ item.title }}</h3>
+          <p class="topic-row__note">{{ item.note }}</p>
+          <p class="bloom-tag lesson-meta">
+            <span class="bloom-ladder" aria-hidden="true">{% for n in "123456" %}<i{% if forloop.counter <= item.level_num %} class="on"{% endif %}></i>{% endfor %}</span>
+            Блум: {{ item.level }}
+          </p>
+          {% if item.cpa %}
+          <p class="cpa-row lesson-meta">
+            {% for chip in item.cpa %}<span class="cpa-chip{% if chip.on %} on{% endif %}">{{ chip.label }}</span>{% endfor %}
+          </p>
+          {% endif %}
+        </div>
+        <div class="topic-row__files">
+          {% for link in item.links %}
+          {% if link.free or not page.downloads_gated or user.is_authenticated and user.has_active_subscription %}
+          <span class="free-download">
+            <a class="file-pill{% if link.free or forloop.first %} file-pill--main{% endif %}" href="{{ link.url }}">{{ link.label }}</a>
+            {% if link.free %}<span class="free-badge">Акысыз</span>{% endif %}
+          </span>
+          {% endif %}
+          {% empty %}
+          {% if not page.downloads_gated or user.is_authenticated and user.has_active_subscription %}
+          <span class="topic-row__soon">Жакында</span>
+          {% endif %}
+          {% endfor %}
+          {% if page.downloads_gated %}
+            {% if item.has_locked or not item.links %}
+              {% if not user.is_authenticated %}
+              <p class="topic-row__gate">Файлды жүктөп алуу үчүн сайтка катталышыңыз керек</p>
+              <a class="file-pill file-pill--main" href="{% url 'register' %}">Катталуу</a>
+              {% elif not user.has_active_subscription %}
+              <p class="topic-row__gate">Жазылууңуздун мөөнөтү бүткөн</p>
+              <a class="file-pill file-pill--main" href="{% url 'account' %}">Жазылууну жаңыртуу</a>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  </div>
+</main>
+<script>
+(function () {
+  // Show or hide every 5E + 3C / Bloom label and the guide.
+  var page = document.querySelector('.topic-page');
+  var sw = document.getElementById('model-switch');
+  function setModel(on) {
+    page.classList.toggle('model-off', !on);
+    sw.setAttribute('aria-pressed', String(on));
+  }
+  sw.addEventListener('click', function () {
+    var on = sw.getAttribute('aria-pressed') !== 'true';
+    setModel(on);
+    try { localStorage.setItem('topicPageModel', on ? 'on' : 'off'); } catch (e) {}
+  });
+  try { if (localStorage.getItem('topicPageModel') === 'off') setModel(false); } catch (e) {}
+
+  // Grade tabs: show one grade's rows, hide empty sections and recount
+  // the Bloom staircase. The tab is kept in the URL (#klass-3).
+  var tabs = document.querySelectorAll('.grade-tab');
+  function showGrade(g) {
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.grade === g)); });
+    document.querySelectorAll('.topic-row').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
+    document.querySelectorAll('.topic-section').forEach(function (s) {
+      s.hidden = !s.querySelector('.topic-row:not([hidden])');
+    });
+    document.querySelectorAll('.teacher-guide__extra-item').forEach(function (r) { r.hidden = r.dataset.grade !== g; });
+    document.querySelectorAll('.bloom-step__count').forEach(function (c) {
+      var n = document.querySelectorAll('.topic-row[data-grade="' + g + '"][data-level="' + c.dataset.level + '"]').length;
+      c.textContent = n + ' материал';
+    });
+  }
+  if (tabs.length) {
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        showGrade(t.dataset.grade);
+        try { history.replaceState(null, '', '#klass-' + t.dataset.grade); } catch (e) {}
+      });
+    });
+    var m = location.hash.match(/klass-(\d+)/);
+    var start = m && document.querySelector('.grade-tab[data-grade="' + m[1] + '"]') ? m[1] : tabs[0].dataset.grade;
+    showGrade(start);
+  }
+
+  // Entrance animation (see topic-page.css): reveal each section head and
+  // row as it scrolls into view. If IntersectionObserver is unsupported,
+  // elements simply keep the .is-in they're given immediately below -
+  // nothing stays hidden without it.
+  var reveal = document.querySelectorAll('.topic-section__head, .topic-row');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveal.forEach(function (el) { io.observe(el); });
+  } else {
+    reveal.forEach(function (el) { el.classList.add('is-in'); });
+  }
+})();
+</script>
+{% endblock content %}
+
+{% block extra_scripts %}
+{{ block.super }}
+{% if page.uses_mk_zoom %}
+<script src="{% static 'js/mk-zoom.js' %}?v=20261019c"></script>
+{% endif %}
+{% endblock %}

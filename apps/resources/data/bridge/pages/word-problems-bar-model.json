@@ -1,0 +1,221 @@
+{
+  "slug": "word-problems-bar-model",
+  "url_name": "word_problems_bar_model",
+  "page_key": "word_problems_bar_model",
+  "title": "Тексттик маселелер: тилке модели менен",
+  "crumb": "Сан · Тилке модели",
+  "singapore": [
+    {
+      "label": "Конкреттүү",
+      "text": "кесилүүчү тилкелер, бирдик кубиктер"
+    },
+    {
+      "label": "Сүрөт",
+      "text": "үч модель: бөлүк–бүтүн, салыштыруу, бирдиктер"
+    },
+    {
+      "label": "Абстракттуу",
+      "text": "амалдардын тизмеги, бөлчөк жана катыш"
+    },
+    {
+      "label": "Негизги суроо",
+      "text": "«Кайсы модель? Бир бирдик канча?»"
+    }
+  ],
+  "bloom_guide": [
+    [
+      "Эстеп калуу",
+      "Полианын 4 кадамын эстеп калуу"
+    ],
+    [
+      "Түшүнүү",
+      "моделдин 3 түрүн түшүнүү"
+    ],
+    [
+      "Колдонуу",
+      "тилке менен маселе чыгаруу"
+    ],
+    [
+      "Талдоо",
+      "бир моделден бир нече суроону талдоо"
+    ],
+    [
+      "Баалоо",
+      "маселелерди моделге жараша баалап сорттоо"
+    ],
+    [
+      "Жаратуу",
+      "модель үчүн маселе түзүү"
+    ]
+  ],
+  "sections": [
+    {
+      "stage": "5E · 1",
+      "title": "Кызыктыруу",
+      "title_en": "Engage",
+      "summary": "Полианын 4 кадамы: оку, тарт, чеч, текшер.",
+      "when": "Сабактын башында · 10 мүн",
+      "bloom": [
+        "Эстеп калуу"
+      ],
+      "items": [
+        {
+          "title": "Полианын 4 кадамы",
+          "note": "Слайддар · 10 слайд · PPTX · 3 маселе, 4 кадам менен",
+          "level": "Эстеп калуу",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-Polia4Kadam.png",
+          "files": [
+            [
+              "PPTX",
+              "word-problems-bar-model-Polia4Kadam.pptx"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 2",
+      "title": "Изилдөө",
+      "title_en": "Explore",
+      "summary": "Тилкелердин 3 түрү (плакат), 4 кадам шаблону; акыркы барак — Жаратуу.",
+      "when": "Жуптар менен · 10 мүн",
+      "bloom": [
+        "Түшүнүү"
+      ],
+      "items": [
+        {
+          "title": "Маселе чечүү шаблону",
+          "note": "Материалдар · 3 барак · A4 · Плакат + шаблон + «Өзүң түз»",
+          "level": "Түшүнүү",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-MaseleChechuuShablonu.png",
+          "files": [
+            [
+              "PDF A4",
+              "word-problems-bar-model-MaseleChechuuShablonu-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 4",
+      "title": "Тереңдетүү",
+      "title_en": "Elaborate",
+      "summary": "Үч деңгээлдеги маселелер: + −, × :, бөлчөк, % жана катыш.",
+      "when": "Өз алдынча · 20 мүн",
+      "bloom": [
+        "Колдонуу"
+      ],
+      "items": [
+        {
+          "title": "Деңгээлдүү маселелер",
+          "note": "Иш барагы · 3 деңгээл · жооптору менен · 18 маселе тилке менен",
+          "level": "Колдонуу",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-DengeeldyyMaseleler.png",
+          "files": [
+            [
+              "PDF A4",
+              "word-problems-bar-model-DengeeldyyMaseleler-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "3C · 1",
+      "title": "Байланыштыруу",
+      "title_en": "Connect",
+      "summary": "Бир тилкеден үч суроого жооп: модель бир жолу, суроолор көп.",
+      "when": "Өз алдынча же жуптар · 15 мүн",
+      "bloom": [
+        "Талдоо"
+      ],
+      "items": [
+        {
+          "title": "Бир маселе — үч суроо",
+          "note": "Иш барагы · 3 маселе · жооптору менен · 9 суроо",
+          "level": "Талдоо",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-BirMaseleUchSuroo.png",
+          "files": [
+            [
+              "PDF A4",
+              "word-problems-bar-model-BirMaseleUchSuroo-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "3C · 2",
+      "title": "Кызматташуу",
+      "title_en": "Collaborate",
+      "summary": "12 маселени модельдин түрүнө жараша сорттоо жана талкуулоо.",
+      "when": "Топтор · 15 мүн",
+      "bloom": [
+        "Баалоо"
+      ],
+      "items": [
+        {
+          "title": "Маселе карталары",
+          "note": "Карталар · 12 карта · жазуу барагы · ачкыч · Бөлүк–бүтүн · Салыштыруу · Бирдиктер",
+          "level": "Баалоо",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-MaseleKartalary.png",
+          "files": [
+            [
+              "PDF A4",
+              "word-problems-bar-model-MaseleKartalary-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "5E · 5",
+      "title": "Баалоо",
+      "title_en": "Evaluate",
+      "summary": "Туура моделди тандоо, катаны табуу, катыш маселесин түзүү.",
+      "when": "Сабактын аягында · 8 мүн",
+      "bloom": [
+        "Баалоо"
+      ],
+      "items": [
+        {
+          "title": "Кайсы модель?",
+          "note": "Чыгуу билети · 2 вариант · A4 · Туюндуруучу суроо + ката + ачык суроо",
+          "level": "Баалоо",
+          "cpa": [
+            "Сүрөт",
+            "Абстракттуу"
+          ],
+          "image": "img/bridge/word-problems-bar-model-KaysyModel.png",
+          "files": [
+            [
+              "PDF A4",
+              "word-problems-bar-model-KaysyModel-A4.pdf"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

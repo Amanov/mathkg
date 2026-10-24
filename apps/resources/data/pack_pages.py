@@ -9,7 +9,7 @@ placeholder. A pack goes only on pages whose content it actually teaches
 example the rectangle pack is not put on the circle or triangle pages.
 
 Every pack has the same eleven files; they ship in
-apps/resources/bundled_files/ (migration 0034 adds their Resource rows) and
+apps/resources/bundled_files/ (migration 0035 adds their Resource rows) and
 their previews in static/img/topic-pages/.
 """
 
