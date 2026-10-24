@@ -1,7 +1,10 @@
-"""The ten bridge topic pages, their files, and the learning-path nav."""
+"""The ten bridge topic pages and their files.
+
+These routes are additive. They do not insert menu rows, and an existing
+topic page keeps the markup it had before the routes existed.
+"""
 
 from datetime import timedelta
-from pathlib import Path
 
 from django.contrib.staticfiles import finders
 from django.test import TestCase
@@ -10,8 +13,20 @@ from django.utils import timezone
 
 from apps.account.models import Account, SubscriptionRequest
 from apps.resources.bridge_pages import BUNDLED_DIR, iter_pages, referenced_filenames
-from apps.resources.bridge_menu import apply_bridge_menu
-from apps.resources.models import MenuItem, Resource, TopicContinuum
+from apps.resources.models import MenuItem, Resource
+
+BRIDGE_URL_NAMES = [
+    'san_kuramy',
+    'on_kozonoktuu_ramka',
+    'bar_model_part_whole',
+    'bar_model_comparison',
+    'word_problems_bar_model',
+    'before_after',
+    'bar_to_x',
+    'balance_method',
+    'algebra_tiles',
+    'heuristics',
+]
 
 
 class BridgePageTests(TestCase):
@@ -34,9 +49,7 @@ class BridgePageTests(TestCase):
             self.assertIn('model-switch', html)
             self.assertIn('topic-path', html)
             self.assertIn('Сингапур ыкмасы', html)
-            row = TopicContinuum.objects.get(href=f"/{page['slug']}/")
-            self.assertIn(row.grade_band, html)
-            self.assertTrue(row.grade_band.endswith('кл.'))
+            self.assertIn('кл.', html)
             for section in page['sections']:
                 for item in section['items']:
                     self.assertIn(item['title'], html)
@@ -48,6 +61,18 @@ class BridgePageTests(TestCase):
         self.assertIn('/on-kozonoktuu-ramka/', san)
         self.assertIn('/integers-adding-1-2-digit/', san)
         self.assertIn('Эки түстүү фигуралар', san)
+
+    def test_bridge_pages_do_not_add_menu_items(self):
+        self.assertFalse(MenuItem.objects.filter(url_name__in=BRIDGE_URL_NAMES).exists())
+
+    def test_an_existing_topic_page_has_no_bridge_nav(self):
+        response = self.client.get(reverse('to_fractions'))
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode()
+        self.assertIn('Ондуктарды бөлчөккө айландыруу', html)
+        self.assertNotIn('topic-path', html)
+        self.assertNotIn('Сингапур ыкмасы', html)
+        self.assertNotIn('bridge-topic.css', html)
 
     def test_a_bundled_worksheet_downloads(self):
         user = Account.objects.create_user(
@@ -72,47 +97,3 @@ class BridgePageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         body = b''.join(response.streaming_content)
         self.assertTrue(body.startswith(b'PK'), body[:8])
-
-    def test_menu_insert_is_idempotent_and_keeps_existing_items(self):
-        before = MenuItem.objects.count()
-        apply_bridge_menu(MenuItem)
-        self.assertEqual(MenuItem.objects.count(), before)
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='san_kuramy', parent__title='Сан сезими',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='on_kozonoktuu_ramka', parent__title='Сан сезими',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='bar_model_part_whole', parent__title='Тилке модели',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='word_problems_bar_model', parent__title='Турмуштук маселелер',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='before_after',
-            parent__title='Өзгөртүп түзүү',
-            parent__parent__title='Катыш',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='bar_to_x',
-            parent__title='Киришүү',
-            parent__parent__title='Алгебра',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='balance_method',
-            parent__title='Теңдемелер: сызыктуу',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='algebra_tiles',
-            parent__title='Өзгөртүп түзүү',
-            parent__parent__title='Алгебра',
-        ).exists())
-        self.assertTrue(MenuItem.objects.filter(
-            url_name='heuristics', parent__isnull=True,
-        ).exists())
-
-    def test_existing_topic_page_still_renders(self):
-        response = self.client.get(reverse('to_fractions'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Ондуктарды бөлчөккө айландыруу')

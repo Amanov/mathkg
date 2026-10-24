@@ -70,11 +70,6 @@
     {# without it being obvious, but any page whose content starts right at #}
     {# the top had its first ~78px sitting under the fixed nav).            #}
     <div class="container-fluid" style="padding-top: 148px;">
-        {# Learning-path prev/next. Topic pages that draw it under the title #}
-        {# override this block so it is not shown twice.                    #}
-        {% block topic_path %}
-        {% include 'snippets/topic_path_nav.html' %}
-        {% endblock %}
         {% block content %}
         {% endblock content %}
     </div>

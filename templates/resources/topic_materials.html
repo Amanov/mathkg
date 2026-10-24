@@ -2,11 +2,9 @@
 {% load static %}
 {% block title %}{{ page.title }}{% endblock %}
 
-{% block topic_path %}{% endblock %}
-
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261024a">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261019c">
 {% if page.uses_mk_zoom %}
 <link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019c">
 {% endif %}
@@ -17,12 +15,7 @@
 <main class="topic-page">
   {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
   <h1 class="topic-page__title">{{ page.title }}</h1>
-  {% if page.grade_badge %}
-  <p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>
-  {% elif topic_continuum.grade_band and not page.grades %}
-  <p class="topic-page__grade"><span>{{ topic_continuum.grade_band }}</span></p>
-  {% endif %}
-  {% include 'snippets/topic_path_nav.html' %}
+  {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
 
   {% if not user.is_authenticated %}
   <p class="topic-page__notice">
@@ -57,17 +50,6 @@
           <li>{{ page.standard.grade }}</li>
           <li>{{ page.standard.competency }}</li>
         </ul>
-      </div>
-      {% endif %}
-      {% if page.singapore %}
-      <div class="sg-box">
-        <h3>Сингапур ыкмасы</h3>
-        <dl class="sg-grid">
-          {% for row in page.singapore %}
-          <dt>{{ row.label }}</dt>
-          <dd>{{ row.text }}</dd>
-          {% endfor %}
-        </dl>
       </div>
       {% endif %}
       <div class="teacher-guide__cols">
@@ -159,13 +141,6 @@
             <span class="bloom-ladder" aria-hidden="true">{% for n in "123456" %}<i{% if forloop.counter <= item.level_num %} class="on"{% endif %}></i>{% endfor %}</span>
             Блум: {{ item.level }}
           </p>
-          {% if item.cpa %}
-          <p class="cpa-row lesson-meta">
-            {% for chip in item.cpa %}
-            <span class="cpa-chip{% if chip.on %} on{% endif %}">{{ chip.label }}</span>
-            {% endfor %}
-          </p>
-          {% endif %}
         </div>
         <div class="topic-row__files">
           {% for link in item.links %}

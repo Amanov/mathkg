@@ -420,10 +420,7 @@ class FreeDownloadTests(TestCase):
         self.assertEqual(got, expected)
         resp = self.client.get(reverse('four_basic_operations'))
         html = resp.content.decode()
-        # Menu labels and the learning-path nav can repeat a short title
-        # such as «Салыштыруу». Order is the order inside the topic page.
-        main = html.split('<main', 1)[1]
-        positions = [main.index(title) for title, _files in expected]
+        positions = [html.index(title) for title, _files in expected]
         self.assertEqual(positions, sorted(positions))
 
 

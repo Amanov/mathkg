@@ -1,9 +1,9 @@
 """Bridge topic pages: specs, draft import, and bundled download files.
 
 Page copy lives in ``data/bridge/pages/<slug>.json``. Downloadable PDFs and
-PPTX live in ``bundled_files/bridge/`` and are looked up by filename, the
-same way other topic pages look up a Resource title. Thumbnails live in
-``static/img/bridge/``.
+PPTX live in ``bundled_files/`` under their filename, which is also the
+Resource title, so the existing download lookup finds them. Thumbnails
+live in ``static/img/bridge/``.
 
 Replacing a worksheet or slide deck without changing the page is a file
 swap: put the new bytes at the same filename and run
@@ -20,7 +20,7 @@ from pathlib import Path
 
 APP_DIR = Path(__file__).resolve().parent
 PAGES_DIR = APP_DIR / 'data' / 'bridge' / 'pages'
-BUNDLED_DIR = APP_DIR / 'bundled_files' / 'bridge'
+BUNDLED_DIR = APP_DIR / 'bundled_files'
 THUMB_DIR = APP_DIR.parent.parent / 'static' / 'img' / 'bridge'
 CPA_LABELS = ('Конкреттүү', 'Сүрөт', 'Абстракттуу')
 BLOOM_LEVEL_NAMES = (

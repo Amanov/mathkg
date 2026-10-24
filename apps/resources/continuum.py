@@ -1,14 +1,15 @@
-"""Learning-path order and grade bands, loaded from the continuum CSVs.
+"""Grade band and previous/next topic for the bridge pages, read from CSV.
 
-``learning-paths.csv`` gives every topic href a previous and next page.
-``grade-tags.csv`` gives the 12-year grade band («5 кл.»). ``load_topic_continuum``
-writes both into ``TopicContinuum``. The topic-page nav reads that table.
+The files are the continuum tables. Only the bridge topic view calls
+``continuum_for_href``, so other pages do not show this nav or badge.
 """
 
 import csv
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent / 'data' / 'continuum'
+
+_CACHE = None
 
 
 def _rows(name):
@@ -29,59 +30,41 @@ def path_label(name):
     return name.strip()
 
 
-def load_topic_continuum(model):
-    """Upsert one row per href. ``model`` is ``TopicContinuum`` or a migration stand-in."""
-    paths = {row['href']: row for row in _rows('learning-paths.csv')}
-    grades = {row['href']: row for row in _rows('grade-tags.csv')}
-    hrefs = sorted(set(paths) | set(grades))
-    if not hrefs:
-        raise RuntimeError('continuum CSVs did not contain any topics')
-    for href in hrefs:
-        path = paths.get(href, {})
-        grade = grades.get(href, {})
-        title = clean_title(path.get('title') or grade.get('title') or href)
-        model.objects.update_or_create(
-            href=href,
-            defaults={
-                'title': title[:300],
-                'grade_band': (grade.get('grade_band') or '')[:40],
-                'school_level': (grade.get('school_level') or '')[:40],
-                'prev_href': (path.get('prev_href') or '')[:255],
-                'next_href': (path.get('next_href') or '')[:255],
-                'path_name': (path.get('path_name') or '')[:300],
-            },
-        )
-    return len(hrefs)
+def _index():
+    global _CACHE
+    if _CACHE is None:
+        paths = {row['href']: row for row in _rows('learning-paths.csv')}
+        grades = {row['href']: row for row in _rows('grade-tags.csv')}
+        _CACHE = (paths, grades)
+    return _CACHE
 
 
-def continuum_for_path(path):
-    """Nav context for this request path, or None when the path is not a topic."""
-    from django.db.utils import OperationalError, ProgrammingError
-
-    from apps.resources.models import TopicContinuum
-
-    if not path:
+def continuum_for_href(href):
+    """Grade badge and neighbours for one public path, or None."""
+    if not href:
         return None
-    if not path.startswith('/'):
-        path = '/' + path
-    if not path.endswith('/'):
-        path += '/'
-    try:
-        row = TopicContinuum.objects.filter(href=path).first()
-    except (OperationalError, ProgrammingError):
-        return None
-    if row is None:
+    if not href.startswith('/'):
+        href = '/' + href
+    if not href.endswith('/'):
+        href += '/'
+    paths, grades = _index()
+    path = paths.get(href)
+    grade = grades.get(href)
+    if path is None and grade is None:
         return None
 
-    def neighbor(href):
-        if not href:
+    def neighbor(other_href):
+        other_href = (other_href or '').strip()
+        if not other_href:
             return None
-        other = TopicContinuum.objects.filter(href=href).only('title').first()
-        return {'href': href, 'title': other.title if other else href}
+        other = paths.get(other_href) or grades.get(other_href) or {}
+        return {'href': other_href, 'title': clean_title(other.get('title') or other_href)}
 
+    path = path or {}
+    grade = grade or {}
     return {
-        'grade_band': row.grade_band,
-        'path_label': path_label(row.path_name),
-        'prev': neighbor(row.prev_href),
-        'next': neighbor(row.next_href),
+        'grade_band': (grade.get('grade_band') or '').strip(),
+        'path_label': path_label(path.get('path_name') or ''),
+        'prev': neighbor(path.get('prev_href')),
+        'next': neighbor(path.get('next_href')),
     }

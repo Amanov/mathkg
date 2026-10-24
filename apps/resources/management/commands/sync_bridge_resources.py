@@ -7,7 +7,7 @@ from apps.resources.models import Resource
 class Command(BaseCommand):
     help = (
         'Ensure every file named by the bridge page specs has an active Resource row. '
-        'Pass --refresh to overwrite the media copy from bundled_files/bridge/ '
+        'Pass --refresh to overwrite the media copy from bundled_files/ '
         '(use this after swapping a PDF or PPTX that keeps the same filename).'
     )
 

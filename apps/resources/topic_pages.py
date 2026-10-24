@@ -14,7 +14,6 @@ from apps.resources.data.four_basic_operations_grades import (
     GRADE_ITEMS,
     GRADE_TEACHER_FILES,
 )
-from apps.resources.bridge_pages import CPA_LABELS
 from apps.resources.free_download import choose_free_resource
 
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
@@ -749,7 +748,6 @@ def build_topic_page(page, resources, user):
                 page['file_prefix'], item['files'], resources, user, register_url, free_id,
             )
             svg_path = f"{page['svg_dir']}/{item['svg']}.svg"
-            cpa = item.get('cpa') or []
             items.append(
                 {
                     'title': item['title'],
@@ -762,10 +760,6 @@ def build_topic_page(page, resources, user):
                     'has_locked': any(not link['free'] for link in links),
                     'grade': item.get('grade'),
                     'subtopic': item.get('subtopic'),
-                    'cpa': [
-                        {'label': label, 'on': label in cpa}
-                        for label in CPA_LABELS
-                    ] if cpa else [],
                 }
             )
         sections.append({**section, 'items': items})
@@ -806,8 +800,7 @@ def build_topic_page(page, resources, user):
         'model_label': page.get('model_label', '5E + 3C жана Блум'),
         'stages_label': page.get('stages_label', 'Сабактын этаптары (5E + 3C)'),
         'sections': sections,
-        'bloom_guide': list(page.get('bloom_guide') or [])
-        or [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
+        'bloom_guide': [(level, BLOOM_GUIDE[level]) for level in BLOOM_LEVELS],
         # Staircase above the list: how many materials reach each level.
         'bloom_steps': [
             {
@@ -825,5 +818,4 @@ def build_topic_page(page, resources, user):
         # guide panel, not tagged to one section, since they don't
         # belong to a single stage the way a student activity does.
         'teacher_resources': teacher_resources,
-        'singapore': list(page.get('singapore') or []),
     }

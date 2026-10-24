@@ -520,48 +520,6 @@
     },
     {
       "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/",
-      "name": "personal_topiccontinuum_changelist",
-      "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.changelist_view"
-    },
-    {
-      "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/add/",
-      "name": "personal_topiccontinuum_add",
-      "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.add_view"
-    },
-    {
-      "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/<path:object_id>/history/",
-      "name": "personal_topiccontinuum_history",
-      "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.history_view"
-    },
-    {
-      "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/<path:object_id>/delete/",
-      "name": "personal_topiccontinuum_delete",
-      "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.delete_view"
-    },
-    {
-      "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/<path:object_id>/change/",
-      "name": "personal_topiccontinuum_change",
-      "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.change_view"
-    },
-    {
-      "namespace": "admin",
-      "pattern": "admin/personal/topiccontinuum/<path:object_id>/",
-      "name": null,
-      "defaults": {},
-      "callback": "django.views.generic.base.RedirectView"
-    },
-    {
-      "namespace": "admin",
       "pattern": "admin/auth/group/",
       "name": "auth_group_changelist",
       "defaults": {},
@@ -8649,37 +8607,6 @@
       "path": "/admin/personal/newspost/sample/path/change/"
     },
     {
-      "name": "admin:personal_topiccontinuum_changelist",
-      "kwargs": {},
-      "path": "/admin/personal/topiccontinuum/"
-    },
-    {
-      "name": "admin:personal_topiccontinuum_add",
-      "kwargs": {},
-      "path": "/admin/personal/topiccontinuum/add/"
-    },
-    {
-      "name": "admin:personal_topiccontinuum_history",
-      "kwargs": {
-        "object_id": "sample/path"
-      },
-      "path": "/admin/personal/topiccontinuum/sample/path/history/"
-    },
-    {
-      "name": "admin:personal_topiccontinuum_delete",
-      "kwargs": {
-        "object_id": "sample/path"
-      },
-      "path": "/admin/personal/topiccontinuum/sample/path/delete/"
-    },
-    {
-      "name": "admin:personal_topiccontinuum_change",
-      "kwargs": {
-        "object_id": "sample/path"
-      },
-      "path": "/admin/personal/topiccontinuum/sample/path/change/"
-    },
-    {
       "name": "admin:auth_group_changelist",
       "kwargs": {},
       "path": "/admin/auth/group/"
@@ -12978,11 +12905,6 @@
       "name": "search_suggest",
       "kwargs": {},
       "path": "/search/suggest/"
-    },
-    {
-      "name": "home_root",
-      "kwargs": {},
-      "path": "/"
     },
     {
       "name": "algebra_tiles",
