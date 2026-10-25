@@ -193,6 +193,12 @@ PACKS = {
         'ish-barak': '18 тапшырма, жыштык таблицасы жана пиктограмма, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: чийме белгилер, сан жана пиктограмманы дал келтирүү.',
     },
+    'venn': {
+        'prefix': '5-klass-venn-diagrammalary-', 'grade': 5, 'subtopic': 'Көптүктөр жана Венн диаграммалары',
+        'sabak': '26 слайд: «Ат-Башыдагы мектеп ийримдери» окуясы, жип менен эки тегерек, Венн жана Кэрролл диаграммалары.',
+        'ish-barak': '18 тапшырма, Венн жана Кэрролл диаграммалары, тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 сан Венн диаграммасына: «жуп» жана «3кө бөлүнөт».',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -576,6 +582,10 @@ GROUPS = [
         'percentages-noncalc-incdec-mixed',
         'expressing-quantity',
         'expressing-change',
+    ]),
+    _group('venn', 'Көптүктөр жана Венн диаграммалары', 'Дата › Көрсөтүү', ['venn'], [
+        'data-representing-venn-diagrams-creating-reading',
+        'data-representing-venn-diagrams-sets-with-notation',
     ]),
 ]
 

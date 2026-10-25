@@ -532,6 +532,7 @@ class FreeDownloadTests(TestCase):
             'percentages_incdec_decrease': '6-klass-payyz-sabak.webp',
             'systems_of_measurement_mixed': '4-klass-birdikterdi-almashtyruu-sabak.webp',
             'data_representing_pictograms': '3-klass-maalymat-chogultuu-sabak.webp',
+            'data_representing_venn_diagrams_creating_reading': '5-klass-venn-diagrammalary-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
