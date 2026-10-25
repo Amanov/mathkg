@@ -127,6 +127,92 @@ PACKS = {
         'ish-barak': '18 тапшырма, мамычалуу диаграмма, сызыктуу график жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: орто маани, медиана, мода жана кулач.',
     },
+    # Packs made earlier (2026-10-18/19) for the book topics; the first three
+    # keep their «-v2» file names.
+    'k100': {
+        'prefix': '2-klass-100-ichinde-', 'tail': '-v2', 'grade': 2, 'subtopic': '100 ичинде кошуу жана кемитүү',
+        'sabak': 'Ондуктар жана бирдиктер, сан огунда секирүү, тилке модели.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: мисалдарды жообу боюнча топтошот.',
+    },
+    'jadybal': {
+        'prefix': '3-klass-jadybal-', 'tail': '-v2', 'grade': 3, 'subtopic': 'Көбөйтүү жадыбалы',
+        'sabak': 'Топтор, массивдер жана тилке модели менен көбөйтүү жадыбалы.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: көбөйтүү жана бөлүү мисалдарын жообу боюнча топтошот.',
+    },
+    'bolunuu': {
+        'prefix': '6-klass-bolunuu-belgileri-', 'tail': '-v2', 'grade': 6, 'subtopic': 'Бөлүнүү белгилери',
+        'sabak': '2, 3, 5, 9 жана 10го бөлүнүү белгилери, бөлүүчүлөр жана эселиктер.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: сандарды бөлүнүү белгиси боюнча топтошот.',
+    },
+    'kemituu10': {
+        'prefix': '1-klass-10-ichinde-kemituu-', 'grade': 1, 'subtopic': '10 ичинде кемитүү',
+        'sabak': 'Таштар, капкактар жана он уячалуу кутуча менен кемитүү.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: кемитүү мисалдарын жообу боюнча топтошот.',
+    },
+    'kob234': {
+        'prefix': '2-klass-kobeytuu-2-3-4-', 'grade': 2, 'subtopic': '2, 3, 4кө көбөйтүү жана бөлүү',
+        'sabak': 'Бирдей топтор, массивдер жана тилке модели.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: мисалдарды жообу боюнча топтошот.',
+    },
+    'mamycha': {
+        'prefix': '3-klass-mamycha-koshuu-kemituu-', 'grade': 3, 'subtopic': 'Мамыча менен кошуу жана кемитүү',
+        'sabak': 'Орун маанилер таблицасы, алмаштыруу, мамыча менен эсептөө.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: мисалдарды жообу боюнча топтошот.',
+    },
+    'sandyn_bolugu': {
+        'prefix': '3-klass-sandyn-bolugu-', 'grade': 3, 'subtopic': 'Сандын бөлүгү',
+        'sabak': 'Тилке модели менен сандын бөлүгүн табуу.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: бөлчөктү жана сандын бөлүгүн дал келтиришет.',
+    },
+    'million': {
+        'prefix': '4-klass-million-ichinde-', 'grade': 4, 'subtopic': 'Миллион ичиндеги сандар',
+        'sabak': 'Разряддар, окуу жана жазуу, салыштыруу, тегеректөө.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: сандарды разряддары боюнча топтошот.',
+    },
+    'kadimki': {
+        'prefix': '5-klass-kadimki-bolchoktor-', 'grade': 5, 'subtopic': 'Кадимки бөлчөктөр',
+        'sabak': 'Барабар бөлчөктөр, кыскартуу, салыштыруу, тилке модели.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: барабар бөлчөктөрдү топтошот.',
+    },
+    'proporciya': {
+        'prefix': '6-klass-proporciya-procent-', 'grade': 6, 'subtopic': 'Пропорция жана процент',
+        'sabak': 'Түз пропорция, 10 % ыкмасы, сандын процентин табуу.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: процент жана чоңдукту дал келтиришет.',
+    },
+    'jonokoy': {
+        'prefix': '6-klass-jonokoy-kobeytuuchuler-', 'grade': 6, 'subtopic': 'Жөнөкөй көбөйтүүчүлөр, ЭЧОБ жана ЭКОЭ',
+        'sabak': 'Көбөйтүүчүлөр дарагы, ЭЧОБ жана ЭКОЭ.',
+        'ish-barak': 'Жеңил, Орто, Оор тапшырмалар, жооп ачкычы менен.',
+        'karta-sorttoo': 'Карталар: жөнөкөй жана курама сандар.',
+    },
+    'butun_kk': {
+        'prefix': '5-klass-butun-sandar-koshuu-kemituu-', 'grade': 5, 'subtopic': 'Бүтүн сандарды кошуу жана кемитүү',
+        'sabak': '26 слайд: «Нарындагы кыш» окуясы, жип менен сан огу, термометр.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: жообу оң, терс же нөл.',
+    },
+    'butun_kb': {
+        'prefix': '5-klass-butun-sandar-kobeytuu-boluu-', 'grade': 5, 'subtopic': 'Бүтүн сандарды көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Суу сактагычтын күндөлүгү» окуясы, эки түстүү капкактар, белгилер эрежеси.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: жообу оң, терс же нөл.',
+    },
+    'bagyttalgan': {
+        'prefix': '6-klass-bagyttalgan-sandar-amaldardyn-tartibi-', 'grade': 6, 'subtopic': 'Амалдардын тартиби',
+        'sabak': '26 слайд: «Ала-Арчага жөө жүрүш» окуясы, «КаДа – БөКө – КоКе», (−3)² жана −3².',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: туюнтманы жообу боюнча сорттошот.',
+    },
 }
 
 
@@ -135,8 +221,9 @@ def _pack_items(pack):
 
     def one(section, title, note, level, suffix, label='PDF A4'):
         ext = '.pptx' if label == 'PPT' else '.pdf'
-        return _item(section, grade, title, note, level, [(label, prefix + suffix + ext)],
-                     IMAGE_DIR + prefix + suffix + '.webp', subtopic=subtopic)
+        name = prefix + suffix + pack.get('tail', '')
+        return _item(section, grade, title, note, level, [(label, name + ext)],
+                     IMAGE_DIR + name + '.webp', subtopic=subtopic)
 
     return [
         one('Изилдөө', *pack.get('puzzle', ('Цифра табышмагы', 'Үч деңгээл: бош орунга цифра коюшат.')),
@@ -156,10 +243,10 @@ def _teacher(pack):
     prefix, grade, subtopic = pack['prefix'], pack['grade'], pack['subtopic']
     return [
         {'title': f'{grade}-класс · {subtopic}: класста колдонуу', 'note': TEACHER_NOTE,
-         'files': [('PDF', prefix + 'klassta-koldonuu.pdf')], 'grade': grade},
+         'files': [('PDF', prefix + 'klassta-koldonuu' + pack.get('tail', '') + '.pdf')], 'grade': grade},
         {'title': f'{grade}-класс · {subtopic}: мугалимдин картасы',
          'note': 'Типтүү каталар, чечүүчү суроо, чыгуу билети.',
-         'files': [('PDF', prefix + 'mugalim-kartasy.pdf')], 'grade': grade},
+         'files': [('PDF', prefix + 'mugalim-kartasy' + pack.get('tail', '') + '.pdf')], 'grade': grade},
     ]
 
 
@@ -265,6 +352,44 @@ GROUPS = [
         'indices-introduction', 'indices-square-numbers', 'indices-cube-numbers',
         'evaluating-roots-square', 'evaluating-roots-square-cube',
     ]),
+    _group('k100', '100 ичинде кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['k100'], [
+        'integers-adding-1-2-digit',
+    ]),
+    _group('kemituu', 'Кемитүү: 10 жана 100 ичинде', 'Сандар › Бүтүн сандар', ['kemituu10', 'k100'], [
+        'integers-subtracting-1-2-digit',
+    ]),
+    _group('mamycha', 'Мамыча менен кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['mamycha'], [
+        'integers-adding-2-3-digit', 'integers-subtracting-2-3-digit', 'integers-adding-subtracting-2-3-digit',
+    ]),
+    _group('kob_jadybal', 'Көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kob234', 'jadybal'], [
+        'integers-multiplying-1-2-digit', 'integers-dividing-1-2-digit', 'integers-multiplying-dividing-1-2-digit',
+    ]),
+    _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], []),
+    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], ['rounding-whole-numbers']),
+    _group('kadimki', 'Кадимки бөлчөктөр', 'Сандар › Бөлчөктөр › Барабар бөлчөктөр', ['kadimki'], [
+        'equivalent-fractions-comparing-inequality', 'equivalent-fractions-comparing-ordering',
+        'equivalent-fractions-simplifying',
+    ]),
+    _group('proporciya', 'Пропорция жана процент', 'Сандар › Пропорция', ['proporciya'], [
+        'direct-inverse-direct', 'direct-inverse-introduction', 'percentages-noncalc-quantity-integer-decimal',
+        'percentages-quantity-integer', 'percentages-noncalc-quantity-10s', 'percentages-noncalc-quantity-5s',
+    ]),
+    _group('jonokoy', 'Жөнөкөй көбөйтүүчүлөр, ЭЧОБ жана ЭКОЭ', 'Сандар › Бөлүүчүлөр жана эселиктер', ['jonokoy'], [
+        'hcf-lcm-listing-mixed', 'hcf-prime-factorisation', 'lcm-prime-factorisation', 'hcf-listing', 'lcm-listing',
+    ]),
+    _group('bolunuu', 'Бөлүнүү белгилери', 'Сандар › Бөлүүчүлөр жана эселиктер', ['bolunuu'], []),
+    _group('bolunuu_jonokoy', 'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар', 'Сандар › Бөлүүчүлөр жана эселиктер',
+           ['bolunuu', 'jonokoy'], []),
+    _group('butun_kk', 'Бүтүн сандарды кошуу жана кемитүү', 'Сандар › Багытталган сандар', ['butun_kk'], [
+        'adding-directed', 'subtracting-directed', 'adding-subtracting-directed',
+    ]),
+    _group('butun_kb', 'Бүтүн сандарды көбөйтүү жана бөлүү', 'Сандар › Багытталган сандар', ['butun_kb'], [
+        'multiplying-dividing-directed',
+    ]),
+    _group('bagyttalgan', 'Багытталган сандар: амалдардын тартиби', 'Сандар › Багытталган сандар',
+           ['bagyttalgan'], ['with-bidmas-directed', 'complex-directed']),
+    _group('directed_mixed', 'Багытталган сандар менен аралаш эсептөөлөр', 'Сандар › Багытталган сандар',
+           ['butun_kk', 'butun_kb'], ['mixed-directed']),
     _group('algebra', 'Тамгалуу туюнтмалар жана теңдемелер', 'Алгебра', ['algebra'], [
         'algebra-intro-definitions',
         'algebra-intro-notation',
@@ -323,6 +448,15 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('number', 'fractions', 'introduction'), 'bolchok_t'),
     (('number', 'fractions', 'fractions-as-words'), 'bolchok_t'),
     (('number', 'indices-surds', 'indices-roots-integers'), 'kvadrat'),
+    (('number', 'fractions', 'fraction-of-a-quantity'), 'sandyn_bolugu'),
+    (('number', 'integers', 'place-value-ordering'), 'million'),
+    (('number', 'integers', 'integers-as-words'), 'million'),
+    (('number', 'factors-multiples-primes', 'prime-numbers'), 'jonokoy'),
+    (('number', 'factors-multiples-primes', 'prime-factorisation-index-form'), 'jonokoy'),
+    (('number', 'factors-multiples-primes', 'multiples'), 'bolunuu'),
+    (('number', 'factors-multiples-primes', 'factors'), 'bolunuu'),
+    (('number', 'integers', 'divisibility-rules'), 'bolunuu'),
+    (('number', 'factors-multiples-primes', 'prime-numbers-factors-multiples'), 'bolunuu_jonokoy'),
     (('number', 'measures', 'reading-scales'), 'olchomdor'),
     (('geometry', 'transformations', 'reflection'), 'simmetriya'),
     (('geometry', 'transformations', 'translation'), 'simmetriya'),
@@ -331,7 +465,10 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
 
-NEW_FILES = [pack['prefix'] + suffix for pack in PACKS.values() for suffix in SUFFIXES]
+NEW_FILES = [
+    pack['prefix'] + suffix.replace('.', pack.get('tail', '') + '.')
+    for pack in PACKS.values() for suffix in SUFFIXES
+]
 
 
 def page_for(slug, page_title):
