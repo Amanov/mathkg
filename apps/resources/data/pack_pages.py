@@ -151,6 +151,12 @@ PACKS = {
         'ish-barak': '18 тапшырма, сызгыч менен ченелүүчү карта жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: масштаб, картадагы жана чыныгы аралык.',
     },
+    'okshosh': {
+        'prefix': '6-klass-okshosh-muchular-', 'grade': 6, 'subtopic': 'Окшош мүчөлөр жана туюнтмаларды жөнөкөйлөтүү',
+        'sabak': '26 слайд: «Чаткалдагы бал» окуясы, картон алгебра плиткалары, 3(x + 4) = 3x + 12.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бирдей туюнтмаларды табуу.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -470,6 +476,16 @@ GROUPS = [
     _group('masshtab', 'Масштаб', 'Сандар › Өлчөмдөр › Масштабдуу сүрөттөр', ['masshtab'], [
         'scale-drawings-lengths',
         'scale-drawings-estimation',
+    ]),
+    _group('okshosh', 'Окшош мүчөлөр жана кашааны ачуу', 'Алгебра › Өзгөртүп түзүү', ['okshosh'], [
+        'algebra-manipulation-expand-single-without-coefficients',
+        'algebra-manipulation-expand-single-with-coefficients',
+        'algebra-manipulation-expand-single-multiple',
+        'algebra-manipulation-expand-single-mixed',
+        'algebra-manipulation-expressions-adding-brackets',
+        'algebra-manipulation-notation-adding-brackets',
+        'algebra-linear-brackets-without-coefficients',
+        'algebra-linear-brackets-with-coefficients',
     ]),
 ]
 
