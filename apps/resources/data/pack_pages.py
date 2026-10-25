@@ -199,6 +199,12 @@ PACKS = {
         'ish-barak': '18 тапшырма, Венн жана Кэрролл диаграммалары, тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 сан Венн диаграммасына: «жуп» жана «3кө бөлүнөт».',
     },
+    'tegerektoo': {
+        'prefix': '4-klass-tegerektoo-boljoldoo-', 'grade': 4, 'subtopic': 'Тегеректөө жана болжолдоо',
+        'sabak': '26 слайд: «Жети-Өгүздөгү алма бакчасы» окуясы, кагаз тилкедеги сан огу, жарым жол эрежеси, жоопту болжолдоп текшерүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: болжолдуу жооп ≈ 600, 6 000 же 60 000.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -440,7 +446,10 @@ GROUPS = [
         'integers-multiplying-1-2-digit', 'integers-dividing-1-2-digit', 'integers-multiplying-dividing-1-2-digit',
     ]),
     _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], []),
-    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], ['rounding-whole-numbers']),
+    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], []),
+    _group('tegerektoo', 'Тегеректөө жана болжолдоо', 'Сандар › Болжолдоо жана тегеректөө', ['tegerektoo', 'million'], [
+        'rounding-whole-numbers',
+    ]),
     _group('kadimki', 'Кадимки бөлчөктөр', 'Сандар › Бөлчөктөр › Барабар бөлчөктөр', ['kadimki'], [
         'equivalent-fractions-comparing-inequality', 'equivalent-fractions-comparing-ordering',
         'equivalent-fractions-simplifying',
@@ -627,6 +636,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
     (('geometry', 'construction', 'nets'), 'kolom'),
     (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
+    (('number', 'estimating-rounding', 'approximating-calculations'), 'tegerektoo'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
