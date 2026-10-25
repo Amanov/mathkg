@@ -46,11 +46,11 @@ def hcf_lcm_prime_factorisation_mixed_view(request):
 
 
 def subtracting_1_digit_view(request):
-    return placeholder_page(request, 'Кемитүү — 1 орундуу сандар')
+    return pack_or_placeholder(request, 'subtracting-1-digit', 'Кемитүү — 1 орундуу сандар')
 
 
 def adding_subtracting_1_digit_view(request):
-    return placeholder_page(request, 'Кошуу жана кемитүү — 1 орундуу сандар')
+    return pack_or_placeholder(request, 'adding-subtracting-1-digit', 'Кошуу жана кемитүү — 1 орундуу сандар')
 
 
 def algebra_linear_var1side_noncalc_1step_view(request):
