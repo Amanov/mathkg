@@ -145,6 +145,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: чекиттер чейреги жана огу боюнча.',
     },
+    'masshtab': {
+        'prefix': '6-klass-masshtab-', 'grade': 6, 'subtopic': 'Масштаб',
+        'sabak': '26 слайд: «Сары-Челекке саякат» окуясы, 1 : 100 класстын планы, шарттуу карта жана эки сан огу.',
+        'ish-barak': '18 тапшырма, сызгыч менен ченелүүчү карта жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: масштаб, картадагы жана чыныгы аралык.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -461,6 +467,10 @@ GROUPS = [
         'algebra-graphs-abstract-coordinates-reading',
         'algebra-graphs-abstract-coordinates-reading-plotting',
     ]),
+    _group('masshtab', 'Масштаб', 'Сандар › Өлчөмдөр › Масштабдуу сүрөттөр', ['masshtab'], [
+        'scale-drawings-lengths',
+        'scale-drawings-estimation',
+    ]),
 ]
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
@@ -500,6 +510,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'transformations', 'translation'), 'simmetriya'),
     (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
     (('geometry', 'construction', 'nets'), 'kolom'),
+    (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
