@@ -39,7 +39,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0042_wave5_packs'),
+        ('personal', '0043_unique_topic_slugs'),
     ]
 
     operations = [
