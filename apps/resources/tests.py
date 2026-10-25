@@ -536,6 +536,7 @@ class FreeDownloadTests(TestCase):
             'rounding_whole_numbers': '4-klass-tegerektoo-boljoldoo-sabak.webp',
             'integers_multiplying_2_3_digit': '4-klass-kop-orunduu-kobeytuu-boluu-sabak.webp',
             'integers_multiplying_dividing_10_100_1000': '5-klass-10-100-1000-sabak.webp',
+            'direct_inverse_inverse': '6-klass-tuz-teskeri-proporciya-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()

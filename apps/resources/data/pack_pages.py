@@ -217,6 +217,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: 0,5 м, 5 м же 50 мге барабар.',
     },
+    'tuz_teskeri': {
+        'prefix': '6-klass-tuz-teskeri-proporciya-', 'grade': 6, 'subtopic': 'Түз жана тескери пропорциялуулук',
+        'sabak': '26 слайд: «Тоңдогу ашар» окуясы, 24 капкакты кайра топтоо, катыш таблицалары, жумушчулар жана күндөр.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: түз, тескери же экөө тең эмес.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -467,7 +473,7 @@ GROUPS = [
         'equivalent-fractions-simplifying',
     ]),
     _group('proporciya', 'Пропорция жана процент', 'Сандар › Пропорция', ['proporciya'], [
-        'direct-inverse-direct', 'direct-inverse-introduction', 'percentages-noncalc-quantity-integer-decimal',
+        'percentages-noncalc-quantity-integer-decimal',
         'percentages-quantity-integer', 'percentages-noncalc-quantity-10s', 'percentages-noncalc-quantity-5s',
     ]),
     _group('jonokoy', 'Жөнөкөй көбөйтүүчүлөр, ЭЧОБ жана ЭКОЭ', 'Сандар › Бөлүүчүлөр жана эселиктер', ['jonokoy'], [
@@ -616,6 +622,12 @@ GROUPS = [
     _group('m1000', '10, 100, 1000ге көбөйтүү жана бөлүү', 'Сандар › Эсептөөлөр', ['m1000', 'ondu_kb'], [
         'multiplying-dividing-10-100-1000',
         'integers-multiplying-dividing-10-100-1000',
+    ]),
+    _group('tuz_teskeri', 'Түз жана тескери пропорциялуулук', 'Пропорция › Түз жана тескери пропорция', ['tuz_teskeri', 'proporciya'], [
+        'direct-inverse-introduction',
+        'direct-inverse-direct',
+        'direct-inverse-inverse',
+        'direct-inverse-mixed',
     ]),
 ]
 
