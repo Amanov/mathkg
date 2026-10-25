@@ -199,6 +199,30 @@ PACKS = {
         'ish-barak': '18 тапшырма, Венн жана Кэрролл диаграммалары, тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 сан Венн диаграммасына: «жуп» жана «3кө бөлүнөт».',
     },
+    'tegerektoo': {
+        'prefix': '4-klass-tegerektoo-boljoldoo-', 'grade': 4, 'subtopic': 'Тегеректөө жана болжолдоо',
+        'sabak': '26 слайд: «Жети-Өгүздөгү алма бакчасы» окуясы, кагаз тилкедеги сан огу, жарым жол эрежеси, жоопту болжолдоп текшерүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: болжолдуу жооп ≈ 600, 6 000 же 60 000.',
+    },
+    'kop_kb': {
+        'prefix': '4-klass-kop-orunduu-kobeytuu-boluu-', 'grade': 4, 'subtopic': 'Көп орундуу сандарды көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Суусамырдагы кымыз майрамы» окуясы, чакмак кагаз тилкелери, тор ыкмасы, мамычада көбөйтүү, калдык менен бөлүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: көбөйтүүнү жана бөлүүнү жообу боюнча топтоо.',
+    },
+    'm1000': {
+        'prefix': '5-klass-10-100-1000-', 'grade': 5, 'subtopic': '10, 100, 1000ге көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Кеминдеги тигүү цехи» окуясы, кагаз разряд таблицасы, цифралар жылат, үтүр ордунда калат, бирдиктерди алмаштыруу.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: 0,5 м, 5 м же 50 мге барабар.',
+    },
+    'tuz_teskeri': {
+        'prefix': '6-klass-tuz-teskeri-proporciya-', 'grade': 6, 'subtopic': 'Түз жана тескери пропорциялуулук',
+        'sabak': '26 слайд: «Тоңдогу ашар» окуясы, 24 капкакты кайра топтоо, катыш таблицалары, жумушчулар жана күндөр.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: түз, тескери же экөө тең эмес.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -416,7 +440,7 @@ GROUPS = [
     _group('ondu_kb', 'Ондук бөлчөктөрдү көбөйтүү жана бөлүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kb'], [
         'multiplying-1-digit', 'dividing-1-digit', 'multiplying-dividing-1-digit', 'mixed-1-digit',
         'dividing-by-less-than-1', 'multiplying-1-2-digit', 'dividing-1-2-digit', 'multiplying-dividing-1-2-digit',
-        'mixed-1-2-digit', 'multiplying-dividing-10-100-1000',
+        'mixed-1-2-digit',
         'integers-multiplying-with-decimals', 'integers-dividing-with-decimals',
         'integers-multiplying-dividing-with-decimals', 'integers-dividing-divisor-less-than-1-with-decimals',
         'integers-mixed-with-decimals', 'multiplying-with-integers', 'dividing-with-integers',
@@ -440,13 +464,16 @@ GROUPS = [
         'integers-multiplying-1-2-digit', 'integers-dividing-1-2-digit', 'integers-multiplying-dividing-1-2-digit',
     ]),
     _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], []),
-    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], ['rounding-whole-numbers']),
+    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], []),
+    _group('tegerektoo', 'Тегеректөө жана болжолдоо', 'Сандар › Болжолдоо жана тегеректөө', ['tegerektoo', 'million'], [
+        'rounding-whole-numbers',
+    ]),
     _group('kadimki', 'Кадимки бөлчөктөр', 'Сандар › Бөлчөктөр › Барабар бөлчөктөр', ['kadimki'], [
         'equivalent-fractions-comparing-inequality', 'equivalent-fractions-comparing-ordering',
         'equivalent-fractions-simplifying',
     ]),
     _group('proporciya', 'Пропорция жана процент', 'Сандар › Пропорция', ['proporciya'], [
-        'direct-inverse-direct', 'direct-inverse-introduction', 'percentages-noncalc-quantity-integer-decimal',
+        'percentages-noncalc-quantity-integer-decimal',
         'percentages-quantity-integer', 'percentages-noncalc-quantity-10s', 'percentages-noncalc-quantity-5s',
     ]),
     _group('jonokoy', 'Жөнөкөй көбөйтүүчүлөр, ЭЧОБ жана ЭКОЭ', 'Сандар › Бөлүүчүлөр жана эселиктер', ['jonokoy'], [
@@ -587,6 +614,21 @@ GROUPS = [
         'data-representing-venn-diagrams-creating-reading',
         'data-representing-venn-diagrams-sets-with-notation',
     ]),
+    _group('kop_kb', 'Көп орундуу сандарды көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kop_kb'], [
+        'integers-multiplying-2-3-digit',
+        'integers-dividing-2-3-digit',
+        'integers-multiplying-dividing-2-3-digit',
+    ]),
+    _group('m1000', '10, 100, 1000ге көбөйтүү жана бөлүү', 'Сандар › Эсептөөлөр', ['m1000', 'ondu_kb'], [
+        'multiplying-dividing-10-100-1000',
+        'integers-multiplying-dividing-10-100-1000',
+    ]),
+    _group('tuz_teskeri', 'Түз жана тескери пропорциялуулук', 'Пропорция › Түз жана тескери пропорция', ['tuz_teskeri', 'proporciya'], [
+        'direct-inverse-introduction',
+        'direct-inverse-direct',
+        'direct-inverse-inverse',
+        'direct-inverse-mixed',
+    ]),
 ]
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
@@ -627,6 +669,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
     (('geometry', 'construction', 'nets'), 'kolom'),
     (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
+    (('number', 'estimating-rounding', 'approximating-calculations'), 'tegerektoo'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
