@@ -151,6 +151,30 @@ PACKS = {
         'ish-barak': '18 тапшырма, сызгыч менен ченелүүчү карта жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: масштаб, картадагы жана чыныгы аралык.',
     },
+    'okshosh': {
+        'prefix': '6-klass-okshosh-muchular-', 'grade': 6, 'subtopic': 'Окшош мүчөлөр жана туюнтмаларды жөнөкөйлөтүү',
+        'sabak': '26 слайд: «Чаткалдагы бал» окуясы, картон алгебра плиткалары, 3(x + 4) = 3x + 12.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бирдей туюнтмаларды табуу.',
+    },
+    'aylana': {
+        'prefix': '6-klass-aylana-tegerek-', 'grade': 6, 'subtopic': 'Айлана жана тегерек',
+        'sabak': '26 слайд: «Кара-Балтадагы тегерек гүлзар» окуясы, жип менен айлананы ченөө, тегеректи 8 секторго кесүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, π ≈ 3,14, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: айлананын узундугу же тегеректин аянты.',
+    },
+    'turmushtuk': {
+        'prefix': '6-klass-turmushtuk-eseptoo-', 'grade': 6, 'subtopic': 'Турмуштук эсептөөлөр: баа, рецепт, валюта',
+        'sabak': '26 слайд: «Аламүдүн базарында базарлык» окуясы, палоо рецептин 10 кишиге эсептөө, пайдалуу сатып алуу, мисал курс менен валюта.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели «1 бирдикке», жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: көбөйтүү, бөлүү же «адегенде 1 бирдик».',
+    },
+    'uch_burchtuk': {
+        'prefix': '5-klass-uch-burchtuk-ayanty-', 'grade': 5, 'subtopic': 'Үч бурчтуктун, параллелограммдын жана трапециянын аянты',
+        'sabak': '26 слайд: «Кара-Балтадагы мектеп гүлзары» окуясы, чакмак кагазды кесип жылдыруу, a × h ÷ 2 жана (a + b) × h ÷ 2.',
+        'ish-barak': '18 тапшырма, чакмак кагаздагы фигуралар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 фигура чакмак кагазда: аянты боюнча топтошот.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -470,6 +494,49 @@ GROUPS = [
     _group('masshtab', 'Масштаб', 'Сандар › Өлчөмдөр › Масштабдуу сүрөттөр', ['masshtab'], [
         'scale-drawings-lengths',
         'scale-drawings-estimation',
+    ]),
+    _group('okshosh', 'Окшош мүчөлөр жана кашааны ачуу', 'Алгебра › Өзгөртүп түзүү', ['okshosh'], [
+        'algebra-manipulation-expand-single-without-coefficients',
+        'algebra-manipulation-expand-single-with-coefficients',
+        'algebra-manipulation-expand-single-multiple',
+        'algebra-manipulation-expand-single-mixed',
+        'algebra-manipulation-expressions-adding-brackets',
+        'algebra-manipulation-notation-adding-brackets',
+        'algebra-linear-brackets-without-coefficients',
+        'algebra-linear-brackets-with-coefficients',
+    ]),
+    _group('aylana', 'Айлана жана тегерек', 'Геометрия › Аянт жана периметр › Тегеректер', ['aylana'], [
+        'geometry-area-perimeter-circles-vocabulary',
+        'geometry-area-perimeter-circles-circumference',
+        'geometry-area-perimeter-circles-area',
+        'geometry-area-perimeter-circles-area-circumference',
+        'geometry-area-perimeter-circles-mixed',
+        'geometry-area-perimeter-compound-with-circles-area',
+        'geometry-area-perimeter-compound-with-circles-perimeter',
+        'geometry-area-perimeter-compound-with-circles-mixed',
+        'geometry-area-perimeter-mixed-polygons-circles',
+    ]),
+    _group('turmushtuk', 'Турмуштук эсептөөлөр: баа, рецепт, валюта', 'Пропорция › Турмуштук колдонуулар', ['turmushtuk'], [
+        'real-life-best-buys-non-calculator',
+        'real-life-best-buys-calculator',
+        'real-life-prices-non-calculator',
+        'real-life-prices-calculator',
+        'real-life-recipes-non-calculator',
+        'real-life-recipes-calculator',
+        'real-life-exchange-rates-non-calculator',
+        'real-life-exchange-rates-calculator',
+        'real-life-mixed-non-calculator',
+        'real-life-mixed-calculator',
+        'purchasing-calculator',
+        'measures-money-purchasing-calculator',
+    ]),
+    _group('uch_burchtuk', 'Үч бурчтуктун, параллелограммдын жана трапециянын аянты', 'Геометрия › Аянт жана периметр', ['uch_burchtuk'], [
+        'geometry-area-perimeter-triangles-area',
+        'geometry-area-perimeter-quadrilaterals-parallelogram',
+        'geometry-area-perimeter-quadrilaterals-trapezium',
+        'geometry-area-perimeter-compound-polygonal-area',
+        'geometry-area-perimeter-compound-polygonal-perimeter',
+        'geometry-area-perimeter-mixed-polygons',
     ]),
 ]
 
