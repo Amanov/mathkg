@@ -534,6 +534,7 @@ class FreeDownloadTests(TestCase):
             'data_representing_pictograms': '3-klass-maalymat-chogultuu-sabak.webp',
             'data_representing_venn_diagrams_creating_reading': '5-klass-venn-diagrammalary-sabak.webp',
             'rounding_whole_numbers': '4-klass-tegerektoo-boljoldoo-sabak.webp',
+            'integers_multiplying_2_3_digit': '4-klass-kop-orunduu-kobeytuu-boluu-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()

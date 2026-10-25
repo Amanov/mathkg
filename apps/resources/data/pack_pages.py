@@ -205,6 +205,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: болжолдуу жооп ≈ 600, 6 000 же 60 000.',
     },
+    'kop_kb': {
+        'prefix': '4-klass-kop-orunduu-kobeytuu-boluu-', 'grade': 4, 'subtopic': 'Көп орундуу сандарды көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Суусамырдагы кымыз майрамы» окуясы, чакмак кагаз тилкелери, тор ыкмасы, мамычада көбөйтүү, калдык менен бөлүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: көбөйтүүнү жана бөлүүнү жообу боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -595,6 +601,11 @@ GROUPS = [
     _group('venn', 'Көптүктөр жана Венн диаграммалары', 'Дата › Көрсөтүү', ['venn'], [
         'data-representing-venn-diagrams-creating-reading',
         'data-representing-venn-diagrams-sets-with-notation',
+    ]),
+    _group('kop_kb', 'Көп орундуу сандарды көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kop_kb'], [
+        'integers-multiplying-2-3-digit',
+        'integers-dividing-2-3-digit',
+        'integers-multiplying-dividing-2-3-digit',
     ]),
 ]
 
