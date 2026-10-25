@@ -127,6 +127,24 @@ PACKS = {
         'ish-barak': '18 тапшырма, мамычалуу диаграмма, сызыктуу график жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: орто маани, медиана, мода жана кулач.',
     },
+    'kolom': {
+        'prefix': '5-klass-kolom-', 'grade': 5, 'subtopic': 'Көлөм жана бет аянты',
+        'sabak': '26 слайд: «Өзгөндөгү күрүч кутулары» окуясы, кант кесектеринен кутуча, сүт кутусунун жайылмасы, литр.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: көлөм, бет аянты жана бирдиктер.',
+    },
+    'ylldamdyk': {
+        'prefix': '5-klass-ylldamdyk-', 'grade': 5, 'subtopic': 'Ылдамдык, убакыт жана аралык',
+        'sabak': '26 слайд: «Балыкчыга жайкы поезд» окуясы, короодо басып өз ылдамдыгыңды ченөө, эки шкалалуу жол сызыгы.',
+        'ish-barak': '18 тапшырма жана тилке модели: эки этаптуу жол, жакындашуу жана кууп жетүү, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: ылдамдык, убакыт же аралыкты табуу.',
+    },
+    'koordinattar': {
+        'prefix': '6-klass-koordinattar-', 'grade': 6, 'subtopic': 'Координаталык тегиздик',
+        'sabak': '26 слайд: «Чолпон-Атадагы таш сүрөттөр» окуясы, жип менен тор, чекиттерди окуу жана белгилөө, төрт чейрек.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: чекиттер чейреги жана огу боюнча.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -423,6 +441,26 @@ GROUPS = [
         'data-analysing-from-a-bar-chart',
         'data-analysing-comparing-using-mmmr',
     ]),
+    _group('kolom', 'Тик бурчтуу параллелепипеддин көлөмү жана бет аянты', 'Геометрия › Көлөм жана бет аянты', ['kolom'], [
+        'geometry-volume-surface-area-introduction-to-volume',
+        'geometry-volume-surface-area-vocabulary',
+        'geometry-volume-surface-area-nets',
+        'geometry-volume-surface-area-cuboid-volume',
+        'geometry-volume-surface-area-cuboid-surface-area',
+        'geometry-volume-surface-area-cuboid-mixed-foundation',
+        'geometry-volume-surface-area-cuboid-mixed-higher',
+    ]),
+    _group('ylldamdyk', 'Ылдамдык, убакыт жана аралык', 'Сандар › Өлчөмдөр › Татаал өлчөмдөр', ['ylldamdyk'], [
+        'compound-speed-distance-time',
+        'speed-distance-time-two-stage-journeys',
+        'speed-distance-time-relative-speeds',
+    ]),
+    _group('koordinattar', 'Координаталык тегиздик', 'Геометрия › Координаттар', ['koordinattar'], [
+        'geometry-coordinates-reading',
+        'geometry-coordinates-reading-plotting',
+        'algebra-graphs-abstract-coordinates-reading',
+        'algebra-graphs-abstract-coordinates-reading-plotting',
+    ]),
 ]
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
@@ -461,6 +499,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'transformations', 'reflection'), 'simmetriya'),
     (('geometry', 'transformations', 'translation'), 'simmetriya'),
     (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
+    (('geometry', 'construction', 'nets'), 'kolom'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
