@@ -281,6 +281,12 @@ class Subtopic(models.Model):
 
     class Meta:
         ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['topic', 'slug'],
+                name='personal_subtopic_topic_slug_uniq',
+            ),
+        ]
 
 # add this to apps/resources/models.py after Subtopic
 
@@ -299,6 +305,12 @@ class SubSubtopic(models.Model):
 
     class Meta:
         ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['subtopic', 'slug'],
+                name='personal_subsubtopic_subtopic_slug_uniq',
+            ),
+        ]
 
 # =====================================================
 

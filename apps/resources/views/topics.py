@@ -1,3 +1,5 @@
+from django.core.exceptions import MultipleObjectsReturned
+from django.http import Http404
 from django.shortcuts import (
     render,
     get_object_or_404,
@@ -6,11 +8,30 @@ from django.shortcuts import (
 from ..models import (
     Topic,
     Subtopic,
+    SubSubtopic,
 )
 
 from ..services import (
     build_topic_sections,
 )
+
+
+def get_scoped_or_404(model, **lookup):
+    """One row for this parent and slug.
+
+    ``get_object_or_404`` turns a missing slug into 404. A second row
+    with the same slug used to escape that helper as
+    MultipleObjectsReturned and become a 500. Migration 0043 keeps the
+    oldest row; this returns that same row if the migration has not
+    run yet.
+    """
+    try:
+        return get_object_or_404(model, **lookup)
+    except MultipleObjectsReturned:
+        row = model.objects.filter(**lookup).order_by('pk').first()
+        if row is None:
+            raise Http404(f'No {model.__name__} found matching the query')
+        return row
 
 
 def topic_view(
@@ -24,7 +45,7 @@ def topic_view(
         slug=topic_slug
     )
 
-    subtopic = get_object_or_404(
+    subtopic = get_scoped_or_404(
         Subtopic,
         slug=subtopic_slug,
         topic=topic
@@ -70,7 +91,7 @@ def _pack_page(request, key, title, sections):
 
 def subtopic_detail(request, topic_slug, subtopic_slug):
     topic = get_object_or_404(Topic, slug=topic_slug)
-    subtopic = get_object_or_404(Subtopic, slug=subtopic_slug, topic=topic)
+    subtopic = get_scoped_or_404(Subtopic, slug=subtopic_slug, topic=topic)
     sections = build_topic_sections(subtopic)
     pack = _pack_page(request, (topic_slug, subtopic_slug), subtopic.title, sections)
     if pack:
@@ -83,12 +104,18 @@ def subtopic_detail(request, topic_slug, subtopic_slug):
 
 
 def subsubtopic_detail(request, topic_slug, subtopic_slug, subsubtopic_slug):
-    from ..models import SubSubtopic
     topic = get_object_or_404(Topic, slug=topic_slug)
-    subtopic = get_object_or_404(Subtopic, slug=subtopic_slug, topic=topic)
-    subsubtopic = get_object_or_404(SubSubtopic, slug=subsubtopic_slug, subtopic=subtopic)
+    subtopic = get_scoped_or_404(Subtopic, slug=subtopic_slug, topic=topic)
+    subsubtopic = get_scoped_or_404(
+        SubSubtopic, slug=subsubtopic_slug, subtopic=subtopic,
+    )
     sections = build_topic_sections(subtopic, subsubtopic)
-    pack = _pack_page(request, (topic_slug, subtopic_slug, subsubtopic_slug), subsubtopic.title, sections)
+    pack = _pack_page(
+        request,
+        (topic_slug, subtopic_slug, subsubtopic_slug),
+        subsubtopic.title,
+        sections,
+    )
     if pack:
         return pack
     return render(request, 'resources/topic_page.html', {
