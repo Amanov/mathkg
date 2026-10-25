@@ -138,7 +138,7 @@ class SubtractingOneDigitPageTests(TestCase):
         )
         resp = self.client.get(reverse('subtracting_1_digit'))
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'даярдалууда')
+        self.assertContains(resp, '5-klass-ondu-koshuu-kemituu-sabak.webp')
         self.assertNotContains(resp, 'Бинго')
 
 
@@ -164,7 +164,7 @@ class AddingSubtractingOneDigitPageTests(TestCase):
         )
         resp = self.client.get(reverse('adding_subtracting_1_digit'))
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'даярдалууда')
+        self.assertContains(resp, '5-klass-ondu-koshuu-kemituu-sabak.webp')
         self.assertNotContains(resp, 'Бинго')
 
 
@@ -515,6 +515,9 @@ class FreeDownloadTests(TestCase):
             'systems_of_measurement_metric': '3-klass-olchomdor-sabak.webp',
             'geometry_classifying_vocabulary_classifying_shapes_symmetry': '4-klass-simmetriya-sabak.webp',
             'rounding_decimal_places': '5-klass-ondu-bolchok-orun-maani-sabak.webp',
+            'measures_money_purchasing_non_calculator': '4-klass-akcha-sabak.webp',
+            'dividing_by_less_than_1': '5-klass-ondu-kobeytuu-boluu-sabak.webp',
+            'indices_square_numbers': '6-klass-kvadrat-kub-daraja-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
