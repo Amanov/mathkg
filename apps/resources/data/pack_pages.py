@@ -163,6 +163,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана тилке модели, π ≈ 3,14, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: айлананын узундугу же тегеректин аянты.',
     },
+    'turmushtuk': {
+        'prefix': '6-klass-turmushtuk-eseptoo-', 'grade': 6, 'subtopic': 'Турмуштук эсептөөлөр: баа, рецепт, валюта',
+        'sabak': '26 слайд: «Аламүдүн базарында базарлык» окуясы, палоо рецептин 10 кишиге эсептөө, пайдалуу сатып алуу, мисал курс менен валюта.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели «1 бирдикке», жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: көбөйтүү, бөлүү же «адегенде 1 бирдик».',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -503,6 +509,20 @@ GROUPS = [
         'geometry-area-perimeter-compound-with-circles-perimeter',
         'geometry-area-perimeter-compound-with-circles-mixed',
         'geometry-area-perimeter-mixed-polygons-circles',
+    ]),
+    _group('turmushtuk', 'Турмуштук эсептөөлөр: баа, рецепт, валюта', 'Пропорция › Турмуштук колдонуулар', ['turmushtuk'], [
+        'real-life-best-buys-non-calculator',
+        'real-life-best-buys-calculator',
+        'real-life-prices-non-calculator',
+        'real-life-prices-calculator',
+        'real-life-recipes-non-calculator',
+        'real-life-recipes-calculator',
+        'real-life-exchange-rates-non-calculator',
+        'real-life-exchange-rates-calculator',
+        'real-life-mixed-non-calculator',
+        'real-life-mixed-calculator',
+        'purchasing-calculator',
+        'measures-money-purchasing-calculator',
     ]),
 ]
 
