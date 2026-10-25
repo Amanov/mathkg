@@ -528,6 +528,7 @@ class FreeDownloadTests(TestCase):
             'algebra_manipulation_expand_single_with_coefficients': '6-klass-okshosh-muchular-sabak.webp',
             'geometry_area_perimeter_circles_area': '6-klass-aylana-tegerek-sabak.webp',
             'real_life_recipes_non_calculator': '6-klass-turmushtuk-eseptoo-sabak.webp',
+            'geometry_area_perimeter_quadrilaterals_trapezium': '5-klass-uch-burchtuk-ayanty-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()

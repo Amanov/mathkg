@@ -169,6 +169,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели «1 бирдикке», жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: көбөйтүү, бөлүү же «адегенде 1 бирдик».',
     },
+    'uch_burchtuk': {
+        'prefix': '5-klass-uch-burchtuk-ayanty-', 'grade': 5, 'subtopic': 'Үч бурчтуктун, параллелограммдын жана трапециянын аянты',
+        'sabak': '26 слайд: «Кара-Балтадагы мектеп гүлзары» окуясы, чакмак кагазды кесип жылдыруу, a × h ÷ 2 жана (a + b) × h ÷ 2.',
+        'ish-barak': '18 тапшырма, чакмак кагаздагы фигуралар жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 фигура чакмак кагазда: аянты боюнча топтошот.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -523,6 +529,14 @@ GROUPS = [
         'real-life-mixed-calculator',
         'purchasing-calculator',
         'measures-money-purchasing-calculator',
+    ]),
+    _group('uch_burchtuk', 'Үч бурчтуктун, параллелограммдын жана трапециянын аянты', 'Геометрия › Аянт жана периметр', ['uch_burchtuk'], [
+        'geometry-area-perimeter-triangles-area',
+        'geometry-area-perimeter-quadrilaterals-parallelogram',
+        'geometry-area-perimeter-quadrilaterals-trapezium',
+        'geometry-area-perimeter-compound-polygonal-area',
+        'geometry-area-perimeter-compound-polygonal-perimeter',
+        'geometry-area-perimeter-mixed-polygons',
     ]),
 ]
 
