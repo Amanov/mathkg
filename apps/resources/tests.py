@@ -521,6 +521,10 @@ class FreeDownloadTests(TestCase):
             'integers_multiplying_1_2_digit': '3-klass-jadybal-sabak-v2.webp',
             'adding_directed': '5-klass-butun-sandar-koshuu-kemituu-sabak.webp',
             'hcf_listing': '6-klass-jonokoy-kobeytuuchuler-sabak.webp',
+            'geometry_volume_surface_area_cuboid_volume': '5-klass-kolom-sabak.webp',
+            'speed_distance_time_two_stage_journeys': '5-klass-ylldamdyk-sabak.webp',
+            'geometry_coordinates_reading': '6-klass-koordinattar-sabak.webp',
+            'scale_drawings_lengths': '6-klass-masshtab-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
@@ -528,7 +532,8 @@ class FreeDownloadTests(TestCase):
             self.assertIn(deck[0] + '-класс', html, name)
         for name in ('geometry_area_perimeter_circles_area', 'algebra_linear_inequalities',
                      'data_representing_pie_charts_reading', 'ratio_quantities_reverse',
-                     'unit_fractions_adding'):
+                     'unit_fractions_adding', 'speed_distance_time_converting_speeds',
+                     'scale_drawings_areas'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 
     def test_empty_database_page_shows_its_pack_until_it_has_files(self):
