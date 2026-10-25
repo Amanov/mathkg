@@ -211,6 +211,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: көбөйтүүнү жана бөлүүнү жообу боюнча топтоо.',
     },
+    'm1000': {
+        'prefix': '5-klass-10-100-1000-', 'grade': 5, 'subtopic': '10, 100, 1000ге көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Кеминдеги тигүү цехи» окуясы, кагаз разряд таблицасы, цифралар жылат, үтүр ордунда калат, бирдиктерди алмаштыруу.',
+        'ish-barak': '18 тапшырма жана тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: 0,5 м, 5 м же 50 мге барабар.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -428,7 +434,7 @@ GROUPS = [
     _group('ondu_kb', 'Ондук бөлчөктөрдү көбөйтүү жана бөлүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kb'], [
         'multiplying-1-digit', 'dividing-1-digit', 'multiplying-dividing-1-digit', 'mixed-1-digit',
         'dividing-by-less-than-1', 'multiplying-1-2-digit', 'dividing-1-2-digit', 'multiplying-dividing-1-2-digit',
-        'mixed-1-2-digit', 'multiplying-dividing-10-100-1000',
+        'mixed-1-2-digit',
         'integers-multiplying-with-decimals', 'integers-dividing-with-decimals',
         'integers-multiplying-dividing-with-decimals', 'integers-dividing-divisor-less-than-1-with-decimals',
         'integers-mixed-with-decimals', 'multiplying-with-integers', 'dividing-with-integers',
@@ -606,6 +612,10 @@ GROUPS = [
         'integers-multiplying-2-3-digit',
         'integers-dividing-2-3-digit',
         'integers-multiplying-dividing-2-3-digit',
+    ]),
+    _group('m1000', '10, 100, 1000ге көбөйтүү жана бөлүү', 'Сандар › Эсептөөлөр', ['m1000', 'ondu_kb'], [
+        'multiplying-dividing-10-100-1000',
+        'integers-multiplying-dividing-10-100-1000',
     ]),
 ]
 
