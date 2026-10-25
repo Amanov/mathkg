@@ -157,6 +157,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: бирдей туюнтмаларды табуу.',
     },
+    'aylana': {
+        'prefix': '6-klass-aylana-tegerek-', 'grade': 6, 'subtopic': 'Айлана жана тегерек',
+        'sabak': '26 слайд: «Кара-Балтадагы тегерек гүлзар» окуясы, жип менен айлананы ченөө, тегеректи 8 секторго кесүү.',
+        'ish-barak': '18 тапшырма жана тилке модели, π ≈ 3,14, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: айлананын узундугу же тегеректин аянты.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -486,6 +492,17 @@ GROUPS = [
         'algebra-manipulation-notation-adding-brackets',
         'algebra-linear-brackets-without-coefficients',
         'algebra-linear-brackets-with-coefficients',
+    ]),
+    _group('aylana', 'Айлана жана тегерек', 'Геометрия › Аянт жана периметр › Тегеректер', ['aylana'], [
+        'geometry-area-perimeter-circles-vocabulary',
+        'geometry-area-perimeter-circles-circumference',
+        'geometry-area-perimeter-circles-area',
+        'geometry-area-perimeter-circles-area-circumference',
+        'geometry-area-perimeter-circles-mixed',
+        'geometry-area-perimeter-compound-with-circles-area',
+        'geometry-area-perimeter-compound-with-circles-perimeter',
+        'geometry-area-perimeter-compound-with-circles-mixed',
+        'geometry-area-perimeter-mixed-polygons-circles',
     ]),
 ]
 

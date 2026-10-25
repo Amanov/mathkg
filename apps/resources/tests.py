@@ -525,12 +525,14 @@ class FreeDownloadTests(TestCase):
             'speed_distance_time_two_stage_journeys': '5-klass-ylldamdyk-sabak.webp',
             'geometry_coordinates_reading': '6-klass-koordinattar-sabak.webp',
             'scale_drawings_lengths': '6-klass-masshtab-sabak.webp',
+            'algebra_manipulation_expand_single_with_coefficients': '6-klass-okshosh-muchular-sabak.webp',
+            'geometry_area_perimeter_circles_area': '6-klass-aylana-tegerek-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             self.assertIn(deck[0] + '-класс', html, name)
-        for name in ('geometry_area_perimeter_circles_area', 'algebra_linear_inequalities',
+        for name in ('geometry_area_perimeter_circles_sector_area', 'algebra_linear_inequalities',
                      'data_representing_pie_charts_reading', 'ratio_quantities_reverse',
                      'unit_fractions_adding', 'speed_distance_time_converting_speeds',
                      'scale_drawings_areas'):
