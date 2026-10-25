@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from apps.resources.models import MenuItem, SubSubtopic, Subtopic
+from apps.resources.models import MenuItem, SubSubtopic
+from apps.resources.taxonomy_slugs import get_or_create_subsubtopic, get_or_create_subtopic
 
 # Straggler title fixes for nodes created only by import_reference_taxonomy.py
 # (which matches by title, so correcting a typo there doesn't touch a row an
@@ -5510,11 +5511,11 @@ class Command(BaseCommand):
                 if MenuItem.objects.filter(parent=parent, title=item['title']).exists():
                     continue
                 if parent.subtopic_id:
-                    # Parent's own children share its one subtopic, each
-                    # getting its own SubSubtopic (e.g. Даражалар жана
-                    # тамырлар, Өлчөмдөр).
-                    new_ss = SubSubtopic.objects.create(
-                        subtopic_id=parent.subtopic_id, title=item['title'], slug=item['slug'],
+                    # Nested menu leaves share the parent's one subtopic.
+                    # Slug is unique on that subtopic, so a second «Аралаш»
+                    # reuses the row instead of inserting another `mixed`.
+                    new_ss, created_row = get_or_create_subsubtopic(
+                        parent.subtopic, item['slug'], item['title'],
                     )
                     MenuItem.objects.create(
                         parent=parent, title=item['title'], topic=parent.topic,
@@ -5524,14 +5525,17 @@ class Command(BaseCommand):
                     # Parent is itself a root Topic (e.g. Пропорция) -
                     # each direct child is its own Subtopic, not a
                     # SubSubtopic sharing one.
-                    new_subtopic = Subtopic.objects.create(
-                        topic=parent.topic, title=item['title'], slug=item['slug'],
+                    new_subtopic, created_row = get_or_create_subtopic(
+                        parent.topic, item['slug'], item['title'],
                     )
                     MenuItem.objects.create(
                         parent=parent, title=item['title'], topic=parent.topic,
                         subtopic=new_subtopic,
                     )
-                self.stdout.write(f'  Created sibling "{item["title"]}" (new Subtopic/SubSubtopic + MenuItem)')
+                verb = 'Created' if created_row else 'Reused'
+                self.stdout.write(
+                    f'  {verb} sibling "{item["title"]}" (Subtopic/SubSubtopic + MenuItem)'
+                )
 
             for rename in fix.get('renames', []):
                 child = MenuItem.objects.filter(parent=parent, title__in=[rename['from'], rename['to']]).first()

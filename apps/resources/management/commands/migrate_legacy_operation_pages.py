@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from apps.resources.models import MenuItem, Resource, SubSubtopic, Subtopic, Topic
+from apps.resources.models import MenuItem, Resource, Subtopic, Topic
+from apps.resources.taxonomy_slugs import get_or_create_subsubtopic, get_or_create_subtopic
 
 from apps.resources.data.four_basic_operations_data import FOUR_BASIC_OPERATIONS_SECTIONS
 from apps.resources.data.directed_numbers_data import DIRECTED_NUMBERS_SECTIONS
@@ -99,9 +100,9 @@ class Command(BaseCommand):
 
         for subtopic_title, subtopic_cfg in SUBTOPICS.items():
 
-            subtopic, created = Subtopic.objects.get_or_create(
-                title=subtopic_title, topic=topic,
-                defaults={'slug': subtopic_cfg['slug'], 'order': subtopic_cfg['order']},
+            subtopic, created = get_or_create_subtopic(
+                topic, subtopic_cfg['slug'], subtopic_title,
+                extra_defaults={'order': subtopic_cfg['order']},
             )
             verb = 'Created' if created else 'Already exists'
             self.stdout.write(f"{verb} Subtopic: {topic.title} > {subtopic.title}")
@@ -117,9 +118,9 @@ class Command(BaseCommand):
 
             for ss_title, ss_cfg in subtopic_cfg['subsubtopics'].items():
 
-                subsubtopic, created = SubSubtopic.objects.get_or_create(
-                    title=ss_title, subtopic=subtopic,
-                    defaults={'slug': ss_cfg['slug'], 'order': ss_cfg['order']},
+                subsubtopic, created = get_or_create_subsubtopic(
+                    subtopic, ss_cfg['slug'], ss_title,
+                    extra_defaults={'order': ss_cfg['order']},
                 )
                 verb = 'Created' if created else 'Already exists'
                 self.stdout.write(f"  {verb} Sub-subtopic: {subtopic.title} > {subsubtopic.title}")

@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from apps.resources.models import MenuItem, Topic, Subtopic, SubSubtopic
+from apps.resources.models import MenuItem, Topic
+from apps.resources.taxonomy_slugs import get_or_create_subsubtopic, get_or_create_subtopic
 
 # Translated from a reference UK-curriculum topic tree. Only the topic /
 # subtopic / sub-subtopic NAMES are used here - these are standard,
@@ -357,9 +358,8 @@ class Command(BaseCommand):
 
             order = topic_data['menu_order_start']
             for subtopic_title, subtopic_data in topic_data['subtopics'].items():
-                subtopic, created = Subtopic.objects.get_or_create(
-                    topic=topic, title=subtopic_title,
-                    defaults={'slug': subtopic_data['slug']},
+                subtopic, created = get_or_create_subtopic(
+                    topic, subtopic_data['slug'], subtopic_title,
                 )
                 verb = 'Created' if created else 'Already exists'
                 self.stdout.write(f"  {verb} Subtopic: {topic_title} > {subtopic_title}")
@@ -377,8 +377,8 @@ class Command(BaseCommand):
                 for ss_order, (ss_title, ss_slug) in enumerate(
                     subtopic_data['subsubtopics'].items(), start=1
                 ):
-                    subsubtopic, created = SubSubtopic.objects.get_or_create(
-                        subtopic=subtopic, title=ss_title, defaults={'slug': ss_slug},
+                    subsubtopic, created = get_or_create_subsubtopic(
+                        subtopic, ss_slug, ss_title,
                     )
                     verb = 'Created' if created else 'Already exists'
                     self.stdout.write(f"    {verb} Sub-subtopic: {subtopic_title} > {ss_title}")
