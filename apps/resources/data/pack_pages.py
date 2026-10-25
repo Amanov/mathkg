@@ -175,6 +175,18 @@ PACKS = {
         'ish-barak': '18 тапшырма, чакмак кагаздагы фигуралар жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 фигура чакмак кагазда: аянты боюнча топтошот.',
     },
+    'payyz': {
+        'prefix': '6-klass-payyz-', 'grade': 6, 'subtopic': 'Пайыз: чоңдуктун пайызы, арзандатуу жана кымбаттоо',
+        'sabak': '26 слайд: «Ноокаттагы китеп жарманкеси» окуясы, 10 × 10 тордо буурчак, 10% жана 1% аркылуу каалаган пайыз, пайыздык тилке.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: арзандатуу, кымбаттоо жана пайыз менен туюнтуу.',
+    },
+    'birdikter': {
+        'prefix': '4-klass-birdikterdi-almashtyruu-', 'grade': 4, 'subtopic': 'Узундук, масса жана сыйымдуулук бирдиктерин алмаштыруу',
+        'sabak': '26 слайд: «Кайыңдыдагы кант кызылчасы» окуясы, жумуртка кутусу жана капкактар (ц, т), кагаз метр, 1 литрлик бөтөлкө.',
+        'ish-barak': '18 тапшырма жана тилке модели: мм–км, г–т, мл–л, аралаш бирдиктерди кошуу, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бирдей чоңдуктарды табуу.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -318,7 +330,10 @@ GROUPS = [
     ]),
     _group('olchomdor', 'Узундук, масса жана көлөм бирдиктери', 'Өлчөмдөр', ['olchomdor'], [
         'systems-of-measurement-metric',
+    ]),
+    _group('birdikter', 'Узундук, масса жана сыйымдуулук бирдиктерин алмаштыруу', 'Өлчөмдөр', ['birdikter'], [
         'systems-of-measurement-conversion-factors',
+        'systems-of-measurement-mixed',
     ]),
     _group('simmetriya', 'Симметрия жана фигураларды жылдыруу', 'Геометрия › Өзгөртүүлөр', ['simmetriya'], [
         'geometry-classifying-vocabulary-classifying-shapes-symmetry',
@@ -537,6 +552,21 @@ GROUPS = [
         'geometry-area-perimeter-compound-polygonal-area',
         'geometry-area-perimeter-compound-polygonal-perimeter',
         'geometry-area-perimeter-mixed-polygons',
+    ]),
+    _group('payyz', 'Пайыз: чоңдуктун пайызы, арзандатуу жана кымбаттоо', 'Пропорция › Пайыздар', ['payyz'], [
+        'percentages-expressing-quantity',
+        'percentages-expressing-change',
+        'percentages-noncalc-expressing-quantity',
+        'percentages-noncalc-expressing-change',
+        'percentages-quantity-decimal',
+        'percentages-incdec-increase',
+        'percentages-incdec-decrease',
+        'percentages-incdec-mixed',
+        'percentages-noncalc-incdec-increase',
+        'percentages-noncalc-incdec-decrease',
+        'percentages-noncalc-incdec-mixed',
+        'expressing-quantity',
+        'expressing-change',
     ]),
 ]
 
