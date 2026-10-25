@@ -518,6 +518,9 @@ class FreeDownloadTests(TestCase):
             'measures_money_purchasing_non_calculator': '4-klass-akcha-sabak.webp',
             'dividing_by_less_than_1': '5-klass-ondu-kobeytuu-boluu-sabak.webp',
             'indices_square_numbers': '6-klass-kvadrat-kub-daraja-sabak.webp',
+            'integers_multiplying_1_2_digit': '3-klass-jadybal-sabak-v2.webp',
+            'adding_directed': '5-klass-butun-sandar-koshuu-kemituu-sabak.webp',
+            'hcf_listing': '6-klass-jonokoy-kobeytuuchuler-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
