@@ -175,6 +175,30 @@ PACKS = {
         'ish-barak': '18 тапшырма, чакмак кагаздагы фигуралар жана тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 фигура чакмак кагазда: аянты боюнча топтошот.',
     },
+    'payyz': {
+        'prefix': '6-klass-payyz-', 'grade': 6, 'subtopic': 'Пайыз: чоңдуктун пайызы, арзандатуу жана кымбаттоо',
+        'sabak': '26 слайд: «Ноокаттагы китеп жарманкеси» окуясы, 10 × 10 тордо буурчак, 10% жана 1% аркылуу каалаган пайыз, пайыздык тилке.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: арзандатуу, кымбаттоо жана пайыз менен туюнтуу.',
+    },
+    'birdikter': {
+        'prefix': '4-klass-birdikterdi-almashtyruu-', 'grade': 4, 'subtopic': 'Узундук, масса жана сыйымдуулук бирдиктерин алмаштыруу',
+        'sabak': '26 слайд: «Кайыңдыдагы кант кызылчасы» окуясы, жумуртка кутусу жана капкактар (ц, т), кагаз метр, 1 литрлик бөтөлкө.',
+        'ish-barak': '18 тапшырма жана тилке модели: мм–км, г–т, мл–л, аралаш бирдиктерди кошуу, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бирдей чоңдуктарды табуу.',
+    },
+    'maalymat3': {
+        'prefix': '3-klass-maalymat-chogultuu-', 'grade': 3, 'subtopic': 'Маалымат чогултуу: суроо, чийме белгилер жана жыштык таблицасы',
+        'sabak': '26 слайд: «Ат-Башыдагы оюндар күнү» окуясы, капкактарды бештен топтоо, чийме белгилер, ● = 2 пиктограмма.',
+        'ish-barak': '18 тапшырма, жыштык таблицасы жана пиктограмма, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: чийме белгилер, сан жана пиктограмманы дал келтирүү.',
+    },
+    'venn': {
+        'prefix': '5-klass-venn-diagrammalary-', 'grade': 5, 'subtopic': 'Көптүктөр жана Венн диаграммалары',
+        'sabak': '26 слайд: «Ат-Башыдагы мектеп ийримдери» окуясы, жип менен эки тегерек, Венн жана Кэрролл диаграммалары.',
+        'ish-barak': '18 тапшырма, Венн жана Кэрролл диаграммалары, тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 сан Венн диаграммасына: «жуп» жана «3кө бөлүнөт».',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -318,7 +342,10 @@ GROUPS = [
     ]),
     _group('olchomdor', 'Узундук, масса жана көлөм бирдиктери', 'Өлчөмдөр', ['olchomdor'], [
         'systems-of-measurement-metric',
+    ]),
+    _group('birdikter', 'Узундук, масса жана сыйымдуулук бирдиктерин алмаштыруу', 'Өлчөмдөр', ['birdikter'], [
         'systems-of-measurement-conversion-factors',
+        'systems-of-measurement-mixed',
     ]),
     _group('simmetriya', 'Симметрия жана фигураларды жылдыруу', 'Геометрия › Өзгөртүүлөр', ['simmetriya'], [
         'geometry-classifying-vocabulary-classifying-shapes-symmetry',
@@ -456,10 +483,13 @@ GROUPS = [
         'algebra-linear-var1side-calc-1step',
         'algebra-linear-var1side-calc-2step',
     ]),
-    _group('maalymat', 'Маалымат, диаграмма жана орто маани', 'Дата', ['maalymat'], [
+    _group('maalymat_chogultuu', 'Маалымат чогултуу, жыштык таблицасы жана пиктограмма', 'Дата', ['maalymat3', 'maalymat'], [
         'data-collecting-introduction',
+        'data-collecting-vocabulary',
         'data-frequency-tables-ungrouped-data-creating-reading',
         'data-representing-pictograms',
+    ]),
+    _group('maalymat', 'Маалымат, диаграмма жана орто маани', 'Дата', ['maalymat'], [
         'data-representing-bar-charts-single',
         'data-representing-bar-charts-calculating-averages',
         'data-representing-line-graphs-time-series',
@@ -537,6 +567,25 @@ GROUPS = [
         'geometry-area-perimeter-compound-polygonal-area',
         'geometry-area-perimeter-compound-polygonal-perimeter',
         'geometry-area-perimeter-mixed-polygons',
+    ]),
+    _group('payyz', 'Пайыз: чоңдуктун пайызы, арзандатуу жана кымбаттоо', 'Пропорция › Пайыздар', ['payyz'], [
+        'percentages-expressing-quantity',
+        'percentages-expressing-change',
+        'percentages-noncalc-expressing-quantity',
+        'percentages-noncalc-expressing-change',
+        'percentages-quantity-decimal',
+        'percentages-incdec-increase',
+        'percentages-incdec-decrease',
+        'percentages-incdec-mixed',
+        'percentages-noncalc-incdec-increase',
+        'percentages-noncalc-incdec-decrease',
+        'percentages-noncalc-incdec-mixed',
+        'expressing-quantity',
+        'expressing-change',
+    ]),
+    _group('venn', 'Көптүктөр жана Венн диаграммалары', 'Дата › Көрсөтүү', ['venn'], [
+        'data-representing-venn-diagrams-creating-reading',
+        'data-representing-venn-diagrams-sets-with-notation',
     ]),
 ]
 

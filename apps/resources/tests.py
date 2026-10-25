@@ -529,6 +529,10 @@ class FreeDownloadTests(TestCase):
             'geometry_area_perimeter_circles_area': '6-klass-aylana-tegerek-sabak.webp',
             'real_life_recipes_non_calculator': '6-klass-turmushtuk-eseptoo-sabak.webp',
             'geometry_area_perimeter_quadrilaterals_trapezium': '5-klass-uch-burchtuk-ayanty-sabak.webp',
+            'percentages_incdec_decrease': '6-klass-payyz-sabak.webp',
+            'systems_of_measurement_mixed': '4-klass-birdikterdi-almashtyruu-sabak.webp',
+            'data_representing_pictograms': '3-klass-maalymat-chogultuu-sabak.webp',
+            'data_representing_venn_diagrams_creating_reading': '5-klass-venn-diagrammalary-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
