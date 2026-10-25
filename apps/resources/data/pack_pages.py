@@ -187,6 +187,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана тилке модели: мм–км, г–т, мл–л, аралаш бирдиктерди кошуу, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: бирдей чоңдуктарды табуу.',
     },
+    'maalymat3': {
+        'prefix': '3-klass-maalymat-chogultuu-', 'grade': 3, 'subtopic': 'Маалымат чогултуу: суроо, чийме белгилер жана жыштык таблицасы',
+        'sabak': '26 слайд: «Ат-Башыдагы оюндар күнү» окуясы, капкактарды бештен топтоо, чийме белгилер, ● = 2 пиктограмма.',
+        'ish-barak': '18 тапшырма, жыштык таблицасы жана пиктограмма, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: чийме белгилер, сан жана пиктограмманы дал келтирүү.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -471,10 +477,13 @@ GROUPS = [
         'algebra-linear-var1side-calc-1step',
         'algebra-linear-var1side-calc-2step',
     ]),
-    _group('maalymat', 'Маалымат, диаграмма жана орто маани', 'Дата', ['maalymat'], [
+    _group('maalymat_chogultuu', 'Маалымат чогултуу, жыштык таблицасы жана пиктограмма', 'Дата', ['maalymat3', 'maalymat'], [
         'data-collecting-introduction',
+        'data-collecting-vocabulary',
         'data-frequency-tables-ungrouped-data-creating-reading',
         'data-representing-pictograms',
+    ]),
+    _group('maalymat', 'Маалымат, диаграмма жана орто маани', 'Дата', ['maalymat'], [
         'data-representing-bar-charts-single',
         'data-representing-bar-charts-calculating-averages',
         'data-representing-line-graphs-time-series',
