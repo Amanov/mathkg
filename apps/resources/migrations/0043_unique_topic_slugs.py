@@ -1,4 +1,4 @@
-"""One slug per topic, and one slug per subtopic.
+"""Merge duplicate topic and subtopic slugs.
 
 The menu rebuild inserted a fresh sub-subtopic for every nested «Аралаш»
 leaf. Those leaves share a single subtopic, so several rows used the
@@ -10,13 +10,19 @@ menu items at it, and deletes only the extra taxonomy rows. Resource
 files are not deleted. The same pass covers every duplicate, not only
 the three URLs that 500 today.
 
-Reversing drops the unique constraints and leaves the merged rows in
-place. Splitting them again would need a record of which copy each
-resource and menu item came from, and those copies were never separate
-pages.
+The unique constraints are not added here. Postgres defers the
+foreign-key checks from the repoint and delete, and refuses
+``ALTER TABLE`` while those trigger events are still pending. Doing both
+in this migration rolled the whole transaction back, so 0043 was never
+recorded and every boot ran it again. ``0045`` and ``0046`` add the
+constraints after this migration has committed.
+
+Reversing does not split the merged rows. That would need a record of
+which copy each resource and menu item came from, and those copies were
+never separate pages. ``0046`` and ``0045`` drop the constraints.
 """
 
-from django.db import migrations, models
+from django.db import migrations
 
 
 def _merge(rows, repoint):
@@ -45,6 +51,7 @@ def merge_duplicate_slugs(apps, schema_editor):
             (MenuItem, 'subtopic_id'),
         ))
 
+    # Repointing a subtopic can land two sub-subtopics on the same slug.
     subsubtopics = {}
     for row in SubSubtopic.objects.all().order_by('pk'):
         subsubtopics.setdefault((row.subtopic_id, row.slug), []).append(row)
@@ -70,18 +77,4 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(merge_duplicate_slugs, unmerge_duplicate_slugs),
-        migrations.AddConstraint(
-            model_name='subtopic',
-            constraint=models.UniqueConstraint(
-                fields=['topic', 'slug'],
-                name='personal_subtopic_topic_slug_uniq',
-            ),
-        ),
-        migrations.AddConstraint(
-            model_name='subsubtopic',
-            constraint=models.UniqueConstraint(
-                fields=['subtopic', 'slug'],
-                name='personal_subsubtopic_subtopic_slug_uniq',
-            ),
-        ),
     ]

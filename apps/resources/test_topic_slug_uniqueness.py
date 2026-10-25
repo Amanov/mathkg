@@ -4,9 +4,10 @@ from django.apps import apps
 from django.db import IntegrityError, connection, transaction
 from django.test import TestCase, TransactionTestCase
 
-merge_duplicate_slugs = importlib.import_module(
+_slug_migration = importlib.import_module(
     'apps.resources.migrations.0043_unique_topic_slugs'
-).merge_duplicate_slugs
+)
+merge_duplicate_slugs = _slug_migration.merge_duplicate_slugs
 from apps.resources.models import MenuItem, Resource, SubSubtopic, Subtopic, Topic
 from apps.resources.taxonomy_slugs import get_or_create_subsubtopic
 from apps.resources.views.topics import get_scoped_or_404
@@ -168,3 +169,37 @@ class MergeDuplicateSlugTests(TransactionTestCase):
         finally:
             self._restore_unique(SubSubtopic, subsubtopic_constraint)
             self._restore_unique(Subtopic, subtopic_constraint)
+
+
+class UniqueSlugMigrationShapeTests(TestCase):
+    def test_dedupe_is_its_own_migration(self):
+        migration = _slug_migration.Migration
+        self.assertTrue(migration.atomic)
+        self.assertEqual(
+            [op.__class__.__name__ for op in migration.operations],
+            ['RunPython'],
+        )
+        self.assertIs(migration.operations[0].code, merge_duplicate_slugs)
+
+        subtopic = importlib.import_module(
+            'apps.resources.migrations.0045_subtopic_topic_slug_uniq'
+        )
+        subsubtopic = importlib.import_module(
+            'apps.resources.migrations.0046_subsubtopic_subtopic_slug_uniq'
+        )
+        self.assertEqual(
+            subtopic.Migration.dependencies,
+            [('personal', '0044_wave6_packs')],
+        )
+        self.assertEqual(
+            subsubtopic.Migration.dependencies,
+            [('personal', '0045_subtopic_topic_slug_uniq')],
+        )
+        self.assertEqual(
+            subtopic.Migration.operations[0].state_operations[0].constraint.name,
+            'personal_subtopic_topic_slug_uniq',
+        )
+        self.assertEqual(
+            subsubtopic.Migration.operations[0].state_operations[0].constraint.name,
+            'personal_subsubtopic_subtopic_slug_uniq',
+        )
