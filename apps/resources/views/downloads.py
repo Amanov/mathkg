@@ -43,7 +43,7 @@ def download_resource_view(request, pk):
         # double-click shouldn't cost the user the very file they just got.
         already_downloaded_today = ResourceDownload.objects.filter(
             user=request.user, resource=resource,
-            downloaded_at__date=timezone.now().date(),
+            downloaded_at__date=timezone.localdate(),
         ).exists()
 
         if not already_downloaded_today:

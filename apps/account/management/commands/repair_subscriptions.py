@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.account.models import Account, SubscriptionRequest, add_months
+from apps.account.models import Account, SubscriptionRequest, add_months, local_calendar_date
 
 
 class Command(BaseCommand):
@@ -57,7 +57,7 @@ class Command(BaseCommand):
             # baseline involved at all.
             simulated_end = None
             for req in confirmed:
-                anchor = (req.activated_at or req.created_at).date()
+                anchor = local_calendar_date(req.activated_at or req.created_at)
                 if simulated_end:
                     anchor = max(anchor, simulated_end)
                 simulated_end = add_months(anchor, SubscriptionRequest.PLAN_MONTHS[req.plan])
