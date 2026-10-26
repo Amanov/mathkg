@@ -23,11 +23,12 @@ class AccountAdmin(UserAdmin):
         # Immediate and permanent until someone manually reverses it -
         # this is meant for a real ToS violation, not a routine expiry.
         # Setting subscription_end into the past (rather than clearing
-        # it to null) matters: null falls back to the 1-year signup
-        # trial on Account.subscription_end_date, which would leave
-        # access in place instead of cutting it off. is_active=False
-        # additionally blocks login entirely, not just paid downloads.
-        yesterday = timezone.now().date() - timedelta(days=1)
+        # it to null) matters: null falls back to the signup trial on
+        # Account.subscription_end_date (trial_days from the local
+        # signup date), which would leave access in place instead of
+        # cutting it off. is_active=False additionally blocks login
+        # entirely, not just paid downloads.
+        yesterday = timezone.localdate() - timedelta(days=1)
         count = 0
         for account in queryset:
             account.subscription_end = yesterday
@@ -133,10 +134,14 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
         # *looks* confirmed but the user gets no actual access. Route
         # that path through activate() too, so confirming a payment has
         # the same effect no matter which page it's done from.
-        becoming_confirmed = (
-            change
-            and form.initial.get('status') == SubscriptionRequest.STATUS_PENDING
-            and obj.status == SubscriptionRequest.STATUS_CONFIRMED
+        # change is False when the row is being created. Confirming on
+        # the add form used to save status=confirmed and skip activate(),
+        # the same "looks paid, access never granted" hole as editing
+        # the status dropdown. A brand-new pending request is not this
+        # path and must not grant access.
+        becoming_confirmed = obj.status == SubscriptionRequest.STATUS_CONFIRMED and (
+            not change
+            or form.initial.get('status') == SubscriptionRequest.STATUS_PENDING
         )
         if becoming_confirmed:
             obj.status = SubscriptionRequest.STATUS_PENDING

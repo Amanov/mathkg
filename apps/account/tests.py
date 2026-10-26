@@ -1,7 +1,8 @@
 import re
 import tempfile
-from datetime import timedelta
+from datetime import date, datetime, timedelta, timezone as dt_timezone
 from io import StringIO
+from unittest.mock import patch
 
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -12,7 +13,7 @@ from django.utils import timezone
 
 from apps.resources.models import Resource, ResourceDownload
 
-from .models import Account, SubscriptionRequest
+from .models import Account, SubscriptionRequest, add_months, local_calendar_date
 
 
 class RegistrationAndActivationTests(TestCase):
@@ -263,7 +264,7 @@ class DownloadLimitTests(TestCase):
 
     def test_subscription_end_date_uses_trial_days(self):
         self.user.trial_days = 30
-        expected = self.user.date_joined.date() + timedelta(days=30)
+        expected = local_calendar_date(self.user.date_joined) + timedelta(days=30)
         self.assertEqual(self.user.subscription_end_date, expected)
 
     def test_explicit_subscription_end_overrides_trial(self):
@@ -403,3 +404,197 @@ class BackfillCurrentPlanMigrationTests(TestCase):
 
         user.refresh_from_db()
         self.assertEqual(user.current_plan, SubscriptionRequest.PLAN_THREE_MONTHS)
+
+
+class SubscriptionCalendarTests(TestCase):
+    """Plan length, trial, and the account-page day count.
+
+    The numbers below are the ones on the Test8 profile card
+    (registered 18.09.2026, active through 18.03.2027, 143 days left
+    on 26.10.2026, latest request a pending 3-month plan). A pending
+    request does not produce that end date; a confirmed 6-month plan
+    on the signup day, or two stacked 3-month plans, does.
+    """
+
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            email='test8@example.com', username='Test8', password='SuperSecret123!'
+        )
+        self.user.is_active = True
+        self.user.date_joined = datetime(2026, 9, 18, 12, 0, tzinfo=dt_timezone.utc)
+        self.user.save(update_fields=['is_active', 'date_joined'])
+        self.client.force_login(self.user)
+
+    def _activate(self, plan, on_date):
+        request = SubscriptionRequest.objects.create(user=self.user, plan=plan)
+        with patch('django.utils.timezone.localdate', return_value=on_date):
+            request.activate()
+        self.user.refresh_from_db()
+        return request
+
+    def test_add_months_uses_calendar_months_and_clamps_short_months(self):
+        self.assertEqual(add_months(date(2026, 9, 18), 3), date(2026, 12, 18))
+        self.assertEqual(add_months(date(2026, 9, 18), 6), date(2027, 3, 18))
+        self.assertEqual(add_months(date(2026, 9, 18), 12), date(2027, 9, 18))
+        self.assertEqual(add_months(date(2026, 1, 31), 1), date(2026, 2, 28))
+        self.assertEqual(add_months(date(2024, 1, 31), 1), date(2024, 2, 29))
+        self.assertEqual(add_months(date(2026, 12, 18), 3), date(2027, 3, 18))
+
+    def test_confirmed_six_month_plan_on_signup_day_ends_18_march_2027(self):
+        self._activate(SubscriptionRequest.PLAN_SIX_MONTHS, date(2026, 9, 18))
+        self.assertEqual(self.user.subscription_end, date(2027, 3, 18))
+        self.assertEqual(self.user.current_plan, SubscriptionRequest.PLAN_SIX_MONTHS)
+        self.assertTrue(self.user.is_active)
+
+    def test_confirmed_plan_does_not_stack_on_the_free_trial(self):
+        # Grandfathered trial is 365 days from 18.09.2026, which would
+        # land on 18.09.2027. Stacking 6 months on that was the old bug
+        # (~18.03.2028). The paid plan replaces the trial instead.
+        self.user.trial_days = 365
+        self.user.subscription_end = None
+        self.user.save(update_fields=['trial_days', 'subscription_end'])
+        self._activate(SubscriptionRequest.PLAN_SIX_MONTHS, date(2026, 9, 18))
+        self.assertEqual(self.user.subscription_end, date(2027, 3, 18))
+
+    def test_three_month_plan_stacks_on_a_still_active_paid_period(self):
+        self._activate(SubscriptionRequest.PLAN_THREE_MONTHS, date(2026, 9, 18))
+        self.assertEqual(self.user.subscription_end, date(2026, 12, 18))
+        self._activate(SubscriptionRequest.PLAN_THREE_MONTHS, date(2026, 10, 1))
+        self.assertEqual(self.user.subscription_end, date(2027, 3, 18))
+
+    def test_expired_paid_period_does_not_extend_the_new_plan(self):
+        self.user.subscription_end = date(2026, 1, 1)
+        self.user.save(update_fields=['subscription_end'])
+        self._activate(SubscriptionRequest.PLAN_THREE_MONTHS, date(2026, 9, 18))
+        self.assertEqual(self.user.subscription_end, date(2026, 12, 18))
+
+    def test_activating_twice_does_not_grant_the_plan_twice(self):
+        request = self._activate(SubscriptionRequest.PLAN_ONE_YEAR, date(2026, 9, 18))
+        self.assertEqual(self.user.subscription_end, date(2027, 9, 18))
+        request.activate()
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.subscription_end, date(2027, 9, 18))
+
+    def test_pending_request_does_not_extend_or_activate_access(self):
+        self.user.is_active = False
+        self.user.subscription_end = None
+        self.user.current_plan = None
+        self.user.save(update_fields=['is_active', 'subscription_end', 'current_plan'])
+        SubscriptionRequest.objects.create(
+            user=self.user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+        )
+        self.user.refresh_from_db()
+        self.assertIsNone(self.user.subscription_end)
+        self.assertIsNone(self.user.current_plan)
+        self.assertFalse(self.user.is_active)
+        self.assertEqual(
+            self.user.subscription_end_date,
+            date(2026, 9, 18) + timedelta(days=self.user.trial_days),
+        )
+
+    def test_pending_request_leaves_an_existing_end_date_alone(self):
+        self.user.subscription_end = date(2027, 3, 18)
+        self.user.current_plan = SubscriptionRequest.PLAN_SIX_MONTHS
+        self.user.save(update_fields=['subscription_end', 'current_plan'])
+        SubscriptionRequest.objects.create(
+            user=self.user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+        )
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.subscription_end, date(2027, 3, 18))
+        self.assertEqual(self.user.current_plan, SubscriptionRequest.PLAN_SIX_MONTHS)
+
+    def test_account_page_matches_the_test8_card_on_26_october_2026(self):
+        self.user.subscription_end = date(2027, 3, 18)
+        self.user.current_plan = SubscriptionRequest.PLAN_SIX_MONTHS
+        self.user.save(update_fields=['subscription_end', 'current_plan'])
+        SubscriptionRequest.objects.create(
+            user=self.user, plan=SubscriptionRequest.PLAN_THREE_MONTHS,
+        )
+        with patch('django.utils.timezone.localdate', return_value=date(2026, 10, 26)):
+            response = self.client.get(reverse('account'))
+        self.assertEqual(response.context['days_left'], 143)
+        self.assertContains(response, '18.09.2026')
+        self.assertContains(response, '18.03.2027')
+        self.assertContains(response, '143 күн')
+        self.assertContains(response, 'Активдүү')
+        self.assertContains(response, '6 ай - 2999 сом')
+        self.assertContains(response, '3 ай - 1499 сом')
+        self.assertContains(response, 'Төлөм күтүлүүдө')
+        self.assertContains(response, 'Ырасталмайынча мөөнөт өзгөрбөйт')
+        self.assertNotContains(response, 'Мөөнөтү бүткөн')
+
+    def test_end_date_itself_is_still_active_on_the_account_page(self):
+        # Not the machine's wall-clock date: if the page still used
+        # date.today(), days_left would not be 0.
+        end = date(2031, 5, 4)
+        self.user.subscription_end = end
+        self.user.save(update_fields=['subscription_end'])
+        with patch('django.utils.timezone.localdate', return_value=end):
+            self.assertTrue(self.user.has_active_subscription)
+            response = self.client.get(reverse('account'))
+        self.assertEqual(response.context['days_left'], 0)
+        self.assertContains(response, 'Активдүү')
+        self.assertContains(response, 'Бүгүн аяктайт')
+        self.assertContains(response, '0 күн')
+        self.assertNotContains(response, 'Мөөнөтү бүткөн')
+        self.assertNotContains(response, 'мурун аяктаган')
+
+    def test_day_after_the_end_date_is_expired(self):
+        self.user.subscription_end = date(2031, 5, 4)
+        self.user.save(update_fields=['subscription_end'])
+        with patch('django.utils.timezone.localdate', return_value=date(2031, 5, 5)):
+            self.assertFalse(self.user.has_active_subscription)
+            response = self.client.get(reverse('account'))
+        self.assertEqual(response.context['days_left'], -1)
+        self.assertContains(response, 'Мөөнөтү бүткөн')
+        self.assertContains(response, '1 күн мурун аяктаган')
+        self.assertNotContains(response, 'Активдүү')
+
+    def test_days_left_follows_django_local_date_not_the_server_clock(self):
+        self.user.subscription_end = date(2027, 3, 18)
+        self.user.save(update_fields=['subscription_end'])
+        with patch('django.utils.timezone.localdate', return_value=date(2026, 10, 27)):
+            response = self.client.get(reverse('account'))
+        # 18.03.2027 minus 27.10.2026. The screenshot's 143 is this same
+        # subtraction for 26.10.2026; shifting "today" by one day must
+        # shift the count, which date.today() would not do.
+        self.assertEqual(response.context['days_left'], 142)
+
+    def test_registration_date_and_trial_use_the_active_timezone(self):
+        # 18.09.2026 19:30 UTC is still the 18th in UTC, and already
+        # 19.09.2026 02:30 in Asia/Bangkok. The card and the trial must
+        # agree on that local day. TIME_ZONE in settings is UTC, so this
+        # only shows up when the active timezone is not UTC.
+        self.user.date_joined = datetime(2026, 9, 18, 19, 30, tzinfo=dt_timezone.utc)
+        self.user.subscription_end = None
+        self.user.trial_days = 7
+        self.user.save(update_fields=['date_joined', 'subscription_end', 'trial_days'])
+        with timezone.override('Asia/Bangkok'):
+            self.assertEqual(local_calendar_date(self.user.date_joined), date(2026, 9, 19))
+            self.assertEqual(self.user.subscription_end_date, date(2026, 9, 26))
+            response = self.client.get(reverse('account'))
+        self.assertContains(response, '19.09.2026')
+        self.assertNotContains(response, '18.09.2026')
+
+    def test_creating_a_confirmed_request_in_admin_grants_access(self):
+        admin = Account.objects.create_superuser(
+            email='owner@example.com', username='owner', password='SuperSecret123!'
+        )
+        self.client.force_login(admin)
+        response = self.client.post(reverse('admin:account_subscriptionrequest_add'), {
+            'user': self.user.pk,
+            'plan': SubscriptionRequest.PLAN_THREE_MONTHS,
+            'status': SubscriptionRequest.STATUS_CONFIRMED,
+            '_save': 'Save',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.user.refresh_from_db()
+        request = SubscriptionRequest.objects.get(user=self.user)
+        self.assertEqual(request.status, SubscriptionRequest.STATUS_CONFIRMED)
+        self.assertIsNotNone(request.activated_at)
+        self.assertEqual(
+            self.user.subscription_end,
+            add_months(timezone.localdate(), 3),
+        )
+        self.assertEqual(self.user.current_plan, SubscriptionRequest.PLAN_THREE_MONTHS)
+        self.assertTrue(self.user.is_active)

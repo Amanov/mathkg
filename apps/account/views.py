@@ -1,4 +1,3 @@
-from datetime import date
 from logging import getLogger
 
 from django.shortcuts import render, redirect
@@ -8,6 +7,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -193,18 +193,25 @@ def account_view(request):
     else:
         form = AccountUpdateForm(instance=user)
 
-    today = date.today()
+    # Same clock as has_active_subscription. date.today() follows the
+    # operating-system timezone, which is not Django's TIME_ZONE, so the
+    # account page could count a different "today" than the download gate
+    # for several hours a day.
+    today = timezone.localdate()
 
     # subscription end (hybrid) - single source of truth on the model,
     # shared with the download view's access check.
     subscription_end = user.subscription_end_date
 
+    # Days until the end date, not including today. 0 means the end date
+    # is today, and that day is still active (has_active_subscription
+    # uses >=). Negative means the end date is already in the past.
     days_left = (subscription_end - today).days
 
     # status color
     if days_left > 7:
         status_color = "success"
-    elif days_left > 0:
+    elif days_left >= 0:
         status_color = "warning"
     else:
         status_color = "danger"
