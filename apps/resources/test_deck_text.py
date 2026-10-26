@@ -1,5 +1,6 @@
 import importlib
 import io
+import json
 import shutil
 import tempfile
 import zipfile
@@ -137,7 +138,7 @@ class DeckTextEditTests(SimpleTestCase):
             self.assertIn(TYPO_NEW, new.read('docProps/core.xml').decode('utf-8'))
         second, second_counts = rewrite_pptx(rewritten, typo=True, grade=True, english=True)
         self.assertEqual(second, rewritten)
-        self.assertEqual(second_counts, {'typo': 0, 'grade': 0, 'english': 0})
+        self.assertEqual(second_counts, {'typo': 0, 'grade': 0, 'english': 0, 'kyrgyz': 0})
 
     def test_flags_limit_which_fix_runs(self):
         original = _sample()
@@ -221,6 +222,8 @@ class DeckManifestTests(SimpleTestCase):
         self.assertEqual(fixes['grade'], 150)
         self.assertEqual(fixes['english'], 20)
         self.assertEqual(len(manifest), 770)
+        kyrgyz_path = root / 'apps' / 'resources' / 'data' / 'deck_kyrgyz_manifest.json'
+        kyrgyz = json.loads(kyrgyz_path.read_text(encoding='utf-8')) if kyrgyz_path.is_file() else {}
         for relative, entry in manifest.items():
             copies = []
             media = root / 'media' / relative
@@ -230,6 +233,10 @@ class DeckManifestTests(SimpleTestCase):
             if bundled.is_file():
                 copies.append(bundled)
             self.assertTrue(copies, relative)
+            expected = entry['new']
+            if relative in kyrgyz:
+                self.assertEqual(kyrgyz[relative]['old'], entry['new'], relative)
+                expected = kyrgyz[relative]['new']
             for copy in copies:
-                self.assertEqual(sha256_bytes(copy.read_bytes()), entry['new'], relative)
+                self.assertEqual(sha256_bytes(copy.read_bytes()), expected, relative)
             self.assertNotEqual(entry['old'], entry['new'])
