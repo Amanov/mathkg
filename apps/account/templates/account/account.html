@@ -26,9 +26,9 @@
 
     <div class="account-status-card is-{{ status_color }}">
       <span class="account-status-label">Жазылуу абалы</span>
-      {% if days_left > 0 %}
+      {% if days_left >= 0 %}
         <span class="account-status-value">Активдүү</span>
-        <span class="account-status-sub">{{ subscription_end|date:"d.m.Y" }} чейин</span>
+        <span class="account-status-sub">{{ subscription_end|date:"d.m.Y" }} чейин{% if user.current_plan %} · {{ user.get_current_plan_display }}{% endif %}</span>
       {% else %}
         <span class="account-status-value">Мөөнөтү бүткөн</span>
         <span class="account-status-sub">{{ days_passed }} күн мурун аяктаган</span>
@@ -37,8 +37,9 @@
 
     <div class="account-status-card">
       <span class="account-status-label">Калган убакыт</span>
-      <span class="account-status-value">{% if days_left > 0 %}{{ days_left }} күн{% else %}0 күн{% endif %}</span>
-      {% if days_left <= 0 %}<span class="account-status-sub">Жазылууну жаңыртыңыз</span>{% endif %}
+      <span class="account-status-value">{% if days_left >= 0 %}{{ days_left }} күн{% else %}0 күн{% endif %}</span>
+      {% if days_left == 0 %}<span class="account-status-sub">Бүгүн аяктайт</span>
+      {% elif days_left < 0 %}<span class="account-status-sub">Жазылууну жаңыртыңыз</span>{% endif %}
     </div>
 
     <div class="account-status-card">
@@ -52,6 +53,9 @@
             <span class="account-badge account-badge-confirmed">Төлөндү</span>
           {% endif %}
         </span>
+        {% if latest_subscription_request.status == 'pending' %}
+        <span class="account-status-sub">Ырасталмайынча мөөнөт өзгөрбөйт</span>
+        {% endif %}
       {% else %}
         <span class="account-status-value account-status-muted">Жок</span>
         <span class="account-status-sub">Азырынча план тандалган эмес</span>

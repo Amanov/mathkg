@@ -1,5 +1,5 @@
 import calendar
-from datetime import timedelta
+from datetime import datetime, timedelta
 from logging import getLogger
 
 from django.db import models
@@ -122,11 +122,22 @@ class Account(AbstractBaseUser):
         # (grandfathered accounts keep the original 365; new ones get 7 -
         # see the trial_days field). Shared here so the account page and
         # any access-gating check agree on the same date.
-        return self.subscription_end or (self.date_joined.date() + timedelta(days=self.trial_days))
+        #
+        # The trial starts on the same calendar day the account page
+        # shows for date_joined (the active timezone). date_joined.date()
+        # is the UTC day and ignores TIME_ZONE, so the two would drift
+        # as soon as TIME_ZONE is not UTC. Settings keep TIME_ZONE at
+        # UTC, so both are currently the UTC day — one day behind
+        # Asia/Bishkek from 00:00–06:00 and Asia/Bangkok from 00:00–07:00.
+        return self.subscription_end or (
+            local_calendar_date(self.date_joined) + timedelta(days=self.trial_days)
+        )
 
     @property
     def has_active_subscription(self):
-        return self.subscription_end_date >= timezone.now().date()
+        # Inclusive of subscription_end_date itself: that stored day is
+        # the last day access works, not the first day it doesn't.
+        return self.subscription_end_date >= timezone.localdate()
 
     def daily_download_limit(self, category):
         """Per-day cap for this resource category under the account's
@@ -146,9 +157,25 @@ class Account(AbstractBaseUser):
         from apps.resources.models import ResourceDownload
         used = ResourceDownload.objects.filter(
             user=self, resource__category=category,
-            downloaded_at__date=timezone.now().date(),
+            downloaded_at__date=timezone.localdate(),
         ).values('resource').distinct().count()
         return max(0, limit - used)
+
+
+def local_calendar_date(value):
+    """Calendar day of a date or datetime in the active timezone.
+
+    A date is already a calendar day and is returned unchanged. An aware
+    datetime is converted with localtime() first. .date() on the stored
+    UTC value ignores TIME_ZONE; this follows it. With TIME_ZONE='UTC'
+    the two days match. They differ in Asia/Bishkek from 00:00–06:00
+    and in Asia/Bangkok from 00:00–07:00, where UTC is still yesterday.
+    """
+    if isinstance(value, datetime):
+        if timezone.is_aware(value):
+            value = timezone.localtime(value)
+        return value.date()
+    return value
 
 
 def add_months(base_date, months):
@@ -301,16 +328,18 @@ class SubscriptionRequest(models.Model):
         if self.status == self.STATUS_CONFIRMED:
             return
 
-        today = timezone.now().date()
+        today = timezone.localdate()
         # Stacks on top of a real remaining *paid* period - so renewing
         # a still-active plan early adds to the remaining time instead
         # of resetting it - but never on top of the free signup trial.
         # self.user.subscription_end_date falls back to a synthesized
-        # trial date (date_joined + 1 year) when subscription_end is
-        # still null; stacking a new plan onto *that* is what let a
-        # freshly-signed-up account paying for 6 months end up with
-        # ~1.5 years of access instead of 6 months. Reading the raw
-        # field instead of that hybrid property is what excludes it.
+        # trial date (local signup day + trial_days; originally a flat
+        # 365 days) when subscription_end is still null; stacking a new
+        # plan onto *that* is what let a freshly-signed-up account paying
+        # for 6 months end up with ~1.5 years of access instead of 6
+        # months. Reading the raw field instead of that hybrid property
+        # is what excludes it. A pending request never reaches this
+        # method, so an unpaid plan does not move subscription_end.
         current_paid_end = self.user.subscription_end
         base_date = max(today, current_paid_end) if current_paid_end else today
         self.user.subscription_end = add_months(base_date, self.PLAN_MONTHS[self.plan])
