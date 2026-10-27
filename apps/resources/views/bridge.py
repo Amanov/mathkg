@@ -31,6 +31,11 @@ def bridge_topic_view(request, slug):
     nav = continuum_for_href(f'/{slug}/')
     if nav and nav.get('grade_band'):
         page['grade_badge'] = nav['grade_band']
+    # The ten bridge pages draw continuum cards under the title and, when
+    # the page is also a menu leaf, the same neighbours again above the
+    # footer. Other topic pages only have the footer links. Hide the top
+    # cards on this page alone.
+    page['hide_top_path'] = slug == 'bar-to-x'
     return render(request, 'resources/bridge_topic.html', {
         'page': page,
         'topic_continuum': nav,
