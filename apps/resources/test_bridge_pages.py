@@ -131,10 +131,10 @@ class BridgePageTests(TestCase):
         import re
         from django.db import migrations as dj_migrations
 
-        migration = importlib.import_module('apps.resources.migrations.0050_bar_to_x_lesson')
+        migration = importlib.import_module('apps.resources.migrations.0052_bar_to_x_lesson')
         self.assertEqual(
             migration.Migration.dependencies,
-            [('personal', '0049_refresh_deck_text')],
+            [('personal', '0050_refresh_kyrgyz_text')],
         )
         self.assertEqual(len(migration.Migration.operations), 1)
         operation = migration.Migration.operations[0]
