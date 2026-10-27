@@ -12,9 +12,8 @@ other hash stays as it is. Running again is a no-op.
 
 There is no ``ALTER TABLE`` and no ORM write.
 
-``0052_bar_to_x_lesson`` on the open lesson pull request also follows
-``0051``. This file is ``0053`` so the names do not collide. After either
-branch merges, the other migration should depend on whichever landed.
+``0052_bar_to_x_lesson`` is on main. This migration follows it, so the
+graph has one leaf.
 
 Reversing does not restore the old text and does not delete files.
 """
@@ -38,7 +37,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0051_refresh_pack_pdf'),
+        ('personal', '0052_bar_to_x_lesson'),
     ]
 
     operations = [

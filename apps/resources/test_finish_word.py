@@ -86,11 +86,11 @@ class FinishWordTests(SimpleTestCase):
 
 
 class FinishWordMigrationTests(SimpleTestCase):
-    def test_migration_follows_0051_and_is_data_only(self):
+    def test_migration_follows_0052_and_is_data_only(self):
         migration = importlib.import_module('apps.resources.migrations.0053_refresh_finish_word')
         self.assertEqual(
             migration.Migration.dependencies,
-            [('personal', '0051_refresh_pack_pdf')],
+            [('personal', '0052_bar_to_x_lesson')],
         )
         self.assertTrue(migration.Migration.atomic)
         self.assertEqual(len(migration.Migration.operations), 1)
