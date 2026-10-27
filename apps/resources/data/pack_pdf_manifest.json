@@ -1,0 +1,2732 @@
+{
+  "resources/files/1-chechuuchu-suroolor.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "31df991e59878e0841507af27aeb92d7e84b9cc9e7fc00777103a8075099450c",
+    "old": "454e1e7968751fa6a3c02bed038484b23cd0d2724a6a6f6025211e74c749136d"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "185ff6d105f2cd38e2884420c74316de91a06178424d93cbfa779e3ae2dde9bf",
+    "old": "6d4f86c92d80e7a10862d1381286edcfe7613abaa28d826702577798c2eb3395"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d37086554a82f4881e6e6740c5c4a5ee23b99295384e1269b5a6317fcf8d97b1",
+    "old": "a0bcd8ead031dfe1a3cbdbfb4e005648d4b0983b2d2648ce7fa87a0343f3c49d"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6abd81018dbc17360ca7e7c3a152b8bd09688321225bd3595d782c850ee83f27",
+    "old": "519af742b779172e9c746f4c8b5365f38195c0a36ea399e4bd5eac2995d0831e"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "75e0bb4f6b7a009546591e151404897dfea93bc1496b6eabe5eb0980cd652d89",
+    "old": "62acc4a106bc0b786b5988aaa4a0a0453ddbf622709c46c0ee45b1a1faecc33b"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f5ba61d1bca0cb6b46f851623aa985e396482a3f939700d947125ff9ac715785",
+    "old": "9dbbcdfc6e164f734a8b40279b63de25978d0aa976fe30ff148461349bb38b9a"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "188875bdb004f7b721db8e0c01d6ed4972c1f06e35553875ae2364175406e1e6",
+    "old": "bbdea4c20b14a3dd236be41e02ff24de83ad2605b158ecf9d476b2b94587a773"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1f55143602185e22581ef5776a039e1d23062f47a34b5a4fd9a7be2c9be49e8e",
+    "old": "2023d6e2898ed875bb750f56147bf77fb1adc16894c392010b2bbfdf446550b6"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e907cdf81ccb4439011d961bc80193eb010855370cc3bf177f4532b06b5c597c",
+    "old": "ac7c64e3d7fe0d95bf6efc2e1fe3918a20c8429bc82b7791764b86ce9b673406"
+  },
+  "resources/files/1-klass-10-ichinde-koshuu-ish-barak-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3cc7c892d8fe8deef5d661987897c4e489c882d1ead663bce586aaa147087cfa",
+    "old": "ced04ee72a503e591c7292281a7b616eaa4ceb690d0e0ea2d1ea3cd9ed7d3ca2"
+  },
+  "resources/files/1-klass-10-ichinde-koshuu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f690317abadcb04124ed2bb2e353a7b4724e0b965ac42f448d30293e892af506",
+    "old": "9c2f94207cedee6fd07d3daccd956e87498aa1840a870f979760a60a43ee90d8"
+  },
+  "resources/files/1-klass-koshuu-cifra-tabyshmagy-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5e29a945b2244a7c3f5e28ea03e71343067425ced6bf04317c5b5a4fe8418c93",
+    "old": "d55b9f9ef2b055f1a2daf83ee4ae63fa04c0ccf969716f95c05187bd00bf813a"
+  },
+  "resources/files/1-klass-koshuu-karta-sorttoo-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "49b2ef36e037222039a17b4829b954fdd5f258e3f3ad416f7d6c74c40356e80e",
+    "old": "e56e3f0571567fb865373310a6d971a36c34dc0ff98dd9ea3bf0e9f24f5cd5fd"
+  },
+  "resources/files/1-klass-koshuu-katany-tap-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e7d9251dd059deb9d95013392c164a4f2afce04a9f936c2b9090688387711795",
+    "old": "69470be7a99150e3c7bed524daf21467682a54e03215ef52165bfd1cd32b80c2"
+  },
+  "resources/files/1-klass-koshuu-labirint-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bb0fb70a9c624509cb19de40592b26a6e41c541113757d46c54cd241ab6c68fd",
+    "old": "5be5eced8d020e03b6cfa5943f0bdc242e47e9763add2ad1410c14af6f6972a5"
+  },
+  "resources/files/1-klass-koshuu-tarsia-v4.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bfefb758eedb03e457f9faf4b440b70e8b57bdf42238e4e710f5bc22487c197a",
+    "old": "1595de970c1629b60cef495b97d53816cdcce45685cdb238889a6c6ca2c41993"
+  },
+  "resources/files/2-klass-100-ichinde-cifra-tabyshmagy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ad02e589f50951e85c40aa5fb4af692f13472345b4d5d403a4a2b0cefaf33a81",
+    "old": "3ed11c2f23a08f980c9bf0d0471fffe720f68fd5aba57d63c7279e0b6e51da99"
+  },
+  "resources/files/2-klass-100-ichinde-domino-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "607e26e3d42b599e0fbe466f67a93ab480f73e63e34af2a986203063efd2f192",
+    "old": "8bfe754c03307049ea4348f0eb2e158f89372314f77167248d4fce193b83e98d"
+  },
+  "resources/files/2-klass-100-ichinde-ish-barak-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f51d2e52c9d316ebd8af357ae64da9e13f79cbf3eaccee990151da2adc357182",
+    "old": "091028dff24a8697bb841e9b79154ecd387b4546dae99a6e2e99ed298e4293ee"
+  },
+  "resources/files/2-klass-100-ichinde-karta-sorttoo-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aee86b79137e01b25c6bcdd256a3ee6e3bbdfafd119009148b62489a1dc6a9e6",
+    "old": "2247b1305d944f6df77e9b3f6e6898dd9694ba1b739391193968c5a5c827f658"
+  },
+  "resources/files/2-klass-100-ichinde-katany-tap-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0249a2384f6838cb3556fe20268143c12b2ebab5782d3978d00148571ea2cf7d",
+    "old": "01f2c547212a24a94a718913dd0aef69122f63945dd3f3200f2522109c776a53"
+  },
+  "resources/files/2-klass-100-ichinde-klassta-koldonuu-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3eb51c2e757828b21c23b8f9edda3098f15dd172d5f595c4e37eb779e9530be3",
+    "old": "2419a4f786e4b2d685de5cef46e47f0fcf90bdeb080e6f92f91cfcf26a958e98"
+  },
+  "resources/files/2-klass-100-ichinde-labirint-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b93a8fa0eccbc1cb2b208735e84e711e8b9050437c8f47b6ba19a34adbd8b09d",
+    "old": "06dc7b1618fc88c790e4effc8e3db011773fbfddab975c2594f0975af1d24db3"
+  },
+  "resources/files/2-klass-100-ichinde-mugalim-kartasy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2d15ef748c61d7ed1dac328165404c6dbe8003b0a791d6d9cde8976f7621fdda",
+    "old": "e58f88b186401ba68805be7d212f0ad718d9537c736af549e45341404e7d0ff4"
+  },
+  "resources/files/2-klass-figuralar-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b2e8f72fb5d9e172d41ec14aa08d07ba60eb66fa4bb307d5a5720657920e7182",
+    "old": "1963eb31dda606520c85a644767eaa5d48d2a76a96fde75e39736e97619285a6"
+  },
+  "resources/files/2-klass-figuralar-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "11fc7ea2819e0841af3f630c014d76f549f2ac04cd1b1d0afbe68f6edae7e36d",
+    "old": "d09605417af1d911fcb17587b872c9df525cced7511a4c088ff163c4074f1efb"
+  },
+  "resources/files/2-klass-figuralar-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "859e46f3e6f81c16d4157d007e4a08e8fd4614ce19bc8e8e3d3d54940b916886",
+    "old": "f75406155a94266e6603280518b3d575737be9cb0edfd915e350394e1926397c"
+  },
+  "resources/files/2-klass-figuralar-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7aa2d5efac2588b9a13c4ee57c64ba944bd92d571f37e220cc7e771c0a802531",
+    "old": "698da04d38d2601f61141be45237d52752953622666d0f9a5ecb633eb4b5a9bb"
+  },
+  "resources/files/2-klass-figuralar-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7c67f8a1e737f253f3004a1c527fc41f2724b314df160a67da46f9432948229f",
+    "old": "f53278d1a5449dd28e11b5f146aa3be65fa98e8ea7a44c5036694cbb0ac538c1"
+  },
+  "resources/files/2-klass-figuralar-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "86cb89f2950875bb107e5d44642856bb59dd4652e81e67ce5dc4df77985c452e",
+    "old": "1e4aa65d032a1692d3f64c57f8aeeac36871dd31f44d6599ec8600b4dce02044"
+  },
+  "resources/files/2-klass-figuralar-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6e8152090f8dbcb9071f7fe524003dab4ed081097e7049c164bd2e0ff5054b34",
+    "old": "317daff2a4db3042ef354c4d1675d41372d1a4973fe4bfc6856117cd14fa72f4"
+  },
+  "resources/files/2-klass-figuralar-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ac402bb77ab6340c7500cd1fb86a024f9f235d7ec8164bb42fc38b1807a1c6e7",
+    "old": "db34a14a64202f9451a532dff3aa77399f2e3e5d91febdd51ea618429f1e96fe"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b2c19e24de58d014d6aabfd4e5ef0eacb4ce23e116fd52aa0bc4d652e8c60dee",
+    "old": "1fda7732a51c68e74f53b27f541a4ac1c6d1e46cc12ac427205d3c80237e7277"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ea3e4aa10e95fbe825e2f81a58f61e24287aa7ef935dc785432fcc22234a7e6f",
+    "old": "d31527a3e41a2c727562538eefa7d10d2d1f975b1b633e7ae15f4d4cec5ed29b"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a58e10d4ad9ac6a5feb9d27c38f3a5fe747e927c3de4be08f64281b939137c36",
+    "old": "036edc4d7a4a6bff378cb0275bf0d83ec10e2ff984e0e97c9f8f46febd5b1b10"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9b53f2430aa353e71f6f360505570acf0f1a4a23ccff3831927c02a6ff1d0c03",
+    "old": "f670124fb04a4e61703510b0bc88683488364206ba544892ab51f69eefc1e985"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4f12d1b66252a072e2271bc6d6d5099a18f559becd97b0b13687e55dbe9f7533",
+    "old": "ba4ec5142f0cbaa9241b56120f1fca75b3d5d1568f8b35d64c4486e66df90e09"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7c4c66cb2ea5c0fbd23821f7381843fd0f742c19f7d8a72b7622d50ea85f64df",
+    "old": "54082e806ceab89d0219399413a94218cac4460fbffc7dc135197d86e3485500"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd3dbca7020fe80e4439b2de01b69a0b21747f84ff7c506f58d7ab9aeeeed951",
+    "old": "b62ffab94d063d840ff69043e4dade235cf969e49d0d1fb5f2faed278a0a242b"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6f8093bfae288df2f39706ac2e292652ed5d12e08732864907455ca4abe1c99d",
+    "old": "ea39f72858d491a1f7e6e4c4246ff6070a350f40dfbe3972dcdfb22115036446"
+  },
+  "resources/files/2-klass-ubakyt-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "775e39ab5ae2626e12a68ae9bd11b92a95caac988436bd29fca433c749832fae",
+    "old": "340c83f0b20fbe20541f9f0d93f4f993159403d036554e7729f73e8a795aee6c"
+  },
+  "resources/files/2-klass-ubakyt-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "43bd36676a215ef8b97a664d21922039538e4b5749fe4a0d3e87632d8fa4c2ac",
+    "old": "cd09a325200c243e2e3f8e5099f8fb2129004031f687fb642cc0001294114213"
+  },
+  "resources/files/2-klass-ubakyt-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f01906eed3563cf95d80573f1abe7732e5b6db120deef6a69f9664d816e54d8a",
+    "old": "39eda0ab1587ff3b244b0d9e7296a7a0518f2da503b2797abc6dbb795ffbdef4"
+  },
+  "resources/files/2-klass-ubakyt-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4187f2b72b7345f952738c4ecad7764ac1dc043df3cb8c1f92ca2ccb5059a3d9",
+    "old": "361f312d90d1db3cea7350d8cd484c091a32ea49d067d5fdcb5b691e4916cda3"
+  },
+  "resources/files/2-klass-ubakyt-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0d8cfc1017f3cf323d6f76d3cd7973174c2f618c66518bd09caa38efd4565d4c",
+    "old": "cb0d2916493251b8126883cb3f364928ff37e7b87a40014367e6e3352e26d38b"
+  },
+  "resources/files/2-klass-ubakyt-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "450726458dfde17553c8cda4661de99ee275f598e756bd11b217e870c732b95e",
+    "old": "0ff1d22fb356deaf8332343227bd52a347db1b678735a81d7dff40b8f20fd13f"
+  },
+  "resources/files/2-klass-ubakyt-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0165b49dcda6aa478e66bd6dec43f5d1fa9d67782a3e8733eb99e03cf6e883f9",
+    "old": "a64317567d75107fc06b60c63f17f148c54f767cb12b7e40fa2aa74df6058603"
+  },
+  "resources/files/2-klass-ubakyt-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d2c52b0ecaa17f253c141c62faf66e2ed1ea3bd82456f0943a6e7746cac00949",
+    "old": "549bd2d93405a35aca3de8db3652a2f453c5edcaf142d726a8e2ae065579b4af"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc4b79e11f9b70d953cf1f45613b264428280418908f34f93ac320e8189c888c",
+    "old": "e1d649ec727a96e9c21bc409b2ba9b79eaf45d7ba728640cbedf0b056182144f"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3c494d25be8abe4389c7613eed085744004b0e97ea0b1c38886f26a9e53edadc",
+    "old": "21e0b0c3607c581f5739d9633f6f1f19478752e11b3c96f6211a8d75ccea60c6"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "36a114927fed27cd1f04426a04cb21b8742fbd18952c3cd8817dc2a085dacf9c",
+    "old": "be1068857b3fd0eda6ef594dc0de62d550a71952d9f8de3d33cc98d8e0698326"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "933fd7b9143958b6288fd36a611c4b4d0fe4ef5ae5c35f8d574545762b2e4d53",
+    "old": "9f24c79cfe0b338801da767123f4f7596ea515db0e76a318569d2fa6e32b9756"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bfa1b1a877b671eca0915228454c8827c2c30b7e1592584213132b73f5f80629",
+    "old": "90c05d7a6a964cdd7df330b2790e2ececd7ff7eec306d8fb1a6f789363f3788f"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a75c8bb41330f7fa99f0e37ce104d3c9bdacf7eb36dfc5713263c6a8b61b8b3e",
+    "old": "1aa67a8b783fc49bfe4cceb66d4f1d9ce0ff6f65e36085f76520f15e416244cf"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4da5080ad6404af33f111edf216c4a2b0725e04bfc35c82fcaa654622a3aa75f",
+    "old": "c9a47dfaebd504ecb530b5d2d74b7b37b1884b1eb0b900d186af3f81e436ab2b"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9e51879ab5e9be21d2f05c24c431863e0090109fca587bc27345734a2b49c09b",
+    "old": "ec1e15ab4da6b1b7ecbb3bc7ff3a659d533cc843353e2f961106533ed059e22c"
+  },
+  "resources/files/3-klass-jadybal-cifra-tabyshmagy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "791e5e048d2034f370d10700d910f0657592c6e18dbcdb5be8df28b88cc8492c",
+    "old": "924d796e2760d9655bdd284f30123c31624f2073fde03a970466a03737cf26fa"
+  },
+  "resources/files/3-klass-jadybal-domino-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c42005131eb77b9c4a636a1a2bcb2bc4db313cc05e201660bf7fc33b86ae52c0",
+    "old": "ea5c465856e620b32f1d0a386d0c1c578bba2229cd2baabe6fcc6b4bc0dee78f"
+  },
+  "resources/files/3-klass-jadybal-ish-barak-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "20111f34e507d432f1cd3946d02db371c8cf8a6e132272693d988932a81d6cf7",
+    "old": "d4225d32679fd8c5fdd9b5e1f088f4bd49cd963794782d6ab47ca6aa7287aa08"
+  },
+  "resources/files/3-klass-jadybal-karta-sorttoo-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "682dcd1113dcb262357ff42a1eb8e9aaba00959ad7288d0a36a155fee75f6b28",
+    "old": "6ae467f1500b73a064fbc5ef00a6edd4a0a4f3e3a8e1f4523d0364883abddc97"
+  },
+  "resources/files/3-klass-jadybal-katany-tap-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "85d6fcb7f83b8e9e7932d4d3ca329f7110dee61fa8ab6df56023303f1302108f",
+    "old": "eb4bc64a638351e03aa8a9a08e2c6549a8b8759671d8005eb9b8ad2d58150a52"
+  },
+  "resources/files/3-klass-jadybal-klassta-koldonuu-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3b78207e660cacd7219eb8e84fbb05b02233940ce564d02d411095760d723a8b",
+    "old": "5daf1580b755771a7dbea307b7cf504536b2329c82eb007d0adfb5401734ee14"
+  },
+  "resources/files/3-klass-jadybal-labirint-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ab08f7c821590d6b936d5c8e68b8f22d71be587ab25dd6bf6f2c2fe8aa2b7235",
+    "old": "ba3e85d35e0a7cf3a38b5773eacdbd18344ebeb1342c15962e4b71c2e9620859"
+  },
+  "resources/files/3-klass-jadybal-mugalim-kartasy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "611679c17633188a6cc31b116fdc8218e851b52ff3b5011cf4700da7982e6a17",
+    "old": "1174a1b52055da4add8aedbf5ce0d9f3bb3ae8ddbdf478a0e798c50865c396ad"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1f56ded6368daef6e337e804f12bdf6a5ef764af6478c2fa7e09c025870d46af",
+    "old": "726eb65ab86e68d87c5d0833dd5555eef3c9cef3f63d410aff501e80081dab82"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "963af37fef4084411049ec41b15b90487d037fc5c1e9482a6197d90e2ebf81ad",
+    "old": "88a7e26af732577f4917e899f27501632ec81205c42534ccdb96a717800f0d64"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5d3983b7c93fbc37a428148fe469ee09621f524fe34a09045d7f8c309787ef2e",
+    "old": "0961ec11bae8375d7bd8c4ef6d2a910340be0b891dc5a8019667656359ed31b2"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "554fc5738a835f5a29f501fb41246aa4c4c6aa6dd05caf710bd8a700fa873935",
+    "old": "2a2f3cff8102cba2dead26053cba803122244ae9a855d953a221a6dc25fb0f04"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1027cc2dd60b2d3c071b433daff1a80c6e379a17747ffb1e5237dfd89ec0e549",
+    "old": "1871b74c9e418260770427674b36e5368b49fdae12d9a7c5a3358f520c5233ca"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0e205428e3df0df4fbe9f3aedacf8aa44384a92c0dcbcfda0ac21136a1239e96",
+    "old": "51e1940be39c687bf76be756ba3195f375766f3d0e0f49a93174b5c5b91512ae"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "84187c1a1a9b3a77baaad766437a82411ab1e43b4cfa74e5021a49d66e93cceb",
+    "old": "c8bb55dcff1faac9c689bf4da17dcdf6b0bbb167fec73a62586a05d91bdd1494"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d7e7ea3ca43d1968502b30e98d2e4e45ff590ab28897af56888634dd18cace70",
+    "old": "b54fd73ba4b10ad6398161f79a9d3dbbe0fbce98342fb1ab53e73434db1e6c2e"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "696c6e70a9ea9cf3c6e95782db833a66697a833e33b6956cb21a6401750d2603",
+    "old": "80c3b2c9fbb3bb5a324df928b854400efce762051b455e03a5936c6ae0f213f3"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5853d7866284b23fb09efb1a9775a282339918edf69a675b82119da3d1eb04be",
+    "old": "859016b510dea96a13eb41f74f966b0b017468bdd3bc137019774381f08a728f"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a3cec0ab722ff9187056735693e0a78f5b89c27bfd46899bd3e6752ba351ad98",
+    "old": "050650e49e235557ffe1ff70e9be5450bd1ea2f39628e66b24e90a0f93f1dcab"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "04fdd64cd22dc1390f9988b663708d07a838642ee304248fbd5e9ceba2412e7a",
+    "old": "fb51a14f0b802ee93a9779bc7bbe07bd64771f7792020b536362a885ab67f22e"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "42a506605b0bdf23accc98c47cfc0a42ec6f9c765f4a6a8c13661d4890ecd9f5",
+    "old": "670a09b819c21a63ba52c76ff3a94fa958df7906d1293f552b112ba137bdff2d"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ac3c2c58f6dd100cdbe664b6143a10c982380a9f3fdea1bf684bc4d87df190fe",
+    "old": "4fcdec2a1c1270f0a65a330066826862be953162393c7f5e56f2a0775078d5f4"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "31b3aaa3431c4e1c9a55c9adaf2771bd3abcbd2ca25c354330c134c22654e46c",
+    "old": "c47be38c27e443c1c2f9355584601a12aa8da0bfe3853ec718d54b3f91caea1a"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15723bc90abff3b502879505bea26a7a281d5493244230ed9dd2bb67b3a23781",
+    "old": "f36278a877b2c08500a10509cd79aeec25193b44345b31549c9ac966d56a759c"
+  },
+  "resources/files/3-klass-olchomdor-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "13f5a289a735304f6f8802d16999b0651a017b2aa60e38e2a358b4a6e436961f",
+    "old": "91138c72f5316bb8fd6a55a772a9a9dac8fb3ade8367b32a7bf3a354a5b90a5b"
+  },
+  "resources/files/3-klass-olchomdor-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1edb13c742bca5aeb230264a04c25bf62077f2236a71eab5a52ba362965f84ad",
+    "old": "0c2fa7466c961123f79ddafce3dcbb25c0ec2103a2bad5cee6994f508d145bb1"
+  },
+  "resources/files/3-klass-olchomdor-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7207c2167370b05061c7435390d735c5ccea2cf6a1ac62af747df36a4c3de0ff",
+    "old": "14e53d998cc8d560b303a8f3c48c3012c9a72da5cbac726b279b737d905c17da"
+  },
+  "resources/files/3-klass-olchomdor-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d511b652ac4cc317ca9348d98e3516e1b58e3251ceda3b42a1cb6eaca6298f00",
+    "old": "26d6ae1dce92763626c61384e4b1ab5b57e3ddfe51cfebaba15ba38cea89a47a"
+  },
+  "resources/files/3-klass-olchomdor-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1233b53558ad0fe8c1619dc86c54842fc6a467af7002c6485a6debebb721588a",
+    "old": "fb7a789e314a98f4bfcd1b6c10e1e8694c7f00d4859e8c92a83104842f0bc4fe"
+  },
+  "resources/files/3-klass-olchomdor-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4555020ee02935031881148de986f527294d2848c406abb039331032885f21f3",
+    "old": "07f814e20ef2e8ce480f786100bbfdfad25b9f761b6322a92a88c3705544fe88"
+  },
+  "resources/files/3-klass-olchomdor-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c7ba1a4edc261f02c101387723db2e34b4ddf5b0967e0ad1bf9aea5a078609ed",
+    "old": "3b04fc587dd62800d8e75c546df70022c0892cd8cf9a684a8cda0ab541b8a9fc"
+  },
+  "resources/files/3-klass-olchomdor-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "08c91cdb45ad34a1c4639ef9b69a273a579914f5942377e1c49e0a4fa97cd8eb",
+    "old": "d6e705718d6ca5987494a2daed0fe7607abf619ac77bff4b7bccb03db5c11164"
+  },
+  "resources/files/3-klass-sandyn-bolugu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b8156834c36cc15fbd913ae42001367201e1681d5beb9402814fb732052463a0",
+    "old": "fc2c0d345757c612c86bff7e0e845ce6329373761adbf1bfcba0090349c73c73"
+  },
+  "resources/files/3-klass-sandyn-bolugu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "79f92f27ae2acae272f4cd7d75effa52d81e95ccc28b18fc2265137f53f060e2",
+    "old": "d0aa72a1fbf5f98424355336d9d8140a3e0d1a39e64c785b1807686385e4147e"
+  },
+  "resources/files/3-klass-sandyn-bolugu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "af5dce88964ccee4d06c9441e758d50d3bcc21ed9bce03cb9d5a8bad74ed0c8a",
+    "old": "4ca491b7ef37a007b67e75b9de92b6413da34433d6a4326bad420c084094598c"
+  },
+  "resources/files/3-klass-sandyn-bolugu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "047b44ff59b9f787e0d8cb3c766373dbc77c67ed0f567e418e11742ce60bd6cb",
+    "old": "989c4a59dc1334629243ff196f2c85c131f8f5868e7879af4960205d913b1108"
+  },
+  "resources/files/3-klass-sandyn-bolugu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d0ce9c483e09d63072b627d55db35919336ec0724697fe4199c47039f6d782a7",
+    "old": "e6b5d16bcd089a8f4c80e6202bb7c7db40d0185de4bf7d589f4fb1bbafa5f097"
+  },
+  "resources/files/3-klass-sandyn-bolugu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "94195db8388ad86bb3fccf8de4405b730c4cb7e604e3bb2ec19a23bef07f1aa8",
+    "old": "3c3992e9287f675d165376ae650f7e09c92fe74a06fb60427f74ce2c5524ad9e"
+  },
+  "resources/files/3-klass-sandyn-bolugu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "49d44a901bc0ef40dad4b7d3f056fa0893c22b9ca8da1cd61f0089e4ca16ce0a",
+    "old": "ca0fb6bde1deb2917a61e0deffccf55cd8674bf63e7c128813a1a9d29f2c8c79"
+  },
+  "resources/files/3-klass-sandyn-bolugu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4eb5ac3be1e60b1808db12597edfae50d3e12ba30255858b065fc7935c749f2f",
+    "old": "0a0bed45ae5855234d845c69f8e22070407e305707420ed1d47a761064b7187f"
+  },
+  "resources/files/4-klass-akcha-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4c4da457e09b66fdb27b2c58f42bb605ee0aba61fa46cedf0adab2b79cd15837",
+    "old": "91aed11fa891f29fd6268f0e4ab21006d08327cd95c6da8d84d17c6715f3e35f"
+  },
+  "resources/files/4-klass-akcha-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fdadd4229277856a76038e0184c4adf8eec23b28e617c7f15172e3a905068718",
+    "old": "42cf3a5c9e9adb3179724332019487ab340f68f9af2312fa25110bac8bc0531c"
+  },
+  "resources/files/4-klass-akcha-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4de1c453a56c65a97e261ea16963b7e166326957b0d2c37f3ac8e1c3042d2724",
+    "old": "2f678fe2b571862f0cbefc1420717a0be5d774ff90046feb26400c9d7c6669bf"
+  },
+  "resources/files/4-klass-akcha-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e306e28413a880343ca17f1b9c8e14d21f5656d44946eda430b4ddf7e21adff2",
+    "old": "33e90ac167ca719be30c175ca65da22e2894d29164f22f916c7aaf5bd5ed989c"
+  },
+  "resources/files/4-klass-akcha-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d1f4c35a9ea9786396fccc1a0f388f77070c2909ed8e7e687397be4a1b96449b",
+    "old": "6d1c0a7b072725415711d72729348b3822b7d439e2dbc7362ca86fb87baecd85"
+  },
+  "resources/files/4-klass-akcha-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6a4180f79171d08a6382f9277725df85bfcfd700b3db25add7ac389bc12a7b87",
+    "old": "3821de3bb462e1d97ea12b2c6636a1b1a2bfa7a5636c9541a58f694dac75a018"
+  },
+  "resources/files/4-klass-akcha-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bceb1e99b43027dc2000cfb118ae80b4e9de41789f7f8567966cd7c02067d95d",
+    "old": "dbc4709a48eb917aea860fa26bed0c8dd9f4bcd62fba8dcccd20a33e5bfdc90e"
+  },
+  "resources/files/4-klass-akcha-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3de91acd0104a31f5dacfc73d420dd7d7bcfef17fb92d4874f830ce947631b0c",
+    "old": "24fa6e703f447e831751b623a421dc5c550a96f9146ce5bff006864bf93685c6"
+  },
+  "resources/files/4-klass-amaldardyn-tartibi-klassta-koldonuu-1-sabak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8a3d6f7961bfff673a0d8b9e81b3907b541dcfdd37fe9c155c6bf3e483ea496e",
+    "old": "a75c5c1a5518527839a51f6fab736c10a671cd70144de8a8f7560df451f593a5"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6149487f0d109914c38384b19e15f1a85e515517199b4fa35b12ab68e07c27ee",
+    "old": "dd7cf5b047ff278ac5cb80c2972ea2f2a90a5807634964dab19bec39c190fb67"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc9d55a248fdc4dc8bb00d4ef67a1d357b7e609f388fac518bb5397e7c2416ad",
+    "old": "2effb427ed1e993f533686ffa497b23194f94aebcbd9ad5cc13272c911c05b38"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0d948e21917d6ef9126494b201eb0d1e381a402a9a1dd03693b44a52884bd2d3",
+    "old": "63b37543e128827e1b64f7c8df9eebe18ec33aa674bdecaac65ba50ec8c68065"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "baefc0ab9f2240b3898a8e4a7efafafe088562fb07be18a3303d7ceeb16aa985",
+    "old": "5ef61e9a530cf80ca5571a0295f6e4d03257f109df17fd183d567e0c993dad42"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2becb474a6ad8fc7ac8266e5e89f87f6db4bb7f807230b1c5fde4f13518061dc",
+    "old": "f28c3d83083caed80079eed257a6b3906e7bd716a63df889fb3dfb640946fe2b"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "95a003d7585e23b85a88b04c3c0da124bea9f994c0454b6a94b2c9b374b4c128",
+    "old": "568c1d573861f1262e2a72b361c3ef5dfea76e4fdc8dbed58922ad315814e233"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e55410b3d10ffff9c0790f343504086bc3deda52266a22b68edafaedea390a42",
+    "old": "4c15170561adc6bd06b4750215388eeb5f7ec768cde4f5ca8b9b411526af382f"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ef929bdded9aff364a8b16a2f69debdbe27d94b56063f6a50ad0649ac5fece38",
+    "old": "1eab06913755562aaf9a881b6fcc849e34a196d6dca79f9a51acc67c98eb41d7"
+  },
+  "resources/files/4-klass-ish-baragy-v3.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc6c8bb607a2d28b4584b9ac0c277cd59407ed90120bc87fbe395a61aae21df9",
+    "old": "afd5a432063a4e7f5faf037221d7b310848b9423cee4e4ec232fb3289437c118"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4f750303750c3c6f55ededa7a33e8c3ad4553723202c7a8b5888e4c6ab14daa5",
+    "old": "7ed76ce809e43fe57191135d1be819d882f3beaf3e110d11c901f022454f9e5f"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46431227bce57ce64cfc73c074cc7972db851733d1b788cc12834ec7451cfa69",
+    "old": "d90b55eb3b90981820bb7c16ce1822ceba019b258a4cd9558f984ad77560838b"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5955b2ddd66c06ef3bad4de3509149e0668d92c04724a578c0251925080e470a",
+    "old": "9f9c0a106712e6a47951e42f7aa6b53afabc4f4c5a1874c39c44f1c648facb87"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6f8fe561022bec147dc361c8efa0b7ac11c042d3d5470d1f9f92e2a4d4ed61c4",
+    "old": "c561959f67a43401c0cfae04ab8fb4c323d4415fb4eeeceae1809f55ef765c6f"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a3089816df048345b2037e67f15fdbd8cfe8c494f40ad5c336e29a1b62d7f038",
+    "old": "a0362ebe21346eb455ea1bb67b0ce6f5a00e8120259021e32f7b6f18fadb1b56"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7f7d4241851803a38c7a25b8fb6c925000a4355a6bb3fd461783bc4d5f38b935",
+    "old": "68d2279ef82442ba0fc711022fdb3810b00cdd6a4ea9c4b47ceb1a5db1b9dcde"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5fec71a3da8b4da3ad76250b215f4220fdda74aec4d349cfbc0ecb1c80fa0cbe",
+    "old": "794a01eb9118dcd681708406bc39f32a417a8f7d3581de3aca3abfccc8ac6305"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7008b04d2d228a09641a905f9997f8ae1c841e219825281bbb331963cd40efb3",
+    "old": "0ffd0bdde6f25bf430dea6e12da7d6ed0a83dbdddaffd6950931489f86f6f736"
+  },
+  "resources/files/4-klass-million-ichinde-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "12626376fc35396d536e3ada6fe893322e22dca7099eb3cebe57331baa78b9fc",
+    "old": "b7c2bbd89a280040c3881826f894b3e3f6025d42c75cba92067c8c9fad253e4f"
+  },
+  "resources/files/4-klass-million-ichinde-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c88a62240164e31252baf013a7fefcbd713f1b55b23c81a1deb431019d7ed46e",
+    "old": "17d84db27dbf9449abc24f7823fe1399c7c792e38dfbeb3aeb8beaf7e6f36533"
+  },
+  "resources/files/4-klass-million-ichinde-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f27914f37857ea31784fd8eacb610fe4423f6ef7a573365f6e1bd58385dacac8",
+    "old": "9b9f2754cc06f6018abe5022c5897b29fee3ff5d06593511d443f6553cc0d3db"
+  },
+  "resources/files/4-klass-million-ichinde-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "efffeb666a2a2307b9af0bf931881abb07ed63d2a76f449f4632ab9d1a315312",
+    "old": "d51bf8c32570cdbc1d67f2b52ebd1766c526a7dd1ecb8323971a092f61b9b31a"
+  },
+  "resources/files/4-klass-million-ichinde-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f9b6ff726e1c7c1c68dfd4e1b4e1269691eda28acc134e1d702875be79aa4a67",
+    "old": "f7c054506a10866dce3c69d28a6704a88a189e8449a61bfe804ff5a827d45603"
+  },
+  "resources/files/4-klass-million-ichinde-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f60184f24f3996bdcc793fa5908e306798899db674506b435b4915b320314091",
+    "old": "a619c6d05f37cb09cd26574af0bbe09aad72efc2d42ed251aed2e62a79621883"
+  },
+  "resources/files/4-klass-million-ichinde-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "288e1fb8edaf7b49e33c2dcd5c9e2a2c4d4c6ec7633305d04e9c068a2f5f8d16",
+    "old": "be691550b422a328e6aeaed6098bb74cfc87cf89324ee3adadea487976531d25"
+  },
+  "resources/files/4-klass-million-ichinde-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e7638b0dc4dbd79d06b1a5b8c4e8783617520b2af60f66a60e9b14cbe4d51de2",
+    "old": "541cff5827add28878c2b865f1b737253c54d050c7d80574acfd5d6ac0ad16b2"
+  },
+  "resources/files/4-klass-simmetriya-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4fce731c8451c935811329fc8152db4158dbd653b7941d2469b3ede35335dfe8",
+    "old": "62bdd1887faa58cebef0fc817a02f596aafd87905a86841b97ed2ab2f1a3589c"
+  },
+  "resources/files/4-klass-simmetriya-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f2106bff39d8f9b589fcb4c6c061b26d5decea36aa178bdee1c8976b479f8f45",
+    "old": "392446a7d32f8919ae851dfb9a29d13cf6bfb208b0568e6c392075db7f5a8b74"
+  },
+  "resources/files/4-klass-simmetriya-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7d785fa92f1d9a3eb052d0d0fe0a25f12b337cbc69a8ea6c17b33cd47a935cd5",
+    "old": "810ad1e9b2127294c69dcf64a1497becee805b0a2a56ee1073c29873f473cfb7"
+  },
+  "resources/files/4-klass-simmetriya-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "19b6a15e27f88cbf9dd91afa27d9a86857bb98df6cd1755ca67e18d57355c0ef",
+    "old": "60509af46ab7d92ade569ee9f5685d3fca61536f6c43c76529126a9ffe74af23"
+  },
+  "resources/files/4-klass-simmetriya-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d3dd85cb5c61036f08bb5323a5860cb3e48b715d62ce99d7e0f5bd61699daa3e",
+    "old": "41582d44794552450d9f22d4649d3af124141348f3df3cb315b16ed3232f237c"
+  },
+  "resources/files/4-klass-simmetriya-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9bb58675f3cbb1d780ef9c07643cdc9f4269a5fa05ce9aff3f750eb866439b8a",
+    "old": "20d6e85c5941807d1662f08ea0ecff6af819ee1e88344d01274fce12e04bb5f9"
+  },
+  "resources/files/4-klass-simmetriya-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6baecb75c4a72b6f4d99bd35a654bc8da7fc20c911c18738ffd3dec12fa95ebd",
+    "old": "882d52bcb7f8bab4247fa3729f1910d082701c9428ef7b39cd6cd462f1a53e89"
+  },
+  "resources/files/4-klass-simmetriya-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9b6e38ef2b50f6f6a3f6ea8defe71eedfc73cd6b852c1519e8e23c9b6464b324",
+    "old": "ca19df29beb31774518282f47c54a1814bca7e32394e4d50ab5ed8a9c1d1ca44"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2490c601d72ebb759fa17d8226a56d2ad28b8fde10b15089b24c347b54fb8c13",
+    "old": "accd365c58280ec01271f35c6b1f0c3c0e8bca96918d13309658edccfe46ae22"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1b1a2c8e7c31eeb883c8f892f9f0a829f72d63034ed14be5ce6b53963bdb4c6b",
+    "old": "373cedf7770f1e0f3f1668b18038811dddf2046bf6622bae51f170ababc565e3"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0dbbf546c22336fb090cffcbb7763b99a47e8f218eb0b5731dfddead6e2264ca",
+    "old": "33a4ab3eb0c843fd9e0ed32d7368a7a362a6cb531fa3a35ad2b838c449d75bba"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1fb9ff898a2cdff663485681076305e90fb3fd8a36d9c5bab24f03f494150dfd",
+    "old": "0cc53f4268d5e7a7ecb444ffa72a3183fa5e4c802f5c033e0494effb662edf71"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f2698f17a812745480bf29e4e7d37ade150e97eb8fa6eb597685ac1aa7e211ac",
+    "old": "8d84c9709667694a671942ef76b459a2b091f3d6d69825f0304e47483bdca417"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3bed1955214ef01c104223dd2ef24d11f79399f5fb525f10882d9b11d28d48a5",
+    "old": "870527d01487ffe28abb91d1b4ae9f6d2180a6bc43cd522e23b7e8386e6f416b"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4ba1774724960a68b6ce5789000477e0b6d833e055c4ce75e9c697ebd4d8fd43",
+    "old": "ab2f277053447b8f4963308027409abc70a16b54c5bb7e471bfe54017a76fb66"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8641da1137470817604b367f4e18f674947a9dec17382616552d4aa1aa07385c",
+    "old": "758663493fd0def97eba16c0a9a2729f4f4526b0bee99f062b0fca82e8add93b"
+  },
+  "resources/files/5-klass-10-100-1000-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "51fff6fb16459d2ad4f45d128a06494b7684880230405cd10e6cf93373096609",
+    "old": "ff6f4285cab36dbd75f930311f0768774d28224344e9c822eb6f06ac17af593d"
+  },
+  "resources/files/5-klass-10-100-1000-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8e1db33780d867e1c879ef43a8b29161370e64a7b8038caa2692ea07aa731759",
+    "old": "9d19d953d334fa6a0e9d6aa1937ee73b7fab34e3e79f79873a2588bb89ee57cf"
+  },
+  "resources/files/5-klass-10-100-1000-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "60a85af0ab69bb4744c4b5416abb019885cd56888afe37801c39f5c858ba15da",
+    "old": "341b67267efc863440e11931834909f6abc0664532ff3810f56dd314953d1672"
+  },
+  "resources/files/5-klass-10-100-1000-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "13cb1597028f4802ebac51d1d0a1d8ac254bf819b31301549b840c87c2f1abf3",
+    "old": "9ef676a3b38c38dc79f80ecbb21475ebf75cff13eae51a3fce23717c91b7d615"
+  },
+  "resources/files/5-klass-10-100-1000-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "59dd0d15c1b5cf9b5be0f5a2b89f0affd241b8e3ed959b9bee8d16424c6e0354",
+    "old": "8922e7b6bdcedf6c41fccf9de782fe6dc32ee93d2135ac7778373c755cfc4832"
+  },
+  "resources/files/5-klass-10-100-1000-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0644c0c3ba7565981e4e9899aa0921ac01d714f95e63e6c7798a06db54a65631",
+    "old": "33579f5ee90f354a74ec14b65c30a24fb36ec3bf139b4d8779d5c91dcd778bb0"
+  },
+  "resources/files/5-klass-10-100-1000-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b92f5bacc5800f956a68b08dc7a6b9ef99954c98532ac86ded2ef6b15577a0aa",
+    "old": "09fa742cf35c335959b1a89fee863486dd48b38dc8dbd838b89e826e3a6c71ce"
+  },
+  "resources/files/5-klass-10-100-1000-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9ed468512a8df8db7ce36d1258e7969809835e4e347d7e00bf140214e3da6eed",
+    "old": "9adc8fceb6560a7e91fc6669a5926a155a0a0e993286acef159f50bb16409c53"
+  },
+  "resources/files/5-klass-amaldardyn-tartibi-klassta-koldonuu-1-sabak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ecf873814d6e828fed0a6d84111e2787ffbccc335cd119c8595f4118d527e85f",
+    "old": "af903b752c5befe84582f7528926e241ad442218100cf51fbffcfa012125b957"
+  },
+  "resources/files/5-klass-burchtar-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f13d12311f56507dbea7f7e04396d50e5c270f2d7d1d2ca8bfa5509d5c09fc7e",
+    "old": "280d607544e0ebd59bcb9e1aa614045ff7a5ff302e69892004295a6540b0f4b3"
+  },
+  "resources/files/5-klass-burchtar-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd68dd361cbbe5b1c14827b191be6892be8344511809ff78ad4f91d0a4affb3b",
+    "old": "abd23de36ad367951c25680cfbacc11cacce41ccf62c4c10a425f2a5360ddb8b"
+  },
+  "resources/files/5-klass-burchtar-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "22855972e9a368445b3b285cf54cb3f3d2015d6555d2ea74379bd5bdb8777924",
+    "old": "5279cfdcfab303df9255fed40c84b1384095fbc232f7e8b79500bfd934994498"
+  },
+  "resources/files/5-klass-burchtar-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "78713b8cd7051611f499b43ce155d4241165ce7a14f49453117dfe193a73ced2",
+    "old": "6279afd8f4a241836a56360fc7b1109af06e55d8e913b37c9544c808f1e4a877"
+  },
+  "resources/files/5-klass-burchtar-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d509fd562ca3474d8301d96fae844fb3847903a9827420ae41b62167b99cbbab",
+    "old": "e501ea255217384bd881f6102fcd68fba159384f90187d971dea234e4c953c24"
+  },
+  "resources/files/5-klass-burchtar-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "187006eb842367380e06e8876c9b15eab551a93e6684b1d453e37bc6807c39f0",
+    "old": "a19cd5463abdb4942f1b407abf851e10b58aff69de49308447e1a6e522d311de"
+  },
+  "resources/files/5-klass-burchtar-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "339a367e03f32d5c2c6fd98984ea00cf76e4dbdc351ee9d6f485682d9b9994fc",
+    "old": "159f6e1877171a6002674793d8b356295a8853103ea4e28c9e268d2fc551a1bd"
+  },
+  "resources/files/5-klass-burchtar-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "559f195fc46afe79cd917e5cae82542de6a51cd4174f7aafb762303b24ec9521",
+    "old": "f034c13b5b19d860020517a53e62dbb5072e158aa65b550e3eccc845b76bc205"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "288190d7493de35526085c7ddd672e93d39cf7a53b8534e561a4e6cc36b39fce",
+    "old": "3b6825f5e3a62b16d07f965fa3633d0cb8757b791e8b432423c3cc112a9ee8a7"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aba92552cc20963f3210565b7e7fdb71419cf29ba4dddecf6b8b16f90f3991c0",
+    "old": "e66adbfce2fc3a20d41863b998a33a5b56ed748709c17e13e4bfee663909ec5d"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a9903f54d7c6913e8ffbb72ecfe39e3ac717b456cfc3e046718ae96664435656",
+    "old": "d2992012bba549d99f3ae883dc6f73849dc077b7e2d4478ddadb7d8076c279c7"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "94b51dbf7f157ade84c1cdc33db4bc0c6144a8976626bcab9a72219c6d2bcbeb",
+    "old": "e68b771ce52e1d8dfedab621ef3647fcf6813b8b8300b8c3cacc0790b0933dcb"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cb2444ee069caff69ffc48f9f8318b1b42cda481ae625f5990c868f2159046bb",
+    "old": "25922e97b919582dceeb149fcd1665a9588c2927ca5216a782296fe5a9d62ddf"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "30962a4238730a8bc178633e697307538625902a549355221d59f0fbd5ef1b1b",
+    "old": "0086f41bc62a3e4c69d3ef5fd9c992fdd90b456c93c202d8846f6d8c5e6056bd"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0375f8f6fc73e8e6c8048044298e531c1f507a47b560238c1fb59b10797479cf",
+    "old": "716dc0dcb4c450cbec6b5ee6c98405923dff8cb45e80da6ddf1d97d8e9dbfc3b"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6deefc470648e2324ac4aa7305a2783d0a3277080509623021e9bb3c3a9e6622",
+    "old": "012bd0c9116b1e99a3e017e5ad9e893686a8bfb25719c4077691a6923a5662cc"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e1038a054d0bf0c6db1b29bf62ac4f2ef58eb931c49382042cedc9098a33b41",
+    "old": "1c26ea1b62a408586e2da6795044d12a18e47cb7e0f445a8032d6825c1b5b23a"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f8ef8bd46e6ed15c2fa87a9957c9bbc9e7e7df6fa7819337b68ed806df621794",
+    "old": "0ea99030bba04dc10993e4ed7558788f9dd195acdd98d52801af3827c9e59272"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e18b7c46116ad0bef4e27f8fb1b0a2c0963e673c47ccfebe9c4fbbb8a8f3687f",
+    "old": "b646aa732026caa61f4238e91bda5241b0d04775047cc9709ad6004bb92001e0"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0f1cd21310aee00907da6b830280ee90536d43b5b509a9c436744cc5582eba9f",
+    "old": "a994fb57b8efb758756ed895c8911751b83002929738bd47456525948f6f2c1f"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fb7e325ffac7d07a6f2d73b06b6f5e43e7ac1f14bc10f086f894f545a17b6717",
+    "old": "e8f90104e5a577b095bf74272c070a03ea603f56748c880546f04f252e4d0559"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "096e3adc60b9e4ebfb659cc63469cb147dd078f3bf12ed985e7faf67582b3074",
+    "old": "1a0557fa80aa5e3bc510c58d9a6f8a13feb1ede19cfd12c72a192c43f54a54da"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c0f556e50f3c5d79fd3e84dca035ac04193f919770e43614652e4c3ab76b04c5",
+    "old": "6849def0bbeb2400bbd9fa4419f8c4d999150e7f0527594e65b93fb8cc641dec"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "868abcb99b1a6388bc544d01a597a0a46a3f80f99291008168c9bfc1b12dd0ae",
+    "old": "88dc2eaed7b792b73a8490b22b304e8a7979d705a82027b0423aa23c0f208b16"
+  },
+  "resources/files/5-klass-ish-baragy-v3.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "13b7c3ed65072b13bed2f1ca4312ba6255b70d06489ac08840ef310af0c0eb4b",
+    "old": "0f28ff31aa2eb9f9090e6d0ce955599a8b1d0962905c136cd2e9e1a4e427e452"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "21a1136b66a6dbcd4e2e392d28330560e555028b9332f41de7f2696f47ea2530",
+    "old": "a98954932295b781ec851c9d521298db484057cd9826df86178ec1cbd11ae239"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8d6019e25a2f0077c877a56f4c368fab5198a951cb6a5af3b389829851d12c15",
+    "old": "6a28bde6b0ffa44671d907f1fe25dfa3d78cfc17806af6e4d3753a086320c6b6"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2884004dcea9e134cc9cc80142164cd352c38c56c1516a54187ef55ddbcf153a",
+    "old": "4a246a65c53fbf58d57c1d099f1c8c169919894e0070ef8f3485143cbfaa7b64"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6ca6b612de25bd7370eb25dcc411b7a846bed81832a2c7328229bb8fcb3a5d42",
+    "old": "a3d21913084b5c2d195f8689800d96d05f5ab36644bb19aab2bd4611ea17bc24"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "85ef120449258330f15e7bbefcaf5233329dd3337c4f883b6c3e3cc7469d94be",
+    "old": "008dd27947e778800fe66712c56a21bb65fedd69684b652b13b1afd5bbc07a1d"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "03e887ae8e51ba9294052263ae806f4ae69b15afd4ae6c0cfe1e9d87c61f8bd8",
+    "old": "390e63b3d35c3384d05741ea4a1c5a2d49e12845716d6ebfc588eb0cea3dc9c4"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f258575f7a4cff86782e29be1cc0390016d68ed8947534f3738c09c3fc280d8d",
+    "old": "d19ef1ce1098f23cc1c2262d591d715e08dc8e191e87e9dae0832aa3fbbcdd62"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c91f9be6c86bd135ec57045e8b6b7f580c725d43f75c2a3c6b1b6cdb92be8f79",
+    "old": "591ddf419501d542a60f1b4f7d949b615f5739ccdc4cdfef40f54d245503a82d"
+  },
+  "resources/files/5-klass-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4d35ae4a38d06199f5ad84e1037ca863eaa8368bfdd4948ebf5b1ffaf38158ad",
+    "old": "0599d8af6d262a62d8ebda6d1c4c37d0d44898b2695b63a2908817f38130f618"
+  },
+  "resources/files/5-klass-kolom-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fba4bcc366d2c40e22d5264b5a25c28326fffca0bf3f38b120072749ac8314aa",
+    "old": "7a7d2efd6c5c51e97cfab207f579a6c42280f34038b143c731f3b7cd8f7bc754"
+  },
+  "resources/files/5-klass-kolom-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5779e0e1796401f83981fd39c37b57fbb4478367689c5cc74a249cf2925233fc",
+    "old": "88a0ff5819f7f579511aa16b310d9089788d240b2fef827ebfe33a29112fea6e"
+  },
+  "resources/files/5-klass-kolom-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0a6fa603884d180347dcdc88f2baa4285dbb0fbc7bef0a089fd30f892afcd743",
+    "old": "c6952c383a130206a6b7bd2770cc0d02f3dea4abb3fdf4a2f8f40dd58da885f8"
+  },
+  "resources/files/5-klass-kolom-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "59b54546c78089f20fd940e8be23560b984e230ac0e13c8d9e8c275fee9a03b5",
+    "old": "740be6f177a70d2fa90319fbc5307ea819eb2eef3b7570e936f86b12b2f93dd0"
+  },
+  "resources/files/5-klass-kolom-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6666bbd77dce349669a75f7c263b3b6026bcf683dc620e7423bbea5a5447ee35",
+    "old": "9490ce283f823396a43b01b4dc2452bbf2ae47019bb2b9fbc62170068e8f3b66"
+  },
+  "resources/files/5-klass-kolom-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d4955a8ac1d062d97f8782b5a081d18a10f121b90d5254aec296aaa46fef9d18",
+    "old": "f7e5eac232e7f5b15da3a312dadabe37bf99dab5df48fcb9a989df6206d32374"
+  },
+  "resources/files/5-klass-kolom-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d720c22ef93dd71738f0daaadef116372df67bb0a9fbf1016a39f5ee9281cd8b",
+    "old": "6af68c513d3c0b58821ac50cf5cab114e4748a95ebcbf57cf817fbf976d438ca"
+  },
+  "resources/files/5-klass-kolom-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "10f751c9fbf2ac980d83c27582811ec0fa645cabc662aff94f57d28ef56dd6a3",
+    "old": "10b76ff0302bf7a9e67127cf5a8a3f98ffbd0c83f735cd99b6a74ac17897abe2"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a5412037b77e48707660e281212dab1845e844ac185f213a31b546e5da1f48cc",
+    "old": "e1c19462bb9f9862976865e601c08c66b0f1ddf4fc10acfc53204459b4000016"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "120f21ff0c1fe9a4686805f74179a67eab81c3d52b543efdba2f2b17828124b7",
+    "old": "f8d806cd49beeba47daec46b3a5f4707dbe1f86dc8cf30e8db914afd027ea6a9"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "02b604632340e77c6fd7bb4006e707e08b05b8ab7fdde69d77d491c292e83d90",
+    "old": "902f236bab08781e81ecb073251f44ecbe74c4edd817f9f1908c407b71f9759d"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57ac9266d7da0c7b162aa426a965b2cd1386fdc47b67fa39becdcf03ee3733f0",
+    "old": "72a1deb8b8743e30dd2ce75caa79ae4f1b20fb90559226e4ebb4b809d158b747"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b5e4cf03e55e11692a6034aea5f3711d9ed3e77da326ec918ec60ecf26f97226",
+    "old": "7ec9a17665f9eec3be35eba89bea4986ea4a972a43c70dd778346b592317a329"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "32c2a816420f0015a3018071303c34e118d3c6305c2f1517a541741922aabc93",
+    "old": "ce4118722998f270bb9bf01bfe53f962241c1d6678e577fca253821a2371f4a0"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "559ae34b6b134bf765e2b6edc4d5b2bb15c12174a340d73a833d2bfe0441ae1c",
+    "old": "a49a5cf297eaf7208f7cc21903bb861ecc84bad9d09fb617e16a0b05b69046c0"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc7b5a69e66ee08ab9f2dea2b0781d1a6ab346aa6c5fecd841e804d7df836924",
+    "old": "bcc30e31ac5f4bf479cf5a12dfdee8a7348d6f8893ba1bc8915d72be165c4109"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ed2a3baade935ffc3f5b57a0c8ad7f1ead5a8344ed75cf655a49c14cfe2a2da1",
+    "old": "59347b25e4e8f2dc767eb2ac52cfba53b7436199027ad224ee452457740cabf7"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "40b87ac19ce6ff9b047097bb50a6142090423a59dba2205312a87aaffa9cb708",
+    "old": "9d3e3d009b67ef25ee377ca3489d33a5afe10dc0dfad9a90d3a3a122d7e559c7"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ff7d32391398dfbc323f561acb5ac4c7dbec3c561c764a67955f971bdc9d44b1",
+    "old": "2a3349d1066a7ee25121c84231052bc1b341e75ec60a53e89ed68221eb0cbf85"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6a16851f1cb310c2601d130052873cdc0d112b74bf5ee9c06970d4300466a500",
+    "old": "134a5e2dfb78eabc0ff8a95a67967cb35291e05d43070a6e063162e79ec59ff8"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "22843babed3eaaf317826237abcf3d94a7375ae0feb9b1165f884c5cc0ced347",
+    "old": "b5ae6122c12249cecc237ebcfff766ea93cf42a58ebb8dfcab295972fd5d62a1"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f1f5b239cbd5828f606eadd7ccd9f11381e8ece986817716de7534083685af7b",
+    "old": "2069ea667e3204178e484f686bdbd9c4966c542590f071524526b3af9b980822"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1c4bfb2e20d208a8f42e2d1fefcf08271b05b1d233431f22b02b35ec09996c88",
+    "old": "a24f3fd35f48228e506e96430c8c4ce14748e6752fb76be31f389030afa736c1"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ee3e8ad4e10975b89617a37ea9813f620d37deb5fca3d248ed33f70b64ea3beb",
+    "old": "71c2cee2e217cdfb5f1c9e588c3e8c6a034de94279df0a328c3214f159252642"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0b508f29985f7f91746388642c146abaa77638050103d77259b6ca896502b46e",
+    "old": "3aadd7a23a5e09d7841433a52e01368fde06c3f3add66d4f240495076c91507c"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f03e707650ba1dba0199db7112299e82bdae75c5072c08190e82133c11b12788",
+    "old": "31c84227cb9040706675a9bcbecca35ffea95680df8ec79a78c58de412a367d4"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0beefcc1c81b70d89b967e3e4fd7ded779348ae8c599ad8bce78f2446f6cc23a",
+    "old": "e82326af2cc5d22b23d42744e4487fd359e45e78826479cfd885d38b4cf7a290"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "85b8707fa547471e5baacdbcde8c161eb72e2499f9e2d0edf96f646d0be24941",
+    "old": "a34babdd0787edac77a1949a369e4d837b60efda4c9555debe242892efbbd67a"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d3a811d7a82334b85ee99accda5eb62e94302301d8cdf9ae55e1b5b3a88533d1",
+    "old": "762383c4e4dd82020b5144d40fed7f4a373f9fd5c0231b6d327bc2b4a9c564ca"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "605df0bf60de2c268e87389694c01d1649c495a73e4fd432ac6915010b6ccf19",
+    "old": "68d7de65f8323c8c8c93ff596f615e351f61b4993d6284462c1cc22d06d6ddc6"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0651be6b691582107bc5605ac057fac5869cf4dfcbc4488b34c2687f154a2975",
+    "old": "2a5da241ca892697ad8970f85b4ee9f1f35b34f43e69d8bcfa71a6b17fd97347"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9114ae8b3ec371c36e6a9ff2a5cc977dcad7c77066a6c48f0f866839afd6d3a7",
+    "old": "42633bf015427ce41e73201dd2bc1f74ee9e4227da2da1af0c345e1f5c94549f"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "51810f1a36147c64546902ead306df466a278659834041d51cd39ed544f3c3a7",
+    "old": "cf1cbe95d4b05ad92057bfde8ed29000d5322523a47a2b2794eccb37b80edff1"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "61e7681a7b975c546a27ce927b0bd240d9448765c3d015b632f98407cb86ed6a",
+    "old": "ef0d84365776bb3e56115bdae88212bca6ab693d6f557381c5d3e7f2e7781cca"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c1df9f47bd242a547a81b1ec0cc75f0a812432d638b44107ba4eeecad0791cab",
+    "old": "72b71bd44804c3b9407030a517b29b767188d5842d5a863860a9fc8fdc43445e"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bb5014c1f78b4abff7241b67a8e3fd4af5d42e1eaef0adfa81da62e1bb65d4c1",
+    "old": "408859ed8512ec4e5db828d37431905e578ab8e822d3b04dcbda14780ec0653a"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e4c39d1318c80fbf9d05c44ed43276e6d9cfe896d71bc52857badc10775eba23",
+    "old": "36be38ff9af26951a97c665262bbe659b3ccfda5a4352ad179b77715e0fe237f"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fbc6c547eda3d3ce19e004608ef82c3761561e0a47f439f79caf0396dabc00af",
+    "old": "33977070558b28894443b53a02ab3119ffc8b1125e54a6b2d402543cc935ee1d"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c3f51049f2ce675a8d80aa1c2c5e0bb0f7440317728a8c36d4710dc85395df81",
+    "old": "0619189b3b9d9bf77e388bd545e88fd1d1d8fa03a078fc29c3779ffd791b354a"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d8845aba139ffe94fee679579fe603747bf3cf821865776ab9029709ff1003a8",
+    "old": "0754ca5543f5ea840116a4f326ea742f74a2a5d9b61a06a4e4093775b3c790ff"
+  },
+  "resources/files/5-klass-testke-dayardyk-v3.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0b58a52f5451484ef425f86cfda7e5b6d8287f35d16fae68383781da07f34560",
+    "old": "30dd78014bf5d6757117337ede22de610f92dd9f89206b79f400bf26b1c3610d"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e6da7bc2d5823e9c4d866ba41f9523905dff42c8b19ec785202eb33545264340",
+    "old": "10c4d65b93f08dbacd00931c7e65d1421ab550afd4179cd4905d4d462d6f1259"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "93418a950371ce06fbf52a44b629dbf3285def76f90ebbf673aa7d697c6c0684",
+    "old": "ff7dcfeeab26fe318b7675177a90138e149c0fa0f006773cee9bb964229ba508"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6e23bf880cb316bf48601380d5a116e7fc249d3373a447e356b2083b28bbd360",
+    "old": "a65916ef81a44322e349c15818af0b62207b2a339bd820709479c2f49b7a8ff2"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e36a4165e9202fb9d5fa5db3605775f81f7818b0ecb60bf463eac1016b943b32",
+    "old": "44e1355f658ba26ca1d36855dd81fc01fc0b43ffc2be7afaac927ec40aef758e"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e9a11217be56f187ac3edecb593c0c0e37344014552cf1c45114a81a12a6723b",
+    "old": "998443ad75336df8fc9a2fbadede6e4018ebf6a0c206526555ce5ab34fca7954"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "26869176c11210dc44d5db8ff9eb7891eaabf46ede18e0624030f6585c4c6e9a",
+    "old": "17e5ecce760365543c5e15118551d9b1409a34ee662a9d0bde6d19309e80e13e"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ad6babbecbbc9afb1a0f32b528d70ab355d36f81650d80209c82e2ae0d4daaf",
+    "old": "f15e0ad4eb40a621c983891470380a2a8e28caad7d483f28e075ce2a99e36f59"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8f455bb0fb5d44edefffed52b8810317561017150e7608eadae3960f4b30cfb2",
+    "old": "5d90eb45743e2c10b1aa2396811afb601d7e28bd8bb7d963cb13510913b7b18d"
+  },
+  "resources/files/5-klass-venn-diagrammalary-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d83829fc1b0392e5d97f6faf0dfc443d373196ca1db5c2fc6b7ed2f401faa48e",
+    "old": "da218f54666ab8ad938743424dea2ee60995aa5384e4c1cb6fcf64bd1527fd6b"
+  },
+  "resources/files/5-klass-venn-diagrammalary-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4837a3813306676e42fe85f039b65189325666479da28dfa3fde8433ce21d0af",
+    "old": "869cdc20e3e5424f2d7ffb46a5f84a2dcab6d11967974d104cbdff426c384915"
+  },
+  "resources/files/5-klass-venn-diagrammalary-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1c6a644dd56d44bbabd8bd954e39f25bb93ffa9408257f0750e1f35e89be5d7b",
+    "old": "294b118a5d5b41acdf38447d06b4167e171e07a99d4b9279bcaae42dd5c2f5e8"
+  },
+  "resources/files/5-klass-venn-diagrammalary-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "64abfac56d41ea85a0af8e04cbf79c7245fa171fcba37010da15e25465e19907",
+    "old": "c98a7f1c534b07c5da76fca32586f6b8845ff4ece0e45b27db94c1961fadd48d"
+  },
+  "resources/files/5-klass-venn-diagrammalary-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b3de6f715314c2a50827d988da804e39d9c2cbfeff9b7d332364b99af290a12a",
+    "old": "748dbd6079ff2a432fe36018be5d74202aef2e0c3738af8efa860f3787c7c798"
+  },
+  "resources/files/5-klass-venn-diagrammalary-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "923af1c355bb7e5cbe439dc3c0e830614d80abf482d237f9a0254679b58f08ab",
+    "old": "6a9c83ca21cc60e3466e947e0ed5c50ef52d349a8037a91d31ee076978720a67"
+  },
+  "resources/files/5-klass-venn-diagrammalary-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aac85ae566576940126496f0dce01d52a457d786de84ad4498bd0434fda6ae3b",
+    "old": "cc11d7e6a48e4eb92999cf2a5bf004fe0944ef7407e5f74e63d4479955f19d18"
+  },
+  "resources/files/5-klass-venn-diagrammalary-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2aef05c4256a73e0b65297eeae3b0e00951e4cb0b978472a5ea14036472c5a4c",
+    "old": "7e475b96b6407b5de194b381297d328ed929fca12225adb240b53ddaee9327ca"
+  },
+  "resources/files/5-klass-ylldamdyk-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "261b87e5f5e1e7315dfd124124b60890abfd29c72476e6a95ca84e4772533fa9",
+    "old": "e409e9ca9ca4dd31b5e25965839fcb209a02594c3797506650fda223f8430b72"
+  },
+  "resources/files/5-klass-ylldamdyk-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3b30a111e1af418a410c49b635c293c0e8db461693581b41b197eff01f0c621a",
+    "old": "768efd85ed5498bfce5d17bbab1099641cac824df4a3b1276c1ba240ebd5cab6"
+  },
+  "resources/files/5-klass-ylldamdyk-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f2de976b1e8454552ca4679f55b626588ec9ed2da7f85191ec2a011cf0fd9d00",
+    "old": "2d702f87d53757760d1411574b85b4a8ebfdf7a68419f0ef6ced949fa6fce4b9"
+  },
+  "resources/files/5-klass-ylldamdyk-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "274e4daf2208d2ac3360f9e42e01d912cf98db7176116c81de17f71668a23832",
+    "old": "7af441a02b8f76891cc2121a4fa4c670c7b7e2dd086b2691d8885a4c41159af7"
+  },
+  "resources/files/5-klass-ylldamdyk-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "abed5f9db6cbe3fab4ebd3e7fa19faa8f71edc39ce336055808680cd0f3fff00",
+    "old": "cc68af69b7d83a4baed85c73b2805acfb3afe6230abf551c53be7bd245797fa0"
+  },
+  "resources/files/5-klass-ylldamdyk-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8bf16cc41347136726f25479416efcda01e6fcbbe12ca2d2b680560265993911",
+    "old": "1c8c2a65cd6823e676e9aa90cbe678cadb731b2b235b3e1b3ab373daa1e3cc02"
+  },
+  "resources/files/5-klass-ylldamdyk-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "08b0e80e87a85d0cdadabdd43b5e491ccbff9117653d8587ed524c49a9b1c534",
+    "old": "0965a39f6929da20634da64449ab6c2ede76113c11008784baa660a6d8a58502"
+  },
+  "resources/files/5-klass-ylldamdyk-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dd78f23391719c7540ffa751525ba75737df047006856d6b840711096be9fbab",
+    "old": "5ed2ad6b8c3b0b91e36bfae919faf6d5d259e2a7936745bc3e66f2fb31d7d3c2"
+  },
+  "resources/files/6-klass-aylana-tegerek-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd36ffdc0e4d8e90cdf09eb6c28cdcede2c8b99550ef87be3532c0e304f20dc5",
+    "old": "2e4766badfa2d80b3cf29a08bd6630450e3cd2bce12c9d6cd028895bd591e7ea"
+  },
+  "resources/files/6-klass-aylana-tegerek-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd6f654f5e1795f289223a4b939d031411318064da355ecbe1d7348e66d222a0",
+    "old": "ca2e8a953890305b4097e03d056343c81be2b5ed84d6f858a7ffde05f11c0cd5"
+  },
+  "resources/files/6-klass-aylana-tegerek-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "79d323bea85eb53d81b068b4036a6e291d5f5ddae4c728564ef8b5a866c6a7bc",
+    "old": "19467d5d94714e4c99f4d3cf2b1e9238360fff07f90f06bc567529087edd0098"
+  },
+  "resources/files/6-klass-aylana-tegerek-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4fa36192765ca071523ef6e90b9d3de8b23b4d0cfd5f361c61dcc66fcb75ca74",
+    "old": "6c1c617f882151359fbdd9868c835e26ba0fdfe6921dfc76f3147d3be4bba3d6"
+  },
+  "resources/files/6-klass-aylana-tegerek-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4894842704182ffc43ee644b6430888f656c3473eb5d2b107500b947bb32d4c0",
+    "old": "b1b497b3ec70b9f605ab8540f8efec85eeb6e4b32b1ca690b412dea0e3f15f5f"
+  },
+  "resources/files/6-klass-aylana-tegerek-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "93aea22b77afaedb5cab82d5b66fa1b5e0bbf5b36be921abf0597d0e3e69c45d",
+    "old": "752f16b0d006f4c74e6027e12755f3eedca564bf011f3db6c632533b0256f27a"
+  },
+  "resources/files/6-klass-aylana-tegerek-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "32e5c2cc2381bde44aa42a744f88df8fc25857064fb58a8193b5285fe2c07943",
+    "old": "ec71d308847de65718d6e72d9303b1884b31093658edb635685ff62103d3adcf"
+  },
+  "resources/files/6-klass-aylana-tegerek-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "669a443a704fcfe15562fea70642414ca85c5d0998c07e200fd3c79d8a6dd2b6",
+    "old": "67ad24240b2cce518041370808075f7900c9d7c01b757f278e7dd31345930013"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f911df617f1a216235659af269dbe224ccba6987a00e2fafb800256bb4da6a95",
+    "old": "fdd2fcbf618922880f161b07a1d5f9584d7788b49afd328e12876095a38a8cea"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "37ec3ac976dc241ed6faecad81fda73d26c811de6e2a6cf1e44dbb6df8121040",
+    "old": "b1c2d1595a0714279608be7b41c2da6ec55c3aa0786e0d56a23233c7ec820983"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "742857660662c49f327c8826735c197c220ee3668ecf07a1fe02efebcdddacb8",
+    "old": "9da0741d57c42709e9bdc4385061c05b4a0939e10874b3f472e99a6d4c1446e2"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a1b7c0f79bf56588c94fadb74ac92534f724453d714ee9127bade980158fbefb",
+    "old": "2aa1b1cee234c6fbb4c98eccfba6bcfda9ee8c4b5d3eba434624bcf414555b79"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "01446f58c79befb963aced6f6b79856668550f25d99f6a3bd85da8e2bf8906d6",
+    "old": "1b62851196d2b8725ae97c14a69b301cc7ba5c3f0b589e2143dbf0d8f0604dd5"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "09d2cd0eae2e8663c39f38cffc98c8e4ec031c65261f14e18c7d886adea4d7c9",
+    "old": "c48a50e55c65fe87dc4c7f74fa6a307b4e826b52f5e0cd0ec66bf5bd191ef2dc"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ebb9b575f49b3e372abb484d0f09044fd1fa38c1992074649857d7900ad3b217",
+    "old": "578510209230b9e949cfb61d8e1c4d3d69b9a578c632d3a70e5a33f742e5122b"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1725fa76ae09b9d3b48d24585d8dfc8320aee966889f97a69f791185e4b6b696",
+    "old": "0c44fd2276b215910f25a30269cd5807af6caad8acaddec992b77b6e545ed697"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "05c9509711c5449054634034d415a1f86429403b67f30ca8c4465e0235e4d7a7",
+    "old": "855f813e2b9c97f00260a241eb736ca5372baf1d59236730e601fb3f7b4d353d"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1d70fee259313153091e3300b89122d50531d74e13956773d8a91cb817518e5e",
+    "old": "06d0bfaf657a2cf0306c60253f311aa99bdaa305b7c8adb53b1e7580c33ffa92"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ada94cbca18fdee51bea29612130edf88d934a715faa92f35746a2b279301fdf",
+    "old": "2b3561f69450b7c06f39b7e42a5667461b25439d457368d1094559b1af5baeae"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0fa697253711919c1bcdc89763a58be70ede0974f90971c2661b5386ff545639",
+    "old": "7c3c490ba5f078a46b2aa9e2689e1b7b6b8e8e69c9d9a5f7a4be53956606006d"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c4819244304aa6eb597136488578282a046a568ee1a29728ee9459f80ed67086",
+    "old": "beaec7e2517790e41a91c53b933ccc4a4107b88bbbaa9a739369b4cec491f600"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3a46dbf8f9a70409bc83c00163e8ab6a7eec10957e09894c7ba830cbaeb84ed4",
+    "old": "277da37d10642e49ec33b84680d13bfc7d0c69bf0c241492597304fef3eb1b3f"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7a195371303b0574eb06e38f355dcd5480df5500ab3a092a6ea01969bca2e6ed",
+    "old": "a7dbd49e7954e9329a01495b0535b07db8e9d4f06fe460aa448558e20728d812"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "823aba41bc0cc5cd2f7fc958cff36a353fea3902f51b75e81918a760b79af2eb",
+    "old": "7def3f0b4d525d681d39f0b35b87fcd35957dffda9bac5b45376ba717b6ebae3"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2519542f1e35669330f6ba96bb5c5a48a3b17bee5bd5d150c5f38de7fea66e56",
+    "old": "e67e5a85aa88e866ee84a9efba065fbc146488d96009bc098208866a72938c85"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "00f44c5268121a23293f863be4a6a69d52642ebea5d2b492e5aac9641dd2f370",
+    "old": "45f836c684a098949894ba013a0613eaf24067ae73e8ac3890054384b9807e9b"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "072b32c477139bc659f9f23f7d7147ee3bcc8fe2595e25884519edd836c79891",
+    "old": "08fb195b48af424574fb0d8b852b0e6789db450f6e9de357b677160b5db8df84"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c8434ed0a759f0c27a42d49cb748242e7b8fd4db0f0910a39b96ab47482c9644",
+    "old": "f0def4bfc130f93696b65de4b81fc92167ce26060fa9767919c925374b99f7b8"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eaf944c711b629ca7a717ababf624239451b9579ae1a96b243084b7786b3cbfe",
+    "old": "5ef0a9f6275ea3b74a9bb0e9602cfa25f0175181527e9ec0904323b46a183f78"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0f58c48a50ee0b9db2f6e0803776470417af6fd80a6bdb362c0eb78b49bb1991",
+    "old": "ea3bfbb3269578065d4989b5da935615fc76118fe35ed62b54e72ace49c73867"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1e5dd4525e4f54f72be577e2da32d32a3f59527f574ecf60074d487b35e2943d",
+    "old": "eeb84eee0dad62541ccee32a12d841d80e023d566d18ccb0934fef86c1b3ed04"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "09ea4370e326ca2cf732876a31e99afdd73edcddee0fbcd7b0c70eac74eadebd",
+    "old": "436f014089587af63d12940e0cc1123911e6ddd6886c67a694944549b045b723"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-cifra-tabyshmagy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eafff7b89c55e1e4fe3eca97e654876bd390d830d2d3b4b8533c2bc812941b08",
+    "old": "c45332e624b6d9084ce4884a49a2a75f6669ca6b80f0888ac3aeb1a1185d2392"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-domino-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc4fa2bb706c467449471886ee81b20e10c24e27dc013f0e13ff5332af7d6873",
+    "old": "77d6a5e4485f1422e1b87f34fe03a849762bfac0a9764ae1b999fb1581ba5cf6"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-ish-barak-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "44147956383418027da1115946f436abb52405a929f22e022ca8ace34ca944aa",
+    "old": "4e540d538234d14df3b123c763e0f36b1185c26c6f73e05124018341e660675c"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-karta-sorttoo-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "90952275b71f764d4d1b12822dd73940fb33326d5e4ececd5ed1271adb43fa89",
+    "old": "d49bfbcfe1923af6b330351c3ac2414928f0a3d7e06effcc14f5f33052826456"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-katany-tap-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6b0d5651db3b7fd39a41963dc44a5f94045e872ca9702b0662a38088e902b587",
+    "old": "54759d929b6533b5aba411849439141720885aba47b0b80c036329a84e26a5d1"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-klassta-koldonuu-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6156c16d6ba1f5a6f33ee1a2debffc61b5da5198584cd0e1217e9d9235a7a1f0",
+    "old": "36db50a53f1cd1ac6f042daec34f1e009ff326ab0db33a54bc65b987f07a0d8c"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-labirint-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "742118600c0d275e2df1479c616b57d90d0aef11913c96eebf0f057d22bfe801",
+    "old": "9c270833d6850907c45adb037c0449e608b6d47e918d539e42afbb62f892b764"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-mugalim-kartasy-v2.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2b30002c809ecdffe72504deb838caca4f8d745a676c91fa1c645c083265d9db",
+    "old": "707c5dfd5d5d80c0436625cd3834de6b4d2698bc96b99267b712e6fbec9d8b42"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "76a882683d7f9f11b3be8a996eaafab0c24adcba9f827626d6a65ad3338f689e",
+    "old": "d93cf605f5baa6bcc0184da2f558e6ee948ac7a3b072889deb1e32d0225230d8"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce026b71998033ffdf4cbfa683b1d6c872a72355e6630b5030209ce0bb9a05cf",
+    "old": "4c0def6c0e07d09a0e6b53f1c38d184ed7ec08e1182adbadfebdff6e4c9883ef"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "820b9fa3ff197c7a009b31776774b9fac97e3f573c6e2c56f9218e799e84c406",
+    "old": "eaa33058a903d98ef4512bfaf3a594cfe85d05cc57af0f4468b182bd99c8cbac"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b6c84372191ddda714ed0005839720e2ee3ea9177025671fd6cbb2e059a18eee",
+    "old": "80ef8d479c5cbf78f5d08271a19f03cdbee90608f8ca6338d5b659d7bad1c33b"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7dcc7fda2da551395d915247d390c57739660ac43a741d62c01d48c0ae289d22",
+    "old": "08c5819bec1ffa13a5e519cb471d981475e52e108546387643b2f69008e29377"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "576f03e7016742a367b4d604f8c54675a49055c5e017457038a68758686638f9",
+    "old": "73bd3ed9624e1ad09600040f1150ee67698a75f6ab8dd93846e671b013f2c0ca"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a9323bf2cf1e18ee5f561071c5f613d9ca6d374286528a7e45f6effe2ffa754b",
+    "old": "ab5d5cf851d007017ba6711e1cd44f7dc40ed0ef67565300c382a117ef77a934"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c51169b1a441589e3a694d65469c21e5727202805c4e8e73cd48ab9447616c22",
+    "old": "46a0ded59dbf19ea3a4f8b1d1545bb79cb8b30709cf10b2636e02a2c05ef2073"
+  },
+  "resources/files/6-klass-katysh-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4fdc22cfaa543efd6040fdffb52e36e9c027065c1c3dabeb267660f9fa4b3df5",
+    "old": "d76b6e175b3c2feff56836fdc783cb09b33c1305f43dc8d6a67c689870b033eb"
+  },
+  "resources/files/6-klass-katysh-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d357606dd36c51b9d98c6bc0b5941266a5a38c8881df17423f677ba7ce912553",
+    "old": "aa8af1257fb16ddbecd0b1685e461e8dcd91131068f91cc83e457e5141caf43d"
+  },
+  "resources/files/6-klass-katysh-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ac11c558867dc6d059c928814feb1fd888c243df46441caa1dae0a9a1e7fbe7b",
+    "old": "079f5e51351691e9b98cd925b25f655d53cb7c575b66a264924da5979350a26d"
+  },
+  "resources/files/6-klass-katysh-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e4acc7edce42857a6fdf0d17266f64c59b97b9b0f54c0aa6f62eee0aaf63ab6",
+    "old": "cc7e86a059d96f2455db1561d9cf4f43f3bec4531304b122e0520f5503297280"
+  },
+  "resources/files/6-klass-katysh-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "edd7691687044e7bc55dcdc6c4a900092b678981f3461c5993d8a241e3a66fa0",
+    "old": "37ee17092f1440880efc0a6c4150307c1fc7dfdf24f0b10b3c5c0917a780ac47"
+  },
+  "resources/files/6-klass-katysh-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b5a265c5c891e8ac2b8983404fa4963d79f25b348d1e5bcee266883931d13d96",
+    "old": "9e612b10940ee80df09683048106cc92f87445982ba163edc8dd17abab819600"
+  },
+  "resources/files/6-klass-katysh-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "09365e7f1be3198a15b381fc0bc5cd56dfbc675e01b744f1f3e00dfa7bddac20",
+    "old": "6df91ba3da2aaac6eb8c3754cbd52868405f631ef0e17b1b83f9315c9a8e636f"
+  },
+  "resources/files/6-klass-katysh-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2f87df8e291fa757b884b0537e3a66736681c24982e01812eaa9ee12a23cba5e",
+    "old": "a2f45bd30613c021f35e1cf40e97ab3488580b5d3c547ab3dadfce0c2c7dd61c"
+  },
+  "resources/files/6-klass-koordinattar-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c765240131c4447c9aaca174d2f20bce94f485536fd9df995b70c42178809665",
+    "old": "c3a3623ecc736fbbcceb94d33f49ce7fd968091e651414f57840e7a795768ed6"
+  },
+  "resources/files/6-klass-koordinattar-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "42b960d45ef56ce692c358227f63897e80085106ed0c6eb063df1edb4d2c9a32",
+    "old": "5dc2d5d7afcfef092f33a5613037f7be17034baedfec735dec835a78fbe79c98"
+  },
+  "resources/files/6-klass-koordinattar-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bbb51201d0f738e053d9dc75f954895f65acbb1558269e4c9ffadff9aff32fd4",
+    "old": "44d2b1dbd966bd0dce5e74b96140125978ee97ab1ae3f887450b18e841be5ea4"
+  },
+  "resources/files/6-klass-koordinattar-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2ef9e83671b07babdb5b347de4c4e175a71585b04ce841efc439999e1e8cfd69",
+    "old": "85972fab7c628b78fc11b9f5ba635138b09c506e35281fca1707113a368bb1af"
+  },
+  "resources/files/6-klass-koordinattar-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5c199a448015ffb3237566d13956625d20c283bb2f88c2a8e596fdc7d97d5442",
+    "old": "17ef10c5396161183be19390aabcccfa86f37370d925e2c9c6208cfa14484722"
+  },
+  "resources/files/6-klass-koordinattar-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4838dba628e115bfc43d26927864b6a89888b52962f0e0cb89abd817d4d07b76",
+    "old": "5913cb90d2f41439b4213288976a6436165d9e0a9078ac75896af155f242fbe0"
+  },
+  "resources/files/6-klass-koordinattar-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "650f1debf1c9b098671eae2d5426978bfdbea6a93662e5e86c5de2ea842a8083",
+    "old": "7c118f1540023724d39c3e8cefbfc8fbbf3b68a986bc206dc27860ee40957db4"
+  },
+  "resources/files/6-klass-koordinattar-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "99c256d7d2e8f69f5c9c143c6ae4494ff7709d1d36c22902e44cffe16eae23dc",
+    "old": "616bed79d4186aff4c4afca0825ca2a68623429bc2a4f98301698e5d19e4dc58"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ac6a1387a5d68fd926a58a191f47f42d8ca2d3795e495cf1cc55a096c1f64ef6",
+    "old": "7851df7c3737581b4423a642b16ea3233256a1dd9b6277c6daeaa7e27a0c28d2"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7acb6cf0c3fb745c43ca3200e85158736ccdeaaf96a3c55738bfe10849e36313",
+    "old": "011f647f3341a72bafe51a4ea7df9c2ba856f1cb1b75c3909ce4bf068a7de1c3"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c2d9381dd0a25d8c47c70dc0ec0fd33ca5a3de79e4136b64e3ac82f184af169e",
+    "old": "25712ee2fc979ae3f4bef7b97ff3065146eb5bfaef349d65715f6110736af326"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b5b1b60a2bce721e886666a84c44bd82a1b18d9c57cd0bd8b68b55e6d583bb0b",
+    "old": "51f0bf605051025a56b40a66abc0d1c8bacfebbf18f68f9981217adfe9f6a869"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b3335c8577b8da4b4519393b276d85fe96c97c066e862f90436b862906d47a61",
+    "old": "d6c56d49b58f9072d25b696d3c5791a31b419ab4649ff605012cbdd9695bc095"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "830df4b77bb1c8285c5bcdbe98e75cc79f12aeddb03b3e5e848181e9294a347e",
+    "old": "0cef9f3dd83053cbea4cf667c76eea28c305787f19a289b2e7c7ac9c0823bd6a"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0319079c6741049a212e01a021ac138a37733f4a21dd6ddb73cf714f343207c7",
+    "old": "5c1102378f9cd189ae5a4b17611a33bf690b4d9da19b8566c03f2b6b427eca8f"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7fd0a8711f8d430c558622f1e8e781524a5d11433758b0467110f0182723adfc",
+    "old": "fe44dc40e8b160ba81ee095646c3bb65ee5864f8dbe53696df35d723f4572122"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "03d57190b1012958221ee41a49c1a36638dc8fbdae8f68c2e870b58327173139",
+    "old": "7c8ba5bff478948b08341b472641dc9ba07a2da8b3752bd050c33d23913f5bf6"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "67831108c45cb95715953d3f4f5feabaa603ac6e03b82e62750040b2987566f4",
+    "old": "29cae369736f10771ed4b11479170974d3b1d15efd8205c88d9eba6eefb21682"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a1d63094c5a2f235f8ac69062acb19e49a41d3dc4f2b9bba80954d26a35be026",
+    "old": "53fcae2cbd3c76e3cec6d360a012032ee8b8dc3e1439c00d517f63c277a2106d"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dea8015ba65a967097e5865bd035365be248985faa21b9a981f1e3db1a4b40f5",
+    "old": "aaf6f715b840b56c50f65bbf8a75d1a1bf159a202abbdebdb4726e80d4268cfe"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e92ad73710b4a9992899913596a79e447f0f3c5b887fa9cbc541eeb6056fab69",
+    "old": "fcfe962e7c7611adfcfe837e2062f809defddd7dcd5b14ca11ae251eaa1e683d"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a95c26e51928ae167334cd62f8e178d9424f85f5aa3c9902e92937015438f80c",
+    "old": "b3a2275ccdee7bd9a38cc9c9420911f9246317b4961aa4c5ddfc2e37ff0910c3"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "295db243acb7f029cd3463c6617832e9772514d56a79c934b97adb86e1ac3646",
+    "old": "ccd57671273281bb1ff78a0c406000f8e38b899b3c1018c9c6b1d6bb0f61084c"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73628fe96c874a567885bebfc2de8b57a684bd91b4bda4e92b56ec2f576de488",
+    "old": "273e6aabf0a8799454ede3cfe92c871a8dc67841f5fd72779a1fea2310cb1a46"
+  },
+  "resources/files/6-klass-masshtab-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f78fb5506dca2d109b886316bfc1590bd22cbd49249efe151b3e2eebc9a11d68",
+    "old": "bec866496ae6f015e99fa6356249b8b4605f50e8e1052f3a04f7a1db6f3cb9b6"
+  },
+  "resources/files/6-klass-masshtab-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e9eb2ce2165fb4ed22f66f13a320e45e63534d5ad5c83ffac055dc39ed1ea754",
+    "old": "44ae11852883581ec1132a001efcaec0b01118055b481cc6a6f60734b99d376f"
+  },
+  "resources/files/6-klass-masshtab-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e9934a8e5c8ea6254d81946ddfb19210c68acf9135c6c0ef0f2d44702d3a0b62",
+    "old": "af1bdc905637254204b92121081cc90c03dd7793a9bc74c226d7a539c5b1705d"
+  },
+  "resources/files/6-klass-masshtab-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c0f631b0107ab182e345ab5e33a05b3f4a94296e47288919004daaf5901609e9",
+    "old": "6c44893e397fcb1983ba9e45c72172a0183145f6970eed3a38dca06d321a61ed"
+  },
+  "resources/files/6-klass-masshtab-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "67420a13f6b2a3f63fad223ffbb684c3333d2e0defd3bb05c89644b69f8cd752",
+    "old": "3a1ec193590fb01bbe4f6eeba7bdadd8c8b0806e37d0e8d4c8b05a7705e2c726"
+  },
+  "resources/files/6-klass-masshtab-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6093e60d19f547a925ddc07ca23a491674c72a5fb02b091e4c53d9034b3f8e6e",
+    "old": "8476745fafcbc6a3ab781fc026acb12a8dad4523639ef844d5c9a82d37c1ddeb"
+  },
+  "resources/files/6-klass-masshtab-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1dcede6fb86c79c8d8e6abf061f9a6b9fa63f9f0159b0ca9732ddd8f64a45e76",
+    "old": "bbfe28d2aab78a8b44f6c87cee8e8e6540ca5c89b6ba3d4ed324c5ad366d5a1b"
+  },
+  "resources/files/6-klass-masshtab-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "006d9230a1a19241d4e609974faad9fe2dfdc8a8657da7181b9d8edf2f5e719a",
+    "old": "cfe6b25175cdd82e20b39319036178c094197fbf435192c1943acb1b76e1d68d"
+  },
+  "resources/files/6-klass-okshosh-muchular-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2576b9791cfb3be24cce50baa09272aa00c42127cb92751e46e972aeadcd7ede",
+    "old": "16782d2576b83ec2123fb7cce152a60b3bd35ef4e7d7c885bd5aef7f229a2b7e"
+  },
+  "resources/files/6-klass-okshosh-muchular-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1dc4814b4d6972eb2b903fd15587411a648b7800d0f5d384b80668d5e60a45e8",
+    "old": "409459ad7a5d96c93c7c1b1bcbdfe960914d876a07b5f0640a553d10f3409605"
+  },
+  "resources/files/6-klass-okshosh-muchular-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "30b4a346e0909a0f5c65a366e2f900051a9df56e5f81d09062d65f1fa34dbb02",
+    "old": "f7370741db8977591f5f5c08856f2793a22129b79a99195ec5b6369894bd7b1b"
+  },
+  "resources/files/6-klass-okshosh-muchular-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2aede92ba4d1286daa011db49235e4aa25b4ad836a6285b0348b45391ec060cc",
+    "old": "e6ee796eba1168981751816dd7a56275c8adbf41eabe1e024d9b0f120e3f3b6d"
+  },
+  "resources/files/6-klass-okshosh-muchular-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46191cb2d97c3c8beefc12c7dd16720ac083e89b00ea96648971c0c0019e193c",
+    "old": "d598859d91758c02e4a9916fa1a5bdb1eececedbfab1e4fff50830a546216adc"
+  },
+  "resources/files/6-klass-okshosh-muchular-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b03bf55eac98312193f548e67a9dd3de36090b931a90e2a8cc8996402b259536",
+    "old": "9675c11a39b031ebd1c5b4a53647422219d3163987299260a305e6d80a949ced"
+  },
+  "resources/files/6-klass-okshosh-muchular-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "75eeddc7a530acb99dc6030f4c70a2edff84ca95a109575742a62cbb413b8967",
+    "old": "cf85f544f2551ec24b5220edc9dfa55a816ca2e7f66749bec8348a7179071e61"
+  },
+  "resources/files/6-klass-okshosh-muchular-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "663b6558a535b399babcc81bb83ed65c646cbb60521a98c5d7bc44828c465d58",
+    "old": "201920ff0fb56d3cef01ed1e62c76fa4c877e384663e9c9071cba728b22ab0a3"
+  },
+  "resources/files/6-klass-payyz-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "101fe42f883929eecc7ba8f626fc2822c7769500bdc2cba2a8a3abf2174a1d7f",
+    "old": "b3136a1460309be5042063249f87a098f1f03e28fda73d97cd32f1db10ac81ce"
+  },
+  "resources/files/6-klass-payyz-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6e8c5a4569b536de7fcdafffdee11cf50592dd684a635b394a64c3180d9217db",
+    "old": "089f457c80d4cd28141cdc2977a470c2533fe81084122e63ff0c9bd4d48c79d8"
+  },
+  "resources/files/6-klass-payyz-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "98af0d76ab9de7b2af8b7a337ac57bb16cc0e05d4e481c2e540c11163540af46",
+    "old": "6291f7d327daec776c0aaf01801fc636028154878088a4eb7707a1e702c9fc9c"
+  },
+  "resources/files/6-klass-payyz-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c6932ae462664c5aaafbe60f2eeb08982214e17e95f1c8c70e71d5e2f055425d",
+    "old": "352efd59974fad8e530bbb2afd042e5cfcfe6dd1ef7dca370312c74bf2deb081"
+  },
+  "resources/files/6-klass-payyz-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4eb04deeb73b73b1b7a5b5ed9fdf2f387477d7609649222e0edcfc24f2c0a1e7",
+    "old": "b57b0b07b876dd7f32197262e4d9ba4726268016c0a1a9319b7fd184b0a6bab9"
+  },
+  "resources/files/6-klass-payyz-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dbfdad5464b9a8d9a1d35aa50589eaf8892b17a1a0494ef248ea19bfc51ff51f",
+    "old": "3b28a1f8b1005aa774ae8ed7ac29eba548f4205115dc0786588ba226ededf663"
+  },
+  "resources/files/6-klass-payyz-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "961f8ec4f9eae0e878465ca9a5dd7816b1e24b98be639c7f8d18e7d222bade87",
+    "old": "582bd297ecdf7d09010b4fec70e36260f15e19a92ed275884634c913acc39138"
+  },
+  "resources/files/6-klass-payyz-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9b0e1b9e235eca28b999692fb18311977fa5de75b13768d7719944b2a2415665",
+    "old": "c75124b051d6f1b484f87549b1accf058c865c0a40be90e5787676e25a7e4a85"
+  },
+  "resources/files/6-klass-proporciya-procent-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d995a0bdd5f41aa2d14db3bcdfba9c37039cf806c72b2a166ec96f866a69dd57",
+    "old": "5ce819bdf7f6346c1bb448c866f2b6cd4c6be1a16f194ee06b3999d2cc44a7e0"
+  },
+  "resources/files/6-klass-proporciya-procent-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e3db32fd4b08e090fedc14046799c096a3bd866804f91bd36a8c00693f6747d0",
+    "old": "9a4cb0917877998d686887527d72c1d02524b2313635027fd1e69f4945907382"
+  },
+  "resources/files/6-klass-proporciya-procent-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fa35d3fb046294184ef3739a75a1b87f2febb09c0ba15d3bb3debc6d063a6f8d",
+    "old": "ccbf83602a311b167f16639733d662e65ce8ab3d6722dad49a89593e3c0172b5"
+  },
+  "resources/files/6-klass-proporciya-procent-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "336a8e3731233c9aa3abb3abc99a023debf74ff6a4d2c0233d8f2c5fea2208a0",
+    "old": "5120fe6f45a71fcb5cc11bc7aa79a38936bee88512050a853cd30934b77a0ed4"
+  },
+  "resources/files/6-klass-proporciya-procent-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d968dac812f70a4f98ac628e915e87e21a0ebe3cefac6ac84652cc0916dd6f07",
+    "old": "f98532854416f91d3b733843583c9b13a8508bb69a6a6c0d85a73f327a00ec61"
+  },
+  "resources/files/6-klass-proporciya-procent-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c8692db40f69fd5dde567c2f2453e72ca5fec1296ed6b649b6bb827f1ad8be2b",
+    "old": "eb98109bdd22c886e424627e78ca7bf8c63bb991d65e187c8742f5546db38dae"
+  },
+  "resources/files/6-klass-proporciya-procent-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aaf986cff00522e3969304fb03ef569e3952f31584e55ca4c0f5ac0f05a9c7ca",
+    "old": "dcc315ec8b0386d48413091ce17fec9a37c6f81eaa2c313c558a831e82eda9c5"
+  },
+  "resources/files/6-klass-proporciya-procent-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d89016fa7021f5d3d37b84e7fe021a7261b934f3055ddea796bc97a632fe461d",
+    "old": "c8ca1d8a996603e235966a2d31ce8505c0647edbd6da5b01328dd05af11a9617"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ee8a4d02c6c584b6f075289040525c73f0b60cbf5cd6be24d3e78e029d747e56",
+    "old": "449ee4c72ae436e5d8efc3363d9a833fd034818c549b0dba948bf0f4d6cdec75"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bb4507af7f5a686b9b0840063d4be03ca43fe88d71482d62dbe0ce30415b431c",
+    "old": "7bf71d66f5a454b43dc6adf0e3e5631af499066f690e6dd422f9395312789d34"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "23088de39e3a5eba4c61b8f22967048c725de7fb2223ecefa763d7df7061c504",
+    "old": "00904a650bf9046fcf0f9ec33ee01f22bd4d588f4371be3fe19bf9122ac18c3d"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d05b5f8dfe933b4aad6a588ecca19a8ca13b0b05bda97915b6a7a8f24eefb948",
+    "old": "16e28c461ea57cf52a9678022ae89014f765260670d79521ab0a0729868e1157"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c4c14a7d004e4a3255c15ff0813e74cb3364d813b86e3d3f4a9b0941cf595cb3",
+    "old": "47990475bd7de55c9335b58bad64b1172c84aa975b3a0b80f883663b00ebe8b4"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1fc3492cad5ecffb3fcf5af55f80d0455e168bc9d43ba0e8886f9e0ae72fc2f4",
+    "old": "7ede8429a8fd2dab87a61db38a90d1c3ac2311fdb60fdcaed6c8cf9f027d8745"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "079fa34a7007d8bd2493a679a40ecbcf783df899f08e3da16cf0b57e0d72b908",
+    "old": "875e53936fb9ef8226306b6f10bf8acdeffd21a6b2a171c69d845d3b94491478"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "abb708bb2ae112c6abeb783eaaa1943089f2515c5708baa92f6912980822af91",
+    "old": "3100f813fe295694c23141388a2160762c0ab070d77eb2a2ff1ff4ed30d084fc"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4007888cd07cfc214662035896dc75e7ef315d9edc38cc2d19c69638af02273d",
+    "old": "0653694f49ba886fdce9121d700af42195d9b06f327c09b201511c99beffdcd3"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1aa94806c03885baaf59db0c42b201e8a49aac12f9438d3f34a45d0ba7144584",
+    "old": "7e08626c33151d31047d67e06c642197c5eb1591386a5aa8ba278f3d7df8df9e"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d7a0ceeb3d8c7792d960e5e00d82270e3edc692bbdc84833903711dd9b96a799",
+    "old": "e2f13f471bcdace674ce2187618b76bcca59ff840775498eed96485372fa4042"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bf21a53ea7d654e3efecf5b202c6e38fef494e0b8e81cf8ceadfef11dfcf8e5b",
+    "old": "0beff8d490a03c65ea370aeb24e37645e6b35db167b0704f7d7ba4569a522eff"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e8de9878a635bada00f39b1be2279f5d54a85d73df8996a08992da8e719f9d63",
+    "old": "43b468fc73f32117bea6ebb90c993ca9c392359230e05a1075877e475226f794"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5ec20e456bc636383749651699b23323ba0e27f8518c9d71f808667675b8d54b",
+    "old": "beec2c2407f2bfcc8bb30dc19e458dbadd1b0ccbab8592b7ee2516b1e2163739"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5d4c40992399c7ea05f2ac5c51c836deb41c701de175d036be826580ec5b5ba9",
+    "old": "1bd199baad135a127b0bea8e4d668087c12ba54b207a722c6626a96af031d780"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "65b5dc26e9e63a03b0561d3cb8765bddce0ac11ebd3a9edb8cfebcaa310005b6",
+    "old": "b266251d7ff1cad41a9b36692de46aef3d7328102d3d80997db0ac3af3094842"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-cifra-tabyshmagy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e000a89a6d53b4caaa536a58cd361b0b4371ed07bcaab57dfa7d14202cc2dfe0",
+    "old": "cc75d94e28204ba0e09c261d7b154f94a3445fb42c9732d1837a86b9b4fe679e"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-domino.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "50cfd8cb2dafad114012a7f3637f941931ea676008c7162caf531113e269562e",
+    "old": "24b509c3121f1bb35150dbfd9b83891c743b3c876f4469fa399cd668b6a01dde"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-ish-barak.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "578c1956963c2a2379d1b787fb7fa17a655d767246ba4c9b3711fd3d93fa259c",
+    "old": "f1c226fa15f276b00f561f7bf0baa21702562f42c9bf1043fbf1b7a6cd464637"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-karta-sorttoo.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fafc5ba0e651b65bbde8f0e73b4115ab1a5e4efeafa2a8d26f0508b68e001c53",
+    "old": "ffd5a26d9c977826bb692560971d94009be4dd1b8584d14df5ea0321ab3cbc7a"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-katany-tap.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "87c17dbb41f8027dfad011cd084b401496ccb934e0297d80fc250956a9b18aee",
+    "old": "12ed3c71476498f775d2754357e60bf3be15c19bc133115abe35b7f24c964a16"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-klassta-koldonuu.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "455819c490563f9c5b37f7cd91388bc9a6f7ac068732a8ca58d18ea8a7fcdeac",
+    "old": "574cf354ca9226f0283c1cdb6ba159f315c48e9b841f7ceab865fe0602d7e33a"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-labirint.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e8ce34ba0c2d157fe90adc7880a7f568eaa3697f0c5cfad973a12f66fd6846dd",
+    "old": "f79708df38798b21e0271919f210975ea2b22d6454b990f22602c59e4ba30f73"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-mugalim-kartasy.pdf": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "925c743803b99a4b6f8523fada153bcd63759a758bfddeb2a8c92b607aff4e71",
+    "old": "8e117656a83156f8a937a4c0a4f494673a9756d67a821646d5edfeba41005084"
+  }
+}
