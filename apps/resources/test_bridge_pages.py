@@ -57,7 +57,8 @@ class BridgePageTests(TestCase):
                     self.assertIn('/resources/download/', html)
 
         san = self.client.get(reverse('san_kuramy')).content.decode()
-        self.assertIn('1–2 кл.', san)
+        self.assertIn('1 кл.', san)
+        self.assertNotIn('1–2 кл.', san)
         self.assertIn('/on-kozonoktuu-ramka/', san)
         self.assertIn('/integers-adding-1-2-digit/', san)
         self.assertIn('Эки түстүү фигуралар', san)

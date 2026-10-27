@@ -346,10 +346,13 @@ def _teacher(pack):
     ]
 
 
-def _group(key, title, crumb, pack_keys, slugs):
+def _group(key, title, crumb, pack_keys, slugs, badge=None):
     packs = [PACKS[k] for k in pack_keys]
     grades = sorted({p['grade'] for p in packs})
-    badge = f'{grades[0]}-класс' if len(grades) == 1 else None
+    # ``badge`` is only the label on the page. The pack's own grade still
+    # names the files and the grade tabs.
+    if badge is None:
+        badge = f'{grades[0]}-класс' if len(grades) == 1 else None
     items = [i for p in packs for i in _pack_items(p)]
     teacher = [t for p in packs for t in _teacher(p)]
     return {'spec': _page(title, 'pack_' + key, crumb, badge, items, teacher=teacher), 'slugs': slugs}
@@ -366,17 +369,17 @@ GROUPS = [
     ]),
     _group('olchomdor', 'Узундук, масса жана көлөм бирдиктери', 'Өлчөмдөр', ['olchomdor'], [
         'systems-of-measurement-metric',
-    ]),
+    ], badge='2–3 кл.'),
     _group('birdikter', 'Узундук, масса жана сыйымдуулук бирдиктерин алмаштыруу', 'Өлчөмдөр', ['birdikter'], [
         'systems-of-measurement-conversion-factors',
         'systems-of-measurement-mixed',
-    ]),
+    ], badge='3–5 кл.'),
     _group('simmetriya', 'Симметрия жана фигураларды жылдыруу', 'Геометрия › Өзгөртүүлөр', ['simmetriya'], [
         'geometry-classifying-vocabulary-classifying-shapes-symmetry',
     ]),
     _group('ondu_orun', 'Ондук бөлчөктөр: орун маанилери, салыштыруу, тегеректөө', 'Сандар › Ондуктар', ['ondu_orun'], [
         'rounding-decimal-places',
-    ]),
+    ], badge='4–5 кл.'),
     _group('perimetr', 'Периметр жана аянт', 'Геометрия › Периметр жана аянт', ['perimetr'], [
         'geometry-area-perimeter-quadrilaterals-rectangle-area',
         'geometry-area-perimeter-quadrilaterals-rectangle-perimeter',
@@ -384,7 +387,7 @@ GROUPS = [
         'geometry-area-perimeter-compound-rectilinear-area',
         'geometry-area-perimeter-compound-rectilinear-perimeter',
         'geometry-area-perimeter-compound-rectilinear-mixed',
-    ]),
+    ], badge='3–4 кл.'),
     _group('burchtar', 'Бурчтар', 'Геометрия › Бурчтар', ['burchtar'], [
         'geometry-angles-angle-facts-vocabulary',
         'geometry-angles-angle-facts-on-straight-lines',
@@ -420,23 +423,23 @@ GROUPS = [
         'percentages-to-fractions', 'percentages-to-decimals', 'percentages-with-fractions', 'percentages-with-decimals',
         'fractions-equiv-to-decimals', 'fractions-equiv-to-percentages', 'fractions-equiv-with-decimals',
         'fractions-equiv-with-percentages', 'fractions-equiv-fdp', 'fractions-equiv-fdp-ordering',
-    ]),
+    ], badge='5–6 кл.'),
     _group('bolchok_kb', 'Бөлчөктөрдү көбөйтүү жана бөлүү, аралаш сандар', 'Сандар › Бөлчөктөр › Эсептөөлөр',
            ['bolchok_kb'], [
         'unit-fractions-multiplying', 'unit-fractions-dividing', 'unit-fractions-multiplying-dividing',
         'unit-fractions-with-integers',
         'non-unit-fractions-multiplying', 'non-unit-fractions-dividing', 'non-unit-fractions-multiplying-dividing',
         'non-unit-fractions-with-cancelling', 'non-unit-fractions-with-integers',
-    ]),
+    ], badge='5–6 кл.'),
     _group('akcha', 'Акча: сатып алуу, кайтарым, эң пайдалуу баа', 'Өлчөмдөр › Акча', ['akcha'], [
         'measures-money-purchasing-non-calculator',
-    ]),
+    ], badge='3–4 кл.'),
     _group('ondu_kk', 'Ондук бөлчөктөрдү кошуу жана кемитүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kk'], [
         'subtracting-1-digit', 'adding-subtracting-1-digit',
         'adding-1-2-digit', 'subtracting-1-2-digit', 'adding-subtracting-1-2-digit',
         'integers-adding-with-decimals', 'integers-subtracting-with-decimals',
         'integers-adding-subtracting-with-decimals',
-    ]),
+    ], badge='4–5 кл.'),
     _group('ondu_kb', 'Ондук бөлчөктөрдү көбөйтүү жана бөлүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kb'], [
         'multiplying-1-digit', 'dividing-1-digit', 'multiplying-dividing-1-digit', 'mixed-1-digit',
         'dividing-by-less-than-1', 'multiplying-1-2-digit', 'dividing-1-2-digit', 'multiplying-dividing-1-2-digit',
@@ -446,52 +449,52 @@ GROUPS = [
         'integers-mixed-with-decimals', 'multiplying-with-integers', 'dividing-with-integers',
         'multiplying-dividing-with-integers', 'mixed-with-integers', 'dividing-divisor-less-than-1-with-integers',
     ]),
-    _group('bolchok_t', 'Бөлчөк түшүнүгү', 'Сандар › Бөлчөктөр', ['bolchok_t'], []),
+    _group('bolchok_t', 'Бөлчөк түшүнүгү', 'Сандар › Бөлчөктөр', ['bolchok_t'], [], badge='2–3 кл.'),
     _group('kvadrat', 'Квадрат жана куб сандар, даража', 'Сандар › Даражалар', ['kvadrat'], [
         'indices-introduction', 'indices-square-numbers', 'indices-cube-numbers',
         'evaluating-roots-square', 'evaluating-roots-square-cube',
-    ]),
+    ], badge='7-класс'),
     _group('k100', '100 ичинде кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['k100'], [
         'integers-adding-1-2-digit',
-    ]),
+    ], badge='1–2 кл.'),
     _group('kemituu', 'Кемитүү: 10 жана 100 ичинде', 'Сандар › Бүтүн сандар', ['kemituu10', 'k100'], [
         'integers-subtracting-1-2-digit',
     ]),
     _group('mamycha', 'Мамыча менен кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['mamycha'], [
         'integers-adding-2-3-digit', 'integers-subtracting-2-3-digit', 'integers-adding-subtracting-2-3-digit',
-    ]),
+    ], badge='2–3 кл.'),
     _group('kob_jadybal', 'Көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kob234', 'jadybal'], [
         'integers-multiplying-1-2-digit', 'integers-dividing-1-2-digit', 'integers-multiplying-dividing-1-2-digit',
     ]),
-    _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], []),
-    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], []),
+    _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], [], badge='4-класс'),
+    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], [], badge='5-класс'),
     _group('tegerektoo', 'Тегеректөө жана болжолдоо', 'Сандар › Болжолдоо жана тегеректөө', ['tegerektoo', 'million'], [
         'rounding-whole-numbers',
     ]),
     _group('kadimki', 'Кадимки бөлчөктөр', 'Сандар › Бөлчөктөр › Барабар бөлчөктөр', ['kadimki'], [
         'equivalent-fractions-comparing-inequality', 'equivalent-fractions-comparing-ordering',
         'equivalent-fractions-simplifying',
-    ]),
+    ], badge='3–4 кл.'),
     _group('proporciya', 'Пропорция жана процент', 'Сандар › Пропорция', ['proporciya'], [
         'percentages-noncalc-quantity-integer-decimal',
         'percentages-quantity-integer', 'percentages-noncalc-quantity-10s', 'percentages-noncalc-quantity-5s',
-    ]),
+    ], badge='5-класс'),
     _group('jonokoy', 'Жөнөкөй көбөйтүүчүлөр, ЭЧОБ жана ЭКОЭ', 'Сандар › Бөлүүчүлөр жана эселиктер', ['jonokoy'], [
         'hcf-lcm-listing-mixed', 'hcf-prime-factorisation', 'lcm-prime-factorisation', 'hcf-listing', 'lcm-listing',
-    ]),
-    _group('bolunuu', 'Бөлүнүү белгилери', 'Сандар › Бөлүүчүлөр жана эселиктер', ['bolunuu'], []),
+    ], badge='7-класс'),
+    _group('bolunuu', 'Бөлүнүү белгилери', 'Сандар › Бөлүүчүлөр жана эселиктер', ['bolunuu'], [], badge='4-класс'),
     _group('bolunuu_jonokoy', 'Бөлүүчүлөр, эселиктер жана жөнөкөй сандар', 'Сандар › Бөлүүчүлөр жана эселиктер',
-           ['bolunuu', 'jonokoy'], []),
+           ['bolunuu', 'jonokoy'], [], badge='4–6 кл.'),
     _group('butun_kk', 'Бүтүн сандарды кошуу жана кемитүү', 'Сандар › Багытталган сандар', ['butun_kk'], [
         'adding-directed', 'subtracting-directed', 'adding-subtracting-directed',
-    ]),
+    ], badge='7-класс'),
     _group('butun_kb', 'Бүтүн сандарды көбөйтүү жана бөлүү', 'Сандар › Багытталган сандар', ['butun_kb'], [
         'multiplying-dividing-directed',
-    ]),
+    ], badge='7-класс'),
     _group('bagyttalgan', 'Багытталган сандар: амалдардын тартиби', 'Сандар › Багытталган сандар',
-           ['bagyttalgan'], ['with-bidmas-directed', 'complex-directed']),
+           ['bagyttalgan'], ['with-bidmas-directed', 'complex-directed'], badge='7-класс'),
     _group('directed_mixed', 'Багытталган сандар менен аралаш эсептөөлөр', 'Сандар › Багытталган сандар',
-           ['butun_kk', 'butun_kb'], ['mixed-directed']),
+           ['butun_kk', 'butun_kb'], ['mixed-directed'], badge='7-класс'),
     _group('algebra', 'Тамгалуу туюнтмалар жана теңдемелер', 'Алгебра', ['algebra'], [
         'algebra-intro-definitions',
         'algebra-intro-notation',
@@ -547,11 +550,11 @@ GROUPS = [
         'geometry-coordinates-reading-plotting',
         'algebra-graphs-abstract-coordinates-reading',
         'algebra-graphs-abstract-coordinates-reading-plotting',
-    ]),
+    ], badge='7-класс'),
     _group('masshtab', 'Масштаб', 'Сандар › Өлчөмдөр › Масштабдуу сүрөттөр', ['masshtab'], [
         'scale-drawings-lengths',
         'scale-drawings-estimation',
-    ]),
+    ], badge='6–7 кл.'),
     _group('okshosh', 'Окшош мүчөлөр жана кашааны ачуу', 'Алгебра › Өзгөртүп түзүү', ['okshosh'], [
         'algebra-manipulation-expand-single-without-coefficients',
         'algebra-manipulation-expand-single-with-coefficients',
@@ -561,7 +564,7 @@ GROUPS = [
         'algebra-manipulation-notation-adding-brackets',
         'algebra-linear-brackets-without-coefficients',
         'algebra-linear-brackets-with-coefficients',
-    ]),
+    ], badge='7-класс'),
     _group('aylana', 'Айлана жана тегерек', 'Геометрия › Аянт жана периметр › Тегеректер', ['aylana'], [
         'geometry-area-perimeter-circles-vocabulary',
         'geometry-area-perimeter-circles-circumference',
@@ -586,7 +589,7 @@ GROUPS = [
         'real-life-mixed-calculator',
         'purchasing-calculator',
         'measures-money-purchasing-calculator',
-    ]),
+    ], badge='5–6 кл.'),
     _group('uch_burchtuk', 'Үч бурчтуктун, параллелограммдын жана трапециянын аянты', 'Геометрия › Аянт жана периметр', ['uch_burchtuk'], [
         'geometry-area-perimeter-triangles-area',
         'geometry-area-perimeter-quadrilaterals-parallelogram',
@@ -609,20 +612,20 @@ GROUPS = [
         'percentages-noncalc-incdec-mixed',
         'expressing-quantity',
         'expressing-change',
-    ]),
+    ], badge='5–6 кл.'),
     _group('venn', 'Көптүктөр жана Венн диаграммалары', 'Дата › Көрсөтүү', ['venn'], [
         'data-representing-venn-diagrams-creating-reading',
         'data-representing-venn-diagrams-sets-with-notation',
-    ]),
+    ], badge='7–9 кл.'),
     _group('kop_kb', 'Көп орундуу сандарды көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kop_kb'], [
         'integers-multiplying-2-3-digit',
         'integers-dividing-2-3-digit',
         'integers-multiplying-dividing-2-3-digit',
-    ]),
+    ], badge='3–4 кл.'),
     _group('m1000', '10, 100, 1000ге көбөйтүү жана бөлүү', 'Сандар › Эсептөөлөр', ['m1000', 'ondu_kb'], [
         'multiplying-dividing-10-100-1000',
         'integers-multiplying-dividing-10-100-1000',
-    ]),
+    ], badge='4–5 кл.'),
     _group('tuz_teskeri', 'Түз жана тескери пропорциялуулук', 'Пропорция › Түз жана тескери пропорция', ['tuz_teskeri', 'proporciya'], [
         'direct-inverse-introduction',
         'direct-inverse-direct',
@@ -680,6 +683,44 @@ NEW_FILES = [
 ]
 
 
+# Subpages that share one pack but not one 12-year grade. The group's
+# badge stays for every other page in that pack.
+SPLIT_BADGES = {
+    'time-calculations': '3–4 кл.',
+    'time-converting': '3–4 кл.',
+    'time-timetables': '3–4 кл.',
+    ('geometry', 'transformations', 'reflection'): '7–9 кл.',
+    ('geometry', 'transformations', 'translation'): '7–9 кл.',
+    'geometry-volume-surface-area-cuboid-surface-area': '7-класс',
+    'geometry-volume-surface-area-cuboid-mixed-foundation': '5–7 кл.',
+    'geometry-volume-surface-area-cuboid-mixed-higher': '5–7 кл.',
+    'compound-speed-distance-time': '6–7 кл.',
+    'speed-distance-time-relative-speeds': '7–8 кл.',
+    'speed-distance-time-two-stage-journeys': '7–8 кл.',
+    'geometry-area-perimeter-quadrilaterals-parallelogram': '7-класс',
+    'geometry-area-perimeter-quadrilaterals-trapezium': '7-класс',
+    'geometry-area-perimeter-compound-polygonal-area': '5–7 кл.',
+    'geometry-area-perimeter-compound-polygonal-perimeter': '5–7 кл.',
+    'geometry-area-perimeter-mixed-polygons': '5–7 кл.',
+    'dividing-by-less-than-1': '6–7 кл.',
+    'dividing-divisor-less-than-1-with-integers': '6–7 кл.',
+    'integers-dividing-divisor-less-than-1-with-decimals': '6–7 кл.',
+    'data-analysing-median': '7-класс',
+    'data-analysing-mode-range-mode': '7-класс',
+    'data-analysing-mode-range-range': '7-класс',
+    'data-analysing-comparing-using-mmmr': '7-класс',
+    ('statistics', 'analysing', 'mixed'): '6–7 кл.',
+    'algebra-linear-var1side-calc-1step': '7-класс',
+    'algebra-linear-var1side-calc-2step': '7-класс',
+    'algebra-linear-var1side-noncalc-1step': '7-класс',
+    'algebra-linear-var1side-noncalc-2step': '7-класс',
+    'direct-inverse-direct': '7-класс',
+    'direct-inverse-inverse': '8-класс',
+    'direct-inverse-introduction': '7–8 кл.',
+    'direct-inverse-mixed': '7–8 кл.',
+}
+
+
 def page_for(slug, page_title):
     """The group page for a placeholder slug (or a PATH_PAGES key), with the
     page's own title in the menu path above the heading, or None if no pack
@@ -689,4 +730,7 @@ def page_for(slug, page_title):
         return None
     spec = copy.copy(spec)
     spec['crumb'] = f"{spec['crumb']} › {page_title}"
+    override = SPLIT_BADGES.get(slug)
+    if override:
+        spec['grade_badge'] = override
     return spec
