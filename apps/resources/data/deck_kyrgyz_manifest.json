@@ -1,0 +1,4559 @@
+{
+  "resources/files/0Template.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd6878b7ad2b02d16cd5fa6bea88589bd923dfc40bd59ab1f396d59dc6be55cc",
+    "old": "82df2b8af9cb7d0b8aa6a79ae4be3ae540cc8fd0d6ad750bc5d64b209abafb0d"
+  },
+  "resources/files/0Template_JPcrhyQ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd6878b7ad2b02d16cd5fa6bea88589bd923dfc40bd59ab1f396d59dc6be55cc",
+    "old": "82df2b8af9cb7d0b8aa6a79ae4be3ae540cc8fd0d6ad750bc5d64b209abafb0d"
+  },
+  "resources/files/1-klass-10-ichinde-kemituu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d98f08b3f22559489f01e0fdef8255aac280e4183aa79f0f4cf7db8865ce7cae",
+    "old": "add624a215d66cb20d6ae4660ccf58b44718e6458dcb3161d5187d60fae786c6"
+  },
+  "resources/files/1-klass-10-ichinde-koshuu-sabak-v5.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "81a44c5a592fc636d81c373fea8115e112f38b6bcbecd3fda8cf07d4650618ef",
+    "old": "8f351b2fc08f465d33c2dccc862f5b3bf12723ae78fa7fda37a46b2bcb06480e"
+  },
+  "resources/files/2-klass-100-ichinde-sabak-v2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3782254ef5d1e0783e5eeb85ac023c76bd4a8eb5ceeeae7dfebb9b13a419f52f",
+    "old": "3d8b91f30857408c55c9239718a4ce2f09520758e129823984e2a7cdc5c6a5a2"
+  },
+  "resources/files/2-klass-figuralar-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c1631f9421a430e2fb5390597b5d22b9afbbff609e6e841c4fa6510fd21939bf",
+    "old": "b1542b6e82867dfd01c2b003dd91f1b6966f7516de20af9998732d6a64c806c6"
+  },
+  "resources/files/2-klass-kobeytuu-2-3-4-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "80053b2cafaa70b4895eaa79081a5867f7e3c4c836f46514b808d47e7c8dc7cb",
+    "old": "7a89d1c8fa284dd5c4d0f0287a36b334e51d7fd16b55e6a3eebcf1055bb57fca"
+  },
+  "resources/files/2-klass-ubakyt-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1c634e98b1119b37eab339c8990a4b4d4b38fef11729ab228c95a644b9590934",
+    "old": "0829f1e5d5e323593447531dbda30b144bd3f18f6afdce3f4ad7c3d6cfb88c82"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-oyun-1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3a4d9e6e1b743947e6085f38e829c558fab70c486b79bf19b8b80367a3120edb",
+    "old": "716f0533a73c17686a6bd53ffd5f4ff47051279252e3a0a8473fca0b594f276f"
+  },
+  "resources/files/3-klass-bolchok-tushunugu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c233626003211e7441d95c4c0d432ae64d9b5d69ef2571c35b9fb7e62fdafce8",
+    "old": "9c2457b002d9ec86a1d2da2ebc29e410eeb4dcdca60dfdfced9080c27bbde0eb"
+  },
+  "resources/files/3-klass-jadybal-sabak-v2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1819ee0e76207e97b808ba5c2e3e73157b98351f08b3d47dd5bf71c62c46e270",
+    "old": "acb8d2a4f9008291d09b3b6b680adc6a35c8757c8b09ba21d628abd44cca2e44"
+  },
+  "resources/files/3-klass-maalymat-chogultuu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8bb0704423c540145b4cd79b84fb24217c03e35f168aaf86fe25c8f8bb0821c0",
+    "old": "baeb71b89a8cce142aa66096b78ef2e28df2273cd782f2a5150a64ab5fbede50"
+  },
+  "resources/files/3-klass-mamycha-koshuu-kemituu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9eb5a1eadb157f96446302a54d807c3b25a0db177dba9e6a1cc098e202ca1a71",
+    "old": "c4ab73e035b2e0d923d9f1270de765d49d48c644a38b889d5b3b391e6b1cd4fa"
+  },
+  "resources/files/3-klass-olchomdor-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1ee6ccac1a105eee43039be0196b5d870c41ebfaa0504adc4e1dcb9424186145",
+    "old": "4e50cc442ddeae3d6c1232de20fdb80235c839e03a3d4e8fa1748b5082d2457c"
+  },
+  "resources/files/3-klass-sandyn-bolugu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "db341c7c53f23d256fdac553c92e9df529617bc74d4b4afec0f537743af4e1df",
+    "old": "944e38157cff44dee5239fe19bb39c6f7307c38d9f2a170333f25ee99da947c7"
+  },
+  "resources/files/4-Amal - BagyttalganSandarBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f9b0c14cd53a2746e37380fcc6bf9e0b29de00518d056946be4f9320d9666168",
+    "old": "6860c0bf4eee59c50e51c57a161238330a83c801d9622095b5b3c33889139d4e"
+  },
+  "resources/files/4-Amal - BagyttalganSandarKazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc2c8dc3318de0b3682ef5dbc51e56a2e79e6b734704f552faf3ca2151577c5e",
+    "old": "135625bf5c7d12f7a53d56d8aff888510e5e22832367747748e509fb8595f911"
+  },
+  "resources/files/4-Amal - BagyttalganSandarTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dfb508ea3f7ebaf1ae115bb712bcc886bcf70a2e7fb6fb8d066b3a63d5d63842",
+    "old": "169e07d8c052f8dfc41fa2010a2a818824e83b27fc89031498756340187c4938"
+  },
+  "resources/files/4-Amal - BagyttalganSandarXO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "109b01026da92f6e950759b65d794b56176bb5e24eaffc56f660ef62cf01de14",
+    "old": "9edfb3c58010d1eecdae6b3f00930668ee517f6766d2ebf23bdde564ff415e58"
+  },
+  "resources/files/4-Amal - FourFour.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ccae021120c6a8e55ad51b3eb03156f793ae106b81943832210ecea8f5d43fa9",
+    "old": "e8766c3b84f5c79cd33d2058c4d4b66cf3f543c6760abbeb68eeecf677bbe834"
+  },
+  "resources/files/4-Amal - Salyshtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c0a13ee4895e0cc98c32c923404fb5dbe986e70c7951722593a74af5604f8fc5",
+    "old": "67899b3403efdde0af8d1bce5d13fb8f04df1575a6de1f245fd8bfae0e4890cf"
+  },
+  "resources/files/4-Amal-AyipSokku.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "efe960710306f863940c9b02dd24b809d1046d1079aa78d2249681f76da33258",
+    "old": "3d89cf75f26928215a639c5922381c4f3f961ea9372a051e69f4c968fec13065"
+  },
+  "resources/files/4-Amal-AyipSokku_qBaSO0m.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "efe960710306f863940c9b02dd24b809d1046d1079aa78d2249681f76da33258",
+    "old": "3d89cf75f26928215a639c5922381c4f3f961ea9372a051e69f4c968fec13065"
+  },
+  "resources/files/4-Amal-BingoOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a4531bc79f4a70385534c60ed57189bf0d74ceceb458c3c22910c053cf9d9e00",
+    "old": "f2c80a6b62a77d8e90ed5e9b26fd579bc7d03e0d2d2e5394a4a3cf6094975da3"
+  },
+  "resources/files/4-Amal-BingoOyunu_4QQlDl1.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a4531bc79f4a70385534c60ed57189bf0d74ceceb458c3c22910c053cf9d9e00",
+    "old": "f2c80a6b62a77d8e90ed5e9b26fd579bc7d03e0d2d2e5394a4a3cf6094975da3"
+  },
+  "resources/files/4-Amal-JydymaiOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f8b1fb8be81e723ca3fc48cf6b28eaaacc579dcb8d557f5da53d7b193ac7f77c",
+    "old": "2c949650f3649e590befb2245b385cef492b3211873adcdb51e8292b589fd577"
+  },
+  "resources/files/4-Amal-JydymaiOyunu_NeXS1rj.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f8b1fb8be81e723ca3fc48cf6b28eaaacc579dcb8d557f5da53d7b193ac7f77c",
+    "old": "2c949650f3649e590befb2245b385cef492b3211873adcdb51e8292b589fd577"
+  },
+  "resources/files/4-Amal-MisalKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d2c7a9a3cef97a189399141c649df3aeb95bd6364e46d873bf8ee79e51c17645",
+    "old": "8f859c5e9f8ed26f8cde8677a9811052ab2b0e1ea3e493b628aadced41ee9f77"
+  },
+  "resources/files/4-Amal-MisalKorsot_11hdQg8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d2c7a9a3cef97a189399141c649df3aeb95bd6364e46d873bf8ee79e51c17645",
+    "old": "8f859c5e9f8ed26f8cde8677a9811052ab2b0e1ea3e493b628aadced41ee9f77"
+  },
+  "resources/files/4-Amal-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cac4dad589591a602a370d13d8e5d02f91e1bbfdb311e76c706ec667a2d2d9e6",
+    "old": "858b0fdbbe28d872ffba3c5a6689d5949099f2e8b4b3b30853364d89378dafd5"
+  },
+  "resources/files/4-Amal-TarsiaKurak_uRbSsCy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cac4dad589591a602a370d13d8e5d02f91e1bbfdb311e76c706ec667a2d2d9e6",
+    "old": "858b0fdbbe28d872ffba3c5a6689d5949099f2e8b4b3b30853364d89378dafd5"
+  },
+  "resources/files/4-Amal-TuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "72fee0fc263ca764e69e16953df708b6d9796e3172a89a948215008b706ff1d6",
+    "old": "280a42fa7e9b38c7cfe3bf426458366d1c732e2f6fb87022dd1c9e5d2fe92b16"
+  },
+  "resources/files/4-Amal-TuuraJeKata_k6O2fBw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "72fee0fc263ca764e69e16953df708b6d9796e3172a89a948215008b706ff1d6",
+    "old": "280a42fa7e9b38c7cfe3bf426458366d1c732e2f6fb87022dd1c9e5d2fe92b16"
+  },
+  "resources/files/4-Amal-intro.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8bf71bc3fac4f48ef4c95c6ea66f2b2ea3fff292c944acbefa1948b38bbb630d",
+    "old": "4f9322837a4fa36189161b4a9bf6aeffabcbf675472ce88c7a1bcff19ff796a4"
+  },
+  "resources/files/4-Amal-intro_FSurF9X.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8bf71bc3fac4f48ef4c95c6ea66f2b2ea3fff292c944acbefa1948b38bbb630d",
+    "old": "4f9322837a4fa36189161b4a9bf6aeffabcbf675472ce88c7a1bcff19ff796a4"
+  },
+  "resources/files/4-Amal-katanytapTarsia.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "11e97abe1c4c97dba108de7c9f6b8f62ae262d49988eb9e3fcbba02f95564ee3",
+    "old": "8ec93f71f7dda45b7f209a9c8a89fe2637297c0b2ae62c47a0cb6f43a6ab73ce"
+  },
+  "resources/files/4-Amal-katanytapTarsia_A1oek1Y.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "11e97abe1c4c97dba108de7c9f6b8f62ae262d49988eb9e3fcbba02f95564ee3",
+    "old": "8ec93f71f7dda45b7f209a9c8a89fe2637297c0b2ae62c47a0cb6f43a6ab73ce"
+  },
+  "resources/files/4-AmalSalyshtyruu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "117745b88a2b1737410a2efa496fba181ccc0db8d101339de9133e541c0dc432",
+    "old": "58ba8e41bfd395be4620e40fff3186d97292cc520a48e9b7da0fb45a3e2f350e"
+  },
+  "resources/files/4-AmalSalyshtyruu_Fpmad4e.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "117745b88a2b1737410a2efa496fba181ccc0db8d101339de9133e541c0dc432",
+    "old": "58ba8e41bfd395be4620e40fff3186d97292cc520a48e9b7da0fb45a3e2f350e"
+  },
+  "resources/files/4-Amal_-_BagyttalganSandarBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f9b0c14cd53a2746e37380fcc6bf9e0b29de00518d056946be4f9320d9666168",
+    "old": "6860c0bf4eee59c50e51c57a161238330a83c801d9622095b5b3c33889139d4e"
+  },
+  "resources/files/4-Amal_-_BagyttalganSandarKazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc2c8dc3318de0b3682ef5dbc51e56a2e79e6b734704f552faf3ca2151577c5e",
+    "old": "135625bf5c7d12f7a53d56d8aff888510e5e22832367747748e509fb8595f911"
+  },
+  "resources/files/4-Amal_-_BagyttalganSandarTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dfb508ea3f7ebaf1ae115bb712bcc886bcf70a2e7fb6fb8d066b3a63d5d63842",
+    "old": "169e07d8c052f8dfc41fa2010a2a818824e83b27fc89031498756340187c4938"
+  },
+  "resources/files/4-Amal_-_BagyttalganSandarXO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "109b01026da92f6e950759b65d794b56176bb5e24eaffc56f660ef62cf01de14",
+    "old": "9edfb3c58010d1eecdae6b3f00930668ee517f6766d2ebf23bdde564ff415e58"
+  },
+  "resources/files/4-Amal_-_BagyttalganSandarXO_rscFN7g.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "109b01026da92f6e950759b65d794b56176bb5e24eaffc56f660ef62cf01de14",
+    "old": "9edfb3c58010d1eecdae6b3f00930668ee517f6766d2ebf23bdde564ff415e58"
+  },
+  "resources/files/4-Amal_-_FourFour.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ccae021120c6a8e55ad51b3eb03156f793ae106b81943832210ecea8f5d43fa9",
+    "old": "e8766c3b84f5c79cd33d2058c4d4b66cf3f543c6760abbeb68eeecf677bbe834"
+  },
+  "resources/files/4-Amal_-_Salyshtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c0a13ee4895e0cc98c32c923404fb5dbe986e70c7951722593a74af5604f8fc5",
+    "old": "67899b3403efdde0af8d1bce5d13fb8f04df1575a6de1f245fd8bfae0e4890cf"
+  },
+  "resources/files/4-amal-1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46cae260353f981e73076f5f74d0b6e6f7cb769e9c0b1542ca4e679091f3c320",
+    "old": "9148a36738efcf41d20726b05b276b8f77257d8eb0cd4cacb5f4f371d9168fdd"
+  },
+  "resources/files/4-amal-1234_dAnb0vp.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46cae260353f981e73076f5f74d0b6e6f7cb769e9c0b1542ca4e679091f3c320",
+    "old": "9148a36738efcf41d20726b05b276b8f77257d8eb0cd4cacb5f4f371d9168fdd"
+  },
+  "resources/files/4-amal-JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2818d194171b3ad4d351452adffb8886138ff2a711272823062d716987674db9",
+    "old": "8ca8220b0b03dba9778c1c561dc1b949002cf52fa0b02bec34d3facbd6768b16"
+  },
+  "resources/files/4-amal-JenilOrtoOor_HzHdW0Z.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2818d194171b3ad4d351452adffb8886138ff2a711272823062d716987674db9",
+    "old": "8ca8220b0b03dba9778c1c561dc1b949002cf52fa0b02bec34d3facbd6768b16"
+  },
+  "resources/files/4-amal-kondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "619e1f68d145a81871cc21896e6b0085d9b05523dadebf2f36a11965ece3fb55",
+    "old": "ee060462233b3a75a09189f2803a044eb285276116e0f8ffe60e641cd3336f6c"
+  },
+  "resources/files/4-amal-kondumA_25gGXYh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "619e1f68d145a81871cc21896e6b0085d9b05523dadebf2f36a11965ece3fb55",
+    "old": "ee060462233b3a75a09189f2803a044eb285276116e0f8ffe60e641cd3336f6c"
+  },
+  "resources/files/4-amal-tuuraKataLabirinth.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cdcf53ab2a746afc27739ea57ceeb13886e90095c4762bf33f8535ca67a10e1a",
+    "old": "fdbf97d9543df44f7f1880358210a8d01e28e5bf0812d15b30189eb2cd29b35b"
+  },
+  "resources/files/4-amal-tuuraKataLabirinth_I7UFNfv.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cdcf53ab2a746afc27739ea57ceeb13886e90095c4762bf33f8535ca67a10e1a",
+    "old": "fdbf97d9543df44f7f1880358210a8d01e28e5bf0812d15b30189eb2cd29b35b"
+  },
+  "resources/files/4-klass-akcha-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "efb29f055bceb2094f9bb39458d0af37005f396e7a6506d5dd48330d3e8c8114",
+    "old": "f43c277c31da4dd1c08269762f55be76fe9b1db001b7eb7c9d163e5f847fe078"
+  },
+  "resources/files/4-klass-birdikterdi-almashtyruu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c1e7ff31616eeb3bab42cf9e6de0c83612374d1f04a4f204d4fcd3e2fd26fe6a",
+    "old": "7c50c0a9213f680b0d5a5160525bb686a4fa3cc498ede1953411a0b0b7eb27ff"
+  },
+  "resources/files/4-klass-kop-orunduu-kobeytuu-boluu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d7fbf6027ccdd267298c11d7b8f26785bc3ee8664c750b335c5db51d4bcde226",
+    "old": "ddb127909376696421cad91a3137866ec368ab489e437854625a5666ed3a8e60"
+  },
+  "resources/files/4-klass-million-ichinde-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7fcb62636dc0243031e838c77a14b7289cd71a4024625e4ac454f7463c9ffe59",
+    "old": "a5b0b52b7ef5aa3b00bab73a82542510af32fa49d2ee8b2716bea51bbfa3e38a"
+  },
+  "resources/files/4-klass-simmetriya-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15316efcdef6a88f2b764b5f7531278011a954d7262c5a5031ff0be6f8b34aeb",
+    "old": "19ab9a4bc790257205381cfeb845b23d23a57e38a7256ea9c901c40621c957ce"
+  },
+  "resources/files/4-klass-tegerektoo-boljoldoo-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c4ad1440807082ff87bfcf50ad06f926678739642c91fc2753c31dafd4b6de07",
+    "old": "d9f5f616c83c49dac682253d4bb1f975ec72b53be93482c90d55b8a2140efb26"
+  },
+  "resources/files/5-klass-10-100-1000-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bdf1585d52af32ae8c20d41466155d5e47219a7bda16b8dd3f066632dc972ba5",
+    "old": "a209257aa5cade55c5ac2174bf8fe80c107041abb8b9c02c87bd574133066ee5"
+  },
+  "resources/files/5-klass-burchtar-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c2e616bdbfbad188155cb8f242913df53965f25732f017dceb4e91f4eca523d1",
+    "old": "5554b72e0383ebe6cfd1f8f68f0faa88f68e2edc7c8fcad6da0a23b55ca5aa95"
+  },
+  "resources/files/5-klass-butun-sandar-kobeytuu-boluu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e6d5c4a13242098ce2d937b0beeed4d6511501b05757676a4a762ce3a757f8a8",
+    "old": "173dc7404338279a383554fb3a418ebb8fe83cfc7893f9ce53a2b3b05fcbeda7"
+  },
+  "resources/files/5-klass-butun-sandar-koshuu-kemituu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1f853edc8d3bcce2e80b6e5324f8750c950161db379c023a15a33b4bf889615e",
+    "old": "ef982efefad94b6b6a51c873af78ddc81fb3770673fc58071685809a73a694b7"
+  },
+  "resources/files/5-klass-kadimki-bolchoktor-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2a58f682bedab081c1a20c7719c763054bc9e8f9892137cc80918ef10bf8f85f",
+    "old": "31842cca1fc20e388dd64ce05c1ea9bbb9859ac4c0de9172883189d14ebe23d5"
+  },
+  "resources/files/5-klass-kolom-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d7279eb6365da3a9ba410838e4c198d39360dbb0175020dc854416290640afcb",
+    "old": "bea4e2e0d849ba886ed4d97bb9b7492444d62117924d0e908f2fb47c8adc06d1"
+  },
+  "resources/files/5-klass-ondu-bolchok-orun-maani-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e79a7f3eaa8332476aaaf9d49c233f6e7fe9ce91a10ac35b3e61a3e8348cd80",
+    "old": "c0ed547cc978ec6f119504672bbfa48454702bcd2a6615732ea0b475532c4d10"
+  },
+  "resources/files/5-klass-ondu-kobeytuu-boluu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f970b2fd2a32f69f4846f3e61c734c9f0785246e251b11451b97f56bfd797b7e",
+    "old": "e122c14b4afcdbb7ac4b47995655e62ed74d411110a0419559705cfb8fee907d"
+  },
+  "resources/files/5-klass-ondu-koshuu-kemituu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2800ba5d0689ed29ff198853142884b272b9ae71245a77094ddb94c1e177f447",
+    "old": "fcbcff4b0c6502ae055c57311dcffcd4e4700fb8215da71d42d161ba7baed800"
+  },
+  "resources/files/5-klass-oyundar-aktivduuluktor-v6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6e9d0e16cd170237f65a36a2ab87598a375f3cd6cf1998e5e35d0d449e42ec01",
+    "old": "ddbc28f1016f90fe50539567d139f989045e787e8e803a05a2c1fd935591b63b"
+  },
+  "resources/files/5-klass-perimetr-jana-ayant-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d8f3d687c4b0619f85ef9f75191918e91d6dd66980da87c56f00a35a19662167",
+    "old": "6aca4a3a22bb742c533689311d92ce62c3056750c1867aae79c638082c4a29c7"
+  },
+  "resources/files/5-klass-uch-burchtuk-ayanty-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "80e5319b5f3a1274c4ce887a7dc6ec9657602b2c839094aaa81ec4ae3c69c695",
+    "old": "6bda4bcd81c8ff70f6f50e75d61db4f39902f20bf1ab55f1f91ed488215ccb9b"
+  },
+  "resources/files/5-klass-venn-diagrammalary-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e8cca8b04b1930601d2ba4edcd3c257aee6d1469979c345cab37a74bbe79dec0",
+    "old": "3ee6ac0abeaa2c5a8f259655f40196c16afd7b2dc617cfada5f5b90cafb34824"
+  },
+  "resources/files/5-klass-ylldamdyk-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a1e78937b68a7e01ba9fe3f83cbc71423e120e52b177590ab1d5452ecd60a9f3",
+    "old": "d9ff55f8e8bc4ca6080fc7e1bd5eca8740e70caa3ba26288f5c8b484248dae86"
+  },
+  "resources/files/6-klass-aylana-tegerek-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "400839a7271407617ce99a8275e3d42c7c94f9ef183c4b3f8f83f0bfb33741c9",
+    "old": "e13a88e7077099ba0c514d2cedfd9af25923330d298d8d7acc7bbd994175e1e5"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-oyun-1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e0e315dd076360c5644b1e1fd182f906513377b29cde72a8f00a19e2729ae933",
+    "old": "63b9bd1c576edf5f42cbb26d4f06fee4baede5fbbc28a20aeba0e334f9fcfe11"
+  },
+  "resources/files/6-klass-bagyttalgan-sandar-amaldardyn-tartibi-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3cc09ac2b007e2a28a622cb8ed72e0c068b4bf96d42e8166a28ad67701972f6f",
+    "old": "f96d3cd5178ef834cf5308bd2a129bd6522d792ab7794510dbd645387b246b2d"
+  },
+  "resources/files/6-klass-bolchok-kobeytuu-boluu-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "23e81d80746841e57d54d1e2accd7ea61964c6e90bc2db2da184584f835e0227",
+    "old": "2c9d5f33fe14eb53c96cd6b246b12b734fbe4bbe3e82b9d4d8643e381137066f"
+  },
+  "resources/files/6-klass-bolchok-ondu-procent-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "68be3ed6d3a25d7d44029ad13f5296bb4e975222a6cd35bd88cc9b5ef0f47854",
+    "old": "feb97381f944b41d6767c981d22fb723a7b1b8bfec830249ff83cda98cec27bc"
+  },
+  "resources/files/6-klass-bolunuu-belgileri-sabak-v2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "515e118c63e3dd9cfe94030d4f11f338840b853b7c645080cd296e8cc8f63e18",
+    "old": "9deb59ca9bf86513700718af566080557b4cc0b000cd146d6e465b049f2b3294"
+  },
+  "resources/files/6-klass-jonokoy-kobeytuuchuler-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6bd206036ab00731448c30dc2e66d31780f1f7212de6299afe654a0764b457de",
+    "old": "64cb8f2e631aacd31d238b90f84755d6d4d519674372822340eab080e3718a71"
+  },
+  "resources/files/6-klass-katysh-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0d35a98c620c6ca741ca789c0e264d849dbf1848062bc32a26a26270d1bb0508",
+    "old": "fe52b0aaaf9e9782401e84a3ec6866fafa572964f38a65671bc2ff13ef570a2f"
+  },
+  "resources/files/6-klass-koordinattar-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "30f78b7c86bc356af68e9a4dc0ac9ffed96831b40fcc77574561fed5c345c768",
+    "old": "443d0e88448517dc0993fd539057cbab6c56dc1184e5bf206ef34c14d90d1a0f"
+  },
+  "resources/files/6-klass-kvadrat-kub-daraja-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ac1710898718ccefc70778c076925eb1b428afab8974fb93f56b3c010ea20800",
+    "old": "bcda86109453dd73605aac4e657c4c89f5a4161ef2cebfaccfcd0b8981f562cf"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-oyun-atyshuu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d6364d2a08b39d5251cf219a5634182ffc5a1d385290a913a596f0acf9c837fe",
+    "old": "11de2bc9641e8d720e4eff88ee45c797cdba162c179d75abe1e587c3a25d0f8b"
+  },
+  "resources/files/6-klass-maalymat-diagramma-orto-maani-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd4449417404ceac909650a9029edfe8cb86b7270ca346522eca69b1b9263198",
+    "old": "7fb99c0f8169a7f8d8b15df920b10911a512e368339d9e35b3b93f919fab7aa1"
+  },
+  "resources/files/6-klass-masshtab-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d3c8e3e389b1b02db9a7ac05f667e1ed01f6007f2549d2cc056d41af68cea365",
+    "old": "2ba862a6dbf880034297e70bb1b1dbb9322010226d8fccfadaef275701a70b46"
+  },
+  "resources/files/6-klass-okshosh-muchular-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "158231d1a898b657ff7f82526475c646f8e92b2dbc14d7bcefe2d45f550248cc",
+    "old": "4f8fe5b486162ed1f33449cf0eccc07a9a5ee03626e2faee00e16568063bea4f"
+  },
+  "resources/files/6-klass-payyz-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "99cb24a4fb0b0de688d249c96c70183c67deedb62b94973968d1a525826ce0c2",
+    "old": "55e0d1c04a539fd40623f0589cea59c1d83251aaa2776f90ffb0e29faee5038c"
+  },
+  "resources/files/6-klass-proporciya-procent-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3cc83fe04bf74ce198f766d7365c4856be6994a1edb5b3ea53502414ca582b0a",
+    "old": "c4994e7fc5ead332f4f3abaaee49f22eef523a87820caa198446717d2de2fe9a"
+  },
+  "resources/files/6-klass-tamgaluu-tuyuntmalar-tendemeler-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e726a2214619f04d4fc3b210e33742e764b9d2d67203bcc493510816ddab45cc",
+    "old": "defc514c8f4d16ec33617aaecee193ce4512912a0b8c15cdef0b8b3648c70948"
+  },
+  "resources/files/6-klass-turmushtuk-eseptoo-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2d0e3837207010ead0b20b3517519d94258dd169f716c2603abd4fc06ef3a313",
+    "old": "01f746b196e999c1c5477e5c2c8df34974857c921616c4e5b9c65a08f5c8393c"
+  },
+  "resources/files/6-klass-tuz-teskeri-proporciya-sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cd974476e6dfa887dfaf374715e36a0de84b0c34f185eeaeadbaf7c4415fb249",
+    "old": "b12c91e9f6724339756772fad51dde19bb4617d4e8a9febe3d5901c4b683d37a"
+  },
+  "resources/files/BaardykAmaldar1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "915f2988c973ddd4141496309fb99624e5d0c6275c44cfdf29c4832580232d63",
+    "old": "5206b3e58ee8916d61e31632c7b5f858916b17fc1326bcb9c965be76ba0d6912"
+  },
+  "resources/files/BaardykAmaldar1234_RbaXBpG.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "915f2988c973ddd4141496309fb99624e5d0c6275c44cfdf29c4832580232d63",
+    "old": "5206b3e58ee8916d61e31632c7b5f858916b17fc1326bcb9c965be76ba0d6912"
+  },
+  "resources/files/BaardykAmaldar4Fours.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a65a0970bd31f2c00317458bcd032db8c02b1e022fc6c9da89b146f3fe9af447",
+    "old": "ef765e4943cd0216908bdf72eb3012c2413ad1da92df6bc44725b87f04bdfed7"
+  },
+  "resources/files/BaardykAmaldar4Fours_ebnSjrp.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a65a0970bd31f2c00317458bcd032db8c02b1e022fc6c9da89b146f3fe9af447",
+    "old": "ef765e4943cd0216908bdf72eb3012c2413ad1da92df6bc44725b87f04bdfed7"
+  },
+  "resources/files/BaardykAmaldarBlockBusterOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "972f70e0ce1ffc445a38c7a28189e7a606897899f25bf86378ee611d4cdb23fc",
+    "old": "b3e866affb19e3921c378af53d6d50dbb227139e4b2109f182bf8beb156b8630"
+  },
+  "resources/files/BaardykAmaldarBlockBusterOyunu_oFDz1pp.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "972f70e0ce1ffc445a38c7a28189e7a606897899f25bf86378ee611d4cdb23fc",
+    "old": "b3e866affb19e3921c378af53d6d50dbb227139e4b2109f182bf8beb156b8630"
+  },
+  "resources/files/BaardykAmaldarIntro.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bc7f1cf3d57bbd865c5d6c9bba82156991b9ecc78dfffc1194b8b1253dc2969d",
+    "old": "2546ee29e0da44f522c326bd6d5b358d8c5138d1733205523b4bef74f70ea260"
+  },
+  "resources/files/BaardykAmaldarIntro_2JP3EdF.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bc7f1cf3d57bbd865c5d6c9bba82156991b9ecc78dfffc1194b8b1253dc2969d",
+    "old": "2546ee29e0da44f522c326bd6d5b358d8c5138d1733205523b4bef74f70ea260"
+  },
+  "resources/files/BaardykAmaldarJenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5b43e3722bf2b7557027ca192d1096dbb4626615bf78a3205114d597244bd80c",
+    "old": "a175d378585b31a5b0ff66dda37104f4cb5f4eee85bbf280d6b590ba5b993ba3"
+  },
+  "resources/files/BaardykAmaldarJenilOrtoOor_2WPOvmh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5b43e3722bf2b7557027ca192d1096dbb4626615bf78a3205114d597244bd80c",
+    "old": "a175d378585b31a5b0ff66dda37104f4cb5f4eee85bbf280d6b590ba5b993ba3"
+  },
+  "resources/files/BaardykAmaldarJydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d2df111d8748a6b0dd61a57da70db96a6f66bfafe7e40f72e09f2c65860aeb12",
+    "old": "abdc9421a5caec772d5c258c456d916fc05eb6fc1af6f1443ca7493600298eea"
+  },
+  "resources/files/BaardykAmaldarJydymaiOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "beefef0e60446a24d690daaac12574766c3626f4a5913c9c619b184aa7894dbe",
+    "old": "088aa4274e488cc9a57d5df6b04a89f225fe2bc1c9d0c4edf93f7e1ac627393f"
+  },
+  "resources/files/BaardykAmaldarJydymaiOyunu_Hr3BxbP.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "beefef0e60446a24d690daaac12574766c3626f4a5913c9c619b184aa7894dbe",
+    "old": "088aa4274e488cc9a57d5df6b04a89f225fe2bc1c9d0c4edf93f7e1ac627393f"
+  },
+  "resources/files/BaardykAmaldarJydymai_VzdwGB8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d2df111d8748a6b0dd61a57da70db96a6f66bfafe7e40f72e09f2c65860aeb12",
+    "old": "abdc9421a5caec772d5c258c456d916fc05eb6fc1af6f1443ca7493600298eea"
+  },
+  "resources/files/BaardykAmaldarKatanyTap.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6141a8fb23a6c973f3dd169dbd0fa1bda4984e22a45aaa9697c2ad2dab09f6c0",
+    "old": "3960bff5a06c3ed5b0100253036f32d4c6d1f6159b1e55dc6c60136bcb7164b2"
+  },
+  "resources/files/BaardykAmaldarKatanyTap_oTI0T8K.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6141a8fb23a6c973f3dd169dbd0fa1bda4984e22a45aaa9697c2ad2dab09f6c0",
+    "old": "3960bff5a06c3ed5b0100253036f32d4c6d1f6159b1e55dc6c60136bcb7164b2"
+  },
+  "resources/files/BaardykAmaldarMegaEsepter.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "55ae2a328b69505bc185869bf6fde4c1c3eb27cbc2927db716527273f195ea85",
+    "old": "9159aa88499ef54b8939f29b0840aa1f9e9b3eea4979a4d67341981509841867"
+  },
+  "resources/files/BaardykAmaldarMegaEsepter_uhqt0XV.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "55ae2a328b69505bc185869bf6fde4c1c3eb27cbc2927db716527273f195ea85",
+    "old": "9159aa88499ef54b8939f29b0840aa1f9e9b3eea4979a4d67341981509841867"
+  },
+  "resources/files/BaardykAmaldarMenenSandykBashkatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8e08d05b93ff1255076b1e6bd5c64d7198a6d1d4d1f0649c0097669e3f2b002d",
+    "old": "5365a52e0ff74af8fd51b8bdbb0cb83341e1ee1c86970b3ba46add21a20d887c"
+  },
+  "resources/files/BaardykAmaldarMenenSandykBashkatyrma_SzvftMs.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8e08d05b93ff1255076b1e6bd5c64d7198a6d1d4d1f0649c0097669e3f2b002d",
+    "old": "5365a52e0ff74af8fd51b8bdbb0cb83341e1ee1c86970b3ba46add21a20d887c"
+  },
+  "resources/files/BaardykAmaldarMisalKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ace7a548aaeb65c04036b345c9e6370650aee2e2bd436156d02c89a9b5e8992e",
+    "old": "17691539ee43bb8b3b816853dce4b924c872f7d9f1b3b2464a77b23c291eaad2"
+  },
+  "resources/files/BaardykAmaldarMisalKorsot_jJSTlE6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ace7a548aaeb65c04036b345c9e6370650aee2e2bd436156d02c89a9b5e8992e",
+    "old": "17691539ee43bb8b3b816853dce4b924c872f7d9f1b3b2464a77b23c291eaad2"
+  },
+  "resources/files/BaardykAmaldarSalywtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8684254d75fb6676543d201a4c9f4f0ac1cc811240f471c91cb985d9161d7846",
+    "old": "6ce3e9d51bde4bb12f6ace05f45c9e54a3674038b853d078eb8c18778956c6ce"
+  },
+  "resources/files/BaardykAmaldarSalywtyr_DRGeMsw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8684254d75fb6676543d201a4c9f4f0ac1cc811240f471c91cb985d9161d7846",
+    "old": "6ce3e9d51bde4bb12f6ace05f45c9e54a3674038b853d078eb8c18778956c6ce"
+  },
+  "resources/files/BaardykAmaldarTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e1609e9ad5df8afd4b39a4643eb7c7e5d39c053674b43b28013c27c040ffc391",
+    "old": "ce0b072c7b91c1743598156379a6dcb4073e9fd722e57aed225c1949dda50ffb"
+  },
+  "resources/files/BaardykAmaldarTarsiaKurak_i7E979O.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e1609e9ad5df8afd4b39a4643eb7c7e5d39c053674b43b28013c27c040ffc391",
+    "old": "ce0b072c7b91c1743598156379a6dcb4073e9fd722e57aed225c1949dda50ffb"
+  },
+  "resources/files/Bagyttal_Sandar_Koshuu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2f4e3e99385f5d9844208c41d8531c178c17a6ace28ab3e6b33a6a07bb9bcb96",
+    "old": "3dca6c234b1c6650450fa59099ea3da3202ca0cdf88b18aeb62ed1b739edbfec"
+  },
+  "resources/files/Bagyttal_Sandar_Koshuu_Sabak_4ZtUYw9.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2f4e3e99385f5d9844208c41d8531c178c17a6ace28ab3e6b33a6a07bb9bcb96",
+    "old": "3dca6c234b1c6650450fa59099ea3da3202ca0cdf88b18aeb62ed1b739edbfec"
+  },
+  "resources/files/ButunSandardyJanaOnduktar_Aralash_Amaldar_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2cbce17dc74dae7207c165355e9e37965def0c6bcd3c6c8f62745ef101cde25b",
+    "old": "401db7761852abf137a105643d50bf5987c31133f75693e0db9afd48738ddc82"
+  },
+  "resources/files/ButunSandardyJanaOnduktar_Aralash_Amaldar_TarsiaKurak_RZhNErH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2cbce17dc74dae7207c165355e9e37965def0c6bcd3c6c8f62745ef101cde25b",
+    "old": "401db7761852abf137a105643d50bf5987c31133f75693e0db9afd48738ddc82"
+  },
+  "resources/files/ButunSandardyJanaOnduktar_Aralash_Amaldar_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "174c9b52a4109777954c4af703b30f5f1ded33c02754cdda16640808881e2eaf",
+    "old": "9a337f69915fd78fea837b6406f7013c538a166971df38dff2fed411a6712ccc"
+  },
+  "resources/files/ButunSandardyJanaOnduktar_Aralash_Amaldar_XjanaO_iu3ta5S.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "174c9b52a4109777954c4af703b30f5f1ded33c02754cdda16640808881e2eaf",
+    "old": "9a337f69915fd78fea837b6406f7013c538a166971df38dff2fed411a6712ccc"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "142c0beed36d73f58c5c34aab58f876d5a71606105cefe1624d012976728e5b3",
+    "old": "b73df1e944a8537d314d5e4e408b6d164b8d43d636f7b69b9e9c478b274a967d"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-1234_5UOZqGK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "142c0beed36d73f58c5c34aab58f876d5a71606105cefe1624d012976728e5b3",
+    "old": "b73df1e944a8537d314d5e4e408b6d164b8d43d636f7b69b9e9c478b274a967d"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-1234_5UOZqGK_oLkoQeM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "142c0beed36d73f58c5c34aab58f876d5a71606105cefe1624d012976728e5b3",
+    "old": "b73df1e944a8537d314d5e4e408b6d164b8d43d636f7b69b9e9c478b274a967d"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-BlockbusterOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0438f0c00e9218056fe3dbeebb86bf38a7a0b70f81c3655eb43dbd3f070124ed",
+    "old": "633aca465f82e6dd7595407d1ca320f2bfb3035283c8feaa0b9dd5eab6bd079e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-BlockbusterOyunu_qcmFtyw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0438f0c00e9218056fe3dbeebb86bf38a7a0b70f81c3655eb43dbd3f070124ed",
+    "old": "633aca465f82e6dd7595407d1ca320f2bfb3035283c8feaa0b9dd5eab6bd079e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0163c04287e6c713a3057063875631df8e0ea5afe35853506d472d41018081f6",
+    "old": "d8aee42d7b7bedd6085d4ca610a40d704300d2fd9aaf22d32d9af0806f31e94e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JYDYMAI_h28Dcc3.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0163c04287e6c713a3057063875631df8e0ea5afe35853506d472d41018081f6",
+    "old": "d8aee42d7b7bedd6085d4ca610a40d704300d2fd9aaf22d32d9af0806f31e94e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "45b76d388e212e49987bdb6482ab85e92faa3432cb6cd4cd6278fd8722fdeec6",
+    "old": "042dcc2b0d6ef0d88d6f62556d6d6b744267b8fcaebb8c57a64752de2e75ab43"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JenilOrtoOor_7zTWy_5G8i3Qv.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "45b76d388e212e49987bdb6482ab85e92faa3432cb6cd4cd6278fd8722fdeec6",
+    "old": "042dcc2b0d6ef0d88d6f62556d6d6b744267b8fcaebb8c57a64752de2e75ab43"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-JenilOrtoOor_7zTWyth.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "45b76d388e212e49987bdb6482ab85e92faa3432cb6cd4cd6278fd8722fdeec6",
+    "old": "042dcc2b0d6ef0d88d6f62556d6d6b744267b8fcaebb8c57a64752de2e75ab43"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTort.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e14bf414c8e491ac936f3c5481a51fd8353fa2539e974036f4e547dfaf175eb",
+    "old": "8bc955a54ac0579db7440cb9757a5bd44c9c53f7b1c40371f8eef22886d5d6b9"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KataryMNTort_1HlvWOT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e14bf414c8e491ac936f3c5481a51fd8353fa2539e974036f4e547dfaf175eb",
+    "old": "8bc955a54ac0579db7440cb9757a5bd44c9c53f7b1c40371f8eef22886d5d6b9"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce12d99b220605827e9cc54341928a1d12565238ad8ac7637ee06a86e1cf02b0",
+    "old": "d2dcb2d8795530ac056353d31a9199fa52fd583d8e1c329b26da82e576a50b3e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KazynaIzdoo_ZMjMBEM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce12d99b220605827e9cc54341928a1d12565238ad8ac7637ee06a86e1cf02b0",
+    "old": "d2dcb2d8795530ac056353d31a9199fa52fd583d8e1c329b26da82e576a50b3e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KazynaIzdoo_ZMjMBE_qR6lrE3.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce12d99b220605827e9cc54341928a1d12565238ad8ac7637ee06a86e1cf02b0",
+    "old": "d2dcb2d8795530ac056353d31a9199fa52fd583d8e1c329b26da82e576a50b3e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2cbacf7c17291f5930fe0cb16427580793e7df6c287633fa910fc4e603845fc3",
+    "old": "641ea150e488bf1df545022f80d29e414fef8f209421b2a95ea12b8d603c9881"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum1_PVDQzQN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2cbacf7c17291f5930fe0cb16427580793e7df6c287633fa910fc4e603845fc3",
+    "old": "641ea150e488bf1df545022f80d29e414fef8f209421b2a95ea12b8d603c9881"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc80f6ea664a15a9637903f4986e220973eb98663f107b4c786480f824a81776",
+    "old": "a3866f8ec129b79d9c612734c4d19a7aa625f13bb059995a3f2873587e17ff9b"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Kondum2_SnM4zfE.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc80f6ea664a15a9637903f4986e220973eb98663f107b4c786480f824a81776",
+    "old": "a3866f8ec129b79d9c612734c4d19a7aa625f13bb059995a3f2873587e17ff9b"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KonuguuA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "66a003393cfdfc7e21f3bbae3264f155b02591e0f30df47bc9ddaaf82073c26b",
+    "old": "fd7e1420b8c6afe79ae0ed4b8057b04a153cb2bc89b929e10981921df51f5820"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-KonuguuA_PTheYgA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "66a003393cfdfc7e21f3bbae3264f155b02591e0f30df47bc9ddaaf82073c26b",
+    "old": "fd7e1420b8c6afe79ae0ed4b8057b04a153cb2bc89b929e10981921df51f5820"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd61d360fa72587d64e1f3d6613c502a2378ad652754be5174649104af2a58a4",
+    "old": "9887f8896b3e00bafae6743b9fe8a564bec51626cb7c77a554f859f4e8061e8b"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-Sabak_RLwpvTq.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fd61d360fa72587d64e1f3d6613c502a2378ad652754be5174649104af2a58a4",
+    "old": "9887f8896b3e00bafae6743b9fe8a564bec51626cb7c77a554f859f4e8061e8b"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinth.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ddd8434629dab831328c8e2cd6568daece95547db2dac07cfd2c61ec8992a3c7",
+    "old": "dff6fec0d1263084406698d3d5bcd6b546ae79cdb86ef495181110ff8dfddcc0"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-SandarMNLabyrinth_VNg4kur.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ddd8434629dab831328c8e2cd6568daece95547db2dac07cfd2c61ec8992a3c7",
+    "old": "dff6fec0d1263084406698d3d5bcd6b546ae79cdb86ef495181110ff8dfddcc0"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TARSOYUNU.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2b4e64e9601ca71ba30acb09ffcd456b651aa1a02c71b2ce5760f8c2c79b9a0d",
+    "old": "da1e8fce4c4013e48dca987c460a9dd47f0bee787b61b7321ffacaa640135d1d"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TARSOYUNU_Dk0a5sH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2b4e64e9601ca71ba30acb09ffcd456b651aa1a02c71b2ce5760f8c2c79b9a0d",
+    "old": "da1e8fce4c4013e48dca987c460a9dd47f0bee787b61b7321ffacaa640135d1d"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "24fe7e95d33b741e3611b20621dc60d44c05a568b1bad9b89921590e6d03fae9",
+    "old": "a2d0a96da940bc4ac461cd48c23031bc6c450c406d8c0e8577a03d5a31cd8cfc"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TarsiaKurak_8598wpm.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "24fe7e95d33b741e3611b20621dc60d44c05a568b1bad9b89921590e6d03fae9",
+    "old": "a2d0a96da940bc4ac461cd48c23031bc6c450c406d8c0e8577a03d5a31cd8cfc"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0924967b0e40a96e63bbda7fbdc1e944edd28afd284535f3f2d3b23cd7c264d5",
+    "old": "ffcf054a921fa47a77a1dd8b456fe2e75d70e90a5cefcb5f582b38ffaaa8c8c3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-TuuraJeKata_LwrFlqP.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0924967b0e40a96e63bbda7fbdc1e944edd28afd284535f3f2d3b23cd7c264d5",
+    "old": "ffcf054a921fa47a77a1dd8b456fe2e75d70e90a5cefcb5f582b38ffaaa8c8c3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7898bb21a272e9020770fc6c029bfb61ec0f1112c31d12fdc4608672fed035ef",
+    "old": "856e75349da8d9356210d628462748f56b00daeb9198c6741cc3b5c18ab97fe3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOA_f1vJ6l3.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7898bb21a272e9020770fc6c029bfb61ec0f1112c31d12fdc4608672fed035ef",
+    "old": "856e75349da8d9356210d628462748f56b00daeb9198c6741cc3b5c18ab97fe3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOA_f1vJ6l3_WKbB7GY.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7898bb21a272e9020770fc6c029bfb61ec0f1112c31d12fdc4608672fed035ef",
+    "old": "856e75349da8d9356210d628462748f56b00daeb9198c6741cc3b5c18ab97fe3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "86c0374d89ca49b05c1a7176f51ca6d526ae820b851a14f38c1d4acef340667c",
+    "old": "dede6015148b70254c326d88b8c7898a7f34759a960deeb45df38c89c51f3449"
+  },
+  "resources/files/ButunSandardyJanaOnduktardyKoboytuuBoluu-10-100-1000-XOB_btkLhxl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "86c0374d89ca49b05c1a7176f51ca6d526ae820b851a14f38c1d4acef340667c",
+    "old": "dede6015148b70254c326d88b8c7898a7f34759a960deeb45df38c89c51f3449"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Boluu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "58ed075df77043a9cc8869eff9c10239a38dcbf646c5e54ecbadf8a203b6237f",
+    "old": "6aa19bd349c07a8f86b8df9d538043ba33963159e5dd187b14cef110fcf5fe56"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Boluu_TarsiaKurak_OQe8W9c.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "58ed075df77043a9cc8869eff9c10239a38dcbf646c5e54ecbadf8a203b6237f",
+    "old": "6aa19bd349c07a8f86b8df9d538043ba33963159e5dd187b14cef110fcf5fe56"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Boluu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e62d522b7095bb264d67a3d334aee0ba6ddf3236356736357e2ff9014c052d23",
+    "old": "d73a621222c8cb3c60952eeeac1a47fa36ac9f18ad06ce47554bb5a41e513c46"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Boluu_XjanaO_277mXRx.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e62d522b7095bb264d67a3d334aee0ba6ddf3236356736357e2ff9014c052d23",
+    "old": "d73a621222c8cb3c60952eeeac1a47fa36ac9f18ad06ce47554bb5a41e513c46"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Kemituu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc38c718ba9b2621ba4aa058d706b4cdfca6d8bdb177c2378260ca6fc290b3cc",
+    "old": "d0a5505ed70ee6740403cb28fcf6eb182c7d008d3d55de5b248b66e9f912d74e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Kemituu_TarsiaKurak_Cto7eO2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc38c718ba9b2621ba4aa058d706b4cdfca6d8bdb177c2378260ca6fc290b3cc",
+    "old": "d0a5505ed70ee6740403cb28fcf6eb182c7d008d3d55de5b248b66e9f912d74e"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Kemituu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0960b22f88ffcdc3373a326be70acf47dc168dfce5b7e2a137e7e672cae71aa6",
+    "old": "4b8ee10eef2682a2902518b516fea13bb409a86e08f0f4cea8de287dc8c519c3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Kemituu_XjanaO_jchB9ji.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0960b22f88ffcdc3373a326be70acf47dc168dfce5b7e2a137e7e672cae71aa6",
+    "old": "4b8ee10eef2682a2902518b516fea13bb409a86e08f0f4cea8de287dc8c519c3"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_Boluu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4d440fb56e77297f84f1f5c85c8a535fec50e2bdad162aab0fb2bc89b6e618b3",
+    "old": "0859d5ecf8c083d7738959f230f79fe647ad184074be1523a64823ca97fc2fb9"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_Boluu_TarsiaKurak_vaJHKVW.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4d440fb56e77297f84f1f5c85c8a535fec50e2bdad162aab0fb2bc89b6e618b3",
+    "old": "0859d5ecf8c083d7738959f230f79fe647ad184074be1523a64823ca97fc2fb9"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_Boluu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "86426bf7cdeedca00cf8a22a1bab7479ffe95872b5ef39af025bafbad6db7847",
+    "old": "89d569e7c402049047f9ab854d1523dac65aad3117b222f4455122364732d9db"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_Boluu_XjanaO_GwWot6W.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "86426bf7cdeedca00cf8a22a1bab7479ffe95872b5ef39af025bafbad6db7847",
+    "old": "89d569e7c402049047f9ab854d1523dac65aad3117b222f4455122364732d9db"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c5e3eb7b7d556f32de4b3c19a5a415194d11e0ac13b499e84a82ff24e5fdd4e0",
+    "old": "64498ae95d5c1edfae4b8311851e189690865ac43e99b5f4f685ca73a2a562a0"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_TarsiaKurak_y572QaK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c5e3eb7b7d556f32de4b3c19a5a415194d11e0ac13b499e84a82ff24e5fdd4e0",
+    "old": "64498ae95d5c1edfae4b8311851e189690865ac43e99b5f4f685ca73a2a562a0"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7134b857b4690143f148e6670a0cf63d3c5e067bb5ef59f2ff1d518c28c0620c",
+    "old": "07fbed923522ca2eab5fe9a2c39c473940c52a968c834a0a6845e02fd4bb1bbd"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koboytuu_XjanaO_zLpshvG.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7134b857b4690143f148e6670a0cf63d3c5e067bb5ef59f2ff1d518c28c0620c",
+    "old": "07fbed923522ca2eab5fe9a2c39c473940c52a968c834a0a6845e02fd4bb1bbd"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_KoshuuKemituu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ef225249a526afd3947a42b6b0710e9619cc8f0819dbb67d4b67d88eb47f49c",
+    "old": "198b046ddad9d1a2347be6ed73dea0f88ec5b6fe79cf7a8086f247dc69280b58"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_KoshuuKemituu_TarsiaKurak_fBfsQDO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ef225249a526afd3947a42b6b0710e9619cc8f0819dbb67d4b67d88eb47f49c",
+    "old": "198b046ddad9d1a2347be6ed73dea0f88ec5b6fe79cf7a8086f247dc69280b58"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_KoshuuKemituu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "edc442892b9a70b3c2136769243ec783d469f82c540aec1380f5ddabf8e380f0",
+    "old": "65a2b4e9287482ba0b62db1a7b8fc95025c82f175a6b127edb688842d69a4f2f"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_KoshuuKemituu_XjanaO_ET3HwXA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "edc442892b9a70b3c2136769243ec783d469f82c540aec1380f5ddabf8e380f0",
+    "old": "65a2b4e9287482ba0b62db1a7b8fc95025c82f175a6b127edb688842d69a4f2f"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koshuu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "33cfd380cee21b569d08da9814cdec731553301b9d17c927f1ef065f6baff58d",
+    "old": "92b3e68852bd847bb4d2720e400a6dde526ddb8157fc1d68d8d0b23cfa2ceaa2"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koshuu_TarsiaKurak_17phwUn.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "33cfd380cee21b569d08da9814cdec731553301b9d17c927f1ef065f6baff58d",
+    "old": "92b3e68852bd847bb4d2720e400a6dde526ddb8157fc1d68d8d0b23cfa2ceaa2"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koshuu_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ddb98683fa67a28f5493ba8cb91cf0ab38dd843bcef6bc3a9194dab98e6451b9",
+    "old": "da8846ab06d4f86fb41ce6c70b5161878d9ef291d2628ab0bfe864d52aa04ec4"
+  },
+  "resources/files/ButunSandardyJanaOnduktardy_Koshuu_XjanaO_Tvu8bx8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ddb98683fa67a28f5493ba8cb91cf0ab38dd843bcef6bc3a9194dab98e6451b9",
+    "old": "da8846ab06d4f86fb41ce6c70b5161878d9ef291d2628ab0bfe864d52aa04ec4"
+  },
+  "resources/files/EkiOrunduuKoshuuEseptooKanday.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3a9fbde273aa6b085e6e302545e0e2fed0a6c31c84b4d70c1ae5234ff9f6cff4",
+    "old": "651b1eb24faa3de776bcc1db7dd1539ced2936bb23aad2c6359550293be7b6fb"
+  },
+  "resources/files/EkiOrunduuKoshuuEseptooKanday_JENt77E.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3a9fbde273aa6b085e6e302545e0e2fed0a6c31c84b4d70c1ae5234ff9f6cff4",
+    "old": "651b1eb24faa3de776bcc1db7dd1539ced2936bb23aad2c6359550293be7b6fb"
+  },
+  "resources/files/EkiOrunduuKoshuuJoopTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "956098bbbd88f1075eed47267e4b8d77edf92e4c6027cb9c39c6a8b7316af570",
+    "old": "97d92d26d042a6eeeee9ca182f3321a9146078e30d65b9ecaf1e8a62e91bc602"
+  },
+  "resources/files/EkiOrunduuKoshuuJoopTorchosu_Atb0w3n.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "956098bbbd88f1075eed47267e4b8d77edf92e4c6027cb9c39c6a8b7316af570",
+    "old": "97d92d26d042a6eeeee9ca182f3321a9146078e30d65b9ecaf1e8a62e91bc602"
+  },
+  "resources/files/EkiOrunduuKoshuuSandarJanaSozdor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b8b2c3ae1a816cb038d6ad672f3f7904b518d3aa3811c1c9ade9ba490cd96e2",
+    "old": "9542b467ad9153d17de759e7595afade4766da9ab51209012c0946d2586c936c"
+  },
+  "resources/files/EkiOrunduuKoshuuSandarJanaSozdor_ScjKm35.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b8b2c3ae1a816cb038d6ad672f3f7904b518d3aa3811c1c9ade9ba490cd96e2",
+    "old": "9542b467ad9153d17de759e7595afade4766da9ab51209012c0946d2586c936c"
+  },
+  "resources/files/EkiOrunduuKoshuuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc2bec4881061be3c90f3931f65b761836b0d7a419a9217b8d0b573862fc8b45",
+    "old": "c06d271b4f40408b12e447d7c2a24d79b8e3fb484a0ae8995d9bf479b31f0d32"
+  },
+  "resources/files/EkiOrunduuKoshuuTarsiaKurak_xfMLEEZ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc2bec4881061be3c90f3931f65b761836b0d7a419a9217b8d0b573862fc8b45",
+    "old": "c06d271b4f40408b12e447d7c2a24d79b8e3fb484a0ae8995d9bf479b31f0d32"
+  },
+  "resources/files/EkiOrunduuKoshuu_KemituuEseptooKanday.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3405cfef354f726306b67be90874daaa470a9a90b6ceb93c82fdc8f77a91d496",
+    "old": "1cb83ff758ed66e0bf0076ca3a5a4c59fdf24dfdba00dce307f38e1575797ead"
+  },
+  "resources/files/EkiOrunduuKoshuu_KemituuEseptooKanday_cWBUWSx.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3405cfef354f726306b67be90874daaa470a9a90b6ceb93c82fdc8f77a91d496",
+    "old": "1cb83ff758ed66e0bf0076ca3a5a4c59fdf24dfdba00dce307f38e1575797ead"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuu3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "743fdf924aa8900b2cc92fc7d1c128a0c10ca184dcbf122aa0936f1a208e3c65",
+    "old": "3847ede217669219e964071ac78b83fdb8cebdbf4fe6f63cfb8177c4676d36b0"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuu3Tutashtyr_b1fa3ja.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "743fdf924aa8900b2cc92fc7d1c128a0c10ca184dcbf122aa0936f1a208e3c65",
+    "old": "3847ede217669219e964071ac78b83fdb8cebdbf4fe6f63cfb8177c4676d36b0"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuuBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ded2f710025785b6b6d0de5ce32b9e599f36ade262d1f48c95a7745c2942c526",
+    "old": "abf5a645bae2ef4a5243b14fa849b0af10a6086791a83f4e09b5841e5110b796"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuuBingo_13wLIEN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ded2f710025785b6b6d0de5ce32b9e599f36ade262d1f48c95a7745c2942c526",
+    "old": "abf5a645bae2ef4a5243b14fa849b0af10a6086791a83f4e09b5841e5110b796"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuuMisalKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7acb113c27ac78151bbefa783dc185eb75ffa98b780ef33df48360845325466",
+    "old": "0dfcce72fba3a2468c6f2e4f1a522b4cd5e8b742bd1d5433ce4452b7a9a5d224"
+  },
+  "resources/files/EkiOrunduuOnduktarKoshuuMisalKorsot_DIdsfsM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7acb113c27ac78151bbefa783dc185eb75ffa98b780ef33df48360845325466",
+    "old": "0dfcce72fba3a2468c6f2e4f1a522b4cd5e8b742bd1d5433ce4452b7a9a5d224"
+  },
+  "resources/files/EkiOrunduuOnduktarMenenArifmetika_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "726a3b4ae8781533802af1c8a2e4bb8d91bac5546e52ff004cb7b95662b59786",
+    "old": "be02c913e67b991ca5c60bcef0e9848b0ee93d93baa914ded185e6f7b27ed3ff"
+  },
+  "resources/files/EkiOrunduuOnduktarMenenArifmetika_JYDYMAI_5p87iZF.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "726a3b4ae8781533802af1c8a2e4bb8d91bac5546e52ff004cb7b95662b59786",
+    "old": "be02c913e67b991ca5c60bcef0e9848b0ee93d93baa914ded185e6f7b27ed3ff"
+  },
+  "resources/files/EkiOrunduuOnduktarMenenArifmetika_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d108f834138202ec9124f4eabed1a482c4fe11f7799fcceb46eb1831fa75c145",
+    "old": "9a9d84fac6a3ccb4ee9ef4273d7a226d285818d8ff0db302402e69524fc5d8bd"
+  },
+  "resources/files/EkiOrunduuOnduktarMenenArifmetika_TarsiaKurak_VVO3jub.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d108f834138202ec9124f4eabed1a482c4fe11f7799fcceb46eb1831fa75c145",
+    "old": "9a9d84fac6a3ccb4ee9ef4273d7a226d285818d8ff0db302402e69524fc5d8bd"
+  },
+  "resources/files/EkiOrunduuOnduktarSandykTabyshmak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c45568b6ed059f75515b571104cfd5224ac41df44bc595c81f970aa22416b42f",
+    "old": "c8dfd0c3a8bbd85d0e83e5fb334bba42783bdcbb83aba85f2a373174058863dd"
+  },
+  "resources/files/EkiOrunduuOnduktarSandykTabyshmak_eCb5NxA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c45568b6ed059f75515b571104cfd5224ac41df44bc595c81f970aa22416b42f",
+    "old": "c8dfd0c3a8bbd85d0e83e5fb334bba42783bdcbb83aba85f2a373174058863dd"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bc850dbb899f776647d968dcb49ddaf05490afa717e88510b5e111d006547224",
+    "old": "1cc5b91fcd4e8afd154e25ed867781a44497286c565cb1a3641e83e3d87c6fbd"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_1234_7kbhEgE.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bc850dbb899f776647d968dcb49ddaf05490afa717e88510b5e111d006547224",
+    "old": "1cc5b91fcd4e8afd154e25ed867781a44497286c565cb1a3641e83e3d87c6fbd"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_3tuTutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a00b91f08fe01ac26faa68f2c75a9d0e9304806ef3e615953b65d9c082ad7c42",
+    "old": "72c1bcaa3ee79cec4558150b9f129c5dd73203ed0f67636f34d3dd79c6eaf547"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_3tuTutashtyr_3pNzfso.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a00b91f08fe01ac26faa68f2c75a9d0e9304806ef3e615953b65d9c082ad7c42",
+    "old": "72c1bcaa3ee79cec4558150b9f129c5dd73203ed0f67636f34d3dd79c6eaf547"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_BingoOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cba00070a7de31cdf6f44292419678ea203b1da18445316adf388459816de386",
+    "old": "6b57630f36af07af726bd92418aa027275c9b9a03373233b80f98a641242199d"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_BingoOyunu_lFe86jX.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cba00070a7de31cdf6f44292419678ea203b1da18445316adf388459816de386",
+    "old": "6b57630f36af07af726bd92418aa027275c9b9a03373233b80f98a641242199d"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "db31727592c34042da6bf191823602793d5945c4b81be329981d87184d6416e1",
+    "old": "fe29f9ef76d2b334387fe9221275dde3e275d00f87f095aad1512cdb413d2783"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_JenilOrtoOor_UOs54tT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "db31727592c34042da6bf191823602793d5945c4b81be329981d87184d6416e1",
+    "old": "fe29f9ef76d2b334387fe9221275dde3e275d00f87f095aad1512cdb413d2783"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2840608d823fff8ff55466bcb6fc1204227780dd40d49ad31b8550d5b3de7ab5",
+    "old": "e453549d0fd61b5edc5b8f3deb84384a2136cb60db0a030e8d8da3d8847774e9"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_KondumA_cXNjoPb.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2840608d823fff8ff55466bcb6fc1204227780dd40d49ad31b8550d5b3de7ab5",
+    "old": "e453549d0fd61b5edc5b8f3deb84384a2136cb60db0a030e8d8da3d8847774e9"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_KondumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f192a620da82a94fb21cf932cfbecfa3989fd826824050dda55aeda80d7d5ad0",
+    "old": "5c65b769dbb427f3b8f2378bb67a68477c55955498874547ce19ac4a69fed0f3"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_KondumB_q4MUWSn.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f192a620da82a94fb21cf932cfbecfa3989fd826824050dda55aeda80d7d5ad0",
+    "old": "5c65b769dbb427f3b8f2378bb67a68477c55955498874547ce19ac4a69fed0f3"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d1ab7d0f8bfac406a57d3b66191692f0c8a8c3479ab197f7968cd723063146e4",
+    "old": "4961b55b03617b537f028c5b93fe71d398a15a1f6350aa81f4ebb67971748f6a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_Sabak_xSZRpbQ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d1ab7d0f8bfac406a57d3b66191692f0c8a8c3479ab197f7968cd723063146e4",
+    "old": "4961b55b03617b537f028c5b93fe71d398a15a1f6350aa81f4ebb67971748f6a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_SandykTabyshmak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "388b891688728431a46b996d78705ae2b13bbf340fb0d1af62d0dd28998d5ea3",
+    "old": "7bc4f3dd077ee95056c768d0e58c7d9ab5af835033d0b186d4851fc97bca104a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_SandykTabyshmak_6PvOkjz.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "388b891688728431a46b996d78705ae2b13bbf340fb0d1af62d0dd28998d5ea3",
+    "old": "7bc4f3dd077ee95056c768d0e58c7d9ab5af835033d0b186d4851fc97bca104a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1177231f8f0fac4276284efaaf334cc967f10199e06c7e49c40453ce544f7463",
+    "old": "7edcdf63dc2155f35c944a5065d55551b7c165cbab15adcee51506e455840f04"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_TarsiaKurak_ENh5cIr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1177231f8f0fac4276284efaaf334cc967f10199e06c7e49c40453ce544f7463",
+    "old": "7edcdf63dc2155f35c944a5065d55551b7c165cbab15adcee51506e455840f04"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_UnaaJaryw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a67ca802cb618160c8a74456de146a504c0562926a832b788c69f85e139f214f",
+    "old": "00a1307ec3412b8cda6183f3f828410b808aa61193422520c7e7277a84374388"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_UnaaJaryw_AZPuY3w.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a67ca802cb618160c8a74456de146a504c0562926a832b788c69f85e139f214f",
+    "old": "00a1307ec3412b8cda6183f3f828410b808aa61193422520c7e7277a84374388"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_XandO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9f08677c7df719640cef2f6b41c0ab5a54ba93ba35faf7b1177d48aa0f479b3d",
+    "old": "f826a5ec45adf53db4e3bf4275602866dca792140300184e41384af68f90695d"
+  },
+  "resources/files/EkiOrunduuOnduktar_Boluu_XandO_LJf7PTM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9f08677c7df719640cef2f6b41c0ab5a54ba93ba35faf7b1177d48aa0f479b3d",
+    "old": "f826a5ec45adf53db4e3bf4275602866dca792140300184e41384af68f90695d"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c2b3e49d5484f3f59d68994eef7d369115ef194f59b7d2d75b1b5a76a2445164",
+    "old": "d80c2e28cc7b91a5669043a2f241fa2f9e4a8b18a2d4678036aac51900ad23c8"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_1234_2H9Daev.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c2b3e49d5484f3f59d68994eef7d369115ef194f59b7d2d75b1b5a76a2445164",
+    "old": "d80c2e28cc7b91a5669043a2f241fa2f9e4a8b18a2d4678036aac51900ad23c8"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd8490bdb46c15026882b86cdb10f2df6decd41818d634be9a80e57967e3b653",
+    "old": "8ce9d64d53f80172b16064769f30a98bfb98efd5511c892d4962406731a30489"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_JYDYMAI_MWzBCyH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd8490bdb46c15026882b86cdb10f2df6decd41818d634be9a80e57967e3b653",
+    "old": "8ce9d64d53f80172b16064769f30a98bfb98efd5511c892d4962406731a30489"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a48c2d5295047ef31323e0291ad6fb18d6dba0e42eb27834f45cc5a3c357dc08",
+    "old": "a4894fb58d6ef96c7d0e67cb5f2b4523b97c439b1abf7fe0f1b63423d727a5d5"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_JenilOrtoOor_tXXHHTY.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a48c2d5295047ef31323e0291ad6fb18d6dba0e42eb27834f45cc5a3c357dc08",
+    "old": "a4894fb58d6ef96c7d0e67cb5f2b4523b97c439b1abf7fe0f1b63423d727a5d5"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_KataryMNTort.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2d522f2f568d30270c0af8320b13751067a814e21fc09149d9fb06dadd6afd2c",
+    "old": "cc4c1e0bfc78d699e2623ff5e18f31a32ec108e4062632845ef58de9072a762f"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_KataryMNTort_PQrfHTZ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2d522f2f568d30270c0af8320b13751067a814e21fc09149d9fb06dadd6afd2c",
+    "old": "cc4c1e0bfc78d699e2623ff5e18f31a32ec108e4062632845ef58de9072a762f"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_SABAK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f3f7a56237d5ece179fa367027d1cb2d05d2d45f455f8c323624c600a8166c16",
+    "old": "ab16d550989b5bd034e0a3cff5f5a0e5187890926a9a5e0a367b500965eceeff"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_SABAK_bznWeUE.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f3f7a56237d5ece179fa367027d1cb2d05d2d45f455f8c323624c600a8166c16",
+    "old": "ab16d550989b5bd034e0a3cff5f5a0e5187890926a9a5e0a367b500965eceeff"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_TARSIAKURAK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f8a1954dd4ea45d394ecde069cad32d57a5ad35c3043e9a64e55fa614301bb8a",
+    "old": "c6231a9fc1274c8a7daaadcf39ccb97d4f79e89413f65d160be63d2b00ae2dd2"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_TARSIAKURAK_2RUScey.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f8a1954dd4ea45d394ecde069cad32d57a5ad35c3043e9a64e55fa614301bb8a",
+    "old": "c6231a9fc1274c8a7daaadcf39ccb97d4f79e89413f65d160be63d2b00ae2dd2"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_UnaaJarysh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a579d58c2b4417d7b08d79f1931ad3d79ba8ead8b4c45af674f634cd0b12e0f4",
+    "old": "3d1e177fc5f9368e0154bb9eb8647c0de5c4e1cec02be312d061c9c4fb0cc44e"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_UnaaJarysh_1q9C7TX.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a579d58c2b4417d7b08d79f1931ad3d79ba8ead8b4c45af674f634cd0b12e0f4",
+    "old": "3d1e177fc5f9368e0154bb9eb8647c0de5c4e1cec02be312d061c9c4fb0cc44e"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_XO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "75060bd8761834724dffde5fc60dcd9de573fb13d9081fd5855698744c9cd5d3",
+    "old": "ca0e5e2739e98cdf915653f5a27387e316b0ae931bbbccd2950673301c5d9802"
+  },
+  "resources/files/EkiOrunduuOnduktar_KOBOYTUU_BOLUU_XO_nXzUfOf.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "75060bd8761834724dffde5fc60dcd9de573fb13d9081fd5855698744c9cd5d3",
+    "old": "ca0e5e2739e98cdf915653f5a27387e316b0ae931bbbccd2950673301c5d9802"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8b81f8c90bc430122d8444b2d5204f23071d6c6a6c5e8192a33a7ee38b58a526",
+    "old": "723761a4f2bb94a09d4a7f9a46238e3701fd225b81b9939c9f3409344a95c5f4"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_Bingo_FcSrtPR.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8b81f8c90bc430122d8444b2d5204f23071d6c6a6c5e8192a33a7ee38b58a526",
+    "old": "723761a4f2bb94a09d4a7f9a46238e3701fd225b81b9939c9f3409344a95c5f4"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_EseptooKanday.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "18586d651b2c4f0f186b096f597349c7c711d021fb26c82242b980a640ef1388",
+    "old": "adbb3f6ad258bcb50d9f5c04e301dd5da13bebb5b385b0318e7b4d96cd359ba2"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_EseptooKanday_xg5qumo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "18586d651b2c4f0f186b096f597349c7c711d021fb26c82242b980a640ef1388",
+    "old": "adbb3f6ad258bcb50d9f5c04e301dd5da13bebb5b385b0318e7b4d96cd359ba2"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_JoopTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ae02fb193517088f740c432d0cae3e5ba989d780afcf0e41eab54bd7ab8a69b7",
+    "old": "3bf1d0206f50df0567b5e6540c8967dea22ab05b12e0b9eb5fea3d4000b1325a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_JoopTorchosu_R4zd1n6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ae02fb193517088f740c432d0cae3e5ba989d780afcf0e41eab54bd7ab8a69b7",
+    "old": "3bf1d0206f50df0567b5e6540c8967dea22ab05b12e0b9eb5fea3d4000b1325a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_MagaKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2efd4954526490a2a0d821b511672b3163aff4ce87d6ff0ec6f01204dc52676c",
+    "old": "5054c38fe108c6e800af371be5844fc3e3905dc193460a821094d5ce4ef45f4e"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_MagaKorsot_dliKbJH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2efd4954526490a2a0d821b511672b3163aff4ce87d6ff0ec6f01204dc52676c",
+    "old": "5054c38fe108c6e800af371be5844fc3e3905dc193460a821094d5ce4ef45f4e"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ad47fdfda4bcf8ca2ae81af401952cdff865175524c084e7c3fd5ad0671fee9d",
+    "old": "6a62ffb9b72d36c89450158c33becf435e0d0e03232063072eb64b5dfc88464c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_Sabak_4QCYiGf.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ad47fdfda4bcf8ca2ae81af401952cdff865175524c084e7c3fd5ad0671fee9d",
+    "old": "6a62ffb9b72d36c89450158c33becf435e0d0e03232063072eb64b5dfc88464c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_SandarJanaSozdor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1675e2b4b35d3992576916c74e0a01cc98546f660589aa29909780fb95688404",
+    "old": "b7a1dd9620717f875da175a399d6758425a0f5815e2ca930a9d77b6d032f777c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_SandarJanaSozdor_wu6vpM5.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1675e2b4b35d3992576916c74e0a01cc98546f660589aa29909780fb95688404",
+    "old": "b7a1dd9620717f875da175a399d6758425a0f5815e2ca930a9d77b6d032f777c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0183d1be456b572da58be6bb44ee82d6fd42c93ef28fd7060e1989f0a1c38f16",
+    "old": "fe03409f957538ee5f97ca71ec9e750ef7a3582beb2fccdc5112cb9f58c2cf80"
+  },
+  "resources/files/EkiOrunduuOnduktar_Kemituu_TarsiaKurak_zqCRvBk.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0183d1be456b572da58be6bb44ee82d6fd42c93ef28fd7060e1989f0a1c38f16",
+    "old": "fe03409f957538ee5f97ca71ec9e750ef7a3582beb2fccdc5112cb9f58c2cf80"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "35533289c0cc707803d7afdec7936e7337a7137aefc72774da700f54ea46a710",
+    "old": "d0e7fec65fb70faaa04ab1f21a948ca1aa013a64f50c5d66fc8a979f8f3ec056"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_1234_WVlce56.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "35533289c0cc707803d7afdec7936e7337a7137aefc72774da700f54ea46a710",
+    "old": "d0e7fec65fb70faaa04ab1f21a948ca1aa013a64f50c5d66fc8a979f8f3ec056"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_BlockbusterOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9c01daa4efaa87c04fe55c17c2e6d76134c722a560156fa5aed1c7fab08953f6",
+    "old": "1e8fb2d2632e93f4c3e9a4f29755c7f0e168824bb599e446b127f4d342ca8796"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_BlockbusterOyunu_KbeRE2v.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9c01daa4efaa87c04fe55c17c2e6d76134c722a560156fa5aed1c7fab08953f6",
+    "old": "1e8fb2d2632e93f4c3e9a4f29755c7f0e168824bb599e446b127f4d342ca8796"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ae78e6396064eddd0aa92769d110c19ec90831b6b5f1d5933a840aaee73ee4ad",
+    "old": "7131b213a827aff4d13d647dc885f9678035cc657fd4478454aed9b4b5cc6c6f"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_JYDYMAI_PpYlFs8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ae78e6396064eddd0aa92769d110c19ec90831b6b5f1d5933a840aaee73ee4ad",
+    "old": "7131b213a827aff4d13d647dc885f9678035cc657fd4478454aed9b4b5cc6c6f"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_Jenil_Orto_Oor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "614ca911aff6fd03d2f12435d1ebbe9366e75442cee8dac9de00bee19d9a2ea0",
+    "old": "ea7d508e773fc849fa202735b2739a5c448a9a870a4ec55eb3bf239b84db011e"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_Jenil_Orto_Oor_OEg70Ty.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "614ca911aff6fd03d2f12435d1ebbe9366e75442cee8dac9de00bee19d9a2ea0",
+    "old": "ea7d508e773fc849fa202735b2739a5c448a9a870a4ec55eb3bf239b84db011e"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_JoopTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d001c25baec859d167ffa76714463e0f189b0f8c0ee33d672ca92654b5f94f4f",
+    "old": "183695f7c25198baaf77add882928229d9d5ff7401e03b92fa455c1720935192"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_JoopTorchosu_pwXlCWl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d001c25baec859d167ffa76714463e0f189b0f8c0ee33d672ca92654b5f94f4f",
+    "old": "183695f7c25198baaf77add882928229d9d5ff7401e03b92fa455c1720935192"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e893a6f3b84442816a19ddd282b0cb6af54b05a8b65fc9d702d697f665f35314",
+    "old": "04f5133bfe102af145eb61c1307b2a900f61c4a4a3c84b30b5f9dc1390142843"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_Sabak_yRS4dqS.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e893a6f3b84442816a19ddd282b0cb6af54b05a8b65fc9d702d697f665f35314",
+    "old": "04f5133bfe102af145eb61c1307b2a900f61c4a4a3c84b30b5f9dc1390142843"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_SandykBashKatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b91b15f0fe0aa692691cf48ceb20fdf4d6c8601f144880d8dd4c1e8f6db9b4b",
+    "old": "57dedf631a87d528132c31d9e6532bf4592e3cd2d6790f65e1a3c93a73155e10"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_SandykBashKatyrma_CXzjIsO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b91b15f0fe0aa692691cf48ceb20fdf4d6c8601f144880d8dd4c1e8f6db9b4b",
+    "old": "57dedf631a87d528132c31d9e6532bf4592e3cd2d6790f65e1a3c93a73155e10"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "059581817f6ef7187dd913dd6014b5d58e05f9607b1a80557ad64673b0958521",
+    "old": "4b1d8ef1fdefa02b60e251b5af83523af7fd50fef1d174e0d67400427542fb8c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_TarsiaKurak_aAw2qJh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "059581817f6ef7187dd913dd6014b5d58e05f9607b1a80557ad64673b0958521",
+    "old": "4b1d8ef1fdefa02b60e251b5af83523af7fd50fef1d174e0d67400427542fb8c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_UnaaJarysh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ed89671e08f4ab1006f2ad671452843c422ec5125b24f47fe1384fe4f0ce44d9",
+    "old": "5cb686673de0c5bf26898a50fef3f0bad58385fe026606bb134f1fa39cd69634"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_UnaaJarysh_tJHxu43.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ed89671e08f4ab1006f2ad671452843c422ec5125b24f47fe1384fe4f0ce44d9",
+    "old": "5cb686673de0c5bf26898a50fef3f0bad58385fe026606bb134f1fa39cd69634"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_XO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "869eea7e117256e2fe7cb3e8cbb3bc8957178c84727946f07cc5315e015eafb0",
+    "old": "502f37b21f31c9c7ed78c36de3f07d7889fd0c0dd916190142a5f60713b983d3"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koboytuu_XO_gj3tYna.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "869eea7e117256e2fe7cb3e8cbb3bc8957178c84727946f07cc5315e015eafb0",
+    "old": "502f37b21f31c9c7ed78c36de3f07d7889fd0c0dd916190142a5f60713b983d3"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "79dedcd2a2e041418e01bccb08fc9b408c3d32552ac0acb75e09df74ed004bf0",
+    "old": "53a4a97dc81bc9331e4913b6e548157ebb739a9e9f890989e502cbaf80ccdf20"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu1234_SuNKy0B.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "79dedcd2a2e041418e01bccb08fc9b408c3d32552ac0acb75e09df74ed004bf0",
+    "old": "53a4a97dc81bc9331e4913b6e548157ebb739a9e9f890989e502cbaf80ccdf20"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu1234pptx.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7e7f75255c492277d35437b7e454fa2faf3b46816e4c5f3cef3741145041bb7b",
+    "old": "9885113574de887ba7e5768239431bcad707f899b6270c2b2b06e9cd18e03222"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu1234pptx_PeLrAHi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7e7f75255c492277d35437b7e454fa2faf3b46816e4c5f3cef3741145041bb7b",
+    "old": "9885113574de887ba7e5768239431bcad707f899b6270c2b2b06e9cd18e03222"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituuJenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0ac747f5090ab6ec2b4da0dbfa3c0d21d98f5c229a22f1cd74499c6605fdcd57",
+    "old": "5e0fb6f19fdf3b9d24c59a8c7b437320f18bbdbb29f5a4a8af80828ce7938bf2"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituuJenilOrtoOor_ABcMBbj.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0ac747f5090ab6ec2b4da0dbfa3c0d21d98f5c229a22f1cd74499c6605fdcd57",
+    "old": "5e0fb6f19fdf3b9d24c59a8c7b437320f18bbdbb29f5a4a8af80828ce7938bf2"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituuSabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6aec4033fef4f2e30ce2ca5f827fd252ebf149b51b0a8592eb1ac5b0a6262ea6",
+    "old": "2222002b98aaf16ea3990806c68de284b1d2ab4bb87cfe8f266308fe31e46011"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituuSabak_9y3dk23.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6aec4033fef4f2e30ce2ca5f827fd252ebf149b51b0a8592eb1ac5b0a6262ea6",
+    "old": "2222002b98aaf16ea3990806c68de284b1d2ab4bb87cfe8f266308fe31e46011"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu_EseptooKanday.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "678684a515b070c2f9a0abaf40a6c5284799cb9e08be949a97557f39cf4182f6",
+    "old": "93c3bff155af9d5ff754ba6a09c56ad4ec54e212642d7dc53b5bd6e62587c663"
+  },
+  "resources/files/EkiOrunduuOnduktar_KoshuuKemituu_EseptooKanday_y9lSx38.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "678684a515b070c2f9a0abaf40a6c5284799cb9e08be949a97557f39cf4182f6",
+    "old": "93c3bff155af9d5ff754ba6a09c56ad4ec54e212642d7dc53b5bd6e62587c663"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2c3e857b810b87f25d7fcdc5a26856e924c24e594d419d7af0f13c8d6124b31a",
+    "old": "4db5dd1d6124c88ef962049ab1f24c533b7539fb574fb978037ae27a3c59579a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Bingo_IrfcPKt.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2c3e857b810b87f25d7fcdc5a26856e924c24e594d419d7af0f13c8d6124b31a",
+    "old": "4db5dd1d6124c88ef962049ab1f24c533b7539fb574fb978037ae27a3c59579a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "66e461e318471e1c1efe215d547867243ed8214d2598ae0bfff2d9ce721074ad",
+    "old": "97bf3a4a4593e22a80ed60b1f74066190cb3a5116f17e945ba9f13e5c6d83e7c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_JYDYMAI_7S7IV5f.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "66e461e318471e1c1efe215d547867243ed8214d2598ae0bfff2d9ce721074ad",
+    "old": "97bf3a4a4593e22a80ed60b1f74066190cb3a5116f17e945ba9f13e5c6d83e7c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_MagaKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "abfceadffcbc6556d561f616b7cf9a7966f8eacdc38501fb0c123040aa2da7a5",
+    "old": "ab74920510e3c812ebedc3f8831d6e79f68defc1e8013e0c675e4bfda91d73bf"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_MagaKorsot_7lC50ZR.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "abfceadffcbc6556d561f616b7cf9a7966f8eacdc38501fb0c123040aa2da7a5",
+    "old": "ab74920510e3c812ebedc3f8831d6e79f68defc1e8013e0c675e4bfda91d73bf"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "af1ee3e7c2e50710e3e3ea130724b5b422abd02782b104b97af11f04ff3de267",
+    "old": "0250ec462e0dd9d32b78ab0ecfea65c978288c166e6c41194f636ec9834389fe"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Sabak_Y5JeA7i.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "af1ee3e7c2e50710e3e3ea130724b5b422abd02782b104b97af11f04ff3de267",
+    "old": "0250ec462e0dd9d32b78ab0ecfea65c978288c166e6c41194f636ec9834389fe"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_SandarJanaSozdor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "017931920dbedbe0785e4622b4226356c5c054d1b219a71c39e4edbb2f61f693",
+    "old": "c207a753078772565f9131053e3b44672272aab9957041a549596ec93f54b82a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_SandarJanaSozdor_Zpq0B7E.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "017931920dbedbe0785e4622b4226356c5c054d1b219a71c39e4edbb2f61f693",
+    "old": "c207a753078772565f9131053e3b44672272aab9957041a549596ec93f54b82a"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5ffb0e554ebb5545cb7bda796e6965aae58ebd0987a240c9a33d180da472acda",
+    "old": "1bc2f2c9ee677fd92ecfbc9b6e0349209e000c85b13c3716c8f3265998623619"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_TarsiaKurak_EdMtp3b.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5ffb0e554ebb5545cb7bda796e6965aae58ebd0987a240c9a33d180da472acda",
+    "old": "1bc2f2c9ee677fd92ecfbc9b6e0349209e000c85b13c3716c8f3265998623619"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_TuuraJanaKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5ee89aa73692cc75e0de0747a9dcae499dd08c1b8b751b9abf05716e4062d475",
+    "old": "fd27f6e20faa8e8606fa14e6af34543191a557b39ba79829305566bf5065c923"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_TuuraJanaKata_oDhJMNV.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5ee89aa73692cc75e0de0747a9dcae499dd08c1b8b751b9abf05716e4062d475",
+    "old": "fd27f6e20faa8e8606fa14e6af34543191a557b39ba79829305566bf5065c923"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_XO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "76c88415b5cb4100602bd41bfbf09feb6440d61138f305e7251451e2f98b5f1b",
+    "old": "ede8ac070a58e9d696cdb094bb7ee736551316e1dc67c82579c0ea7c01177c5c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_XO_yApQHBo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "76c88415b5cb4100602bd41bfbf09feb6440d61138f305e7251451e2f98b5f1b",
+    "old": "ede8ac070a58e9d696cdb094bb7ee736551316e1dc67c82579c0ea7c01177c5c"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Ykmasy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f1f70c7d1d512dd21b8917653327c017c8c1db888015cdc6b622d932e36cee03",
+    "old": "67ac65c7e8b9dc90f8cd02a30873b368206f4d729d11a80df9756f898410767b"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Kemituu_Ykmasy_HKtWroy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f1f70c7d1d512dd21b8917653327c017c8c1db888015cdc6b622d932e36cee03",
+    "old": "67ac65c7e8b9dc90f8cd02a30873b368206f4d729d11a80df9756f898410767b"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15c0eb2e59594ec7b51f20ef2251adcd31cdfade4b13e2324c126f1b4222cb22",
+    "old": "21ec2ad203b761d914825e88d9134e85d3e62940f8a0e82b92710be50a4994aa"
+  },
+  "resources/files/EkiOrunduuOnduktar_Koshuu_Sabak_pqCB9up.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15c0eb2e59594ec7b51f20ef2251adcd31cdfade4b13e2324c126f1b4222cb22",
+    "old": "21ec2ad203b761d914825e88d9134e85d3e62940f8a0e82b92710be50a4994aa"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_3TuTutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "45cf63972c6fbf4abacf1f95acba8c55693723073e6d7d5bf4f16e02210d4ad2",
+    "old": "46511ee9e09463ad513918ddf335876e481d389ddf9458e4a1137a86f6b79917"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_3TuTutashtyr_vMH8rSk.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "45cf63972c6fbf4abacf1f95acba8c55693723073e6d7d5bf4f16e02210d4ad2",
+    "old": "46511ee9e09463ad513918ddf335876e481d389ddf9458e4a1137a86f6b79917"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc8d4c3c51bd94fa01c5edf2fce383f5cfb89728a7310efff02b52803f4fa19d",
+    "old": "5f54fc07d09a5dfe2643f6aa2a4c1bfaf555d5ca159d2c2f72b48614e8bc6ccd"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_JYDYMAI_QlP7onD.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc8d4c3c51bd94fa01c5edf2fce383f5cfb89728a7310efff02b52803f4fa19d",
+    "old": "5f54fc07d09a5dfe2643f6aa2a4c1bfaf555d5ca159d2c2f72b48614e8bc6ccd"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd4597f0636e2e2ce503e424f56ae0a5c15c1161a4fc1eee77262ab74ddf8ca2",
+    "old": "2c9db6017b4508c4127d45fdb33250b4ff506aba1303e70fad32f5ff6c1f5b4b"
+  },
+  "resources/files/Ekvivalenettuuluk_BOPK_TarsiaKurak_X38BqJ2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bd4597f0636e2e2ce503e424f56ae0a5c15c1161a4fc1eee77262ab74ddf8ca2",
+    "old": "2c9db6017b4508c4127d45fdb33250b4ff506aba1303e70fad32f5ff6c1f5b4b"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_3TuTutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a9d032769edb714b8536e39142a71a625c6ed48b03b6020b10fd5f99b3069f13",
+    "old": "1d78730264e0a3255baf0673b49e19da50c7b2e7c134524484982988e470a977"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_3TuTutashtyr_ouaJZ4q.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a9d032769edb714b8536e39142a71a625c6ed48b03b6020b10fd5f99b3069f13",
+    "old": "1d78730264e0a3255baf0673b49e19da50c7b2e7c134524484982988e470a977"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_BaylanyshOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "80760e7cf6d04f01390bb8cdfc952b917f72364b138d3e62ca29214b3c8eee15",
+    "old": "2caf0b158456e650acfdd82faf4c96ff2556a482a953e5076627e83f873fb6cb"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_BaylanyshOyunu_pgTVmgv.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "80760e7cf6d04f01390bb8cdfc952b917f72364b138d3e62ca29214b3c8eee15",
+    "old": "2caf0b158456e650acfdd82faf4c96ff2556a482a953e5076627e83f873fb6cb"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_BlockbusterOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "330b4d303a8bb7a2459c9b4631b92c54db6fb2675825e45f787ef0b713fa236f",
+    "old": "1e813189a264ae13e53da2a52086a82c20767c125cce78249acdc9ac967f4ee1"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_BlockbusterOyunu_gyQKt0v.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "330b4d303a8bb7a2459c9b4631b92c54db6fb2675825e45f787ef0b713fa236f",
+    "old": "1e813189a264ae13e53da2a52086a82c20767c125cce78249acdc9ac967f4ee1"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_JYDYMAi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ab44d381105e3af384ec9ed01a3d4d01321cbf08531f045563671ed4cdbb9cd9",
+    "old": "48a1569983840e360eac7ffadbb146e9a35a8bb91df7eba2704df61fdc4ecaaa"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_JYDYMAi_nUM12F9.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ab44d381105e3af384ec9ed01a3d4d01321cbf08531f045563671ed4cdbb9cd9",
+    "old": "48a1569983840e360eac7ffadbb146e9a35a8bb91df7eba2704df61fdc4ecaaa"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_JYDYMAi_nUM12F9_ZFH29Ul.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ab44d381105e3af384ec9ed01a3d4d01321cbf08531f045563671ed4cdbb9cd9",
+    "old": "48a1569983840e360eac7ffadbb146e9a35a8bb91df7eba2704df61fdc4ecaaa"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9991570fe779245649fd6b05bce2d7a32c6107185845a987cc97348207a2c55",
+    "old": "5c0336fb8a2bc43ba8eaa2278de63ea4573062ca1447f0d57a146bc88703a85f"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_JenilOrtoOor_APO82yl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9991570fe779245649fd6b05bce2d7a32c6107185845a987cc97348207a2c55",
+    "old": "5c0336fb8a2bc43ba8eaa2278de63ea4573062ca1447f0d57a146bc88703a85f"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_KazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "df8954a585d8674901d7a9c4929bbda9562c0d514041f347c52e02f998873ca8",
+    "old": "20e88b3361e335b7c83123a2479d19415d53deea8bb1598a321599f12da980a0"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_KazynaIzdoo_DSCR8y7.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "df8954a585d8674901d7a9c4929bbda9562c0d514041f347c52e02f998873ca8",
+    "old": "20e88b3361e335b7c83123a2479d19415d53deea8bb1598a321599f12da980a0"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "63784f8a23653d12b40552fad029c92524765824e177a1840a1cea2c2e31916d",
+    "old": "9bbd4ff20306f82a7de9086ac77b70de52f9e3e668aacbd0b26e922c56212704"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_Sabak_axaxbgc.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "63784f8a23653d12b40552fad029c92524765824e177a1840a1cea2c2e31916d",
+    "old": "9bbd4ff20306f82a7de9086ac77b70de52f9e3e668aacbd0b26e922c56212704"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_SalywtyrOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8a48d05e0b8aaa9b692211f3c9e6050cb30bf21ae3e350bf51c2c75140595e45",
+    "old": "da2af9198f49730126341d5a1df9c6bf9306b11c0ce6a097b4d07aa8c5d216ed"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_SalywtyrOyunu_RQe1OSN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8a48d05e0b8aaa9b692211f3c9e6050cb30bf21ae3e350bf51c2c75140595e45",
+    "old": "da2af9198f49730126341d5a1df9c6bf9306b11c0ce6a097b4d07aa8c5d216ed"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "29891749d6e48df160bb1f5e7c30aa82a9697446f6482fba47a7b0eff9550647",
+    "old": "4aef7ecca4a7353a4be92fcab81527fbb4909cdd2456e48ec7768dc91b12469e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_TarsiaKurak_FVQu4Hd.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "29891749d6e48df160bb1f5e7c30aa82a9697446f6482fba47a7b0eff9550647",
+    "old": "4aef7ecca4a7353a4be92fcab81527fbb4909cdd2456e48ec7768dc91b12469e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8009778b362805276759ff4deb383b22a185526b2c60f273a982ec4966516e71",
+    "old": "f516e387729db1ac9159e5e4d6eedf0becf993e18eaa82b0f23ee9ed221f46bd"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_1234_eqnqNk4.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8009778b362805276759ff4deb383b22a185526b2c60f273a982ec4966516e71",
+    "old": "f516e387729db1ac9159e5e4d6eedf0becf993e18eaa82b0f23ee9ed221f46bd"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_BlockbusterOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc0de16fe12ae8c95933abd7ae94652cdc48dcbe993cf3dbd336780fd5659836",
+    "old": "e12b6eb252ffe547e46bef6ca9ef8736069d0c8ca76e14cb1b8edfd2d91a02ef"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_BlockbusterOyunu_baQe1ll.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc0de16fe12ae8c95933abd7ae94652cdc48dcbe993cf3dbd336780fd5659836",
+    "old": "e12b6eb252ffe547e46bef6ca9ef8736069d0c8ca76e14cb1b8edfd2d91a02ef"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a34422bff83d775c614f75a9b6202a3c27825d1a6c5156dbf4972c403557dfc8",
+    "old": "e73aa7ccaaed1fee2be6d76f8a57d4042838122a24570a8b269425331a804533"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_EstafetaOyunu_qyQps4D.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a34422bff83d775c614f75a9b6202a3c27825d1a6c5156dbf4972c403557dfc8",
+    "old": "e73aa7ccaaed1fee2be6d76f8a57d4042838122a24570a8b269425331a804533"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b88a6152dd0fd1b9b5c4bce678eb21af3ee1be2a4368bb2e67d3e1735f806dba",
+    "old": "8fc546f2c1be8867629a289b72d626e5259beef672bf10efbefc5a74b900e62e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_JYDYMAI_fitg64U.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b88a6152dd0fd1b9b5c4bce678eb21af3ee1be2a4368bb2e67d3e1735f806dba",
+    "old": "8fc546f2c1be8867629a289b72d626e5259beef672bf10efbefc5a74b900e62e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_JenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4808a0235376a0f7e8fb2e2c42b0d8a5166030b1bc10791196b12616f094a98f",
+    "old": "7c2d7c26e394aabd8b8a2790c9def46bcd48e8ea9efd2fc7ef18be80125e722f"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_JenilOrtoOor_ErtrI7j.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4808a0235376a0f7e8fb2e2c42b0d8a5166030b1bc10791196b12616f094a98f",
+    "old": "7c2d7c26e394aabd8b8a2790c9def46bcd48e8ea9efd2fc7ef18be80125e722f"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "777cb7a793963c5064422bf1e329d94892ce74be5546d253a5963fd03e276a21",
+    "old": "6c8df6dcf21843404d834731f22bc085120723ce7707c62d46851f785cbb0bc0"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_KazynaIzdoo_OPJXfMC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "777cb7a793963c5064422bf1e329d94892ce74be5546d253a5963fd03e276a21",
+    "old": "6c8df6dcf21843404d834731f22bc085120723ce7707c62d46851f785cbb0bc0"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b165269457a209cd98936492ce9cbea3a7658da6d92f85eff2dec2405e160ccc",
+    "old": "42da681a12006b2d90c76e8a19772e5fd9bc29c88e4bb2b417cdd8962c29c558"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_KondumA_Mrsj3S1.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b165269457a209cd98936492ce9cbea3a7658da6d92f85eff2dec2405e160ccc",
+    "old": "42da681a12006b2d90c76e8a19772e5fd9bc29c88e4bb2b417cdd8962c29c558"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "015a8c17f3849dd3d0699cdfb999291cdc9634643ee955ea07b6dc2b7a26e224",
+    "old": "87b0f3860b68a1c3d2ceec61cb1710d7b49603464812d1c252fd260562ce9e0e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_Sabak_n9Wpwy8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "015a8c17f3849dd3d0699cdfb999291cdc9634643ee955ea07b6dc2b7a26e224",
+    "old": "87b0f3860b68a1c3d2ceec61cb1710d7b49603464812d1c252fd260562ce9e0e"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinth.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "388ec28970fbadc48fd21c30fc27851a0a2fac9039e8f9ba82d81762bff4eff8",
+    "old": "7dbb41db1cb6e87ad20fc232f283ac2df7bee83d4c840bdb25d9e6865eb559e9"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_SandarMNLabyrinth_9596liB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "388ec28970fbadc48fd21c30fc27851a0a2fac9039e8f9ba82d81762bff4eff8",
+    "old": "7dbb41db1cb6e87ad20fc232f283ac2df7bee83d4c840bdb25d9e6865eb559e9"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6c609e0a5916fe0ef158a10ea8fddc9086a1710072acca508f6265c1584b93a4",
+    "old": "8611158d10759aebe86008930ec7896429f77c489a1b4bb2ed2ef45a8625ad6d"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_SandykBashKatyrma_uNtV4CP.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6c609e0a5916fe0ef158a10ea8fddc9086a1710072acca508f6265c1584b93a4",
+    "old": "8611158d10759aebe86008930ec7896429f77c489a1b4bb2ed2ef45a8625ad6d"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aa559b7633751c6413ace4b7d5b6407efd648d61532d53846286f0d776ba724f",
+    "old": "70f4048a7eaa15da2944548c8116aee1c488966c17677b3e1f3d337933517e27"
+  },
+  "resources/files/Ekvivalenettuuluk_BOP_iREETTOO_XjanaO_t6KngEq.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "aa559b7633751c6413ace4b7d5b6407efd648d61532d53846286f0d776ba724f",
+    "old": "70f4048a7eaa15da2944548c8116aee1c488966c17677b3e1f3d337933517e27"
+  },
+  "resources/files/Ekvivalenettuuluk_Bolchoktordu_Payizga_Aylandyruu_TeskeriAylandyruu_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "197cea0f94043951d42fdb9f842114c6b6337429f3e43ee95858ca5bdb3df444",
+    "old": "ef7c576bb008e4fa0ba0075f173bb9af288517510ba358e86ce3bf95bad076fa"
+  },
+  "resources/files/Ekvivalenettuuluk_Bolchoktordu_Payizga_Aylandyruu_TeskeriAylandyruu_JYD_uhNt0C7.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "197cea0f94043951d42fdb9f842114c6b6337429f3e43ee95858ca5bdb3df444",
+    "old": "ef7c576bb008e4fa0ba0075f173bb9af288517510ba358e86ce3bf95bad076fa"
+  },
+  "resources/files/Ekvivalenettuuluk_Bolchoktordu_Payizga_Aylandyruu_TeskeriAylandyruu_Tar_sPnp7IC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c684af9fc09cb7a2b33fb4d41870a084aa42e1c6a4565c3170b6f7099a1b76",
+    "old": "e3002105dfc4424c65a650f3585ebcc6a4134b352a346ba889e7a8d95d00e998"
+  },
+  "resources/files/Ekvivalenettuuluk_Bolchoktordu_Payizga_Aylandyruu_TeskeriAylandyruu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c684af9fc09cb7a2b33fb4d41870a084aa42e1c6a4565c3170b6f7099a1b76",
+    "old": "e3002105dfc4424c65a650f3585ebcc6a4134b352a346ba889e7a8d95d00e998"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f0f784e0a941d1dee835ae51feff9ea0c381a4ae6849706ee1676689b6765a2f",
+    "old": "e3982ce9e23449b449d290e6186462edda7ff680dfdb2284c4722b0f3281e8ea"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_DalKeltiruu_P01ZRf6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f0f784e0a941d1dee835ae51feff9ea0c381a4ae6849706ee1676689b6765a2f",
+    "old": "e3982ce9e23449b449d290e6186462edda7ff680dfdb2284c4722b0f3281e8ea"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2aa015a95086a6037aa269ba3dc4cdbe52057d15b72d2b624a71709261b6fa17",
+    "old": "af8b7812365aa3160744abedefefa24b06deb87674c6a9d24b0b8bada68393b6"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_JoopTorchosu_NKaxYNb.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2aa015a95086a6037aa269ba3dc4cdbe52057d15b72d2b624a71709261b6fa17",
+    "old": "af8b7812365aa3160744abedefefa24b06deb87674c6a9d24b0b8bada68393b6"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "382bca133ebfb2963f45414e4eb0609aca5d8e71bc539c26b0b370d602b75c8e",
+    "old": "5965ddea556652d296a98b92f660e207d4b387678040ac675275d345275f0559"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_Sabak_oH1MORv.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "382bca133ebfb2963f45414e4eb0609aca5d8e71bc539c26b0b370d602b75c8e",
+    "old": "5965ddea556652d296a98b92f660e207d4b387678040ac675275d345275f0559"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d9c123d76b3521c481383b0d4c8f83912f80482d89d64e361e38072ea11209fa",
+    "old": "89376b1fbab7dd57816b819a16ee3a5371d5e3fed2bb533a82710b173902be14"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_TarsiaKurak_jypcL3Q.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d9c123d76b3521c481383b0d4c8f83912f80482d89d64e361e38072ea11209fa",
+    "old": "89376b1fbab7dd57816b819a16ee3a5371d5e3fed2bb533a82710b173902be14"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_UnaaJarysh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46a7cf4e1345f76b4e2ddefc54c79eb8b9743d0a686b35f2572b22bd51d3713e",
+    "old": "db1b0048bea2b0419918c005e83e3666ef5217d6734ae013ae08a13d1f8b36fe"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_UnaaJarysh_zYiN3oH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "46a7cf4e1345f76b4e2ddefc54c79eb8b9743d0a686b35f2572b22bd51d3713e",
+    "old": "db1b0048bea2b0419918c005e83e3666ef5217d6734ae013ae08a13d1f8b36fe"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b46f6ca47ce68af10161d6327a624298100c9bb16b6d3836f0e1c50cb043abd1",
+    "old": "4134c1d59ce094bc5d7267163491ebb9ac49d16c6a3899c1316b24d99d3a0c0a"
+  },
+  "resources/files/Ekvivalenettuuluk_Kaytalanuuchu_Onduktardy_Bolchokko_XjanaO_ZAhDIyc.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b46f6ca47ce68af10161d6327a624298100c9bb16b6d3836f0e1c50cb043abd1",
+    "old": "4134c1d59ce094bc5d7267163491ebb9ac49d16c6a3899c1316b24d99d3a0c0a"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8599d7cddf2f8b55ca38f5f13a61730e83d6309f14c8ef19be5709ed13064cd9",
+    "old": "5f65bca5de1262b9abbf8436205d19382ed5a4e29d1984bdb773a4be37b477bf"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-1234_jDVbXcf.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8599d7cddf2f8b55ca38f5f13a61730e83d6309f14c8ef19be5709ed13064cd9",
+    "old": "5f65bca5de1262b9abbf8436205d19382ed5a4e29d1984bdb773a4be37b477bf"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "814b7aa5a5376bb11499ff14ef282d408d6c5b54afa6a7e70004d1f7818eb7ab",
+    "old": "48a6da806b259c8a95ad43e3a91c31a45b7ba0cd004021772d90784b4d97d5c0"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-3Tutashtyr_ZpC7ATF.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "814b7aa5a5376bb11499ff14ef282d408d6c5b54afa6a7e70004d1f7818eb7ab",
+    "old": "48a6da806b259c8a95ad43e3a91c31a45b7ba0cd004021772d90784b4d97d5c0"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-BingoOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "29ae0237c541b1730be0d57b024b76ffcdead051c7c116d4270b4ea5795fac2c",
+    "old": "c3687be7f95c9f7f56299696e4c28e9b9f07087c9159f46ebd37f7af0bc78471"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-BingoOyunuOrundardynMaan_6cmsOFq.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a651f6c85aaacda219e0059c6d27807d3c12cddd5bdc28a6b3cb7155675cafff",
+    "old": "d2dcc35957261902ba43e25a1f01edc235790d2452c3378e349f8f9e12cbb522"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-BingoOyunuOrundardynMaanisiMenen.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a651f6c85aaacda219e0059c6d27807d3c12cddd5bdc28a6b3cb7155675cafff",
+    "old": "d2dcc35957261902ba43e25a1f01edc235790d2452c3378e349f8f9e12cbb522"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-BingoOyunu_F9yKoRM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "29ae0237c541b1730be0d57b024b76ffcdead051c7c116d4270b4ea5795fac2c",
+    "old": "c3687be7f95c9f7f56299696e4c28e9b9f07087c9159f46ebd37f7af0bc78471"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-Jydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f1eb3a37f8d2f9b2a8980a77ccc4458d9a113ac3464f43930daa65945f78e147",
+    "old": "72c61e9b8761b2f9b56b1b3ce457bd8adac7bade541fa17fcba667ef51e7b13a"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-Jydymai_eBy6tM2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f1eb3a37f8d2f9b2a8980a77ccc4458d9a113ac3464f43930daa65945f78e147",
+    "old": "72c61e9b8761b2f9b56b1b3ce457bd8adac7bade541fa17fcba667ef51e7b13a"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KataryMenenTort.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "37c1e226f8a6558323fd4e6d74210ef0cc610ff7fd297acb038ecd69302f5513",
+    "old": "da177a18bd8d751a7c6e4684aa59a0b3f1c176b938e63c528949ada36dcf7abf"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KataryMenenTort_rIAfuDc.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "37c1e226f8a6558323fd4e6d74210ef0cc610ff7fd297acb038ecd69302f5513",
+    "old": "da177a18bd8d751a7c6e4684aa59a0b3f1c176b938e63c528949ada36dcf7abf"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KazynaIzdoo_Jenil.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6115e4832c2666720da205fb8ab8e505424bc4112c6139d273b9476501933859",
+    "old": "c5d75679a4098b82b1d97e8894fc38877bd520f396a0fd218bf60775f08b9279"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KazynaIzdoo_Jenil_Ir8wYPJ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "6115e4832c2666720da205fb8ab8e505424bc4112c6139d273b9476501933859",
+    "old": "c5d75679a4098b82b1d97e8894fc38877bd520f396a0fd218bf60775f08b9279"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KazynaIzdoo_Oor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "289c91f888632812088fd35fced81d820b4e1b147acb14347a3d0b07e7a5ea74",
+    "old": "cfdd8dd09e86205a686e5156ebc0c941189c1c3c8d00d0252db5ea820ff4f649"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KazynaIzdoo_Oor_y8FDTVw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "289c91f888632812088fd35fced81d820b4e1b147acb14347a3d0b07e7a5ea74",
+    "old": "cfdd8dd09e86205a686e5156ebc0c941189c1c3c8d00d0252db5ea820ff4f649"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-KazynaIzdoo_Oor_y8FDTVw_bhLrZLA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "289c91f888632812088fd35fced81d820b4e1b147acb14347a3d0b07e7a5ea74",
+    "old": "cfdd8dd09e86205a686e5156ebc0c941189c1c3c8d00d0252db5ea820ff4f649"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-SandarMNLabyrinth.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7fbd03da9014bc908f7726d6009ff49c6f3c4e5b58573e238ee76d5a477434cb",
+    "old": "ed852fcf082f8345fd3c5e43d46c8f260845a710ec6f00258b2d28136813a97b"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-SandarMNLabyrinth_5dytjqs.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7fbd03da9014bc908f7726d6009ff49c6f3c4e5b58573e238ee76d5a477434cb",
+    "old": "ed852fcf082f8345fd3c5e43d46c8f260845a710ec6f00258b2d28136813a97b"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "deec5d6062d668498a8fc24e52eea94526977e886472d36c06cd8b28a35fbdfb",
+    "old": "b83422f6a9f96f1b0164232835353b325517520656cbbebcc57b1f98c8949686"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Bolchoktor-TarsiaKurak_NCM4ghH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "deec5d6062d668498a8fc24e52eea94526977e886472d36c06cd8b28a35fbdfb",
+    "old": "b83422f6a9f96f1b0164232835353b325517520656cbbebcc57b1f98c8949686"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "17524ba87962239cc8172fd2c5b686ac8a0944e6501cf5411d3eeafe8a37239a",
+    "old": "d1a5f31c32fbc0cb69999b055afd7e106344b94938edceaeb671da4cb329d406"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-3Tutashtyr_XIPjCsm.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "17524ba87962239cc8172fd2c5b686ac8a0944e6501cf5411d3eeafe8a37239a",
+    "old": "d1a5f31c32fbc0cb69999b055afd7e106344b94938edceaeb671da4cb329d406"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-Jydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "31426dff580125d7787287fec4a3417edffd870202d205c5b6783e5dcaa1238f",
+    "old": "1fb54e1d996c069fdbcd60613a3e514106d0006b576f74fcd64baba8711602e8"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-Jydymai_YENNYOk.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "31426dff580125d7787287fec4a3417edffd870202d205c5b6783e5dcaa1238f",
+    "old": "1fb54e1d996c069fdbcd60613a3e514106d0006b576f74fcd64baba8711602e8"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4471b72558cfee6edfd8ac7c08f2bc2216d885c1bddf4f1a1e38c02731b3ce05",
+    "old": "adeb434924b80e6710294f4eeda7a8b98d4f66edb66eeefc7ad6d97c31db9054"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardan_menen_Payizga-TarsiaKurak_1McP8ga.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4471b72558cfee6edfd8ac7c08f2bc2216d885c1bddf4f1a1e38c02731b3ce05",
+    "old": "adeb434924b80e6710294f4eeda7a8b98d4f66edb66eeefc7ad6d97c31db9054"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Aylandyruu_TeskeriAylandyruu-Jyd_yabSRQf.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c9900c98029b1d519dc9747d3fe1d738f767e266b057267f9260bcefe655db18",
+    "old": "da37903877db6f10d48fef629eca07376bce9837c709cf4fdecf9b9e006d6028"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Aylandyruu_TeskeriAylandyruu-Jydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c9900c98029b1d519dc9747d3fe1d738f767e266b057267f9260bcefe655db18",
+    "old": "da37903877db6f10d48fef629eca07376bce9837c709cf4fdecf9b9e006d6028"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Aylandyruu_TeskeriAylandyruu-Tar_CWLrHpN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ecef8fe42a5e07dc026f68f6d34e0f5da0cbdf7c115376bbc348ad9f0a3bada",
+    "old": "bcc1901d613a2a053e96d882ba95c3a8ffd0b6330cfb85fda6f71dfa017fd1a0"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Aylandyruu_TeskeriAylandyruu-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ecef8fe42a5e07dc026f68f6d34e0f5da0cbdf7c115376bbc348ad9f0a3bada",
+    "old": "bcc1901d613a2a053e96d882ba95c3a8ffd0b6330cfb85fda6f71dfa017fd1a0"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Jana_Payizga-JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "429b13e2b5cf3188254089434d0b4ff3657643f8a3eb94f0a0d7f969a43dc926",
+    "old": "c91c03b0a21f23798465c35bf1a3e10960ea76ed7605efb08805c3c1cfd36605"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Jana_Payizga-JYDYMAI_PwFGo4V.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "429b13e2b5cf3188254089434d0b4ff3657643f8a3eb94f0a0d7f969a43dc926",
+    "old": "c91c03b0a21f23798465c35bf1a3e10960ea76ed7605efb08805c3c1cfd36605"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Jana_Payizga-TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1e37be49df2b8cd3f0da0ea1b379a82592c9d633f8d959116e3e3874786d694e",
+    "old": "5019062d8fc44a49757b25e2876b72bbf0a65855034c804fd6452a670a0b458d"
+  },
+  "resources/files/Ekvivalenettuuluk_Onduktardy_Bolchokko_Jana_Payizga-TarsiaKurak_KWtNsTT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1e37be49df2b8cd3f0da0ea1b379a82592c9d633f8d959116e3e3874786d694e",
+    "old": "5019062d8fc44a49757b25e2876b72bbf0a65855034c804fd6452a670a0b458d"
+  },
+  "resources/files/Onduktar_ARALASH_AMALDAR_BINGO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57f988d01e8e60dc82aa1051f08c731e44d4de3187dbed05ba08fe78bd4b7297",
+    "old": "625d06e61106523f69897fb5f68a19db6e636a2c04d7b39a644708b001e144cf"
+  },
+  "resources/files/Onduktar_ARALASH_AMALDAR_BINGO_WkN5faA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57f988d01e8e60dc82aa1051f08c731e44d4de3187dbed05ba08fe78bd4b7297",
+    "old": "625d06e61106523f69897fb5f68a19db6e636a2c04d7b39a644708b001e144cf"
+  },
+  "resources/files/Onduktar_ARALASH_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8a10a98a0317327c988316a3e63f3f173191c01ae1ae4f0ee245044042c7d16a",
+    "old": "0227a8217d32d52202545bc7e2d923b0a012090b66aee477ab3bd53c46c0a247"
+  },
+  "resources/files/Onduktar_ARALASH_JYDYMAI_bJm8UfY.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8a10a98a0317327c988316a3e63f3f173191c01ae1ae4f0ee245044042c7d16a",
+    "old": "0227a8217d32d52202545bc7e2d923b0a012090b66aee477ab3bd53c46c0a247"
+  },
+  "resources/files/Onduktar_ARALASH_TARSIAKURAK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "39494bfe0fe116802a1ef7d4174493626420a00e6b3019d5d6a467bbc31c6c69",
+    "old": "b1aa9ff6d741093d32601cb92f763c7162f2dd61f4a263e4d2ec4fd9ca6aca83"
+  },
+  "resources/files/Onduktar_ARALASH_TARSIAKURAK_a2QutJI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "39494bfe0fe116802a1ef7d4174493626420a00e6b3019d5d6a467bbc31c6c69",
+    "old": "b1aa9ff6d741093d32601cb92f763c7162f2dd61f4a263e4d2ec4fd9ca6aca83"
+  },
+  "resources/files/Onduktar_ARALASH_TARSIAKURAK_a2QutJI_UUQucOg.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "39494bfe0fe116802a1ef7d4174493626420a00e6b3019d5d6a467bbc31c6c69",
+    "old": "b1aa9ff6d741093d32601cb92f763c7162f2dd61f4a263e4d2ec4fd9ca6aca83"
+  },
+  "resources/files/Onduktar_ARALASH_TARSIAKURAK_a2QutJI_UUQucOg_8orr6TV.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "39494bfe0fe116802a1ef7d4174493626420a00e6b3019d5d6a467bbc31c6c69",
+    "old": "b1aa9ff6d741093d32601cb92f763c7162f2dd61f4a263e4d2ec4fd9ca6aca83"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "be7710884cb864a2a1fb5e444ec15e61b53a3683b36099b1ae81a26ce582632f",
+    "old": "319848600bbb8c1415d4ee3dee4b16c870b0258f7bef7f17f392064d238f1527"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_Bingo_TotQWh2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "be7710884cb864a2a1fb5e444ec15e61b53a3683b36099b1ae81a26ce582632f",
+    "old": "319848600bbb8c1415d4ee3dee4b16c870b0258f7bef7f17f392064d238f1527"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_Chynzhyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "58dd626c821188df518aeceb6780a8b3097b467f86bc767ed2ba07ae98df8b3c",
+    "old": "092bb208bf1c8a5cdff7d5426cf759c903b9729b43142de5ee9b5398f624d308"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_Chynzhyr_SmossHm.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "58dd626c821188df518aeceb6780a8b3097b467f86bc767ed2ba07ae98df8b3c",
+    "old": "092bb208bf1c8a5cdff7d5426cf759c903b9729b43142de5ee9b5398f624d308"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57941fa8d8c39a7a0ece3951eb32eaac27a0430cde9331222fda14b33d430fd3",
+    "old": "72d9796f78b173a4e0be1d4ee28c0b8c9a7c3e558ebd16472c6198ebdf4dfddc"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_TarsiaKurak_43lwDQx.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57941fa8d8c39a7a0ece3951eb32eaac27a0430cde9331222fda14b33d430fd3",
+    "old": "72d9796f78b173a4e0be1d4ee28c0b8c9a7c3e558ebd16472c6198ebdf4dfddc"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_TarsiaKurak_43lwDQx_1uJ3fPT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "57941fa8d8c39a7a0ece3951eb32eaac27a0430cde9331222fda14b33d430fd3",
+    "old": "72d9796f78b173a4e0be1d4ee28c0b8c9a7c3e558ebd16472c6198ebdf4dfddc"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "51ed7c3b3779a41fad9b3015f4e06c9d90ea8b1758a0ff398342e46ee987b418",
+    "old": "e40572f5734749b04085ec9a50c3452cc29ab67853830074902f8c95fdbe4674"
+  },
+  "resources/files/Onduktar_Akcha_Aky_Toloo_XjanaO_QMtC44c.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "51ed7c3b3779a41fad9b3015f4e06c9d90ea8b1758a0ff398342e46ee987b418",
+    "old": "e40572f5734749b04085ec9a50c3452cc29ab67853830074902f8c95fdbe4674"
+  },
+  "resources/files/Onduktar_Akcha_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c3cf026554b5179b56916b36448863f1b16b3165093c535aa97a847577ce9bb5",
+    "old": "768772af7e7f6d71e41f3ed6bc02f1dc7f3980adb31cb403ff4854e254f10888"
+  },
+  "resources/files/Onduktar_Akcha_Bingo_EvWmgYp.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c3cf026554b5179b56916b36448863f1b16b3165093c535aa97a847577ce9bb5",
+    "old": "768772af7e7f6d71e41f3ed6bc02f1dc7f3980adb31cb403ff4854e254f10888"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e49b5e9495052e6b70860d64bcf14fb4354fa1810f4b343d1c6d4bf93abee81f",
+    "old": "62e08f922823bf49dfce7d97feb37e848ede99d3957ed2dad779968fa97a7359"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "63ec25bd683876733d06f9969be3504513c91597248a65acca397c26876c718d",
+    "old": "4db0e070833cd9158d01a3ad9707b3bfbce006525e26f20f873cd90271714408"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_Bingo_HuR0ths.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "63ec25bd683876733d06f9969be3504513c91597248a65acca397c26876c718d",
+    "old": "4db0e070833cd9158d01a3ad9707b3bfbce006525e26f20f873cd90271714408"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_KatanyTap.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9ff35c37bd1cfe779e703b1953c20e3dc3508b83b72f10dc74aa11f7c90a96c9",
+    "old": "fff21f7489a542e9ea76f257f810d97423f5d3aa7175b9d02c6fa74b8bb7a290"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_KatanyTap_kdM80kW.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9ff35c37bd1cfe779e703b1953c20e3dc3508b83b72f10dc74aa11f7c90a96c9",
+    "old": "fff21f7489a542e9ea76f257f810d97423f5d3aa7175b9d02c6fa74b8bb7a290"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_MisalKorsot.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "05f89c4f894f83db4a438e6ef1774e9e2111afa4ba72f7fe0a92d339ffd2f752",
+    "old": "832877d93b950637eb705e96dce58c1c21074d2a4cf337910d245c04a0479110"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_MisalKorsot_plVupf4.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "05f89c4f894f83db4a438e6ef1774e9e2111afa4ba72f7fe0a92d339ffd2f752",
+    "old": "832877d93b950637eb705e96dce58c1c21074d2a4cf337910d245c04a0479110"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_Pe21z8k.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e49b5e9495052e6b70860d64bcf14fb4354fa1810f4b343d1c6d4bf93abee81f",
+    "old": "62e08f922823bf49dfce7d97feb37e848ede99d3957ed2dad779968fa97a7359"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0d366addd5cda20ef6e8c39c686c70cd25801e0e679af3685bb8d9575155acd4",
+    "old": "9da8fbf13fd0bf5d3d014cc0b11fffb49f1e5be2c1a72e1eda7454cb4ad9d15d"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_Sabak_smXU3sa.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0d366addd5cda20ef6e8c39c686c70cd25801e0e679af3685bb8d9575155acd4",
+    "old": "9da8fbf13fd0bf5d3d014cc0b11fffb49f1e5be2c1a72e1eda7454cb4ad9d15d"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "363b259db4eb0ff0451a81b1fb67ed447c5b090f1c1457c1f6b5f6b7d3595295",
+    "old": "93b7e31007248406d29dddf28cd1a546076b3a31287a5d7f9ea63cfc7a445b30"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_TarsiaKurak_GSokI0H.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "363b259db4eb0ff0451a81b1fb67ed447c5b090f1c1457c1f6b5f6b7d3595295",
+    "old": "93b7e31007248406d29dddf28cd1a546076b3a31287a5d7f9ea63cfc7a445b30"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_TuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "08bf3ade759ac5e8d7af656fe3887ecefd74b5fe5ce8135bf2677c65f41d9216",
+    "old": "9703f6ea761eec2f905f25e016ddab38d8c1964db2668bf067469fabc53ce2bb"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_TuuraJeKata_rFDSZLE.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "08bf3ade759ac5e8d7af656fe3887ecefd74b5fe5ce8135bf2677c65f41d9216",
+    "old": "9703f6ea761eec2f905f25e016ddab38d8c1964db2668bf067469fabc53ce2bb"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a4bf49e569ce03c023ab121285d6410af68bfba2ff11b50498462820cc49406b",
+    "old": "d8c74bf6ad0ae7177eecf515a1bd8471c03d10fb5eea043ed98c65235b498126"
+  },
+  "resources/files/Onduktar_Akcha_Bolup_Toloo_menen_XjanaO_aTAFtDB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a4bf49e569ce03c023ab121285d6410af68bfba2ff11b50498462820cc49406b",
+    "old": "d8c74bf6ad0ae7177eecf515a1bd8471c03d10fb5eea043ed98c65235b498126"
+  },
+  "resources/files/Onduktar_Akcha_JooptorLabyrynthi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "34046fba6d4c32e35ab83c8c2f3c10a1d7e137947e00e3eaebb042465ff6049a",
+    "old": "70b7c0569b6885beb700fc6eaf12349fb5fec99eef56132e2ec8c8b724ba427c"
+  },
+  "resources/files/Onduktar_Akcha_JooptorLabyrynthi_438wWvu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "34046fba6d4c32e35ab83c8c2f3c10a1d7e137947e00e3eaebb042465ff6049a",
+    "old": "70b7c0569b6885beb700fc6eaf12349fb5fec99eef56132e2ec8c8b724ba427c"
+  },
+  "resources/files/Onduktar_Akcha_Kabarchy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0ebd6ba4654b33db9c56b015536c0f330d7c6079c5ccb057c85eea0ab3e6395a",
+    "old": "677d0820f09494d8841bea254e4bf6dda293cefcfd1f02a6afeff71825d4516b"
+  },
+  "resources/files/Onduktar_Akcha_Kabarchy_FMGCDOH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0ebd6ba4654b33db9c56b015536c0f330d7c6079c5ccb057c85eea0ab3e6395a",
+    "old": "677d0820f09494d8841bea254e4bf6dda293cefcfd1f02a6afeff71825d4516b"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_Bingo_Oyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "706d05c07fe9d27295c21f795041240d8f54bfee830eaad25b4ca23ecf112123",
+    "old": "830654a0afebf860a12bc96e0a7abddeedcc4db8966759bd0f79d3f2c6fa5079"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_Bingo_Oyunu_7kEc8uU.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "706d05c07fe9d27295c21f795041240d8f54bfee830eaad25b4ca23ecf112123",
+    "old": "830654a0afebf860a12bc96e0a7abddeedcc4db8966759bd0f79d3f2c6fa5079"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_JooptorLabyrynthi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7bb3c09cf606efee0520e2c69e2dc3c244610b465c42d705002c4b59403dfb5",
+    "old": "2769b449bd3d7d81a7e99f967bec7b0ee08a9fa180689007ec3bef35892001e8"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_JooptorLabyrynthi_X8CDapQ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7bb3c09cf606efee0520e2c69e2dc3c244610b465c42d705002c4b59403dfb5",
+    "old": "2769b449bd3d7d81a7e99f967bec7b0ee08a9fa180689007ec3bef35892001e8"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_Kabarchy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9a131ea137d5820597246046710b1389e77a00e55de09b57c48bbb671108d71",
+    "old": "376fc839e451e9e475642a60f7f64770792fd45099a9644cfd7e7b3a6b539e8f"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_Kabarchy_A5RZ7Hb.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9a131ea137d5820597246046710b1389e77a00e55de09b57c48bbb671108d71",
+    "old": "376fc839e451e9e475642a60f7f64770792fd45099a9644cfd7e7b3a6b539e8f"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "519b6fba522316f88a8b6ef67fcfcb69f8e46316bda7851577efc90edb1406a4",
+    "old": "177477fb8dc58cdf1530801194eb4432306c4a98ad95e115e38139d8ee637ede"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KazynaIzdoo_9i3eDex.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "519b6fba522316f88a8b6ef67fcfcb69f8e46316bda7851577efc90edb1406a4",
+    "old": "177477fb8dc58cdf1530801194eb4432306c4a98ad95e115e38139d8ee637ede"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "389456333f4e2885e74168e0f189ea1fd884063a7c37360b7b31ae86be5ed61a",
+    "old": "d4b5e15cf2a39322231b3d534b8d2e7e54a40ed465c4cbbb6e7ba932e71b95eb"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KondumA_NgjzNGT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "389456333f4e2885e74168e0f189ea1fd884063a7c37360b7b31ae86be5ed61a",
+    "old": "d4b5e15cf2a39322231b3d534b8d2e7e54a40ed465c4cbbb6e7ba932e71b95eb"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KondumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "481c5fd91a69b364119da1039a8feaf1d8c24a76dfd4adb038c996f00aca5150",
+    "old": "690d261bbb1828b20ad89221727c91f451a957ead27fa8a0dab966e135e704ff"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_KondumB_QjY34VY.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "481c5fd91a69b364119da1039a8feaf1d8c24a76dfd4adb038c996f00aca5150",
+    "old": "690d261bbb1828b20ad89221727c91f451a957ead27fa8a0dab966e135e704ff"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc41583697173d6fb40018a42206b33ced061ac43ecb5565ab3e6c0024f717ea",
+    "old": "ca794d75d90a3ab4ed5d0b77ad0721d6f5845e7354a5d384ff5718f12186b0ed"
+  },
+  "resources/files/Onduktar_Akcha_KalkulyatorsuzIshtoo_XjanaO_0Vbj9Kp.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "cc41583697173d6fb40018a42206b33ced061ac43ecb5565ab3e6c0024f717ea",
+    "old": "ca794d75d90a3ab4ed5d0b77ad0721d6f5845e7354a5d384ff5718f12186b0ed"
+  },
+  "resources/files/Onduktar_Akcha_KazynaIzdoo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "305f83bde1b07967b49fff36b48fa507f23ccafe5db9ccb5a52cbaca5380224b",
+    "old": "4d9766e974bbef60ef1c84cf48818c8555060ee5380a4b4d112cdb4890ef4497"
+  },
+  "resources/files/Onduktar_Akcha_KazynaIzdoo_7YCSfxU.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "305f83bde1b07967b49fff36b48fa507f23ccafe5db9ccb5a52cbaca5380224b",
+    "old": "4d9766e974bbef60ef1c84cf48818c8555060ee5380a4b4d112cdb4890ef4497"
+  },
+  "resources/files/Onduktar_Akcha_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc97b56aa02ac7048ca2b26d6ca8d6c77443d5917f164e5cae35070b34616b5e",
+    "old": "cc5dcd9721df459d1dd4c08424c0dafc997699f28feba93c3df90c0d8606ce67"
+  },
+  "resources/files/Onduktar_Akcha_KondumA_BpwVDwC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc97b56aa02ac7048ca2b26d6ca8d6c77443d5917f164e5cae35070b34616b5e",
+    "old": "cc5dcd9721df459d1dd4c08424c0dafc997699f28feba93c3df90c0d8606ce67"
+  },
+  "resources/files/Onduktar_Akcha_KondumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4b0e34a30942bbb71fe5247b45ac33d1cfdcf918911c42a3a3fec8a73c5dc436",
+    "old": "43aaa868c61a83315fa6083b6aac0b9f9f940fec0db01d0f85c7919bc3ed7026"
+  },
+  "resources/files/Onduktar_Akcha_KondumB_glUt04c.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4b0e34a30942bbb71fe5247b45ac33d1cfdcf918911c42a3a3fec8a73c5dc436",
+    "old": "43aaa868c61a83315fa6083b6aac0b9f9f940fec0db01d0f85c7919bc3ed7026"
+  },
+  "resources/files/Onduktar_Akcha_KondumB_glUt04c_GvJRMos.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4b0e34a30942bbb71fe5247b45ac33d1cfdcf918911c42a3a3fec8a73c5dc436",
+    "old": "43aaa868c61a83315fa6083b6aac0b9f9f940fec0db01d0f85c7919bc3ed7026"
+  },
+  "resources/files/Onduktar_Akcha_KondumB_glUt04c_GvJRMos_6WfWEFB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4b0e34a30942bbb71fe5247b45ac33d1cfdcf918911c42a3a3fec8a73c5dc436",
+    "old": "43aaa868c61a83315fa6083b6aac0b9f9f940fec0db01d0f85c7919bc3ed7026"
+  },
+  "resources/files/Onduktar_Akcha_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a98066149bcf27aa1991744982015febe0c10e8df36e06d936bcdd5fc904f51d",
+    "old": "2d1febe9d79bf50e4b2e8d5733b314c6505f799f47b1455210a668d94af3f2e1"
+  },
+  "resources/files/Onduktar_Akcha_XjanaO_essaRhW.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a98066149bcf27aa1991744982015febe0c10e8df36e06d936bcdd5fc904f51d",
+    "old": "2d1febe9d79bf50e4b2e8d5733b314c6505f799f47b1455210a668d94af3f2e1"
+  },
+  "resources/files/Onduktar_BirdenAzBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5530d4ba0b898b4ee6cae3105003d26610bb3a205c419d0492827fd38661d7cf",
+    "old": "94e0d7df82ee561bf8fd88023e4b80f1c46cb7b464855f1d5a6bc728b72f39d6"
+  },
+  "resources/files/Onduktar_BirdenAzBingo_du5lyp4.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5530d4ba0b898b4ee6cae3105003d26610bb3a205c419d0492827fd38661d7cf",
+    "old": "94e0d7df82ee561bf8fd88023e4b80f1c46cb7b464855f1d5a6bc728b72f39d6"
+  },
+  "resources/files/Onduktar_BirdenAzTuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "870fc19bea537b01b5ed1984a2a1a0b6c741f8d0a552c33544643169b700bcfc",
+    "old": "17617af571e5da01752ecdbaf2d6623e3c8144a80cdbe758b7cbfad957a41199"
+  },
+  "resources/files/Onduktar_BirdenAzTuuraJeKata_dFkVr4r.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "870fc19bea537b01b5ed1984a2a1a0b6c741f8d0a552c33544643169b700bcfc",
+    "old": "17617af571e5da01752ecdbaf2d6623e3c8144a80cdbe758b7cbfad957a41199"
+  },
+  "resources/files/Onduktar_Boluu1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a5af2e957d5fd78282a2ad4174b0a5f24e1edb21ebecb35910e56878f6c44987",
+    "old": "895975a81a09559547d19eb4dd9c9e1547d91476541dfa38422017d791ed6d0c"
+  },
+  "resources/files/Onduktar_Boluu1234_6EWrWlo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a5af2e957d5fd78282a2ad4174b0a5f24e1edb21ebecb35910e56878f6c44987",
+    "old": "895975a81a09559547d19eb4dd9c9e1547d91476541dfa38422017d791ed6d0c"
+  },
+  "resources/files/Onduktar_Boluu3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "52669866c22c5149acbbf5a5adcb80cbbfa360bd51e13bcccb9313e77da81801",
+    "old": "53e418da686c4db41b72ad27b1f7260cb22c4ad995e061bedb67a466bd30415f"
+  },
+  "resources/files/Onduktar_Boluu3Tutashtyr_Ez9L1hD.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "52669866c22c5149acbbf5a5adcb80cbbfa360bd51e13bcccb9313e77da81801",
+    "old": "53e418da686c4db41b72ad27b1f7260cb22c4ad995e061bedb67a466bd30415f"
+  },
+  "resources/files/Onduktar_BoluuIntroSabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "432ecf23918c6167398979a88ed2b0c8a57e89af271e506461fd9a4fdcd02fdc",
+    "old": "86a9277d2f4407620c2cc2768ae7ba1fe6a354fa5e6ab3af7a5633ad6126452f"
+  },
+  "resources/files/Onduktar_BoluuIntroSabak_TTXWWYj.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "432ecf23918c6167398979a88ed2b0c8a57e89af271e506461fd9a4fdcd02fdc",
+    "old": "86a9277d2f4407620c2cc2768ae7ba1fe6a354fa5e6ab3af7a5633ad6126452f"
+  },
+  "resources/files/Onduktar_BoluuJenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7f5ee0f4bf944a471458b4bd1bd7ddf6f3b1268cf286fc331ef61a89a6ce187a",
+    "old": "78c92d00bb515430806adadcac65347919425ee2824133c5fe168c190d1818f0"
+  },
+  "resources/files/Onduktar_BoluuJenilOrtoOor_6hK3CIw.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7f5ee0f4bf944a471458b4bd1bd7ddf6f3b1268cf286fc331ef61a89a6ce187a",
+    "old": "78c92d00bb515430806adadcac65347919425ee2824133c5fe168c190d1818f0"
+  },
+  "resources/files/Onduktar_BoluuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "77ff74111e311969c3d66c6d49f64ecf4282263f4123545b5756933ca2670d03",
+    "old": "3509599285533a46ce3842653459b5b6d0c0a7e54fd3e33ff53113c6870d4f66"
+  },
+  "resources/files/Onduktar_BoluuTarsiaKurak_zOAiCUe.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "77ff74111e311969c3d66c6d49f64ecf4282263f4123545b5756933ca2670d03",
+    "old": "3509599285533a46ce3842653459b5b6d0c0a7e54fd3e33ff53113c6870d4f66"
+  },
+  "resources/files/Onduktar_BoluuXO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2759760cb0bd6753d986088f4c72164676a7ffa0fd4045196f8441e16a634ec9",
+    "old": "d65d2c528e490ee84a1da10f22fb091fafe8287473d147fb978750b5f7a79f57"
+  },
+  "resources/files/Onduktar_BoluuXO_ZTUTQ6x.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "2759760cb0bd6753d986088f4c72164676a7ffa0fd4045196f8441e16a634ec9",
+    "old": "d65d2c528e490ee84a1da10f22fb091fafe8287473d147fb978750b5f7a79f57"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_KondumA .pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eabd77e7df6597597245718e4ec06364d25b551c5a783b481438dd3ae829d3db",
+    "old": "265feb5b7943508625312a68f9f8b2ba1ea81eefdd4f3aa2494df06ad0854ae1"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_KondumA_.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eabd77e7df6597597245718e4ec06364d25b551c5a783b481438dd3ae829d3db",
+    "old": "265feb5b7943508625312a68f9f8b2ba1ea81eefdd4f3aa2494df06ad0854ae1"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b69964d7295cf3f777b3e593f02f6157308e28414aa36d02feced9fb2aec90ce",
+    "old": "e50b8b101dd56093be974f96319248a0da031dc00ed735943e8085434617ea9f"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_TarsiaKurak_AfcZGrQ.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b69964d7295cf3f777b3e593f02f6157308e28414aa36d02feced9fb2aec90ce",
+    "old": "e50b8b101dd56093be974f96319248a0da031dc00ed735943e8085434617ea9f"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_TuuraJeKata_ .pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ff6b238ed084b9088366fad51d3dcb934b9f5a224bdf43242eaed3f8f9b924bd",
+    "old": "14b64e22b9d21269c3a9d8017828f4b58bbca3b1def5ed3ea9d01b182cad4f79"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_TuuraJeKata__.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ff6b238ed084b9088366fad51d3dcb934b9f5a224bdf43242eaed3f8f9b924bd",
+    "old": "14b64e22b9d21269c3a9d8017828f4b58bbca3b1def5ed3ea9d01b182cad4f79"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_XO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0b9605df03302d7d12845f4b7f3f2e2791aae3becdf3977967866be169aa3051",
+    "old": "913e5412271055f32167d2ecdc4f42f00045ce0a032a3a23d95dd2d045cccc22"
+  },
+  "resources/files/Onduktar_Boluu_1denAz_XO_5YcbvWR.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "0b9605df03302d7d12845f4b7f3f2e2791aae3becdf3977967866be169aa3051",
+    "old": "913e5412271055f32167d2ecdc4f42f00045ce0a032a3a23d95dd2d045cccc22"
+  },
+  "resources/files/Onduktar_Boluu_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "704ba5d072d304ccf33605d63785358e2fdfde86746231f75a85e99a489559d2",
+    "old": "0ec52f50697bb38c5102cb2fdbb98d873191bd28b901a89bd10a2d620adf4ffd"
+  },
+  "resources/files/Onduktar_Boluu_Bingo_60sY1oD.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "704ba5d072d304ccf33605d63785358e2fdfde86746231f75a85e99a489559d2",
+    "old": "0ec52f50697bb38c5102cb2fdbb98d873191bd28b901a89bd10a2d620adf4ffd"
+  },
+  "resources/files/Onduktar_Boluu_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eabd77e7df6597597245718e4ec06364d25b551c5a783b481438dd3ae829d3db",
+    "old": "265feb5b7943508625312a68f9f8b2ba1ea81eefdd4f3aa2494df06ad0854ae1"
+  },
+  "resources/files/Onduktar_Boluu_KondumA_6gdTPx2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "eabd77e7df6597597245718e4ec06364d25b551c5a783b481438dd3ae829d3db",
+    "old": "265feb5b7943508625312a68f9f8b2ba1ea81eefdd4f3aa2494df06ad0854ae1"
+  },
+  "resources/files/Onduktar_Boluu_KondumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc2e56292a2084eff0cb5158636575db5e8eb7149043b87b8990e8094097c068",
+    "old": "4258eb2871a9e09a18a42fe6d40e9a112f63ccd4dd2b41e362c0232ae061bf25"
+  },
+  "resources/files/Onduktar_Boluu_KondumB_OvLbWOu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "dc2e56292a2084eff0cb5158636575db5e8eb7149043b87b8990e8094097c068",
+    "old": "4258eb2871a9e09a18a42fe6d40e9a112f63ccd4dd2b41e362c0232ae061bf25"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu__Bolchokko_Almashtyruu_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1e2335950904a1171377902b7565fa2be85d0b45bb7dd579f6d9271c1cc64df4",
+    "old": "0dc7576deec2a73e6e76f3390896a209c62f22185f3751d6e305a58e67d5de7d"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu__Bolchokko_Almashtyruu_Sabak_65lzJdK.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1e2335950904a1171377902b7565fa2be85d0b45bb7dd579f6d9271c1cc64df4",
+    "old": "0dc7576deec2a73e6e76f3390896a209c62f22185f3751d6e305a58e67d5de7d"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KartaSortto.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "93a48ec66b51d53ecfc5366d79564c3609e7910253f1367116af2d27524caeee",
+    "old": "2a3822d21dba91fe20136aa34dd1ad9a085f8c86d72e779e2ff1e78635308adc"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KartaSortto_Gid1vZ5.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "93a48ec66b51d53ecfc5366d79564c3609e7910253f1367116af2d27524caeee",
+    "old": "2a3822d21dba91fe20136aa34dd1ad9a085f8c86d72e779e2ff1e78635308adc"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KonddumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5234af5d657ad697848c6b4755cbea69107b3b4e8d49f8a40f270c3237abe4fa",
+    "old": "3a23f09eab8d31d81f12682614e31d255366c977f0d3e15ae4999725d4b98166"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KonddumA_qshq5JG.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5234af5d657ad697848c6b4755cbea69107b3b4e8d49f8a40f270c3237abe4fa",
+    "old": "3a23f09eab8d31d81f12682614e31d255366c977f0d3e15ae4999725d4b98166"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KonddumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9b7560cd2b88b98032ec0a5a01973f260cc7a4d8fa0c026517a9b16a9b3c6d62",
+    "old": "f0f14e58f148f0cabfc6c3c2dc063569b69bcc6126b2f55bfbf038e20ccc796e"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo-KonddumB_BwiBbI4.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9b7560cd2b88b98032ec0a5a01973f260cc7a4d8fa0c026517a9b16a9b3c6d62",
+    "old": "f0f14e58f148f0cabfc6c3c2dc063569b69bcc6126b2f55bfbf038e20ccc796e"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e1dcf1f751168170124d30643cd9e6b0e34afb35ae35ceff45b9b503cc6b7f04",
+    "old": "90524031351902fbfafad7bdd5f6e8269e4e915a9f24497e3bfb7bfa8ff42487"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo_Bingo_gAMevXz.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e1dcf1f751168170124d30643cd9e6b0e34afb35ae35ceff45b9b503cc6b7f04",
+    "old": "90524031351902fbfafad7bdd5f6e8269e4e915a9f24497e3bfb7bfa8ff42487"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "200d2d8babd6767f0ba38549262857e4250750424b33bccb2a15ff93e03ff998",
+    "old": "021eace29fab6a83891641155c68da911edb3274a94a89d165561dfea981fbde"
+  },
+  "resources/files/Onduktar_Kaytalanuuchu_iReettoo_JYDYMAI_7lLwWPa.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "200d2d8babd6767f0ba38549262857e4250750424b33bccb2a15ff93e03ff998",
+    "old": "021eace29fab6a83891641155c68da911edb3274a94a89d165561dfea981fbde"
+  },
+  "resources/files/Onduktar_Kemituu3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1cbee21c2c20fdd34c6c85d0494d5f75d25adfa1f93172bf14b3fd2e87d9ce11",
+    "old": "887d8f9455ae510618ef216b6422203b3a3230093c1ef6f12e36be0da219bf50"
+  },
+  "resources/files/Onduktar_Kemituu3Tutashtyr_RBRW2Fg.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1cbee21c2c20fdd34c6c85d0494d5f75d25adfa1f93172bf14b3fd2e87d9ce11",
+    "old": "887d8f9455ae510618ef216b6422203b3a3230093c1ef6f12e36be0da219bf50"
+  },
+  "resources/files/Onduktar_KemituuBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8723b083ca1d5dc15d9575677f26ddad5863a203a5294714c33598d4f7ac0f52",
+    "old": "f648d3fd2e7f4d4256babc6a2242728ae20b675ad5fd8262f64952e0b785a60a"
+  },
+  "resources/files/Onduktar_KemituuBingo_na3FcyT.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8723b083ca1d5dc15d9575677f26ddad5863a203a5294714c33598d4f7ac0f52",
+    "old": "f648d3fd2e7f4d4256babc6a2242728ae20b675ad5fd8262f64952e0b785a60a"
+  },
+  "resources/files/Onduktar_KemituuBingo_na3FcyT_x7EguGN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8723b083ca1d5dc15d9575677f26ddad5863a203a5294714c33598d4f7ac0f52",
+    "old": "f648d3fd2e7f4d4256babc6a2242728ae20b675ad5fd8262f64952e0b785a60a"
+  },
+  "resources/files/Onduktar_KemituuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "de65cebd3f9853721220035963b7f530a8abd38d94d26185b539664da89db1a0",
+    "old": "e963169f80c671811172a7d27c8e3d17ed24e0ce316f0eb65f4490c7082781d6"
+  },
+  "resources/files/Onduktar_KemituuTarsiaKurak_oHKuetG.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "de65cebd3f9853721220035963b7f530a8abd38d94d26185b539664da89db1a0",
+    "old": "e963169f80c671811172a7d27c8e3d17ed24e0ce316f0eb65f4490c7082781d6"
+  },
+  "resources/files/Onduktar_Koboytuu1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "523eb97d797d69c4ac638472f59ba238cf2bc80ec8cb30f545597cab5c2ef4eb",
+    "old": "9dea35583ec0206f4f6829c9730d22935c7f6c2bad9f60ac83e216dc32dc5c70"
+  },
+  "resources/files/Onduktar_Koboytuu1234_HNHIb7x.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "523eb97d797d69c4ac638472f59ba238cf2bc80ec8cb30f545597cab5c2ef4eb",
+    "old": "9dea35583ec0206f4f6829c9730d22935c7f6c2bad9f60ac83e216dc32dc5c70"
+  },
+  "resources/files/Onduktar_Koboytuu3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15894b28181cdc7abf9a4e848a44d9cbd8c96d6a9d2d754439b27d42f9962f4a",
+    "old": "c6066bc8b2000120c9521dd2746a970e5d60e2210920ffd462509f3eae9e133c"
+  },
+  "resources/files/Onduktar_Koboytuu3Tutashtyr_cMo2cDY.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "15894b28181cdc7abf9a4e848a44d9cbd8c96d6a9d2d754439b27d42f9962f4a",
+    "old": "c6066bc8b2000120c9521dd2746a970e5d60e2210920ffd462509f3eae9e133c"
+  },
+  "resources/files/Onduktar_KoboytuuBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9b6a697b5db1c61dba4cc680ec4dab8b3d3a02aed32d05cd61ce473448041f9",
+    "old": "f9108f4425f1d10f5d1eb5011280d4bcef24442fd07eeed12708d83cbe06bee7"
+  },
+  "resources/files/Onduktar_KoboytuuBingo_g5H5eNE.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b9b6a697b5db1c61dba4cc680ec4dab8b3d3a02aed32d05cd61ce473448041f9",
+    "old": "f9108f4425f1d10f5d1eb5011280d4bcef24442fd07eeed12708d83cbe06bee7"
+  },
+  "resources/files/Onduktar_KoboytuuBoluu1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce07eaea211017d530b85707c4e4cff040444014349d97d3f215e27a57ef8928",
+    "old": "c1cf7cb70d99dc87cae8d8f647ccd796911d2285424cb1a4509b27c4cbf70320"
+  },
+  "resources/files/Onduktar_KoboytuuBoluu1234_yXTy25D.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ce07eaea211017d530b85707c4e4cff040444014349d97d3f215e27a57ef8928",
+    "old": "c1cf7cb70d99dc87cae8d8f647ccd796911d2285424cb1a4509b27c4cbf70320"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuJenilOrtoOOR.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a05cf7e2ad9254561c7c307a37f88fd11dc79bc0e686d915007f036cda16e0ff",
+    "old": "536c3b492f07a632f59f8cdee9a06ee8d2ca30f0c796cb0c4ee7fd06d4c9cf7f"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuJenilOrtoOOR_DfSD5dt.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a05cf7e2ad9254561c7c307a37f88fd11dc79bc0e686d915007f036cda16e0ff",
+    "old": "536c3b492f07a632f59f8cdee9a06ee8d2ca30f0c796cb0c4ee7fd06d4c9cf7f"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuSandykBashKatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9198b8b230f6f719cf3620558b617ee5b81b2d6f466d31c3a7641498271495b3",
+    "old": "c02842a8884974cc4251ac24e97e9ee05ba3890c7b764a1bf5238369edeeb9f3"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuSandykBashKatyrma_ARS4JTX.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "9198b8b230f6f719cf3620558b617ee5b81b2d6f466d31c3a7641498271495b3",
+    "old": "c02842a8884974cc4251ac24e97e9ee05ba3890c7b764a1bf5238369edeeb9f3"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "643f35852e31da79938431ac9ee33cd5b5fc72646e0dad407faf0236bc1008c3",
+    "old": "a9aaa83ad3354d8eac7b102c21e7bfd32c06f5ffd2dba15e275f08e36cebad4b"
+  },
+  "resources/files/Onduktar_KoboytuuBoluuTarsiaKurak_daUEa63.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "643f35852e31da79938431ac9ee33cd5b5fc72646e0dad407faf0236bc1008c3",
+    "old": "a9aaa83ad3354d8eac7b102c21e7bfd32c06f5ffd2dba15e275f08e36cebad4b"
+  },
+  "resources/files/Onduktar_KoboytuuIntroSabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d6efc41a4218a4061978138a194138ac9c2eae8995ed37401782c1d09c6057d0",
+    "old": "ccd5f6756e30a1113f27705f356869c7beddcd780be12b6a847b19e212afc480"
+  },
+  "resources/files/Onduktar_KoboytuuIntroSabak_rYMq5Nj.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "d6efc41a4218a4061978138a194138ac9c2eae8995ed37401782c1d09c6057d0",
+    "old": "ccd5f6756e30a1113f27705f356869c7beddcd780be12b6a847b19e212afc480"
+  },
+  "resources/files/Onduktar_KoboytuuJenilOrtoOOR.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4f42127fe6ce3fe6f7eed91f7411491b186df861d33449453ac2a8e934400e40",
+    "old": "1ca3f06ec6dfc7c5a45f982a95c5391166f483b7c81bbe08b3a19e7071f12527"
+  },
+  "resources/files/Onduktar_KoboytuuJenilOrtoOOR_vRPuLhl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4f42127fe6ce3fe6f7eed91f7411491b186df861d33449453ac2a8e934400e40",
+    "old": "1ca3f06ec6dfc7c5a45f982a95c5391166f483b7c81bbe08b3a19e7071f12527"
+  },
+  "resources/files/Onduktar_KoboytuuSaperOyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e068f9608d818e38ec3624821e823500a52d1b84745654f2b7e0268337f86c05",
+    "old": "a63136f411a66663d12831bf18f9aa5e85ca92d891c5f92bcdcb5c8bfd8a222c"
+  },
+  "resources/files/Onduktar_KoboytuuSaperOyunu_NUTXNR9.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e068f9608d818e38ec3624821e823500a52d1b84745654f2b7e0268337f86c05",
+    "old": "a63136f411a66663d12831bf18f9aa5e85ca92d891c5f92bcdcb5c8bfd8a222c"
+  },
+  "resources/files/Onduktar_KoboytuuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "687c7c419c56d2dc626e891fbcf6ea292a2a8c89423efd170837d1045fb4fbc1",
+    "old": "c609ca74798822fcb91e156d68121185e9b182f533643a2e1be126370074f1f1"
+  },
+  "resources/files/Onduktar_KoboytuuTarsiaKurak_RlI0LUN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "687c7c419c56d2dc626e891fbcf6ea292a2a8c89423efd170837d1045fb4fbc1",
+    "old": "c609ca74798822fcb91e156d68121185e9b182f533643a2e1be126370074f1f1"
+  },
+  "resources/files/Onduktar_KoboytuuXO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c6444c4734bfdf671fba8910d15543c99806d0d184f31e72344705f1c9529308",
+    "old": "a90a91e7ff386bc899762a328dba837042b54d076a4dd3981610a287ac7b2c28"
+  },
+  "resources/files/Onduktar_KoboytuuXO_PeziorO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c6444c4734bfdf671fba8910d15543c99806d0d184f31e72344705f1c9529308",
+    "old": "a90a91e7ff386bc899762a328dba837042b54d076a4dd3981610a287ac7b2c28"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuInstroSabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ad2b4b21de8aa85c19104452886055a92079647e098e527504f4776e1aefcba1",
+    "old": "1a6059c3f0321ec933a56e2ea23e96a67ff4e3462061c894dc114af05df4b151"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuInstroSabak_jS1jIou.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ad2b4b21de8aa85c19104452886055a92079647e098e527504f4776e1aefcba1",
+    "old": "1a6059c3f0321ec933a56e2ea23e96a67ff4e3462061c894dc114af05df4b151"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJenilBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3045c2c85393c08df5439bc638ac98bed147b8652d0d9ceac281aed759394ff8",
+    "old": "a6de1e8d16d6f48f5fb0193692be696cd910f66a1419e84c922c47f39d77667a"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJenilBingo_0tIFtGb.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3045c2c85393c08df5439bc638ac98bed147b8652d0d9ceac281aed759394ff8",
+    "old": "a6de1e8d16d6f48f5fb0193692be696cd910f66a1419e84c922c47f39d77667a"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJenilOrtoOor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bb5f260cd00bfb930fe459c6284d7af354a65c894adc48e74351ba66e081c9bd",
+    "old": "83098062c15ab2157eae660041250a1f012c66b5af445980413890662a4e66a3"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJenilOrtoOor_RT1AYa6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "bb5f260cd00bfb930fe459c6284d7af354a65c894adc48e74351ba66e081c9bd",
+    "old": "83098062c15ab2157eae660041250a1f012c66b5af445980413890662a4e66a3"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1ad1719ad64a49fd416b551b7c9ed2a8bdfa647842b81845a19c455d2d436704",
+    "old": "775a1be7e847435b3800e9f3a8ec47902e83800fe1d4a9d17d872ef9a80f1a15"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuJydymai_vMkpLRW.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1ad1719ad64a49fd416b551b7c9ed2a8bdfa647842b81845a19c455d2d436704",
+    "old": "775a1be7e847435b3800e9f3a8ec47902e83800fe1d4a9d17d872ef9a80f1a15"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuXO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "78b7144481c37994f97e818e2d7f01d8208753babb60b26a37cb73ce58762c24",
+    "old": "72661ad77e0aa208637a29d1a02cb1a40aef312c1e9d2ba4cb04e0b70c2362e2"
+  },
+  "resources/files/Onduktar_Koboytuu_BoluuXO_SAD9Gx3.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "78b7144481c37994f97e818e2d7f01d8208753babb60b26a37cb73ce58762c24",
+    "old": "72661ad77e0aa208637a29d1a02cb1a40aef312c1e9d2ba4cb04e0b70c2362e2"
+  },
+  "resources/files/Onduktar_Koboytuu_Boluu_JoopTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e0869f93021affa254c05022826a6ddb4734167c1bc3188bd90b7aa480cc8a57",
+    "old": "7325ab451c4725e0390e6b7e02e70395f3c9c3b219329d421a68a8fe0625380e"
+  },
+  "resources/files/Onduktar_Koboytuu_Boluu_JoopTorchosu_EFRDDkM.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e0869f93021affa254c05022826a6ddb4734167c1bc3188bd90b7aa480cc8a57",
+    "old": "7325ab451c4725e0390e6b7e02e70395f3c9c3b219329d421a68a8fe0625380e"
+  },
+  "resources/files/Onduktar_Koboytuu_SandykBashkatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc70b68cbc0be2188ccd0e81157cbe171018641bb157d1367ca64ac39ea02958",
+    "old": "7a636afcafe9ebab249fb6562ab5bb1cb145ff0bb945b489b22203b7818d5a70"
+  },
+  "resources/files/Onduktar_Koboytuu_SandykBashkatyrma_EmEvlaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fc70b68cbc0be2188ccd0e81157cbe171018641bb157d1367ca64ac39ea02958",
+    "old": "7a636afcafe9ebab249fb6562ab5bb1cb145ff0bb945b489b22203b7818d5a70"
+  },
+  "resources/files/Onduktar_Koshuu3Tutashtyr.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "32a60855ef72c6c6cde7cb237cd8acceef5f1ae0e3e662a4ee47371960ca323c",
+    "old": "228405a19848e3ec4ffb6ef2005766015448db1cf8cf909bf74ee256fe956235"
+  },
+  "resources/files/Onduktar_Koshuu3Tutashtyr_uos758Q.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "32a60855ef72c6c6cde7cb237cd8acceef5f1ae0e3e662a4ee47371960ca323c",
+    "old": "228405a19848e3ec4ffb6ef2005766015448db1cf8cf909bf74ee256fe956235"
+  },
+  "resources/files/Onduktar_KoshuuBingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ff40adfe1974cecf238461c4a3478690784ad6338e63ee79890afdef2201285c",
+    "old": "f542f986a714a860c8c6ad945fac695e529a14bbc53e8350e94c3966a8dfed5c"
+  },
+  "resources/files/Onduktar_KoshuuBingo_juSr0pC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ff40adfe1974cecf238461c4a3478690784ad6338e63ee79890afdef2201285c",
+    "old": "f542f986a714a860c8c6ad945fac695e529a14bbc53e8350e94c3966a8dfed5c"
+  },
+  "resources/files/Onduktar_KoshuuTarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "97512e1bdadb533565e1fad1f44a89f644fae5d97d8b6f9e3a68d63d70bda886",
+    "old": "e6663fe1405d8de81dab27b77ac69eb34162c573965fe6439a4a7737a9dc22fd"
+  },
+  "resources/files/Onduktar_KoshuuTarsiaKurak_RZIRuyn.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "97512e1bdadb533565e1fad1f44a89f644fae5d97d8b6f9e3a68d63d70bda886",
+    "old": "e6663fe1405d8de81dab27b77ac69eb34162c573965fe6439a4a7737a9dc22fd"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_100charchy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "92cf319b08f256c27ae7426c7558833094098efd537c33c7a1bdd91c07e7da8d",
+    "old": "3c2af577d6a45f50f9242bb1a78166182a20134634fda7541efd83db4f9d13c4"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_100charchy_wstiXlH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "92cf319b08f256c27ae7426c7558833094098efd537c33c7a1bdd91c07e7da8d",
+    "old": "3c2af577d6a45f50f9242bb1a78166182a20134634fda7541efd83db4f9d13c4"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1ff15644ddd1f3dd4b083c4e1419e721dcfb288385554fe02f15e3d05e8072f4",
+    "old": "52c932e3dbd969df1087e33058d961279ef14d0ea763c37b79e10ea71b40ed3d"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_Bingo_ZVvuQHt.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1ff15644ddd1f3dd4b083c4e1419e721dcfb288385554fe02f15e3d05e8072f4",
+    "old": "52c932e3dbd969df1087e33058d961279ef14d0ea763c37b79e10ea71b40ed3d"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_JooptorTorchosu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ef544bc0c394f01001ae763911ec1c9ad4776c2a2026ab3fd21234e6e5ee7d74",
+    "old": "09c037d94bd071b69ed041a4f2ffcbeccf8515513fdbf0be1db831c8c320862d"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_JooptorTorchosu_o2k1XGb.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ef544bc0c394f01001ae763911ec1c9ad4776c2a2026ab3fd21234e6e5ee7d74",
+    "old": "09c037d94bd071b69ed041a4f2ffcbeccf8515513fdbf0be1db831c8c320862d"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_Jydymai.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c30144bac3681226e8cc638d7a367f234f5e31ea414aa7dc6538e1212364f51e",
+    "old": "13f197f445a922a2634af37e0fdffa20b9ed5133e6a3ed67f49640bcbe2d8bee"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_Jydymai_DK41QX9.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c30144bac3681226e8cc638d7a367f234f5e31ea414aa7dc6538e1212364f51e",
+    "old": "13f197f445a922a2634af37e0fdffa20b9ed5133e6a3ed67f49640bcbe2d8bee"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a596bbd3517abe90e631c6d7fd0bb2815d37dfb164695a148840bca533175803",
+    "old": "3c034f3e91955651f8a1b75dd55a169b2d24c9e268f43110548b2398c6c31221"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_TarsiaKurak_d5AytQ8.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a596bbd3517abe90e631c6d7fd0bb2815d37dfb164695a148840bca533175803",
+    "old": "3c034f3e91955651f8a1b75dd55a169b2d24c9e268f43110548b2398c6c31221"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_XO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f6a1d34f1c9b3d77d2620cd0a72cd1a61000ff76c7b226990f87c478cd88bfab",
+    "old": "b71544a643d7a27440083b691fa29a38fe4b0c6814386cd18f4b71b8cbc5b4d4"
+  },
+  "resources/files/Onduktar_Koshuu_Kemituu_XO_hU2AHvS.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "f6a1d34f1c9b3d77d2620cd0a72cd1a61000ff76c7b226990f87c478cd88bfab",
+    "old": "b71544a643d7a27440083b691fa29a38fe4b0c6814386cd18f4b71b8cbc5b4d4"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "730541346422ab7c5584f81404919a39771618a6580114f778cd250bb1ca35e8",
+    "old": "5472c6545fc2738b0da58e3e96fea2471ab4c375c8b95b918db87ec2d3b9f5dd"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_1234_2XgIYv4.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "730541346422ab7c5584f81404919a39771618a6580114f778cd250bb1ca35e8",
+    "old": "5472c6545fc2738b0da58e3e96fea2471ab4c375c8b95b918db87ec2d3b9f5dd"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_3_Jyldyz.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b74881df6054f5ca72de3775a5732de51bc3e45edf91285fc7cb406b4d2a4ee8",
+    "old": "5fbde85d345d15cfcdeef0f8ca889a3cd63a533f02db630a939b2e76b52416e7"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_3_Jyldyz_vMPpk5E.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b74881df6054f5ca72de3775a5732de51bc3e45edf91285fc7cb406b4d2a4ee8",
+    "old": "5fbde85d345d15cfcdeef0f8ca889a3cd63a533f02db630a939b2e76b52416e7"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "82d32198874251e1a21065a2af68e3f42fcd21df1e97b01b2dc0925f67783e25",
+    "old": "6cdb041d9674cabe9b6671505043cb7339ec786e55f6586bf27e75a30c0b7e32"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_JYDYMAI_n56cGFz.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "82d32198874251e1a21065a2af68e3f42fcd21df1e97b01b2dc0925f67783e25",
+    "old": "6cdb041d9674cabe9b6671505043cb7339ec786e55f6586bf27e75a30c0b7e32"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Jenil_Orto_Oor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e982035b71bd8ec13c532b3bafe8e9dcfac29afb194902c5209717470c08ee3",
+    "old": "686d469aee36997c5f9f92fc2102d76b63ad3659356fe05b72b55ee8f991eaae"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Jenil_Orto_Oor_0B6pjdx.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4e982035b71bd8ec13c532b3bafe8e9dcfac29afb194902c5209717470c08ee3",
+    "old": "686d469aee36997c5f9f92fc2102d76b63ad3659356fe05b72b55ee8f991eaae"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ee9c62ec52fd57b7ebc8ccdad2774d495ce19fef75ed03427b6ca5071ed5da9",
+    "old": "3976e359c9df55b041e45c71882ee9357ca815ca902507908265c757f99a66ef"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumA_mmFX5wH.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8ee9c62ec52fd57b7ebc8ccdad2774d495ce19fef75ed03427b6ca5071ed5da9",
+    "old": "3976e359c9df55b041e45c71882ee9357ca815ca902507908265c757f99a66ef"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "02e510b0f007b0cef37cbeb6c6547254f19f03567d76a76d0425d75c944a59ee",
+    "old": "143ca8252aaf6e5ee6e510eedfea9f062573316096a9b7a1ffa38fb0bc29c82c"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumB_OItR8LF.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "02e510b0f007b0cef37cbeb6c6547254f19f03567d76a76d0425d75c944a59ee",
+    "old": "143ca8252aaf6e5ee6e510eedfea9f062573316096a9b7a1ffa38fb0bc29c82c"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumCC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5b2d5ee7be3f36ab234c08771c167209ba95ad373d06446d08209b0d4664c8f8",
+    "old": "730253f1e22e827e48260a35e2c10ab87959d362910c8ee186c36a56fa0acc4a"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_KondumCC_2mrXFmm.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5b2d5ee7be3f36ab234c08771c167209ba95ad373d06446d08209b0d4664c8f8",
+    "old": "730253f1e22e827e48260a35e2c10ab87959d362910c8ee186c36a56fa0acc4a"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e7e490787d36087aa78e4e659d5699c764a7131b294dba753c12bcbe14a8cb8e",
+    "old": "6af24bea519d8bfc656c4c9e64b34e6ebfecd3b77a815d9abfdafe8340c9c707"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Sabak_teK6iBi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e7e490787d36087aa78e4e659d5699c764a7131b294dba753c12bcbe14a8cb8e",
+    "old": "6af24bea519d8bfc656c4c9e64b34e6ebfecd3b77a815d9abfdafe8340c9c707"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Sandyk_Bashkatyrma.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ea6529b3ca53577c8fdd198595da12c1c90beab82a28d27a1800894eb418bc9c",
+    "old": "6ebcc76c2c39074bfe7abee962c0aeb7b0aa87648d87e8f3407f7e10801f74cf"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Sandyk_Bashkatyrma_TEczjnB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ea6529b3ca53577c8fdd198595da12c1c90beab82a28d27a1800894eb418bc9c",
+    "old": "6ebcc76c2c39074bfe7abee962c0aeb7b0aa87648d87e8f3407f7e10801f74cf"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Shaykesh_Keltiruu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b6ef4fb7fdb484858e93571506448a5a166f4f417b94f05baa32f6c389ad2be6",
+    "old": "3808508803089c7f91ac317733947202d46c0dba227599fe7f6f3422d317ca5d"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_Shaykesh_Keltiruu_3AwXNwi.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b6ef4fb7fdb484858e93571506448a5a166f4f417b94f05baa32f6c389ad2be6",
+    "old": "3808508803089c7f91ac317733947202d46c0dba227599fe7f6f3422d317ca5d"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_TuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b95a328ead4b9f142aa6659745f0980ff6c7c2a7c2636ef121d3c739d6da35b",
+    "old": "dcc003a580601e5a82cff53fc32f91f7250082a06dfa3b8877e4e2ed57eae87e"
+  },
+  "resources/files/Onduktar_Sandardy_iReettoo_TuuraJeKata_VQHitLB.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "7b95a328ead4b9f142aa6659745f0980ff6c7c2a7c2636ef121d3c739d6da35b",
+    "old": "dcc003a580601e5a82cff53fc32f91f7250082a06dfa3b8877e4e2ed57eae87e"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_1234.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3e249790501463ca14ed3d94ebe7da853ff9fb41b9e88f51806e956c9119c3bc",
+    "old": "2d52b49765f4a37d2dd87abc7e2d4750bf68a8264e8f3251f9aaa656394e6c6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_1234_gJRPNDl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "3e249790501463ca14ed3d94ebe7da853ff9fb41b9e88f51806e956c9119c3bc",
+    "old": "2d52b49765f4a37d2dd87abc7e2d4750bf68a8264e8f3251f9aaa656394e6c6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_3_Jyldyz.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8c1f63efb9c5872e4b9aaafb4bb8d428b516d3e67394a75a5ae16f6f8356e111",
+    "old": "98e50967a18382e7778525a2383b6a6c6676404120d2a969453a030dd9868928"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_3_Jyldyz_XXeGzU6.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8c1f63efb9c5872e4b9aaafb4bb8d428b516d3e67394a75a5ae16f6f8356e111",
+    "old": "98e50967a18382e7778525a2383b6a6c6676404120d2a969453a030dd9868928"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Bingo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e3a81c8b05e9710c24d6e5989d7c25a792bc8d949d03cfea0f67ae0d457efda0",
+    "old": "48908d092cf638f216ea319ef4f0f8757b62c590f0a0469feb154ed9395fbbe3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Bingo_JonokoulotuuMN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4fa59c6faf3706f58ae39ab34f239ba1e49dc5aae0d0ebfa4831286daacbe1b9",
+    "old": "fca21bf9a5e2198552094a32e086eb79a59ce29818cbdfb7db31b6715b00d39c"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Bingo_JonokoulotuuMN_HTXJ5Sf.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "4fa59c6faf3706f58ae39ab34f239ba1e49dc5aae0d0ebfa4831286daacbe1b9",
+    "old": "fca21bf9a5e2198552094a32e086eb79a59ce29818cbdfb7db31b6715b00d39c"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Bingo_qnWfPkN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e3a81c8b05e9710c24d6e5989d7c25a792bc8d949d03cfea0f67ae0d457efda0",
+    "old": "48908d092cf638f216ea319ef4f0f8757b62c590f0a0469feb154ed9395fbbe3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Bingo_qnWfPkN_sBXayOo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "e3a81c8b05e9710c24d6e5989d7c25a792bc8d949d03cfea0f67ae0d457efda0",
+    "old": "48908d092cf638f216ea319ef4f0f8757b62c590f0a0469feb154ed9395fbbe3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_JYDYMAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5dc84a1ef5bd8548bfaf1a9f0e1f417f2eefe13371d767764a9ea7e6b8eb5406",
+    "old": "dffe430811b36f0e748ad0eaeca441178f2af29fcd90965acd62841ceb462585"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_JYDYMAI_wvDkJWl.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "5dc84a1ef5bd8548bfaf1a9f0e1f417f2eefe13371d767764a9ea7e6b8eb5406",
+    "old": "dffe430811b36f0e748ad0eaeca441178f2af29fcd90965acd62841ceb462585"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Jalgyz_Suroo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a0a33144b93f62d5a86951fb59392e6e6effeb05de2b208a081618fa72d3555f",
+    "old": "4b38cf65c027c59d8f7f7f27317925d8359cefabe28ef52f11aeafe1973d8a49"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Jalgyz_Suroo_3h9K96F.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a0a33144b93f62d5a86951fb59392e6e6effeb05de2b208a081618fa72d3555f",
+    "old": "4b38cf65c027c59d8f7f7f27317925d8359cefabe28ef52f11aeafe1973d8a49"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Jenil_Orto_Oor.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1f5b80975edc7925bce9a05150ecd46d69405ba041cb1021cfec7dedb151f046",
+    "old": "5a6d0fa97c66b38982edb5110616310976f21015b5c7b2c70c3b66b9f9c86843"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Jenil_Orto_Oor_L5b1T6F.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "1f5b80975edc7925bce9a05150ecd46d69405ba041cb1021cfec7dedb151f046",
+    "old": "5a6d0fa97c66b38982edb5110616310976f21015b5c7b2c70c3b66b9f9c86843"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumA.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b8d0e9eff1709510692254df82954c4be43c6b0b6a5ee6c3d99124c7ef5ad357",
+    "old": "6760bf4801eedfeccfada1e2f530ad6eb502ec2f3dc3fcf3f66464f2e3073a48"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumA_Hq91A1e.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "b8d0e9eff1709510692254df82954c4be43c6b0b6a5ee6c3d99124c7ef5ad357",
+    "old": "6760bf4801eedfeccfada1e2f530ad6eb502ec2f3dc3fcf3f66464f2e3073a48"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumC copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fb0324d9ce20dd959b163c63694774b03711e7bf13f9b3bbd1f8a2f38d3ce031",
+    "old": "04c05fdcaef46e3a6c851508f1b51e74ae53b85e7cb68b87095b701e59644d67"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumC.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fb0324d9ce20dd959b163c63694774b03711e7bf13f9b3bbd1f8a2f38d3ce031",
+    "old": "04c05fdcaef46e3a6c851508f1b51e74ae53b85e7cb68b87095b701e59644d67"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumC_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fb0324d9ce20dd959b163c63694774b03711e7bf13f9b3bbd1f8a2f38d3ce031",
+    "old": "04c05fdcaef46e3a6c851508f1b51e74ae53b85e7cb68b87095b701e59644d67"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumC_oiznW7H.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fb0324d9ce20dd959b163c63694774b03711e7bf13f9b3bbd1f8a2f38d3ce031",
+    "old": "04c05fdcaef46e3a6c851508f1b51e74ae53b85e7cb68b87095b701e59644d67"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumD copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ba5effba684d2d996868a282849d88641806f0c95c8eb4a97c0ff7046c3da5eb",
+    "old": "ebab29c741e19bd1618844440c42591e3aee43fd263ca829457797fa2d066b1f"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumD.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ba5effba684d2d996868a282849d88641806f0c95c8eb4a97c0ff7046c3da5eb",
+    "old": "ebab29c741e19bd1618844440c42591e3aee43fd263ca829457797fa2d066b1f"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumD_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ba5effba684d2d996868a282849d88641806f0c95c8eb4a97c0ff7046c3da5eb",
+    "old": "ebab29c741e19bd1618844440c42591e3aee43fd263ca829457797fa2d066b1f"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_KondumD_pxYn058.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "ba5effba684d2d996868a282849d88641806f0c95c8eb4a97c0ff7046c3da5eb",
+    "old": "ebab29c741e19bd1618844440c42591e3aee43fd263ca829457797fa2d066b1f"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_MisalKorsot_BloktorMN copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fdb1bdde61be52f56027112f6ebe8bea5c5e3994a318a2a598838b1ef6ab12f9",
+    "old": "3dc1a5e7cbc48b6b9d9b0b56069fd7052557cadb6638dc8c571c0ab57a471f6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_MisalKorsot_BloktorMN.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fdb1bdde61be52f56027112f6ebe8bea5c5e3994a318a2a598838b1ef6ab12f9",
+    "old": "3dc1a5e7cbc48b6b9d9b0b56069fd7052557cadb6638dc8c571c0ab57a471f6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_MisalKorsot_BloktorMN_FUj6huI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fdb1bdde61be52f56027112f6ebe8bea5c5e3994a318a2a598838b1ef6ab12f9",
+    "old": "3dc1a5e7cbc48b6b9d9b0b56069fd7052557cadb6638dc8c571c0ab57a471f6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_MisalKorsot_BloktorMN_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "fdb1bdde61be52f56027112f6ebe8bea5c5e3994a318a2a598838b1ef6ab12f9",
+    "old": "3dc1a5e7cbc48b6b9d9b0b56069fd7052557cadb6638dc8c571c0ab57a471f6b"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Sabak copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "470fd9585a82f51e8064e0414a7b3ccc748749e332eb812f9568f2fb24bd9f90",
+    "old": "66cacd324539d77491d74ff3a657051d6f68e6728271875a8730e6a0cec4e3cb"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Sabak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "470fd9585a82f51e8064e0414a7b3ccc748749e332eb812f9568f2fb24bd9f90",
+    "old": "66cacd324539d77491d74ff3a657051d6f68e6728271875a8730e6a0cec4e3cb"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Sabak_LaI0EKh.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "470fd9585a82f51e8064e0414a7b3ccc748749e332eb812f9568f2fb24bd9f90",
+    "old": "66cacd324539d77491d74ff3a657051d6f68e6728271875a8730e6a0cec4e3cb"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Sabak_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "470fd9585a82f51e8064e0414a7b3ccc748749e332eb812f9568f2fb24bd9f90",
+    "old": "66cacd324539d77491d74ff3a657051d6f68e6728271875a8730e6a0cec4e3cb"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Tars_Oyunu copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c676111be6f177f75ce834ac37d76871b0696acd92d9e43465564d6b5d6973ea",
+    "old": "f1e9f4d4804a10b825afe9c0cdb6bc4fd9f5c5fc8e2e845ed290de939d22a7d3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Tars_Oyunu.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c676111be6f177f75ce834ac37d76871b0696acd92d9e43465564d6b5d6973ea",
+    "old": "f1e9f4d4804a10b825afe9c0cdb6bc4fd9f5c5fc8e2e845ed290de939d22a7d3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Tars_Oyunu_aLHngAI.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c676111be6f177f75ce834ac37d76871b0696acd92d9e43465564d6b5d6973ea",
+    "old": "f1e9f4d4804a10b825afe9c0cdb6bc4fd9f5c5fc8e2e845ed290de939d22a7d3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_Tars_Oyunu_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c676111be6f177f75ce834ac37d76871b0696acd92d9e43465564d6b5d6973ea",
+    "old": "f1e9f4d4804a10b825afe9c0cdb6bc4fd9f5c5fc8e2e845ed290de939d22a7d3"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TarsiaKurak copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7534d47cbe2d8ff505ea7bcc2f64768025b0c5e8bf3a4bb5d1abdba75962553",
+    "old": "4185cec543d62c0d5b38ebdca5c53c3a06844aa36e6d80b4adf7507724365321"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TarsiaKurak.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7534d47cbe2d8ff505ea7bcc2f64768025b0c5e8bf3a4bb5d1abdba75962553",
+    "old": "4185cec543d62c0d5b38ebdca5c53c3a06844aa36e6d80b4adf7507724365321"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TarsiaKurak_8pqyl1L.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7534d47cbe2d8ff505ea7bcc2f64768025b0c5e8bf3a4bb5d1abdba75962553",
+    "old": "4185cec543d62c0d5b38ebdca5c53c3a06844aa36e6d80b4adf7507724365321"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TarsiaKurak_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7534d47cbe2d8ff505ea7bcc2f64768025b0c5e8bf3a4bb5d1abdba75962553",
+    "old": "4185cec543d62c0d5b38ebdca5c53c3a06844aa36e6d80b4adf7507724365321"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7cb5f91c7d4fe500aa63b1925ee43970d329f1a85a6ce092515c743a0d4c095",
+    "old": "b6622ea1398591d76f98fadd2219f45a7504fed836cf89f379790491c5ea1147"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7cb5f91c7d4fe500aa63b1925ee43970d329f1a85a6ce092515c743a0d4c095",
+    "old": "b6622ea1398591d76f98fadd2219f45a7504fed836cf89f379790491c5ea1147"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_LJezZwo.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7cb5f91c7d4fe500aa63b1925ee43970d329f1a85a6ce092515c743a0d4c095",
+    "old": "b6622ea1398591d76f98fadd2219f45a7504fed836cf89f379790491c5ea1147"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_Shkala_Menen copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8f280fab4c5b94b247ed89e2197fce2b9f94def227b5817896a2c21aca444906",
+    "old": "56caa39059345dde53ecae99306994913a9bd0e378cecb0d8483a05c48d039d2"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_Shkala_Menen.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8f280fab4c5b94b247ed89e2197fce2b9f94def227b5817896a2c21aca444906",
+    "old": "56caa39059345dde53ecae99306994913a9bd0e378cecb0d8483a05c48d039d2"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_Shkala_Menen_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8f280fab4c5b94b247ed89e2197fce2b9f94def227b5817896a2c21aca444906",
+    "old": "56caa39059345dde53ecae99306994913a9bd0e378cecb0d8483a05c48d039d2"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_Shkala_Menen_tDPJwkP.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "8f280fab4c5b94b247ed89e2197fce2b9f94def227b5817896a2c21aca444906",
+    "old": "56caa39059345dde53ecae99306994913a9bd0e378cecb0d8483a05c48d039d2"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_TuuraJeKata_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "a7cb5f91c7d4fe500aa63b1925ee43970d329f1a85a6ce092515c743a0d4c095",
+    "old": "b6622ea1398591d76f98fadd2219f45a7504fed836cf89f379790491c5ea1147"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_XjanaO copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c3542c3dc5ad17c0a6931512e9510f99c22b3a6507fdbac103af930f938f84",
+    "old": "dc7fc6ebe39723affae2a8be0e0c9f982a6e2ab401cf74b2188068f37efa5205"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_XjanaO.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c3542c3dc5ad17c0a6931512e9510f99c22b3a6507fdbac103af930f938f84",
+    "old": "dc7fc6ebe39723affae2a8be0e0c9f982a6e2ab401cf74b2188068f37efa5205"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_XjanaO_copy.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c3542c3dc5ad17c0a6931512e9510f99c22b3a6507fdbac103af930f938f84",
+    "old": "dc7fc6ebe39723affae2a8be0e0c9f982a6e2ab401cf74b2188068f37efa5205"
+  },
+  "resources/files/Onduktardyn_Orunduk_Maanisi_XjanaO_m7YWF2o.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "73c3542c3dc5ad17c0a6931512e9510f99c22b3a6507fdbac103af930f938f84",
+    "old": "dc7fc6ebe39723affae2a8be0e0c9f982a6e2ab401cf74b2188068f37efa5205"
+  },
+  "resources/files/amaldar_tartibi_ozun_tuz_v2.pptx": {
+    "fixes": [
+      "kyrgyz"
+    ],
+    "new": "c39015dd5cb39f007aeb9e982278eca358cdc5d682e5dfda41331e919bbeeb24",
+    "old": "e1cab0eeb09ae6a2b1980e358ef378fdb42b627190cec9d1e47a02213f66046f"
+  }
+}

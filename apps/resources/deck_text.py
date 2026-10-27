@@ -154,9 +154,9 @@ def _apply_grade(text: str) -> str:
     return updated
 
 
-def edit_runs(texts, *, typo=False, grade=False, english=False):
+def edit_runs(texts, *, typo=False, grade=False, english=False, kyrgyz=False):
     """Return new run strings and a count of each fix that fired."""
-    counts = {'typo': 0, 'grade': 0, 'english': 0}
+    counts = {'typo': 0, 'grade': 0, 'english': 0, 'kyrgyz': 0}
     out = list(texts)
     if typo:
         out, found = _replace_phrase(out, TYPO_OLD, TYPO_NEW)
@@ -172,11 +172,16 @@ def edit_runs(texts, *, typo=False, grade=False, english=False):
                 counts['grade'] += 1
                 updated = graded
         out[index] = updated
+    if kyrgyz:
+        from apps.resources.kyrgyz_text import apply_kyrgyz_runs
+
+        out, kyrgyz_counts = apply_kyrgyz_runs(out)
+        counts['kyrgyz'] += kyrgyz_counts['total']
     return out, counts
 
 
 def _edit_xml(xml: str, **flags) -> tuple[str, dict]:
-    counts = {'typo': 0, 'grade': 0, 'english': 0}
+    counts = {'typo': 0, 'grade': 0, 'english': 0, 'kyrgyz': 0}
 
     def take(part_counts):
         for key in counts:
@@ -226,45 +231,70 @@ def _is_text_part(name: str) -> bool:
     return bool(_SLIDE_PART.match(name) or name == 'docProps/core.xml')
 
 
-def rewrite_pptx(data: bytes, *, typo=False, grade=False, english=False) -> tuple[bytes, dict]:
+def rewrite_pptx(data: bytes, *, typo=False, grade=False, english=False, kyrgyz=False) -> tuple[bytes, dict]:
     """Return new package bytes and fix counts.
 
     When nothing matches, the original bytes are returned unchanged.
+    Kyrgyz fixes stay on slides and notes. ``dc:title`` is left alone,
+    because resource rows are looked up by the exact title.
     """
-    counts = {'typo': 0, 'grade': 0, 'english': 0}
+    counts = {'typo': 0, 'grade': 0, 'english': 0, 'kyrgyz': 0}
     source = io.BytesIO(data)
     with zipfile.ZipFile(source) as zin:
-        replacements = {}
-        for info in zin.infolist():
-            if not _is_text_part(info.filename):
-                continue
-            raw = zin.read(info)
-            try:
-                xml = raw.decode('utf-8')
-            except UnicodeDecodeError:
-                continue
-            updated, part_counts = _edit_xml(xml, typo=typo, grade=grade, english=english)
-            for key in counts:
-                counts[key] += part_counts[key]
-            if updated != xml:
-                replacements[info.filename] = updated.encode('utf-8')
-        if not replacements:
-            return data, counts
-        out = io.BytesIO()
-        with zipfile.ZipFile(out, 'w', allowZip64=True) as zout:
+        proven_token = None
+        proven_var = None
+        if kyrgyz:
+            from apps.resources.kyrgyz_text import collect_proven, paragraph_texts, _PROVEN
+
+            proven_var = _PROVEN
+            paragraphs = []
             for info in zin.infolist():
-                payload = replacements.get(info.filename, zin.read(info))
-                cloned = zipfile.ZipInfo(filename=info.filename, date_time=info.date_time)
-                cloned.compress_type = info.compress_type
-                cloned.external_attr = info.external_attr
-                cloned.internal_attr = info.internal_attr
-                # Bit 3 (data descriptor) is rewritten by ZipFile from the CRC.
-                # Drop the old extra field so a resized XML part does not keep
-                # a stale uncompressed size.
-                cloned.flag_bits = info.flag_bits & ~0x8
-                cloned.create_system = info.create_system
-                zout.writestr(cloned, payload)
-    return out.getvalue(), counts
+                if not _SLIDE_PART.match(info.filename):
+                    continue
+                try:
+                    xml = zin.read(info).decode('utf-8')
+                except UnicodeDecodeError:
+                    continue
+                paragraphs.extend(paragraph_texts(xml))
+            proven_token = proven_var.set(collect_proven(paragraphs))
+        try:
+            replacements = {}
+            for info in zin.infolist():
+                if not _is_text_part(info.filename):
+                    continue
+                raw = zin.read(info)
+                try:
+                    xml = raw.decode('utf-8')
+                except UnicodeDecodeError:
+                    continue
+                part_kyrgyz = kyrgyz and bool(_SLIDE_PART.match(info.filename))
+                updated, part_counts = _edit_xml(
+                    xml, typo=typo, grade=grade, english=english, kyrgyz=part_kyrgyz,
+                )
+                for key in counts:
+                    counts[key] += part_counts[key]
+                if updated != xml:
+                    replacements[info.filename] = updated.encode('utf-8')
+            if not replacements:
+                return data, counts
+            out = io.BytesIO()
+            with zipfile.ZipFile(out, 'w', allowZip64=True) as zout:
+                for info in zin.infolist():
+                    payload = replacements.get(info.filename, zin.read(info))
+                    cloned = zipfile.ZipInfo(filename=info.filename, date_time=info.date_time)
+                    cloned.compress_type = info.compress_type
+                    cloned.external_attr = info.external_attr
+                    cloned.internal_attr = info.internal_attr
+                    # Bit 3 (data descriptor) is rewritten by ZipFile from the CRC.
+                    # Drop the old extra field so a resized XML part does not keep
+                    # a stale uncompressed size.
+                    cloned.flag_bits = info.flag_bits & ~0x8
+                    cloned.create_system = info.create_system
+                    zout.writestr(cloned, payload)
+            return out.getvalue(), counts
+        finally:
+            if proven_token is not None:
+                proven_var.reset(proven_token)
 
 
 def load_manifest() -> dict:
