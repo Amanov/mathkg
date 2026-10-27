@@ -47,14 +47,13 @@ class BridgePageTests(TestCase):
             self.assertIn(page['title'], html)
             self.assertIn('Мугалимге', html)
             self.assertIn('model-switch', html)
+            self.assertNotIn('topic-path', html)
+            self.assertEqual(html.count('<nav class="related-topics"'), 1)
             if page['slug'] == 'bar-to-x':
-                self.assertNotIn('topic-path', html)
                 self.assertIn('mk-zoom.css', html)
                 self.assertIn('mk-zoom.js', html)
                 self.assertIn('class="mk-zoom"', html)
                 self.assertIn('Тилкеден x ке: түшүндүрмө', html)
-            else:
-                self.assertIn('topic-path', html)
             self.assertIn('Сингапур ыкмасы', html)
             self.assertIn('кл.', html)
             for section in page['sections']:
@@ -124,7 +123,8 @@ class BridgePageTests(TestCase):
         self.assertNotIn('Мурунку тема', html)
 
         other = self.client.get(reverse('balance_method')).content.decode()
-        self.assertIn('topic-path', other)
+        self.assertNotIn('topic-path', other)
+        self.assertEqual(other.count('<nav class="related-topics"'), 1)
 
         import importlib
         import zipfile
@@ -194,3 +194,52 @@ class BridgePageTests(TestCase):
         self.assertGreater(italic, 0)
         for foreign in ('және', 'үшін', 'оқушы', 'студент', 'теңдеу', 'мұғалім', 'жеңіл'):
             self.assertNotIn(foreign, blob)
+
+    def test_bridge_pages_show_prev_next_once_at_the_bottom(self):
+        def footer(html):
+            self.assertNotIn('topic-path', html)
+            self.assertEqual(html.count('<nav class="related-topics"'), 1)
+            start = html.index('<nav class="related-topics"')
+            end = html.index('</nav>', start)
+            self.assertLess(html.index('</main>'), start)
+            self.assertLess(end, html.index('<footer class="site-footer"'))
+            nav = html[start:end]
+            self.assertEqual(html.count('Мурунку тема'), nav.count('Мурунку тема'))
+            self.assertEqual(html.count('Кийинки тема'), nav.count('Кийинки тема'))
+            return nav
+
+        for page in iter_pages():
+            html = self.client.get(reverse(page['url_name'])).content.decode()
+            nav = footer(html)
+            self.assertTrue('Мурунку тема' in nav or 'Кийинки тема' in nav, page['slug'])
+
+        sandar = MenuItem.objects.create(title='Сандар', order=0)
+        whole = MenuItem.objects.create(title='Бүтүн сандар', parent=sandar, order=0)
+        MenuItem.objects.create(
+            title='Он көзөнөктүү рамка', parent=whole, order=0, url_name='on_kozonoktuu_ramka',
+        )
+        MenuItem.objects.create(title='Сан курамы', parent=whole, order=1, url_name='san_kuramy')
+        MenuItem.objects.create(
+            title='Бүтүн сандардын орун наркы жана иреттөө',
+            parent=whole,
+            order=2,
+            url_name='integers_adding_subtracting_1_2_digit',
+        )
+        html = self.client.get(reverse('san_kuramy')).content.decode()
+        nav = footer(html)
+        self.assertIn('Он көзөнөктүү рамка', nav)
+        self.assertIn('Бүтүн сандардын орун наркы жана иреттөө', nav)
+        self.assertIn('/on-kozonoktuu-ramka/', nav)
+        self.assertNotIn('/integers-adding-1-2-digit/', nav)
+
+        html = self.client.get(reverse('heuristics')).content.decode()
+        nav = footer(html)
+        self.assertNotIn('Мурунку тема', nav)
+        self.assertIn('Кийинки тема', nav)
+        self.assertIn('Системалуу тизмелөө', nav)
+        self.assertIn('/resources/topic/number/systematic-listing/', nav)
+        self.assertFalse(MenuItem.objects.filter(url_name='heuristics').exists())
+
+        plain = self.client.get(reverse('to_fractions')).content.decode()
+        self.assertNotIn('topic-path', plain)
+        self.assertNotIn('<nav class="related-topics"', plain)
