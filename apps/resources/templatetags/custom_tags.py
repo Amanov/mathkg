@@ -71,19 +71,21 @@ def _current_menu_item(request):
     return None
 
 
-@register.inclusion_tag('snippets/related_topics.html', takes_context=True)
-def related_topics(context):
-    """Prev/next sibling navigation, shown just before the footer on every
-    real leaf/content page (base/base.html). Renders nothing on any page
-    that isn't a content page reachable from the menu tree, or that has
-    no content siblings to link to."""
-    request = context.get('request')
-    if request is None:
-        return {}
+class _PathLink:
+    """Prev/next target taken from the learning path, not a menu row."""
 
+    def __init__(self, title, href):
+        self.title = title
+        self.href = href
+
+    def get_resolved_url(self):
+        return self.href
+
+
+def _menu_neighbours(request):
     current = _current_menu_item(request)
     if current is None or current.parent_id is None:
-        return {}
+        return None
 
     siblings = [
         item for item in MenuItem.objects.filter(
@@ -95,12 +97,39 @@ def related_topics(context):
     try:
         index = next(i for i, item in enumerate(siblings) if item.pk == current.pk)
     except StopIteration:
-        return {}
+        return None
 
     prev_item = siblings[index - 1] if index > 0 else None
     next_item = siblings[index + 1] if index < len(siblings) - 1 else None
-
     if prev_item is None and next_item is None:
-        return {}
-
+        return None
     return {'prev_item': prev_item, 'next_item': next_item}
+
+
+def _path_neighbours(context):
+    """Footer links for a bridge page that is not a menu leaf.
+
+    «Маселе чечүү ыкмалары» has continuum neighbours and no menu row.
+    The same slot is used so the page still has one prev/next, at the bottom.
+    """
+    nav = context.get('topic_continuum') or {}
+    prev = nav.get('prev')
+    nxt = nav.get('next')
+    if not prev and not nxt:
+        return None
+    return {
+        'prev_item': _PathLink(prev['title'], prev['href']) if prev else None,
+        'next_item': _PathLink(nxt['title'], nxt['href']) if nxt else None,
+    }
+
+
+@register.inclusion_tag('snippets/related_topics.html', takes_context=True)
+def related_topics(context):
+    """Prev/next navigation, shown just before the footer on every real
+    leaf (base/base.html). A menu leaf uses its content siblings. A bridge
+    page that is not in the menu uses the learning-path neighbours the
+    view already resolved. Anything else renders nothing."""
+    request = context.get('request')
+    if request is None:
+        return {}
+    return _menu_neighbours(request) or _path_neighbours(context) or {}

@@ -47,7 +47,13 @@ class BridgePageTests(TestCase):
             self.assertIn(page['title'], html)
             self.assertIn('Мугалимге', html)
             self.assertIn('model-switch', html)
-            self.assertIn('topic-path', html)
+            self.assertNotIn('topic-path', html)
+            self.assertEqual(html.count('<nav class="related-topics"'), 1)
+            if page['slug'] == 'bar-to-x':
+                self.assertIn('mk-zoom.css', html)
+                self.assertIn('mk-zoom.js', html)
+                self.assertIn('class="mk-zoom"', html)
+                self.assertIn('Тилкеден x ке: түшүндүрмө', html)
             self.assertIn('Сингапур ыкмасы', html)
             self.assertIn('кл.', html)
             for section in page['sections']:
@@ -98,3 +104,143 @@ class BridgePageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         body = b''.join(response.streaming_content)
         self.assertTrue(body.startswith(b'PK'), body[:8])
+
+    def test_bar_to_x_keeps_the_footer_link_and_the_lesson_deck(self):
+        algebra = MenuItem.objects.create(title='Алгебра', order=0)
+        intro = MenuItem.objects.create(title='Киришүү', parent=algebra, order=0)
+        MenuItem.objects.create(title='Тилкеден x ке', parent=intro, order=0, url_name='bar_to_x')
+        MenuItem.objects.create(
+            title='Аныктамалар', parent=intro, order=1, url_name='algebra_intro_definitions',
+        )
+        html = self.client.get(reverse('bar_to_x')).content.decode()
+        self.assertNotIn('topic-path', html)
+        self.assertLess(
+            html.index('Тилкеден x ке: түшүндүрмө'),
+            html.index('Арифметикадан алгебрага'),
+        )
+        self.assertIn('related-topics', html)
+        self.assertIn('Кийинки тема', html)
+        self.assertIn('Аныктамалар', html)
+        self.assertNotIn('Мурунку тема', html)
+
+        other = self.client.get(reverse('balance_method')).content.decode()
+        self.assertNotIn('topic-path', other)
+        self.assertEqual(other.count('<nav class="related-topics"'), 1)
+
+        import importlib
+        import zipfile
+        import re
+        from django.db import migrations as dj_migrations
+
+        migration = importlib.import_module('apps.resources.migrations.0052_bar_to_x_lesson')
+        self.assertEqual(
+            migration.Migration.dependencies,
+            [('personal', '0051_refresh_pack_pdf')],
+        )
+        self.assertEqual(len(migration.Migration.operations), 1)
+        operation = migration.Migration.operations[0]
+        self.assertIsInstance(operation, dj_migrations.RunPython)
+        self.assertIs(operation.code, migration.forward)
+
+        resource = Resource.objects.get(title='bar-to-x-sabak.pptx')
+        self.assertEqual(resource.category, 'presentation')
+        self.assertTrue(resource.is_active)
+        from apps.resources.models import PageFreeDownload
+        free = PageFreeDownload.objects.get(page_key='bar_to_x')
+        locked = Resource.objects.filter(
+            title__in=[
+                'bar-to-x-sabak.pptx',
+                'bar-to-x-ArifmetikadanAlgebraga.pptx',
+            ],
+        ).exclude(pk=free.resource_id).first()
+        self.assertIsNotNone(locked)
+        response = self.client.get(reverse('download_resource', args=[locked.pk]))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/login/', response['Location'])
+
+        user = Account.objects.create_user(
+            email='barto@example.com',
+            username='barto',
+            password='SuperSecret123!',
+        )
+        user.is_active = True
+        user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
+        user.subscription_end = timezone.now().date() + timedelta(days=30)
+        user.save(update_fields=['is_active', 'current_plan', 'subscription_end'])
+        self.client.login(email='barto@example.com', password='SuperSecret123!')
+        response = self.client.get(reverse('download_resource', args=[resource.pk]))
+        self.assertEqual(response.status_code, 200)
+        body = b''.join(response.streaming_content)
+        self.assertTrue(body.startswith(b'PK'), body[:8])
+
+        archive = zipfile.ZipFile(BUNDLED_DIR / 'bar-to-x-sabak.pptx')
+        texts = []
+        italic = 0
+        for name in archive.namelist():
+            if not re.match(r'ppt/slides/slide\d+\.xml$', name):
+                continue
+            xml = archive.read(name).decode('utf-8')
+            texts.extend(re.findall(r'<a:t[^>]*>([^<]*)</a:t>', xml))
+            italic += xml.count('i="1"')
+        blob = '\n'.join(texts)
+        self.assertIn('MathKG · Математика кыргызча', blob)
+        self.assertIn('mathematicskgz@gmail.com', blob)
+        self.assertIn('Окуучу', blob)
+        self.assertIn('70 000', blob)
+        self.assertIn('1,5', blob)
+        self.assertIn('Жеңил', blob)
+        self.assertIn('Орто', blob)
+        self.assertIn('Оор', blob)
+        self.assertIn('Аныктамалар', blob)
+        self.assertGreater(italic, 0)
+        for foreign in ('және', 'үшін', 'оқушы', 'студент', 'теңдеу', 'мұғалім', 'жеңіл'):
+            self.assertNotIn(foreign, blob)
+
+    def test_bridge_pages_show_prev_next_once_at_the_bottom(self):
+        def footer(html):
+            self.assertNotIn('topic-path', html)
+            self.assertEqual(html.count('<nav class="related-topics"'), 1)
+            start = html.index('<nav class="related-topics"')
+            end = html.index('</nav>', start)
+            self.assertLess(html.index('</main>'), start)
+            self.assertLess(end, html.index('<footer class="site-footer"'))
+            nav = html[start:end]
+            self.assertEqual(html.count('Мурунку тема'), nav.count('Мурунку тема'))
+            self.assertEqual(html.count('Кийинки тема'), nav.count('Кийинки тема'))
+            return nav
+
+        for page in iter_pages():
+            html = self.client.get(reverse(page['url_name'])).content.decode()
+            nav = footer(html)
+            self.assertTrue('Мурунку тема' in nav or 'Кийинки тема' in nav, page['slug'])
+
+        sandar = MenuItem.objects.create(title='Сандар', order=0)
+        whole = MenuItem.objects.create(title='Бүтүн сандар', parent=sandar, order=0)
+        MenuItem.objects.create(
+            title='Он көзөнөктүү рамка', parent=whole, order=0, url_name='on_kozonoktuu_ramka',
+        )
+        MenuItem.objects.create(title='Сан курамы', parent=whole, order=1, url_name='san_kuramy')
+        MenuItem.objects.create(
+            title='Бүтүн сандардын орун наркы жана иреттөө',
+            parent=whole,
+            order=2,
+            url_name='integers_adding_subtracting_1_2_digit',
+        )
+        html = self.client.get(reverse('san_kuramy')).content.decode()
+        nav = footer(html)
+        self.assertIn('Он көзөнөктүү рамка', nav)
+        self.assertIn('Бүтүн сандардын орун наркы жана иреттөө', nav)
+        self.assertIn('/on-kozonoktuu-ramka/', nav)
+        self.assertNotIn('/integers-adding-1-2-digit/', nav)
+
+        html = self.client.get(reverse('heuristics')).content.decode()
+        nav = footer(html)
+        self.assertNotIn('Мурунку тема', nav)
+        self.assertIn('Кийинки тема', nav)
+        self.assertIn('Системалуу тизмелөө', nav)
+        self.assertIn('/resources/topic/number/systematic-listing/', nav)
+        self.assertFalse(MenuItem.objects.filter(url_name='heuristics').exists())
+
+        plain = self.client.get(reverse('to_fractions')).content.decode()
+        self.assertNotIn('topic-path', plain)
+        self.assertNotIn('<nav class="related-topics"', plain)

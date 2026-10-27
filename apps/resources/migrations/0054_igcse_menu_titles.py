@@ -7,10 +7,10 @@ there is no ALTER TABLE.
 
 Grades are not stored on a model. This migration does not touch them.
 
-It depends on 0051_refresh_pack_pdf, the leaf on main. Draft PRs #41
-and #42 add 0052_bar_to_x_lesson and 0053_refresh_finish_word, both also
-depending on 0051. After those land, repoint this migration so it
-depends on 0052 and 0053 and the graph has one leaf again.
+0052_bar_to_x_lesson is on main. 0053_refresh_finish_word follows it
+on the finish-word pull request. This migration follows 0053, so once
+that pull request merges the graph has one leaf. It does not include
+that pull request's other files.
 """
 
 from django.db import migrations
@@ -47,7 +47,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0051_refresh_pack_pdf'),
+        ('personal', '0053_refresh_finish_word'),
     ]
 
     operations = [
