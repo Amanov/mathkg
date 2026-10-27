@@ -95,6 +95,7 @@ class PackPdfMigrationTests(SimpleTestCase):
         import json
         path = Path(__file__).resolve().parent / 'data' / 'pack_pdf_manifest.json'
         manifest = json.loads(path.read_text(encoding='utf-8'))
+        finish = json.loads((path.parent / 'finish_word_manifest.json').read_text(encoding='utf-8'))
         self.assertGreater(len(manifest), 0)
         root = Path(__file__).resolve().parents[2]
         for relative, entry in manifest.items():
@@ -103,6 +104,12 @@ class PackPdfMigrationTests(SimpleTestCase):
             bundled = root / 'apps' / 'resources' / 'bundled_files' / Path(relative).name
             media = root / 'media' / relative
             self.assertTrue(bundled.is_file(), relative)
-            self.assertEqual(sha256_bytes(bundled.read_bytes()), entry['new'], relative)
+            digest = sha256_bytes(bundled.read_bytes())
+            # 0053 rewrites the maze label again. Its old hash is this new hash.
+            if relative in finish:
+                self.assertEqual(finish[relative]['old'], entry['new'], relative)
+                self.assertEqual(digest, finish[relative]['new'], relative)
+            else:
+                self.assertEqual(digest, entry['new'], relative)
             if media.is_file():
-                self.assertEqual(sha256_bytes(media.read_bytes()), entry['new'], relative)
+                self.assertEqual(sha256_bytes(media.read_bytes()), digest, relative)

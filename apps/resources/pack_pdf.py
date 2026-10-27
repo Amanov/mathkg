@@ -50,6 +50,9 @@ _CRUMB_ONLY = re.compile(
     r'^(\d{1,2}(?:[–—−-]\d{1,2})?-класс)\s*[›>]\s*$'
 )
 
+# 0051 recorded these bytes. The spelling used now is «МААРА»;
+# finish_word.py applies that on the following migration, as a whole word,
+# so a later edit here would make 0051 reject every volume file.
 _MARE = (
     ('МАРЕге', 'МАРАга'),
     ('МАРЕ', 'МАРА'),
