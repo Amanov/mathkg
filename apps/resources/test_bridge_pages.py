@@ -134,7 +134,7 @@ class BridgePageTests(TestCase):
         migration = importlib.import_module('apps.resources.migrations.0052_bar_to_x_lesson')
         self.assertEqual(
             migration.Migration.dependencies,
-            [('personal', '0050_refresh_kyrgyz_text')],
+            [('personal', '0051_refresh_pack_pdf')],
         )
         self.assertEqual(len(migration.Migration.operations), 1)
         operation = migration.Migration.operations[0]

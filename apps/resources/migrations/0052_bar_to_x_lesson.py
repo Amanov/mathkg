@@ -43,7 +43,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0050_refresh_kyrgyz_text'),
+        ('personal', '0051_refresh_pack_pdf'),
     ]
 
     operations = [
