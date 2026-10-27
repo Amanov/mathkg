@@ -456,14 +456,58 @@ class FreeDownloadTests(TestCase):
             for image in spec['images'].values():
                 self.assertIsNotNone(finders.find(image), image)
         html = self.client.get(reverse('koshuu_1_digit')).content.decode()
-        self.assertIn('topic-page__grade', html)
-        self.assertIn('5-класс', html)
+        self.assertIn('topic-page__grade"><span>4-класс</span>', html)
         html = self.client.get(reverse('integers_adding_subtracting_1_2_digit')).content.decode()
         self.assertIn('>1-класс<span class="grade-tab__count">', html)
         self.assertIn('>2-класс<span class="grade-tab__count">', html)
         html = self.client.get(reverse('hcf_lcm_prime_factorisation_mixed')).content.decode()
-        self.assertIn('6-класс', html)
+        self.assertIn('topic-page__grade"><span>7-класс</span>', html)
+        self.assertIn('6-класс: класста колдонуу', html)
         self.assertIn('Атышуу', html)
+
+    def test_twelve_year_badges_and_igcse_titles(self):
+        from apps.resources.models import SubSubtopic, Subtopic, Topic
+        badges = {
+            'adding_directed': '7-класс',
+            'time_reading_clocks': '2-класс',
+            'time_calculations': '3–4 кл.',
+            'geometry_area_perimeter_triangles_area': '5-класс',
+            'geometry_area_perimeter_quadrilaterals_parallelogram': '7-класс',
+            'geometry_area_perimeter_mixed_polygons': '5–7 кл.',
+            'dividing_by_less_than_1': '6–7 кл.',
+            'dividing_1_digit': '5-класс',
+            'data_analysing_mean_from_a_list': '6-класс',
+            'data_analysing_median': '7-класс',
+            'direct_inverse_direct': '7-класс',
+            'direct_inverse_inverse': '8-класс',
+            'algebra_intro_notation': '6-класс',
+            'algebra_linear_var1side_noncalc_1step': '7-класс',
+            'bar_model_part_whole': '1–2 кл.',
+            'algebra_tiles': '7–8 кл.',
+            'before_after': '6 кл.',
+        }
+        for name, badge in badges.items():
+            html = self.client.get(reverse(name)).content.decode()
+            self.assertIn(f'topic-page__grade"><span>{badge}</span>', html, name)
+
+        frames = self.client.get(reverse('on_kozonoktuu_ramka')).content.decode()
+        self.assertIn('саноо', frames)
+        self.assertNotIn('санау', frames)
+
+        for name, heading in (
+            ('algebra_functions_igcse', '>IGCSE</h1>'),
+            ('data_representing_venn_diagrams_sets_with_notation_igcse', '>Жыйындар белгилөө менен (IGCSE)</h1>'),
+            ('algebra_sequences_linear_summing', '>Суммалоо (IGCSE)</h1>'),
+        ):
+            html = self.client.get(reverse(name)).content.decode()
+            self.assertIn(heading, html, name)
+            self.assertNotIn('ЖРТ', html, name)
+
+        topic = Topic.objects.create(title='Геометрия', slug='geometry')
+        sub = Subtopic.objects.create(title='Өзгөртүүлөр', slug='transformations', topic=topic)
+        SubSubtopic.objects.create(title='Чагылдыруу', slug='reflection', subtopic=sub)
+        html = self.client.get(reverse('subsubtopic_detail', args=['geometry', 'transformations', 'reflection'])).content.decode()
+        self.assertIn('topic-page__grade"><span>7–9 кл.</span>', html)
 
     def test_directed_numbers_page_has_grade_packs_and_no_template_based_files(self):
         from pathlib import Path

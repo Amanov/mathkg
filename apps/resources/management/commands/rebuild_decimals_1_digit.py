@@ -1235,7 +1235,7 @@ GROUPS = [
         # user asked for it by that name; url_name stays as-is.
         'parent_path': ('Алгебра', 'Функциялар'),
         'target_items': [
-            {'title': 'ЖРТ', 'url_name': 'algebra_functions_igcse'},
+            {'title': 'IGCSE', 'url_name': 'algebra_functions_igcse'},
         ],
         'promoted_titles': ['Түзүү', 'Маанисин эсептөө'],
         'stale_subsubtopic_titles': [],
@@ -1474,7 +1474,7 @@ GROUPS = [
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'target_items': [
             {'title': 'GCSE', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
-            {'title': 'ЖРТ', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
+            {'title': 'IGCSE', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1838,7 +1838,7 @@ GROUPS = [
             {'title': 'Киришүү', 'url_name': 'algebra_sequences_linear_introduction'},
             {'title': 'Мүчөлөрдү эсептөө', 'url_name': 'algebra_sequences_linear_evaluating_terms'},
             {'title': '2 мүчөдөн', 'url_name': 'algebra_sequences_linear_from_2_terms'},
-            {'title': 'Суммалоо (ЖРТ)', 'url_name': 'algebra_sequences_linear_summing'},
+            {'title': 'Суммалоо (IGCSE)', 'url_name': 'algebra_sequences_linear_summing'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1996,7 +1996,7 @@ GROUPS = [
             {'title': 'Аралаш', 'url_name': 'geometry_angles_circle_theorems_mixed'},
             {'title': 'Пифагор менен', 'url_name': 'geometry_angles_circle_theorems_with_pythagoras'},
             {'title': 'Тригонометрия менен', 'url_name': 'geometry_angles_circle_theorems_with_trigonometry'},
-            {'title': 'Кесилишкен хордалар (ЖРТ)', 'url_name': 'geometry_angles_circle_theorems_intersecting_chords'},
+            {'title': 'Кесилишкен хордалар (IGCSE)', 'url_name': 'geometry_angles_circle_theorems_intersecting_chords'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -3099,7 +3099,7 @@ GROUPS = [
             {'title': 'Түзүү жана окуу', 'url_name': 'data_representing_venn_diagrams_creating_reading'},
             {'title': 'Ыктымалдуулук менен', 'url_name': 'data_representing_venn_diagrams_with_probability'},
             {'title': 'Жыйындар белгилөө менен', 'url_name': 'data_representing_venn_diagrams_sets_with_notation'},
-            {'title': 'Жыйындар белгилөө менен (ЖРТ)', 'url_name': 'data_representing_venn_diagrams_sets_with_notation_igcse'},
+            {'title': 'Жыйындар белгилөө менен (IGCSE)', 'url_name': 'data_representing_venn_diagrams_sets_with_notation_igcse'},
             {'title': 'Белгилөө жана ыктымалдуулук', 'url_name': 'data_representing_venn_diagrams_notation_probability'},
         ],
         'stale_subsubtopic_titles': [],
@@ -3693,7 +3693,7 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Түзүү',
             'Маанисин эсептөө',
-            'ЖРТ',
+            'IGCSE',
         ],
     },
     {
@@ -3976,7 +3976,7 @@ CHILD_ORDER_FIXES = [
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'order': [
             'GCSE',
-            'ЖРТ',
+            'IGCSE',
         ],
     },
     {
@@ -4177,7 +4177,7 @@ CHILD_ORDER_FIXES = [
             'Киришүү',
             'Мүчөлөрдү эсептөө',
             '2 мүчөдөн',
-            'Суммалоо (ЖРТ)',
+            'Суммалоо (IGCSE)',
         ],
     },
     {
@@ -4349,7 +4349,7 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
             'Пифагор менен',
             'Тригонометрия менен',
-            'Кесилишкен хордалар (ЖРТ)',
+            'Кесилишкен хордалар (IGCSE)',
         ],
     },
     {

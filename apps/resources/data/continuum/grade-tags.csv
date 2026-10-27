@@ -1,13 +1,13 @@
 href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
-/san-kuramy/,Сан курамы: 10го жана 20га чейин,1–2 кл.,башталгыч (1–6),1–2 кл.,,,yes
-/on-kozonoktuu-ramka/,Он көзөнөктүү рамка: 20га чейин санау,1 кл.,башталгыч (1–6),1 кл.,,,yes
-/bar-model-part-whole/,Бөлүк–бүтүн тилке модели,2–3 кл.,башталгыч (1–6),2–3 кл.,,,yes
-/bar-model-comparison/,Салыштыруу тилке модели,3–4 кл.,башталгыч (1–6),2–3 кл.,,,yes
+/san-kuramy/,Сан курамы: 10го жана 20га чейин,1 кл.,башталгыч (1–6),1–2 кл.,,,yes
+/on-kozonoktuu-ramka/,Он көзөнөктүү рамка: 20га чейин саноо,1 кл.,башталгыч (1–6),1 кл.,,,yes
+/bar-model-part-whole/,Бөлүк–бүтүн тилке модели,1–2 кл.,башталгыч (1–6),2–3 кл.,,,yes
+/bar-model-comparison/,Салыштыруу тилке модели,2–4 кл.,башталгыч (1–6),2–3 кл.,,,yes
 /word-problems-bar-model/,Тексттик маселелер: тилке модели менен,4–7 кл.,башталгыч (1–6),3–6 кл.,,,yes
-/before-after/,«Мурун–кийин» маселелери,6–7 кл.,башталгыч (1–6),5–6 кл.,,,yes
+/before-after/,«Мурун–кийин» маселелери,6 кл.,башталгыч (1–6),5–6 кл.,,,yes
 /bar-to-x/,Тилкеден x ке,6–7 кл.,башталгыч (1–6),5–6 кл.,,,yes
 /balance-method/,Тараза ыкмасы,7 кл.,негизги (7–9),6 кл.,,,yes
-/algebra-tiles/,Алгебралык плиткалар жана аянт модели,7–9 кл.,негизги (7–9),6–8 кл.,,,yes
+/algebra-tiles/,Алгебралык плиткалар жана аянт модели,7–8 кл.,негизги (7–9),6–8 кл.,,,yes
 /heuristics/,Маселе чечүү ыкмалары,4–12 кл.,башталгыч (1–6),3–11 кл.,,,yes
 /four_basic_operations/,Төрт амал,4–5 кл.,башталгыч (1–6),3–4 кл.,Сандар,Амалдардын тартиби,no
 /all_operations/,Аралаш амалдар,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Амалдардын тартиби,no
@@ -410,7 +410,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /algebra-functions-evaluating-composite-inverse/,Татаал жана тескери функциялар,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-evaluating-solving-equations/,Теңдемелерди чечүү,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-evaluating-iteration/,Кайталануу,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
-/algebra-functions-igcse/,ЖРТ,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Функциялар,no
+/algebra-functions-igcse/,IGCSE,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Функциялар,no
 /algebra-graphs-abstract-coordinates-reading/,Окуу,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: абстракттуу > Координаттар,no
 /algebra-graphs-abstract-coordinates-reading-plotting/,Окуу жана чиймелөө,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: абстракттуу > Координаттар,no
 /algebra-graphs-abstract-coordinates-midpoint-endpoint/,Кесиндинин орто жана учтук чекиттери,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: абстракттуу > Координаттар,no
@@ -454,7 +454,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /algebra-graphs-abstract-other-nonlinear-exponential-functions/,Көрсөткүчтүү функциялар,10 кл.,орто (10–12),9 кл.,Алгебра,Графиктер: абстракттуу > Башка сызыктуу эмес,no
 /algebra-graphs-abstract-other-nonlinear-trig-functions/,Тригонометриялык функциялар,11 кл.,орто (10–12),10 кл.,Алгебра,Графиктер: абстракттуу > Башка сызыктуу эмес,no
 /algebra-graphs-abstract-transformations-gcse/,GCSE,10–11 кл.,орто (10–12),9–10 кл.,Алгебра,Графиктер: абстракттуу > Түрлөндүрүүлөр,no
-/algebra-graphs-abstract-transformations-igcse/,ЖРТ,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Графиктер: абстракттуу > Түрлөндүрүүлөр,no
+/algebra-graphs-abstract-transformations-igcse/,IGCSE,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Графиктер: абстракттуу > Түрлөндүрүүлөр,no
 /resources/topic/algebra/graphs-abstract/graphs-abstract-differentiation/,Дифференциалдоо,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Графиктер: абстракттуу,no
 /algebra-graphs-real-life-conversion-reading/,Окуу,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: турмуштук > Айландыруу графиктери,no
 /algebra-graphs-real-life-conversion-plotting-reading/,Чиймелөө жана окуу,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: турмуштук > Айландыруу графиктери,no
@@ -554,7 +554,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /algebra-sequences-linear-introduction/,Киришүү,8–10 кл.,негизги (7–9),7–9 кл.,Алгебра,Ырааттуулуктар > Сызыктуу,no
 /algebra-sequences-linear-evaluating-terms/,Мүчөлөрдү эсептөө,8–10 кл.,негизги (7–9),7–9 кл.,Алгебра,Ырааттуулуктар > Сызыктуу,no
 /algebra-sequences-linear-from-2-terms/,2 мүчөдөн,8–10 кл.,негизги (7–9),7–9 кл.,Алгебра,Ырааттуулуктар > Сызыктуу,no
-/algebra-sequences-linear-summing/,Суммалоо (ЖРТ),11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Ырааттуулуктар > Сызыктуу,no
+/algebra-sequences-linear-summing/,Суммалоо (IGCSE),11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Ырааттуулуктар > Сызыктуу,no
 /algebra-sequences-quadratic/,Квадраттык,10 кл.,орто (10–12),9 кл.,Алгебра,Ырааттуулуктар,no
 /algebra-sequences-linear-quadratic/,Сызыктуу жана квадраттык,8–10 кл.,негизги (7–9),7–9 кл.,Алгебра,Ырааттуулуктар,no
 /algebra-sequences-geometric/,Геометриялык,10 кл.,орто (10–12),9 кл.,Алгебра,Ырааттуулуктар,no
@@ -589,7 +589,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /geometry-angles-circle-theorems-mixed/,Аралаш,9–10 кл.,негизги (7–9),8–9 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
 /geometry-angles-circle-theorems-with-pythagoras/,Пифагор менен,9–10 кл.,негизги (7–9),8–9 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
 /geometry-angles-circle-theorems-with-trigonometry/,Тригонометрия менен,9–10 кл.,негизги (7–9),8–9 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
-/geometry-angles-circle-theorems-intersecting-chords/,Кесилишкен хордалар (ЖРТ),11–12 кл.,орто (10–12),10–11 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
+/geometry-angles-circle-theorems-intersecting-chords/,Кесилишкен хордалар (IGCSE),11–12 кл.,орто (10–12),10–11 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
 /geometry-angles-parallel-lines-introduction/,Киришүү,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Параллель сызыктар,no
 /geometry-angles-parallel-lines-solving-equations/,Теңдемелерди чечүү,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Параллель сызыктар,no
 /geometry-angles-polygons-triangles/,Үч бурчтуктар,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Көп бурчтуктар,no

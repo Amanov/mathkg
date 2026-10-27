@@ -578,9 +578,8 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-simultaneous-linear-non-linear-algebraically': 'Алгебралык жол менен',
     'algebra-simultaneous-linear-non-linear-graphically': 'Графикалык жол менен',
 
-    # Функциялар - "ЖРТ" flat slot (localized from the reference's
-    # "IGCSE"), none with a real page yet.
-    'algebra-functions-igcse': 'ЖРТ',
+    # Функциялар - the reference slot is "IGCSE". It is not the ЖРТ exam.
+    'algebra-functions-igcse': 'IGCSE',
 
     # Функциялар > Түзүү - all 7 slots, none with a real page yet.
     'algebra-functions-forming-expressions': 'Туюнтмалар',
@@ -737,7 +736,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Графиктер: абстракттуу > Өзгөртүүлөр - both slots, none with a
     # real page yet.
     'algebra-graphs-abstract-transformations-gcse': 'GCSE',
-    'algebra-graphs-abstract-transformations-igcse': 'ЖРТ',
+    'algebra-graphs-abstract-transformations-igcse': 'IGCSE',
 
     # Графиктер: турмуштук > Айландыруу графиктери - 2 confirmed slots
     # (reference screenshot was cut off after these, flagged to the
@@ -871,7 +870,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-sequences-linear-introduction': 'Киришүү',
     'algebra-sequences-linear-evaluating-terms': 'Мүчөлөрдү эсептөө',
     'algebra-sequences-linear-from-2-terms': '2 мүчөдөн',
-    'algebra-sequences-linear-summing': 'Суммалоо (ЖРТ)',
+    'algebra-sequences-linear-summing': 'Суммалоо (IGCSE)',
 
     # Өзгөртүп түзүү > Туюнтмаларды жөнөкөйлөтүү - all 13 slots, none
     # with a real page yet.
@@ -916,7 +915,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-angles-circle-theorems-mixed': 'Аралаш',
     'geometry-angles-circle-theorems-with-pythagoras': 'Пифагор менен',
     'geometry-angles-circle-theorems-with-trigonometry': 'Тригонометрия менен',
-    'geometry-angles-circle-theorems-intersecting-chords': 'Кесилишкен хордалар (ЖРТ)',
+    'geometry-angles-circle-theorems-intersecting-chords': 'Кесилишкен хордалар (IGCSE)',
 
     # Геометрия > Бурчтар > Параллель сызыктар - 2 known slots
     # (screenshot was cut off), none with a real page yet.
@@ -1333,7 +1332,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-representing-venn-diagrams-creating-reading': 'Түзүү жана окуу',
     'data-representing-venn-diagrams-with-probability': 'Ыктымалдуулук менен',
     'data-representing-venn-diagrams-sets-with-notation': 'Жыйындар белгилөө менен',
-    'data-representing-venn-diagrams-sets-with-notation-igcse': 'Жыйындар белгилөө менен (ЖРТ)',
+    'data-representing-venn-diagrams-sets-with-notation-igcse': 'Жыйындар белгилөө менен (IGCSE)',
     'data-representing-venn-diagrams-notation-probability': 'Белгилөө жана ыктымалдуулук',
 
     # Ыктымалдуулук > Бир окуя - 7 flat slots, none with a real page
