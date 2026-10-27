@@ -28,7 +28,10 @@
       <span class="account-status-label">Жазылуу абалы</span>
       {% if days_left >= 0 %}
         <span class="account-status-value">Активдүү</span>
-        <span class="account-status-sub">{{ subscription_end|date:"d.m.Y" }} чейин{% if user.current_plan %} · {{ user.get_current_plan_display }}{% endif %}</span>
+        <span class="account-status-sub">Мөөнөтү: {{ subscription_end|date:"d.m.Y" }} чейин</span>
+        {% if user.current_plan %}
+        <span class="account-status-sub">Учурдагы план: {{ user.get_current_plan_display }}</span>
+        {% endif %}
       {% else %}
         <span class="account-status-value">Мөөнөтү бүткөн</span>
         <span class="account-status-sub">{{ days_passed }} күн мурун аяктаган</span>
