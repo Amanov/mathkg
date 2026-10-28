@@ -1,10 +1,38 @@
 from datetime import timedelta
 
 from django.contrib import admin, messages
+from django.contrib.admin.actions import delete_selected
+from django.contrib.admin.options import IS_POPUP_VAR
+from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 from django.contrib.auth.admin import UserAdmin
+from django.db import IntegrityError, router, transaction
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from .models import Account, PaymentQRCode, SubscriptionRequest
+
+# Shown when COMMIT rejects the delete (a foreign key Django does not
+# know about). The account row is unchanged. Kept in Kyrgyz to match
+# the other staff-facing messages on this admin.
+ACCOUNT_DELETE_BLOCKED = (
+    'Аккаунт өчпөй калды: аны башка жазуу шилтеп турат. Аккаунт ордунда калды.'
+)
+
+
+def delete_selected_honestly(modeladmin, request, queryset):
+    # The stock action adds its success message only after
+    # queryset.delete() returns. That delete commits its own
+    # transaction, so a failed COMMIT raises before the message.
+    # Catch it here and say the rows stayed, instead of a bare 500.
+    try:
+        return delete_selected(modeladmin, request, queryset)
+    except IntegrityError:
+        modeladmin.message_user(request, ACCOUNT_DELETE_BLOCKED, messages.ERROR)
+        return None
+
+
 # Register your models here.
 
 
@@ -17,6 +45,66 @@ class AccountAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
     actions = ['end_subscription_for_violation']
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            _func, name, description = actions['delete_selected']
+            actions['delete_selected'] = (delete_selected_honestly, name, description)
+        return actions
+
+    def delete_view(self, request, object_id, extra_context=None):
+        # ModelAdmin.delete_view commits the surrounding atomic block
+        # after response_delete() has already queued the success
+        # message. Postgres checks deferred foreign keys at that
+        # COMMIT. On failure the account is restored, but
+        # MessageMiddleware still saves the success message onto the
+        # 500 response. response_delete() below waits for on_commit;
+        # this except reports the rollback in the admin instead.
+        try:
+            return super().delete_view(request, object_id, extra_context)
+        except IntegrityError:
+            self.message_user(request, ACCOUNT_DELETE_BLOCKED, messages.ERROR)
+            post_url = reverse(
+                'admin:%s_%s_changelist' % (self.opts.app_label, self.opts.model_name),
+                current_app=self.admin_site.name,
+            )
+            return HttpResponseRedirect(post_url)
+
+    def response_delete(self, request, obj_display, obj_id):
+        # Popup closes without the green banner. The normal path must
+        # not call message_user until the delete_view transaction has
+        # committed, or a deferred constraint failure leaves a success
+        # banner on an account that is still there.
+        if IS_POPUP_VAR in request.POST:
+            return super().response_delete(request, obj_display, obj_id)
+
+        def announce_deletion():
+            self.message_user(
+                request,
+                _('The %(name)s “%(obj)s” was deleted successfully.')
+                % {
+                    'name': self.opts.verbose_name,
+                    'obj': obj_display,
+                },
+                messages.SUCCESS,
+            )
+
+        transaction.on_commit(announce_deletion, using=router.db_for_write(self.model))
+
+        if self.has_change_permission(request, None):
+            post_url = reverse(
+                'admin:%s_%s_changelist' % (self.opts.app_label, self.opts.model_name),
+                current_app=self.admin_site.name,
+            )
+            preserved_filters = self.get_preserved_filters(request)
+            post_url = add_preserved_filters(
+                {'preserved_filters': preserved_filters, 'opts': self.opts},
+                post_url,
+            )
+        else:
+            post_url = reverse('admin:index', current_app=self.admin_site.name)
+        return HttpResponseRedirect(post_url)
 
     @admin.action(description='Эрежелерди бузгандыгы үчүн жазылууну токтотуу жана бөгөттөө')
     def end_subscription_for_violation(self, request, queryset):

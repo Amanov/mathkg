@@ -2,8 +2,9 @@ import calendar
 from datetime import datetime, timedelta
 from logging import getLogger
 
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import connections, models, router, transaction
+from django.db.utils import OperationalError, ProgrammingError
 # Create your models here.
 from django.conf import settings
 from django.core.mail import send_mail
@@ -42,8 +43,72 @@ DAILY_DOWNLOAD_LIMITS = {
 }
 
 
+def _missing_authtoken_table(exc):
+    # rest_framework.authtoken was removed from INSTALLED_APPS without
+    # dropping its table. A database that never had it raises "no such
+    # table" (SQLite) or "does not exist" (Postgres). Any other error
+    # from the DELETE is a real failure and must not be swallowed.
+    message = str(exc).lower()
+    return (
+        'no such table' in message
+        or 'does not exist' in message
+        or 'undefinedtable' in message
+    )
+
+
+def delete_orphan_api_tokens(user_ids, using):
+    """Remove authtoken_token rows that still point at these accounts.
+
+    The app that owned the table is gone, so the deletion collector
+    never sees the foreign key. On Postgres that key is DEFERRABLE
+    INITIALLY DEFERRED and ON DELETE NO ACTION: the DELETE of the
+    account succeeds, then COMMIT raises IntegrityError and the whole
+    admin delete rolls back. Clearing the rows in the same transaction
+    lets the account delete commit. Missing table means this database
+    was created after the app was removed; that is the steady state.
+    """
+    user_ids = [pk for pk in user_ids if pk is not None]
+    if not user_ids:
+        return
+    connection = connections[using]
+    # Stay under SQLite's 999-variable limit.
+    for start in range(0, len(user_ids), 400):
+        chunk = user_ids[start:start + 400]
+        sid = transaction.savepoint(using=using)
+        try:
+            placeholders = ', '.join(['%s'] * len(chunk))
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    f'DELETE FROM authtoken_token WHERE user_id IN ({placeholders})',
+                    chunk,
+                )
+        except (OperationalError, ProgrammingError) as exc:
+            transaction.savepoint_rollback(sid, using=using)
+            if not _missing_authtoken_table(exc):
+                raise
+            return
+        else:
+            transaction.savepoint_commit(sid, using=using)
+
+
+class AccountQuerySet(models.QuerySet):
+    def delete(self):
+        # Admin's "delete selected" calls QuerySet.delete(), which does
+        # not go through Account.delete(). The token rows have to be
+        # removed on this path too, in the same transaction as the
+        # account DELETE, or a deferred foreign key rolls the bulk
+        # delete back at COMMIT.
+        user_ids = list(self.values_list('pk', flat=True))
+        with transaction.atomic(using=self.db):
+            delete_orphan_api_tokens(user_ids, using=self.db)
+            return super().delete()
+
+    delete.queryset_only = True
+    delete.alters_data = True
+
+
 #creating custom users
-class MyAccountManager(BaseUserManager):
+class MyAccountManager(BaseUserManager.from_queryset(AccountQuerySet)):
     def create_user(self, email, username, password=None):
         if not email:
             raise ValueError("Users must have an email address")
@@ -114,6 +179,12 @@ class Account(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
+
+    def delete(self, using=None, keep_parents=False):
+        using = using or router.db_for_write(self.__class__, instance=self)
+        with transaction.atomic(using=using):
+            delete_orphan_api_tokens([self.pk], using=using)
+            return super().delete(using=using, keep_parents=keep_parents)
 
     @property
     def subscription_end_date(self):
