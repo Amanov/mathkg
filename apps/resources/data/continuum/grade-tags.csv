@@ -8,7 +8,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /bar-to-x/,Тилкеден x ке,6–7 кл.,башталгыч (1–6),5–6 кл.,,,yes
 /balance-method/,Тараза ыкмасы,7 кл.,негизги (7–9),6 кл.,,,yes
 /algebra-tiles/,Алгебралык плиткалар жана аянт модели,7–8 кл.,негизги (7–9),6–8 кл.,,,yes
-/heuristics/,Маселе чечүү ыкмалары,4–12 кл.,башталгыч (1–6),3–11 кл.,,,yes
+/heuristics/,Маселе чыгаруу ыкмалары,4–12 кл.,башталгыч (1–6),3–11 кл.,,,yes
 /four_basic_operations/,Төрт амал,4–5 кл.,башталгыч (1–6),3–4 кл.,Сандар,Амалдардын тартиби,no
 /all_operations/,Аралаш амалдар,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Амалдардын тартиби,no
 /templates/interactive/big4/,Big 4 таймашы,4–6 кл.,башталгыч (1–6),3–5 кл.,Сандар,Амалдардын тартиби,no
@@ -43,16 +43,16 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /with-fractions/,Бөлчөктөрдү жана ондуктарды ортосунда айландыруу,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
 /with-percentages/,Бөлчөктөрдүн жана пайыздардын ортосунда айландыруу,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
 /fdp/,"Бөлчөк, ондук жана пайыздык эквиваленттүүлүк",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
-/fdp-ordering/,"Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
+/fdp-ordering/,"Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
 /fdpr/,"Бөлчөк, ондук, пайыздык жана катыштын эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Ондуктар > Эквиваленттүүлүк,no
 /purchasing-calculator/,Сатып алуу: калькулятор менен,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар > Акча,no
 /purchasing-non-calculator/,Сатып алуу: калькуляторсуз,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар > Акча,no
 /hire-purchase/,Насыяга сатып алуу,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар > Акча,no
 /bills-and-statements/,Эсептер жана көчүрмөлөр,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар > Акча,no
 /rates-of-pay/,Эмгек акы ставкалары,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар > Акча,no
-/resources/topic/number/decimals/ordering-decimals/,Ондуктарды иреттөө,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар,no
+/resources/topic/number/decimals/ordering-decimals/,Ондуктарды ирээттөө,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар,no
 /resources/topic/number/decimals/place-value/,Ондуктун орун наркы,6 кл.,башталгыч (1–6),5 кл.,Сандар,Ондуктар,no
-/recurring-decimals-ordering/,Мезгилдүү ондуктарды иреттөө,7 кл.,негизги (7–9),6 кл.,Сандар,Ондуктар > Мезгилдүү ондуктар,no
+/recurring-decimals-ordering/,Мезгилдүү ондуктарды ирээттөө,7 кл.,негизги (7–9),6 кл.,Сандар,Ондуктар > Мезгилдүү ондуктар,no
 /recurring-converting-to-fractions/,Мезгилдүү ондуктарды бөлчөккө айландыруу,7 кл.,негизги (7–9),6 кл.,Сандар,Ондуктар > Мезгилдүү ондуктар,no
 /adding-directed/,Кошуу,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар > Эсептөөлөр,no
 /subtracting-directed/,Кемитүү,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар > Эсептөөлөр,no
@@ -61,7 +61,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /mixed-directed/,Аралаш эсептөөлөр,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар > Эсептөөлөр,no
 /with-bidmas-directed/,BIDMAS менен,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар > Эсептөөлөр,no
 /complex-directed/,Татаал эсептөөлөр,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар > Эсептөөлөр,no
-/resources/topic/number/directed-numbers/ordering/,Багытталган сандарды иреттөө,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар,no
+/resources/topic/number/directed-numbers/ordering/,Багытталган сандарды ирээттөө,6 кл.,башталгыч (1–6),5 кл.,Сандар,Багытталган сандар,no
 /fractions-to-decimals/,Ондукка айландыруу,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк > Бөлчөктөрдү айландыруу,no
 /fractions-to-decimals-calculator/,Ондукка айландыруу: калькулятор менен,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк > Бөлчөктөрдү айландыруу,no
 /fractions-to-percentages/,Пайызга айландыруу,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк > Бөлчөктөрдү айландыруу,no
@@ -94,7 +94,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /ratios-with-percentages/,Пайыздар менен,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк > Катыштарды айландыруу,no
 /ratios-with-both/,Экөө менен тең,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк > Катыштарды айландыруу,no
 /resources/topic/number/equivalence/fraction-decimal-percentage/,"Бөлчөк, ондук жана пайыз эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк,no
-/resources/topic/number/equivalence/ordering-fractions-decimals-percentages/,"Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк,no
+/resources/topic/number/equivalence/ordering-fractions-decimals-percentages/,"Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк,no
 /resources/topic/number/equivalence/fraction-percentage-ratio/,"Бөлчөк, пайыз жана катыш эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк,no
 /resources/topic/number/equivalence/fraction-decimal-percentage-ratio/,"Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Эквиваленттүүлүк,no
 /resources/topic/number/estimating-rounding/approximating-calculations/,Эсептөөлөрдү болжолдоо,4–6 кл.,башталгыч (1–6),3–5 кл.,Сандар,Болжолдоо жана тегеректөө,no
@@ -147,11 +147,11 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /fractions-equiv-with-percentages/,Пайыздар менен,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
 /fractions-equiv-with-ratios/,Катыштар менен,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
 /fractions-equiv-fdp/,"Бөлчөк, ондук жана пайыздык эквиваленттүүлүк",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
-/fractions-equiv-fdp-ordering/,"Бөлчөктөрдү, ондуктарды жана пайыздарды иреттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
+/fractions-equiv-fdp-ordering/,"Бөлчөктөрдү, ондуктарды жана пайыздарды ирээттөө",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
 /fractions-equiv-fpr/,"Бөлчөк, пайыз жана катыш эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
 /fractions-equiv-fdpr/,"Бөлчөк, ондук, пайыз жана катыш эквиваленттүүлүгү",6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Эквиваленттүүлүк,no
 /equivalent-fractions-simplifying/,Жөнөкөйлөтүү,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Бөлчөктөр > Барабар бөлчөктөр,no
-/equivalent-fractions-comparing-ordering/,Салыштыруу жана иреттөө,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Бөлчөктөр > Барабар бөлчөктөр,no
+/equivalent-fractions-comparing-ordering/,Салыштыруу жана ирээттөө,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Бөлчөктөр > Барабар бөлчөктөр,no
 /equivalent-fractions-comparing-inequality/,Барабарсыздык белгилери менен салыштыруу,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Бөлчөктөр > Барабар бөлчөктөр,no
 /equivalent-fractions-with-calculations/,Эсептөөлөр менен,5–6 кл.,башталгыч (1–6),4–5 кл.,Сандар,Бөлчөктөр > Барабар бөлчөктөр,no
 /expressing-quantity/,Чоңдук,6–7 кл.,башталгыч (1–6),5–6 кл.,Сандар,Бөлчөктөр > Туюнтуу,no
@@ -185,7 +185,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /surds-mixed/,Аралаш,8–9 кл.,негизги (7–9),7–8 кл.,Сандар,Даражалар жана тамырлар > Тамырлар менен эсептөөлөр,no
 /surds-with-pythagoras/,Пифагор менен,8–9 кл.,негизги (7–9),7–8 кл.,Сандар,Даражалар жана тамырлар > Тамырлар менен эсептөөлөр,no
 /resources/topic/number/indices-surds/mixed/,Аралаш,8 кл.,негизги (7–9),7 кл.,Сандар,Даражалар жана тамырлар,no
-/resources/topic/number/integers/place-value-ordering/,Бүтүн сандардын орун наркы жана иреттөө,3–4 кл.,башталгыч (1–6),2–3 кл.,Сандар,Бүтүн сандар,no
+/resources/topic/number/integers/place-value-ordering/,Бүтүн сандардын орун наркы жана ирээттөө,3–4 кл.,башталгыч (1–6),2–3 кл.,Сандар,Бүтүн сандар,no
 /resources/topic/number/integers/integers-as-words/,Бүтүн сандарды сөз менен туюнтуу,3–4 кл.,башталгыч (1–6),2–3 кл.,Сандар,Бүтүн сандар,no
 /resources/topic/number/integers/divisibility-rules/,Бөлүнүү белгилери,7 кл.,негизги (7–9),6 кл.,Сандар,Бүтүн сандар,no
 /integers-adding-1-2-digit/,Кошуу,3 кл.,башталгыч (1–6),2 кл.,Сандар,Бүтүн сандар > Эсептөөлөр: 1 жана 2 орундук,no
@@ -408,7 +408,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /algebra-functions-evaluating-composite/,Татаал функция,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-evaluating-inverse/,Тескери функция,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-evaluating-composite-inverse/,Татаал жана тескери функциялар,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
-/algebra-functions-evaluating-solving-equations/,Теңдемелерди чечүү,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
+/algebra-functions-evaluating-solving-equations/,Теңдемелерди чыгаруу,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-evaluating-iteration/,Кайталануу,9–10 кл.,негизги (7–9),8–9 кл.,Алгебра,Функциялар > Маанисин эсептөө,no
 /algebra-functions-igcse/,IGCSE,11–12 кл.,орто (10–12),10–11 кл.,Алгебра,Функциялар,no
 /algebra-graphs-abstract-coordinates-reading/,Окуу,7–9 кл.,негизги (7–9),6–8 кл.,Алгебра,Графиктер: абстракттуу > Координаттар,no
@@ -443,7 +443,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /algebra-graphs-abstract-quadratic-plotting/,Чиймелөө,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
 /algebra-graphs-abstract-quadratic-significant-points/,Маанилүү чекиттер,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
 /algebra-graphs-abstract-quadratic-turning-points/,Толук квадратка келтирүү менен бурулуш чекиттери,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
-/algebra-graphs-abstract-quadratic-solving-by-intersection/,Кесилишүү аркылуу чечүү,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
+/algebra-graphs-abstract-quadratic-solving-by-intersection/,Кесилишүү аркылуу чыгаруу,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
 /algebra-graphs-abstract-quadratic-simultaneous/,Теңдемелер системасы,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Квадраттык,no
 /algebra-graphs-abstract-circles-equation/,Теңдеме,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Тегеректер,no
 /algebra-graphs-abstract-circles-tangent/,Жанама,9 кл.,негизги (7–9),8 кл.,Алгебра,Графиктер: абстракттуу > Тегеректер,no
@@ -591,7 +591,7 @@ href,title,grade_band,school_level,grade_band_11yr,area,subgroup_path,is_new
 /geometry-angles-circle-theorems-with-trigonometry/,Тригонометрия менен,9–10 кл.,негизги (7–9),8–9 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
 /geometry-angles-circle-theorems-intersecting-chords/,Кесилишкен хордалар (IGCSE),11–12 кл.,орто (10–12),10–11 кл.,Геометрия,Бурчтар > Тегерек теоремалары,no
 /geometry-angles-parallel-lines-introduction/,Киришүү,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Параллель сызыктар,no
-/geometry-angles-parallel-lines-solving-equations/,Теңдемелерди чечүү,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Параллель сызыктар,no
+/geometry-angles-parallel-lines-solving-equations/,Теңдемелерди чыгаруу,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Параллель сызыктар,no
 /geometry-angles-polygons-triangles/,Үч бурчтуктар,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Көп бурчтуктар,no
 /geometry-angles-polygons-quadrilaterals/,Төрт бурчтуктар,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Көп бурчтуктар,no
 /geometry-angles-polygons-special-quadrilaterals/,Атайын төрт бурчтуктар,8 кл.,негизги (7–9),7 кл.,Геометрия,Бурчтар > Көп бурчтуктар,no

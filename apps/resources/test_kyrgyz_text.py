@@ -76,6 +76,24 @@ class KyrgyzRunTests(SimpleTestCase):
         self.assertEqual(_joined(['0.07 × 10,000'])[0], f'0,07 × 10{NBSP}000')
         self.assertEqual(_joined(['51,052.91'])[0], f'51{NBSP}052,91')
         self.assertEqual(_joined(['0.5'])[0], '0,5')
+        self.assertEqual(_joined(['×10000'])[0], f'×10{NBSP}000')
+        self.assertEqual(_joined(['A) 4 + 2'])[0], 'А) 4 + 2')
+        self.assertEqual(_joined(['B) 10'])[0], 'Б) 10')
+        self.assertEqual(_joined(['C) 5'])[0], 'В) 5')
+        self.assertEqual(_joined(['D) 12'])[0], 'Г) 12')
+        self.assertEqual(_joined(['Сабактын этаптары (5E + 3C)'])[0], 'Сабактын этаптары (5E + 3C)')
+        self.assertEqual(_joined(['Hundredths (H)'])[0], 'Hundredths (H)')
+        self.assertEqual(_joined(['Points A & B)'])[0], 'Points A & B)')
+        self.assertEqual(_joined(['Маселе чечүү ыкмалары'])[0], 'Маселе чыгаруу ыкмалары')
+        self.assertEqual(_joined(['0 / 15 маселе чечилди'])[0], '0 / 15 маселе чыгарылды')
+        self.assertEqual(_joined(['өзүңүз чечиңиз'])[0], 'өзүңүз чыгарыңыз')
+        self.assertEqual(_joined(['оку, тарт, чеч, текшер'])[0], 'оку, тарт, чыгар, текшер')
+        self.assertEqual(_joined(['Теңдемелерди чечүү'])[0], 'Теңдемелерди чыгаруу')
+        self.assertEqual(_joined(['ойлонуп чечет'])[0], 'ойлонуп чечет')
+        self.assertEqual(_joined(['төлөп берүүнү чечет'])[0], 'төлөп берүүнү чечет')
+        self.assertEqual(_joined(['чечүүчү суроо'])[0], 'чечүүчү суроо')
+        self.assertEqual(_joined(['үлгү чечимдер'])[0], 'үлгү чечимдер')
+        self.assertEqual(_joined(['Студенттик көрүнүш'])[0], 'Окуучунун көрүнүшү')
         self.assertEqual(
             _joined(['(9.1–9.11, № 243–262)'])[0],
             '(9.1–9.11, № 243–262)',
@@ -89,7 +107,7 @@ class KyrgyzRunTests(SimpleTestCase):
         self.assertEqual(_joined(['33 000 ÷ 12 = 2,750 сом'])[0], f'33 000 ÷ 12 = 2{NBSP}750 сом')
         self.assertEqual(
             _joined(['48821 – 9999 депозит = 38,822 сом'])[0],
-            f'48821 – 9999 депозит = 38{NBSP}822 сом',
+            f'48{NBSP}821 – 9999 депозит = 38{NBSP}822 сом',
         )
         self.assertIn(
             f'47{NBSP}713',
@@ -186,6 +204,18 @@ class KyrgyzManifestTests(SimpleTestCase):
             self.assertTrue(copies, relative)
             for copy in copies:
                 self.assertEqual(sha256_bytes(copy.read_bytes()), entry['new'], relative)
+
+
+class KyrgyzProseMigrationTests(SimpleTestCase):
+    def test_migration_is_data_only(self):
+        migration = importlib.import_module('apps.resources.migrations.0055_kyrgyz_prose')
+        self.assertEqual(migration.Migration.dependencies, [('personal', '0054_igcse_menu_titles')])
+        self.assertTrue(migration.Migration.atomic)
+        self.assertEqual(len(migration.Migration.operations), 1)
+        operation = migration.Migration.operations[0]
+        self.assertIsInstance(operation, migrations.RunPython)
+        self.assertIs(operation.code, migration.forward)
+        self.assertIs(operation.reverse_code, migration.backward)
 
 
 class KyrgyzMigrationTests(SimpleTestCase):

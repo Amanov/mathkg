@@ -4,8 +4,7 @@ grade-tags.csv sends teachers to these paths. The rows were never
 created, so the links 404'd. The pages stay empty until they have
 files. Nothing is renamed.
 
-Depends on 0054 so it can merge beside another migration that also
-follows 0054.
+Follows 0055, the Kyrgyz prose migration now on main.
 """
 
 from django.db import migrations
@@ -53,7 +52,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0054_igcse_menu_titles'),
+        ('personal', '0055_kyrgyz_prose'),
     ]
 
     operations = [

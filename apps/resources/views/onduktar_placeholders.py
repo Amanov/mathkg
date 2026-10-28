@@ -600,7 +600,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-functions-evaluating-composite': 'Татаал функция',
     'algebra-functions-evaluating-inverse': 'Тескери функция',
     'algebra-functions-evaluating-composite-inverse': 'Татаал жана тескери функциялар',
-    'algebra-functions-evaluating-solving-equations': 'Теңдемелерди чечүү',
+    'algebra-functions-evaluating-solving-equations': 'Теңдемелерди чыгаруу',
     'algebra-functions-evaluating-iteration': 'Кайталануу',
 
     # Графиктер: абстракттуу - 5 flat slots, none with a real page yet.
@@ -716,7 +716,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-graphs-abstract-quadratic-plotting': 'Чиймелөө',
     'algebra-graphs-abstract-quadratic-significant-points': 'Маанилүү чекиттер',
     'algebra-graphs-abstract-quadratic-turning-points': 'Толук квадратка келтирүү менен бурулуш чекиттери',
-    'algebra-graphs-abstract-quadratic-solving-by-intersection': 'Кесилишүү аркылуу чечүү',
+    'algebra-graphs-abstract-quadratic-solving-by-intersection': 'Кесилишүү аркылуу чыгаруу',
     'algebra-graphs-abstract-quadratic-simultaneous': 'Теңдемелер системасы',
 
     # Графиктер: абстракттуу > Тегеректер - both slots, none with a
@@ -920,7 +920,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Геометрия > Бурчтар > Параллель сызыктар - 2 known slots
     # (screenshot was cut off), none with a real page yet.
     'geometry-angles-parallel-lines-introduction': 'Киришүү',
-    'geometry-angles-parallel-lines-solving-equations': 'Теңдемелерди чечүү',
+    'geometry-angles-parallel-lines-solving-equations': 'Теңдемелерди чыгаруу',
 
     # Геометрия > Бурчтар > Көп бурчтуктар - 5 flat slots plus "Аралаш"
     # category's own 2 slots, none with a real page yet.
