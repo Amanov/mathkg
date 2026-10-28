@@ -1,16 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render
 
-# The other 5 slots of Decimals > Arithmetic: 1 Digit (Кошуу/Adding,
-# Кемитүү/Subtracting, and Кошуу жана кемитүү/Adding-and-subtracting are
-# the three real hand-built pages - see koshuu_1_digit_view,
-# subtracting_1_digit_view, and adding_subtracting_1_digit_view - the rest
-# have no material yet). Shares that page's exact visual chrome (see
-# templates/resources/onduktar/operation_placeholder.html) so navigating
-# between a real operation and a "coming soon" one feels like the same
-# page family, not two different systems. Each gets its own short URL
-# (config/urls.py), matching koshuu-1-digit/'s own convention, instead of
-# the long generic /resources/topic/number/... path.
+# Slots that do not have their own pack yet. They use topic_materials.html
+# (the «Төрт амал» layout): grade badge when the continuum has one, and
+# the «даярдалууда» note. Prev/next is the footer link. Each keeps its
+# short URL.
 OPERATION_PLACEHOLDER_TITLES = {
     'multiplying-1-digit': 'Көбөйтүү — 1 орундуу сандар',
     'dividing-1-digit': 'Бөлүү — 1 орундуу сандар',
@@ -1370,12 +1364,28 @@ OPERATION_PLACEHOLDER_TITLES = {
 
 
 def placeholder_page(request, page_title):
-    """The «материалдар даярдалууда» page under a fixed title."""
-    return render(
-        request,
-        'resources/onduktar/operation_placeholder.html',
-        {'page_title': page_title},
-    )
+    """An empty topic on the same layout as «Төрт амал».
+
+    The grade badge comes from the 12-year continuum when this path has
+    one. Prev/next stays in the footer. The page stays in the menu.
+    """
+    from apps.resources.continuum import continuum_for_href
+    from apps.resources.topic_pages import build_topic_page
+
+    nav = continuum_for_href(request.path)
+    spec = {
+        'title': page_title,
+        'grade_badge': (nav or {}).get('grade_band') or None,
+        'svg_dir': 'svg/topic/to-fractions',
+        'file_prefix': '',
+        'page_key': 'placeholder',
+        'images': {},
+        'sections': [],
+        'teacher_resources': [],
+    }
+    page = build_topic_page(spec, {}, request.user)
+    page['preparing'] = True
+    return render(request, 'resources/topic_materials.html', {'page': page})
 
 
 def operation_placeholder_view(request, operation_slug):

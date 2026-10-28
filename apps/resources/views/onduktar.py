@@ -1,23 +1,9 @@
-from django.shortcuts import render
-
-from apps.resources.models import Resource
+from apps.resources.views.onduktar_placeholders import placeholder_page
 
 
 def onedigitarithmetics_view(request):
+    """The old hand-written page had no working file links.
 
-    resources = Resource.objects.filter(
-        is_active=True
-    )
-
-    res = {
-        r.title: r
-        for r in resources
-    }
-
-    return render(
-        request,
-        'resources/onduktar/onedigitarithmetics.html',
-        {
-            'res': res,
-        }
-    )
+    It now uses the shared topic layout, same as the other empty slots.
+    """
+    return placeholder_page(request, '1 орундук сандар менен көнүгүүлөр')

@@ -17,6 +17,10 @@
   <h1 class="topic-page__title">{{ page.title }}</h1>
   {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
 
+  {% if page.preparing %}
+  <p class="topic-page__notice">Бул бөлүм үчүн материалдар даярдалууда.</p>
+  {% endif %}
+
   {% if not user.is_authenticated %}
   <p class="topic-page__notice">
     Файлды жүктөп алуу үчүн сайтка катталышыңыз керек.
@@ -24,6 +28,9 @@
   </p>
   {% endif %}
 
+  {% if page.preparing %}
+  </main>
+  {% else %}
   {% if page.grades %}
   <div class="grade-tabs" role="tablist" aria-label="Класс">
     {% for g in page.grades %}
@@ -174,11 +181,13 @@
   {% endfor %}
   </div>
 </main>
+  {% endif %}
 <script>
 (function () {
   // Show or hide every 5E + 3C / Bloom label and the guide.
   var page = document.querySelector('.topic-page');
   var sw = document.getElementById('model-switch');
+  if (!page || !sw) return;
   function setModel(on) {
     page.classList.toggle('model-off', !on);
     sw.setAttribute('aria-pressed', String(on));
