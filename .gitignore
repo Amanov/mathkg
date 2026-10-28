@@ -5,6 +5,12 @@ __pycache__/
 # Django
 db.sqlite3
 
+# Resource bytes live on the Railway volume at /app/media, not in git.
+# New files go in apps/resources/bundled_files/. See docs/naming.md
+# and docs/deployment-notes.md.
+/media/
+/static_cdn/
+
 # Environment
 .env
 

@@ -158,6 +158,37 @@ duplicates — e.g. matching on file content hash or on-disk path in addition
 to title, or just retiring the command in favor of manual admin uploads
 once persistent storage is in place.
 
+## Stop tracking `media/` and `static_cdn/` in git
+
+`media/` and `static_cdn/` were the same library committed twice. Git
+no longer tracks them. History is unchanged, so old revisions still
+contain the bytes. A new clone does not.
+
+Production serves downloads from the Railway volume mounted at
+`/app/media`. That mount hides whatever the image has at the same path.
+WhiteNoise still serves CSS and JavaScript collected from `static/`
+(`STATICFILES_DIRS` does not include `static_cdn/`). `static_cdn/` is
+not referenced by settings.
+
+**Before merging the pull request that gitignores these folders**, copy
+any git file the volume does not already have. Do this from a checkout
+of `main` that still contains `media/` (the revision before that pull
+request):
+
+```
+git clone --depth 1 --branch main https://github.com/Amanov/mathkg.git /tmp/mathkg-media
+source /opt/venv/bin/activate   # if python cannot import Django
+python manage.py copy_missing_resource_files --source /tmp/mathkg-media
+```
+
+`--dry-run` lists the files it would add. The command does not delete
+or overwrite a file already on the volume. Do not delete the volume.
+
+After the merge, `copy_missing_resource_files` no longer sees `media/`
+in git. New material files belong in `apps/resources/bundled_files/`
+(`docs/naming.md`). Migrations copy a bundled file onto the volume only
+when that path is empty.
+
 ## Copy missing resource files onto the volume after deploy
 
 A file added under `media/resources/files/` in git is not visible to the
