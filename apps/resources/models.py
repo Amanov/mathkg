@@ -62,7 +62,7 @@ LEARNING_GOALS = [
 
     ('retrieval', 'Кайталоо жана эстеп калуу'),
 
-    ('problem_solving', 'Маселе чечүү'),
+    ('problem_solving', 'Маселе чыгаруу'),
 
     ('modelling', 'Турмушта колдонуу'),
 
