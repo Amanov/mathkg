@@ -140,7 +140,36 @@ _PHRASES = (
     ('ырахмат', 'рахмат'),
     ('иреттээлген', 'ирээттелген'),
     ('Иреттээлген', 'Ирээттелген'),
+    ('Студенттик көрүнүш', 'Окуучунун көрүнүшү'),
+    ('студенттик көрүнүш', 'окуучунун көрүнүшү'),
 )
+
+# «Маселени чыгар», not «чеч». «Чечет» (decides), «чечим» and «чечүүчү суроо»
+# stay: those are decisions, not solving a problem.
+_SOLVE = (
+    (re.compile(r'([Мм])аселе чечүү(?!ч)'), lambda m: ('М' if m.group(1) == 'М' else 'м') + 'аселе чыгаруу'),
+    (re.compile(r'([Мм])аселе чечилди'), lambda m: ('М' if m.group(1) == 'М' else 'м') + 'аселе чыгарылды'),
+    (re.compile(r'([Тт])еңдемелерди чечүү(?!ч)'), lambda m: ('Т' if m.group(1) == 'Т' else 'т') + 'еңдемелерди чыгаруу'),
+    (re.compile(r'([Тт])еңдеме чечүү(?!ч)'), lambda m: ('Т' if m.group(1) == 'Т' else 'т') + 'еңдеме чыгаруу'),
+    (re.compile(r'аркылуу чечүү(?!ч)'), 'аркылуу чыгаруу'),
+    (re.compile(r'тартып чечүү(?!ч)'), 'тартып чыгаруу'),
+    (re.compile(r'түзүп чечүү(?!ч)'), 'түзүп чыгаруу'),
+    (re.compile(r'ойлонуп чеч(?![А-Яа-яӨөҮүҢң])'), 'ойлонуп чыгар'),
+    (re.compile(r'([Чч])ечиңиз'), lambda m: ('Ч' if m.group(1) == 'Ч' else 'ч') + 'ыгарыңыз'),
+    (re.compile(r'(?<=[, ])чеч(?=, текшер)'), 'чыгар'),
+)
+
+# Multiple-choice labels follow the Kyrgyz alphabet, not Latin A B C D.
+_OPTION_LETTER = {
+    'A': 'А', 'B': 'Б', 'C': 'В', 'D': 'Г',
+    'E': 'Д', 'F': 'Е', 'G': 'Ж', 'H': 'З',
+}
+# A choice label is "A) 4" or a line that is only "A)". Not "(H)", "3C)" or "Points A & B)".
+_OPTION_RE = re.compile(
+    "(?:^|(?<=[\\n\\r])|(?<=>)|(?<=\")|(?<=\'))([A-H])\\)(?=\\s|$|<)"
+    "|(?<=\\s)([A-H])\\)(?=\\s)"
+)
+_BARE_THOUSANDS = re.compile(r'(?<!\d)(\d{5,})(?!\d)')
 
 _STUDENT = (
     ('студенттерге', 'окуучуларга'),
@@ -175,6 +204,7 @@ _A_P = re.compile(r'<a:p(?:\s[^>]*)?>(.*?)</a:p>', re.DOTALL)
 _A_T = re.compile(r'<a:t(?:\s[^>]*)?>(.*?)</a:t>', re.DOTALL)
 
 _MANIFEST = Path(__file__).resolve().parent / 'data' / 'deck_kyrgyz_manifest.json'
+_PROSE_MANIFEST = Path(__file__).resolve().parent / 'data' / 'kyrgyz_prose_manifest.json'
 
 # Letters that are not Kyrgyz. A rewrite must not introduce them.
 _FOREIGN = re.compile(r'[әғқұһіӘҒҚҰҺІğşıİöüçĞŞ]')
@@ -473,6 +503,20 @@ def _is_thousands(token, paragraph):
     return _equation_proves(token, paragraph)
 
 
+def _group_digits(digits):
+    parts = []
+    rest = digits
+    while rest:
+        parts.append(rest[-3:])
+        rest = rest[:-3]
+    return NBSP.join(reversed(parts))
+
+
+def _skip_bare_thousands(text, match):
+    window = text[max(0, match.start() - 16) : match.end() + 12].lower()
+    return any(mark in window for mark in ('http', 'www.', '.pptx', '.pdf', '.png', '.svg', '.html'))
+
+
 def _skip_decimal(text, match):
     start, end = match.start(), match.end()
     window = text[max(0, start - 24) : end + 16]
@@ -504,7 +548,7 @@ def _skip_decimal(text, match):
     return False
 
 
-def _apply_joined(text, counts):
+def _apply_joined(text, counts, *, numbers=True):
     """Fixes that are easier to see once runs have been joined."""
     original = text
     for old, new in sorted(SENTENCE_REWRITES.items(), key=lambda item: len(item[0]), reverse=True):
@@ -517,6 +561,11 @@ def _apply_joined(text, counts):
             hits = text.count(old)
             text = text.replace(old, new)
             counts['safe'] += hits
+    for pattern, repl in _SOLVE:
+        updated, hits = pattern.subn(repl, text)
+        text = updated
+        counts['solve'] = counts.get('solve', 0) + hits
+
     updated, hits = _UCHUN.subn(lambda m: ('Ү' if m.group(1) == 'У' else 'ү') + 'чүн', text)
     text = updated
     counts['safe'] += hits
@@ -540,6 +589,14 @@ def _apply_joined(text, counts):
         text = updated
         counts['student'] += hits
 
+    def option_letter(match):
+        letter = match.group(1) or match.group(2)
+        return _OPTION_LETTER[letter] + ')'
+
+    updated, hits = _OPTION_RE.subn(option_letter, text)
+    text = updated
+    counts['option'] = counts.get('option', 0) + hits
+
     def latin(match):
         return _latin_token(match.group(0))
 
@@ -551,28 +608,37 @@ def _apply_joined(text, counts):
         )
         text = updated
 
-    def thousands(match):
-        token = match.group(0)
-        if not _is_thousands(token, text):
-            return token
-        counts['thousands'] += 1
-        return token.replace(',', NBSP)
+    if numbers:
+        def thousands(match):
+            token = match.group(0)
+            if not _is_thousands(token, text):
+                return token
+            counts['thousands'] += 1
+            return token.replace(',', NBSP)
 
-    text = _THOUSANDS.sub(thousands, text)
+        text = _THOUSANDS.sub(thousands, text)
 
-    def decimal(match):
-        if _skip_decimal(text, match):
-            return match.group(0)
-        return match.group(1) + ',' + match.group(2)
+        def bare_thousands(match):
+            if _skip_bare_thousands(text, match):
+                return match.group(0)
+            counts['thousands'] += 1
+            return _group_digits(match.group(1))
 
-    updated = _DECIMAL.sub(decimal, text)
-    decimal_hits = 0
-    for match in _DECIMAL.finditer(text):
-        if _skip_decimal(text, match):
-            continue
-        decimal_hits += 1
-    text = updated
-    counts['decimal'] += decimal_hits
+        text = _BARE_THOUSANDS.sub(bare_thousands, text)
+
+        def decimal(match):
+            if _skip_decimal(text, match):
+                return match.group(0)
+            return match.group(1) + ',' + match.group(2)
+
+        updated = _DECIMAL.sub(decimal, text)
+        decimal_hits = 0
+        for match in _DECIMAL.finditer(text):
+            if _skip_decimal(text, match):
+                continue
+            decimal_hits += 1
+        text = updated
+        counts['decimal'] += decimal_hits
 
     updated, hits = _SPACE_COMMA.subn(',', text)
     text = updated
@@ -580,6 +646,62 @@ def _apply_joined(text, counts):
     if text != original and _FOREIGN.search(text) and not _FOREIGN.search(original):
         raise ValueError('rewrite introduced a non-Kyrgyz letter')
     return text
+
+
+def apply_kyrgyz_page(text):
+    """Page copy only: solve-verbs, option letters, студент, ирээт.
+
+    The slide rewriter also fixes typos and decimals. Page source keeps
+    code, CSS and English abbreviations alone.
+    """
+    counts = empty_counts()
+    original = text
+    for pattern, repl in _SOLVE:
+        text, hits = pattern.subn(repl, text)
+        counts['solve'] += hits
+    for old, new in (
+        ('Студенттик көрүнүш', 'Окуучунун көрүнүшү'),
+        ('студенттик көрүнүш', 'окуучунун көрүнүшү'),
+    ):
+        hits = text.count(old)
+        if hits:
+            text = text.replace(old, new)
+            counts['student'] += hits
+    for old, new in _STUDENT:
+        pattern = re.compile(
+            rf'(?<![А-Яа-яӨөҮүҢң])({old[0].upper()}{old[1:]}|{old})(?![А-Яа-яӨөҮүҢң])'
+        )
+
+        def student(match, replacement=new):
+            return _cap_like(match.group(0), replacement)
+
+        text, hits = pattern.subn(student, text)
+        counts['student'] += hits
+
+    def iret(match):
+        return ('И' if match.group(1) == 'И' else 'и') + 'рээт'
+
+    text, hits = _IRET.subn(iret, text)
+    counts['iret'] += hits
+
+    def option_letter(match):
+        letter = match.group(1) or match.group(2)
+        return _OPTION_LETTER[letter] + ')'
+
+    text, hits = _OPTION_RE.subn(option_letter, text)
+    counts['option'] += hits
+    if text != original and _FOREIGN.search(text) and not _FOREIGN.search(original):
+        raise ValueError('rewrite introduced a non-Kyrgyz letter')
+    counts['total'] = sum(value for key, value in counts.items() if key != 'total')
+    return text, counts
+
+
+def apply_kyrgyz_wording(text):
+    """Teacher-facing sentences. Digits in code, URLs and CSS are left alone."""
+    counts = empty_counts()
+    updated = _apply_joined(text, counts, numbers=False)
+    counts['total'] = sum(value for key, value in counts.items() if key != 'total')
+    return updated, counts
 
 
 def apply_kyrgyz_runs(texts):
@@ -591,7 +713,7 @@ def apply_kyrgyz_runs(texts):
     """
     counts = {
         'safe': 0, 'thousands': 0, 'iret': 0, 'student': 0,
-        'rewrite': 0, 'decimal': 0, 'latin': 0,
+        'rewrite': 0, 'decimal': 0, 'latin': 0, 'solve': 0, 'option': 0,
     }
     joined = ''.join(texts)
     updated = _apply_joined(joined, counts)
@@ -617,12 +739,26 @@ def paragraph_texts(xml):
 def empty_counts():
     return {
         'safe': 0, 'thousands': 0, 'iret': 0, 'student': 0,
-        'rewrite': 0, 'decimal': 0, 'latin': 0, 'total': 0,
+        'rewrite': 0, 'decimal': 0, 'latin': 0, 'solve': 0, 'option': 0, 'total': 0,
     }
 
 
 def load_manifest():
     return json.loads(_MANIFEST.read_text(encoding='utf-8'))
+
+
+def refresh_prose_media(media_root):
+    """Rewrite volume decks whose bytes are still the pre-prose hash."""
+    from apps.resources.deck_text import refresh_one
+
+    manifest = json.loads(_PROSE_MANIFEST.read_text(encoding='utf-8'))
+    totals = {'updated': 0, 'already': 0, 'missing': 0, 'foreign': 0, 'rejected': 0}
+    root = Path(media_root)
+    for relative, entry in manifest.items():
+        outcome = refresh_one(root / relative, entry)
+        totals[outcome] += 1
+    print('kyrgyz prose: ' + ' '.join(f'{name}={count}' for name, count in totals.items()))
+    return totals
 
 
 def refresh_kyrgyz_media(media_root):
