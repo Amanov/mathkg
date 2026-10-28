@@ -1,5 +1,9 @@
 """Copy git-tracked resource files that the media volume does not have yet.
 
+Revisions that still track ``media/`` can fill a volume that is missing
+a file. After ``media/`` is gitignored, this command finds nothing new
+there. New files ship from ``apps/resources/bundled_files/``.
+
 On Railway, /app/media is a mounted volume, so files added under
 media/resources/files/ in git are hidden from the running app. This
 command reads those paths from git and writes any file that is not
