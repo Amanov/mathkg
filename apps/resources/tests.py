@@ -379,6 +379,12 @@ class FreeDownloadTests(TestCase):
         self.assertNotContains(resp, 'BingoOyunu')
         resp = self.client.get(reverse('recurring_decimals_to_fractions'))
         self.assertContains(resp, 'даярдалууда')
+        self.assertContains(resp, 'topic-page__grade"><span>9–10 кл.</span>')
+        self.assertContains(resp, 'topic-page__title')
+        arith = self.client.get(reverse('onedigitarithmetics'))
+        self.assertEqual(arith.status_code, 200)
+        self.assertContains(arith, 'topic-page')
+        self.assertContains(arith, 'даярдалууда')
 
     def test_four_basic_operations_shows_one_free_badge_to_anonymous_visitors(self):
         self._make_resource('4-Amal-intro.pptx')
