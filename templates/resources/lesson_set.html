@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
+<link rel="stylesheet" href="{% static 'css/lesson-set.css' %}">
+{% endblock %}
+{% block content %}
+<main class="lesson-set">
+  <h1>{{ page.title }}</h1>
+  {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
+  <p class="lesson-set__lead">{{ page.lead }}</p>
+  {% if not user.is_authenticated %}
+  <p class="topic-page__notice">Файлды жүктөп алуу үчүн сайтка катталышыңыз керек. <a href="{% url 'register' %}">Катталуу</a></p>
+  {% endif %}
+  {% for section in page.sections %}
+  <section>
+    <h2>{{ section.title }}</h2>
+    <div class="lesson-set__grid">
+      {% for card in section.cards %}
+      <article class="lesson-set__card">
+        {% if card.image %}<img src="{% static card.image %}" alt="">{% endif %}
+        <h3>{{ card.title }}</h3>
+        {% if card.note %}<p class="lesson-set__note">{{ card.note }}</p>{% endif %}
+        <p class="lesson-set__files">
+          {% for link in card.links %}
+          <a href="{{ link.url }}">{{ link.label }}</a>
+          {% endfor %}
+        </p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</main>
+{% endblock %}

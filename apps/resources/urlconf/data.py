@@ -4,9 +4,12 @@ from django.urls import path
 
 from apps.resources.views import (
     operation_placeholder_view,
+    statistics_lesson_view,
 )
 
 urlpatterns = [
+    path('statistika-ortocho/', statistics_lesson_view, name='statistika_ortocho'),
+
     # Дата > Талдоо - 4 flat slots, none with a real page yet.
     path('data-analysing-median/', operation_placeholder_view, {'operation_slug': 'data-analysing-median'}, name='data_analysing_median'),
     path('data-analysing-from-a-bar-chart/', operation_placeholder_view, {'operation_slug': 'data-analysing-from-a-bar-chart'}, name='data_analysing_from_a_bar_chart'),

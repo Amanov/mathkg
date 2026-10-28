@@ -1,0 +1,66 @@
+/* One-page lesson set. Tokens come from main.css. */
+.lesson-set {
+    max-width: 1072px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+    color: var(--text);
+}
+.lesson-set h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    text-align: center;
+}
+.lesson-set__lead {
+    margin: 0 auto 8px;
+    max-width: 42rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+.lesson-set h2 {
+    margin: 36px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--color-navy);
+    font-size: 1.25rem;
+}
+.lesson-set__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+.lesson-set__card {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: 12px;
+}
+.lesson-set__card img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--surface-alt);
+}
+.lesson-set__card h3 {
+    margin: 10px 0 4px;
+    font-size: 1rem;
+}
+.lesson-set__note {
+    margin: 0 0 8px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+.lesson-set__files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+}
+.lesson-set__files a {
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-accent);
+}
+.lesson-set__files a:hover {
+    color: var(--color-bootstrap-primary);
+}
