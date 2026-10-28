@@ -60,3 +60,5 @@ from .pages import (
     news_list_view, about_view, topics_tree_view, search_view, search_suggest_view,
     pricing_view,
 )
+
+from .lesson_set import statistics_lesson_view
