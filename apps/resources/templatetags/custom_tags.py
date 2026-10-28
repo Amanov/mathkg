@@ -109,7 +109,7 @@ def _menu_neighbours(request):
 def _path_neighbours(context):
     """Footer links for a bridge page that is not a menu leaf.
 
-    «Маселе чечүү ыкмалары» has continuum neighbours and no menu row.
+    «Маселе чыгаруу ыкмалары» has continuum neighbours and no menu row.
     The same slot is used so the page still has one prev/next, at the bottom.
     """
     nav = context.get('topic_continuum') or {}

@@ -267,7 +267,7 @@ def build_lesson():
     slide = _blank_slide(prs)
     _header(slide, "Бул сабакта эмнени үйрөнөсүң?")
     _bullets(slide, MARGIN, Emu(1300000), SLIDE_W - 2 * MARGIN, Emu(2600000), [
-        "x + a = b,  x − a = b,  a·x = b,  x : a = b түрүндөгү теңдемелерди чечүү",
+        "x + a = b,  x − a = b,  a·x = b,  x : a = b түрүндөгү теңдемелерди чыгаруу",
         "Теңдеме — таразага окшош: эки жагы ар дайым тең салмакта болушу керек",
         "Белгисизди (x) жалгыз калтыруу үчүн, эки жагынан тең бир эле амалды аткаруу",
     ], size=18)
@@ -382,7 +382,7 @@ def build_lesson():
 
     # 10. Guided practice
     slide = _blank_slide(prs)
-    _header(slide, "Көнүгүү — өзүңүз чечиңиз")
+    _header(slide, "Көнүгүү — өзүңүз чыгарыңыз")
     _bullets(slide, MARGIN, Emu(1300000), SLIDE_W - 2 * MARGIN, Emu(3200000), [
         "x + 7 = 15",
         "x − 9 = 6",

@@ -33,7 +33,7 @@ def bridge_topic_view(request, slug):
         page['grade_badge'] = nav['grade_band']
     # Continuum cards used to sit under the title. The nine menu leaves
     # already have a prev/next above the footer, so the cards are not
-    # drawn. «Маселе чечүү ыкмалары» is not a menu row; related_topics
+    # drawn. «Маселе чыгаруу ыкмалары» is not a menu row; related_topics
     # uses this nav for that one footer link.
     return render(request, 'resources/bridge_topic.html', {
         'page': page,
