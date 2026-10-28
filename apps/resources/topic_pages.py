@@ -14,6 +14,7 @@ from apps.resources.data.four_basic_operations_grades import (
     GRADE_ITEMS,
     GRADE_TEACHER_FILES,
 )
+from apps.resources.filenames import resource_for_title
 from apps.resources.free_download import choose_free_resource
 
 # Sections follow the 5E + 3C lesson model, each with the Bloom's taxonomy
@@ -723,7 +724,7 @@ def _page_candidates(page, resources):
     seen = set()
     for files in _page_file_groups(page):
         for _label, name in files:
-            resource = resources.get(prefix + name)
+            resource = resource_for_title(resources, prefix + name)
             if resource and resource.id not in seen:
                 seen.add(resource.id)
                 ordered.append(resource)
@@ -733,7 +734,7 @@ def _page_candidates(page, resources):
 def _resolve_links(file_prefix, files, resources, user, register_url, free_id):
     links = []
     for label, name in files:
-        resource = resources.get(file_prefix + name)
+        resource = resource_for_title(resources, file_prefix + name)
         if not resource:
             continue
         free = bool(free_id and resource.id == free_id)

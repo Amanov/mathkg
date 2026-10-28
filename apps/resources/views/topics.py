@@ -14,6 +14,14 @@ from ..models import (
 from ..services import (
     build_topic_sections,
 )
+from apps.resources.continuum import continuum_for_href
+
+
+def _grade_badge(request):
+    nav = continuum_for_href(request.path)
+    if not nav:
+        return ''
+    return nav.get('grade_band') or ''
 
 
 def get_scoped_or_404(model, **lookup):
@@ -71,6 +79,7 @@ def topic_detail(request, topic_slug):
     return render(request, 'resources/topic_detail.html', {
         'topic': topic,
         'subtopics': subtopics,
+        'grade_badge': _grade_badge(request),
     })
 
 
@@ -100,6 +109,7 @@ def subtopic_detail(request, topic_slug, subtopic_slug):
         'topic': topic,
         'subtopic': subtopic,
         'sections': sections,
+        'grade_badge': _grade_badge(request),
     })
 
 
@@ -123,4 +133,5 @@ def subsubtopic_detail(request, topic_slug, subtopic_slug, subsubtopic_slug):
         'subtopic': subtopic,
         'subsubtopic': subsubtopic,
         'sections': sections,
+        'grade_badge': _grade_badge(request),
     })
