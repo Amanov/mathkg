@@ -223,6 +223,24 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: түз, тескери же экөө тең эмес.',
     },
+    'bolchok_kk': {
+        'prefix': '5-klass-bolchok-koshuu-kemituu-', 'grade': 5, 'subtopic': 'Бөлчөктөрдү кошуу жана кемитүү',
+        'sabak': '26 слайд: «Кара-Кулжада тосмо боёо» окуясы, бүктөлгөн кагаз тилкелер, жумуртка кутусу, бөлчөк дубалы, 1/3 + 1/4 = 7/12.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: суммасы же айырмасы боюнча топтоо.',
+    },
+    'tegerek_diagramma': {
+        'prefix': '6-klass-tegerek-diagramma-', 'grade': 6, 'subtopic': 'Тегерек диаграммалар',
+        'sabak': '26 слайд: «Таш-Көмүрдөгү ашкана» окуясы, 36 чарчылуу кагаз тилкеден тегерек, бурчту окуучуга айлантуу, эки класстын диаграммасын салыштыруу.',
+        'ish-barak': '18 тапшырма жана 6 тегерек диаграмма, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бурч, пайыз жана окуучулардын саны боюнча топтоо.',
+    },
+    'geometriya3': {
+        'prefix': '3-klass-geometriyalyk-terminder-', 'grade': 3, 'subtopic': 'Бурчтар, төрт бурчтуктар жана тегерек',
+        'sabak': '26 слайд: «Кызыл-Кыяда ордо аянтчасы» окуясы, бүктөлгөн кагаз менен бурчту текшерүү, жип менен тегерек чийүү, радиус жана диаметр.',
+        'ish-barak': '3 бет тапшырма жана чакмак кагазда чийүү, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: төрт бурчтуктарды бурчтары жана жактары боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -632,6 +650,29 @@ GROUPS = [
         'direct-inverse-inverse',
         'direct-inverse-mixed',
     ]),
+    _group('bolchok_kk', 'Бөлчөктөрдү кошуу жана кемитүү', 'Сандар › Бөлчөктөр › Эсептөөлөр', ['bolchok_kk'], [
+        'unit-fractions-adding',
+        'unit-fractions-subtracting',
+        'unit-fractions-adding-subtracting',
+        'unit-fractions-mixed',
+        'non-unit-fractions-adding',
+        'non-unit-fractions-subtracting',
+        'non-unit-fractions-adding-subtracting',
+        'non-unit-fractions-mixed',
+    ]),
+    _group('tegerek_diagramma', 'Тегерек диаграммалар', 'Дата', ['tegerek_diagramma'], [
+        'data-representing-pie-charts-reading',
+        'data-representing-pie-charts-proportional-method',
+        'data-representing-pie-charts-scaling-method',
+        'geometry-area-perimeter-circles-comparative-pie-charts',
+    ]),
+    _group('geometriya3', 'Бурчтар, төрт бурчтуктар жана тегерек', 'Геометрия › Фигуралар', ['geometriya3'], [
+        'geometry-classifying-vocabulary-vocabulary-angles',
+        'geometry-classifying-vocabulary-vocabulary-circles',
+        'geometry-classifying-vocabulary-vocabulary-sketching-diagrams',
+        'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals',
+        'geometry-area-perimeter-quadrilaterals-vocabulary',
+    ]),
 ]
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
@@ -673,6 +714,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'construction', 'nets'), 'kolom'),
     (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
     (('number', 'estimating-rounding', 'approximating-calculations'), 'tegerektoo'),
+    (('number', 'fractions', 'mixed-fraction-questions'), 'bolchok_kk'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
