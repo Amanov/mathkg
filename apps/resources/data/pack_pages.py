@@ -247,6 +247,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: туюнтмаларды маанисине жараша топтоо.',
     },
+    'eki_tarap': {
+        'prefix': '6-klass-tendemeler-eki-tarap-', 'grade': 6, 'subtopic': 'Теңдемелер: функция машинасы жана белгисиз эки тарапта',
+        'sabak': '26 слайд: «Тамгадагы чычырканак» окуясы, функция машинасы алдыга жана артка, чөйчөк жана капкак таразасы, 5x + 3 = 2x + 15.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: теңдемелерди тамырына жараша топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -685,6 +691,17 @@ GROUPS = [
         'algebra-substitution-symbols-negative',
         'algebra-substitution-with-indices-positive',
         'algebra-substitution-mixed',
+    ]),
+    _group('eki_tarap', 'Теңдемелер: функция машинасы жана белгисиз эки тарапта', 'Алгебра › Сызыктуу теңдемелер', ['eki_tarap'], [
+        'algebra-linear-forming-function-machines',
+        'algebra-manipulation-forming-function-machines',
+        'algebra-forming-expr-function-machines',
+        'algebra-linear-forming-functions-sequences',
+        'algebra-linear-var1side-calc-3step',
+        'algebra-linear-brackets-multiple',
+        'algebra-linear-var-both-sides-without-brackets',
+        'algebra-linear-var-both-sides-with-brackets',
+        'algebra-linear-variable-both-sides',
     ]),
 ]
 

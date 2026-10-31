@@ -591,6 +591,7 @@ class FreeDownloadTests(TestCase):
             'data_representing_pie_charts_reading': '6-klass-tegerek-diagramma-sabak.webp',
             'geometry_classifying_vocabulary_vocabulary_angles': '3-klass-geometriyalyk-terminder-sabak.webp',
             'algebra_substitution_symbols_negative': '6-klass-maanisin-eseptoo-sabak.webp',
+            'algebra_linear_var_both_sides_with_brackets': '6-klass-tendemeler-eki-tarap-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
