@@ -265,6 +265,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: катыштарды 1 : n түрүнө жараша топтоо.',
     },
+    'anketa': {
+        'prefix': '6-klass-anketa-eki-tarap-tablica-', 'grade': 6, 'subtopic': 'Анкета, эки тараптуу таблица жана орточо маани',
+        'sabak': '26 слайд: «Жумгалдагы мектеп гезити» окуясы, жумуртка кутусунан эки тараптуу таблица, чөйчөктөрдү теңдөө, жыштык таблицасынан орточо маани.',
+        'ish-barak': '18 тапшырма, таблица жана диаграммалар, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: орточо маани өсөт, азаят же өзгөрбөйт.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -733,6 +739,15 @@ GROUPS = [
         'ratio-dividing-fpr-non-calculator',
         'ratio-dividing-fpr-calculator',
         'ratio-mixed-higher',
+    ]),
+    _group('anketa', 'Анкета, эки тараптуу таблица жана орточо маани', 'Дата', ['anketa'], [
+        'data-collecting-questionnaires',
+        'data-frequency-tables-two-way-tables-creating-reading',
+        'data-frequency-tables-two-way-tables-with-bar-charts',
+        'data-frequency-tables-ungrouped-data-calculating-averages',
+        'data-analysing-mean-adjusting',
+        'data-analysing-mean-reverse',
+        'data-analysing-choosing-an-average',
     ]),
 ]
 
