@@ -457,6 +457,7 @@ GROUPS = [
         'adding-1-2-digit', 'subtracting-1-2-digit', 'adding-subtracting-1-2-digit',
         'integers-adding-with-decimals', 'integers-subtracting-with-decimals',
         'integers-adding-subtracting-with-decimals',
+        'adding-with-integers', 'subtracting-with-integers', 'adding-subtracting-with-integers',
     ], badge='4–5 кл.'),
     _group('ondu_kb', 'Ондук бөлчөктөрдү көбөйтүү жана бөлүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kb'], [
         'multiplying-1-digit', 'dividing-1-digit', 'multiplying-dividing-1-digit', 'mixed-1-digit',
