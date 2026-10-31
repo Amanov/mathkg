@@ -241,6 +241,36 @@ PACKS = {
         'ish-barak': '3 бет тапшырма жана чакмак кагазда чийүү, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: төрт бурчтуктарды бурчтары жана жактары боюнча топтоо.',
     },
+    'maani_eseptoo': {
+        'prefix': '6-klass-maanisin-eseptoo-', 'grade': 6, 'subtopic': 'Туюнтманын маанисин эсептөө',
+        'sabak': '26 слайд: «Кербендеги аба ырайы бурчу» окуясы, терс сандарды кашаага коюу, x² жана −x², формула F = 9C ÷ 5 + 32.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: туюнтмаларды маанисине жараша топтоо.',
+    },
+    'eki_tarap': {
+        'prefix': '6-klass-tendemeler-eki-tarap-', 'grade': 6, 'subtopic': 'Теңдемелер: функция машинасы жана белгисиз эки тарапта',
+        'sabak': '26 слайд: «Тамгадагы чычырканак» окуясы, функция машинасы алдыга жана артка, чөйчөк жана капкак таразасы, 5x + 3 = 2x + 15.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: теңдемелерди тамырына жараша топтоо.',
+    },
+    'tamga_kb': {
+        'prefix': '6-klass-tamgaluu-kobeytuu-boluu-', 'grade': 6, 'subtopic': 'Тамгалуу мүчөлөрдү көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Канттагы плитка цехи» окуясы, чакмак кагаздан плиткалар, 2a × 3b = 6ab, 12ab ÷ 4a = 3b, аянт модели.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: = 12ab, = 12a² же = 12a боюнча топтоо.',
+    },
+    'katysh_1n': {
+        'prefix': '6-klass-katysh-1-n-', 'grade': 6, 'subtopic': 'Катыш: 1 : n түрү, бириктирүү жана өзгөрүү',
+        'sabak': '26 слайд: «Аравандагы тандыр нан» окуясы, үч түстүү капкактар, 2 : 3 жана 4 : 5 катыштарын бириктирүү (8 : 12 : 15), 1 : n түрү.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: катыштарды 1 : n түрүнө жараша топтоо.',
+    },
+    'anketa': {
+        'prefix': '6-klass-anketa-eki-tarap-tablica-', 'grade': 6, 'subtopic': 'Анкета, эки тараптуу таблица жана орточо маани',
+        'sabak': '26 слайд: «Жумгалдагы мектеп гезити» окуясы, жумуртка кутусунан эки тараптуу таблица, чөйчөктөрдү теңдөө, жыштык таблицасынан орточо маани.',
+        'ish-barak': '18 тапшырма, таблица жана диаграммалар, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: орточо маани өсөт, азаят же өзгөрбөйт.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -457,6 +487,7 @@ GROUPS = [
         'adding-1-2-digit', 'subtracting-1-2-digit', 'adding-subtracting-1-2-digit',
         'integers-adding-with-decimals', 'integers-subtracting-with-decimals',
         'integers-adding-subtracting-with-decimals',
+        'adding-with-integers', 'subtracting-with-integers', 'adding-subtracting-with-integers',
     ], badge='4–5 кл.'),
     _group('ondu_kb', 'Ондук бөлчөктөрдү көбөйтүү жана бөлүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kb'], [
         'multiplying-1-digit', 'dividing-1-digit', 'multiplying-dividing-1-digit', 'mixed-1-digit',
@@ -672,6 +703,51 @@ GROUPS = [
         'geometry-classifying-vocabulary-vocabulary-sketching-diagrams',
         'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals',
         'geometry-area-perimeter-quadrilaterals-vocabulary',
+    ]),
+    _group('maani_eseptoo', 'Туюнтманын маанисин эсептөө: терс сандар жана квадрат', 'Алгебра › Ордуна коюу', ['maani_eseptoo'], [
+        'algebra-substitution-without-indices-negative',
+        'algebra-substitution-symbols-negative',
+        'algebra-substitution-with-indices-positive',
+        'algebra-substitution-mixed',
+    ]),
+    _group('eki_tarap', 'Теңдемелер: функция машинасы жана белгисиз эки тарапта', 'Алгебра › Сызыктуу теңдемелер', ['eki_tarap'], [
+        'algebra-linear-forming-function-machines',
+        'algebra-manipulation-forming-function-machines',
+        'algebra-forming-expr-function-machines',
+        'algebra-linear-forming-functions-sequences',
+        'algebra-linear-var1side-calc-3step',
+        'algebra-linear-brackets-multiple',
+        'algebra-linear-var-both-sides-without-brackets',
+        'algebra-linear-var-both-sides-with-brackets',
+        'algebra-linear-variable-both-sides',
+    ]),
+    _group('tamga_kb', 'Тамгалуу мүчөлөрдү көбөйтүү жана бөлүү', 'Алгебра › Өзгөртүп түзүү', ['tamga_kb'], [
+        'algebra-manipulation-notation-multiplying-adding',
+        'algebra-manipulation-notation-dividing',
+        'algebra-manipulation-notation-multiplying-dividing',
+        'algebra-manipulation-notation-mixed-arithmetic',
+        'algebra-manipulation-expressions-multiplying',
+        'algebra-manipulation-expressions-multiplying-adding',
+        'algebra-manipulation-expressions-multiplying-dividing',
+        'algebra-manipulation-expressions-mixed-arithmetic',
+    ]),
+    _group('katysh_1n', 'Катыш: 1 : n түрү, катыштарды бириктирүү жана өзгөрүү', 'Сандар › Катыш', ['katysh_1n'], [
+        'ratio-expressing-1-to-n',
+        'ratio-manipulation-1-to-n',
+        'ratio-manipulation-combining',
+        'ratio-manipulation-changing',
+        'ratio-dividing-fpr-non-calculator',
+        'ratio-dividing-fpr-calculator',
+        'ratio-mixed-higher',
+    ]),
+    _group('anketa', 'Анкета, эки тараптуу таблица жана орточо маани', 'Дата', ['anketa'], [
+        'data-collecting-questionnaires',
+        'data-frequency-tables-two-way-tables-creating-reading',
+        'data-frequency-tables-two-way-tables-with-bar-charts',
+        'data-frequency-tables-ungrouped-data-calculating-averages',
+        'data-analysing-mean-adjusting',
+        'data-analysing-mean-reverse',
+        'data-analysing-choosing-an-average',
     ]),
 ]
 
