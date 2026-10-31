@@ -241,6 +241,12 @@ PACKS = {
         'ish-barak': '3 бет тапшырма жана чакмак кагазда чийүү, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: төрт бурчтуктарды бурчтары жана жактары боюнча топтоо.',
     },
+    'maani_eseptoo': {
+        'prefix': '6-klass-maanisin-eseptoo-', 'grade': 6, 'subtopic': 'Туюнтманын маанисин эсептөө',
+        'sabak': '26 слайд: «Кербендеги аба ырайы бурчу» окуясы, терс сандарды кашаага коюу, x² жана −x², формула F = 9C ÷ 5 + 32.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: туюнтмаларды маанисине жараша топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -673,6 +679,12 @@ GROUPS = [
         'geometry-classifying-vocabulary-vocabulary-sketching-diagrams',
         'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals',
         'geometry-area-perimeter-quadrilaterals-vocabulary',
+    ]),
+    _group('maani_eseptoo', 'Туюнтманын маанисин эсептөө: терс сандар жана квадрат', 'Алгебра › Ордуна коюу', ['maani_eseptoo'], [
+        'algebra-substitution-without-indices-negative',
+        'algebra-substitution-symbols-negative',
+        'algebra-substitution-with-indices-positive',
+        'algebra-substitution-mixed',
     ]),
 ]
 

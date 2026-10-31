@@ -590,6 +590,7 @@ class FreeDownloadTests(TestCase):
             'unit_fractions_adding': '5-klass-bolchok-koshuu-kemituu-sabak.webp',
             'data_representing_pie_charts_reading': '6-klass-tegerek-diagramma-sabak.webp',
             'geometry_classifying_vocabulary_vocabulary_angles': '3-klass-geometriyalyk-terminder-sabak.webp',
+            'algebra_substitution_symbols_negative': '6-klass-maanisin-eseptoo-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
