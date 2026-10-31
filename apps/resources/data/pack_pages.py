@@ -235,6 +235,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тегерек диаграмма, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: бурч, пайыз жана окуучулардын саны боюнча топтоо.',
     },
+    'geometriya3': {
+        'prefix': '3-klass-geometriyalyk-terminder-', 'grade': 3, 'subtopic': 'Бурчтар, төрт бурчтуктар жана тегерек',
+        'sabak': '26 слайд: «Кызыл-Кыяда ордо аянтчасы» окуясы, бүктөлгөн кагаз менен бурчту текшерүү, жип менен тегерек чийүү, радиус жана диаметр.',
+        'ish-barak': '3 бет тапшырма жана чакмак кагазда чийүү, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: төрт бурчтуктарды бурчтары жана жактары боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -659,6 +665,13 @@ GROUPS = [
         'data-representing-pie-charts-proportional-method',
         'data-representing-pie-charts-scaling-method',
         'geometry-area-perimeter-circles-comparative-pie-charts',
+    ]),
+    _group('geometriya3', 'Бурчтар, төрт бурчтуктар жана тегерек', 'Геометрия › Фигуралар', ['geometriya3'], [
+        'geometry-classifying-vocabulary-vocabulary-angles',
+        'geometry-classifying-vocabulary-vocabulary-circles',
+        'geometry-classifying-vocabulary-vocabulary-sketching-diagrams',
+        'geometry-classifying-vocabulary-classifying-shapes-quadrilaterals',
+        'geometry-area-perimeter-quadrilaterals-vocabulary',
     ]),
 ]
 

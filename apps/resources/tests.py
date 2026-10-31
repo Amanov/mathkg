@@ -589,6 +589,7 @@ class FreeDownloadTests(TestCase):
             'direct_inverse_inverse': '6-klass-tuz-teskeri-proporciya-sabak.webp',
             'unit_fractions_adding': '5-klass-bolchok-koshuu-kemituu-sabak.webp',
             'data_representing_pie_charts_reading': '6-klass-tegerek-diagramma-sabak.webp',
+            'geometry_classifying_vocabulary_vocabulary_angles': '3-klass-geometriyalyk-terminder-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
