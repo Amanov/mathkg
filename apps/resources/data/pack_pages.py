@@ -229,6 +229,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: суммасы же айырмасы боюнча топтоо.',
     },
+    'tegerek_diagramma': {
+        'prefix': '6-klass-tegerek-diagramma-', 'grade': 6, 'subtopic': 'Тегерек диаграммалар',
+        'sabak': '26 слайд: «Таш-Көмүрдөгү ашкана» окуясы, 36 чарчылуу кагаз тилкеден тегерек, бурчту окуучуга айлантуу, эки класстын диаграммасын салыштыруу.',
+        'ish-barak': '18 тапшырма жана 6 тегерек диаграмма, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бурч, пайыз жана окуучулардын саны боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -647,6 +653,12 @@ GROUPS = [
         'non-unit-fractions-subtracting',
         'non-unit-fractions-adding-subtracting',
         'non-unit-fractions-mixed',
+    ]),
+    _group('tegerek_diagramma', 'Тегерек диаграммалар', 'Дата', ['tegerek_diagramma'], [
+        'data-representing-pie-charts-reading',
+        'data-representing-pie-charts-proportional-method',
+        'data-representing-pie-charts-scaling-method',
+        'geometry-area-perimeter-circles-comparative-pie-charts',
     ]),
 ]
 
