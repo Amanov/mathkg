@@ -253,6 +253,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: теңдемелерди тамырына жараша топтоо.',
     },
+    'tamga_kb': {
+        'prefix': '6-klass-tamgaluu-kobeytuu-boluu-', 'grade': 6, 'subtopic': 'Тамгалуу мүчөлөрдү көбөйтүү жана бөлүү',
+        'sabak': '26 слайд: «Канттагы плитка цехи» окуясы, чакмак кагаздан плиткалар, 2a × 3b = 6ab, 12ab ÷ 4a = 3b, аянт модели.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: = 12ab, = 12a² же = 12a боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -702,6 +708,16 @@ GROUPS = [
         'algebra-linear-var-both-sides-without-brackets',
         'algebra-linear-var-both-sides-with-brackets',
         'algebra-linear-variable-both-sides',
+    ]),
+    _group('tamga_kb', 'Тамгалуу мүчөлөрдү көбөйтүү жана бөлүү', 'Алгебра › Өзгөртүп түзүү', ['tamga_kb'], [
+        'algebra-manipulation-notation-multiplying-adding',
+        'algebra-manipulation-notation-dividing',
+        'algebra-manipulation-notation-multiplying-dividing',
+        'algebra-manipulation-notation-mixed-arithmetic',
+        'algebra-manipulation-expressions-multiplying',
+        'algebra-manipulation-expressions-multiplying-adding',
+        'algebra-manipulation-expressions-multiplying-dividing',
+        'algebra-manipulation-expressions-mixed-arithmetic',
     ]),
 ]
 
