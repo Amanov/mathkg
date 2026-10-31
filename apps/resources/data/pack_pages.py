@@ -259,6 +259,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: = 12ab, = 12a² же = 12a боюнча топтоо.',
     },
+    'katysh_1n': {
+        'prefix': '6-klass-katysh-1-n-', 'grade': 6, 'subtopic': 'Катыш: 1 : n түрү, бириктирүү жана өзгөрүү',
+        'sabak': '26 слайд: «Аравандагы тандыр нан» окуясы, үч түстүү капкактар, 2 : 3 жана 4 : 5 катыштарын бириктирүү (8 : 12 : 15), 1 : n түрү.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: катыштарды 1 : n түрүнө жараша топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -718,6 +724,15 @@ GROUPS = [
         'algebra-manipulation-expressions-multiplying-adding',
         'algebra-manipulation-expressions-multiplying-dividing',
         'algebra-manipulation-expressions-mixed-arithmetic',
+    ]),
+    _group('katysh_1n', 'Катыш: 1 : n түрү, катыштарды бириктирүү жана өзгөрүү', 'Сандар › Катыш', ['katysh_1n'], [
+        'ratio-expressing-1-to-n',
+        'ratio-manipulation-1-to-n',
+        'ratio-manipulation-combining',
+        'ratio-manipulation-changing',
+        'ratio-dividing-fpr-non-calculator',
+        'ratio-dividing-fpr-calculator',
+        'ratio-mixed-higher',
     ]),
 ]
 

@@ -593,6 +593,7 @@ class FreeDownloadTests(TestCase):
             'algebra_substitution_symbols_negative': '6-klass-maanisin-eseptoo-sabak.webp',
             'algebra_linear_var_both_sides_with_brackets': '6-klass-tendemeler-eki-tarap-sabak.webp',
             'algebra_manipulation_expressions_multiplying': '6-klass-tamgaluu-kobeytuu-boluu-sabak.webp',
+            'ratio_manipulation_combining': '6-klass-katysh-1-n-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
