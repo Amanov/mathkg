@@ -518,3 +518,77 @@ body .related-topics .related-topics-link:focus-visible .related-topics-title {
     border-radius: inherit;
     --mk-zoom-scale: 2.6;
 }
+
+/* «Бул тема класстан класска»: the same idea in the grades before and
+   after this page (data/spiral.py). One card, steps in grade order; the
+   current page is outlined in the topic accent instead of linked. */
+.spiral {
+    margin: 20px 0 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: 0 1px 2px var(--topic-shadow);
+}
+.spiral + .spiral { margin-top: 8px; }
+.spiral__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    list-style: none;
+}
+.spiral__head::-webkit-details-marker { display: none; }
+.spiral__head::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    margin-left: auto;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg);
+    transition: transform var(--transition-fast);
+}
+.spiral[open] > .spiral__head::after { transform: rotate(225deg); }
+.spiral__head:focus-visible { outline: 2px solid var(--topic-accent); outline-offset: 2px; border-radius: var(--radius-md); }
+.spiral__label { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.spiral__title { font-size: 16px; font-weight: 700; color: var(--text); }
+.spiral__steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0 16px 16px;
+    list-style: none;
+    counter-reset: spiral;
+}
+.spiral__step {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--surface-alt);
+}
+.spiral__step.is-current { border: 2px solid var(--topic-accent); background: var(--surface); padding: 9px 11px; }
+.spiral__grade {
+    align-self: flex-start;
+    padding: 1px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    background: var(--surface);
+}
+.spiral__name { font-size: 14px; font-weight: 600; line-height: 1.3; color: var(--text); }
+a.spiral__name { color: var(--topic-accent); text-decoration: none; }
+a.spiral__name:hover { text-decoration: underline; }
+a.spiral__name:focus-visible { outline: 2px solid var(--topic-accent); outline-offset: 2px; border-radius: 2px; }
+.spiral__here { font-size: 12px; font-weight: 600; color: var(--topic-accent); }
+.spiral__change { font-size: 13px; line-height: 1.35; color: var(--text-muted); }
+@media (max-width: 680px) {
+    .spiral__steps { grid-template-columns: 1fr; }
+}

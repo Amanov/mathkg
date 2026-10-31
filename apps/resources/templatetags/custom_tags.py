@@ -38,6 +38,14 @@ def menu_item_url(item):
     return safe_url(item.url_name)
 
 
+@register.simple_tag
+def menu_item_grade(item):
+    """The grade a menu link's page is for ('5-кл.', '5–6 кл.'), or ''
+    (data/menu_grades.py)."""
+    from apps.resources.data.menu_grades import grade_for_url
+    return grade_for_url(menu_item_url(item))
+
+
 def _is_content_item(item):
     """A MenuItem that is an actual page, not just a category/chevron
     node that exists only to group its children."""

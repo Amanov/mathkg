@@ -4,7 +4,7 @@
 
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261027a">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261031a">
 {% if page.uses_mk_zoom %}
 <link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019c">
 {% endif %}
@@ -16,6 +16,29 @@
   {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
   <h1 class="topic-page__title">{{ page.title }}</h1>
   {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
+
+  {% for strand in page.strands %}
+  <details class="spiral"{% if forloop.first %} open{% endif %}>
+    <summary class="spiral__head">
+      <span class="spiral__label">Бул тема класстан класска</span>
+      <span class="spiral__title">{{ strand.title }}</span>
+    </summary>
+    <ol class="spiral__steps">
+      {% for step in strand.steps %}
+      <li class="spiral__step{% if step.current %} is-current{% endif %}">
+        <span class="spiral__grade">{{ step.grade }}</span>
+        {% if step.current %}
+        <span class="spiral__name" aria-current="page">{{ step.title }}</span>
+        <span class="spiral__here">Ушул барак</span>
+        {% else %}
+        <a class="spiral__name" href="{{ step.url }}">{{ step.title }}</a>
+        {% endif %}
+        <span class="spiral__change">{{ step.change }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </details>
+  {% endfor %}
 
   {% if page.preparing %}
   <p class="topic-page__notice">Бул бөлүм үчүн материалдар даярдалууда.</p>

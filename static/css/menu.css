@@ -171,6 +171,22 @@
     outline-offset: -2px;
 }
 
+/* Grade a leaf's page is for (templatetag menu_item_grade): a quiet chip
+   at the right end of the row, so teachers see «5-кл.» before clicking. */
+.menu-grade {
+    flex: none;
+    margin-left: auto;
+    padding: 1px 7px;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+}
+.dropdown-item:has(.menu-grade) { gap: 10px; }
+
 /* ════════════════════════════════════════════
    SUBMENU TOGGLE — same shape as a leaf link
 ════════════════════════════════════════════ */

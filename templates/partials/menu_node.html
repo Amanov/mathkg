@@ -30,6 +30,7 @@
                data-track="Меню: {{ item.title }}">
                 {% if item.icon and not parent %}<i class="{{ item.icon }}"></i>{% endif %}
                 <span>{{ item.title }}</span>
+                {% if parent %}{% menu_item_grade item as grade %}{% if grade %}<span class="menu-grade">{{ grade }}</span>{% endif %}{% endif %}
             </a>
         </li>
     {% endif %}

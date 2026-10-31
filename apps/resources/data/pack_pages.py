@@ -403,7 +403,8 @@ def _group(key, title, crumb, pack_keys, slugs, badge=None):
         badge = f'{grades[0]}-класс' if len(grades) == 1 else None
     items = [i for p in packs for i in _pack_items(p)]
     teacher = [t for p in packs for t in _teacher(p)]
-    return {'spec': _page(title, 'pack_' + key, crumb, badge, items, teacher=teacher), 'slugs': slugs}
+    return {'spec': _page(title, 'pack_' + key, crumb, badge, items, teacher=teacher), 'slugs': slugs,
+            'packs': list(pack_keys)}
 
 
 GROUPS = [
@@ -749,7 +750,37 @@ GROUPS = [
         'data-analysing-mean-reverse',
         'data-analysing-choosing-an-average',
     ]),
+    # Pages that span two neighbouring packs (2026-10-31).
+    _group('figuralar_2_3', 'Фигуралар, бурчтар жана терминдер', 'Геометрия › Классификациялоо жана терминология',
+           ['figuralar', 'geometriya3'], []),
+    _group('tekst_maseleler', 'Текст маселелер: тилке модели менен', 'Сандар › Бүтүн сандар › Турмуштук маселелер',
+           ['mamycha', 'kop_kb'], ['integers-real-life-calculator', 'integers-real-life-non-calculator']),
+    _group('ayant_tort', 'Төрт бурчтуктардын периметри жана аянты', 'Геометрия › Аянт жана периметр',
+           ['perimetr', 'uch_burchtuk'], []),
+    _group('katysh_all', 'Катыш: бөлүү, 1 : n түрү жана бириктирүү', 'Пропорция › Катыш', ['katysh', 'katysh_1n'], []),
 ]
+
+# Repeated menu items that teach the same thing as a page above: they show
+# the same pack (2026-10-31; duplicates per sayt-mockup/bardyk-temalar).
+_MORE_SLUGS = {
+    'fdp': [
+        'decimals-to-both', 'decimals-to-fractions', 'decimals-to-percentages',
+        'decimals-with-both', 'decimals-with-fractions', 'decimals-with-percentages',
+        'fractions-equiv-to-decimals-calculator', 'fractions-equiv-to-percentages-calculator',
+        'fractions-to-decimals-calculator', 'fractions-to-percentages-calculator',
+        'percentages-expressing-converting-fractions',
+    ],
+    'fdpr': ['percentages-quantity-fpr', 'percentages-noncalc-quantity-fpr'],
+    'kadimki': ['equivalent-fractions-with-calculations'],
+    'k100': ['integers-mixed-1-2-digit'],
+    'mamycha': ['integers-mixed-2-3-digit'],
+    'akcha': ['purchasing-non-calculator'],
+    'katysh': ['ratio-dividing-with-line-segments'],
+    'eki_tarap': ['algebra-functions-evaluating-simple-machines', 'algebra-linear-mixed'],
+    'algebra': ['algebra-linear-forming-shapes-angles-real-life'],
+}
+for _group_spec in GROUPS:
+    _group_spec['slugs'] = list(_group_spec['slugs']) + _MORE_SLUGS.get(_group_spec['spec']['page_key'][len('pack_'):], [])
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
 FDP = next(g['spec'] for g in GROUPS if g['spec']['page_key'] == 'pack_fdp')
@@ -793,6 +824,38 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('number', 'fractions', 'mixed-fraction-questions'), 'bolchok_kk'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
+    # 2026-10-31: empty grade 1–6 pages that an existing pack teaches.
+    (('algebra', 'equations-linear', 'variable-on-one-side-calculator'), 'algebra'),
+    (('algebra', 'equations-linear', 'variable-on-one-side-non-calculator'), 'algebra'),
+    (('algebra', 'equations-linear', 'with-functions'), 'eki_tarap'),
+    (('algebra', 'introduction', 'forming-expressions'), 'algebra'),
+    (('geometry', 'angles', 'angle-facts'), 'burchtar'),
+    (('geometry', 'angles', 'drawing-measuring'), 'burchtar'),
+    (('geometry', 'angles', 'mixed'), 'burchtar'),
+    (('geometry', 'construction', 'angles'), 'burchtar'),
+    (('geometry', 'construction', 'measuring-lines'), 'olchomdor'),
+    (('geometry', 'construction', 'sketching-diagrams'), 'geometriya3'),
+    (('geometry', 'area-perimeter', 'circles'), 'aylana'),
+    (('geometry', 'area-perimeter', 'compound-rectilinear'), 'perimetr'),
+    (('geometry', 'area-perimeter', 'quadrilaterals'), 'ayant_tort'),
+    (('geometry', 'area-perimeter', 'mixed'), 'ayant_tort'),
+    (('geometry', 'area-perimeter', 'triangles'), 'uch_burchtuk'),
+    (('geometry', 'classifying-vocabulary', 'classifying-shapes'), 'figuralar_2_3'),
+    (('geometry', 'classifying-vocabulary', 'vocabulary'), 'figuralar_2_3'),
+    (('geometry', 'coordinates'), 'koordinattar'),
+    (('geometry', 'transformations', 'mixed'), 'simmetriya'),
+    (('number', 'directed-numbers', 'ordering'), 'butun_kk'),
+    (('probability', 'two-way-tables'), 'anketa'),
+    (('probability', 'venn-diagrams'), 'venn'),
+    (('proportion', 'percentages-calculator', 'mixed'), 'payyz'),
+    (('proportion', 'ratio', 'mixed'), 'katysh_all'),
+    (('proportion', 'real-life-applications', 'mixed'), 'turmushtuk'),
+    (('proportion', 'real-life-applications', 'prices'), 'turmushtuk'),
+    (('statistics', 'analysing', 'mean'), 'anketa'),
+    (('statistics', 'collecting'), 'maalymat_chogultuu'),
+    (('statistics', 'frequency-tables', 'two-way-tables'), 'anketa'),
+    (('statistics', 'frequency-tables', 'ungrouped-data'), 'maalymat_chogultuu'),
+    (('statistics', 'representing', 'venn-diagrams'), 'venn'),
 ]}
 
 NEW_FILES = [
@@ -836,6 +899,12 @@ SPLIT_BADGES = {
     'direct-inverse-inverse': '8-класс',
     'direct-inverse-introduction': '7–8 кл.',
     'direct-inverse-mixed': '7–8 кл.',
+    ('algebra', 'equations-linear', 'variable-on-one-side-calculator'): '6–7 кл.',
+    ('algebra', 'equations-linear', 'variable-on-one-side-non-calculator'): '6–7 кл.',
+    ('geometry', 'angles', 'angle-facts'): '5–7 кл.',
+    ('geometry', 'angles', 'mixed'): '5–7 кл.',
+    ('geometry', 'area-perimeter', 'mixed'): '5–7 кл.',
+    ('geometry', 'transformations', 'mixed'): '4–9 кл.',
 }
 
 
@@ -851,4 +920,6 @@ def page_for(slug, page_title):
     override = SPLIT_BADGES.get(slug)
     if override:
         spec['grade_badge'] = override
+    from apps.resources.data.spiral import strands_for
+    spec['strands'] = strands_for(spec['page_key'])
     return spec
