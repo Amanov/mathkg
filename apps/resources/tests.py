@@ -587,6 +587,7 @@ class FreeDownloadTests(TestCase):
             'integers_multiplying_2_3_digit': '4-klass-kop-orunduu-kobeytuu-boluu-sabak.webp',
             'integers_multiplying_dividing_10_100_1000': '5-klass-10-100-1000-sabak.webp',
             'direct_inverse_inverse': '6-klass-tuz-teskeri-proporciya-sabak.webp',
+            'unit_fractions_adding': '5-klass-bolchok-koshuu-kemituu-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
@@ -594,7 +595,7 @@ class FreeDownloadTests(TestCase):
             self.assertIn(deck[0] + '-класс', html, name)
         for name in ('geometry_area_perimeter_circles_sector_area', 'algebra_linear_inequalities',
                      'data_representing_pie_charts_reading', 'ratio_quantities_reverse',
-                     'unit_fractions_adding', 'speed_distance_time_converting_speeds',
+                     'percentages_incdec_reverse', 'speed_distance_time_converting_speeds',
                      'scale_drawings_areas'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 

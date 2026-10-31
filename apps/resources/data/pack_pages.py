@@ -223,6 +223,12 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: түз, тескери же экөө тең эмес.',
     },
+    'bolchok_kk': {
+        'prefix': '5-klass-bolchok-koshuu-kemituu-', 'grade': 5, 'subtopic': 'Бөлчөктөрдү кошуу жана кемитүү',
+        'sabak': '26 слайд: «Кара-Кулжада тосмо боёо» окуясы, бүктөлгөн кагаз тилкелер, жумуртка кутусу, бөлчөк дубалы, 1/3 + 1/4 = 7/12.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели, жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: суммасы же айырмасы боюнча топтоо.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -632,6 +638,16 @@ GROUPS = [
         'direct-inverse-inverse',
         'direct-inverse-mixed',
     ]),
+    _group('bolchok_kk', 'Бөлчөктөрдү кошуу жана кемитүү', 'Сандар › Бөлчөктөр › Эсептөөлөр', ['bolchok_kk'], [
+        'unit-fractions-adding',
+        'unit-fractions-subtracting',
+        'unit-fractions-adding-subtracting',
+        'unit-fractions-mixed',
+        'non-unit-fractions-adding',
+        'non-unit-fractions-subtracting',
+        'non-unit-fractions-adding-subtracting',
+        'non-unit-fractions-mixed',
+    ]),
 ]
 
 # The Эквиваленттүүлүк pages with their own named views (see views/ekvivalenttuuluk.py).
@@ -673,6 +689,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'construction', 'nets'), 'kolom'),
     (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
     (('number', 'estimating-rounding', 'approximating-calculations'), 'tegerektoo'),
+    (('number', 'fractions', 'mixed-fraction-questions'), 'bolchok_kk'),
     (('statistics', 'analysing', 'mixed'), 'maalymat'),
     (('statistics', 'representing', 'mixed'), 'maalymat'),
 ]}
