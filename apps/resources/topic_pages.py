@@ -813,6 +813,8 @@ def build_topic_page(page, resources, user):
         # Menu path above the title and a grade badge for single-grade pages.
         'crumb': page.get('crumb'),
         'grade_badge': page.get('grade_badge'),
+        # The same topic in the grades before and after (data/spiral.py).
+        'strands': page.get('strands', []),
         # Grade tabs (empty for pages without grade-level items).
         'grades': grades,
         'model_label': page.get('model_label', '5E + 3C жана Блум'),

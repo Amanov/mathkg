@@ -606,6 +606,37 @@ class FreeDownloadTests(TestCase):
                      'scale_drawings_areas'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 
+    def test_repeated_pages_share_one_pack_and_show_the_grade_strand(self):
+        from apps.resources.data.menu_grades import grade_for_url
+        from apps.resources.data.spiral import STRANDS, group_url
+        # A repeated menu item shows the same pack as its twin.
+        for name, deck in {
+            'decimals_to_fractions': '6-klass-bolchok-ondu-procent-sabak.webp',
+            'integers_mixed_1_2_digit': '2-klass-100-ichinde-sabak-v2.webp',
+            'integers_real_life_non_calculator': '4-klass-kop-orunduu-kobeytuu-boluu-sabak.webp',
+            'algebra_functions_evaluating_simple_machines': '6-klass-tendemeler-eki-tarap-sabak.webp',
+        }.items():
+            self.assertContains(self.client.get(reverse(name)), deck, msg_prefix=name)
+        # Every strand step links to a page that shows that step's pack
+        # (database pages exist only in the site's own database).
+        from django.urls import resolve
+        for _title, steps in STRANDS:
+            for key, _change in steps:
+                url = group_url(key)
+                if url.startswith('/resources/topic/'):
+                    resolve(url)
+                else:
+                    self.assertEqual(self.client.get(url).status_code, 200, key)
+        html = self.client.get(reverse('unit_fractions_adding')).content.decode()
+        self.assertIn('Бул тема класстан класска', html)
+        self.assertIn('Ушул барак', html)
+        self.assertIn('href="/unit-fractions-multiplying/"', html)
+        # Menu grade chips: the pack's grade where a pack fills the page,
+        # the audit grade elsewhere.
+        self.assertEqual(grade_for_url('/unit-fractions-adding/'), '5-кл.')
+        self.assertEqual(grade_for_url('/resources/topic/geometry/bearings/'), '7–9 кл.')
+        self.assertEqual(grade_for_url('/no-such-page/'), '')
+
     def test_empty_database_page_shows_its_pack_until_it_has_files(self):
         from apps.resources.models import SubSubtopic, Subtopic, Topic
         topic = Topic.objects.create(title='Сандар', slug='number')
