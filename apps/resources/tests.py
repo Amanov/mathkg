@@ -595,6 +595,11 @@ class FreeDownloadTests(TestCase):
             'algebra_manipulation_expressions_multiplying': '6-klass-tamgaluu-kobeytuu-boluu-sabak.webp',
             'ratio_manipulation_combining': '6-klass-katysh-1-n-sabak.webp',
             'data_analysing_mean_reverse': '6-klass-anketa-eki-tarap-tablica-sabak.webp',
+            'algebra_manipulation_factorise_double_difference_squares': '7-klass-kashaa-ajyratuu-sabak.webp',
+            'algebra_graphs_abstract_linear_plotting': '7-klass-syzyktuu-funkciya-sabak.webp',
+            'standard_form_converting_ordinary_to_standard': '7-klass-daraja-standart-sabak.webp',
+            'algebra_simultaneous_substitution': '7-klass-tendemeler-sistemasy-sabak.webp',
+            'algebra_quadratic_formula': '8-klass-kvadrattyk-tendemeler-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
