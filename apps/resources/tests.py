@@ -501,7 +501,6 @@ class FreeDownloadTests(TestCase):
         self.assertNotIn('санау', frames)
 
         for name, heading in (
-            ('algebra_functions_igcse', '>IGCSE</h1>'),
             ('data_representing_venn_diagrams_sets_with_notation_igcse', '>Жыйындар белгилөө менен (IGCSE)</h1>'),
         ):
             html = self.client.get(reverse(name)).content.decode()
@@ -615,13 +614,15 @@ class FreeDownloadTests(TestCase):
             'percentages_incdec_reverse': '8-klass-tatal-payyz-sabak.webp',
             'geometry_volume_surface_area_cone_volume': '10-klass-kolom-bet-ayanty-sabak.webp',
             'speed_distance_time_converting_speeds': '9-klass-kyymyl-grafikteri-sabak.webp',
+            'algebra_functions_forming_composite_quadratics': '10-klass-funkciyalar-sabak.webp',
+            'geometry_trigonometry_graphs': '10-klass-trig-funkciyalar-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             badge = {'10-klass-kolom-bet-ayanty-sabak.webp': '9–11 кл.'}.get(deck, deck.split('-')[0] + '-класс')
             self.assertIn(badge, html, name)
-        for name in ('compound_pressure_force_area', 'algebra_functions_forming_composite_quadratics',
+        for name in ('compound_pressure_force_area', 'data_collecting_capture_recapture',
                      'graphs_depth_time', 'ratio_quantities_reverse',
                      'rounding_significant_figures', 'systems_of_measurement_imperial',
                      'scale_drawings_areas'):

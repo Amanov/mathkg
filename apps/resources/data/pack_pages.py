@@ -398,6 +398,24 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели: ылдамдык жантайыш катары, ылдамдануу, график астындагы аянт; жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: график жана анын окуясы.',
     },
+    'funkciya': {
+        'prefix': '10-klass-funkciyalar-', 'grade': 10, 'subtopic': 'Функциялар: f(x), аныкталуу аймагы, f(g(x)) жана f⁻¹(x)',
+        'sabak': '26 слайд: «Кызыл-Адырдагы такси тарифи» окуясы, кагаз функция машиналары, машиналарды тизмектеп жана тескери иштетүү, y = x боюнча калька.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: функциянын мааниси, аймактар, курама функция, тескери функция; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: функция, анын тескериси жана курамасы.',
+    },
+    'trig_funk': {
+        'prefix': '10-klass-trig-funkciyalar-', 'grade': 10, 'subtopic': 'Тригонометриялык функциялар жана бирдик айлана',
+        'sabak': '26 слайд: «Гүлчөдөгү суу тегирмени» окуясы, кагаз табактан бирдик айлана, саманча радиус, y = sin x графиги, амплитуда жана жылдыруу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: чейректеги белги, sin x = k теңдемесинин эки чечими, графиктерди өзгөртүү, радиан; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бурч жана анын синусу, косинусу же тангенси.',
+    },
+    'tuundu': {
+        'prefix': '11-klass-tuundu-integral-', 'grade': 11, 'subtopic': 'Туунду жана интеграл',
+        'sabak': '26 слайд: «Кызыл-Адырдагы куту цехи» окуясы, параболага жанама сызгыч, бурчу кесилген картондон куту, ийри астындагы чарчылар.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: туунду, жанама жана нормаль, эң чоң жана эң кичине маани, аныкталган интеграл; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: функция жана анын туундусу.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -1283,6 +1301,28 @@ GROUPS = [
         'algebra-graphs-real-life-velocity-time-mixed',
         'algebra-graphs-abstract-other-nonlinear-estimating-gradient',
     ]),
+    _group('funkciya', 'Функциялар: f(x), аныкталуу аймагы, f(g(x)) жана f⁻¹(x)', 'Алгебра › Функциялар', ['funkciya'], [
+        'algebra-functions-igcse',
+        'algebra-functions-forming-expressions',
+        'algebra-functions-forming-simple-functions',
+        'algebra-functions-forming-composite-linear',
+        'algebra-functions-forming-inverse',
+        'algebra-functions-forming-composite-inverse',
+        'algebra-functions-forming-composite-quadratics',
+        'algebra-functions-evaluating-graphing',
+        'algebra-functions-evaluating-linear',
+        'algebra-functions-evaluating-indices',
+        'algebra-functions-evaluating-composite',
+        'algebra-functions-evaluating-inverse',
+        'algebra-functions-evaluating-composite-inverse',
+        'algebra-functions-evaluating-solving-equations',
+        'algebra-functions-evaluating-iteration',
+    ]),
+    _group('trig_funk', 'Тригонометриялык функциялар жана бирдик айлана', 'Геометрия › Тригонометрия', ['trig_funk'], [
+        'algebra-graphs-abstract-other-nonlinear-trig-functions',
+        'geometry-trigonometry-graphs',
+    ]),
+    _group('tuundu', 'Туунду жана интеграл', 'Алгебра › Дифференциалдоо', ['tuundu'], []),
     _group('katysh_all', 'Катыш: бөлүү, 1 : n түрү жана бириктирүү', 'Пропорция › Катыш', ['katysh', 'katysh_1n'], []),
 ]
 
@@ -1426,7 +1466,8 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'angles', 'circle-theorems'), 'aylana_t'),
     (('geometry', 'transformations', 'rotation'), 'vektor'),
     (('geometry', 'transformations', 'combined'), 'vektor'),
-    (('geometry', 'transformations', 'invariant-points'), 'vektor'),    # 2026-11-01: statistics, probability, percentages, solids, motion graphs.
+    (('geometry', 'transformations', 'invariant-points'), 'vektor'),
+    # 2026-11-01: statistics, probability, percentages, solids, motion graphs.
     (('algebra', 'graphs-real-life', 'graphs-real-life-velocity-time'), 'kyymyl'),
     (('geometry', 'volume-surface-area', 'cone'), 'kolom10'),
     (('geometry', 'volume-surface-area', 'cylinder'), 'kolom10'),
@@ -1441,6 +1482,10 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('statistics', 'representing', 'cumulative-frequency-graphs'), 'statistika'),
     (('statistics', 'frequency-tables', 'grouped-data'), 'statistika'),
     (('statistics', 'representing', 'frequency-trees'), 'yktymal'),
+    # 2026-11-02: functions and calculus.
+    (('algebra', 'functions', 'forming'), 'funkciya'),
+    (('algebra', 'functions', 'evaluating'), 'funkciya'),
+    (('algebra', 'graphs-abstract', 'graphs-abstract-differentiation'), 'tuundu'),
 ]}
 
 NEW_FILES = [
@@ -1562,6 +1607,8 @@ SPLIT_BADGES = {
     ('geometry', 'volume-surface-area', 'prism'): '7–10 кл.',
     ('statistics', 'representing', 'cumulative-frequency-graphs'): '9-класс',
     ('statistics', 'frequency-tables', 'grouped-data'): '8–9 кл.',
+    'algebra-functions-evaluating-iteration': '11-класс',
+    ('algebra', 'graphs-abstract', 'graphs-abstract-differentiation'): '10–11 кл.',
 }
 
 
