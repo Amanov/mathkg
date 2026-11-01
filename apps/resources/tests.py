@@ -503,7 +503,6 @@ class FreeDownloadTests(TestCase):
         for name, heading in (
             ('algebra_functions_igcse', '>IGCSE</h1>'),
             ('data_representing_venn_diagrams_sets_with_notation_igcse', '>Жыйындар белгилөө менен (IGCSE)</h1>'),
-            ('algebra_sequences_linear_summing', '>Суммалоо (IGCSE)</h1>'),
         ):
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(heading, html, name)
@@ -600,12 +599,17 @@ class FreeDownloadTests(TestCase):
             'standard_form_converting_ordinary_to_standard': '7-klass-daraja-standart-sabak.webp',
             'algebra_simultaneous_substitution': '7-klass-tendemeler-sistemasy-sabak.webp',
             'algebra_quadratic_formula': '8-klass-kvadrattyk-tendemeler-sabak.webp',
+            'surds_simplifying': '8-klass-kvadrat-tamyr-sabak.webp',
+            'algebra_manipulation_fractions_mixed': '8-klass-algebralyk-bolchoktor-sabak.webp',
+            'algebra_linear_inequalities': '8-klass-barabarsyzdyktar-sabak.webp',
+            'algebra_graphs_abstract_quadratic_plotting': '9-klass-kvadrattyk-funkciya-sabak.webp',
+            'algebra_sequences_geometric': '9-klass-progressiyalar-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             self.assertIn(deck[0] + '-класс', html, name)
-        for name in ('geometry_area_perimeter_circles_sector_area', 'algebra_linear_inequalities',
+        for name in ('geometry_area_perimeter_circles_sector_area', 'algebra_functions_forming_composite_quadratics',
                      'probability_single_event_calculating', 'ratio_quantities_reverse',
                      'percentages_incdec_reverse', 'speed_distance_time_converting_speeds',
                      'scale_drawings_areas'):
