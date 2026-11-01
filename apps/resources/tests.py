@@ -604,12 +604,18 @@ class FreeDownloadTests(TestCase):
             'algebra_linear_inequalities': '8-klass-barabarsyzdyktar-sabak.webp',
             'algebra_graphs_abstract_quadratic_plotting': '9-klass-kvadrattyk-funkciya-sabak.webp',
             'algebra_sequences_geometric': '9-klass-progressiyalar-sabak.webp',
+            'geometry_angles_parallel_lines_introduction': '7-klass-burchtar-parallel-sabak.webp',
+            'geometry_pythagoras_introduction': '8-klass-pifagor-sabak.webp',
+            'geometry_similarity_similar_triangles': '8-klass-okshoshtuk-sabak.webp',
+            'geometry_trigonometry_introduction': '9-klass-trigonometriya-sabak.webp',
+            'geometry_area_perimeter_circles_sector_area': '9-klass-aylana-teoremalary-sabak.webp',
+            'geometry_vectors_translation': '9-klass-vektorlor-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             self.assertIn(deck[0] + '-класс', html, name)
-        for name in ('geometry_area_perimeter_circles_sector_area', 'algebra_functions_forming_composite_quadratics',
+        for name in ('data_representing_frequency_polygons', 'algebra_functions_forming_composite_quadratics',
                      'probability_single_event_calculating', 'ratio_quantities_reverse',
                      'percentages_incdec_reverse', 'speed_distance_time_converting_speeds',
                      'scale_drawings_areas'):
