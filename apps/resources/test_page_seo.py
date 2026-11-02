@@ -87,7 +87,7 @@ class SeoCopyTests(SimpleTestCase):
         self.assertNotIn('Пайыздар', RUSSIAN_NAMES)
         self.assertEqual(RUSSIAN_NAMES['Дата'], 'Данные')
         self.assertEqual(
-            RUSSIAN_NAMES['Жаныма менен хорданын арасындагы бурч жөнүндө теорема'],
+            RUSSIAN_NAMES['Толуктоочу сегмент'],
             'Теорема об угле между касательной и хордой',
         )
         self.assertNotIn('Алмашма сегмент', RUSSIAN_NAMES)
