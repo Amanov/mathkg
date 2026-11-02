@@ -11,7 +11,7 @@ from django.db import migrations
 # url_name, previous title, new title. Two different pages can share
 # the word IGCSE, so those rows are matched by url_name.
 BY_URL = (
-    ('geometry_angles_circle_theorems_alternate_segment', 'Алмашма сегмент', 'Сегмент'),
+    ('geometry_angles_circle_theorems_alternate_segment', 'Алмашма сегмент', 'Жаныма менен хорданын арасындагы бурч жөнүндө теорема'),
     ('surds_rationalising_without_conjugates', 'Рационалдаштыруу: коньюгатасыз', 'Рационалдаштыруу: түйүндөшсүз'),
     ('with_bidmas_directed', 'BIDMAS менен', 'Амалдардын тартиби менен'),
     ('multiplying_dividing_10_100_1000', '10, 100, 1000гө көбөйтүү жана бөлүү', '10, 100, 1000ге көбөйтүү жана бөлүү'),
@@ -28,7 +28,7 @@ BY_URL = (
 # Titles that belong to one page. Also covers the label these rows had
 # before migration 0054 wrote IGCSE over ЖРТ.
 BY_TITLE = (
-    ('Алмашма сегмент', 'Сегмент'),
+    ('Алмашма сегмент', 'Жаныма менен хорданын арасындагы бурч жөнүндө теорема'),
     ('Рационалдаштыруу: коньюгатасыз', 'Рационалдаштыруу: түйүндөшсүз'),
     ('Текст маселелер: тилке модели менен', 'Тексттик маселелер: тилке модели менен'),
     ('10, 100, 1000гө көбөйтүү жана бөлүү', '10, 100, 1000ге көбөйтүү жана бөлүү'),

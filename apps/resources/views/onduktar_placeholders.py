@@ -901,7 +901,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Геометрия > Бурчтар > Тегерек теоремалары - 10 slots, none with a
     # real page yet.
     'geometry-angles-circle-theorems-vocabulary': 'Терминология',
-    'geometry-angles-circle-theorems-alternate-segment': 'Сегмент',
+    'geometry-angles-circle-theorems-alternate-segment': 'Жаныма менен хорданын арасындагы бурч жөнүндө теорема',
     'geometry-angles-circle-theorems-at-circumference': 'Тегеректин четинде',
     'geometry-angles-circle-theorems-cyclic-quadrilaterals': 'Циклдик төрт бурчтуктар',
     'geometry-angles-circle-theorems-tangents-chords': 'Жанамалар жана хордалар',

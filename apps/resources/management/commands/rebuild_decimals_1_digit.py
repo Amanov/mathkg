@@ -1988,7 +1988,7 @@ GROUPS = [
         'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
         'target_items': [
             {'title': 'Терминология', 'url_name': 'geometry_angles_circle_theorems_vocabulary'},
-            {'title': 'Сегмент', 'url_name': 'geometry_angles_circle_theorems_alternate_segment'},
+            {'title': 'Жаныма менен хорданын арасындагы бурч жөнүндө теорема', 'url_name': 'geometry_angles_circle_theorems_alternate_segment'},
             {'title': 'Тегеректин четинде', 'url_name': 'geometry_angles_circle_theorems_at_circumference'},
             {'title': 'Циклдик төрт бурчтуктар', 'url_name': 'geometry_angles_circle_theorems_cyclic_quadrilaterals'},
             {'title': 'Жанамалар жана хордалар', 'url_name': 'geometry_angles_circle_theorems_tangents_chords'},
@@ -4341,7 +4341,7 @@ CHILD_ORDER_FIXES = [
         'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
         'order': [
             'Терминология',
-            'Сегмент',
+            'Жаныма менен хорданын арасындагы бурч жөнүндө теорема',
             'Тегеректин четинде',
             'Циклдик төрт бурчтуктар',
             'Жанамалар жана хордалар',

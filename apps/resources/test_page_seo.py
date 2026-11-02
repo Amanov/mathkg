@@ -86,8 +86,12 @@ class SeoCopyTests(SimpleTestCase):
         self.assertNotIn('Статистика', RUSSIAN_NAMES)
         self.assertNotIn('Пайыздар', RUSSIAN_NAMES)
         self.assertEqual(RUSSIAN_NAMES['Дата'], 'Данные')
-        self.assertEqual(RUSSIAN_NAMES['Сегмент'], 'Альтернативный сегмент')
+        self.assertEqual(
+            RUSSIAN_NAMES['Жаныма менен хорданын арасындагы бурч жөнүндө теорема'],
+            'Теорема об угле между касательной и хордой',
+        )
         self.assertNotIn('Алмашма сегмент', RUSSIAN_NAMES)
+        self.assertNotIn('Сегмент', RUSSIAN_NAMES)
         self.assertEqual(RUSSIAN_NAMES['Рационалдаштыруу: түйүндөшсүз'], 'Рационализация: без сопряжённого')
         self.assertEqual(RUSSIAN_NAMES['Амалдардын тартиби менен'], 'С порядком действий')
         for key in RUSSIAN_NAMES:
