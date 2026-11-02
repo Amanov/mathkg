@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
-{% block title %} КИРУУ {%endblock%}
-
 {% load static %}
+{% load seo_tags %}
+{% block seo %}{% seo_page "login" %}{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}

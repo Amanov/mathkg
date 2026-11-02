@@ -15,16 +15,32 @@ if not SECRET_KEY:
         'The SECRET_KEY environment variable must be set in production.'
     )
 
+def _csv_env(name):
+    """Comma-separated env value, blanks dropped. Hosts have no scheme."""
+    return [
+        piece.strip()
+        for piece in os.environ.get(name, '').split(',')
+        if piece.strip()
+    ]
+
+
+# The live Railway host is listed explicitly. `.railway.app` covers other
+# Railway subdomains. A custom domain is not hard-coded: set
+# EXTRA_ALLOWED_HOSTS=mathkg.kg (hostname only) when DNS points here.
+# robots.txt and sitemap.xml then use that host from the request, so they
+# do not need another code change.
 ALLOWED_HOSTS = [
     'mathkg-production.up.railway.app',
     '.railway.app',
     'localhost',
     '127.0.0.1',
+    *_csv_env('EXTRA_ALLOWED_HOSTS'),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://mathkg-production.up.railway.app',
     'https://*.up.railway.app',
+    *_csv_env('EXTRA_CSRF_TRUSTED_ORIGINS'),
 ]
 
 # The app sits behind Railway's TLS-terminating proxy, so trust its

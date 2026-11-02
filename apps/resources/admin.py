@@ -18,7 +18,8 @@ from .models import (
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ("title", "slug")
+    list_display = ("title", "title_ru", "slug")
+    search_fields = ("title", "title_ru", "slug")
     prepopulated_fields = {"slug": ("title",)}
 
 
@@ -32,8 +33,10 @@ class SubtopicAdmin(admin.ModelAdmin):
 
     list_display = (
         "title",
+        "title_ru",
         "topic",
     )
+    search_fields = ("title", "title_ru")
 
     list_filter = (
         "topic",

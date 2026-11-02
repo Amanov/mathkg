@@ -12,6 +12,55 @@ When you do: Railway supports custom domains on the **Trial plan**, no
 upgrade required — you just need to own the domain and point its DNS at
 Railway (Settings → Networking → Custom Domain on the app service).
 
+Then set these on the app service (Variables). Hosts have no scheme;
+the CSRF value needs `https://`:
+
+```
+EXTRA_ALLOWED_HOSTS=your.domain
+EXTRA_CSRF_TRUSTED_ORIGINS=https://your.domain
+```
+
+`/robots.txt` and `/sitemap.xml` pick up that host from the request.
+There is no Site row to edit. See the search-engines section below.
+
+## Search engines (robots.txt and sitemap.xml)
+
+`/robots.txt` and `/sitemap.xml` are Django views, not files under
+`static/`. WhiteNoise and `collectstatic` do not serve them, and there
+is no migration. They work on a fresh Railway container.
+
+The sitemap lists:
+
+- every public lesson page registered in the URL conf, including bridge
+  pages generated from `apps/resources/data/bridge/pages/`
+- every `Topic`, `Subtopic`, and `SubSubtopic` page
+  (`/resources/topic/...`), via `get_absolute_url()`
+
+It does not list `/login/`, `/register/`, `/resources/download/`,
+account and password pages, or the staff dashboard. Resource files do
+not have their own public HTML page; they appear on those topic pages.
+The download URLs stay out of the sitemap.
+
+Absolute URLs use the host that requested the file. `django.contrib.sites`
+is **not** installed. Turning it on would publish `example.com` in every
+`<loc>` until the Site domain was edited in admin, and a custom domain
+would stay wrong until that edit. Leave the sites framework off.
+
+The live host `mathkg-production.up.railway.app` is already in
+`ALLOWED_HOSTS` (`config/settings/production.py`). Production must keep
+`DJANGO_SETTINGS_MODULE=config.settings.production` (that is what makes
+`DATABASE_URL` apply).
+
+After this is deployed, submit the sitemap in Google Search Console and
+Yandex Webmaster:
+
+```
+https://mathkg-production.up.railway.app/sitemap.xml
+```
+
+Nothing to seed. This does not change a page a teacher sees, so there is
+no news entry.
+
 ## Activation email (Brevo)
 
 Railway blocks outbound SMTP, so `EMAIL_HOST` cannot deliver the

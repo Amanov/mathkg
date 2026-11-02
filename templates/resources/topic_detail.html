@@ -1,10 +1,9 @@
 {% extends 'base/base.html' %}
 
 {% load static %}
+{% load seo_tags %}
 
-{% block title %}
-{{ topic.title }}
-{% endblock %}
+{% block seo %}{% seo_topic topic.title grade_badge %}{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/topic-page.css' %}">

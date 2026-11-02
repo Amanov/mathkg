@@ -70,7 +70,7 @@ GROUPS = [
             {'title': 'Көбөйтүү — 1 жана 2 орундук сандар', 'url_name': 'multiplying_1_2_digit'},
             {'title': 'Бөлүү — 1 жана 2 орундук сандар', 'url_name': 'dividing_1_2_digit'},
             {'title': 'Көбөйтүү жана бөлүү — 1 жана 2 орундук сандар', 'url_name': 'multiplying_dividing_1_2_digit'},
-            {'title': '10, 100, 1000гө көбөйтүү жана бөлүү', 'url_name': 'multiplying_dividing_10_100_1000'},
+            {'title': '10, 100, 1000ге көбөйтүү жана бөлүү', 'url_name': 'multiplying_dividing_10_100_1000'},
             {'title': 'Аралаш эсептөөлөр — 1 жана 2 орундук сандар', 'url_name': 'mixed_1_2_digit'},
         ],
         'stale_subsubtopic_titles': [],
@@ -150,7 +150,7 @@ GROUPS = [
             {'title': 'Кошуу жана кемитүү', 'url_name': 'adding_subtracting_directed'},
             {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'multiplying_dividing_directed'},
             {'title': 'Аралаш эсептөөлөр', 'url_name': 'mixed_directed'},
-            {'title': 'BIDMAS менен', 'url_name': 'with_bidmas_directed'},
+            {'title': 'Амалдардын тартиби менен', 'url_name': 'with_bidmas_directed'},
             {'title': 'Татаал эсептөөлөр', 'url_name': 'complex_directed'},
         ],
         'stale_subsubtopic_titles': [],
@@ -413,7 +413,7 @@ GROUPS = [
             {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'surds_multiplying_dividing'},
             {'title': 'Кошуу жана кемитүү', 'url_name': 'surds_adding_subtracting'},
             {'title': 'Кашаны ачуу', 'url_name': 'surds_expanding_brackets'},
-            {'title': 'Рационалдаштыруу: коньюгатасыз', 'url_name': 'surds_rationalising_without_conjugates'},
+            {'title': 'Рационалдаштыруу: түйүндөшсүз', 'url_name': 'surds_rationalising_without_conjugates'},
             {'title': 'Бөлүүчүнү рационалдаштыруу', 'url_name': 'surds_rationalising_denominators'},
             {'title': 'Аралаш', 'url_name': 'surds_mixed'},
             {'title': 'Пифагор менен', 'url_name': 'surds_with_pythagoras'},
@@ -434,7 +434,7 @@ GROUPS = [
             {'title': 'Көбөйтүү', 'url_name': 'integers_multiplying_1_2_digit'},
             {'title': 'Бөлүү', 'url_name': 'integers_dividing_1_2_digit'},
             {'title': 'Көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_1_2_digit'},
-            {'title': '10, 100, 1000гө көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_10_100_1000'},
+            {'title': '10, 100, 1000ге көбөйтүү жана бөлүү', 'url_name': 'integers_multiplying_dividing_10_100_1000'},
             {'title': 'Аралаш', 'url_name': 'integers_mixed_1_2_digit'},
         ],
         'stale_subsubtopic_titles': [],
@@ -1235,7 +1235,7 @@ GROUPS = [
         # user asked for it by that name; url_name stays as-is.
         'parent_path': ('Алгебра', 'Функциялар'),
         'target_items': [
-            {'title': 'IGCSE', 'url_name': 'algebra_functions_igcse'},
+            {'title': 'Аралаш функциялар', 'url_name': 'algebra_functions_igcse'},
         ],
         'promoted_titles': ['Түзүү', 'Маанисин эсептөө'],
         'stale_subsubtopic_titles': [],
@@ -1473,8 +1473,8 @@ GROUPS = [
         # from "ЖРТ" as its own sibling item.
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'target_items': [
-            {'title': 'GCSE', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
-            {'title': 'IGCSE', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
+            {'title': 'Жылдыруу жана чагылдыруу', 'url_name': 'algebra_graphs_abstract_transformations_gcse'},
+            {'title': 'Графикти чоюу', 'url_name': 'algebra_graphs_abstract_transformations_igcse'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1838,7 +1838,7 @@ GROUPS = [
             {'title': 'Киришүү', 'url_name': 'algebra_sequences_linear_introduction'},
             {'title': 'Мүчөлөрдү эсептөө', 'url_name': 'algebra_sequences_linear_evaluating_terms'},
             {'title': '2 мүчөдөн', 'url_name': 'algebra_sequences_linear_from_2_terms'},
-            {'title': 'Суммалоо (IGCSE)', 'url_name': 'algebra_sequences_linear_summing'},
+            {'title': 'Суммалоо', 'url_name': 'algebra_sequences_linear_summing'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -1988,7 +1988,7 @@ GROUPS = [
         'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
         'target_items': [
             {'title': 'Терминология', 'url_name': 'geometry_angles_circle_theorems_vocabulary'},
-            {'title': 'Алмашма сегмент', 'url_name': 'geometry_angles_circle_theorems_alternate_segment'},
+            {'title': 'Толуктоочу сегмент', 'url_name': 'geometry_angles_circle_theorems_alternate_segment'},
             {'title': 'Тегеректин четинде', 'url_name': 'geometry_angles_circle_theorems_at_circumference'},
             {'title': 'Циклдик төрт бурчтуктар', 'url_name': 'geometry_angles_circle_theorems_cyclic_quadrilaterals'},
             {'title': 'Жанамалар жана хордалар', 'url_name': 'geometry_angles_circle_theorems_tangents_chords'},
@@ -1996,7 +1996,7 @@ GROUPS = [
             {'title': 'Аралаш', 'url_name': 'geometry_angles_circle_theorems_mixed'},
             {'title': 'Пифагор менен', 'url_name': 'geometry_angles_circle_theorems_with_pythagoras'},
             {'title': 'Тригонометрия менен', 'url_name': 'geometry_angles_circle_theorems_with_trigonometry'},
-            {'title': 'Кесилишкен хордалар (IGCSE)', 'url_name': 'geometry_angles_circle_theorems_intersecting_chords'},
+            {'title': 'Кесилишкен хордалар', 'url_name': 'geometry_angles_circle_theorems_intersecting_chords'},
         ],
         'stale_subsubtopic_titles': [],
         'displaced_url_names': [],
@@ -3099,7 +3099,7 @@ GROUPS = [
             {'title': 'Түзүү жана окуу', 'url_name': 'data_representing_venn_diagrams_creating_reading'},
             {'title': 'Ыктымалдуулук менен', 'url_name': 'data_representing_venn_diagrams_with_probability'},
             {'title': 'Жыйындар белгилөө менен', 'url_name': 'data_representing_venn_diagrams_sets_with_notation'},
-            {'title': 'Жыйындар белгилөө менен (IGCSE)', 'url_name': 'data_representing_venn_diagrams_sets_with_notation_igcse'},
+            {'title': 'Жыйындар белгилөө менен: татаал', 'url_name': 'data_representing_venn_diagrams_sets_with_notation_igcse'},
             {'title': 'Белгилөө жана ыктымалдуулук', 'url_name': 'data_representing_venn_diagrams_notation_probability'},
         ],
         'stale_subsubtopic_titles': [],
@@ -3693,7 +3693,7 @@ CHILD_ORDER_FIXES = [
         'order': [
             'Түзүү',
             'Маанисин эсептөө',
-            'IGCSE',
+            'Аралаш функциялар',
         ],
     },
     {
@@ -3975,8 +3975,8 @@ CHILD_ORDER_FIXES = [
         # GROUPS' target_items builds them directly.
         'parent_path': ('Алгебра', 'Графиктер: абстракттуу', 'Өзгөртүүлөр'),
         'order': [
-            'GCSE',
-            'IGCSE',
+            'Жылдыруу жана чагылдыруу',
+            'Графикти чоюу',
         ],
     },
     {
@@ -4177,7 +4177,7 @@ CHILD_ORDER_FIXES = [
             'Киришүү',
             'Мүчөлөрдү эсептөө',
             '2 мүчөдөн',
-            'Суммалоо (IGCSE)',
+            'Суммалоо',
         ],
     },
     {
@@ -4341,7 +4341,7 @@ CHILD_ORDER_FIXES = [
         'parent_path': ('Геометрия', 'Бурчтар', 'Тегерек теоремалары'),
         'order': [
             'Терминология',
-            'Алмашма сегмент',
+            'Толуктоочу сегмент',
             'Тегеректин четинде',
             'Циклдик төрт бурчтуктар',
             'Жанамалар жана хордалар',
@@ -4349,7 +4349,7 @@ CHILD_ORDER_FIXES = [
             'Аралаш',
             'Пифагор менен',
             'Тригонометрия менен',
-            'Кесилишкен хордалар (IGCSE)',
+            'Кесилишкен хордалар',
         ],
     },
     {

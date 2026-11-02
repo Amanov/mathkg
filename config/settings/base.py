@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Sitemap templates. The sites framework is deliberately not installed:
+    # a Site row would publish example.com in every <loc> until someone
+    # edited it. Absolute URLs come from the request host instead.
+    'django.contrib.sitemaps',
     # third party extensions
     'crispy_forms',
     'crispy_bootstrap5',
@@ -90,6 +94,7 @@ TEMPLATES = [
 
                 # 'apps.resources.views.context_processors.topic_menu',
                 'apps.resources.views.context_processors.menu_items',
+                'apps.resources.seo.seo_context',
                 'apps.account.context_processors.active_qr_code',
                 # "apps.resources.views.context_processors.main_menu",
                 # 'apps.resources.context_processors.nav_topics',

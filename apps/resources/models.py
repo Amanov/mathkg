@@ -21,6 +21,13 @@ logger = getLogger(__name__)
 class Topic(models.Model):
     title = models.CharField(max_length=200)
 
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
+
     slug = models.SlugField(unique=True)
 
     icon = models.CharField(
@@ -34,6 +41,9 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('topic_detail', args=[self.slug])
 
     class Meta:
         ordering = ['order']
@@ -270,6 +280,13 @@ class Subtopic(models.Model):
 
     title = models.CharField(max_length=200)
 
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
+
     slug = models.SlugField()
 
     order = models.PositiveIntegerField(
@@ -278,6 +295,9 @@ class Subtopic(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('subtopic_detail', args=[self.topic.slug, self.slug])
 
     class Meta:
         ordering = ['order']
@@ -297,11 +317,23 @@ class SubSubtopic(models.Model):
         related_name='subsubtopics'
     )
     title = models.CharField(max_length=200)
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
     slug = models.SlugField()
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            'subsubtopic_detail',
+            args=[self.subtopic.topic.slug, self.subtopic.slug, self.slug],
+        )
 
     class Meta:
         ordering = ['order']
