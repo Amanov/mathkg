@@ -1,8 +1,12 @@
 import tempfile
 from datetime import date, timedelta
+from io import StringIO
 
+from django.contrib import admin
+from django.core import mail
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.management import call_command
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -41,6 +45,79 @@ class PagesTests(TestCase):
     def test_about_page_loads(self):
         response = self.client.get(reverse('about'))
         self.assertEqual(response.status_code, 200)
+
+    def test_public_pages_use_mathkg_name(self):
+        home = self.client.get(reverse('home'))
+        self.assertContains(home, '<span class="accent">Math</span>KG')
+        self.assertNotContains(home, 'MathKGZ')
+        self.assertNotContains(home, '>KGZ')
+        self.assertContains(home, 'mathematicskgz@gmail.com')
+
+        about = self.client.get(reverse('about'))
+        self.assertContains(about, '<title>MathKG жөнүндө</title>')
+        self.assertContains(about, 'MathKG - кыргыз тилиндеги')
+        self.assertContains(about, 'mathematicskgz@gmail.com')
+        self.assertNotContains(about, 'MathKGZ')
+
+        news = self.client.get(reverse('news_list'))
+        self.assertContains(news, 'MathKG платформасына')
+        self.assertNotContains(news, 'MathKGZ')
+
+        self.assertEqual(admin.site.site_header, 'MathKG')
+        self.assertEqual(admin.site.site_title, 'MathKG')
+
+    def test_password_reset_email_uses_mathkg_name(self):
+        Account.objects.create_user(
+            email='reset@example.com',
+            username='resetuser',
+            password='SuperSecret123!',
+        )
+        user = Account.objects.get(email='reset@example.com')
+        user.is_active = True
+        user.save(update_fields=['is_active'])
+        response = self.client.post(reverse('password_reset'), {'email': 'reset@example.com'})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, 'MathKG - сырсөздү калыбына келтирүү')
+        self.assertIn('MathKG командасы', mail.outbox[0].body)
+        self.assertNotIn('MathKGZ', mail.outbox[0].subject)
+        self.assertNotIn('MathKGZ', mail.outbox[0].body)
+
+    def test_seed_launch_news_renames_mathkgz_without_duplicating(self):
+        NewsPost.objects.create(
+            title='Жаңылыктар жана "MathKGZ жөнүндө" барактары ачылды',
+            body='Ошондой эле MathKGZ жөнүндө жалпы маалымат.',
+            published_date=date(2026, 9, 22),
+        )
+        call_command('seed_launch_news', stdout=StringIO())
+        titles = list(NewsPost.objects.values_list('title', flat=True))
+        bodies = list(NewsPost.objects.values_list('body', flat=True))
+        self.assertTrue(all('MathKGZ' not in title for title in titles))
+        self.assertTrue(all('MathKGZ' not in body for body in bodies))
+        self.assertEqual(
+            NewsPost.objects.filter(title__contains='барактары ачылды').count(),
+            1,
+        )
+        renamed = NewsPost.objects.get(title__contains='барактары ачылды')
+        self.assertIn('MathKG', renamed.title)
+        self.assertIn('MathKG', renamed.body)
+        self.assertTrue(
+            NewsPost.objects.filter(title='Сайттын аталышы MathKG болду').exists()
+        )
+
+    def test_linear_equations_deck_uses_mathkg_name(self):
+        import zipfile
+        from io import BytesIO
+
+        from apps.resources.generators.linear_equations_lesson import build_lesson
+
+        buf = BytesIO()
+        build_lesson().save(buf)
+        buf.seek(0)
+        with zipfile.ZipFile(buf) as deck:
+            xml = b''.join(deck.read(name) for name in deck.namelist())
+        self.assertIn(b'MathKG', xml)
+        self.assertNotIn(b'MathKGZ', xml)
 
     def test_homepage_shows_plan_download_limits(self):
         resp = self.client.get(reverse('home'))

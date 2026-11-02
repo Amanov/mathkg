@@ -7,6 +7,14 @@ from apps.resources.models import NewsPost
 NEWS_ITEMS = [
     {
         'published_date': date(2026, 11, 2),
+        'title': 'Сайттын аталышы MathKG болду',
+        'body': (
+            'Сайт эми MathKG деп аталат. Логотип, барактын төмөнкү бөлүгү, '
+            '«Жөнүндө» барагы жана электрондук каттар ушул аталышты көрсөтөт.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
         'title': 'Катталуу жана телефондогу башкы бет оңдолду',
         'body': (
             '«Катталуу» баскычы түз катталуу бетине ачат. Катталгандан кийин '
@@ -408,7 +416,7 @@ NEWS_ITEMS = [
         'title': 'Баш менюнун жана төмөнкү билдирүүнүн дизайны жаңырды',
         'body': (
             'Коюу темада менюнун экинчи катары (темалар менюсу жана '
-            '"MathKGZ" логотиби) ак бойдон калып, көрүнбөй калчу - бул '
+            '"MathKG" логотиби) ак бойдон калып, көрүнбөй калчу - бул '
             'оңдолду. Телефондо эми эки өзүнчө "гамбургер" баскычынын '
             'ордуна бирөө гана калды, ал эми "Кирүү" жана "Катталуу" '
             'баскычтары жөнөкөйлөштүрүлдү. Баракчанын төмөнкү бөлүгү '
@@ -1318,10 +1326,10 @@ NEWS_ITEMS = [
     },
     {
         'published_date': date(2026, 9, 22),
-        'title': 'Жаңылыктар жана "MathKGZ жөнүндө" барактары ачылды',
+        'title': 'Жаңылыктар жана "MathKG жөнүндө" барактары ачылды',
         'body': (
             'Платформага болгон өзгөрүүлөрдү ушул жерден таба аласыз. '
-            'Ошондой эле MathKGZ жөнүндө жалпы маалымат камтылган "Жөнүндө" '
+            'Ошондой эле MathKG жөнүндө жалпы маалымат камтылган "Жөнүндө" '
             'барагы кошулду.'
         ),
     },
@@ -1484,6 +1492,61 @@ NEWS_ITEMS = [
 ]
 
 
+# Titles seeded before the site name changed from MathKGZ to MathKG.
+# --undo still removes a row that was stored under the old title.
+_LEGACY_TITLES = (
+    'Жаңылыктар жана "MathKGZ жөнүндө" барактары ачылды',
+)
+
+_BRAND_REPLACEMENTS = (
+    ('MathKGZ', 'MathKG'),
+    ('MathKgz', 'MathKG'),
+    ('MATHKGZ', 'MATHKG'),
+    ('mathkgz', 'mathkg'),
+)
+
+
+def _replace_brand(text):
+    for old, new in _BRAND_REPLACEMENTS:
+        text = text.replace(old, new)
+    return text
+
+
+def _rebrand_existing_posts():
+    """Rewrite MathKGZ inside news rows already stored in the database.
+
+    get_or_create will not edit a row that was seeded under the old
+    name, and a changed title would insert a second post. Replacing the
+    brand on existing rows keeps one post per story and needs no migration.
+    """
+    updated = 0
+    for post in list(NewsPost.objects.all()):
+        new_title = _replace_brand(post.title)
+        new_body = _replace_brand(post.body)
+        if new_title == post.title and new_body == post.body:
+            continue
+        clash = (
+            NewsPost.objects.filter(
+                title=new_title,
+                published_date=post.published_date,
+            )
+            .exclude(pk=post.pk)
+            .first()
+        )
+        if clash is not None:
+            clash_body = _replace_brand(clash.body)
+            if clash_body != clash.body:
+                clash.body = clash_body
+                clash.save(update_fields=['body'])
+            post.delete()
+        else:
+            post.title = new_title
+            post.body = new_body
+            post.save(update_fields=['title', 'body'])
+        updated += 1
+    return updated
+
+
 class Command(BaseCommand):
     help = 'Seed initial launch news posts (idempotent). Use --undo to remove them.'
 
@@ -1497,10 +1560,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['undo']:
             titles = [item['title'] for item in NEWS_ITEMS]
+            titles.extend(_LEGACY_TITLES)
             deleted, _ = NewsPost.objects.filter(title__in=titles).delete()
             self.stdout.write(self.style.SUCCESS(f'Removed {deleted} news post(s).'))
             return
 
+        updated = _rebrand_existing_posts()
         created_count = 0
         for item in NEWS_ITEMS:
             _, created = NewsPost.objects.get_or_create(
@@ -1512,5 +1577,7 @@ class Command(BaseCommand):
                 created_count += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f'Created {created_count} news post(s), {len(NEWS_ITEMS) - created_count} already existed.'
+            f'Created {created_count} news post(s), '
+            f'{len(NEWS_ITEMS) - created_count} already existed, '
+            f'{updated} renamed to MathKG.'
         ))
