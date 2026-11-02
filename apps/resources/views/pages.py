@@ -31,6 +31,23 @@ def _search_ratelimit_key(group, request):
     return get_client_ip(request)
 
 
+def menu_fragment_view(request):
+    """The full topic menu, loaded after the first screen.
+
+    The home page only sends the top row. This response is the same
+    markup the menu used to inline, so opening it looks the same.
+    It is cacheable and is not a page view.
+    """
+    from apps.resources.views.context_processors import root_menu
+
+    response = render(request, 'partials/menu_fragment.html', {
+        'menu_items': root_menu(full=True),
+    })
+    response['Cache-Control'] = 'public, max-age=3600'
+    response['X-Robots-Tag'] = 'noindex'
+    return response
+
+
 def news_list_view(request):
     posts = NewsPost.objects.all()
     return render(request, 'resources/news_list.html', {'posts': posts})

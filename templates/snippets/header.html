@@ -63,8 +63,8 @@
       <a class="navbar-brand-mathkgz" href="{% url 'home' %}"><span class="accent">Math</span>KG</a>
 
       <div class="collapse navbar-collapse site-nav-collapse" id="categoryNav">
-        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 d-flex flex-row flex-wrap gap-2">
-          {% include "partials/menu_node.html" with nodes=menu_items parent=False only %}
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 d-flex flex-row flex-wrap gap-2" id="siteCategoryMenu" data-menu-url="{% url 'menu_fragment' %}">
+          {% include "partials/menu_node.html" with nodes=menu_items parent=False shallow=True only %}
         </ul>
       </div>
     </div>
@@ -80,4 +80,4 @@
 {# of its shown.bs.dropdown/hidden.bs.dropdown listeners twice, which is  #}
 {# exactly the kind of bug that makes "run this measurement once when the #}
 {# dropdown opens" logic fire twice and silently undo its own second half.#}
-<script src="{% static 'js/search-suggest.js' %}"></script>
+<script src="{% static 'js/search-suggest.js' %}" defer></script>

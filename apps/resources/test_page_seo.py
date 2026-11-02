@@ -237,9 +237,11 @@ class PageSeoTests(TestCase):
         )
         html = self.client.get(reverse('home')).content.decode()
         nav = html.split('category-navbar', 1)[1].split('</nav>', 1)[0]
-        self.assertIn('Төрт амал', nav)
+        self.assertNotIn('Төрт амал', nav)
         self.assertIn(
             '<li class="nav-item dropdown"><a href="#" class="mymenu dropdown-toggle"',
             nav,
         )
-        self.assertIn('menu-grade">1–5 кл.</span>', nav)
+        fragment = self.client.get(reverse('menu_fragment')).content.decode()
+        self.assertIn('Төрт амал', fragment)
+        self.assertIn('menu-grade">1–5 кл.</span>', fragment)

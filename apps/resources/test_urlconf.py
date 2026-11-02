@@ -26,6 +26,7 @@ SNAPSHOT_PATH = Path(__file__).resolve().parent / 'url_patterns_snapshot.json'
 SEO_ROUTES = {
     ('', 'robots.txt', 'robots_txt'),
     ('', 'sitemap.xml', 'sitemap'),
+    ('', 'menu/', 'menu_fragment'),
 }
 
 SAMPLES = {
