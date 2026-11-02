@@ -293,14 +293,14 @@ def activation_view(request, uidb64, token):
 @ratelimit(key=ratelimit_key, rate='5/h', method='POST', block=True)
 def resend_activation_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email', '').strip().lower()
-        try:
-            user = Account.objects.get(email=email, is_active=False)
-        except Account.DoesNotExist:
-            user = None
-
-        if user is not None:
-            send_activation_email(request, user)
+        # Registration stores the address as typed (Aida@gmail.com).
+        # Lowercasing it and then matching exactly never finds that
+        # account, so the new link is not sent while the page still
+        # says it was. Mail hosts treat the two spellings as one inbox.
+        email = request.POST.get('email', '').strip()
+        if email:
+            for user in Account.objects.filter(email__iexact=email, is_active=False):
+                send_activation_email(request, user)
 
         # Same message whether the account exists, is already active, or
         # was never registered at all - telling them apart would let this
