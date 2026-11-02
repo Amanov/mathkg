@@ -9,8 +9,37 @@
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
+{% block extrahead %}
+{{ block.super }}
+<style>
+/* Site name stays out of the heading outline. Rules match Django's
+   #branding h1 / responsive.css so the header looks the same. */
+#branding p#site-name {
+    padding: 0;
+    margin: 0;
+    margin-inline-end: 20px;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--header-branding-color);
+}
+#branding p#site-name a:link,
+#branding p#site-name a:visited {
+    color: var(--accent);
+}
+@media (max-width: 1024px) {
+    #branding p#site-name {
+        margin: 0 0 8px;
+        line-height: 1.2;
+    }
+    .login #branding p#site-name {
+        margin: 0;
+    }
+}
+</style>
+{% endblock %}
+
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+<p id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></p>
 {% if user.is_anonymous %}
   {% include "admin/color_theme_toggle.html" %}
 {% endif %}

@@ -18,11 +18,9 @@
   font-size: clamp(1.75rem, 4vw, 3rem);
   margin-bottom: 2rem;
 }
-/* Section headings below were <h1> (six of them on one page - a real
-   accessibility/SEO issue, a page should have one). Demoted to <h2> with
-   this local class so they keep the exact same decorative-bar look that
-   main.css's global h1::before/after already gives real <h1>s, without
-   extending that global rule to every <h2> on every other page. */
+/* One h1 on this page (the hero). Section titles stay h2 and reuse the
+   decorative bars locally, so other pages' h2s are left alone. The hero
+   h1 keeps the blue bars from main.css. */
 h2.section-heading::before,
 h2.section-heading::after {
   content: '';
@@ -51,6 +49,24 @@ h2.section-heading::after {
 h3{
   display: inline-block !important;
   font-size: clamp(1.1rem, 2vw, 1.75rem);
+}
+/* Former h2/h3 feature lines and slogans. Sizes match Bootstrap's h2 and
+   this page's h3 rule so the wording looks the same. */
+p.home-point {
+  display: block;
+  font-size: calc(1.325rem + 0.9vw);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+p.home-point-sm {
+  display: inline-block !important;
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 .custom_border{
   border: 3px solid rgb(34, 133 , 195);
@@ -98,7 +114,9 @@ hr{
   .p-5{ padding:1rem !important; }
   .illustration-card{ padding:0; }
   h2,h3{ font-size:1.35rem; }
+  p.home-point,p.home-point-sm{ font-size:1.35rem; }
   h2 span[style*="48px"], h3 span[style*="48px"]{ font-size:1.75rem !important; }
+  p.home-point span[style*="48px"], p.home-point-sm span[style*="48px"]{ font-size:1.75rem !important; }
 .col-auto.col-md-3 {
        display:block;  /*<!---Here how to show the menu from side--> */
     }
@@ -250,7 +268,6 @@ hr{
 
 <div class="container ">
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
-    <!-- <h1>Математика мугалимдери үчүн даяр материалдар</h1>  -->
     <h1>Мугалимдер үчүн заманбап математикалык ресурстар</h1>
 
     <hr>
@@ -258,7 +275,6 @@ hr{
       <div class="col-md-10">
         <div class="h-100 rounded-1">                
           <div class="d-flex flex-column text-center overflow-wrap">
-            <!-- <h1 ></h1>  -->
           </div>
         </div>
       </div>
@@ -266,10 +282,10 @@ hr{
       <div class=" col-md-12 col-lg-6 ">
         <div class="h-100 p-5 " >
           <!-- <h2 class="fw-bold text-center overflow-wrap">6500дөн ашык ресурстар…</h2> -->
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Миңдеген материалдар...</h2>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Миңдеген материалдар...</p>
 
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>6 жүздөн ашык темалар…</h2>            
-            <h2> <span style="color: green; font-size: 48px;">+</span>Жаңы ресурстар менен тынымсыз толукталууда ...</h2>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>6 жүздөн ашык темалар…</p>            
+            <p class="home-point"> <span style="color: green; font-size: 48px;">+</span>Жаңы ресурстар менен тынымсыз толукталууда ...</p>
         </div>
       </div>
 
@@ -322,11 +338,11 @@ hr{
 
       <div class="col-md-6">
         <div class="h-100 p-5 " >
-            <h2 class="fw-bold text-left overflow-wrap">Жүз уккандан бир көргөн артык.</h2>
-            <h3> <span style="color: green; font-size: 48px;">&#10003;</span>Дароо колдонууга даяр сапаттуу презентациялар</h3>
-            <h3><span style="color: green; font-size: 48px;">&#10003;</span>
-              Калыптандыруучу баалоо (AFL) менен байытылган</h3>
-            <h3> <span style="color: green; font-size: 48px;">&#10003;</span>Ар бир мугалимдин муктаждыгына ылайык оңой ыңгайлашат</h3>
+            <p class="home-point fw-bold text-left overflow-wrap">Жүз уккандан бир көргөн артык.</p>
+            <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>Дароо колдонууга даяр сапаттуу презентациялар</p>
+            <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>
+              Калыптандыруучу баалоо (AFL) менен байытылган</p>
+            <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>Ар бир мугалимдин муктаждыгына ылайык оңой ыңгайлашат</p>
          </div>
       </div>
      
@@ -337,12 +353,12 @@ hr{
       
       <div class="col-lg-6 ">
         <div class="h-100 p-5  text-center overflow-wrap">
-          <h2 class="fw-bold text-center overflow-wrap">Кеңешип кескен бармак оорубайт</h2>
+          <p class="home-point fw-bold text-center overflow-wrap">Кеңешип кескен бармак оорубайт</p>
           <!-- here we have to add some tick icons -->
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Жеке жана топтук иштер үчүн даяр тапшырмалар</h2>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Жеке жана топтук иштер үчүн даяр тапшырмалар</p>
            <!-- <h2><span style="color: green; font-size: 48px;">&#10003;</span>Математикалык талкуу жана аргументацияны өнүктүрөт</h2> -->
-           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Басып чыгарууга жана колдонууга даяр</h2>
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>Бардык деңгээлдеги окуучулар үчүн варианттар</h2>
+           <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Басып чыгарууга жана колдонууга даяр</p>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Бардык деңгээлдеги окуучулар үчүн варианттар</p>
         </div>
       </div>
       <div class="col-md-6">
@@ -370,9 +386,9 @@ hr{
       
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-center overflow-wrap">✓ Кыймылдуу оюндар</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Топтук кызматташуу көндүмдөр</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери бар көндүмдөр</h2>
+          <p class="home-point fw-bold text-center overflow-wrap">✓ Кыймылдуу оюндар</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Топтук кызматташуу көндүмдөр</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери бар көндүмдөр</p>
         </div>
       </div>    
             
@@ -385,10 +401,10 @@ hr{
       
       <div class="col-md-6">
         <div class="h-100 p-5 "">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир багытта ой жүгүртүү</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Бүт класс үчүн кыска жана натыйжалуу тапшырмалар</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Түшүнүүнү дароо текшерүү мүмкүнчүлүгү.</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Ар бир окуучунун катышуусун камсыздoo</h2>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир багытта ой жүгүртүү</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Бүт класс үчүн кыска жана натыйжалуу тапшырмалар</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Түшүнүүнү дароо текшерүү мүмкүнчүлүгү.</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Ар бир окуучунун катышуусун камсыздoo</p>
         </div>
       </div>
 
@@ -416,13 +432,13 @@ hr{
       
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap"> ЖРТ </h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Күбөлүк</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Аттестат</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>PISA</h2>
-          <h3><span style="color: green; font-size: 48px;">&#10003;</span>Чыгарылган көндүмдөр</h3>
-          <h3> <span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</h3><br>
-          <h3><span style="color: green; font-size: 48px;">&#10003;</span>2 өлчөмдө</h3>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap"> ЖРТ </p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Күбөлүк</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Аттестат</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>PISA</p>
+          <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>Чыгарылган көндүмдөр</p>
+          <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</p><br>
+          <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>2 өлчөмдө</p>
         </div>
       </div>
 
@@ -436,11 +452,11 @@ hr{
      
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Максаттуу практика көндүмдөрү</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Сан сабаттуулугу</h2>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap">Максаттуу практика көндүмдөрү</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Сан сабаттуулугу</p>
 
-           <h2><span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</h2> <br>
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>бир канча өлчөмдө</h2>
+           <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</p> <br>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>бир канча өлчөмдө</p>
         </div>
       </div>
 
