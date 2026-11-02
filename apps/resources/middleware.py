@@ -5,7 +5,16 @@ from .models import SiteVisit
 # excluded here too in case that ever changes), and the analytics page
 # itself, which would otherwise inflate its own numbers every time someone
 # checks it.
-EXCLUDED_PREFIXES = ('/admin/', '/analytics/', '/static/', '/media/')
+EXCLUDED_PREFIXES = (
+    '/admin/',
+    '/analytics/',
+    '/static/',
+    '/media/',
+    # Crawlers fetch these on their own. They are not page views, and
+    # logging them would also force a session cookie onto robots.txt.
+    '/robots.txt',
+    '/sitemap.xml',
+)
 
 
 def get_client_ip(request):

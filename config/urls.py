@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 from apps.resources.views import home_screen_view
+from apps.resources.views.seo import robots_txt, sitemap_xml
 from config.media_views import public_media
 
 # Configurable so the real path never has to live in source control (same
@@ -16,6 +17,9 @@ from config.media_views import public_media
 ADMIN_URL_PATH = os.environ.get('ADMIN_URL_PATH', 'admin/').strip('/') + '/'
 
 urlpatterns = [
+    # Before the admin include so a private ADMIN_URL_PATH cannot shadow them.
+    path('robots.txt', robots_txt, name='robots_txt'),
+    path('sitemap.xml', sitemap_xml, name='sitemap'),
     path(ADMIN_URL_PATH, admin.site.urls),
     # `/` and `/home/` both render the home page. `home` stays on
     # `/home/` because that is the path reverse() already returned
