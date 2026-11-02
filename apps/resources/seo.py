@@ -1,10 +1,12 @@
 """Document titles, descriptions, and JSON-LD for public pages.
 
 Wording lives here so a title can be reviewed in one place. Topic pages
-share one pattern; grade text is the badge already stored on the page
-(for example ``4-класс`` or ``6–7 кл.``), not a rewritten label.
+share one pattern. A stored grade (``5``, ``5 кл.``, ``5-кл.``,
+``4-класс``, ``6–7 кл.``) is written in the title as ``N-класс`` or
+``N–M-класс``. The badge drawn on the page is left as it is.
 """
 import json
+import re
 
 from django.templatetags.static import static
 from django.utils.html import format_html
@@ -159,9 +161,36 @@ def clip(text, limit=DESCRIPTION_LIMIT):
     return cut.rstrip('.,;:—-– ') + '…'
 
 
+def as_klass(label):
+    """``5`` / ``5 кл.`` / ``5-кл.`` / ``4-класс`` -> ``5-класс``.
+
+    A range stays a range: ``7–9`` and ``6–7 кл.`` become ``7–9-класс``
+    and ``6–7-класс``. ``2–3, 5`` becomes ``2–3-класс, 5-класс``.
+    """
+    label = clean(label)
+    if not label:
+        return ''
+    core = label
+    for suffix in ('-класс', '-кл.', ' кл.', 'кл.'):
+        if core.endswith(suffix):
+            core = core[: -len(suffix)].strip()
+            break
+    parts = [part.strip() for part in core.split(',') if part.strip()]
+    formatted = []
+    for part in parts:
+        match = re.fullmatch(r'(\d+)\s*[–-]\s*(\d+)', part)
+        if match:
+            formatted.append(f'{match.group(1)}–{match.group(2)}-класс')
+        elif re.fullmatch(r'\d+', part):
+            formatted.append(f'{part}-класс')
+        else:
+            return label
+    return ', '.join(formatted)
+
+
 def topic_document_title(name, grade=''):
     name = clean(name) or 'Тема'
-    grade = clean(grade)
+    grade = as_klass(grade)
     if grade and grade not in name:
         heading = f'{grade} — {name}'
     else:
@@ -171,7 +200,7 @@ def topic_document_title(name, grade=''):
 
 def topic_meta_description(name, grade=''):
     name = clean(name) or 'Бул тема'
-    grade = clean(grade)
+    grade = as_klass(grade)
     if grade and grade not in name:
         lead = f'{name} ({grade})'
     else:
@@ -200,15 +229,29 @@ def search_meta_description(query):
 
 
 def grade_for_request(request, explicit=''):
+    """Grade for a title.
+
+    The badge passed in from the page wins, so the title matches the
+    chip on the page. Otherwise the menu grade (a pack grade, else the
+    Kyrgyz-programme audit in menu_grades.py). Otherwise the 12-year
+    continuum band.
+    """
     explicit = clean(explicit)
     if explicit:
-        return explicit
+        return as_klass(explicit)
     if request is None:
         return ''
-    nav = continuum_for_href(getattr(request, 'path', '') or '')
+    path = getattr(request, 'path', '') or ''
+    if path and not path.endswith('/'):
+        path += '/'
+    from apps.resources.data.menu_grades import grade_for_url
+    menu = grade_for_url(path) if path else ''
+    if menu:
+        return as_klass(menu)
+    nav = continuum_for_href(path)
     if not nav:
         return ''
-    return clean(nav.get('grade_band'))
+    return as_klass(nav.get('grade_band'))
 
 
 def canonical_url(request):

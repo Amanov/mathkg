@@ -11,6 +11,8 @@ from apps.resources.seo import (
     HOME_DESCRIPTION,
     HOME_TITLE,
     PAGES,
+    as_klass,
+    grade_for_request,
     topic_document_title,
     topic_meta_description,
 )
@@ -65,13 +67,25 @@ class SeoCopyTests(SimpleTestCase):
             '4-класс — Ондуктарды кошуу: презентация, иш барак, тапшырмалар | MathKG',
         )
         ranged = topic_document_title('Сан курамы', '1–2 кл.')
-        self.assertIn('1–2 кл. — Сан курамы:', ranged)
+        self.assertIn('1–2-класс — Сан курамы:', ranged)
+        self.assertEqual(as_klass('5'), '5-класс')
+        self.assertEqual(as_klass('5-кл.'), '5-класс')
+        self.assertEqual(as_klass('10–11'), '10–11-класс')
+        self.assertEqual(as_klass('2–3, 5'), '2–3-класс, 5-класс')
         plain = topic_document_title('Геометрия')
         self.assertTrue(plain.startswith('Геометрия: презентация'))
         description = topic_meta_description('Ондуктарды кошуу', '4-класс')
         self.assertLessEqual(len(description), DESCRIPTION_LIMIT)
         self.assertIn('презентация', description)
         self.assertIn('иш барак', description)
+
+        class _Request:
+            path = '/compound-area-volume-conversion/'
+
+        # No badge on the page: the Kyrgyz-programme audit says grade 5.
+        # A badge passed in wins, so a 12-year chip is not replaced.
+        self.assertEqual(grade_for_request(_Request(), ''), '5-класс')
+        self.assertEqual(grade_for_request(_Request(), '6 кл.'), '6-класс')
 
 
 class PageSeoTests(TestCase):
