@@ -12,7 +12,7 @@ BRANCHES = [
             ('Багытталган сандар', 'directed_numbers'),
             ('Төрт амал', 'four_basic_operations'),
             ('Аралаш амалдар', 'all_operations'),
-            ('Big 4 таймашы', 'big4'),
+            ('Төрт амал таймашы', 'big4'),
         ],
     },
     {
