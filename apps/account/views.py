@@ -39,27 +39,45 @@ def ratelimit_key(group, request):
     return get_client_ip(request)
 
 
+ACTIVATION_EMAIL_SUBJECT = 'MathKG: каттоону тастыктаңыз'
+
+
+def activation_email_body(activation_link):
+    return (
+        'Саламатсызбы,\n\n'
+        'MathKG сайтына катталганыңыз үчүн рахмат.\n\n'
+        'Каттоону тастыктоо үчүн төмөнкү шилтемени басыңыз:\n'
+        f'{activation_link}\n\n'
+        'Тастыктагандан кийин материалдарды 7 күн акысыз колдоно аласыз.\n\n'
+        'Урматтоо менен,\n'
+        'MathKG командасы\n'
+    )
+
+
 def send_activation_email(request, user):
     # Shared by registration (first send) and resend_activation_view (a
     # fresh link after the first one expired or never arrived) - one
     # place to generate the token and send the email, so the two can
     # never drift into sending different message text.
+    # A failed send is logged and must not fail the request: Railway
+    # blocks SMTP, and the Brevo backend already swallows its own
+    # errors. This catch stays so a different backend cannot turn
+    # registration into a 500 either.
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
     domain = get_current_site(request).domain
     activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
-    message = f"Dear {user.username},\n\nActivate: {activation_link}"
 
     try:
         send_mail(
-            'Account Activation',
-            message,
+            ACTIVATION_EMAIL_SUBJECT,
+            activation_email_body(activation_link),
             None,  # uses settings.DEFAULT_FROM_EMAIL
             [user.email],
-            fail_silently=False
+            fail_silently=False,
         )
-    except Exception as e:
-        logger.error(f"Failed to send activation email to {user.email}: {e}")
+    except Exception:
+        logger.exception('Failed to send activation email to %s', user.email)
 
 
 # NOTE: with no CACHES setting configured, Django's implicit default is
@@ -88,18 +106,7 @@ def registration_view(request):
                 SubscriptionRequest.objects.create(user=user, plan=plan)
 
             send_activation_email(request, user)
-
-            messages.success(
-                request,
-                "Каттоо ийгиликтүү аяктады!\n"
-                "Аккаунтуңузду активдештирүү үчүн электрондук почтаңызга жиберилген "
-                "шилтемени басыңыз, андан кийин кызматты пайдаланып, сабактардан "
-                "ырахат ала аласыз.\n"
-                "QR код аркылуу төлөм жасаган болсоңуз, төлөм текшерилгенден кийин "
-                "жазылууңуз өзү активдештирилет - кошумча аракет талап кылынбайт.\n"
-                "Кирүү менен көйгөй чыкса, бизге жазыңыз: mathematicskgz@gmail.com",
-            )
-            return redirect('login')
+            return redirect('check_email')
     else:
         form = RegistrationForm()
 
@@ -276,9 +283,9 @@ def activation_view(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save(update_fields=['is_active'])
-        messages.success(request, 'Your account has been activated successfully.')
+        messages.success(request, 'Аккаунтуңуз ийгиликтүү активдештирилди. Эми кире аласыз.')
     else:
-        messages.error(request, 'Invalid activation link.')
+        messages.error(request, 'Активдештирүү шилтемеси жараксыз. Жаңы шилтеме сураңыз.')
 
     return redirect('login')
 
@@ -306,6 +313,10 @@ def resend_activation_view(request):
         return redirect('login')
 
     return render(request, 'account/resend_activation.html')
+
+
+def check_email_view(request):
+    return render(request, 'account/check_email.html')
 
 
 @method_decorator(

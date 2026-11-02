@@ -24,6 +24,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.auth-card .auth-lead {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0 0 12px;
+    text-align: center;
+}
+
 .auth-card h1 {
     font-family: 'Cal Sans', 'Inter', sans-serif;
     font-size: 1.4rem;

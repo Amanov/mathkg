@@ -1,14 +1,20 @@
 {% comment %}
-Single source of truth for the 3 subscription plans, shared by the
+Single source of truth for the subscription plans, shared by the
 subscribe modal (templates/partials/subscribe_modal.html) and the
 homepage preview (templates/resources/home.html) - editing a price
 here updates both places, so they can never drift apart again.
 mode='modal': plain buttons, clicked by subscribe.js to advance the
 modal to its QR step. mode='preview': the same cards, but each one
 opens the modal itself (data-bs-toggle/target) since they live
-outside it. Markup mirrors pricing_feature_cards.html (the standalone
+outside it. The free-trial card always links straight to registration.
+Markup mirrors pricing_feature_cards.html (the standalone
 /pricing/ page) so the plan cards look identical everywhere they appear.
 {% endcomment %}
+<a class="subscribe-trial-card" href="{% url 'register' %}" data-track="7 күн акысыз баштоо">
+    <span class="subscribe-plan-name">7 күн акысыз баштоо</span>
+    <span class="subscribe-plan-duration">Катталып, материалдарды 7 күн акысыз колдонуңуз</span>
+    <span class="subscribe-plan-cta subscribe-plan-cta--primary">Баштоо</span>
+</a>
 <div class="subscribe-plans">
 
     <button type="button" class="subscribe-plan-card"

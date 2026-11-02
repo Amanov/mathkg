@@ -12,6 +12,20 @@ When you do: Railway supports custom domains on the **Trial plan**, no
 upgrade required — you just need to own the domain and point its DNS at
 Railway (Settings → Networking → Custom Domain on the app service).
 
+## Activation email (Brevo)
+
+Railway blocks outbound SMTP, so `EMAIL_HOST` cannot deliver the
+registration email (the request used to die with a 500). Mail now goes
+through Brevo's HTTP API when this variable is set on the app service:
+
+```
+BREVO_API_KEY=<key from Brevo → SMTP & API → API keys>
+```
+
+Sender is fixed: `MathKG <mathematicskgz@gmail.com>` (verify that
+address in Brevo). A failed or missing key is logged; registration
+still succeeds. There is no migration for this.
+
 ## Resource thumbnails auto-convert to WebP (2026-10-08)
 
 `Resource.save()` now re-encodes any newly-uploaded `.image` (the
