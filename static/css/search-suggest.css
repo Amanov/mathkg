@@ -61,6 +61,17 @@
     text-overflow: ellipsis;
 }
 
+.search-suggest-grade {
+    margin-left: 6px;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    vertical-align: 1px;
+}
+
 .search-suggest-empty {
     padding: 12px;
     font-size: 0.85rem;

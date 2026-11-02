@@ -53,6 +53,7 @@ html {
    in line with the category nav's timing/radius.
 ════════════════════════════════════════════ */
 #searchForm .form-control {
+    width: 11.5rem;
     border-radius: var(--radius-sm);
     border: none;
 }
