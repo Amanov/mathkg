@@ -44,12 +44,10 @@ class SingleH1Tests(TestCase):
 
         self.assertEqual(
             home_headings['h1'],
-            ['Математика мугалимдери үчүн даяр материалдар'],
+            ['Мугалимдер үчүн заманбап математикалык ресурстар'],
         )
-        self.assertIn(
-            '<p class="hero-line">Мугалимдер үчүн заманбап математикалык ресурстар</p>',
-            home_html,
-        )
+        self.assertNotIn('Математика мугалимдери үчүн даяр материалдар', home_html)
+        self.assertNotIn('hero-line', home_html)
         for title in ('Презентациялар', 'Экзамен суроолору', 'Математика боюнча иш барактар'):
             self.assertIn(title, home_headings['h2'])
         self.assertNotIn('Жүз уккандан бир көргөн артык.', home_headings['h2'] + home_headings['h3'])
@@ -58,7 +56,7 @@ class SingleH1Tests(TestCase):
         self.assertIn('>Кеңешип кескен бармак оорубайт</p>', home_html)
         self.assertTrue(all(text for text in home_headings['h2']))
         self.assertTrue(all(text for text in home_headings['h3']))
-        self.assertNotIn('<h1', home_html.split('Математика мугалимдери үчүн даяр материалдар', 1)[1])
+        self.assertNotIn('<h1', home_html.split('Мугалимдер үчүн заманбап математикалык ресурстар', 1)[1])
         self.assertIn('<a class="navbar-brand-mathkgz"', home_html)
 
         topic = Topic.objects.create(title='Геометрия', slug='geometry-headings')

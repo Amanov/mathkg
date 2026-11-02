@@ -12,36 +12,27 @@
 .mainshadow{
     box-shadow: 0 0 20px rgb(13, 167, 255);   
   }
-  h1, h2.section-heading, p.hero-line {
+  h1, h2.section-heading {
   display: flex;
   align-items: center;
   font-size: clamp(1.75rem, 4vw, 3rem);
   margin-bottom: 2rem;
 }
 /* One h1 on this page (the hero). Section titles stay h2 and reuse the
-   decorative bars locally, so other pages' h2s are left alone. The second
-   hero line is a paragraph with the same bar treatment. */
+   decorative bars locally, so other pages' h2s are left alone. The hero
+   h1 keeps the blue bars from main.css. */
 h2.section-heading::before,
-h2.section-heading::after,
-p.hero-line::before,
-p.hero-line::after {
+h2.section-heading::after {
   content: '';
   flex: 1;
   height: 8px;
   background-color: rgb(13, 167, 255);
 }
-h2.section-heading::before,
-p.hero-line::before {
+h2.section-heading::before {
   margin-right: 1.5rem;
 }
-h2.section-heading::after,
-p.hero-line::after {
+h2.section-heading::after {
   margin-left: 1.5rem;
-}
-p.hero-line {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-top: 0;
 }
 .zoom {
    padding: 5px; 
@@ -277,8 +268,7 @@ hr{
 
 <div class="container ">
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
-    <h1>Математика мугалимдери үчүн даяр материалдар</h1>
-    <p class="hero-line">Мугалимдер үчүн заманбап математикалык ресурстар</p>
+    <h1>Мугалимдер үчүн заманбап математикалык ресурстар</h1>
 
     <hr>
     <div class="row align-items-md-stretch "  >
