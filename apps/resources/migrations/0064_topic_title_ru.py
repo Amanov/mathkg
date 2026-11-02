@@ -1,4 +1,4 @@
-"""Optional Russian name for search titles. The pages stay in Kyrgyz."""
+"""Optional Russian name stored for search metadata. Pages stay in Kyrgyz."""
 
 from django.db import migrations, models
 

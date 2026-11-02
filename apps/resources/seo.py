@@ -18,13 +18,20 @@ SITE = 'MathKG'
 DESCRIPTION_LIMIT = 160
 # Search keywords only. There is no /ru/ site and no hreflang.
 RU_PHRASE = 'Материалы по математике на кыргызском языке.'
-TITLE_LIMIT = 65
 
-# Kyrgyz first, then the Russian words a parent might type into search.
-HOME_TITLE = 'MathKG: математика мугалимдер үчүн | для учителей'
+# The visible title is Kyrgyz. Russian is only in the description tail,
+# meta keywords, and JSON-LD alternateName.
+HOME_TITLE = (
+    'MathKG: математика мугалимдер жана ата-энелер үчүн окуу материалдары '
+    '(презентация, иш барак)'
+)
 HOME_DESCRIPTION = (
     'Кыргызстандын мугалимдери үчүн даяр презентация жана иш барак. '
     + RU_PHRASE
+)
+HOME_KEYWORDS = (
+    'математика для учителей, презентация, рабочий лист, '
+    + RU_PHRASE.rstrip('.')
 )
 
 # key -> (title, description). Descriptions are written for a teacher
@@ -215,31 +222,27 @@ def russian_name(name):
 
 
 def topic_document_title(name, grade='', russian=''):
-    """Kyrgyz first, then the Russian name when it still fits.
+    """Visible title. Kyrgyz only, including the grade when we have one.
 
-    Full form, used when it is short enough:
-    ``Кошуу, 5-класс | Сложение — презентация, рабочий лист | MathKG``.
-    Longer Kyrgyz names drop the materials phrase, then shorten the
-    Russian name. The Kyrgyz title is kept whole.
+    ``russian`` is accepted and ignored so a caller cannot put it here.
     """
+    del russian
     name = clean(name) or 'Тема'
     grade = as_klass(grade)
-    head = f'{name}, {grade}' if grade and grade not in name else name
-    russian = clean(russian) or russian_name(name)
-    brand = ' | MathKG'
-    materials = ' — презентация, рабочий лист'
-    if not russian:
-        return head + brand
-    full = f'{head} | {russian}{materials}{brand}'
-    if len(full) <= TITLE_LIMIT:
-        return full
-    short = f'{head} | {russian}{brand}'
-    if len(short) <= TITLE_LIMIT:
-        return short
-    room = TITLE_LIMIT - len(f'{head} | {brand}')
-    if room >= 8:
-        return f'{head} | {clip(russian, room)}{brand}'
-    return head + brand
+    if grade and grade not in name:
+        heading = f'{name}, {grade}'
+    else:
+        heading = name
+    return f'{heading}: презентация, иш барак, тапшырмалар | MathKG'
+
+
+def topic_keywords(name):
+    """Hidden search words. Not used in the title or on the page."""
+    russian = russian_name(name)
+    parts = [russian] if russian else []
+    parts.append('презентация, рабочий лист')
+    parts.append(RU_PHRASE.rstrip('.'))
+    return ', '.join(parts)
 
 
 def with_russian_phrase(kyrgyz):
@@ -247,16 +250,18 @@ def with_russian_phrase(kyrgyz):
     return f'{clip(kyrgyz, room)} {RU_PHRASE}'
 
 
-def topic_meta_description(name, grade=''):
+def topic_kyrgyz_sentence(name, grade=''):
     name = clean(name) or 'Бул тема'
     grade = as_klass(grade)
     if grade and grade not in name:
         lead = f'{name}, {grade}'
     else:
         lead = name
-    return with_russian_phrase(
-        f'{lead}: презентация, иш барак жана тапшырмалар.'
-    )
+    return f'{lead}: презентация, иш барак жана тапшырмалар.'
+
+
+def topic_meta_description(name, grade=''):
+    return with_russian_phrase(topic_kyrgyz_sentence(name, grade))
 
 
 def search_document_title(query):
@@ -335,24 +340,29 @@ def json_ld(data):
 
 def home_jsonld_with_logo(canonical, image):
     origin = _origin(canonical)
+    kyrgyz = (
+        'Кыргызстандын мугалимдери үчүн даяр презентация жана иш барак.'
+    )
     return json_ld({
         '@context': 'https://schema.org',
         '@graph': [
             {
                 '@type': 'Organization',
                 'name': SITE,
+                'alternateName': 'Математика для учителей',
                 'url': origin + '/',
                 'logo': image,
                 'email': 'mathematicskgz@gmail.com',
                 'areaServed': 'KG',
-                'description': HOME_DESCRIPTION,
+                'description': kyrgyz,
             },
             {
                 '@type': 'WebSite',
                 'name': SITE,
+                'alternateName': 'Математика для учителей',
                 'url': origin + '/',
                 'inLanguage': 'ky',
-                'description': HOME_DESCRIPTION,
+                'description': kyrgyz,
                 'publisher': {'@type': 'Organization', 'name': SITE},
                 'potentialAction': {
                     '@type': 'SearchAction',
@@ -364,7 +374,7 @@ def home_jsonld_with_logo(canonical, image):
     })
 
 
-def learning_resource_jsonld(canonical, name, description, grade, image):
+def learning_resource_jsonld(canonical, name, description, grade, image, alternate_name=''):
     origin = _origin(canonical)
     data = {
         '@context': 'https://schema.org',
@@ -387,16 +397,30 @@ def learning_resource_jsonld(canonical, name, description, grade, image):
     }
     if grade:
         data['educationalLevel'] = grade
+    alternate_name = clean(alternate_name)
+    if alternate_name:
+        data['alternateName'] = alternate_name
     return json_ld(data)
 
 
-def head_tags(title, description, canonical, image, jsonld):
+def head_tags(title, description, canonical, image, jsonld, keywords=''):
     """The document title and social tags. Returned as HTML because a
     {% block %} renders in a copied context, so values set inside it
-    do not reach the rest of the base template."""
+    do not reach the rest of the base template.
+
+    ``keywords`` is the only place a Russian topic name is written into
+    the head, besides the description tail and JSON-LD alternateName.
+    """
+    keyword_tag = ''
+    if keywords:
+        keyword_tag = format_html(
+            '<meta name="keywords" content="{keywords}">\n',
+            keywords=keywords,
+        )
     return format_html(
         '<title>{title}</title>\n'
         '<meta name="description" content="{description}">\n'
+        '{keywords}'
         '<link rel="canonical" href="{canonical}">\n'
         '<meta property="og:title" content="{title}">\n'
         '<meta property="og:description" content="{description}">\n'
@@ -409,6 +433,7 @@ def head_tags(title, description, canonical, image, jsonld):
         '{jsonld}\n',
         title=title,
         description=description,
+        keywords=keyword_tag,
         canonical=canonical,
         image=image,
         jsonld=jsonld,
@@ -419,12 +444,22 @@ def apply_seo(context, title, description, kind, name='', grade=''):
     request = context['request']
     canonical = canonical_url(request)
     image = request.build_absolute_uri(static('img/logo.jpg'))
+    keywords = ''
     if kind == 'home':
         jsonld = home_jsonld_with_logo(canonical, image)
+        keywords = HOME_KEYWORDS
     elif kind == 'topic':
+        kyrgyz_name = name or title
+        russian = russian_name(kyrgyz_name)
         jsonld = learning_resource_jsonld(
-            canonical, name or title, description, grade, image,
+            canonical,
+            kyrgyz_name,
+            topic_kyrgyz_sentence(kyrgyz_name, grade),
+            grade,
+            image,
+            alternate_name=russian,
         )
+        keywords = topic_keywords(kyrgyz_name)
     else:
         jsonld = ''
-    return head_tags(title, description, canonical, image, jsonld)
+    return head_tags(title, description, canonical, image, jsonld, keywords)

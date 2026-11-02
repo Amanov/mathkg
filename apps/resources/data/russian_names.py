@@ -1,7 +1,8 @@
 """Russian search names for Kyrgyz topic titles.
 
-The site stays in Kyrgyz. These strings are only for the document
-title and the optional title_ru field. Review before relying on them.
+The site stays in Kyrgyz. These strings fill the hidden title_ru
+field and metadata (keywords, JSON-LD alternateName). They are not
+shown in the title or on the page. Review before relying on them.
 """
 
 RUSSIAN_NAMES = {
