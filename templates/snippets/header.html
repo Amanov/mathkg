@@ -2,7 +2,6 @@
 {% load menu_tags %}
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="{% static 'css/header.css' %}">
 <link rel="stylesheet" href="{% static 'css/menu.css' %}?v=20261031a">
@@ -65,7 +64,7 @@
               </a>
             {% else %}
               <a class="header-action-btn" href="{% url 'login' %}" data-track="Кирүү (header)">Кирүү</a>
-              <button type="button" class="header-action-btn header-action-btn--primary" data-bs-toggle="modal" data-bs-target="#subscribeModal" data-track="Катталуу (header)">Катталуу</button>
+              <a class="header-action-btn header-action-btn--primary" href="{% url 'register' %}" data-track="Катталуу">Катталуу</a>
             {% endif %}
           </li>
 

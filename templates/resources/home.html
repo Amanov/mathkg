@@ -91,11 +91,14 @@ hr{
 
 /* X-Small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px){
-  body ,.container{
-    /* width: 100%; Remove any padding that might affect the full width  */ 
-    padding: 0;
-    margin: 0;
-  }
+  /* margin needs !important: another rule leaves a few pixels of side
+     margin, which makes the page wider than the phone screen. */
+  body{ margin:0 !important; }
+  html,body{ overflow-x:hidden; }
+  .p-5{ padding:1rem !important; }
+  .illustration-card{ padding:0; }
+  h2,h3{ font-size:1.35rem; }
+  h2 span[style*="48px"], h3 span[style*="48px"]{ font-size:1.75rem !important; }
 .col-auto.col-md-3 {
        display:block;  /*<!---Here how to show the menu from side--> */
     }

@@ -1,8 +1,9 @@
 /* Keeps a .mk-zoom graphic inside the viewport when it scales.
    The scale comes from --mk-zoom-scale (1.3). Sets --mk-zoom-origin before
-   hover. No effect when the device cannot hover. */
+   hover. No effect on touch screens: they need pinch-zoom, and a finger
+   is a coarse pointer even when the browser claims it can hover. */
 (function () {
-    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
     var nodes = function () {
         return document.querySelectorAll(".mk-zoom");
