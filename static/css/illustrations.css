@@ -1,17 +1,15 @@
 /* Homepage section graphics (templates/resources/home.html).
-   Each .illustration-card holds a 2x PNG of that section's illustration
-   (static/img/home/), rendered from the approved mockup. The image fills
-   its column; the text columns beside it are unchanged. */
+   Each card holds that section's illustration (static/img/home/),
+   cropped to the drawing. The picture is edge to edge in the card
+   on every screen width; the text columns beside it are unchanged. */
 
 .illustration-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     background: transparent;
     border: none;
     border-radius: var(--radius-md, 12px);
     box-shadow: none;
-    padding: 8px;
+    padding: 0;
     margin: 0 auto;
     max-width: 100%;
     width: 100%;
@@ -20,11 +18,16 @@
 .illustration-card:hover {
     transform: translateY(-4px);
 }
+.illustration-card picture {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
 .illustration-card svg,
 .illustration-card img {
     width: 100%;
     height: auto;
-    max-width: none;
+    max-width: 100%;
     display: block;
 }
 
