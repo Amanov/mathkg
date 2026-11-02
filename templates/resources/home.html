@@ -1,279 +1,14 @@
 {% extends 'base/base.html' %}
-
-{% block title %} Башкы бет {%endblock%}
-
 {% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "home" %}{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/illustrations.css' %}">
 <link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}">
-<style>
-  
-.mainshadow{
-    box-shadow: 0 0 20px rgb(13, 167, 255);   
-  }
-  h1, h2.section-heading, p.hero-line {
-  display: flex;
-  align-items: center;
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  margin-bottom: 2rem;
-}
-/* One h1 on this page (the hero). Section titles stay h2 and reuse the
-   decorative bars locally, so other pages' h2s are left alone. The second
-   hero line is a paragraph with the same bar treatment. */
-h2.section-heading::before,
-h2.section-heading::after,
-p.hero-line::before,
-p.hero-line::after {
-  content: '';
-  flex: 1;
-  height: 8px;
-  background-color: rgb(13, 167, 255);
-}
-h2.section-heading::before,
-p.hero-line::before {
-  margin-right: 1.5rem;
-}
-h2.section-heading::after,
-p.hero-line::after {
-  margin-left: 1.5rem;
-}
-p.hero-line {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-top: 0;
-}
-.zoom {
-   padding: 5px; 
-  /* background-color: green; */
-  transition: transform  .3s; /* Animation */
-   /* width: 200px;
-  height: 200px;  */
-  margin: 0 auto;
-}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 
-.zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-h3{
-  display: inline-block !important;
-  font-size: clamp(1.1rem, 2vw, 1.75rem);
-}
-/* Former h2/h3 feature lines and slogans. Sizes match Bootstrap's h2 and
-   this page's h3 rule so the wording looks the same. */
-p.home-point {
-  display: block;
-  font-size: calc(1.325rem + 0.9vw);
-  font-weight: 500;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-p.home-point-sm {
-  display: inline-block !important;
-  font-size: clamp(1.1rem, 2vw, 1.75rem);
-  font-weight: 500;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-.custom_border{
-  border: 3px solid rgb(34, 133 , 195);
-  border-radius: 10px; 
-  padding:10px;
-  box-sizing: border-box;
- 
-}
-.custom_border h1 {
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-.overflow-wrap {
-  overflow-wrap: break-word;
-}
-hr{
-  margin:20px; 
-  visibility: hidden;
-}
-
-.custom-card {
-    max-width: 80%;
-    padding: 5px;
-    /* box-sizing: border-box; */
-    display:inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    }
-   
-  .custom-card h2 {
-    margin: 0;
-  }
-
-  /* here I want to target all the screens */
-
-/* X-Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px){
-  /* margin needs !important: another rule leaves a few pixels of side
-     margin, which makes the page wider than the phone screen. */
-  body{ margin:0 !important; }
-  html,body{ overflow-x:hidden; }
-  .p-5{ padding:1rem !important; }
-  .illustration-card{ padding:0; }
-  h2,h3{ font-size:1.35rem; }
-  p.home-point,p.home-point-sm{ font-size:1.35rem; }
-  h2 span[style*="48px"], h3 span[style*="48px"]{ font-size:1.75rem !important; }
-  p.home-point span[style*="48px"], p.home-point-sm span[style*="48px"]{ font-size:1.75rem !important; }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-/* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) { 
-  body ,.container{
-     /* width: 100%; Remove any padding that might affect the full width  */
-    padding: 0;
-    margin: 0;
-  }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-
-/* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) { 
-  body ,.container{
-      /*Remove any padding that might affect the full width  */  
-    padding: 0;
-    margin: 1%;
-  }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-/* // Large devices (desktops, less than 1200px) */
-
-
-
-
-
-</style>
 
 <div class="container ">
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
@@ -341,7 +76,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/presentations.png' %}" alt="Слайддагы диаграмма">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/presentations.png' %}" alt="Слайддагы диаграмма" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -374,7 +109,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/worksheets.png' %}" alt="Иш барак жана калем">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/worksheets.png' %}" alt="Иш барак жана калем" loading="lazy" decoding="async">
             </div>
           </div>
       </div>
@@ -389,7 +124,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/activities.png' %}" alt="Оюн зарлары">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/activities.png' %}" alt="Оюн зарлары" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -422,7 +157,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/teacher-led.png' %}" alt="Класс менен талкуу">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/teacher-led.png' %}" alt="Класс менен талкуу" loading="lazy" decoding="async">
             </div>
           </div>
       </div>
@@ -435,7 +170,7 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/exam.png' %}" alt="Убакыттуу экзамен суроолору">
+            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/exam.png' %}" alt="Убакыттуу экзамен суроолору" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -474,7 +209,7 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/revision.png' %}" alt="Кайталап көнүгүү">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/revision.png' %}" alt="Кайталап көнүгүү" loading="lazy" decoding="async">
             </div>
           </div>
       </div>

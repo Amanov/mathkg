@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
-{% block title %}Почтаңызды текшериңиз{% endblock %}
-
 {% load static %}
+{% load seo_tags %}
+{% block seo %}{% seo_page "check_email" %}{% endblock %}
 
 {% block content %}
 

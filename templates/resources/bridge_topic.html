@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}{{ page.title }}{% endblock %}
+{% load seo_tags %}
+{% block seo %}{% seo_topic page.title page.grade_badge %}{% endblock %}
 
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
