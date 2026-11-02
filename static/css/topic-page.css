@@ -276,7 +276,7 @@
     text-align: center;
 }
 .teacher-guide__body { padding: 0 20px 20px; font-size: 15px; }
-.teacher-guide h3 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; }
+.teacher-guide h2 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; }
 .teacher-guide__std {
     padding: 4px 14px 10px;
     border-radius: var(--radius-sm);

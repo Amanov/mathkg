@@ -44,7 +44,7 @@
         {% for subtopic in subtopics %}
             <div class="col-md-6">
                 <a class="topic-subtopic-card" href="{% url 'subtopic_detail' topic.slug subtopic.slug %}">
-                    <h4>{{ subtopic.title }}</h4>
+                    <h2 class="h4">{{ subtopic.title }}</h2>
                 </a>
             </div>
         {% empty %}

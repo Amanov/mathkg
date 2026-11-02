@@ -71,6 +71,26 @@
 
     #pdf-clone .pdf-sheet-break { page-break-after: always; margin-bottom: 30px; }
 
+    /* Was an h1, so it picked up the site-wide heading bars. Keep that look. */
+    #pdf-clone .pdf-title {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1.2;
+        color: #1e40af;
+    }
+    #pdf-clone .pdf-title::before,
+    #pdf-clone .pdf-title::after {
+        content: '';
+        flex: 1;
+        height: 8px;
+        background-color: var(--color-heading-accent);
+    }
+    #pdf-clone .pdf-title::before { margin-right: 1.5rem; }
+    #pdf-clone .pdf-title::after { margin-left: 1.5rem; }
+
     #pdf-clone .question-card {
         page-break-inside: avoid;
         border: 3px solid #e2e8f0;
@@ -272,7 +292,7 @@
                     <div class="pdf-sheet-break">
                         <div style="display:flex; justify-content:space-between; margin-bottom:30px; border-bottom:3px solid #1e40af; padding-bottom:15px;">
                             <div>
-                                <h1 style="margin:0; font-size:28px; color:#1e40af;">Big 4 Таймашы</h1>
+                                <p class="pdf-title">Big 4 Таймашы</p>
                                 <p style="margin:5px 0 0; color:#475569;">${level}-класс • ${diff}-деңгээл</p>
                             </div>
                             <div style="text-align:right;">
