@@ -11,6 +11,7 @@ from apps.resources.seo import (
     HOME_DESCRIPTION,
     HOME_TITLE,
     PAGES,
+    RU_PHRASE,
     as_klass,
     grade_for_request,
     topic_document_title,
@@ -58,26 +59,36 @@ class SeoCopyTests(SimpleTestCase):
         self.assertEqual(len(titles), len(set(titles)))
         self.assertEqual(len(descriptions), len(set(descriptions)))
         self.assertLessEqual(len(HOME_DESCRIPTION), DESCRIPTION_LIMIT)
-        self.assertGreaterEqual(len(HOME_DESCRIPTION), 80)
+        self.assertIn(RU_PHRASE, HOME_DESCRIPTION)
+        self.assertLessEqual(len(HOME_TITLE), 70)
+        self.assertIn('мугалимдер', HOME_TITLE)
+        self.assertIn('учител', HOME_TITLE)
 
     def test_topic_title_keeps_grade_text_as_stored(self):
-        title = topic_document_title('Ондуктарды кошуу', '4-класс')
+        title = topic_document_title('Кошуу', '5')
         self.assertEqual(
             title,
-            '4-класс — Ондуктарды кошуу: презентация, иш барак, тапшырмалар | MathKG',
+            'Кошуу, 5-класс | Сложение — презентация, рабочий лист | MathKG',
         )
+        self.assertLessEqual(len(title), 65)
+        long_name = topic_document_title('Ондуктарды кошуу', '4-класс')
+        self.assertTrue(long_name.startswith('Ондуктарды кошуу, 4-класс |'))
+        self.assertIn('MathKG', long_name)
+        self.assertIn('Сложение', long_name)
         ranged = topic_document_title('Сан курамы', '1–2 кл.')
-        self.assertIn('1–2-класс — Сан курамы:', ranged)
+        self.assertTrue(ranged.startswith('Сан курамы, 1–2-класс'))
         self.assertEqual(as_klass('5'), '5-класс')
         self.assertEqual(as_klass('5-кл.'), '5-класс')
         self.assertEqual(as_klass('10–11'), '10–11-класс')
         self.assertEqual(as_klass('2–3, 5'), '2–3-класс, 5-класс')
         plain = topic_document_title('Геометрия')
-        self.assertTrue(plain.startswith('Геометрия: презентация'))
+        self.assertTrue(plain.startswith('Геометрия | Геометрия'))
         description = topic_meta_description('Ондуктарды кошуу', '4-класс')
         self.assertLessEqual(len(description), DESCRIPTION_LIMIT)
         self.assertIn('презентация', description)
         self.assertIn('иш барак', description)
+        self.assertIn(RU_PHRASE, description)
+        self.assertLessEqual(len(description), DESCRIPTION_LIMIT)
 
         class _Request:
             path = '/compound-area-volume-conversion/'
@@ -89,6 +100,14 @@ class SeoCopyTests(SimpleTestCase):
 
 
 class PageSeoTests(TestCase):
+    def test_migration_stores_russian_names_and_admin_edits_win(self):
+        algebra = Topic.objects.filter(title='Алгебра').first()
+        self.assertIsNotNone(algebra)
+        self.assertEqual(algebra.title_ru, 'Алгебра')
+        Topic.objects.create(title='Кошуу', slug='koshuu-ru', title_ru='Сложение чисел')
+        titled = topic_document_title('Кошуу', '5')
+        self.assertIn('Сложение чисел', titled)
+        self.assertNotIn('рабочий лист', titled)
     def test_home_head_and_one_h1(self):
         response = self.client.get(reverse('home'))
         html = response.content.decode()
@@ -110,6 +129,7 @@ class PageSeoTests(TestCase):
         self.assertEqual(data['@graph'][1]['inLanguage'], 'ky')
         self.assertNotIn('Something else here', html)
         self.assertNotIn('Gello somethin', html)
+        self.assertNotIn('hreflang', html)
         self.assertIn('loading="lazy"', html)
         self.assertIn('src="/static/img/home/intro.png"', html)
         intro = html.split('img/home/intro.png', 1)[0][-80:]
@@ -126,14 +146,15 @@ class PageSeoTests(TestCase):
         self.assertEqual(response.status_code, 200)
         html = response.content.decode()
         self.assertEqual(len(headings(html)['h1']), 1)
-        self.assertIn(
-            '4-класс — Ондуктарды кошуу (1 ондук орун): '
-            'презентация, иш барак, тапшырмалар | MathKG',
-            html,
-        )
+        title = re.search(r'<title>(.*?)</title>', html).group(1)
+        self.assertTrue(title.startswith('Ондуктарды кошуу (1 ондук орун), 4-класс'))
+        self.assertIn('Сложение', title)
+        self.assertIn('MathKG', title)
+        self.assertNotIn('hreflang', html)
         description = _meta(html, 'description')
         self.assertIn('4-класс', description)
         self.assertIn('иш барак', description)
+        self.assertIn(RU_PHRASE, description)
         self.assertLessEqual(len(description), DESCRIPTION_LIMIT)
         data = _jsonld(html)
         self.assertEqual(data['@type'], 'LearningResource')
@@ -152,7 +173,7 @@ class PageSeoTests(TestCase):
         html = page.content.decode()
         self.assertEqual(headings(html)['h1'], ['Геометрия'])
         self.assertIn(
-            'Геометрия: Бурчтар: Аралаш: презентация, иш барак, тапшырмалар | MathKG',
+            'Геометрия: Бурчтар: Аралаш | Геометрия: Углы: Смешанные | MathKG',
             html,
         )
         self.assertEqual(_jsonld(html)['@type'], 'LearningResource')

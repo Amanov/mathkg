@@ -15,18 +15,16 @@ from django.utils.safestring import mark_safe
 from apps.resources.continuum import continuum_for_href
 
 SITE = 'MathKG'
-TOPIC_TAIL = ': презентация, иш барак, тапшырмалар | MathKG'
 DESCRIPTION_LIMIT = 160
+# Search keywords only. There is no /ru/ site and no hreflang.
+RU_PHRASE = 'Материалы по математике на кыргызском языке.'
+TITLE_LIMIT = 65
 
-# The home title is the wording asked for. The rest of the site usually
-# says «мугалимдери»; this line says «мугалимдер». Kept exact on purpose.
-HOME_TITLE = (
-    'MathKG: математика мугалимдер жана ата-энелер үчүн окуу материалдары '
-    '(презентация, иш барак)'
-)
+# Kyrgyz first, then the Russian words a parent might type into search.
+HOME_TITLE = 'MathKG: математика мугалимдер үчүн | для учителей'
 HOME_DESCRIPTION = (
-    'Кыргызстандын мугалимдери жана ата-энелери үчүн даяр математика: '
-    'презентация, иш барак жана тапшырма. Сабакты бир жерден ачып, класска алып кириңиз.'
+    'Кыргызстандын мугалимдери үчүн даяр презентация жана иш барак. '
+    + RU_PHRASE
 )
 
 # key -> (title, description). Descriptions are written for a teacher
@@ -34,38 +32,31 @@ HOME_DESCRIPTION = (
 PAGES = {
     'about': (
         'MathKG жөнүндө | MathKG',
-        'MathKG — кыргыз тилиндеги математика платформасы. Мугалимдер '
-        'менен ата-энелер үчүн презентация, иш барак жана тапшырма бир жерде.',
+        'MathKG — кыргыз тилиндеги математика мугалимдер үчүн. ' + RU_PHRASE,
     ),
     'news': (
         'Сайттагы жаңылыктар | MathKG',
-        'MathKG сайтына кошулган өзгөрүүлөр: жаңы темалар, материалдар '
-        'жана оңдоолор. Мугалим үчүн кыскача баяндама.',
+        'MathKG сайтындагы жаңы темалар жана оңдоолор. ' + RU_PHRASE,
     ),
     'pricing': (
         'Баалар | MathKG',
-        'MathKG жазылуусунун баасы: 3 ай, 6 ай жана 1 жыл. Презентация, '
-        'иш барак жана тапшырманы канча жолу жүктөөгө болору жазылган.',
+        'MathKG жазылуусу: 3 ай, 6 ай жана 1 жыл. ' + RU_PHRASE,
     ),
     'topics': (
         'Темалар дарагы | MathKG',
-        'Математиканын темалары бир тизмеде: сандар, алгебра, геометрия, '
-        'ыктымалдуулук жана статистика. MathKG.',
+        'Темалар: сандар, алгебра, геометрия, ыктымалдуулук. ' + RU_PHRASE,
     ),
     'resources': (
         'Ресурстар | MathKG',
-        'Презентация, иш барак жана мугалим жетектеген тапшырмалар. '
-        'MathKG китепканасынан материалды категория боюнча табыңыз.',
+        'Презентация, иш барак жана тапшырмалар бир тизмеде. ' + RU_PHRASE,
     ),
     'tarsia': (
         'Тарсия куруучу | MathKG',
-        'Өз сурооңузду жазып, кесип-жанаштыруучу тарсия табышмак түзүңүз. '
-        'Класста колдонууга даяр файлды жүктөп алыңыз.',
+        'Өз сурооңуз менен тарсия табышмак түзүңүз. ' + RU_PHRASE,
     ),
     'big4': (
         'Big 4 сан таймашы | MathKG',
-        'Төрт амалды класста ойнотуучу таймаш. Мугалим тактадан суроо '
-        'көрсөтөт, окуучулар жооп берет. MathKG.',
+        'Төрт амалды класста ойнотуучу таймаш. ' + RU_PHRASE,
     ),
     'login': (
         'Кирүү | MathKG',
@@ -133,8 +124,7 @@ PAGES = {
     ),
     'search': (
         'Издөө | MathKG',
-        'Тема же материалдын атын жазыңыз. MathKG презентация, иш барак '
-        'жана тапшырмалардын арасынан издейт.',
+        'Тема же материалдын атын жазыңыз. ' + RU_PHRASE,
     ),
     'kaitaloo': (
         'Кайталоо | MathKG',
@@ -188,26 +178,84 @@ def as_klass(label):
     return ', '.join(formatted)
 
 
-def topic_document_title(name, grade=''):
+def _one_russian(name):
+    """A staff-edited title_ru wins. Otherwise the reviewed glossary."""
+    from apps.resources.data.russian_names import RUSSIAN_NAMES
+
+    try:
+        from django.apps import apps
+        if apps.ready:
+            for label in ('personal.SubSubtopic', 'personal.Subtopic', 'personal.Topic'):
+                model = apps.get_model(label)
+                found = (
+                    model.objects.filter(title=name)
+                    .exclude(title_ru='')
+                    .values_list('title_ru', flat=True)
+                    .first()
+                )
+                if found:
+                    return found
+    except Exception:
+        pass
+    return RUSSIAN_NAMES.get(name, '')
+
+
+def russian_name(name):
+    """Russian search name for a Kyrgyz title, including ``A: B`` chains."""
+    name = clean(name)
+    if not name:
+        return ''
+    if ': ' in name:
+        parts = [clean(part) for part in name.split(': ')]
+        translated = [_one_russian(part) for part in parts]
+        if not any(translated):
+            return ''
+        return ': '.join(ru or part for ru, part in zip(translated, parts))
+    return _one_russian(name)
+
+
+def topic_document_title(name, grade='', russian=''):
+    """Kyrgyz first, then the Russian name when it still fits.
+
+    Full form, used when it is short enough:
+    ``Кошуу, 5-класс | Сложение — презентация, рабочий лист | MathKG``.
+    Longer Kyrgyz names drop the materials phrase, then shorten the
+    Russian name. The Kyrgyz title is kept whole.
+    """
     name = clean(name) or 'Тема'
     grade = as_klass(grade)
-    if grade and grade not in name:
-        heading = f'{grade} — {name}'
-    else:
-        heading = name
-    return heading + TOPIC_TAIL
+    head = f'{name}, {grade}' if grade and grade not in name else name
+    russian = clean(russian) or russian_name(name)
+    brand = ' | MathKG'
+    materials = ' — презентация, рабочий лист'
+    if not russian:
+        return head + brand
+    full = f'{head} | {russian}{materials}{brand}'
+    if len(full) <= TITLE_LIMIT:
+        return full
+    short = f'{head} | {russian}{brand}'
+    if len(short) <= TITLE_LIMIT:
+        return short
+    room = TITLE_LIMIT - len(f'{head} | {brand}')
+    if room >= 8:
+        return f'{head} | {clip(russian, room)}{brand}'
+    return head + brand
+
+
+def with_russian_phrase(kyrgyz):
+    room = DESCRIPTION_LIMIT - len(RU_PHRASE) - 1
+    return f'{clip(kyrgyz, room)} {RU_PHRASE}'
 
 
 def topic_meta_description(name, grade=''):
     name = clean(name) or 'Бул тема'
     grade = as_klass(grade)
     if grade and grade not in name:
-        lead = f'{name} ({grade})'
+        lead = f'{name}, {grade}'
     else:
         lead = name
-    return clip(
-        f'{lead}: презентация, иш барак жана тапшырмалар. '
-        f'Мугалимдер менен ата-энелер үчүн даяр материал MathKG сайтында.'
+    return with_russian_phrase(
+        f'{lead}: презентация, иш барак жана тапшырмалар.'
     )
 
 
@@ -222,10 +270,7 @@ def search_meta_description(query):
     query = clean(query)
     if not query:
         return PAGES['search'][1]
-    return clip(
-        f'«{query}» боюнча темалар жана материалдар. Презентация, иш барак '
-        f'жана тапшырмалар MathKG сайтында.'
-    )
+    return with_russian_phrase(f'«{query}» боюнча темалар жана материалдар.')
 
 
 def grade_for_request(request, explicit=''):

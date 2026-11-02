@@ -21,6 +21,13 @@ logger = getLogger(__name__)
 class Topic(models.Model):
     title = models.CharField(max_length=200)
 
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
+
     slug = models.SlugField(unique=True)
 
     icon = models.CharField(
@@ -273,6 +280,13 @@ class Subtopic(models.Model):
 
     title = models.CharField(max_length=200)
 
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
+
     slug = models.SlugField()
 
     order = models.PositiveIntegerField(
@@ -303,6 +317,12 @@ class SubSubtopic(models.Model):
         related_name='subsubtopics'
     )
     title = models.CharField(max_length=200)
+    title_ru = models.CharField(
+        'Орусча аталыш',
+        max_length=200,
+        blank=True,
+        help_text='Издөө үчүн гана. Барактын өзү кыргызча бойдон калат.',
+    )
     slug = models.SlugField()
     order = models.PositiveIntegerField(default=0)
 
