@@ -7,7 +7,7 @@ field and metadata (keywords, JSON-LD alternateName). They are not
 shown in the title or on the page.
 
 «Дата» and «Пропорция жана процент» stay as stored. Other titles
-that were not literary Kyrgyz are renamed in migration 0065; the keys
+that were not literary Kyrgyz are renamed in migration 0066; the keys
 below are the titles after that rename.
 """
 

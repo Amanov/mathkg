@@ -6,7 +6,7 @@ from django.test import TestCase
 
 from apps.resources.models import MenuItem, Subtopic, Topic
 
-_migration = importlib.import_module('apps.resources.migrations.0065_kyrgyz_topic_titles')
+_migration = importlib.import_module('apps.resources.migrations.0066_kyrgyz_topic_titles')
 forward = _migration.forward
 backward = _migration.backward
 

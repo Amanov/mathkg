@@ -23,7 +23,7 @@ def clear_russian_names(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0063_wave13_packs'),
+        ('personal', '0064_refresh_maze_paths'),
     ]
 
     operations = [

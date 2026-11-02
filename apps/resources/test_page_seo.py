@@ -137,7 +137,7 @@ class PageSeoTests(TestCase):
         response = self.client.get(reverse('home'))
         html = response.content.decode()
         self.assertEqual(headings(html)['h1'], [
-            'Математика мугалимдери үчүн даяр материалдар',
+            'Мугалимдер үчүн заманбап математикалык ресурстар',
         ])
         self.assertIn(f'<title>{HOME_TITLE}</title>', html)
         self.assertEqual(_meta(html, 'description'), HOME_DESCRIPTION)

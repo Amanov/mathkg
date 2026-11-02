@@ -81,7 +81,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0064_topic_title_ru'),
+        ('personal', '0065_topic_title_ru'),
     ]
 
     operations = [
