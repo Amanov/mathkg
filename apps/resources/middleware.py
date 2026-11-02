@@ -14,6 +14,9 @@ EXCLUDED_PREFIXES = (
     # logging them would also force a session cookie onto robots.txt.
     '/robots.txt',
     '/sitemap.xml',
+    # A cacheable fragment, not a page view. Logging it would also
+    # attach a session cookie and stop the menu from being cached.
+    '/menu/',
 )
 
 

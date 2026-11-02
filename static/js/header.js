@@ -225,32 +225,74 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Init on root dropdown open
-    document.querySelectorAll('.dropdown').forEach(function (dropdown) {
-        dropdown.addEventListener('shown.bs.dropdown', function () {
-            initSubmenus(dropdown);
+    // Listen on the document so a menu filled in after the first paint
+    // still gets the same open and close behaviour.
+    document.addEventListener('shown.bs.dropdown', function (event) {
+        const dropdown = event.target;
+        if (!dropdown.classList || !dropdown.classList.contains('dropdown')) return;
+        initSubmenus(dropdown);
 
-            // The root panel itself can be taller than the room left below
-            // it (e.g. a category with a dozen+ children) - same reachability
-            // problem as a tall flyout, same fix.
-            const menu = dropdown.querySelector(':scope > .dropdown-menu');
-            if (menu) capHeightToViewport(menu);
+        // The root panel itself can be taller than the room left below
+        // it (e.g. a category with a dozen+ children) - same reachability
+        // problem as a tall flyout, same fix.
+        const menu = dropdown.querySelector(':scope > .dropdown-menu');
+        if (menu) capHeightToViewport(menu);
+    });
+    // Also close all submenus when root dropdown closes, and clear any
+    // height cap so the next open re-measures fresh (the viewport may
+    // have been resized, or this dropdown opened from a different
+    // scroll position, since the last time it was shown).
+    document.addEventListener('hidden.bs.dropdown', function (event) {
+        const dropdown = event.target;
+        if (!dropdown.classList || !dropdown.classList.contains('dropdown')) return;
+        dropdown.querySelectorAll('.dropdown-menu').forEach(function (m) {
+            m.classList.remove('show');
+            m.style.maxHeight = '';
+            m.style.overflowY = '';
+            m.style.transform = '';
+            m.style.position = '';
+            m.style.transition = '';
+            delete m.dataset.capped;
         });
-        // Also close all submenus when root dropdown closes, and clear any
-        // height cap so the next open re-measures fresh (the viewport may
-        // have been resized, or this dropdown opened from a different
-        // scroll position, since the last time it was shown).
-        dropdown.addEventListener('hidden.bs.dropdown', function () {
-            dropdown.querySelectorAll('.dropdown-menu').forEach(function (m) {
-                m.classList.remove('show');
-                m.style.maxHeight = '';
-                m.style.overflowY = '';
-                m.style.transform = '';
-                m.style.position = '';
-                m.style.transition = '';
-                delete m.dataset.capped;
-            });
-        });
+        if (pendingMenuHtml && !document.querySelector('#siteCategoryMenu .dropdown-menu.show')) {
+            const html = pendingMenuHtml;
+            pendingMenuHtml = null;
+            applyFullMenu(html);
+        }
     });
 
+    const list = document.getElementById('siteCategoryMenu');
+    if (list && list.dataset.menuUrl) {
+        const start = function () { loadFullMenu(list); };
+        const nav = document.getElementById('categoryNav');
+        if (nav) {
+            nav.addEventListener('pointerenter', start, {once: true});
+            nav.addEventListener('focusin', start, {once: true});
+        }
+        const toggler = document.querySelector('.navbar-toggler');
+        if (toggler) toggler.addEventListener('pointerdown', start, {once: true});
+    }
+
 });
+
+let pendingMenuHtml = null;
+
+function applyFullMenu(html) {
+    const list = document.getElementById('siteCategoryMenu');
+    if (!list) return;
+    if (list.querySelector('.dropdown-menu.show')) {
+        pendingMenuHtml = html;
+        return;
+    }
+    list.innerHTML = html;
+    list.dataset.loaded = '1';
+}
+
+function loadFullMenu(list) {
+    if (list.dataset.loaded || list.dataset.loading) return;
+    list.dataset.loading = '1';
+    fetch(list.dataset.menuUrl, {credentials: 'same-origin'})
+        .then(function (response) { return response.text(); })
+        .then(function (html) { applyFullMenu(html); })
+        .catch(function () { delete list.dataset.loading; });
+}

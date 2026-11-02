@@ -36,6 +36,9 @@ EXCLUDED_PATHS = {
     # These are the crawler files themselves, not pages to index.
     '/robots.txt',
     '/sitemap.xml',
+    # The topic menu, fetched after the first screen. The links
+    # themselves are on /topics/ and in this sitemap.
+    '/menu/',
 }
 
 EXCLUDED_PREFIXES = (

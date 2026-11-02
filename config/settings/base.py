@@ -67,6 +67,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5' #added by me
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add here
+    # After WhiteNoise so already-compressed static files are not
+    # gzipped a second time. Dynamic HTML, including the home page,
+    # is compressed here.
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -204,6 +208,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #### Modifying static
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Hashed filenames are not used, so a week is as long as a CSS change
+# can wait. Images and fonts are the files a phone on a slow network
+# should not download again on the next visit.
+WHITENOISE_MAX_AGE = 60 * 60 * 24 * 7
 
 # Media files setup
 MEDIA_URL = '/media/'
