@@ -6,6 +6,7 @@ from django.test import SimpleTestCase, TestCase
 from django.urls import reverse
 
 from apps.resources.models import MenuItem, SubSubtopic, Subtopic, Topic
+from apps.resources.data.russian_names import RUSSIAN_NAMES
 from apps.resources.seo import (
     DESCRIPTION_LIMIT,
     HOME_DESCRIPTION,
@@ -77,6 +78,15 @@ class SeoCopyTests(SimpleTestCase):
         self.assertNotIn('Сложение', long_name)
         ranged = topic_document_title('Сан курамы', '1–2 кл.')
         self.assertTrue(ranged.startswith('Сан курамы, 1–2-класс'))
+        self.assertEqual(
+            RUSSIAN_NAMES['Ондуктарды кошуу (1 ондук орун)'],
+            'Сложение десятичных дробей (1 десятичный знак)',
+        )
+        self.assertNotIn('Ондуктарды кошуу', RUSSIAN_NAMES)
+        self.assertNotIn('Статистика', RUSSIAN_NAMES)
+        self.assertNotIn('Пайыздар', RUSSIAN_NAMES)
+        self.assertEqual(RUSSIAN_NAMES['Дата'], 'Данные')
+        self.assertEqual(RUSSIAN_NAMES['Алмашма сегмент'], 'Альтернативный сегмент')
         self.assertEqual(as_klass('5'), '5-класс')
         self.assertEqual(as_klass('5-кл.'), '5-класс')
         self.assertEqual(as_klass('10–11'), '10–11-класс')

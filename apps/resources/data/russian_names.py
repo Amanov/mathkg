@@ -1,8 +1,18 @@
-"""Russian search names for Kyrgyz topic titles.
+"""Russian search names for the site's existing topic titles.
 
-The site stays in Kyrgyz. These strings fill the hidden title_ru
+Keys are topic titles copied exactly as the site already stores them.
+They are not rewritten here, even when a title looks non-Kyrgyz.
+Values are Russian search words only: they fill the hidden title_ru
 field and metadata (keywords, JSON-LD alternateName). They are not
-shown in the title or on the page. Review before relying on them.
+shown in the title or on the page.
+
+Existing titles that do not look like literary Kyrgyz are kept as
+stored and listed for the owner. They are not renamed here:
+«Алмашма сегмент», «Дата», «Пропорция жана процент»,
+«Рационалдаштыруу: коньюгатасыз», «BIDMAS менен», «Big 4 таймашы»,
+«IGCSE», «GCSE», «Суммалоо (IGCSE)», «Кесилишкен хордалар (IGCSE)»,
+«Текст маселелер: тилке модели менен», and
+«10, 100, 1000гө көбөйтүү жана бөлүү».
 """
 
 RUSSIAN_NAMES = {
@@ -357,7 +367,7 @@ RUSSIAN_NAMES = {
     'Чийүү': 'Построение',
     'Өлчөө': 'Измерение',
     'Чийүү жана өлчөө': 'Построение и измерение',
-    'Алмашма сегмент': 'Отрезок, соединяющий точки касания',
+    'Алмашма сегмент': 'Альтернативный сегмент',
     'Тегеректин четинде': 'На окружности',
     'Циклдик төрт бурчтуктар': 'Вписанные четырёхугольники',
     'Жанамалар жана хордалар': 'Касательные и хорды',
@@ -495,19 +505,16 @@ RUSSIAN_NAMES = {
     'Эки белгисиздүү сызыктуу теңдемелер системасы': 'Система линейных уравнений с двумя неизвестными',
     'Катыш: бөлүү, 1 : n түрү жана бириктирүү': 'Отношение: деление, вид 1:n и объединение',
     'Багытталган сандар менен амалдар': 'Действия с направленными числами',
-    'Ондуктарды кошуу (1 ондук орун)': 'Сложение десятичных дробей',
+    'Ондуктарды кошуу (1 ондук орун)': 'Сложение десятичных дробей (1 десятичный знак)',
     'Сандар': 'Числа',
     'Алгебра': 'Алгебра',
     'Геометрия': 'Геометрия',
     'Пропорция': 'Пропорция',
     'Ыктымалдуулук': 'Вероятность',
-    'Статистика': 'Статистика',
     'Дата': 'Данные',
-    'Пайыздар': 'Проценты',
     'Функциялар': 'Функции',
     'Ондуктар': 'Десятичные дроби',
     'Бөлчөктөр': 'Дроби',
     'Өзгөртүп түзүү': 'Преобразование',
     'Пайыздар: калькуляторсуз': 'Проценты: без калькулятора',
-    'Ондуктарды кошуу': 'Сложение десятичных дробей',
 }
