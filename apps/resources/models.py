@@ -696,3 +696,130 @@ class NewsPost(models.Model):
 
     def __str__(self):
         return f"{self.published_date}: {self.title}"
+
+
+# =====================================================
+
+# PAGE REACTIONS AND WRITTEN FEEDBACK
+
+# =====================================================
+
+class PageReaction(models.Model):
+    """One visitor's face for one page.
+
+    A second tap from the same visitor and page is ignored. Counts for
+    the admin list live on PageReactionCount, updated in the same save.
+    """
+
+    FACE_HAPPY = 'happy'
+    FACE_OK = 'ok'
+    FACE_SAD = 'sad'
+    FACE_CHOICES = [
+        (FACE_HAPPY, '😊 Жакты'),
+        (FACE_OK, '😐 Жаман эмес'),
+        (FACE_SAD, '🙁 Жаккан жок'),
+    ]
+
+    path = models.CharField(max_length=255, db_index=True)
+    face = models.CharField(max_length=10, choices=FACE_CHOICES)
+    # The topic page's own material (its title). Empty on pages that are
+    # not a topic page, such as the home page.
+    material = models.CharField(max_length=255, blank=True)
+    topic = models.ForeignKey(
+        Topic,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='page_reactions',
+    )
+    subtopic = models.ForeignKey(
+        Subtopic,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='page_reactions',
+    )
+    subsubtopic = models.ForeignKey(
+        SubSubtopic,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='page_reactions',
+    )
+    visitor_key = models.CharField(max_length=32)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Page reaction'
+        verbose_name_plural = 'Page reactions'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['path', 'visitor_key'],
+                name='personal_reaction_visitor_page_uniq',
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.get_face_display()} {self.path}'
+
+
+class PageReactionCount(models.Model):
+    """Per-page totals, so the admin list can be sorted by most 🙁."""
+
+    path = models.CharField(max_length=255, unique=True)
+    material = models.CharField(max_length=255, blank=True)
+    happy_count = models.PositiveIntegerField('😊', default=0)
+    ok_count = models.PositiveIntegerField('😐', default=0)
+    sad_count = models.PositiveIntegerField('🙁', default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-sad_count', '-happy_count', 'path']
+        verbose_name = 'Page reaction count'
+        verbose_name_plural = 'Page reaction counts'
+
+    def __str__(self):
+        return self.material or self.path
+
+
+class WrittenFeedback(models.Model):
+    """A teacher's longer note from /pikir/.
+
+    Nothing is shown on «Мугалимдердин пикирлери» until show_on_site is
+    set in the admin. The public page never receives the email.
+    """
+
+    KIND_OPINION = 'pikir'
+    KIND_SUGGESTION = 'sunush'
+    KIND_PRAISE = 'maktoo'
+    KIND_CHOICES = [
+        (KIND_OPINION, 'Пикир'),
+        (KIND_SUGGESTION, 'Сунуш'),
+        (KIND_PRAISE, 'Мактоо'),
+    ]
+
+    kind = models.CharField('Type', max_length=16, choices=KIND_CHOICES)
+    message = models.TextField()
+    name = models.CharField(max_length=120, blank=True)
+    email = models.EmailField(blank=True)
+    about_page = models.CharField('Page', max_length=255, blank=True)
+    is_read = models.BooleanField('Read', default=False)
+    show_on_site = models.BooleanField(
+        'Show on site',
+        default=False,
+        help_text='Approved notes appear on «Мугалимдердин пикирлери».',
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Written feedback'
+        verbose_name_plural = 'Written feedback'
+
+    def __str__(self):
+        return f'{self.get_kind_display()}: {self.message[:40]}'
+
+    def public_name(self):
+        name = (self.name or '').strip()
+        return name or 'Мугалим'

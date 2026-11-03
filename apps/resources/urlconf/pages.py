@@ -15,6 +15,9 @@ from apps.resources.views import (
     search_view,
     search_suggest_view,
     pricing_view,
+    feedback_view,
+    teacher_comments_view,
+    page_reaction_view,
 )
 
 urlpatterns = [
@@ -35,4 +38,8 @@ urlpatterns = [
     path('pricing/', pricing_view, name='pricing'),
     path('search/', search_view, name='search'),
     path('search/suggest/', search_suggest_view, name='search_suggest'),
+
+    path('pikir/', feedback_view, name='feedback'),
+    path('pikirler/', teacher_comments_view, name='teacher_comments'),
+    path('page-reaction/', page_reaction_view, name='page_reaction'),
 ]

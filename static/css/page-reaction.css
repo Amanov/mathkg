@@ -1,0 +1,61 @@
+/* One quiet row above the footer. Faces are the control, not decoration. */
+.page-reaction {
+    max-width: 720px;
+    margin: 36px auto 0;
+    padding: 0 16px 8px;
+    text-align: center;
+}
+
+.page-reaction__ask {
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.page-reaction__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.page-reaction__form button {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.page-reaction__form button:hover,
+.page-reaction__form button:focus-visible {
+    background: var(--surface-alt);
+    border-color: var(--color-menu-border);
+}
+
+.page-reaction__form button:focus-visible {
+    outline: 2px solid var(--color-bootstrap-primary);
+    outline-offset: 2px;
+}
+
+.page-reaction__thanks {
+    margin: 0;
+    color: var(--color-navy);
+    font-weight: 700;
+}
+
+@media (max-width: 480px) {
+    .page-reaction__form button {
+        flex: 1 1 calc(50% - 8px);
+    }
+}

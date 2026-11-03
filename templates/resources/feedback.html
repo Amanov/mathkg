@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "feedback" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}?v=20261103a">
+{% endblock %}
+
+{% block content %}
+<div class="feedback-page">
+  <h1>Пикир калтыруу</h1>
+
+  {% if sent %}
+  <p class="feedback-thanks" role="status">Рахмат! Билдирүүңүз кабыл алынды.</p>
+  {% else %}
+  <p class="feedback-lead">Пикир, сунуш же мактоо калтырыңыз. Атыңызды жана электрондук почтаңызды кааласаңыз гана жазасыз.</p>
+
+  <form class="feedback-form" method="post" action="{% url 'feedback' %}" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="feedback-error" role="alert">
+      {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+    </div>
+    {% endif %}
+
+    <fieldset class="feedback-kinds">
+      <legend>Түрү</legend>
+      <div class="feedback-kind-row">
+        {% for value, label in form.kind.field.choices %}
+        <label class="feedback-choice">
+          <input type="radio" name="kind" value="{{ value }}" {% if form.kind.value == value %}checked{% endif %}>
+          <span>{{ label }}</span>
+        </label>
+        {% endfor %}
+      </div>
+      {% if form.kind.errors %}<p class="feedback-error">{{ form.kind.errors.0 }}</p>{% endif %}
+    </fieldset>
+
+    <label class="feedback-field" for="id_message">
+      <span>Билдирүү</span>
+      <textarea id="id_message" name="message" rows="6" maxlength="4000" required placeholder="Оюңузду ушул жерге жазыңыз">{{ form.message.value|default:'' }}</textarea>
+      {% if form.message.errors %}<span class="feedback-error">{{ form.message.errors.0 }}</span>{% endif %}
+    </label>
+
+    <label class="feedback-field" for="id_name">
+      <span>Аты-жөнү <em>милдеттүү эмес</em></span>
+      <input id="id_name" name="name" type="text" maxlength="120" value="{{ form.name.value|default:'' }}" autocomplete="name">
+    </label>
+
+    <label class="feedback-field" for="id_email">
+      <span>Электрондук почта <em>милдеттүү эмес</em></span>
+      <input id="id_email" name="email" type="email" maxlength="254" value="{{ form.email.value|default:'' }}" autocomplete="email">
+      {% if form.email.errors %}<span class="feedback-error">{{ form.email.errors.0 }}</span>{% endif %}
+    </label>
+
+    <label class="feedback-field" for="id_about_page">
+      <span>Кайсы барак жөнүндө <em>милдеттүү эмес</em></span>
+      <input id="id_about_page" name="about_page" type="text" maxlength="255" value="{{ form.about_page.value|default:'' }}" placeholder="Барактын дареги">
+    </label>
+
+    <div class="feedback-hp" aria-hidden="true">
+      <label for="id_mk_hp">Бош калтырыңыз</label>
+      <input id="id_mk_hp" name="mk_hp" type="text" tabindex="-1" autocomplete="off" value="">
+    </div>
+
+    <button class="feedback-submit" type="submit">Жөнөтүү</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

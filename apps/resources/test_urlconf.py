@@ -27,7 +27,19 @@ SEO_ROUTES = {
     ('', 'robots.txt', 'robots_txt'),
     ('', 'sitemap.xml', 'sitemap'),
     ('', 'menu/', 'menu_fragment'),
+    ('', 'pikir/', 'feedback'),
+    ('', 'pikirler/', 'teacher_comments'),
+    ('', 'page-reaction/', 'page_reaction'),
 }
+
+# Admin changelist routes for models registered after the snapshot.
+# They sit inside the admin include, so a name-only allowlist is not
+# enough: every generated add/change/delete/history path has to go too.
+NEW_ADMIN_MODELS = (
+    'personal/pagereaction/',
+    'personal/pagereactioncount/',
+    'personal/writtenfeedback/',
+)
 
 SAMPLES = {
     'IntConverter': 1,
@@ -89,6 +101,7 @@ def _without_seo_routes(rows):
     return [
         row for row in rows
         if (row['namespace'], row['pattern'], row['name']) not in SEO_ROUTES
+        and not any(part in row['pattern'] for part in NEW_ADMIN_MODELS)
     ]
 
 

@@ -15,6 +15,8 @@ from apps.resources.models import (
     ButtonClick,
     SearchQuery,
     LoginEvent,
+    PageReaction,
+    PageReactionCount,
 )
 
 # Thresholds for the "policy watch" panel - flags patterns worth a human
@@ -504,6 +506,17 @@ def analytics_dashboard_view(request):
     chart_query_labels = [q['query'] for q in top_queries]
     chart_query_counts = [q['searches'] for q in top_queries]
 
+    reaction_faces = {
+        row['face']: row['total']
+        for row in PageReaction.objects.values('face').annotate(total=Count('id'))
+    }
+    reaction_top_happy = list(
+        PageReactionCount.objects.filter(happy_count__gt=0).order_by('-happy_count', 'path')[:8]
+    )
+    reaction_top_sad = list(
+        PageReactionCount.objects.filter(sad_count__gt=0).order_by('-sad_count', 'path')[:8]
+    )
+
     # =========================
     # Context
     # =========================
@@ -586,6 +599,12 @@ def analytics_dashboard_view(request):
         'chart_folder_counts': chart_folder_counts,
         'chart_query_labels': chart_query_labels,
         'chart_query_counts': chart_query_counts,
+
+        'reaction_happy': reaction_faces.get(PageReaction.FACE_HAPPY, 0),
+        'reaction_ok': reaction_faces.get(PageReaction.FACE_OK, 0),
+        'reaction_sad': reaction_faces.get(PageReaction.FACE_SAD, 0),
+        'reaction_top_happy': reaction_top_happy,
+        'reaction_top_sad': reaction_top_sad,
     }
 
     return render(

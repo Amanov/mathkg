@@ -61,4 +61,6 @@ from .pages import (
     search_view, search_suggest_view, pricing_view,
 )
 
+from .feedback import feedback_view, teacher_comments_view, page_reaction_view
+
 from .lesson_set import statistics_lesson_view

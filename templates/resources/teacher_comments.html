@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "teacher_comments" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}?v=20261103a">
+{% endblock %}
+
+{% block content %}
+<div class="feedback-page">
+  <h1>Мугалимдердин пикирлери</h1>
+
+  {% if notes %}
+  <ul class="comment-list">
+    {% for note in notes %}
+    <li class="comment-card">
+      <p class="comment-kind">{{ note.get_kind_display }}</p>
+      <p class="comment-text">{{ note.message|linebreaksbr }}</p>
+      <p class="comment-name">{{ note.public_name }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="feedback-lead">Азырынча жарыяланган пикир жок.</p>
+  {% endif %}
+</div>
+{% endblock %}
