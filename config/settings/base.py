@@ -93,11 +93,13 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
                 # 'apps.resources.views.context_processors.topic_menu',
                 'apps.resources.views.context_processors.menu_items',
+                'apps.resources.views.context_processors.reaction_state',
                 'apps.resources.seo.seo_context',
                 'apps.account.context_processors.active_qr_code',
                 # "apps.resources.views.context_processors.main_menu",

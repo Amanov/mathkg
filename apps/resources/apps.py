@@ -15,3 +15,5 @@ class ResourcesConfig(AppConfig):
         from django.contrib import admin
         admin.site.site_header = 'MathKG'
         admin.site.site_title = 'MathKG'
+        from apps.resources.reactions import connect_signals
+        connect_signals()

@@ -1,6 +1,7 @@
 # apps/resources/views/context_processors.py
 
 from apps.resources.models import MenuItem
+from apps.resources.reactions import VOTED_COOKIE, path_token
 
 
 def root_menu(*, full):
@@ -19,3 +20,14 @@ def root_menu(*, full):
 
 def menu_items(request):
     return {'menu_items': root_menu(full=False)}
+
+
+def reaction_state(request):
+    """Whether this browser already sent a face for the current page.
+
+    Reads the vote cookie only. No database query, so the row stays cheap
+    on every page.
+    """
+    path = getattr(request, 'path', '') or '/'
+    raw = request.COOKIES.get(VOTED_COOKIE, '')
+    return {'reaction_done': path_token(path) in raw.split('.')}

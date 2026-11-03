@@ -39,6 +39,8 @@ EXCLUDED_PATHS = {
     # The topic menu, fetched after the first screen. The links
     # themselves are on /topics/ and in this sitemap.
     '/menu/',
+    # A write-only face counter, not a page.
+    '/page-reaction/',
 }
 
 EXCLUDED_PREFIXES = (

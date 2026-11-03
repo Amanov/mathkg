@@ -1,0 +1,14 @@
+<section class="page-reaction" aria-label="Баракка баа">
+  <p class="page-reaction__ask">Бул бет сизге жактыбы?</p>
+  {% if reaction_done %}
+  <p class="page-reaction__thanks" role="status">Рахмат!</p>
+  {% else %}
+  <form class="page-reaction__form" method="post" action="{% url 'page_reaction' %}">
+    {% csrf_token %}
+    <input type="hidden" name="path" value="{{ request.path }}">
+    <button type="submit" name="face" value="happy">😊 <span>Жакты</span></button>
+    <button type="submit" name="face" value="ok">😐 <span>Жаман эмес</span></button>
+    <button type="submit" name="face" value="sad">🙁 <span>Жаккан жок</span></button>
+  </form>
+  {% endif %}
+</section>

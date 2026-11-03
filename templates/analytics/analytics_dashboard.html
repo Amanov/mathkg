@@ -279,6 +279,59 @@
   </div>
 
   <div class="kpi-group">
+    <div class="kpi-group-label">Page reactions</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">😊 Жакты</div>
+        <div class="kpi-value">{{ reaction_happy }}</div>
+      </div>
+      <div class="kpi-card accent-navy">
+        <div class="kpi-label">😐 Жаман эмес</div>
+        <div class="kpi-value">{{ reaction_ok }}</div>
+      </div>
+      <div class="kpi-card accent-amber">
+        <div class="kpi-label">🙁 Жаккан жок</div>
+        <div class="kpi-value">{{ reaction_sad }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="section">
+      <div class="section-header">Top pages by 😊</div>
+      <table>
+        <thead><tr><th>Page</th><th>😊</th></tr></thead>
+        <tbody>
+          {% for row in reaction_top_happy %}
+          <tr>
+            <td>{{ row.material|default:row.path }}<div style="color: var(--ink-muted); font-size: 12px;">{{ row.path }}</div></td>
+            <td>{{ row.happy_count }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: var(--ink-muted)">No reactions yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <div class="section-header">Top pages by 🙁</div>
+      <table>
+        <thead><tr><th>Page</th><th>🙁</th></tr></thead>
+        <tbody>
+          {% for row in reaction_top_sad %}
+          <tr>
+            <td>{{ row.material|default:row.path }}<div style="color: var(--ink-muted); font-size: 12px;">{{ row.path }}</div></td>
+            <td>{{ row.sad_count }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: var(--ink-muted)">No reactions yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="kpi-group">
     <div class="kpi-group-label">Engagement</div>
     <div class="kpi-row">
       <div class="kpi-card accent-navy">
