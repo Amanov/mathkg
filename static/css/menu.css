@@ -233,6 +233,17 @@
     transform: translateX(2px);
 }
 
+/* Shown in a category panel that was opened before /menu/ finished. */
+.menu-loading {
+    min-height: 44px;
+    padding: 8px 14px;
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-muted);
+    cursor: default;
+}
+
 /* ════════════════════════════════════════════
    FLYOUT PANEL — sits flush against the parent
    panel's edge (shared border line) like an
