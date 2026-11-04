@@ -567,6 +567,41 @@ class LoginEvent(models.Model):
         return f"{self.user.username} - {self.logged_in_at:%Y-%m-%d %H:%M}"
 
 
+class AnalyticsWindow(models.Model):
+    """Singleton cutoff for the staff analytics dashboard.
+
+    When stats_since is set, the dashboard counts events at or after
+    that instant. Clearing it shows all-time totals again. SiteVisit,
+    ButtonClick, SearchQuery, LoginEvent, ResourceDownload, and
+    PageReaction rows are never deleted by this.
+    """
+
+    stats_since = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Analytics window'
+        verbose_name_plural = 'Analytics window'
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        if self.stats_since:
+            return f'since {self.stats_since:%Y-%m-%d %H:%M}'
+        return 'all time'
+
+    @classmethod
+    def stored_since(cls):
+        row = cls.objects.filter(pk=1).only('stats_since').first()
+        return row.stats_since if row else None
+
+    @classmethod
+    def set_since(cls, value):
+        cls.objects.update_or_create(pk=1, defaults={'stats_since': value})
+
+
 # for data driven menu
 
 class MenuItem(models.Model):
