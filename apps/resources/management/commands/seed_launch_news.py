@@ -7,6 +7,15 @@ from apps.resources.models import NewsPost
 NEWS_ITEMS = [
     {
         'published_date': date(2026, 11, 4),
+        'title': 'Каттар no-reply@mathkg.com дарегинен келет',
+        'body': (
+            'Каттоо, сырсөздү калыбына келтирүү жана башка каттар эми '
+            'no-reply@mathkg.com дарегинен, «MathKG» аты менен жөнөтүлөт. '
+            'Жооп жазсаңыз, кат mathematicskgz@gmail.com почтасына келет.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 4),
         'title': 'Күнүмдүк жүктөө Бишкек убактысы менен эсептелет',
         'body': (
             'Бир күндүк жүктөө чеги эми түн ортосунда, Бишкек убактысы '
