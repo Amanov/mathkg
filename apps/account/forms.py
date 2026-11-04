@@ -1,9 +1,8 @@
-from datetime import date
-
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import BaseUserCreationForm, UserCreationForm
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -106,7 +105,7 @@ class RegistrationForm(UserCreationForm):
         self.fields['password2'].help_text = 'Текшерүү үчүн ошол эле сырсөздү кайра жазыңыз.'
         # Evaluated per request, not at import, so the latest allowed day
         # is today rather than the day the process started.
-        self.fields['date_of_birth'].widget.attrs['max'] = date.today().isoformat()
+        self.fields['date_of_birth'].widget.attrs['max'] = timezone.localdate().isoformat()
 
         for field in self.fields.values():
             field.error_messages.setdefault('required', _REQUIRED)
@@ -133,7 +132,7 @@ class RegistrationForm(UserCreationForm):
 
     def clean_date_of_birth(self):
         value = self.cleaned_data.get('date_of_birth')
-        if value and value > date.today():
+        if value and value > timezone.localdate():
             raise forms.ValidationError('Туулган күн келечекте болбошу керек.')
         return value
 

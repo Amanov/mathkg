@@ -1,9 +1,9 @@
-from datetime import datetime
 import random
 
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.utils import timezone
 
 MAX_PDF_SHEETS = 50
 
@@ -195,7 +195,7 @@ def big4_view(request):
         context = {
             "level": level,
             "sheets": sheets,
-            "today": datetime.now().strftime("%d %B %Y"),
+            "today": timezone.localdate().strftime("%d %B %Y"),
         }
 
         html_string = render_to_string("interactive/big4_print.html", context)

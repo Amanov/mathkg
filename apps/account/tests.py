@@ -344,7 +344,7 @@ class DownloadLimitTests(TestCase):
         self.assertEqual(self.user.subscription_end_date, expected)
 
     def test_explicit_subscription_end_overrides_trial(self):
-        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.subscription_end = timezone.localdate() - timedelta(days=1)
         self.assertEqual(self.user.subscription_end_date, self.user.subscription_end)
 
 
@@ -642,10 +642,9 @@ class SubscriptionCalendarTests(TestCase):
         self.assertEqual(response.context['days_left'], 142)
 
     def test_registration_date_and_trial_use_the_active_timezone(self):
-        # 18.09.2026 19:30 UTC is still the 18th in UTC, and already
-        # 19.09.2026 02:30 in Asia/Bangkok. The card and the trial must
-        # agree on that local day. TIME_ZONE in settings is UTC, so this
-        # only shows up when the active timezone is not UTC.
+        # 18.09.2026 19:30 UTC is already 19.09.2026 in Asia/Bishkek
+        # (01:30) and in Asia/Bangkok (02:30). The card and the trial
+        # must agree on that local day, not the stored UTC day.
         self.user.date_joined = datetime(2026, 9, 18, 19, 30, tzinfo=dt_timezone.utc)
         self.user.subscription_end = None
         self.user.trial_days = 7

@@ -198,11 +198,10 @@ class Account(AbstractBaseUser):
         # any access-gating check agree on the same date.
         #
         # The trial starts on the same calendar day the account page
-        # shows for date_joined (the active timezone). date_joined.date()
-        # is the UTC day and ignores TIME_ZONE, so the two would drift
-        # as soon as TIME_ZONE is not UTC. Settings keep TIME_ZONE at
-        # UTC, so both are currently the UTC day — one day behind
-        # Asia/Bishkek from 00:00–06:00 and Asia/Bangkok from 00:00–07:00.
+        # shows for date_joined. That page uses the active timezone
+        # (Asia/Bishkek). date_joined.date() is the stored UTC day, which
+        # is still yesterday in Bishkek from 00:00–06:00, so the trial
+        # uses local_calendar_date instead.
         return self.subscription_end or (
             local_calendar_date(self.date_joined) + timedelta(days=self.trial_days)
         )
@@ -241,9 +240,8 @@ def local_calendar_date(value):
 
     A date is already a calendar day and is returned unchanged. An aware
     datetime is converted with localtime() first. .date() on the stored
-    UTC value ignores TIME_ZONE; this follows it. With TIME_ZONE='UTC'
-    the two days match. They differ in Asia/Bishkek from 00:00–06:00
-    and in Asia/Bangkok from 00:00–07:00, where UTC is still yesterday.
+    UTC value ignores TIME_ZONE. With TIME_ZONE='Asia/Bishkek' that UTC
+    day is still yesterday from 00:00–06:00 local time.
     """
     if isinstance(value, datetime):
         if timezone.is_aware(value):

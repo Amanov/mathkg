@@ -1,7 +1,7 @@
 """Analytics dashboard cutoff: count from a chosen instant, delete nothing."""
 
 import tempfile
-from datetime import datetime, timedelta, timezone as dt_timezone
+from datetime import datetime, time, timedelta, timezone as dt_timezone
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
@@ -345,20 +345,40 @@ class AnalyticsSinceTests(TestCase):
         self.assertEqual(stored_view.context['total_visits'], 1)
         self.assertFalse(stored_view.context['stats_since_temporary'])
 
+    def test_chart_day_follows_the_bishkek_calendar(self):
+        # 02:00 in Bishkek is 20:00 the previous day in UTC. The 30-day
+        # chart must file that visit under today's label, not yesterday's.
+        local_today = timezone.localdate()
+        two_am = timezone.make_aware(
+            datetime.combine(local_today, time(2, 0)),
+            timezone.get_current_timezone(),
+        )
+        self.assertEqual(
+            two_am.astimezone(dt_timezone.utc).date(),
+            local_today - timedelta(days=1),
+        )
+        row = SiteVisit.objects.create(session_key='night', path='/night/')
+        _stamp(SiteVisit, row.pk, visited_at=two_am)
+
+        resp = self.client.get(self.url)
+        by_day = {item['date']: item['visits'] for item in resp.context['traffic_table_rows']}
+        self.assertEqual(by_day[local_today.strftime('%m/%d')], 1)
+        self.assertEqual(by_day[(local_today - timedelta(days=1)).strftime('%m/%d')], 0)
+        self.assertEqual(resp.context['visits_this_week'], 1)
+
     def test_banner_uses_kyrgyz_months_in_the_active_timezone(self):
         instant = datetime(2026, 11, 4, 5, 0, tzinfo=dt_timezone.utc)
-        # TIME_ZONE is UTC, so the same instant reads 05:00 until the
-        # active timezone is Asia/Bishkek (UTC+6), where it is 11:00.
+        # 05:00 UTC is 11:00 in Asia/Bishkek, the site TIME_ZONE.
         self.assertEqual(
             format_stats_since(instant),
-            'Статистика 4-ноябрь 2026, 05:00 баштап эсептелүүдө',
+            'Статистика 4-ноябрь 2026, 11:00 баштап эсептелүүдө',
         )
-        with timezone.override('Asia/Bishkek'):
+        with timezone.override('UTC'):
             self.assertEqual(
                 format_stats_since(instant),
-                'Статистика 4-ноябрь 2026, 11:00 баштап эсептелүүдө',
+                'Статистика 4-ноябрь 2026, 05:00 баштап эсептелүүдө',
             )
-            AnalyticsWindow.set_since(instant)
-            resp = self.client.get(self.url)
+        AnalyticsWindow.set_since(instant)
+        resp = self.client.get(self.url)
         self.assertContains(resp, 'Статистика 4-ноябрь 2026, 11:00 баштап эсептелүүдө')
         self.assertEqual(AnalyticsWindow.stored_since(), instant)
