@@ -80,6 +80,9 @@ class PagesTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'MathKG - сырсөздү калыбына келтирүү')
         self.assertIn('MathKG командасы', mail.outbox[0].body)
+        self.assertIn('https://mathkg.com/reset/', mail.outbox[0].body)
+        self.assertNotIn('testserver', mail.outbox[0].body)
+        self.assertNotIn('railway.app', mail.outbox[0].body)
         self.assertNotIn('MathKGZ', mail.outbox[0].subject)
         self.assertNotIn('MathKGZ', mail.outbox[0].body)
 

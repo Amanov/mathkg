@@ -5,23 +5,36 @@ belong in code comments but shouldn't get lost between sessions either.
 
 ## Custom domain
 
-Not set up yet — the site runs on Railway's default
-`mathkg-production.up.railway.app`. No action needed until you want one.
+`mathkg.com` and `www.mathkg.com` are attached in Railway, and DNS/TLS
+are in place. The app allows those hosts plus
+`mathkg-production.up.railway.app` by default. Requests to `www` or the
+Railway hostname 301 to `https://mathkg.com` with the same path and
+query.
 
-When you do: Railway supports custom domains on the **Trial plan**, no
-upgrade required — you just need to own the domain and point its DNS at
-Railway (Settings → Networking → Custom Domain on the app service).
-
-Then set these on the app service (Variables). Hosts have no scheme;
-the CSRF value needs `https://`:
+No new Railway variables are required for that. Optional overrides
+(Variables tab), if you ever need them:
 
 ```
-EXTRA_ALLOWED_HOSTS=your.domain
-EXTRA_CSRF_TRUSTED_ORIGINS=https://your.domain
+SITE_URL=https://mathkg.com
+EXTRA_ALLOWED_HOSTS=another.example
+EXTRA_CSRF_TRUSTED_ORIGINS=https://another.example
 ```
 
-`/robots.txt` and `/sitemap.xml` pick up that host from the request.
-There is no Site row to edit. See the search-engines section below.
+`SITE_URL` is the origin used in canonical tags, the sitemap, robots.txt,
+and email links. `EXTRA_ALLOWED_HOSTS` is a hostname with no scheme.
+`EXTRA_CSRF_TRUSTED_ORIGINS` needs `https://`. Setting `ALLOWED_HOSTS`
+or `CSRF_TRUSTED_ORIGINS` adds to the defaults; it does not remove
+`mathkg.com`.
+
+`django.contrib.sites` is not installed, so there is no Site row and no
+data migration. `nixpacks.json` does not set a healthcheck path, and
+there is no `railway.toml`. Railway's probe hostname, when you add a
+path later, is `healthcheck.railway.app`. That host is allowed and is
+not redirected (a 301 would fail the deploy).
+
+After this ships, run `python manage.py seed_launch_news` in production
+so the news page mentions the new address. See the search-engines
+section below.
 
 ## Search engines (robots.txt and sitemap.xml)
 
@@ -41,25 +54,19 @@ account and password pages, or the staff dashboard. Resource files do
 not have their own public HTML page; they appear on those topic pages.
 The download URLs stay out of the sitemap.
 
-Absolute URLs use the host that requested the file. `django.contrib.sites`
-is **not** installed. Turning it on would publish `example.com` in every
-`<loc>` until the Site domain was edited in admin, and a custom domain
-would stay wrong until that edit. Leave the sites framework off.
+Absolute URLs use ``SITE_URL`` (`https://mathkg.com`), including when the
+file is fetched from another allowed host. `django.contrib.sites` is
+**not** installed. Leave it off.
 
-The live host `mathkg-production.up.railway.app` is already in
-`ALLOWED_HOSTS` (`config/settings/production.py`). Production must keep
-`DJANGO_SETTINGS_MODULE=config.settings.production` (that is what makes
-`DATABASE_URL` apply).
+The live hosts are in `ALLOWED_HOSTS` (`config/settings/production.py`).
+Production must keep `DJANGO_SETTINGS_MODULE=config.settings.production`
+(that is what makes `DATABASE_URL` apply).
 
-After this is deployed, submit the sitemap in Google Search Console and
-Yandex Webmaster:
+Submit this sitemap in Google Search Console and Yandex Webmaster:
 
 ```
-https://mathkg-production.up.railway.app/sitemap.xml
+https://mathkg.com/sitemap.xml
 ```
-
-Nothing to seed. This does not change a page a teacher sees, so there is
-no news entry.
 
 ## Activation email (Brevo)
 

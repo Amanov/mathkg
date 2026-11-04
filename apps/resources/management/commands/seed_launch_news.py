@@ -6,6 +6,15 @@ from apps.resources.models import NewsPost
 
 NEWS_ITEMS = [
     {
+        'published_date': date(2026, 11, 4),
+        'title': 'Сайт mathkg.com дарегинде ачылат',
+        'body': (
+            'MathKG эми mathkg.com дарегинде ачылат. '
+            'Эски шилтеме жана www.mathkg.com ошол эле баракка өтөт. '
+            'Каттоо жана сырсөз каттарындагы шилтемелер да жаңы даректи колдонот.'
+        ),
+    },
+    {
         'published_date': date(2026, 11, 3),
         'title': 'Пикир калтыруу барагы ачылды',
         'body': (

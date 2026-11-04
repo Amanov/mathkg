@@ -20,7 +20,7 @@ from apps.resources.models import MenuItem
 
 HEADER_JS = Path(__file__).resolve().parents[2] / 'static' / 'js' / 'header.js'
 CHROME = shutil.which('google-chrome') or shutil.which('google-chrome-stable')
-LIVE_HOST = 'mathkg-production.up.railway.app'
+CANONICAL_ORIGIN = 'https://mathkg.com'
 
 
 class MenuSubtreeTests(TestCase):
@@ -68,12 +68,13 @@ class MenuSubtreeTests(TestCase):
 
     def test_sitemap_lists_topics_and_skips_the_menu_fragment(self):
         response = self.client.get(
-            '/sitemap.xml', HTTP_HOST=LIVE_HOST, secure=True,
+            '/sitemap.xml', HTTP_HOST='mathkg.com', secure=True,
         )
         self.assertEqual(response.status_code, 200)
         body = response.content.decode()
-        self.assertIn(f'https://{LIVE_HOST}/topics/', body)
-        self.assertNotIn(f'https://{LIVE_HOST}/menu/', body)
+        self.assertIn(f'{CANONICAL_ORIGIN}/topics/', body)
+        self.assertNotIn(f'{CANONICAL_ORIGIN}/menu/', body)
+        self.assertNotIn('railway.app', body)
 
     def test_header_script_delegates_instead_of_binding_the_first_paint(self):
         source = HEADER_JS.read_text()

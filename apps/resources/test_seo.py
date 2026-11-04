@@ -17,7 +17,7 @@ from apps.resources.models import SiteVisit, SubSubtopic, Subtopic, Topic
 
 CRAWL_PATH = Path(__file__).resolve().parent / 'test_data' / 'crawled_public_paths.txt'
 SITEMAP_NS = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
-LIVE_HOST = 'mathkg-production.up.railway.app'
+CANONICAL_ORIGIN = 'https://mathkg.com'
 
 
 def crawled_paths():
@@ -72,9 +72,9 @@ def sitemap_paths(response):
 
 
 class RobotsAndSitemapTests(TestCase):
-    def test_robots_is_plain_text_and_follows_the_request_host(self):
+    def test_robots_is_plain_text_and_points_at_mathkg(self):
         response = self.client.get(
-            '/robots.txt', HTTP_HOST=LIVE_HOST, secure=True,
+            '/robots.txt', HTTP_HOST='mathkg.com', secure=True,
         )
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response['Content-Type'].startswith('text/plain'))
@@ -86,20 +86,21 @@ class RobotsAndSitemapTests(TestCase):
             'Disallow: /register/\n'
             'Disallow: /resources/download/\n'
             '\n'
-            f'Sitemap: https://{LIVE_HOST}/sitemap.xml\n',
+            f'Sitemap: {CANONICAL_ORIGIN}/sitemap.xml\n',
         )
 
         local = self.client.get('/robots.txt', HTTP_HOST='localhost', secure=True)
         self.assertIn(
-            'Sitemap: https://localhost/sitemap.xml',
+            f'Sitemap: {CANONICAL_ORIGIN}/sitemap.xml',
             local.content.decode(),
         )
-        self.assertNotIn(LIVE_HOST, local.content.decode())
+        self.assertNotIn('railway.app', local.content.decode())
+        self.assertNotIn('localhost', local.content.decode())
         self.assertFalse(SiteVisit.objects.filter(path='/robots.txt').exists())
 
     def test_sitemap_is_xml_and_omits_private_urls(self):
         response = self.client.get(
-            '/sitemap.xml', HTTP_HOST=LIVE_HOST, secure=True,
+            '/sitemap.xml', HTTP_HOST='mathkg.com', secure=True,
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn('application/xml', response['Content-Type'])
@@ -116,10 +117,11 @@ class RobotsAndSitemapTests(TestCase):
         self.assertNotIn('/resources/download/', body)
         self.assertNotIn('/account/', body)
         self.assertNotIn('/dashboard/', body)
-        self.assertNotIn(f'https://{LIVE_HOST}/robots.txt', body)
-        self.assertNotIn(f'https://{LIVE_HOST}/sitemap.xml', body)
+        self.assertNotIn('railway.app', body)
+        self.assertNotIn(f'{CANONICAL_ORIGIN}/robots.txt', body)
+        self.assertNotIn(f'{CANONICAL_ORIGIN}/sitemap.xml', body)
         self.assertTrue(body.startswith('<?xml'))
-        self.assertIn(f'https://{LIVE_HOST}/about/', body)
+        self.assertIn(f'{CANONICAL_ORIGIN}/about/', body)
         self.assertFalse(SiteVisit.objects.filter(path='/sitemap.xml').exists())
 
     def test_sitemap_covers_the_crawled_public_pages(self):
@@ -128,7 +130,7 @@ class RobotsAndSitemapTests(TestCase):
         seed_crawled_topics(crawled)
 
         response = self.client.get(
-            '/sitemap.xml', HTTP_HOST=LIVE_HOST, secure=True,
+            '/sitemap.xml', HTTP_HOST='mathkg.com', secure=True,
         )
         self.assertEqual(response.status_code, 200)
         generated = set(sitemap_paths(response))
@@ -166,9 +168,16 @@ import django
 django.setup()
 from django.conf import settings
 checks = {
+    "apex host": "mathkg.com" in settings.ALLOWED_HOSTS,
+    "www host": "www.mathkg.com" in settings.ALLOWED_HOSTS,
     "live host": "mathkg-production.up.railway.app" in settings.ALLOWED_HOSTS,
+    "healthcheck host": "healthcheck.railway.app" in settings.ALLOWED_HOSTS,
     "custom host": "mathkg.kg" in settings.ALLOWED_HOSTS,
+    "apex origin": "https://mathkg.com" in settings.CSRF_TRUSTED_ORIGINS,
+    "www origin": "https://www.mathkg.com" in settings.CSRF_TRUSTED_ORIGINS,
+    "railway origin": "https://mathkg-production.up.railway.app" in settings.CSRF_TRUSTED_ORIGINS,
     "custom origin": "https://mathkg.kg" in settings.CSRF_TRUSTED_ORIGINS,
+    "site url": settings.SITE_URL == "https://mathkg.com",
     "sitemaps app": "django.contrib.sitemaps" in settings.INSTALLED_APPS,
     "sites app off": "django.contrib.sites" not in settings.INSTALLED_APPS,
     "static url": settings.STATIC_URL == "/static/",

@@ -4,8 +4,11 @@ from .base import *
 
 DEBUG = True
 
+# Same public hosts as production, without the ``.railway.app`` wildcard.
+# base.py already sets this list; keep it here so a local override of
+# base.py cannot drop mathkg.com from the development server.
 ALLOWED_HOSTS = [
-    'mathkg-production.up.railway.app',
+    *PUBLIC_HOSTS,
     'localhost',
     '127.0.0.1',
 ]
