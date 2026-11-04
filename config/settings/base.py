@@ -51,9 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Sitemap templates. The sites framework is deliberately not installed:
-    # a Site row would publish example.com in every <loc> until someone
-    # edited it. Absolute URLs come from the request host instead.
+    # Sitemap templates. django.contrib.sites stays uninstalled: a Site
+    # row would publish example.com until it was edited, and would then
+    # ignore SITE_URL. Absolute URLs use SITE_URL instead.
     'django.contrib.sitemaps',
     # third party extensions
     'crispy_forms',
@@ -65,6 +65,11 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5' #added by me
 
 MIDDLEWARE = [
+    # Before SecurityMiddleware so www and the Railway host go straight
+    # to https://mathkg.com. Scheme upgrades stay in SecurityMiddleware,
+    # which honors SECURE_PROXY_SSL_HEADER and does not loop behind
+    # Railway's proxy. See config/middleware.py.
+    'config.middleware.CanonicalHostMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add here
     # After WhiteNoise so already-compressed static files are not
@@ -230,4 +235,41 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/home'  #added by me
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+def _env_site_url():
+    """Canonical origin. ``SITE_URL=https://mathkg.com`` on Railway overrides it."""
+    raw = os.environ.get('SITE_URL', '').strip().rstrip('/')
+    if not raw:
+        raw = 'https://mathkg.com'
+    elif '://' not in raw:
+        raw = 'https://' + raw
+    return raw
+
+
+def csv_env(name):
+    """Comma-separated env value, blanks dropped."""
+    return [
+        piece.strip()
+        for piece in os.environ.get(name, '').split(',')
+        if piece.strip()
+    ]
+
+
+# Public hosts. production.py adds ``.railway.app`` and any EXTRA_* hosts.
+# healthcheck.railway.app is Railway's deploy-probe Host header. No
+# healthcheck path is configured (nixpacks.json only, no railway.toml),
+# so nothing is probed today. The host is allowed, and it is not in
+# CANONICAL_REDIRECT_HOSTS, so a future probe is not a 400 or a 301.
+CANONICAL_HOST = 'mathkg.com'
+WWW_HOST = 'www.mathkg.com'
+RAILWAY_HOST = 'mathkg-production.up.railway.app'
+HEALTHCHECK_HOST = 'healthcheck.railway.app'
+PUBLIC_HOSTS = [CANONICAL_HOST, WWW_HOST, RAILWAY_HOST, HEALTHCHECK_HOST]
+CANONICAL_REDIRECT_HOSTS = [RAILWAY_HOST, WWW_HOST]
+
+SITE_URL = _env_site_url()
+
+ALLOWED_HOSTS = [
+    *PUBLIC_HOSTS,
+    'localhost',
+    '127.0.0.1',
+]

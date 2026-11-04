@@ -8,7 +8,10 @@ from django.db.utils import OperationalError, ProgrammingError
 # Create your models here.
 from django.conf import settings
 from django.core.mail import send_mail
+from django.urls import reverse
 from django.utils import timezone
+
+from config.absolute_url import absolute_url
 
 logger = getLogger(__name__)
 
@@ -379,10 +382,14 @@ class SubscriptionRequest(models.Model):
         # Best-effort: a failed notification email must never block the
         # request itself from being created.
         try:
+            admin_link = absolute_url(
+                reverse('admin:account_subscriptionrequest_changelist')
+            )
             send_mail(
                 'Жаңы жазылуу суранычы',
                 f'{self.user.email} колдонуучусу "{self.get_plan_display()}" '
-                'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.',
+                'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.\n'
+                f'{admin_link}',
                 None,  # uses settings.DEFAULT_FROM_EMAIL
                 [settings.ADMIN_NOTIFICATION_EMAIL],
                 fail_silently=False,

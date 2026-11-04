@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from django.urls import reverse
 
 from apps.resources.sitemaps import SITEMAPS
+from config.absolute_url import absolute_url
 
 # Same rules as the file prepared for Google and Yandex. The Sitemap
-# line is the only part that follows the host, so a custom domain does
-# not leave robots.txt pointing at the Railway hostname.
+# line is the canonical origin, not the host that fetched robots.txt.
 ROBOTS_TEMPLATE = """\
 User-agent: *
 Allow: /
@@ -19,7 +19,7 @@ Sitemap: {sitemap}
 
 
 def robots_txt(request):
-    sitemap_url = request.build_absolute_uri(reverse('sitemap'))
+    sitemap_url = absolute_url(reverse('sitemap'))
     body = ROBOTS_TEMPLATE.format(sitemap=sitemap_url)
     return HttpResponse(body, content_type='text/plain')
 

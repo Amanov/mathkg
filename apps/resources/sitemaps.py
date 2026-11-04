@@ -1,12 +1,13 @@
 """Public sitemap: lesson routes plus topic pages from the database.
 
-Absolute URLs are built by Django's sitemap view from the request host
-(RequestSite). django.contrib.sites is not installed. A Site row would
-publish example.com in every <loc> until somebody edited it in admin,
-and it would ignore a custom domain until that edit happened.
+Every ``<loc>`` uses ``SITE_URL`` (https://mathkg.com by default), not the
+host that requested the file. django.contrib.sites is not installed, so
+there is no Site row to migrate.
 """
 
 from django.contrib.sitemaps import Sitemap
+
+from config.absolute_url import canonical_netloc, canonical_scheme
 from django.urls import URLResolver, get_resolver
 from django.urls.resolvers import RoutePattern
 
@@ -105,7 +106,16 @@ class _NonEmptySitemap(Sitemap):
     Django's sitemap view turns EmptyPage into a 404 for the whole
     /sitemap.xml file. A database with no topics yet must still publish
     the static lesson pages.
+
+    ``get_protocol`` / ``get_domain`` ignore the request host. The stock
+    view would otherwise publish whatever host fetched ``/sitemap.xml``.
     """
+
+    def get_protocol(self, protocol=None):
+        return canonical_scheme()
+
+    def get_domain(self, site=None):
+        return canonical_netloc()
 
     def get_urls(self, page=1, site=None, protocol=None):
         items = self.items()

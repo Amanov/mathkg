@@ -27,7 +27,8 @@ INK = RGBColor(0x1F, 0x24, 0x30)
 FOOTER = 'MathKG · Математика кыргызча'
 CRUMB = 'Алгебра · Киришүү'
 TOPIC = 'Тилкеден x ке'
-NEXT_URL = 'https://www.mathkg.com/algebra-intro-definitions/'
+# Hyperlink only. The slide text stays «Аныктамалар». Matches SITE_URL.
+NEXT_URL = 'https://mathkg.com/algebra-intro-definitions/'
 EMAIL = 'mathematicskgz@gmail.com'
 
 

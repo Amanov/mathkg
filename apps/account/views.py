@@ -1,11 +1,12 @@
 from logging import getLogger
+from urllib.parse import urlsplit
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
-from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
 from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -13,6 +14,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
+
+from config.absolute_url import absolute_url
 
 from apps.resources.models import LoginEvent
 from apps.resources.utils.request_helpers import get_client_ip
@@ -58,15 +61,17 @@ def send_activation_email(request, user):
     # Shared by registration (first send) and resend_activation_view (a
     # fresh link after the first one expired or never arrived) - one
     # place to generate the token and send the email, so the two can
-    # never drift into sending different message text.
+    # never drift into sending different message text. The link uses
+    # SITE_URL, not the request host: Railway's proxy host must not
+    # land in the message. ``request`` stays in the signature because
+    # both callers pass it.
     # A failed send is logged and must not fail the request: Railway
     # blocks SMTP, and the Brevo backend already swallows its own
     # errors. This catch stays so a different backend cannot turn
     # registration into a 500 either.
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
-    domain = get_current_site(request).domain
-    activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
+    activation_link = absolute_url(f'/activate/{uidb64}/{token}/')
 
     try:
         send_mail(
@@ -330,6 +335,17 @@ class RateLimitedPasswordResetView(auth_views.PasswordResetView):
     rate-limit it the same way as login/registration, since a plain
     function decorator can't be applied to a class-based view's
     as_view() the same way.
+
+    The reset link uses SITE_URL. Django would otherwise put the request
+    host in the message, which behind Railway is the proxy host.
     """
+
+    def form_valid(self, form):
+        parts = urlsplit(settings.SITE_URL)
+        self.extra_email_context = {
+            'protocol': parts.scheme or 'https',
+            'domain': parts.netloc,
+        }
+        return super().form_valid(form)
 
 

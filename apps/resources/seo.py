@@ -12,6 +12,8 @@ from django.templatetags.static import static
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+from config.absolute_url import absolute_url
+
 from apps.resources.continuum import continuum_for_href
 
 SITE = 'MathKG'
@@ -318,7 +320,7 @@ def canonical_url(request):
     # /home/ renders the same page as /. One canonical.
     if match is not None and match.url_name == 'home':
         path = '/'
-    return request.build_absolute_uri(path)
+    return absolute_url(path)
 
 
 def seo_context(request):
@@ -327,7 +329,7 @@ def seo_context(request):
         'seo_title': SITE,
         'seo_description': HOME_DESCRIPTION,
         'seo_canonical': canonical_url(request),
-        'seo_image': request.build_absolute_uri(static('img/logo.jpg')),
+        'seo_image': absolute_url(static('img/logo.jpg')),
         'seo_jsonld': '',
     }
 
@@ -451,7 +453,7 @@ def head_tags(title, description, canonical, image, jsonld, keywords=''):
 def apply_seo(context, title, description, kind, name='', grade=''):
     request = context['request']
     canonical = canonical_url(request)
-    image = request.build_absolute_uri(static('img/logo.jpg'))
+    image = absolute_url(static('img/logo.jpg'))
     keywords = ''
     if kind == 'home':
         jsonld = home_jsonld_with_logo(canonical, image)

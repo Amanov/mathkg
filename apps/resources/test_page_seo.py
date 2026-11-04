@@ -142,16 +142,19 @@ class PageSeoTests(TestCase):
         self.assertIn(f'<title>{HOME_TITLE}</title>', html)
         self.assertEqual(_meta(html, 'description'), HOME_DESCRIPTION)
         self.assertIn('lang="ky"', html)
-        self.assertIn('<link rel="canonical" href="http://testserver/">', html)
+        self.assertIn('<link rel="canonical" href="https://mathkg.com/">', html)
         self.assertEqual(_prop(html, 'og:title'), HOME_TITLE)
         self.assertEqual(_prop(html, 'og:description'), HOME_DESCRIPTION)
         self.assertEqual(_prop(html, 'og:locale'), 'ky_KG')
-        self.assertEqual(_prop(html, 'og:url'), 'http://testserver/')
+        self.assertEqual(_prop(html, 'og:url'), 'https://mathkg.com/')
+        self.assertTrue(_prop(html, 'og:image').startswith('https://mathkg.com/'))
         self.assertTrue(_prop(html, 'og:image').endswith('/static/img/logo.jpg'))
         data = _jsonld(html)
         types = {node['@type'] for node in data['@graph']}
         self.assertEqual(types, {'Organization', 'WebSite'})
         self.assertEqual(data['@graph'][1]['inLanguage'], 'ky')
+        self.assertEqual(data['@graph'][0]['url'], 'https://mathkg.com/')
+        self.assertEqual(data['@graph'][1]['url'], 'https://mathkg.com/')
         self.assertNotIn('Something else here', html)
         self.assertNotIn('Gello somethin', html)
         self.assertNotIn('hreflang', html)
@@ -170,7 +173,7 @@ class PageSeoTests(TestCase):
 
         alias = self.client.get('/home/')
         self.assertIn(
-            '<link rel="canonical" href="http://testserver/">',
+            '<link rel="canonical" href="https://mathkg.com/">',
             alias.content.decode(),
         )
 

@@ -33,7 +33,9 @@ class RegistrationAndActivationTests(TestCase):
         self.assertFalse(user.is_active)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'MathKG: каттоону тастыктаңыз')
-        self.assertIn('/activate/', mail.outbox[0].body)
+        self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
+        self.assertNotIn('railway.app', mail.outbox[0].body)
+        self.assertNotIn('testserver', mail.outbox[0].body)
         self.assertIn('катталганыңыз үчүн рахмат', mail.outbox[0].body)
         self.assertIn('7 күн акысыз', mail.outbox[0].body)
         self.assertIn('MathKG командасы', mail.outbox[0].body)
@@ -201,7 +203,8 @@ class ResendActivationTests(TestCase):
         response = self.client.post(reverse('resend_activation'), {'email': 'pending@example.com'})
         self.assertRedirects(response, reverse('login'))
         self.assertEqual(len(mail.outbox), 1)
-        self.assertIn('/activate/', mail.outbox[0].body)
+        self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
+        self.assertNotIn('railway.app', mail.outbox[0].body)
 
     def test_resend_shows_the_same_message_for_an_unknown_email(self):
         response = self.client.post(
@@ -357,6 +360,11 @@ class SubscriptionRequestNotificationTests(TestCase):
         SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn('payer@example.com', mail.outbox[0].body)
+        self.assertIn(
+            'https://mathkg.com/admin/account/subscriptionrequest/',
+            mail.outbox[0].body,
+        )
+        self.assertNotIn('railway.app', mail.outbox[0].body)
         from django.conf import settings
         self.assertEqual(mail.outbox[0].to, [settings.ADMIN_NOTIFICATION_EMAIL])
 
