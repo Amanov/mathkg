@@ -150,7 +150,7 @@ class DownloadEligibilityDisplayTests(TestCase):
         self.client.login(email='eligibility@example.com', password='SuperSecret123!')
 
     def _expire_subscription(self):
-        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.subscription_end = timezone.localdate() - timedelta(days=1)
         self.user.save(update_fields=['subscription_end'])
 
     def test_operation_block_shows_renewal_prompt_when_subscription_expired(self):
@@ -371,7 +371,7 @@ class DownloadLimitEnforcementTests(TestCase):
         self.assertIn('/login/', resp.url)
 
     def test_expired_subscription_blocks_before_the_limit_check_runs(self):
-        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.subscription_end = timezone.localdate() - timedelta(days=1)
         self.user.save(update_fields=['subscription_end'])
         resource = self._make_resource('presentation', 'P')
         resp = self.client.get(reverse('download_resource', args=[resource.pk]), follow=True)
@@ -419,7 +419,7 @@ class FreeDownloadTests(TestCase):
         self._account(
             'expired-free@example.com',
             SubscriptionRequest.PLAN_THREE_MONTHS,
-            timezone.now().date() - timedelta(days=1),
+            timezone.localdate() - timedelta(days=1),
         )
         self.client.login(email='expired-free@example.com', password='SuperSecret123!')
         free_resp = self.client.get(reverse('download_resource', args=[self.free.pk]))
@@ -432,7 +432,7 @@ class FreeDownloadTests(TestCase):
         self._account(
             'active-free@example.com',
             SubscriptionRequest.PLAN_ONE_YEAR,
-            timezone.now().date() + timedelta(days=30),
+            timezone.localdate() + timedelta(days=30),
         )
         self.client.login(email='active-free@example.com', password='SuperSecret123!')
         for resource in (self.free, self.paid):

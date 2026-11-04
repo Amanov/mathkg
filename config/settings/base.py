@@ -188,7 +188,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# Kyrgyzstan. USE_TZ stays on, so rows in the database remain UTC.
+# This setting is what localdate(), template dates, admin timestamps,
+# and date lookups (the analytics windows, "downloaded today") follow.
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 

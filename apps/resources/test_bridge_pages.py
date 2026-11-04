@@ -89,7 +89,7 @@ class BridgePageTests(TestCase):
         )
         user.is_active = True
         user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
-        user.subscription_end = timezone.now().date() + timedelta(days=30)
+        user.subscription_end = timezone.localdate() + timedelta(days=30)
         user.save(update_fields=['is_active', 'current_plan', 'subscription_end'])
         self.client.login(email='bridge@example.com', password='SuperSecret123!')
 
@@ -165,7 +165,7 @@ class BridgePageTests(TestCase):
         )
         user.is_active = True
         user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
-        user.subscription_end = timezone.now().date() + timedelta(days=30)
+        user.subscription_end = timezone.localdate() + timedelta(days=30)
         user.save(update_fields=['is_active', 'current_plan', 'subscription_end'])
         self.client.login(email='barto@example.com', password='SuperSecret123!')
         response = self.client.get(reverse('download_resource', args=[resource.pk]))

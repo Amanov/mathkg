@@ -169,7 +169,7 @@ def analytics_dashboard_view(request):
         action = request.POST.get('action')
         if action == 'since_now':
             # timezone.now() is an absolute instant. The banner renders
-            # it in TIME_ZONE (UTC here; Asia/Bishkek if that is set).
+            # it in TIME_ZONE (Asia/Bishkek).
             AnalyticsWindow.set_since(timezone.now())
         elif action == 'clear':
             AnalyticsWindow.set_since(None)
@@ -177,7 +177,9 @@ def analytics_dashboard_view(request):
 
     since, stats_since_temporary, stats_since_input = resolve_dashboard_since(request)
 
-    today = timezone.now().date()
+    # Calendar day in Asia/Bishkek. timezone.now().date() is the UTC day,
+    # which is still yesterday here from 00:00–06:00.
+    today = timezone.localdate()
 
     week_ago = today - timedelta(days=7)
     month_ago = today - timedelta(days=30)
@@ -416,6 +418,8 @@ def analytics_dashboard_view(request):
     # Policy Watch - possible ToS violations
     # =========================
 
+    # Rolling windows from an aware instant, not a calendar date, so a
+    # "24 hours" or "7 days" cutoff is the same length in Bishkek as in UTC.
     shared_ip_cutoff = timezone.now() - timedelta(hours=SHARED_IP_WINDOW_HOURS)
 
     flagged_shared_ip_accounts = (

@@ -255,7 +255,9 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
         if obj.status != SubscriptionRequest.STATUS_CONFIRMED:
             return "—"
         if obj.activated_at:
-            return obj.activated_at.strftime('%Y-%m-%d %H:%M')
+            # strftime on the stored value prints UTC. The admin should
+            # show the same Asia/Bishkek clock as the rest of the site.
+            return timezone.localtime(obj.activated_at).strftime('%Y-%m-%d %H:%M')
         return "ЖОК - колдонуучу али активдештирилген эмес"
 
     @admin.action(description='Тандалган: төлөмдү ырастоо жана жазылууну активдештирүү')
