@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta, timezone as dt_timezone
 from io import StringIO
 from unittest.mock import patch
 
+from django.conf import settings
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.management import call_command
@@ -11,6 +12,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
+from apps.account.email_backends import default_reply_to_list
 from apps.resources.models import Resource, ResourceDownload
 
 from .models import Account, SubscriptionRequest, add_months, local_calendar_date
@@ -33,6 +35,8 @@ class RegistrationAndActivationTests(TestCase):
         self.assertFalse(user.is_active)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'MathKG: каттоону тастыктаңыз')
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(list(mail.outbox[0].reply_to), default_reply_to_list())
         self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
         self.assertNotIn('railway.app', mail.outbox[0].body)
         self.assertNotIn('testserver', mail.outbox[0].body)
@@ -53,7 +57,7 @@ class RegistrationAndActivationTests(TestCase):
         self.assertTrue(Account.objects.filter(email='nodob@example.com', is_active=False).exists())
 
     def test_registration_succeeds_when_activation_email_raises(self):
-        with patch('apps.account.views.send_mail', side_effect=OSError('smtp blocked')):
+        with patch('apps.account.views.EmailMessage.send', side_effect=OSError('smtp blocked')):
             response = self._register()
         self.assertRedirects(response, reverse('check_email'))
         self.assertTrue(Account.objects.filter(email='newuser@example.com').exists())
@@ -367,6 +371,8 @@ class SubscriptionRequestNotificationTests(TestCase):
         self.assertNotIn('railway.app', mail.outbox[0].body)
         from django.conf import settings
         self.assertEqual(mail.outbox[0].to, [settings.ADMIN_NOTIFICATION_EMAIL])
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(list(mail.outbox[0].reply_to), ['payer@example.com'])
 
     def test_activating_an_existing_request_does_not_send_a_second_notification(self):
         request = SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)

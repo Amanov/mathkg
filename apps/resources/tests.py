@@ -2,6 +2,7 @@ import tempfile
 from datetime import date, timedelta
 from io import StringIO
 
+from django.conf import settings
 from django.contrib import admin
 from django.core import mail
 from django.core.cache import cache
@@ -11,6 +12,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
+from apps.account.email_backends import default_reply_to_list
 from apps.account.models import Account, SubscriptionRequest
 from apps.resources.free_download import choose_free_resource
 from apps.resources.models import NewsPost, PageFreeDownload, Resource, ResourceDownload, SearchQuery
@@ -78,6 +80,8 @@ class PagesTests(TestCase):
         response = self.client.post(reverse('password_reset'), {'email': 'reset@example.com'})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(list(mail.outbox[0].reply_to), default_reply_to_list())
         self.assertEqual(mail.outbox[0].subject, 'MathKG - сырсөздү калыбына келтирүү')
         self.assertIn('MathKG командасы', mail.outbox[0].body)
         self.assertIn('https://mathkg.com/reset/', mail.outbox[0].body)

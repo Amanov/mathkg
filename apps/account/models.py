@@ -7,7 +7,7 @@ from django.db import connections, models, router, transaction
 from django.db.utils import OperationalError, ProgrammingError
 # Create your models here.
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.utils import timezone
 
@@ -383,15 +383,17 @@ class SubscriptionRequest(models.Model):
             admin_link = absolute_url(
                 reverse('admin:account_subscriptionrequest_changelist')
             )
-            send_mail(
+            # Reply goes to the teacher who asked to subscribe, so the
+            # inbox can answer them. The From address stays the site sender.
+            EmailMessage(
                 'Жаңы жазылуу суранычы',
                 f'{self.user.email} колдонуучусу "{self.get_plan_display()}" '
                 'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.\n'
                 f'{admin_link}',
-                None,  # uses settings.DEFAULT_FROM_EMAIL
+                settings.DEFAULT_FROM_EMAIL,
                 [settings.ADMIN_NOTIFICATION_EMAIL],
-                fail_silently=False,
-            )
+                reply_to=[self.user.email] if self.user.email else None,
+            ).send(fail_silently=False)
         except Exception as e:
             logger.error(f"Failed to send subscription-request notification: {e}")
 

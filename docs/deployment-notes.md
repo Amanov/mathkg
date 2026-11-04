@@ -78,9 +78,28 @@ through Brevo's HTTP API when this variable is set on the app service:
 BREVO_API_KEY=<key from Brevo → SMTP & API → API keys>
 ```
 
-Sender is fixed: `MathKG <mathematicskgz@gmail.com>` (verify that
-address in Brevo). A failed or missing key is logged; registration
-still succeeds. There is no migration for this.
+Sender defaults to `MathKG <no-reply@mathkg.com>` (the mathkg.com domain
+is authenticated in Brevo). Optional overrides, unset unless you need
+them:
+
+```
+BREVO_SENDER_EMAIL=no-reply@mathkg.com
+BREVO_SENDER_NAME=MathKG
+DEFAULT_FROM_EMAIL=MathKG <no-reply@mathkg.com>
+DEFAULT_REPLY_TO_EMAIL=mathematicskgz@gmail.com
+```
+
+`DEFAULT_FROM_EMAIL`, when set, is the whole From header and wins over
+`BREVO_SENDER_EMAIL`. Reply-To defaults to the admin inbox
+(`ADMIN_NOTIFICATION_EMAIL`, otherwise `mathematicskgz@gmail.com`)
+because `no-reply@mathkg.com` has no mailbox. A failed or missing key
+is logged; registration still succeeds. There is no migration for this.
+
+If an older `DEFAULT_FROM_EMAIL` is still set to the Gmail address or
+to `noreply@mathkg.com` (no hyphen), remove it or set it to
+`MathKG <no-reply@mathkg.com>`. Before this change that variable was
+ignored whenever `BREVO_API_KEY` was set, so a stale value would start
+to take effect on the next deploy.
 
 ## Resource thumbnails auto-convert to WebP (2026-10-08)
 

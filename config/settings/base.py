@@ -121,6 +121,25 @@ AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+def sender_settings_from_env(environ=None):
+    """From-address for every site email.
+
+    ``DEFAULT_FROM_EMAIL`` in the environment, when set, is the whole
+    header (``Name <email>`` or a bare address) and wins. Otherwise the
+    header is ``{BREVO_SENDER_NAME} <{BREVO_SENDER_EMAIL}>``. Both
+    default so Railway can change the sender without a code change.
+    The domain default is ``MathKG <no-reply@mathkg.com>``.
+    """
+    env = os.environ if environ is None else environ
+    name = (env.get('BREVO_SENDER_NAME') or 'MathKG').strip() or 'MathKG'
+    email = (env.get('BREVO_SENDER_EMAIL') or 'no-reply@mathkg.com').strip() or 'no-reply@mathkg.com'
+    explicit = (env.get('DEFAULT_FROM_EMAIL') or '').strip()
+    header = explicit or f'{name} <{email}>'
+    return {'name': name, 'email': email, 'header': header}
+
+
+_SENDER = sender_settings_from_env()
+
 # Email: Brevo's HTTP API when BREVO_API_KEY is set. Railway blocks
 # outbound SMTP, and a blocked SMTP connection hangs until the worker
 # is killed, which turns registration into a 500. The Brevo backend
@@ -130,15 +149,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Without the key, mail is printed to the console. EMAIL_HOST is only
 # used when Brevo is not configured (local SMTP); do not rely on it
 # on Railway.
+#
+# The From address stays on the authenticated mathkg.com domain.
+# BREVO_SENDER is the same header as DEFAULT_FROM_EMAIL; the backend
+# reads DEFAULT_FROM_EMAIL first. Do not replace it with a hardcoded
+# address when the API key is present — that used to pin every message
+# to mathematicskgz@gmail.com and ignore the environment.
 BREVO_API_KEY = os.environ.get('BREVO_API_KEY', '')
-BREVO_SENDER = 'MathKG <mathematicskgz@gmail.com>'
+BREVO_SENDER_NAME = _SENDER['name']
+BREVO_SENDER_EMAIL = _SENDER['email']
+DEFAULT_FROM_EMAIL = _SENDER['header']
+BREVO_SENDER = DEFAULT_FROM_EMAIL
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@mathkg.com')
 
 if BREVO_API_KEY:
     EMAIL_BACKEND = 'apps.account.email_backends.BrevoEmailBackend'
-    DEFAULT_FROM_EMAIL = BREVO_SENDER
 elif os.environ.get('EMAIL_HOST'):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = os.environ['EMAIL_HOST']
@@ -147,11 +173,16 @@ elif os.environ.get('EMAIL_HOST'):
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
     EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'true').lower() == 'true'
 
-# Where operational notifications go (a new SubscriptionRequest, etc.) -
-# the site owner's own inbox, already shown as the public contact address
-# throughout the site's templates. Overridable via env var for the same
-# reason DEFAULT_FROM_EMAIL is.
-ADMIN_NOTIFICATION_EMAIL = os.environ.get('ADMIN_NOTIFICATION_EMAIL', 'mathematicskgz@gmail.com')
+# Where operational notifications go (a new SubscriptionRequest, etc.).
+# This inbox is also the public contact address on the site, and the
+# Reply-To on mail sent to teachers: no-reply@mathkg.com has no mailbox.
+# Overridable via env var for the same reason DEFAULT_FROM_EMAIL is.
+ADMIN_NOTIFICATION_EMAIL = (
+    os.environ.get('ADMIN_NOTIFICATION_EMAIL') or 'mathematicskgz@gmail.com'
+).strip()
+DEFAULT_REPLY_TO_EMAIL = (
+    os.environ.get('DEFAULT_REPLY_TO_EMAIL') or ADMIN_NOTIFICATION_EMAIL
+).strip()
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

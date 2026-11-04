@@ -7,7 +7,9 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.template import loader
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
@@ -19,6 +21,8 @@ from config.absolute_url import absolute_url
 
 from apps.resources.models import LoginEvent
 from apps.resources.utils.request_helpers import get_client_ip
+
+from apps.account.email_backends import default_reply_to_list
 
 from .models import Account, SubscriptionRequest
 from .forms import (
@@ -74,13 +78,13 @@ def send_activation_email(request, user):
     activation_link = absolute_url(f'/activate/{uidb64}/{token}/')
 
     try:
-        send_mail(
+        EmailMessage(
             ACTIVATION_EMAIL_SUBJECT,
             activation_email_body(activation_link),
-            None,  # uses settings.DEFAULT_FROM_EMAIL
+            settings.DEFAULT_FROM_EMAIL,
             [user.email],
-            fail_silently=False,
-        )
+            reply_to=default_reply_to_list(),
+        ).send(fail_silently=False)
     except Exception:
         logger.exception('Failed to send activation email to %s', user.email)
 
@@ -324,6 +328,39 @@ def check_email_view(request):
     return render(request, 'account/check_email.html')
 
 
+class SitePasswordResetForm(PasswordResetForm):
+    """Password-reset mail, with Reply-To set to the real inbox.
+
+    Django's form sends from DEFAULT_FROM_EMAIL and does not set
+    Reply-To. no-reply@mathkg.com has no mailbox, so a teacher who
+    answers the reset message needs to reach mathematicskgz@gmail.com.
+    """
+
+    def send_mail(
+        self,
+        subject_template_name,
+        email_template_name,
+        context,
+        from_email,
+        to_email,
+        html_email_template_name=None,
+    ):
+        subject = loader.render_to_string(subject_template_name, context)
+        subject = ''.join(subject.splitlines())
+        body = loader.render_to_string(email_template_name, context)
+        email_message = EmailMultiAlternatives(
+            subject,
+            body,
+            from_email,
+            [to_email],
+            reply_to=default_reply_to_list(),
+        )
+        if html_email_template_name is not None:
+            html_email = loader.render_to_string(html_email_template_name, context)
+            email_message.attach_alternative(html_email, 'text/html')
+        email_message.send()
+
+
 @method_decorator(
     ratelimit(key=ratelimit_key, rate='5/h', method='POST', block=True),
     name='dispatch',
@@ -339,6 +376,8 @@ class RateLimitedPasswordResetView(auth_views.PasswordResetView):
     The reset link uses SITE_URL. Django would otherwise put the request
     host in the message, which behind Railway is the proxy host.
     """
+
+    form_class = SitePasswordResetForm
 
     def form_valid(self, form):
         parts = urlsplit(settings.SITE_URL)
