@@ -33,46 +33,6 @@ p.hero-line {
   line-height: 1.2;
   margin-top: 0;
 }
-.home-test-card {
-  max-width: 640px;
-  margin: 0 auto 1.5rem;
-  padding: 20px 22px;
-  text-align: left;
-  background: var(--surface-alt);
-  border: 2px solid var(--color-border-accent);
-  border-radius: var(--radius-md);
-}
-.home-test-card__title {
-  margin: 0 0 6px;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.home-test-card__text {
-  margin: 0 0 14px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-.home-test-card__link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  background: var(--color-border-accent);
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-}
-.home-test-card__link:hover,
-.home-test-card__link:focus-visible {
-  color: #fff;
-  filter: brightness(1.08);
-}
-.home-test-card__link:focus-visible {
-  outline: 2px solid var(--color-navy);
-  outline-offset: 2px;
-}
 .zoom {
    padding: 5px; 
   /* background-color: green; */

@@ -66,9 +66,32 @@ class SampleBankTests(TestCase):
         self.assertEqual(Decimal('0.75'), Fraction(3, 4))
         self.assertEqual(by_key['ulgu-d-area']['answer'], '7')
         self.assertEqual(Decimal('3.5') * 2, 7)
+        self.assertEqual(by_key['ulgu-tf-half']['answer'], 'А')
+        self.assertEqual(Decimal('0.5'), Fraction(1, 2))
+        self.assertEqual(by_key['ulgu-tf-quarter']['answer'], 'Б')
+        self.assertLess(Fraction(1, 4), Fraction(1, 2))
+        self.assertEqual(by_key['ulgu-match-fdp']['answer'], '1–В, 2–А, 3–Б')
+        self.assertEqual(Decimal('0.25'), Fraction(1, 4))
+        self.assertEqual(Decimal('0.75'), Fraction(3, 4))
+        self.assertEqual(by_key['ulgu-blank-half']['answer'], '1')
+        self.assertEqual(by_key['ulgu-blank-sixth']['answer'], '1')
+        self.assertEqual(Fraction(3, 6), Fraction(1, 2))
+        formats = {row.get('question_format') or (
+            'choice' if row['question_type'] == 'multiple_choice' else 'written'
+        ) for row in SAMPLE_QUESTIONS}
+        self.assertEqual(
+            formats,
+            {'choice', 'written', 'true_false', 'matching', 'fill_blank'},
+        )
 
         for row in SAMPLE_QUESTIONS:
-            text = row['text'] + row['answer'] + ''.join(row['options'].values())
+            option_bits = []
+            for value in row['options'].values():
+                if isinstance(value, dict):
+                    option_bits.extend(value.values())
+                else:
+                    option_bits.append(value)
+            text = row['text'] + row['answer'] + row.get('solution', '') + ''.join(option_bits)
             self.assertNotIn('чеч', text)
             self.assertNotIn('оқушы', text)
             self.assertNotRegex(text, r'\d+\.\d+')
@@ -76,7 +99,10 @@ class SampleBankTests(TestCase):
                 self.assertIn('Маселени чыгар', row['text'])
             if 'алма' in row['text']:
                 self.assertIn('окуучу', text.casefold())
-            if row['question_type'] == 'multiple_choice':
+            if row.get('question_format') == 'true_false':
+                self.assertEqual(set(row['options']), {'А', 'Б'})
+                self.assertIn(row['answer'], row['options'])
+            elif row['question_type'] == 'multiple_choice':
                 self.assertEqual(set(row['options']), {'А', 'Б', 'В', 'Г'})
                 self.assertIn(row['answer'], row['options'])
             self.assertIn(row['grade'], (5, 6))
@@ -97,6 +123,8 @@ class SampleBankTests(TestCase):
         self.assertIn('grade', registered.list_filter)
         self.assertIn('topic', registered.list_filter)
         self.assertIn('difficulty', registered.list_filter)
+        self.assertIn('question_format', registered.list_filter)
+        self.assertEqual(Question._meta.get_field('difficulty').verbose_name, 'Деңгээл')
 
     def test_single_grade_badge_only(self):
         self.assertEqual(single_grade_number('5 кл.'), '5')
@@ -133,6 +161,7 @@ class TestMakerPageTests(TestCase):
             'question_count': 5,
             'difficulty_mix': GeneratedTest.MIX_EQUAL,
             'variant_count': 2,
+            'format_mode': 'mixed',
         }
         data.update(overrides)
         return self.client.post(reverse('test_maker'), data, follow=follow)
@@ -156,6 +185,13 @@ class TestMakerPageTests(TestCase):
         )
         self.assertIn('checked', tag)
         self.assertIn('Бул айда 0 / 3', html)
+        self.assertIn('Деңгээл', html)
+        self.assertIn('Суроолордун түрү', html)
+        self.assertIn('Туура/туура эмес', html)
+        self.assertIn('Дал келтирүү', html)
+        self.assertIn('Боштукту толтуруу', html)
+        self.assertNotIn('Кыйындык', html)
+        self.assertNotIn('кыйындык', html)
 
     def test_generates_variants_without_repeats_and_a_pdf(self):
         self.client.force_login(self.user)
@@ -253,6 +289,7 @@ class TestMakerPageTests(TestCase):
     def test_hard_only_borrows_when_the_bank_is_short(self):
         self.client.force_login(self.user)
         response = self._post(
+            format_mode='written',
             difficulty_mix=GeneratedTest.MIX_HARD,
             question_count=3,
             variant_count=1,
@@ -264,10 +301,57 @@ class TestMakerPageTests(TestCase):
         ids = [item['id'] for item in generated.payload['variants'][0]['questions']]
         self.assertEqual(len(ids), len(set(ids)))
 
+    def test_each_question_format_can_appear_on_the_paper(self):
+        self.client.force_login(self.user)
+        written = self._post(
+            format_mode='written',
+            question_count=2,
+            variant_count=1,
+            follow=True,
+        )
+        self.assertEqual(written.status_code, 200)
+        paper = GeneratedTest.objects.get(user=self.user).payload
+        items = paper['variants'][0]['questions']
+        self.assertTrue(all(item['format'] == 'written' for item in items))
+        self.assertTrue(any(item['solution'] for item in items))
+        from django.template.loader import render_to_string
+        html = render_to_string('resources/test_maker_pdf.html', {
+            'test': paper,
+            'font_regular': 'about:blank',
+            'font_bold': 'about:blank',
+        })
+        self.assertIn('write-line', html)
+        self.assertIn('Деңгээл:', html)
+
+        GeneratedTest.objects.all().delete()
+        mixed = self._post(
+            format_mode='mixed',
+            extra_formats=['true_false', 'matching', 'fill_blank'],
+            question_count=6,
+            variant_count=1,
+            follow=True,
+        )
+        self.assertEqual(mixed.status_code, 200)
+        mixed_paper = GeneratedTest.objects.get(user=self.user).payload
+        formats = {item['format'] for item in mixed_paper['variants'][0]['questions']}
+        self.assertEqual(
+            formats,
+            {'choice', 'written', 'true_false', 'matching', 'fill_blank'},
+        )
+        key = render_to_string('resources/test_maker_pdf.html', {
+            'test': mixed_paper,
+            'font_regular': 'about:blank',
+            'font_bold': 'about:blank',
+        })
+        self.assertIn('1/2 = 0,5', key)
+        self.assertIn('Туура', key)
+        self.assertIn('class="match"', key)
+
     def test_links_on_home_menu_and_topic_page(self):
         home = self.client.get(reverse('home'))
         html = home.content.decode()
-        self.assertIn('home-test-card', html)
+        self.assertNotIn('home-test-card', html)
+        self.assertNotIn('бир нече варианттан турган тестти даярдаңыз', html)
         self.assertIn(reverse('test_maker'), html)
         self.assertIn('header-test-link', html)
         self.assertEqual(headings(html)['h1'], ['Мугалимдер үчүн заманбап математикалык ресурстар'])

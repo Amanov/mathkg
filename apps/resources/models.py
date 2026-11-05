@@ -882,6 +882,19 @@ class Question(models.Model):
         (TYPE_WORD_PROBLEM, 'Тексттик маселе'),
     ]
 
+    FORMAT_CHOICE = 'choice'
+    FORMAT_WRITTEN = 'written'
+    FORMAT_TRUE_FALSE = 'true_false'
+    FORMAT_MATCHING = 'matching'
+    FORMAT_FILL_BLANK = 'fill_blank'
+    FORMAT_CHOICES = [
+        (FORMAT_CHOICE, 'Тест (жооп тандоо)'),
+        (FORMAT_WRITTEN, 'Классикалык (жазуу менен чыгаруу)'),
+        (FORMAT_TRUE_FALSE, 'Туура/туура эмес'),
+        (FORMAT_MATCHING, 'Дал келтирүү'),
+        (FORMAT_FILL_BLANK, 'Боштукту толтуруу'),
+    ]
+
     DIFFICULTY_EASY = 'easy'
     DIFFICULTY_MEDIUM = 'medium'
     DIFFICULTY_HARD = 'hard'
@@ -902,9 +915,15 @@ class Question(models.Model):
         verbose_name='Тема',
     )
     difficulty = models.CharField(
-        'Кыйындык',
+        'Деңгээл',
         max_length=16,
         choices=DIFFICULTY_CHOICES,
+    )
+    question_format = models.CharField(
+        'Суроонун түрү',
+        max_length=32,
+        choices=FORMAT_CHOICES,
+        default=FORMAT_CHOICE,
     )
     question_type = models.CharField(
         'Түрү',
@@ -922,6 +941,11 @@ class Question(models.Model):
         'Жооп',
         max_length=255,
         help_text='Көп тандоодо А, Б, В же Г. Башка түрлөрдө кыска жооп.',
+    )
+    solution = models.TextField(
+        'Чыгарылышы',
+        blank=True,
+        help_text='Жооп ачкычындагы кадамдар. Классикалык суроодо көрсөтүлөт.',
     )
     points = models.PositiveSmallIntegerField('Балл', default=1)
     is_published = models.BooleanField('Жарыяланган', default=True)
@@ -962,17 +986,28 @@ class Question(models.Model):
         options = self.options or {}
         if not isinstance(options, dict):
             raise ValidationError({'options': 'Варианттар сөздүк түрүндө болушу керек.'})
-        if self.question_type == self.TYPE_MULTIPLE_CHOICE:
+        if self.question_format == self.FORMAT_MATCHING:
+            left = options.get('left') or {}
+            right = options.get('right') or {}
+            if not isinstance(left, dict) or not isinstance(right, dict) or not left or not right:
+                raise ValidationError({
+                    'options': 'Дал келтирүү үчүн сол жана оң тилке керек.',
+                })
+            if not (self.answer or '').strip():
+                raise ValidationError({'answer': 'Жоопту жазыңыз.'})
+            return
+        if self.question_format in (self.FORMAT_CHOICE, self.FORMAT_TRUE_FALSE):
+            letters = self.OPTION_LETTERS if self.question_format == self.FORMAT_CHOICE else ('А', 'Б')
             missing = [
-                letter for letter in self.OPTION_LETTERS
+                letter for letter in letters
                 if not str(options.get(letter, '')).strip()
             ]
             if missing:
                 raise ValidationError({
-                    'options': 'А, Б, В жана Г варианттарынын баары толтурулушу керек.',
+                    'options': 'Керектүү тамгалар толтурулушу керек: ' + ', '.join(missing) + '.',
                 })
-            if (self.answer or '').strip() not in self.OPTION_LETTERS:
-                raise ValidationError({'answer': 'Жооп А, Б, В же Г болушу керек.'})
+            if (self.answer or '').strip() not in letters:
+                raise ValidationError({'answer': 'Жооп көрсөтүлгөн тамгалардын бири болушу керек.'})
         elif not (self.answer or '').strip():
             raise ValidationError({'answer': 'Жоопту жазыңыз.'})
 
@@ -1019,6 +1054,8 @@ class GeneratedTest(models.Model):
     question_count = models.PositiveSmallIntegerField()
     variant_count = models.PositiveSmallIntegerField()
     difficulty_mix = models.CharField(max_length=32, choices=MIX_CHOICES)
+    format_mode = models.CharField(max_length=16, default='mixed')
+    extra_formats = models.JSONField(default=list, blank=True)
     payload = models.JSONField()
     topics = models.ManyToManyField(Topic, blank=True, related_name='generated_tests')
 

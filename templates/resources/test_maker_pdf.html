@@ -58,8 +58,8 @@ h1 {
     margin: 8px 0 12px;
 }
 .variant + .variant { page-break-before: always; }
-.q { margin: 0 0 12px; }
-.q-head { }
+.q { margin: 0 0 14px; overflow: hidden; }
+.q-head { overflow: hidden; }
 .q-num { font-weight: 700; }
 .q-points {
     float: right;
@@ -70,6 +70,14 @@ h1 {
 .options li { margin: 1px 0; }
 .letter { font-weight: 700; }
 .answer-line { margin-top: 8px; color: #334155; }
+.write-line {
+    border-bottom: 1px solid #1a1a2e;
+    height: 22px;
+    margin-top: 8px;
+}
+.match { width: 100%; margin-top: 6px; border: none; }
+.match td { border: none; width: 50%; vertical-align: top; padding: 0 8px 0 0; }
+.worked { margin-top: 2px; color: #334155; font-size: 10pt; }
 .total {
     margin-top: 8px;
     font-weight: 700;
@@ -100,7 +108,8 @@ th { background: #f8f7f4; }
     <p class="brand">MathKG</p>
     <h1>{{ test.grade_label }} · {{ test.test_type_label }} тест</h1>
     <p class="topics">Темалар: {{ test.topics_label }}</p>
-    <p class="meta">{{ test.created_label }} · {{ test.mix_label }}</p>
+    <p class="meta">{{ test.created_label }} · Деңгээл: {{ test.mix_label }}</p>
+    <p class="meta">Суроолордун түрү: {{ test.formats_label }}</p>
     <p class="variant-name">Вариант {{ variant.number }}</p>
     <p class="name-line">Аты-жөнү ____________________________ &nbsp;&nbsp; Класс __________</p>
     <hr class="rule">
@@ -111,7 +120,31 @@ th { background: #f8f7f4; }
             <span class="q-num">{{ question.number }}.</span>
             {{ question.text }}
         </div>
-        {% if question.options %}
+        {% if question.format == 'written' %}
+        <div class="write-lines">
+            <div class="write-line"></div>
+            <div class="write-line"></div>
+            <div class="write-line"></div>
+            <div class="write-line"></div>
+        </div>
+        {% elif question.format == 'matching' %}
+        <table class="match">
+            <tr>
+                <td>
+                    {% for item in question.left %}
+                    <div><span class="letter">{{ item.n }})</span> {{ item.text }}</div>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for item in question.right %}
+                    <div><span class="letter">{{ item.letter }})</span> {{ item.text }}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        {% elif question.format == 'fill_blank' %}
+        <div class="write-line"></div>
+        {% elif question.options %}
         <ul class="options">
             {% for option in question.options %}
             <li><span class="letter">{{ option.letter }})</span> {{ option.text }}</li>
@@ -133,7 +166,7 @@ th { background: #f8f7f4; }
     <p class="topics">Темалар: {{ test.topics_label }}</p>
     <p class="note">{{ test.marking_note }}</p>
     {% if test.borrowed %}
-    <p class="note">Кээ бир кыйындыкта суроо жетпей калды. Жетишпеген орун башка кыйындыктан толду.</p>
+    <p class="note">Кээ бир деңгээлде суроо жетпей калды. Жетишпеген орун башка деңгээлден толду.</p>
     {% endif %}
     <table>
         <thead>
@@ -152,7 +185,7 @@ th { background: #f8f7f4; }
                     <td>{{ variant.number }}</td>
                     <td>{{ question.number }}</td>
                     <td>{{ question.type_label }}</td>
-                    <td>{{ question.answer }}</td>
+                    <td>{{ question.answer }}{% if question.solution %}<div class="worked">{{ question.solution }}</div>{% endif %}</td>
                     <td>{{ question.points }}</td>
                 </tr>
                 {% endfor %}

@@ -139,9 +139,34 @@ def _fill_order(mix):
 
 def _not_enough_message(have, need):
     return (
-        f'Бул класс жана темалар боюнча жарыяланган суроо {have} гана. '
+        f'Тандалган түр, класс жана темалар боюнча жарыяланган суроо {have} гана. '
         f'{need} суроо сурадыңыз. Санды азайтыңыз же тема кошуңуз.'
     )
+
+
+def _reserve_one_per_format(questions, count, rng):
+    """Keep one item of each format when the paper mixes several formats."""
+    formats = []
+    for question in questions:
+        if question.question_format not in formats:
+            formats.append(question.question_format)
+    if len(formats) < 2:
+        return []
+    reserved = []
+    used = set()
+    for fmt in formats:
+        if len(reserved) >= count:
+            break
+        bucket = [
+            row for row in questions
+            if row.question_format == fmt and row.pk not in used
+        ]
+        if not bucket:
+            continue
+        rng.shuffle(bucket)
+        reserved.append(bucket[0])
+        used.add(bucket[0].pk)
+    return reserved
 
 
 def assemble_variants(questions, *, mix, question_count, variant_count, rng):
@@ -149,20 +174,30 @@ def assemble_variants(questions, *, mix, question_count, variant_count, rng):
 
     Each variant is a list of Question rows. No question is repeated
     inside one variant. Variants may share questions when the bank is small.
+    When several formats are in the pool, each variant includes one of each
+    before the level mix fills the rest.
     """
     questions = list(questions)
     if len(questions) < question_count:
         raise NotEnoughQuestions(_not_enough_message(len(questions), question_count))
 
-    quotas = difficulty_quotas(question_count, mix)
-    grouped = {key: [] for key in _DIFFICULTIES}
-    for question in questions:
-        grouped[question.difficulty].append(question)
-
     variants = []
     borrowed = False
     for _ in range(variant_count):
-        chosen, did_borrow = _pick_variant(grouped, quotas, mix, rng)
+        reserved = _reserve_one_per_format(questions, question_count, rng)
+        reserved_ids = {row.pk for row in reserved}
+        need = question_count - len(reserved)
+        chosen = list(reserved)
+        did_borrow = False
+        if need:
+            rest = [row for row in questions if row.pk not in reserved_ids]
+            quotas = difficulty_quotas(need, mix)
+            grouped = {key: [] for key in _DIFFICULTIES}
+            for question in rest:
+                grouped[question.difficulty].append(question)
+            more, did_borrow = _pick_variant(grouped, quotas, mix, rng)
+            chosen.extend(more)
+        rng.shuffle(chosen)
         variants.append(chosen)
         borrowed = borrowed or did_borrow
     return variants, borrowed
@@ -195,18 +230,34 @@ def _pick_variant(grouped, quotas, mix, rng):
 
 
 def _question_payload(question, number):
+    fmt = question.question_format
+    stored = question.options or {}
     options = []
-    if question.question_type == Question.TYPE_MULTIPLE_CHOICE:
-        for letter in Question.OPTION_LETTERS:
-            options.append({'letter': letter, 'text': question.options[letter]})
+    left = []
+    right = []
+    if fmt == Question.FORMAT_MATCHING:
+        left = [{'n': key, 'text': stored.get('left', {})[key]} for key in stored.get('left', {})]
+        right = [
+            {'letter': key, 'text': stored.get('right', {})[key]}
+            for key in stored.get('right', {})
+        ]
+    elif fmt in (Question.FORMAT_CHOICE, Question.FORMAT_TRUE_FALSE):
+        letters = Question.OPTION_LETTERS if fmt == Question.FORMAT_CHOICE else ('А', 'Б')
+        for letter in letters:
+            if str(stored.get(letter, '')).strip():
+                options.append({'letter': letter, 'text': stored[letter]})
     return {
         'id': question.pk,
         'number': number,
         'text': question.text,
+        'format': fmt,
         'type': question.question_type,
-        'type_label': question.get_question_type_display(),
+        'type_label': question.get_question_format_display(),
         'options': options,
+        'left': left,
+        'right': right,
         'answer': question.answer,
+        'solution': question.solution or '',
         'points': question.points,
         'difficulty': question.difficulty,
         'difficulty_label': question.get_difficulty_display(),
@@ -215,7 +266,48 @@ def _question_payload(question, number):
     }
 
 
-def build_payload(questions, *, grade, test_type, mix, question_count, variant_count, rng=None):
+FORMAT_MODE_CHOICES = (
+    ('choice', 'Тест (жооп тандоо)'),
+    ('written', 'Классикалык (жазуу менен чыгаруу)'),
+    ('mixed', 'Аралаш'),
+)
+EXTRA_FORMAT_CHOICES = (
+    (Question.FORMAT_TRUE_FALSE, 'Туура/туура эмес'),
+    (Question.FORMAT_MATCHING, 'Дал келтирүү'),
+    (Question.FORMAT_FILL_BLANK, 'Боштукту толтуруу'),
+)
+BORROWED_NOTE = (
+    'Кээ бир деңгээлде суроо жетпей калды. '
+    'Жетишпеген орун башка деңгээлден толду.'
+)
+
+
+def selected_formats(mode, extras):
+    selected = []
+    if mode == 'written':
+        selected.append(Question.FORMAT_WRITTEN)
+    elif mode == 'mixed':
+        selected.extend([Question.FORMAT_CHOICE, Question.FORMAT_WRITTEN])
+    else:
+        selected.append(Question.FORMAT_CHOICE)
+    for extra in extras or []:
+        if extra not in selected:
+            selected.append(extra)
+    return selected
+
+
+def formats_label(mode, extras):
+    label = dict(FORMAT_MODE_CHOICES)[mode]
+    extra_labels = [dict(EXTRA_FORMAT_CHOICES)[item] for item in extras or []]
+    if extra_labels:
+        return label + ' · ' + ', '.join(extra_labels)
+    return label
+
+
+def build_payload(
+    questions, *, grade, test_type, mix, question_count, variant_count,
+    format_mode='mixed', extra_formats=None, rng=None,
+):
     rng = rng or random.Random()
     variants, borrowed = assemble_variants(
         questions,
@@ -244,6 +336,7 @@ def build_payload(questions, *, grade, test_type, mix, question_count, variant_c
         'test_type_label': dict(GeneratedTest.TYPE_CHOICES)[test_type],
         'mix': mix,
         'mix_label': dict(GeneratedTest.MIX_CHOICES)[mix],
+        'formats_label': formats_label(format_mode, extra_formats),
         'topics_label': ', '.join(topic_titles),
         'created_label': timezone.localdate().strftime('%d.%m.%Y'),
         'variants': packed,
@@ -256,18 +349,21 @@ def build_payload(questions, *, grade, test_type, mix, question_count, variant_c
     }
 
 
-def questions_for(grade, topics):
+def questions_for(grade, topics, formats):
     return list(
         Question.objects.filter(
             is_published=True,
             grade=grade,
             topic__in=topics,
+            question_format__in=formats,
         ).select_related('topic')
     )
 
 
 def create_generated_test(user, cleaned, rng=None):
-    questions = questions_for(cleaned['grade'], cleaned['topics'])
+    extras = list(cleaned.get('extra_formats') or [])
+    formats = selected_formats(cleaned['format_mode'], extras)
+    questions = questions_for(cleaned['grade'], cleaned['topics'], formats)
     payload = build_payload(
         questions,
         grade=cleaned['grade'],
@@ -275,6 +371,8 @@ def create_generated_test(user, cleaned, rng=None):
         mix=cleaned['difficulty_mix'],
         question_count=cleaned['question_count'],
         variant_count=cleaned['variant_count'],
+        format_mode=cleaned['format_mode'],
+        extra_formats=extras,
         rng=rng,
     )
     with transaction.atomic():
@@ -291,6 +389,8 @@ def create_generated_test(user, cleaned, rng=None):
             question_count=cleaned['question_count'],
             variant_count=cleaned['variant_count'],
             difficulty_mix=cleaned['difficulty_mix'],
+            format_mode=cleaned['format_mode'],
+            extra_formats=extras,
             payload=payload,
         )
         generated.topics.set(cleaned['topics'])
@@ -373,8 +473,20 @@ class TestMakerForm(forms.Form):
     )
     difficulty_mix = forms.ChoiceField(
         choices=GeneratedTest.MIX_CHOICES,
-        label='Кыйындык',
+        label='Деңгээл',
         widget=forms.Select(attrs={'class': 'form-select'}),
+    )
+    format_mode = forms.ChoiceField(
+        choices=FORMAT_MODE_CHOICES,
+        label='Суроолордун түрү',
+        widget=forms.RadioSelect,
+        initial='mixed',
+    )
+    extra_formats = forms.MultipleChoiceField(
+        choices=EXTRA_FORMAT_CHOICES,
+        label='Кошумча түрлөр',
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
     )
     variant_count = forms.TypedChoiceField(
         coerce=int,
@@ -450,4 +562,6 @@ def initial_from_query(request, topic_stats):
         'question_count': 5,
         'difficulty_mix': GeneratedTest.MIX_EQUAL,
         'variant_count': 1,
+        'format_mode': 'mixed',
+        'extra_formats': [],
     }

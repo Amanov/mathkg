@@ -48,6 +48,7 @@ SAMPLE_QUESTIONS = (
         'text': '2/7 + 3/7 канчага барабар?',
         'options': {},
         'answer': '5/7',
+        'solution': '2/7 + 3/7 = 5/7.',
         'points': 1,
     },
     {
@@ -70,6 +71,7 @@ SAMPLE_QUESTIONS = (
         'text': '5/6 − 1/2 канчага барабар? Жоопту жөнөкөй түрүндө жаз.',
         'options': {},
         'answer': '1/3',
+        'solution': '1/2 = 3/6. 5/6 − 3/6 = 2/6 = 1/3.',
         'points': 3,
     },
     {
@@ -84,6 +86,7 @@ SAMPLE_QUESTIONS = (
         ),
         'options': {},
         'answer': '750',
+        'solution': f'1{NBSP}000нүн 1/4 бөлүгү 250 м. 1{NBSP}000 − 250 = 750.',
         'points': 2,
     },
     {
@@ -133,6 +136,7 @@ SAMPLE_QUESTIONS = (
         'text': '2,5 × 4 канчага барабар?',
         'options': {},
         'answer': '10',
+        'solution': '2,5 × 4 = 10.',
         'points': 2,
     },
     {
@@ -147,6 +151,7 @@ SAMPLE_QUESTIONS = (
         ),
         'options': {},
         'answer': '200',
+        'solution': '2,5 × 80 = 200. Окуучу 200 сом төлөйт.',
         'points': 3,
     },
     {
@@ -158,6 +163,7 @@ SAMPLE_QUESTIONS = (
         'text': '0,75ти жөнөкөй бөлчөккө айландырып жаз.',
         'options': {},
         'answer': '3/4',
+        'solution': '0,75 = 75/100 = 3/4.',
         'points': 2,
     },
     {
@@ -172,7 +178,76 @@ SAMPLE_QUESTIONS = (
         ),
         'options': {},
         'answer': '7',
+        'solution': '3,5 × 2 = 7.',
         'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-tf-half',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'question_format': 'true_false',
+        'text': '0,5 жана 1/2 өз ара барабар.',
+        'options': {'А': 'Туура', 'Б': 'Туура эмес'},
+        'answer': 'А',
+        'solution': '0,5 = 1/2, ошондуктан бул туура.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-tf-quarter',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'question_format': 'true_false',
+        'text': '1/4 саны 1/2ден чоң.',
+        'options': {'А': 'Туура', 'Б': 'Туура эмес'},
+        'answer': 'Б',
+        'solution': '1/4 < 1/2, ошондуктан бул туура эмес.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-match-fdp',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'matching',
+        'text': 'Ар бир бөлчөктү өзүнүн ондук түрү менен дал келтириңиз.',
+        'options': {
+            'left': {'1': '1/2', '2': '1/4', '3': '3/4'},
+            'right': {'А': '0,25', 'Б': '0,75', 'В': '0,5'},
+        },
+        'answer': '1–В, 2–А, 3–Б',
+        'solution': '1/2 = 0,5 (В). 1/4 = 0,25 (А). 3/4 = 0,75 (Б).',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-blank-half',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'short_answer',
+        'question_format': 'fill_blank',
+        'text': '0,5 = ____ / 2',
+        'options': {},
+        'answer': '1',
+        'solution': '0,5 = 1/2, ошондуктан боштукка 1 жазылат.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-blank-sixth',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'fill_blank',
+        'text': '3/6 = ____ / 2',
+        'options': {},
+        'answer': '1',
+        'solution': '3/6 = 1/2, ошондуктан боштукка 1 жазылат.',
+        'points': 2,
     },
 )
 
@@ -220,6 +295,14 @@ def seed_sample_questions(Question, Topic):
             'is_sample': True,
             'is_published': True,
         }
+        # Migration 0070 seeds before these columns exist. Later runs set them.
+        field_names = {field.name for field in Question._meta.get_fields()}
+        if 'question_format' in field_names:
+            defaults['question_format'] = row.get('question_format') or (
+                'choice' if row['question_type'] == 'multiple_choice' else 'written'
+            )
+        if 'solution' in field_names:
+            defaults['solution'] = row.get('solution', '')
         _, was_created = Question.objects.update_or_create(
             sample_key=row['sample_key'],
             defaults=defaults,

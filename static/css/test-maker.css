@@ -57,6 +57,14 @@
     gap: 8px;
 }
 
+.test-formats #id_format_mode,
+.test-formats #id_extra_formats {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.test-formats label,
 .test-topics #id_topics > div label,
 .test-topics li label {
     display: flex;
@@ -164,6 +172,21 @@
 .test-sheet__line,
 .test-sheet__total {
     color: var(--text-muted);
+}
+.test-sheet__lines {
+    height: 72px;
+    margin-top: 8px;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 22px,
+        var(--border-subtle) 23px
+    );
+}
+.test-sheet__match {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
 .test-sheet__questions {

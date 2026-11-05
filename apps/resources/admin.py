@@ -503,12 +503,21 @@ class QuestionAdmin(admin.ModelAdmin):
         'grade',
         'topic',
         'difficulty',
+        'question_format',
         'question_type',
         'points',
         'is_published',
         'is_sample',
     )
-    list_filter = ('grade', 'topic', 'difficulty', 'question_type', 'is_published', 'is_sample')
+    list_filter = (
+        'grade',
+        'topic',
+        'difficulty',
+        'question_format',
+        'question_type',
+        'is_published',
+        'is_sample',
+    )
     search_fields = ('text', 'answer', 'topic__title')
     list_editable = ('is_published',)
     ordering = ('grade', 'topic', 'difficulty')

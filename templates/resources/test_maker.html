@@ -12,7 +12,7 @@
 {% block content %}
 <div class="test-maker">
     <h1>Тест түзүү</h1>
-    <p class="test-maker__lead">Класс, тема жана кыйындыкты тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
+    <p class="test-maker__lead">Класс, тема жана деңгээлди тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
 
     {% if usage.paid %}
     <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
@@ -47,6 +47,15 @@
             {{ form.topics }}
             <p class="test-maker__hint" id="test-available"></p>
             {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </fieldset>
+
+        <fieldset class="test-maker__field test-formats">
+            <legend>{{ form.format_mode.label }}</legend>
+            {{ form.format_mode }}
+            <p class="test-maker__hint">Кошумча түрлөр</p>
+            {{ form.extra_formats }}
+            {% for error in form.format_mode.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+            {% for error in form.extra_formats.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
         </fieldset>
 
         <div class="test-maker__grid">

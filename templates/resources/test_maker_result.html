@@ -13,6 +13,7 @@
 <div class="test-maker">
     <h1>Тест түзүү</h1>
     <p class="test-maker__lead">{{ paper.grade_label }} · {{ paper.test_type_label }} тест · {{ paper.topics_label }}</p>
+    <p class="test-maker__hint">Суроолордун түрү: {{ paper.formats_label }}. Деңгээл: {{ paper.mix_label }}.</p>
 
     <div class="test-maker__actions">
         <a class="test-maker__submit" href="{% url 'test_maker_pdf' generated.pk %}">PDF жүктөп алуу</a>
@@ -23,7 +24,7 @@
     <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү.</p>
     {% endif %}
     {% if paper.borrowed %}
-    <p class="test-maker__hint">Кээ бир кыйындыкта суроо жетпей калды. Жетишпеген орун башка кыйындыктан толду.</p>
+    <p class="test-maker__hint">Кээ бир деңгээлде суроо жетпей калды. Жетишпеген орун башка деңгээлден толду.</p>
     {% endif %}
     {% if paper.sample_only %}
     <p class="test-maker__hint">Бул суроолор үлгү катары белгиленген.</p>
@@ -40,7 +41,22 @@
                     <p>{{ question.text }}</p>
                     <span>{{ question.points }} балл</span>
                 </div>
-                {% if question.options %}
+                {% if question.format == 'written' %}
+                <div class="test-sheet__lines" aria-hidden="true"></div>
+                {% elif question.format == 'matching' %}
+                <div class="test-sheet__match">
+                    <ul>
+                        {% for item in question.left %}
+                        <li><strong>{{ item.n }})</strong> {{ item.text }}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul>
+                        {% for item in question.right %}
+                        <li><strong>{{ item.letter }})</strong> {{ item.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% elif question.options %}
                 <ul>
                     {% for option in question.options %}
                     <li><strong>{{ option.letter }})</strong> {{ option.text }}</li>
@@ -77,7 +93,7 @@
                             <td>{{ variant.number }}</td>
                             <td>{{ question.number }}</td>
                             <td>{{ question.type_label }}</td>
-                            <td>{{ question.answer }}</td>
+                            <td>{{ question.answer }}{% if question.solution %}<br>{{ question.solution }}{% endif %}</td>
                             <td>{{ question.points }}</td>
                         </tr>
                         {% endfor %}
