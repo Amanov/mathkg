@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "test_maker" %}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="{% static 'css/test-maker.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="test-maker">
+    <h1>Тест түзүү</h1>
+    <p class="test-maker__lead">Класс, тема жана кыйындыкты тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
+
+    {% if usage.paid %}
+    <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
+    {% else %}
+    <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
+    {% if not usage.allowed %}
+    <p class="test-maker__quota"><a href="{% url 'pricing' %}">Чексиз түзүү үчүн жазылыңыз</a></p>
+    {% endif %}
+    {% endif %}
+
+    {% if not has_questions %}
+    <p class="test-maker__error">Жарыяланган суроо азырынча жок.</p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+    <div class="test-maker__error" role="alert">
+        {% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" class="test-maker__form" action="{% url 'test_maker' %}">
+        {% csrf_token %}
+
+        <div class="test-maker__field">
+            <label for="{{ form.grade.id_for_label }}">{{ form.grade.label }}</label>
+            {{ form.grade }}
+            {% for error in form.grade.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </div>
+
+        <fieldset class="test-maker__field test-topics">
+            <legend>{{ form.topics.label }}</legend>
+            {{ form.topics }}
+            <p class="test-maker__hint" id="test-available"></p>
+            {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </fieldset>
+
+        <div class="test-maker__grid">
+            <div class="test-maker__field">
+                <label for="{{ form.test_type.id_for_label }}">{{ form.test_type.label }}</label>
+                {{ form.test_type }}
+            </div>
+            <div class="test-maker__field">
+                <label for="{{ form.difficulty_mix.id_for_label }}">{{ form.difficulty_mix.label }}</label>
+                {{ form.difficulty_mix }}
+            </div>
+            <div class="test-maker__field">
+                <label for="{{ form.question_count.id_for_label }}">{{ form.question_count.label }}</label>
+                {{ form.question_count }}
+                {% for error in form.question_count.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+            </div>
+            <div class="test-maker__field">
+                <label for="{{ form.variant_count.id_for_label }}">{{ form.variant_count.label }}</label>
+                {{ form.variant_count }}
+            </div>
+        </div>
+
+        <button class="test-maker__submit" type="submit"{% if not usage.allowed %} disabled{% endif %}>Тест түзүү</button>
+    </form>
+</div>
+<script src="{% static 'js/test-maker.js' %}"></script>
+{% endblock %}

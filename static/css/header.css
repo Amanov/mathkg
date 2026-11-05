@@ -131,6 +131,9 @@ html {
     color: #3761c2;
     border-color: #fff;
 }
+.header-test-link {
+    white-space: nowrap;
+}
 .header-action-btn--primary:hover,
 .header-action-btn--primary:focus-visible {
     background: rgba(255, 255, 255, .88);

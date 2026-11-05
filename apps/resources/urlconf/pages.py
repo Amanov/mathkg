@@ -18,6 +18,9 @@ from apps.resources.views import (
     feedback_view,
     teacher_comments_view,
     page_reaction_view,
+    test_maker_view,
+    test_maker_result_view,
+    test_maker_pdf_view,
 )
 
 urlpatterns = [
@@ -38,6 +41,10 @@ urlpatterns = [
     path('pricing/', pricing_view, name='pricing'),
     path('search/', search_view, name='search'),
     path('search/suggest/', search_suggest_view, name='search_suggest'),
+
+    path('test-tuzuu/', test_maker_view, name='test_maker'),
+    path('test-tuzuu/<int:pk>/pdf/', test_maker_pdf_view, name='test_maker_pdf'),
+    path('test-tuzuu/<int:pk>/', test_maker_result_view, name='test_maker_result'),
 
     path('pikir/', feedback_view, name='feedback'),
     path('pikirler/', teacher_comments_view, name='teacher_comments'),

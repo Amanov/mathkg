@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="utf-8">
+<title>{{ test.grade_label }} · {{ test.test_type_label }}</title>
+<style>
+@font-face {
+    font-family: "MathKG Kyrgyz";
+    src: url("{{ font_regular }}");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "MathKG Kyrgyz";
+    src: url("{{ font_bold }}");
+    font-weight: 700;
+}
+@page {
+    size: A4;
+    margin: 14mm 14mm 16mm 14mm;
+    @bottom-center {
+        content: "MathKG · " counter(page);
+        font-family: "MathKG Kyrgyz", sans-serif;
+        font-size: 9pt;
+        color: #475569;
+    }
+}
+* { box-sizing: border-box; }
+body {
+    font-family: "MathKG Kyrgyz", sans-serif;
+    color: #1a1a2e;
+    font-size: 12pt;
+    line-height: 1.4;
+    margin: 0;
+}
+h1 {
+    font-size: 16pt;
+    margin: 0 0 4px;
+    color: #0f3c58;
+}
+.brand {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #0d6efd;
+}
+.meta, .topics, .name-line, .note {
+    margin: 2px 0;
+    color: #334155;
+}
+.variant-name {
+    margin: 8px 0 4px;
+    font-size: 13pt;
+    font-weight: 700;
+}
+.rule {
+    border: none;
+    border-top: 2px solid #0f3c58;
+    margin: 8px 0 12px;
+}
+.variant + .variant { page-break-before: always; }
+.q { margin: 0 0 12px; }
+.q-head { }
+.q-num { font-weight: 700; }
+.q-points {
+    float: right;
+    color: #475569;
+    font-size: 10pt;
+}
+.options { list-style: none; margin: 4px 0 0; padding: 0; }
+.options li { margin: 1px 0; }
+.letter { font-weight: 700; }
+.answer-line { margin-top: 8px; color: #334155; }
+.total {
+    margin-top: 8px;
+    font-weight: 700;
+}
+.answer-key { page-break-before: always; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+th, td {
+    border: 1px solid #cbd5e1;
+    padding: 4px 6px;
+    text-align: left;
+    vertical-align: top;
+}
+th { background: #f8f7f4; }
+.sample-note {
+    margin-top: 10px;
+    font-size: 10pt;
+    color: #475569;
+}
+</style>
+</head>
+<body>
+{% for variant in test.variants %}
+<section class="variant">
+    <p class="brand">MathKG</p>
+    <h1>{{ test.grade_label }} · {{ test.test_type_label }} тест</h1>
+    <p class="topics">Темалар: {{ test.topics_label }}</p>
+    <p class="meta">{{ test.created_label }} · {{ test.mix_label }}</p>
+    <p class="variant-name">Вариант {{ variant.number }}</p>
+    <p class="name-line">Аты-жөнү ____________________________ &nbsp;&nbsp; Класс __________</p>
+    <hr class="rule">
+    {% for question in variant.questions %}
+    <div class="q">
+        <div class="q-head">
+            <span class="q-points">{{ question.points }} балл</span>
+            <span class="q-num">{{ question.number }}.</span>
+            {{ question.text }}
+        </div>
+        {% if question.options %}
+        <ul class="options">
+            {% for option in question.options %}
+            <li><span class="letter">{{ option.letter }})</span> {{ option.text }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="answer-line">Жооп: ______________________________</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <p class="total">Жалпы: {{ variant.points }} балл</p>
+</section>
+{% endfor %}
+
+<section class="answer-key">
+    <p class="brand">MathKG</p>
+    <h1>Жооп ачкычы жана баалоо схемасы</h1>
+    <p class="topics">{{ test.grade_label }} · {{ test.test_type_label }} тест</p>
+    <p class="topics">Темалар: {{ test.topics_label }}</p>
+    <p class="note">{{ test.marking_note }}</p>
+    {% if test.borrowed %}
+    <p class="note">Кээ бир кыйындыкта суроо жетпей калды. Жетишпеген орун башка кыйындыктан толду.</p>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Вариант</th>
+                <th>№</th>
+                <th>Түрү</th>
+                <th>Жооп</th>
+                <th>Балл</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for variant in test.variants %}
+                {% for question in variant.questions %}
+                <tr>
+                    <td>{{ variant.number }}</td>
+                    <td>{{ question.number }}</td>
+                    <td>{{ question.type_label }}</td>
+                    <td>{{ question.answer }}</td>
+                    <td>{{ question.points }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>{{ variant.number }}</td>
+                    <td colspan="3">Жалпы</td>
+                    <td>{{ variant.points }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if test.sample_only %}
+    <p class="sample-note">Бул суроолор үлгү катары белгиленген. Алар үлгү банкынан алынды.</p>
+    {% endif %}
+</section>
+</body>
+</html>

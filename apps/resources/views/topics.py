@@ -14,6 +14,7 @@ from ..models import (
 from ..services import (
     build_topic_sections,
 )
+from apps.resources.assessment import single_grade_number
 from apps.resources.continuum import continuum_for_href
 
 
@@ -76,10 +77,12 @@ def topic_view(
 def topic_detail(request, topic_slug):
     topic = get_object_or_404(Topic, slug=topic_slug)
     subtopics = topic.subtopics.all()
+    grade_badge = _grade_badge(request)
     return render(request, 'resources/topic_detail.html', {
         'topic': topic,
         'subtopics': subtopics,
-        'grade_badge': _grade_badge(request),
+        'grade_badge': grade_badge,
+        'test_grade': single_grade_number(grade_badge),
     })
 
 
@@ -105,11 +108,13 @@ def subtopic_detail(request, topic_slug, subtopic_slug):
     pack = _pack_page(request, (topic_slug, subtopic_slug), subtopic.title, sections)
     if pack:
         return pack
+    grade_badge = _grade_badge(request)
     return render(request, 'resources/topic_page.html', {
         'topic': topic,
         'subtopic': subtopic,
         'sections': sections,
-        'grade_badge': _grade_badge(request),
+        'grade_badge': grade_badge,
+        'test_grade': single_grade_number(grade_badge),
     })
 
 
@@ -128,10 +133,12 @@ def subsubtopic_detail(request, topic_slug, subtopic_slug, subsubtopic_slug):
     )
     if pack:
         return pack
+    grade_badge = _grade_badge(request)
     return render(request, 'resources/topic_page.html', {
         'topic': topic,
         'subtopic': subtopic,
         'subsubtopic': subsubtopic,
         'sections': sections,
-        'grade_badge': _grade_badge(request),
+        'grade_badge': grade_badge,
+        'test_grade': single_grade_number(grade_badge),
     })

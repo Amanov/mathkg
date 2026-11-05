@@ -64,3 +64,5 @@ from .pages import (
 from .feedback import feedback_view, teacher_comments_view, page_reaction_view
 
 from .lesson_set import statistics_lesson_view
+
+from .assessment import test_maker_view, test_maker_result_view, test_maker_pdf_view

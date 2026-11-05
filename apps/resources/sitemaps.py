@@ -42,6 +42,8 @@ EXCLUDED_PATHS = {
     '/menu/',
     # A write-only face counter, not a page.
     '/page-reaction/',
+    # Login-only test maker. The result and PDF routes take an id.
+    '/test-tuzuu/',
 }
 
 EXCLUDED_PREFIXES = (
@@ -148,7 +150,8 @@ class TopicSitemap(_NonEmptySitemap):
     priority = 0.7
 
     def items(self):
-        return Topic.objects.order_by('slug')
+        from apps.resources.sample_questions import FALLBACK_TOPIC_SLUGS
+        return Topic.objects.exclude(slug__in=FALLBACK_TOPIC_SLUGS).order_by('slug')
 
 
 class SubtopicSitemap(_NonEmptySitemap):
