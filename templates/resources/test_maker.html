@@ -12,16 +12,6 @@
 {% block content %}
 <div class="test-maker">
     <h1>Тест түзүү</h1>
-    <p class="test-maker__lead">Класс, тема жана деңгээлди тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
-
-    {% if usage.paid %}
-    <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
-    {% else %}
-    <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
-    {% if not usage.allowed %}
-    <p class="test-maker__quota"><a href="{% url 'pricing' %}">Чексиз түзүү үчүн жазылыңыз</a></p>
-    {% endif %}
-    {% endif %}
 
     {% if not has_questions %}
     <p class="test-maker__error">Жарыяланган суроо азырынча жок.</p>
@@ -36,18 +26,31 @@
     <form method="post" class="test-maker__form" action="{% url 'test_maker' %}">
         {% csrf_token %}
 
-        <div class="test-maker__field">
-            <label for="{{ form.grade.id_for_label }}">{{ form.grade.label }}</label>
-            {{ form.grade }}
-            {% for error in form.grade.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-        </div>
+        <section class="test-maker__pick" aria-label="Класс жана тема">
+            <div class="test-maker__field">
+                <label for="{{ form.grade.id_for_label }}">{{ form.grade.label }}</label>
+                {{ form.grade }}
+                {% for error in form.grade.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+            </div>
 
-        <fieldset class="test-maker__field test-topics">
-            <legend>{{ form.topics.label }}</legend>
-            {{ form.topics }}
-            <p class="test-maker__hint" id="test-available"></p>
-            {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-        </fieldset>
+            <fieldset class="test-maker__field test-topics">
+                <legend>{{ form.topics.label }}</legend>
+                {{ form.topics }}
+                <p class="test-maker__hint" id="test-available"></p>
+                {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+            </fieldset>
+        </section>
+
+        <p class="test-maker__lead">Андан кийин түрүн жана деңгээлин тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
+
+        {% if usage.paid %}
+        <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
+        {% else %}
+        <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
+        {% if not usage.allowed %}
+        <p class="test-maker__quota"><a href="{% url 'pricing' %}">Чексиз түзүү үчүн жазылыңыз</a></p>
+        {% endif %}
+        {% endif %}
 
         <fieldset class="test-maker__field test-formats">
             <legend>{{ form.format_mode.label }}</legend>
