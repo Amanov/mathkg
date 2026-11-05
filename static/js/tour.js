@@ -151,21 +151,24 @@
         var rect = tip.getBoundingClientRect();
         var top;
         var left;
+        var header = document.querySelector('.fixed-top');
+        var headerBottom = header ? header.getBoundingClientRect().bottom : 0;
         if (!el) {
             tip.dataset.place = 'center';
             top = Math.max(margin, (window.innerHeight - rect.height) / 2);
             left = Math.max(margin, (window.innerWidth - width) / 2);
         } else {
             var target = el.getBoundingClientRect();
-            var below = target.bottom + 16;
+            var below = Math.max(target.bottom, headerBottom) + 16;
             var placeBelow = below + rect.height <= window.innerHeight - margin;
             if (placeBelow) {
                 tip.dataset.place = 'bottom';
                 top = below;
             } else {
                 tip.dataset.place = 'top';
-                top = Math.max(margin, target.top - rect.height - 16);
+                top = Math.max(margin, Math.min(target.top, headerBottom) - rect.height - 16);
             }
+            if (top < margin) top = margin;
             left = target.left + target.width / 2 - width / 2;
             left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
             var arrow = target.left + target.width / 2 - left;

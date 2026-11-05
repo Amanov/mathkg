@@ -6,7 +6,7 @@
 
 .tour-tip {
     position: fixed;
-    z-index: 400;
+    z-index: 2000;
     box-sizing: border-box;
     max-width: calc(100vw - 24px);
     padding: 16px 16px 14px;
