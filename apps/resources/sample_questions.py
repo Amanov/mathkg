@@ -137,6 +137,7 @@ SAMPLE_QUESTIONS = (
         'options': {},
         'answer': '10',
         'solution': '2,5 × 4 = 10.',
+        'question_format': 'calculation',
         'points': 2,
     },
     {
@@ -249,7 +250,80 @@ SAMPLE_QUESTIONS = (
         'solution': '3/6 = 1/2, ошондуктан боштукка 1 жазылат.',
         'points': 2,
     },
+    {
+        'sample_key': 'ulgu-d-times-six',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'calculation',
+        'text': '2,5 × 6 канчага барабар?',
+        'options': {},
+        'answer': '15',
+        'solution': '2,5 × 6 = 15.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-diagram',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'diagram',
+        'text': (
+            'Сүрөттөгү тик бурчтуктун узундугу 4 см, туурасы 2 см. '
+            'Аянты канча квадрат сантиметр?'
+        ),
+        'options': {},
+        'answer': '8',
+        'solution': '4 × 2 = 8.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-very-hard',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'very_hard',
+        'question_type': 'word_problem',
+        'question_format': 'extended',
+        'text': (
+            'Маселени чыгар. 2,5 кг алманын баасы 1 кг үчүн 80 сом. '
+            'Окуучу ошол алманын 1/2 бөлүгүн сатып алды. Канча сом төлөйт?'
+        ),
+        'options': {},
+        'answer': '100',
+        'solution': '2,5 × 80 = 200. 200дүн 1/2 бөлүгү 100 сом.',
+        'points': 4,
+    },
 )
+
+
+def estimate_minutes(question_format, difficulty):
+    """A sensible default when a question has no stored time of its own."""
+    base = {
+        'choice': 1,
+        'true_false': 1,
+        'fill_blank': 2,
+        'short_response': 2,
+        'matching': 3,
+        'calculation': 3,
+        'diagram': 4,
+        'extended': 5,
+        'written': 4,
+    }
+    extra = {'easy': 0, 'medium': 1, 'hard': 2, 'very_hard': 3}
+    return max(1, base.get(question_format, 2) + extra.get(difficulty, 1))
+
+
+def stored_format(row):
+    explicit = row.get('question_format')
+    if explicit in (None, 'written'):
+        if row['question_type'] == 'word_problem':
+            return 'extended'
+        if row['question_type'] == 'short_answer':
+            return 'short_response'
+        return 'choice'
+    return explicit
 
 
 def _topic_for(Topic, spec):
@@ -297,12 +371,15 @@ def seed_sample_questions(Question, Topic):
         }
         # Migration 0070 seeds before these columns exist. Later runs set them.
         field_names = {field.name for field in Question._meta.get_fields()}
+        fmt = stored_format(row)
         if 'question_format' in field_names:
-            defaults['question_format'] = row.get('question_format') or (
-                'choice' if row['question_type'] == 'multiple_choice' else 'written'
-            )
+            defaults['question_format'] = fmt
         if 'solution' in field_names:
             defaults['solution'] = row.get('solution', '')
+        if 'estimated_minutes' in field_names:
+            defaults['estimated_minutes'] = row.get('estimated_minutes') or estimate_minutes(
+                fmt, row['difficulty'],
+            )
         _, was_created = Question.objects.update_or_create(
             sample_key=row['sample_key'],
             defaults=defaults,

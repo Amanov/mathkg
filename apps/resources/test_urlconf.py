@@ -31,6 +31,7 @@ SEO_ROUTES = {
     ('', 'pikirler/', 'teacher_comments'),
     ('', 'page-reaction/', 'page_reaction'),
     ('', 'test-tuzuu/', 'test_maker'),
+    ('', 'tour-seen/', 'tour_seen'),
     ('', 'test-tuzuu/<int:pk>/pdf/', 'test_maker_pdf'),
     ('', 'test-tuzuu/<int:pk>/', 'test_maker_result'),
 }

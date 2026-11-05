@@ -229,6 +229,16 @@ def _pick_variant(grouped, quotas, mix, rng):
     return chosen, borrowed
 
 
+_LINE_COUNTS = {
+    Question.FORMAT_EXTENDED: 4,
+    Question.FORMAT_WRITTEN: 4,
+    Question.FORMAT_SHORT: 2,
+    Question.FORMAT_CALCULATION: 2,
+    Question.FORMAT_DIAGRAM: 2,
+    Question.FORMAT_FILL_BLANK: 1,
+}
+
+
 def _question_payload(question, number):
     fmt = question.question_format
     stored = question.options or {}
@@ -246,6 +256,7 @@ def _question_payload(question, number):
         for letter in letters:
             if str(stored.get(letter, '')).strip():
                 options.append({'letter': letter, 'text': stored[letter]})
+    line_count = _LINE_COUNTS.get(fmt, 0)
     return {
         'id': question.pk,
         'number': number,
@@ -256,9 +267,12 @@ def _question_payload(question, number):
         'options': options,
         'left': left,
         'right': right,
+        'figure': fmt == Question.FORMAT_DIAGRAM,
+        'line_slots': list(range(line_count)),
         'answer': question.answer,
         'solution': question.solution or '',
         'points': question.points,
+        'minutes': question.estimated_minutes or 1,
         'difficulty': question.difficulty,
         'difficulty_label': question.get_difficulty_display(),
         'topic': question.topic.title,
@@ -266,63 +280,82 @@ def _question_payload(question, number):
     }
 
 
-FORMAT_MODE_CHOICES = (
-    ('choice', 'Тест (жооп тандоо)'),
-    ('written', 'Классикалык (жазуу менен чыгаруу)'),
-    ('mixed', 'Аралаш'),
-)
-EXTRA_FORMAT_CHOICES = (
-    (Question.FORMAT_TRUE_FALSE, 'Туура/туура эмес'),
-    (Question.FORMAT_MATCHING, 'Дал келтирүү'),
-    (Question.FORMAT_FILL_BLANK, 'Боштукту толтуруу'),
-)
-BORROWED_NOTE = (
-    'Кээ бир деңгээлде суроо жетпей калды. '
-    'Жетишпеген орун башка деңгээлден толду.'
-)
+def formats_label(formats):
+    labels = dict(Question.FORMAT_CHOICES)
+    return ', '.join(labels[item] for item in formats if item in labels)
 
 
-def selected_formats(mode, extras):
-    selected = []
-    if mode == 'written':
-        selected.append(Question.FORMAT_WRITTEN)
-    elif mode == 'mixed':
-        selected.extend([Question.FORMAT_CHOICE, Question.FORMAT_WRITTEN])
-    else:
-        selected.append(Question.FORMAT_CHOICE)
-    for extra in extras or []:
-        if extra not in selected:
-            selected.append(extra)
-    return selected
+def levels_label(levels):
+    labels = dict(Question.DIFFICULTY_CHOICES)
+    return ', '.join(labels[item] for item in levels if item in labels)
 
 
-def formats_label(mode, extras):
-    label = dict(FORMAT_MODE_CHOICES)[mode]
-    extra_labels = [dict(EXTRA_FORMAT_CHOICES)[item] for item in extras or []]
-    if extra_labels:
-        return label + ' · ' + ', '.join(extra_labels)
-    return label
+def _minutes(question):
+    return question.estimated_minutes or 1
+
+
+def choose_for_duration(questions, target_minutes, rng):
+    """A subset whose minutes land as close as possible to the target.
+
+    When several formats are available, one of each is kept if that still
+    fits. Returns (questions, total_minutes).
+    """
+    pool = list(questions)
+    if not pool:
+        raise NotEnoughQuestions(
+            'Тандалган класс, тема, түр жана деңгээл боюнча суроо жок.'
+        )
+    by_format = []
+    for question in pool:
+        if question.question_format not in by_format:
+            by_format.append(question.question_format)
+    reserved = []
+    used = set()
+    for fmt in by_format:
+        bucket = [row for row in pool if row.question_format == fmt and row.pk not in used]
+        rng.shuffle(bucket)
+        bucket.sort(key=_minutes)
+        reserved.append(bucket[0])
+        used.add(bucket[0].pk)
+    while len(reserved) > 1 and sum(_minutes(row) for row in reserved) > target_minutes:
+        reserved.sort(key=_minutes)
+        dropped = reserved.pop()
+        used.discard(dropped.pk)
+    chosen = list(reserved)
+    rest = [row for row in pool if row.pk not in used]
+    rng.shuffle(rest)
+    while rest:
+        current = sum(_minutes(row) for row in chosen)
+        best = None
+        best_distance = abs(current - target_minutes)
+        for row in rest:
+            distance = abs(current + _minutes(row) - target_minutes)
+            if distance < best_distance:
+                best = row
+                best_distance = distance
+        if best is None:
+            break
+        chosen.append(best)
+        rest.remove(best)
+    rng.shuffle(chosen)
+    return chosen, sum(_minutes(row) for row in chosen)
 
 
 def build_payload(
-    questions, *, grade, test_type, mix, question_count, variant_count,
-    format_mode='mixed', extra_formats=None, rng=None,
+    questions, *, grade, test_type, formats, levels, duration_minutes,
+    variant_count, show_timer=False, title='', rng=None,
 ):
     rng = rng or random.Random()
-    variants, borrowed = assemble_variants(
-        questions,
-        mix=mix,
-        question_count=question_count,
-        variant_count=variant_count,
-        rng=rng,
-    )
     packed = []
-    for index, rows in enumerate(variants, start=1):
+    planned = 0
+    for index in range(1, variant_count + 1):
+        rows, planned = choose_for_duration(questions, duration_minutes, rng)
         items = [_question_payload(row, number) for number, row in enumerate(rows, start=1)]
         packed.append({
             'number': index,
             'questions': items,
             'points': sum(item['points'] for item in items),
+            'minutes': sum(item['minutes'] for item in items),
         })
     topic_titles = []
     for question in questions:
@@ -334,14 +367,22 @@ def build_payload(
         'grade_label': f'{grade}-класс',
         'test_type': test_type,
         'test_type_label': dict(GeneratedTest.TYPE_CHOICES)[test_type],
-        'mix': mix,
-        'mix_label': dict(GeneratedTest.MIX_CHOICES)[mix],
-        'formats_label': formats_label(format_mode, extra_formats),
+        'mix_label': levels_label(levels),
+        'formats_label': formats_label(formats),
         'topics_label': ', '.join(topic_titles),
         'created_label': timezone.localdate().strftime('%d.%m.%Y'),
+        'duration_minutes': duration_minutes,
+        'planned_minutes': planned,
+        'show_timer': show_timer,
+        'title': (title or '').strip(),
         'variants': packed,
-        'borrowed': borrowed,
+        'borrowed': False,
         'sample_only': bool(flat) and all(item['is_sample'] for item in flat),
+        'duration_note': (
+            f'Суралган убакыт {duration_minutes} мүнөт. '
+            f'Тандалган суроолор болжолу {planned} мүнөт: '
+            'мүмкүн болушунча жакын.'
+        ),
         'marking_note': (
             'Ар бир суроого жазылган балл коюлат. Жооп ачкычындагы жооп '
             'менен дал келсе, толук балл коюлат. Жарым балл каралбайт.'
@@ -349,30 +390,32 @@ def build_payload(
     }
 
 
-def questions_for(grade, topics, formats):
+def questions_for(grade, topics, formats, levels):
     return list(
         Question.objects.filter(
             is_published=True,
             grade=grade,
             topic__in=topics,
             question_format__in=formats,
+            difficulty__in=levels,
         ).select_related('topic')
     )
 
 
 def create_generated_test(user, cleaned, rng=None):
-    extras = list(cleaned.get('extra_formats') or [])
-    formats = selected_formats(cleaned['format_mode'], extras)
-    questions = questions_for(cleaned['grade'], cleaned['topics'], formats)
+    formats = list(cleaned['formats'])
+    levels = list(cleaned['levels'])
+    questions = questions_for(cleaned['grade'], cleaned['topics'], formats, levels)
     payload = build_payload(
         questions,
         grade=cleaned['grade'],
         test_type=cleaned['test_type'],
-        mix=cleaned['difficulty_mix'],
-        question_count=cleaned['question_count'],
+        formats=formats,
+        levels=levels,
+        duration_minutes=cleaned['duration_minutes'],
         variant_count=cleaned['variant_count'],
-        format_mode=cleaned['format_mode'],
-        extra_formats=extras,
+        show_timer=cleaned.get('show_timer') or False,
+        title=cleaned.get('title') or '',
         rng=rng,
     )
     with transaction.atomic():
@@ -386,11 +429,13 @@ def create_generated_test(user, cleaned, rng=None):
             user=user,
             grade=cleaned['grade'],
             test_type=cleaned['test_type'],
-            question_count=cleaned['question_count'],
+            question_count=len(payload['variants'][0]['questions']),
             variant_count=cleaned['variant_count'],
-            difficulty_mix=cleaned['difficulty_mix'],
-            format_mode=cleaned['format_mode'],
-            extra_formats=extras,
+            formats=formats,
+            levels=levels,
+            duration_minutes=cleaned['duration_minutes'],
+            show_timer=bool(cleaned.get('show_timer')),
+            title=(cleaned.get('title') or '').strip(),
             payload=payload,
         )
         generated.topics.set(cleaned['topics'])
@@ -457,42 +502,52 @@ class TestMakerForm(forms.Form):
     test_type = forms.ChoiceField(
         choices=GeneratedTest.TYPE_CHOICES,
         label='Тесттин түрү',
-        widget=forms.Select(attrs={'class': 'form-select'}),
+        widget=forms.RadioSelect,
     )
-    question_count = forms.IntegerField(
-        min_value=1,
-        max_value=30,
-        label='Суроолордун саны',
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'max': 30}),
+    formats = forms.MultipleChoiceField(
+        choices=Question.FORMAT_CHOICES,
+        label='Суроолордун түрү',
+        error_messages={'required': 'Кеминде бир түрдү тандаңыз.'},
+        widget=forms.CheckboxSelectMultiple,
+    )
+    levels = forms.MultipleChoiceField(
+        choices=Question.DIFFICULTY_CHOICES,
+        label='Деңгээл',
+        error_messages={'required': 'Кеминде бир деңгээлди тандаңыз.'},
+        widget=forms.CheckboxSelectMultiple,
+    )
+    duration_minutes = forms.IntegerField(
+        min_value=5,
+        max_value=90,
+        label='Тесттин узактыгы',
+        widget=forms.NumberInput(attrs={
+            'type': 'range',
+            'min': 5,
+            'max': 90,
+            'step': 5,
+            'id': 'id_duration_minutes',
+        }),
         error_messages={
-            'required': 'Суроолордун санын жазыңыз.',
-            'invalid': 'Сан жазыңыз.',
-            'min_value': 'Кеминде 1 суроо болушу керек.',
-            'max_value': 'Эң көп 30 суроо.',
+            'required': 'Убакытты тандаңыз.',
+            'invalid': 'Убакытты мүнөт менен тандаңыз.',
+            'min_value': 'Эң аз 5 мүнөт.',
+            'max_value': 'Эң көп 90 мүнөт.',
         },
     )
-    difficulty_mix = forms.ChoiceField(
-        choices=GeneratedTest.MIX_CHOICES,
-        label='Деңгээл',
-        widget=forms.Select(attrs={'class': 'form-select'}),
-    )
-    format_mode = forms.ChoiceField(
-        choices=FORMAT_MODE_CHOICES,
-        label='Суроолордун түрү',
-        widget=forms.RadioSelect,
-        initial='mixed',
-    )
-    extra_formats = forms.MultipleChoiceField(
-        choices=EXTRA_FORMAT_CHOICES,
-        label='Кошумча түрлөр',
+    show_timer = forms.BooleanField(
         required=False,
-        widget=forms.CheckboxSelectMultiple,
+        label='Убакытты көрсөтүү',
+    )
+    title = forms.CharField(
+        required=False,
+        max_length=120,
+        label='Тесттин аты',
     )
     variant_count = forms.TypedChoiceField(
         coerce=int,
         choices=[(n, str(n)) for n in range(1, 5)],
         label='Варианттардын саны',
-        widget=forms.Select(attrs={'class': 'form-select'}),
+        widget=forms.RadioSelect,
     )
 
     def __init__(self, *args, topic_stats=None, **kwargs):
@@ -523,6 +578,10 @@ class TestMakerForm(forms.Form):
                     'topics',
                     'Бул класс үчүн тандалган темада суроо жок: ' + ', '.join(missing) + '.',
                 )
+        minutes = cleaned.get('duration_minutes')
+        if minutes is not None:
+            snapped = int(round(minutes / 5.0) * 5)
+            cleaned['duration_minutes'] = min(90, max(5, snapped))
         return cleaned
 
 
@@ -559,9 +618,10 @@ def initial_from_query(request, topic_stats):
         'grade': grade,
         'topics': topics,
         'test_type': GeneratedTest.TYPE_FORMATIVE,
-        'question_count': 5,
-        'difficulty_mix': GeneratedTest.MIX_EQUAL,
+        'formats': [],
+        'levels': [],
+        'duration_minutes': 45,
+        'show_timer': False,
         'variant_count': 1,
-        'format_mode': 'mixed',
-        'extra_formats': [],
+        'title': '',
     }

@@ -76,13 +76,18 @@ class SampleBankTests(TestCase):
         self.assertEqual(by_key['ulgu-blank-half']['answer'], '1')
         self.assertEqual(by_key['ulgu-blank-sixth']['answer'], '1')
         self.assertEqual(Fraction(3, 6), Fraction(1, 2))
-        formats = {row.get('question_format') or (
-            'choice' if row['question_type'] == 'multiple_choice' else 'written'
-        ) for row in SAMPLE_QUESTIONS}
-        self.assertEqual(
-            formats,
-            {'choice', 'written', 'true_false', 'matching', 'fill_blank'},
-        )
+        self.assertEqual(by_key['ulgu-d-times-six']['answer'], '15')
+        self.assertEqual(Decimal('2.5') * 6, 15)
+        self.assertEqual(by_key['ulgu-d-diagram']['answer'], '8')
+        self.assertEqual(4 * 2, 8)
+        self.assertEqual(by_key['ulgu-d-very-hard']['answer'], '100')
+        self.assertEqual(Decimal('2.5') * 80 / 2, 100)
+        from apps.resources.sample_questions import stored_format
+        formats = {stored_format(row) for row in SAMPLE_QUESTIONS}
+        self.assertTrue({
+            'choice', 'short_response', 'extended', 'calculation', 'diagram',
+            'true_false', 'matching', 'fill_blank',
+        } <= formats)
 
         for row in SAMPLE_QUESTIONS:
             option_bits = []
@@ -158,10 +163,10 @@ class TestMakerPageTests(TestCase):
             'grade': 5,
             'topics': [self.fractions.pk, self.decimals.pk],
             'test_type': GeneratedTest.TYPE_FORMATIVE,
-            'question_count': 5,
-            'difficulty_mix': GeneratedTest.MIX_EQUAL,
+            'formats': ['choice', 'short_response', 'extended', 'true_false', 'matching', 'fill_blank'],
+            'levels': ['easy', 'medium', 'hard'],
+            'duration_minutes': 30,
             'variant_count': 2,
-            'format_mode': 'mixed',
         }
         data.update(overrides)
         return self.client.post(reverse('test_maker'), data, follow=follow)
@@ -187,27 +192,36 @@ class TestMakerPageTests(TestCase):
         self.assertIn('Бул айда 0 / 3', html)
         self.assertIn('Деңгээл', html)
         self.assertIn('Суроолордун түрү', html)
+        self.assertIn('Кыска жооп', html)
+        self.assertIn('Кеңири жооп', html)
+        self.assertIn('Эсептөө', html)
+        self.assertIn('Сүрөт боюнча', html)
         self.assertIn('Туура/туура эмес', html)
         self.assertIn('Дал келтирүү', html)
         self.assertIn('Боштукту толтуруу', html)
+        self.assertIn('Тесттин узактыгы', html)
+        self.assertIn('Убакытты көрсөтүү', html)
+        self.assertIn('PDF түзүү', html)
+        self.assertIn('Темаларга кайтуу', html)
+        self.assertIn('Өтө оор', html)
         self.assertNotIn('Кыйындык', html)
         self.assertNotIn('кыйындык', html)
+        self.assertNotIn('Суроолордун саны', html)
+        self.assertEqual(len(headings(html)['h1']), 1)
 
     def test_generates_variants_without_repeats_and_a_pdf(self):
         self.client.force_login(self.user)
-        response = self._post(variant_count=4, question_count=3, follow=True)
+        response = self._post(variant_count=4, duration_minutes=20, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Жооп ачкычы жана баалоо схемасы')
         self.assertContains(response, 'PDF жүктөп алуу')
         generated = GeneratedTest.objects.get(user=self.user)
         self.assertEqual(generated.variant_count, 4)
-        seen = []
         for variant in generated.payload['variants']:
             ids = [item['id'] for item in variant['questions']]
-            self.assertEqual(len(ids), 3)
+            self.assertGreaterEqual(len(ids), 1)
             self.assertEqual(len(ids), len(set(ids)))
             self.assertEqual(sum(item['points'] for item in variant['questions']), variant['points'])
-            seen.append(tuple(ids))
         self.assertEqual(len(generated.payload['variants']), 4)
 
         pdf = self.client.get(reverse('test_maker_pdf', args=[generated.pk]))
@@ -223,9 +237,9 @@ class TestMakerPageTests(TestCase):
     def test_trial_limit_is_three_per_month_and_paid_is_unlimited(self):
         self.client.force_login(self.user)
         for _ in range(3):
-            response = self._post(question_count=3, variant_count=1)
+            response = self._post(duration_minutes=15, variant_count=1)
             self.assertEqual(response.status_code, 302)
-        blocked = self._post(question_count=3, variant_count=1)
+        blocked = self._post(duration_minutes=15, variant_count=1)
         self.assertEqual(blocked.status_code, 200)
         self.assertContains(blocked, 'айына 3 тест')
         self.assertEqual(GeneratedTest.objects.filter(user=self.user).count(), 3)
@@ -233,7 +247,7 @@ class TestMakerPageTests(TestCase):
         GeneratedTest.objects.filter(user=self.user).update(
             created_at=timezone.now() - timedelta(days=40),
         )
-        again = self._post(question_count=3, variant_count=1)
+        again = self._post(duration_minutes=15, variant_count=1)
         self.assertEqual(again.status_code, 302)
 
         paid = _user(
@@ -244,7 +258,7 @@ class TestMakerPageTests(TestCase):
         )
         self.client.force_login(paid)
         for _ in range(4):
-            response = self._post(question_count=3, variant_count=1)
+            response = self._post(duration_minutes=15, variant_count=1)
             self.assertEqual(response.status_code, 302, response.content.decode()[:500])
         self.assertEqual(GeneratedTest.objects.filter(user=paid).count(), 4)
         home = self.client.get(reverse('test_maker'))
@@ -268,52 +282,55 @@ class TestMakerPageTests(TestCase):
                 payload={},
             )
         self.client.force_login(expired)
-        blocked = self._post(question_count=3, variant_count=1)
+        blocked = self._post(duration_minutes=15, variant_count=1)
         self.assertEqual(blocked.status_code, 200)
         self.assertContains(blocked, 'айына 3 тест')
 
     def test_too_many_questions_does_not_spend_the_quota(self):
         self.client.force_login(self.user)
-        response = self._post(question_count=30, variant_count=1)
+        response = self._post(levels=['very_hard'], formats=['diagram'], duration_minutes=5, variant_count=1)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'жарыяланган суроо')
+        self.assertContains(response, 'суроо жок')
         self.assertEqual(GeneratedTest.objects.filter(user=self.user).count(), 0)
 
     def test_unpublished_questions_are_left_out(self):
         Question.objects.filter(grade=5).update(is_published=False)
         self.client.force_login(self.user)
-        response = self._post(question_count=1, variant_count=1)
+        response = self._post(duration_minutes=10, variant_count=1)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(GeneratedTest.objects.count(), 0)
 
     def test_hard_only_borrows_when_the_bank_is_short(self):
         self.client.force_login(self.user)
         response = self._post(
-            format_mode='written',
-            difficulty_mix=GeneratedTest.MIX_HARD,
-            question_count=3,
+            formats=['extended'],
+            levels=['easy', 'medium', 'hard', 'very_hard'],
+            duration_minutes=15,
             variant_count=1,
             follow=True,
         )
         self.assertEqual(response.status_code, 200)
         generated = GeneratedTest.objects.get()
-        self.assertTrue(generated.payload['borrowed'])
-        ids = [item['id'] for item in generated.payload['variants'][0]['questions']]
-        self.assertEqual(len(ids), len(set(ids)))
+        items = generated.payload['variants'][0]['questions']
+        self.assertTrue(items)
+        self.assertTrue(all(item['format'] == 'extended' for item in items))
+        self.assertLessEqual(abs(generated.payload['planned_minutes'] - 15), 10)
 
     def test_each_question_format_can_appear_on_the_paper(self):
         self.client.force_login(self.user)
         written = self._post(
-            format_mode='written',
-            question_count=2,
+            formats=['extended', 'short_response'],
+            duration_minutes=20,
             variant_count=1,
+            show_timer='on',
             follow=True,
         )
         self.assertEqual(written.status_code, 200)
         paper = GeneratedTest.objects.get(user=self.user).payload
         items = paper['variants'][0]['questions']
-        self.assertTrue(all(item['format'] == 'written' for item in items))
+        self.assertTrue(all(item['format'] in {'extended', 'short_response'} for item in items))
         self.assertTrue(any(item['solution'] for item in items))
+        self.assertTrue(paper['show_timer'])
         from django.template.loader import render_to_string
         html = render_to_string('resources/test_maker_pdf.html', {
             'test': paper,
@@ -322,22 +339,20 @@ class TestMakerPageTests(TestCase):
         })
         self.assertIn('write-line', html)
         self.assertIn('Деңгээл:', html)
+        self.assertIn('Убакыт:', html)
 
         GeneratedTest.objects.all().delete()
         mixed = self._post(
-            format_mode='mixed',
-            extra_formats=['true_false', 'matching', 'fill_blank'],
-            question_count=6,
+            formats=['choice', 'true_false', 'matching', 'fill_blank', 'calculation', 'diagram', 'extended'],
+            levels=['easy', 'medium', 'hard', 'very_hard'],
+            duration_minutes=90,
             variant_count=1,
             follow=True,
         )
         self.assertEqual(mixed.status_code, 200)
         mixed_paper = GeneratedTest.objects.get(user=self.user).payload
         formats = {item['format'] for item in mixed_paper['variants'][0]['questions']}
-        self.assertEqual(
-            formats,
-            {'choice', 'written', 'true_false', 'matching', 'fill_blank'},
-        )
+        self.assertTrue({'choice', 'true_false', 'matching', 'fill_blank', 'calculation'} <= formats)
         key = render_to_string('resources/test_maker_pdf.html', {
             'test': mixed_paper,
             'font_regular': 'about:blank',
@@ -417,3 +432,47 @@ class PdfFontTests(TestCase):
             any('MathKG-Kyrgyz' in name or 'DejaVu' in name for name in font_names),
             font_names,
         )
+
+
+class TourTests(TestCase):
+    def test_new_user_sees_the_welcome_tour_once(self):
+        user = _user('newtour@example.com', 'newtour')
+        self.assertFalse(user.tour_seen)
+        self.client.force_login(user)
+        home = self.client.get(reverse('home'))
+        self.assertContains(home, 'data-welcome-tour="1"')
+        self.assertContains(home, 'data-tour="search"')
+        self.assertContains(home, 'Жардам')
+        marked = self.client.post(reverse('tour_seen'), {'tour': 'welcome'})
+        self.assertEqual(marked.status_code, 204)
+        user.refresh_from_db()
+        self.assertTrue(user.tour_seen)
+        again = self.client.get(reverse('home'))
+        self.assertContains(again, 'data-welcome-tour="0"')
+
+    def test_test_maker_tour_is_separate_and_name_prints(self):
+        user = _user('named@example.com', 'nameduser')
+        user.tour_seen = True
+        user.save(update_fields=['tour_seen'])
+        self.client.force_login(user)
+        page = self.client.get(reverse('test_maker'))
+        self.assertContains(page, 'data-test-tour="1"')
+        self.assertContains(page, 'Тесттин аты')
+        self.assertContains(page, 'data-tour-replay="test"')
+        self.client.post(reverse('tour_seen'), {'tour': 'test'})
+        user.refresh_from_db()
+        self.assertTrue(user.test_tour_seen)
+        self.assertTrue(user.tour_seen)
+        response = self.client.post(reverse('test_maker'), {
+            'grade': 5,
+            'topics': [Topic.objects.get(slug='ulgu-bolchoktor').pk],
+            'test_type': 'formative',
+            'formats': ['choice'],
+            'levels': ['easy'],
+            'duration_minutes': 10,
+            'variant_count': 1,
+            'title': 'Бөлчөк текшерүү',
+            'show_timer': 'on',
+        }, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Бөлчөк текшерүү')

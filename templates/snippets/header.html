@@ -25,9 +25,9 @@
       <div class="collapse navbar-collapse site-nav-collapse" id="navbarNav">
          <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item">
-            <a class="header-action-btn header-test-link" href="{% url 'test_maker' %}" data-track="Тест түзүү">Тест түзүү</a>
+            <a class="header-action-btn header-test-link" href="{% url 'test_maker' %}" data-track="Тест түзүү" data-tour="test-button">Тест түзүү</a>
           </li>
-          <li class="nav-item" id="searchForm">
+          <li class="nav-item" id="searchForm" data-tour="search">
             <form class="d-flex my-1 my-lg-0 position-relative" action="{% url 'search' %}" method="get" autocomplete="off">
               <input class="form-control me-2" type="search" name="q" value="{{ request.GET.q }}" placeholder="Издөө: класс" aria-label="Издөө" id="siteSearchInput" data-suggest-url="{% url 'search_suggest' %}" role="combobox" aria-expanded="false" aria-controls="siteSearchSuggest" aria-autocomplete="list">
               <button class="btn btn-success" type="submit" data-track="Издөө"><i class="fas fa-fw fa-magnifying-glass"></i></button>
@@ -37,7 +37,7 @@
 
           <li class="nav-item d-flex flex-wrap gap-2 ms-lg-2">
             {% if request.user.is_authenticated %}
-              <a class="header-action-btn" href="{% url 'account' %}" data-track="Аккаунт (header)">
+              <a class="header-action-btn" href="{% url 'account' %}" data-track="Аккаунт (header)" data-tour="account">
                 <i class="fas fa-fw fa-user"></i> {{ request.user.username }}
               </a>
               <a class="header-action-btn header-action-btn--primary" href="{% url 'logout' %}" data-track="Чыгуу">
@@ -65,7 +65,7 @@
     <div class="container-fluid">
       <a class="navbar-brand-mathkgz" href="{% url 'home' %}"><span class="accent">Math</span>KG</a>
 
-      <div class="collapse navbar-collapse site-nav-collapse" id="categoryNav">
+      <div class="collapse navbar-collapse site-nav-collapse" id="categoryNav" data-tour="topics">
         <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 d-flex flex-row flex-wrap gap-2" id="siteCategoryMenu" data-menu-url="{% url 'menu_fragment' %}">
           {% include "partials/menu_node.html" with nodes=menu_items parent=False shallow=True only %}
         </ul>

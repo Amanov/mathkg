@@ -44,6 +44,7 @@ EXCLUDED_PATHS = {
     '/page-reaction/',
     # Login-only test maker. The result and PDF routes take an id.
     '/test-tuzuu/',
+    '/tour-seen/',
 }
 
 EXCLUDED_PREFIXES = (

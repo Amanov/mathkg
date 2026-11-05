@@ -22,6 +22,7 @@ from apps.resources.views import (
     test_maker_result_view,
     test_maker_pdf_view,
 )
+from apps.resources.views.tours import tour_seen_view
 
 urlpatterns = [
     # Dashboard
@@ -42,6 +43,7 @@ urlpatterns = [
     path('search/', search_view, name='search'),
     path('search/suggest/', search_suggest_view, name='search_suggest'),
 
+    path('tour-seen/', tour_seen_view, name='tour_seen'),
     path('test-tuzuu/', test_maker_view, name='test_maker'),
     path('test-tuzuu/<int:pk>/pdf/', test_maker_pdf_view, name='test_maker_pdf'),
     path('test-tuzuu/<int:pk>/', test_maker_result_view, name='test_maker_result'),
