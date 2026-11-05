@@ -229,6 +229,33 @@ class TestMakerPageTests(TestCase):
         self.assertEqual(pdf['Content-Type'], 'application/pdf')
         self.assertTrue(pdf.content.startswith(b'%PDF'))
 
+    def test_pdf_endpoint_returns_a_real_pdf(self):
+        """The download Isa hit: create a paper, then GET /test-tuzuu/<id>/pdf/."""
+        self.client.force_login(self.user)
+        created = self._post(
+            formats=['choice', 'short_response', 'extended', 'matching', 'true_false'],
+            levels=['easy', 'medium'],
+            duration_minutes=45,
+            variant_count=1,
+            show_timer='on',
+            title='Бөлчөк текшерүү',
+        )
+        self.assertEqual(created.status_code, 302)
+        generated = GeneratedTest.objects.get(user=self.user)
+        self.assertTrue(generated.payload['variants'][0]['questions'])
+        pdf = self.client.get(reverse('test_maker_pdf', args=[generated.pk]))
+        self.assertEqual(pdf.status_code, 200)
+        self.assertEqual(pdf['Content-Type'], 'application/pdf')
+        self.assertTrue(pdf.content.startswith(b'%PDF'))
+        self.assertGreater(len(pdf.content), 1000)
+        doc = pymupdf.open(stream=pdf.content, filetype='pdf')
+        self.assertGreaterEqual(doc.page_count, 2)
+        text = ''.join(page.get_text() for page in doc)
+        self.assertIn('Бөлчөк текшерүү', text)
+        self.assertIn('Убакыт: 45 мүнөт', text)
+        self.assertIn('Жооп ачкычы', text)
+        self.assertIn('5-класс', text)
+
         other = _user('other@example.com', 'otheruser')
         self.client.force_login(other)
         denied = self.client.get(reverse('test_maker_pdf', args=[generated.pk]))

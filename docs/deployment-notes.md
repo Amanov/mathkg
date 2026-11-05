@@ -36,6 +36,34 @@ After this ships, run `python manage.py seed_launch_news` in production
 so the news page mentions the new address. See the search-engines
 section below.
 
+## PDF downloads (WeasyPrint)
+
+Test PDFs (`/test-tuzuu/<id>/pdf/`) and the Big 4 worksheet PDF are
+rendered by WeasyPrint when the request arrives. That import loads
+Pango, GObject, HarfBuzz, and fontconfig with `dlopen`. Nix packages
+in the old `nixpacks.json` `pkgs` list land in `/nix/store` and are not
+on that search path, so production raised:
+
+```
+OSError: cannot load library 'libgobject-2.0-0': libgobject-2.0-0:
+cannot open shared object file: No such file or directory
+```
+
+Django turned that into the plain “Server Error (500)” page. The same
+code returns a PDF on a machine where those `.so` files are in the
+system library path.
+
+Railway’s current builder is Railpack, which does not read
+`nixpacks.json`. Runtime packages belong in `railpack.json` under
+`deploy.aptPackages` (keep the `"..."` entry so Railpack’s own packages
+stay). `nixpacks.json` lists the same apt packages for an older
+Nixpacks build. Do not switch them back to Nix `pkgs` names: cffi will
+not find those libraries, and every PDF download will 500 again.
+`fonts-dejavu-core` is the Kyrgyz-capable font the test PDF already
+looks up at `/usr/share/fonts/truetype/dejavu/`.
+
+No migration. No new Railway variable.
+
 ## Search engines (robots.txt and sitemap.xml)
 
 `/robots.txt` and `/sitemap.xml` are Django views, not files under
