@@ -11,7 +11,20 @@
 
 {% block content %}
 <div class="test-maker">
-    <h1>Тест түзүү</h1>
+    <div class="test-maker__heading">
+        <h1>Тест түзүү</h1>
+        <button type="button" class="tour-replay" data-tour-replay="test" aria-label="Жардам">?</button>
+    </div>
+    <p class="test-maker__sub">Суроонун түрүн, деңгээлин жана убакытты тандаңыз.</p>
+
+    {% if usage.paid %}
+    <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
+    {% else %}
+    <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
+    {% if not usage.allowed %}
+    <p class="test-maker__quota"><a href="{% url 'pricing' %}">Чексиз түзүү үчүн жазылыңыз</a></p>
+    {% endif %}
+    {% endif %}
 
     {% if not has_questions %}
     <p class="test-maker__error">Жарыяланган суроо азырынча жок.</p>
@@ -23,65 +36,115 @@
     </div>
     {% endif %}
 
-    <form method="post" class="test-maker__form" action="{% url 'test_maker' %}">
+    <form method="post" id="test-maker-form" class="test-maker__form" action="{% url 'test_maker' %}">
         {% csrf_token %}
 
-        <section class="test-maker__pick" aria-label="Класс жана тема">
-            <div class="test-maker__field">
-                <label for="{{ form.grade.id_for_label }}">{{ form.grade.label }}</label>
-                {{ form.grade }}
-                {% for error in form.grade.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-            </div>
+        <section class="test-card" aria-label="Класс жана тема" data-tour="class-topics">
+            <p class="test-card__title">Класс</p>
+            <label class="visually-hidden" for="{{ form.grade.id_for_label }}">{{ form.grade.label }}</label>
+            {{ form.grade }}
+            {% for error in form.grade.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
 
-            <fieldset class="test-maker__field test-topics">
-                <legend>{{ form.topics.label }}</legend>
+            <p class="test-card__title test-card__title--next">Темалар</p>
+            <p class="test-card__hint">Бир же бир нече теманы белгилеңиз.</p>
+            <div class="test-topics">
                 {{ form.topics }}
-                <p class="test-maker__hint" id="test-available"></p>
-                {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-            </fieldset>
+            </div>
+            <p class="test-maker__hint" id="test-available"></p>
+            {% for error in form.topics.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
         </section>
 
-        <p class="test-maker__lead">Андан кийин түрүн жана деңгээлин тандаңыз. Суроолор MathKG банкынан алынат. Ар бир варианттын ичинде суроо кайталанбайт.</p>
+        <section class="test-card" data-tour="test-name">
+            <p class="test-card__title"><i class="fas fa-pencil" aria-hidden="true"></i> {{ form.title.label }}</p>
+            <p class="test-card__hint">Милдеттүү эмес. Ат PDF барагында көрүнөт.</p>
+            <input class="test-name" type="text" name="title" id="id_title" maxlength="120" value="{{ form.title.value|default:'' }}" placeholder="Мисалы, 5-класс, бөлчөктөр">
+            {% for error in form.title.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </section>
 
-        {% if usage.paid %}
-        <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
-        {% else %}
-        <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
-        {% if not usage.allowed %}
-        <p class="test-maker__quota"><a href="{% url 'pricing' %}">Чексиз түзүү үчүн жазылыңыз</a></p>
-        {% endif %}
-        {% endif %}
+        <section class="test-card" data-tour="formats">
+            <p class="test-card__title">{{ form.formats.label }}</p>
+            <p class="test-card__hint">Кеминде бир түрдү тандаңыз.</p>
+            <div class="chip-row">
+                {% for value, label in form.formats.field.choices %}
+                <label class="chip">
+                    <input type="checkbox" name="formats" value="{{ value }}"{% if form.formats.value and value in form.formats.value %} checked{% endif %}>
+                    <span>{{ label }}</span>
+                    <span class="chip__mark" aria-hidden="true"></span>
+                </label>
+                {% endfor %}
+            </div>
+            {% for error in form.formats.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </section>
 
-        <fieldset class="test-maker__field test-formats">
-            <legend>{{ form.format_mode.label }}</legend>
-            {{ form.format_mode }}
-            <p class="test-maker__hint">Кошумча түрлөр</p>
-            {{ form.extra_formats }}
-            {% for error in form.format_mode.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-            {% for error in form.extra_formats.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-        </fieldset>
+        <section class="test-card" data-tour="levels">
+            <p class="test-card__title">{{ form.levels.label }}</p>
+            <p class="test-card__hint">Кеминде бир деңгээлди тандаңыз.</p>
+            <div class="chip-row">
+                {% for value, label in form.levels.field.choices %}
+                <label class="chip chip--{{ value }}">
+                    <input type="checkbox" name="levels" value="{{ value }}"{% if form.levels.value and value in form.levels.value %} checked{% endif %}>
+                    <span>{{ label }}</span>
+                    <span class="chip__mark" aria-hidden="true"></span>
+                </label>
+                {% endfor %}
+            </div>
+            {% for error in form.levels.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </section>
 
-        <div class="test-maker__grid">
-            <div class="test-maker__field">
-                <label for="{{ form.test_type.id_for_label }}">{{ form.test_type.label }}</label>
-                {{ form.test_type }}
+        <div data-tour="time">
+        <section class="test-card">
+            <p class="test-card__title">{{ form.duration_minutes.label }}</p>
+            <p class="test-card__hint">Убакытты тандаңыз. Суроолор ошол убакытка мүмкүн болушунча жакын чыгат.</p>
+            <div class="test-range-wrap">
+                <output class="test-range-value" id="duration-value" for="id_duration_minutes">45</output>
+                {{ form.duration_minutes }}
             </div>
-            <div class="test-maker__field">
-                <label for="{{ form.difficulty_mix.id_for_label }}">{{ form.difficulty_mix.label }}</label>
-                {{ form.difficulty_mix }}
+            <div class="test-range-ends">
+                <span>5 мүнөт</span>
+                <span>90 мүнөт</span>
             </div>
-            <div class="test-maker__field">
-                <label for="{{ form.question_count.id_for_label }}">{{ form.question_count.label }}</label>
-                {{ form.question_count }}
-                {% for error in form.question_count.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
-            </div>
-            <div class="test-maker__field">
-                <label for="{{ form.variant_count.id_for_label }}">{{ form.variant_count.label }}</label>
-                {{ form.variant_count }}
-            </div>
+            {% for error in form.duration_minutes.errors %}<p class="test-maker__field-error">{{ error }}</p>{% endfor %}
+        </section>
+
+        <section class="test-card">
+            <p class="test-card__title">Убакыт</p>
+            <p class="test-card__hint">Көрсөтүлгөн убакыт тесттин узактыгына барабар.</p>
+            <label class="switch">
+                {{ form.show_timer }}
+                <span class="switch__ui" aria-hidden="true"></span>
+                <span>{{ form.show_timer.label }}</span>
+            </label>
+        </section>
         </div>
 
-        <button class="test-maker__submit" type="submit"{% if not usage.allowed %} disabled{% endif %}>Тест түзүү</button>
+        <section class="test-card">
+            <p class="test-card__title">{{ form.test_type.label }}</p>
+            <div class="chip-row">
+                {% for value, label in form.test_type.field.choices %}
+                <label class="chip">
+                    <input type="radio" name="test_type" value="{{ value }}"{% if form.test_type.value == value %} checked{% endif %}>
+                    <span>{{ label }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="test-card">
+            <p class="test-card__title">{{ form.variant_count.label }}</p>
+            <div class="chip-row">
+                {% for value, label in form.variant_count.field.choices %}
+                <label class="chip">
+                    <input type="radio" name="variant_count" value="{{ value }}"{% if form.variant_count.value|stringformat:"s" == value|stringformat:"s" %} checked{% endif %}>
+                    <span>{{ label }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div class="test-maker__bar">
+            <a class="test-maker__back" href="{% url 'topics_tree' %}">Темаларга кайтуу</a>
+            <button class="test-maker__submit" type="submit" data-tour="pdf"{% if not usage.allowed %} disabled{% endif %}>PDF түзүү</button>
+        </div>
     </form>
 </div>
 <script src="{% static 'js/test-maker.js' %}"></script>

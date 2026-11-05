@@ -12,8 +12,10 @@
 {% block content %}
 <div class="test-maker">
     <h1>Тест түзүү</h1>
-    <p class="test-maker__lead">{{ paper.grade_label }} · {{ paper.test_type_label }} тест · {{ paper.topics_label }}</p>
+    <p class="test-maker__lead">{% if paper.title %}{{ paper.title }}. {% endif %}{{ paper.grade_label }} · {{ paper.test_type_label }} тест · {{ paper.topics_label }}</p>
     <p class="test-maker__hint">Суроолордун түрү: {{ paper.formats_label }}. Деңгээл: {{ paper.mix_label }}.</p>
+    {% if paper.duration_note %}<p class="test-maker__hint">{{ paper.duration_note }}</p>{% endif %}
+    {% if paper.show_timer %}<p class="test-maker__hint">PDF барагында убакыт көрүнөт: {{ paper.duration_minutes }} мүнөт.</p>{% endif %}
 
     <div class="test-maker__actions">
         <a class="test-maker__submit" href="{% url 'test_maker_pdf' generated.pk %}">PDF жүктөп алуу</a>

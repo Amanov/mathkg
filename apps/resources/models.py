@@ -883,25 +883,39 @@ class Question(models.Model):
     ]
 
     FORMAT_CHOICE = 'choice'
-    FORMAT_WRITTEN = 'written'
+    FORMAT_SHORT = 'short_response'
+    FORMAT_EXTENDED = 'extended'
+    FORMAT_CALCULATION = 'calculation'
+    FORMAT_DIAGRAM = 'diagram'
     FORMAT_TRUE_FALSE = 'true_false'
     FORMAT_MATCHING = 'matching'
     FORMAT_FILL_BLANK = 'fill_blank'
+    # Older rows used one «written» bucket. Migrations split it.
+    FORMAT_WRITTEN = 'written'
     FORMAT_CHOICES = [
         (FORMAT_CHOICE, 'Тест (жооп тандоо)'),
-        (FORMAT_WRITTEN, 'Классикалык (жазуу менен чыгаруу)'),
+        (FORMAT_SHORT, 'Кыска жооп'),
+        (FORMAT_EXTENDED, 'Кеңири жооп (жазуу менен чыгаруу)'),
+        (FORMAT_CALCULATION, 'Эсептөө'),
+        (FORMAT_DIAGRAM, 'Сүрөт боюнча'),
         (FORMAT_TRUE_FALSE, 'Туура/туура эмес'),
         (FORMAT_MATCHING, 'Дал келтирүү'),
         (FORMAT_FILL_BLANK, 'Боштукту толтуруу'),
     ]
+    OPEN_FORMATS = (
+        FORMAT_SHORT, FORMAT_EXTENDED, FORMAT_CALCULATION, FORMAT_DIAGRAM,
+        FORMAT_FILL_BLANK, FORMAT_WRITTEN,
+    )
 
     DIFFICULTY_EASY = 'easy'
     DIFFICULTY_MEDIUM = 'medium'
     DIFFICULTY_HARD = 'hard'
+    DIFFICULTY_VERY_HARD = 'very_hard'
     DIFFICULTY_CHOICES = [
         (DIFFICULTY_EASY, 'Жеңил'),
         (DIFFICULTY_MEDIUM, 'Орто'),
         (DIFFICULTY_HARD, 'Оор'),
+        (DIFFICULTY_VERY_HARD, 'Өтө оор'),
     ]
 
     OPTION_LETTERS = ('А', 'Б', 'В', 'Г')
@@ -948,6 +962,11 @@ class Question(models.Model):
         help_text='Жооп ачкычындагы кадамдар. Классикалык суроодо көрсөтүлөт.',
     )
     points = models.PositiveSmallIntegerField('Балл', default=1)
+    estimated_minutes = models.PositiveSmallIntegerField(
+        'Болжолдуу мүнөт',
+        default=2,
+        help_text='Бул суроого кете турган болжолдуу убакыт.',
+    )
     is_published = models.BooleanField('Жарыяланган', default=True)
     is_sample = models.BooleanField(
         'Үлгү',
@@ -1053,9 +1072,14 @@ class GeneratedTest(models.Model):
     test_type = models.CharField(max_length=32, choices=TYPE_CHOICES)
     question_count = models.PositiveSmallIntegerField()
     variant_count = models.PositiveSmallIntegerField()
-    difficulty_mix = models.CharField(max_length=32, choices=MIX_CHOICES)
+    difficulty_mix = models.CharField(max_length=32, choices=MIX_CHOICES, default=MIX_EQUAL)
     format_mode = models.CharField(max_length=16, default='mixed')
     extra_formats = models.JSONField(default=list, blank=True)
+    formats = models.JSONField(default=list, blank=True)
+    levels = models.JSONField(default=list, blank=True)
+    duration_minutes = models.PositiveSmallIntegerField(default=45)
+    show_timer = models.BooleanField(default=False)
+    title = models.CharField(max_length=120, blank=True)
     payload = models.JSONField()
     topics = models.ManyToManyField(Topic, blank=True, related_name='generated_tests')
 

@@ -167,6 +167,14 @@ class Account(AbstractBaseUser):
         help_text="Акысыз сыноо мөөнөтү (күн). Катталган күндөн тартып "
                    "эсептелет (subscription_end коюлбаса).",
     )
+    tour_seen = models.BooleanField(
+        default=False,
+        help_text="Сайт боюнча биринчи көрсөтмө көрүлдү.",
+    )
+    test_tour_seen = models.BooleanField(
+        default=False,
+        help_text="Тест түзүү көрсөтмөсү көрүлдү.",
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]  #'first_name' we can add a list

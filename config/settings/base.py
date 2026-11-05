@@ -107,6 +107,7 @@ TEMPLATES = [
                 'apps.resources.views.context_processors.reaction_state',
                 'apps.resources.seo.seo_context',
                 'apps.account.context_processors.active_qr_code',
+                'apps.account.context_processors.tour_flags',
                 # "apps.resources.views.context_processors.main_menu",
                 # 'apps.resources.context_processors.nav_topics',
 
