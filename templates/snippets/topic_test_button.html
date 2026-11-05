@@ -1,0 +1,5 @@
+{% if topic_slug %}
+<p class="topic-test-link">
+    <a href="{% url 'test_maker' %}?tema={{ topic_slug }}{% if topic_grade %}&amp;klass={{ topic_grade }}{% endif %}">Бул тема боюнча тест түзүү</a>
+</p>
+{% endif %}

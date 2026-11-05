@@ -858,3 +858,214 @@ class WrittenFeedback(models.Model):
     def public_name(self):
         name = (self.name or '').strip()
         return name or 'Мугалим'
+
+
+# =====================================================
+
+# QUESTION BANK AND GENERATED TESTS
+
+# =====================================================
+
+class Question(models.Model):
+    """One item in the teacher test bank.
+
+    Multiple choice uses the Cyrillic letters А Б В Г. Short answers and
+    word problems leave options empty and store the expected answer as text.
+    """
+
+    TYPE_MULTIPLE_CHOICE = 'multiple_choice'
+    TYPE_SHORT_ANSWER = 'short_answer'
+    TYPE_WORD_PROBLEM = 'word_problem'
+    TYPE_CHOICES = [
+        (TYPE_MULTIPLE_CHOICE, 'Көп тандоо'),
+        (TYPE_SHORT_ANSWER, 'Кыска жооп'),
+        (TYPE_WORD_PROBLEM, 'Тексттик маселе'),
+    ]
+
+    FORMAT_CHOICE = 'choice'
+    FORMAT_WRITTEN = 'written'
+    FORMAT_TRUE_FALSE = 'true_false'
+    FORMAT_MATCHING = 'matching'
+    FORMAT_FILL_BLANK = 'fill_blank'
+    FORMAT_CHOICES = [
+        (FORMAT_CHOICE, 'Тест (жооп тандоо)'),
+        (FORMAT_WRITTEN, 'Классикалык (жазуу менен чыгаруу)'),
+        (FORMAT_TRUE_FALSE, 'Туура/туура эмес'),
+        (FORMAT_MATCHING, 'Дал келтирүү'),
+        (FORMAT_FILL_BLANK, 'Боштукту толтуруу'),
+    ]
+
+    DIFFICULTY_EASY = 'easy'
+    DIFFICULTY_MEDIUM = 'medium'
+    DIFFICULTY_HARD = 'hard'
+    DIFFICULTY_CHOICES = [
+        (DIFFICULTY_EASY, 'Жеңил'),
+        (DIFFICULTY_MEDIUM, 'Орто'),
+        (DIFFICULTY_HARD, 'Оор'),
+    ]
+
+    OPTION_LETTERS = ('А', 'Б', 'В', 'Г')
+    GRADE_CHOICES = [(n, f'{n}-класс') for n in range(1, 12)]
+
+    grade = models.PositiveSmallIntegerField('Класс', choices=GRADE_CHOICES)
+    topic = models.ForeignKey(
+        Topic,
+        on_delete=models.PROTECT,
+        related_name='questions',
+        verbose_name='Тема',
+    )
+    difficulty = models.CharField(
+        'Деңгээл',
+        max_length=16,
+        choices=DIFFICULTY_CHOICES,
+    )
+    question_format = models.CharField(
+        'Суроонун түрү',
+        max_length=32,
+        choices=FORMAT_CHOICES,
+        default=FORMAT_CHOICE,
+    )
+    question_type = models.CharField(
+        'Түрү',
+        max_length=32,
+        choices=TYPE_CHOICES,
+    )
+    text = models.TextField('Суроо')
+    options = models.JSONField(
+        'Варианттар',
+        default=dict,
+        blank=True,
+        help_text='Көп тандоо үчүн: {"А": "...", "Б": "...", "В": "...", "Г": "..."}.',
+    )
+    answer = models.CharField(
+        'Жооп',
+        max_length=255,
+        help_text='Көп тандоодо А, Б, В же Г. Башка түрлөрдө кыска жооп.',
+    )
+    solution = models.TextField(
+        'Чыгарылышы',
+        blank=True,
+        help_text='Жооп ачкычындагы кадамдар. Классикалык суроодо көрсөтүлөт.',
+    )
+    points = models.PositiveSmallIntegerField('Балл', default=1)
+    is_published = models.BooleanField('Жарыяланган', default=True)
+    is_sample = models.BooleanField(
+        'Үлгү',
+        default=False,
+        help_text='Үлгү банк. Мугалимге үлгү экени көрүнөт.',
+    )
+    sample_key = models.CharField(
+        max_length=64,
+        unique=True,
+        null=True,
+        blank=True,
+        help_text='Үлгү суроону кайра жүктөө үчүн туруктуу ачкыч.',
+    )
+
+    class Meta:
+        ordering = ['grade', 'topic', 'difficulty', 'pk']
+        verbose_name = 'Суроо'
+        verbose_name_plural = 'Суроолор'
+        indexes = [
+            models.Index(fields=['grade', 'is_published']),
+            models.Index(fields=['topic', 'grade', 'is_published']),
+        ]
+
+    def __str__(self):
+        text = ' '.join(self.text.split())
+        if len(text) > 60:
+            text = text[:60] + '…'
+        return f'{self.grade}-класс: {text}'
+
+    def clean(self):
+        super().clean()
+        if self.grade not in dict(self.GRADE_CHOICES):
+            raise ValidationError({'grade': 'Класс 1ден 11ге чейин болушу керек.'})
+        if self.points < 1:
+            raise ValidationError({'points': 'Балл кеминде 1 болушу керек.'})
+        options = self.options or {}
+        if not isinstance(options, dict):
+            raise ValidationError({'options': 'Варианттар сөздүк түрүндө болушу керек.'})
+        if self.question_format == self.FORMAT_MATCHING:
+            left = options.get('left') or {}
+            right = options.get('right') or {}
+            if not isinstance(left, dict) or not isinstance(right, dict) or not left or not right:
+                raise ValidationError({
+                    'options': 'Дал келтирүү үчүн сол жана оң тилке керек.',
+                })
+            if not (self.answer or '').strip():
+                raise ValidationError({'answer': 'Жоопту жазыңыз.'})
+            return
+        if self.question_format in (self.FORMAT_CHOICE, self.FORMAT_TRUE_FALSE):
+            letters = self.OPTION_LETTERS if self.question_format == self.FORMAT_CHOICE else ('А', 'Б')
+            missing = [
+                letter for letter in letters
+                if not str(options.get(letter, '')).strip()
+            ]
+            if missing:
+                raise ValidationError({
+                    'options': 'Керектүү тамгалар толтурулушу керек: ' + ', '.join(missing) + '.',
+                })
+            if (self.answer or '').strip() not in letters:
+                raise ValidationError({'answer': 'Жооп көрсөтүлгөн тамгалардын бири болушу керек.'})
+        elif not (self.answer or '').strip():
+            raise ValidationError({'answer': 'Жоопту жазыңыз.'})
+
+
+class GeneratedTest(models.Model):
+    """One test a teacher generated. Counts toward the monthly limit."""
+
+    TYPE_FORMATIVE = 'formative'
+    TYPE_UNIT = 'unit'
+    TYPE_QUARTER = 'quarter'
+    TYPE_SUMMATIVE = 'summative'
+    TYPE_CHOICES = [
+        (TYPE_FORMATIVE, 'Калыптандыруучу'),
+        (TYPE_UNIT, 'Бөлүм боюнча'),
+        (TYPE_QUARTER, 'Чейрек'),
+        (TYPE_SUMMATIVE, 'Жыйынтыктоочу'),
+    ]
+
+    MIX_EQUAL = 'teng'
+    MIX_MOSTLY_EASY = 'kobuncho_jenil'
+    MIX_MOSTLY_MEDIUM = 'kobuncho_orto'
+    MIX_MOSTLY_HARD = 'kobuncho_oor'
+    MIX_EASY = 'jenil'
+    MIX_MEDIUM = 'orto'
+    MIX_HARD = 'oor'
+    MIX_CHOICES = [
+        (MIX_EQUAL, 'Баары бирдей'),
+        (MIX_MOSTLY_EASY, 'Көбүнчө жеңил'),
+        (MIX_MOSTLY_MEDIUM, 'Көбүнчө орто'),
+        (MIX_MOSTLY_HARD, 'Көбүнчө оор'),
+        (MIX_EASY, 'Жеңил гана'),
+        (MIX_MEDIUM, 'Орто гана'),
+        (MIX_HARD, 'Оор гана'),
+    ]
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='generated_tests',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    grade = models.PositiveSmallIntegerField()
+    test_type = models.CharField(max_length=32, choices=TYPE_CHOICES)
+    question_count = models.PositiveSmallIntegerField()
+    variant_count = models.PositiveSmallIntegerField()
+    difficulty_mix = models.CharField(max_length=32, choices=MIX_CHOICES)
+    format_mode = models.CharField(max_length=16, default='mixed')
+    extra_formats = models.JSONField(default=list, blank=True)
+    payload = models.JSONField()
+    topics = models.ManyToManyField(Topic, blank=True, related_name='generated_tests')
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Түзүлгөн тест'
+        verbose_name_plural = 'Түзүлгөн тесттер'
+        indexes = [
+            models.Index(fields=['user', 'created_at']),
+        ]
+
+    def __str__(self):
+        return f'{self.grade}-класс, {self.get_test_type_display()}'

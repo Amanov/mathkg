@@ -19,6 +19,7 @@ from .models import (
     PageReaction,
     PageReactionCount,
     WrittenFeedback,
+    Question,
 )
 
 
@@ -492,4 +493,38 @@ class WrittenFeedbackAdmin(admin.ModelAdmin):
         text = " ".join(obj.message.split())
         if len(text) > 80:
             return text[:80] + "…"
+        return text
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = (
+        'short_text',
+        'grade',
+        'topic',
+        'difficulty',
+        'question_format',
+        'question_type',
+        'points',
+        'is_published',
+        'is_sample',
+    )
+    list_filter = (
+        'grade',
+        'topic',
+        'difficulty',
+        'question_format',
+        'question_type',
+        'is_published',
+        'is_sample',
+    )
+    search_fields = ('text', 'answer', 'topic__title')
+    list_editable = ('is_published',)
+    ordering = ('grade', 'topic', 'difficulty')
+
+    @admin.display(description='Суроо')
+    def short_text(self, obj):
+        text = ' '.join(obj.text.split())
+        if len(text) > 80:
+            return text[:80] + '…'
         return text

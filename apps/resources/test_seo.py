@@ -85,6 +85,7 @@ class RobotsAndSitemapTests(TestCase):
             'Disallow: /login/\n'
             'Disallow: /register/\n'
             'Disallow: /resources/download/\n'
+            'Disallow: /test-tuzuu/\n'
             '\n'
             f'Sitemap: {CANONICAL_ORIGIN}/sitemap.xml\n',
         )
@@ -117,6 +118,7 @@ class RobotsAndSitemapTests(TestCase):
         self.assertNotIn('/resources/download/', body)
         self.assertNotIn('/account/', body)
         self.assertNotIn('/dashboard/', body)
+        self.assertNotIn('/test-tuzuu/', body)
         self.assertNotIn('railway.app', body)
         self.assertNotIn(f'{CANONICAL_ORIGIN}/robots.txt', body)
         self.assertNotIn(f'{CANONICAL_ORIGIN}/sitemap.xml', body)

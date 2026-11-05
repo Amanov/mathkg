@@ -37,6 +37,7 @@
             {{ topic.title }}
         </h1>
         {% if grade_badge %}<p class="topic-page__grade"><span>{{ grade_badge }}</span></p>{% endif %}
+        {% include "snippets/topic_test_button.html" with topic_slug=topic.slug topic_grade=test_grade %}
     </div>
 
     <div class="row">

@@ -13,6 +13,7 @@ Allow: /
 Disallow: /login/
 Disallow: /register/
 Disallow: /resources/download/
+Disallow: /test-tuzuu/
 
 Sitemap: {sitemap}
 """

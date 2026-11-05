@@ -30,6 +30,9 @@ SEO_ROUTES = {
     ('', 'pikir/', 'feedback'),
     ('', 'pikirler/', 'teacher_comments'),
     ('', 'page-reaction/', 'page_reaction'),
+    ('', 'test-tuzuu/', 'test_maker'),
+    ('', 'test-tuzuu/<int:pk>/pdf/', 'test_maker_pdf'),
+    ('', 'test-tuzuu/<int:pk>/', 'test_maker_result'),
 }
 
 # Admin changelist routes for models registered after the snapshot.
@@ -39,6 +42,7 @@ NEW_ADMIN_MODELS = (
     'personal/pagereaction/',
     'personal/pagereactioncount/',
     'personal/writtenfeedback/',
+    'personal/question/',
 )
 
 SAMPLES = {

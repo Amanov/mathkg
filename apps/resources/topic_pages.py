@@ -9,6 +9,7 @@ hand-built templates do with `res|get_item:'filename'`.
 
 from django.urls import reverse
 
+from apps.resources.assessment import single_grade_number
 from apps.resources.data.four_basic_operations_grades import (
     GRADE_IMAGE_DIR,
     GRADE_ITEMS,
@@ -746,6 +747,12 @@ def _resolve_links(file_prefix, files, resources, user, register_url, free_id):
     return links
 
 
+def _topic_slug_for_title(title):
+    from apps.resources.models import Topic
+    row = Topic.objects.filter(title=title).only('slug').first()
+    return row.slug if row else ''
+
+
 def build_topic_page(page, resources, user):
     """Resolve a page spec into template context: svg paths and real links.
 
@@ -813,6 +820,8 @@ def build_topic_page(page, resources, user):
         # Menu path above the title and a grade badge for single-grade pages.
         'crumb': page.get('crumb'),
         'grade_badge': page.get('grade_badge'),
+        'topic_slug': _topic_slug_for_title(page['title']),
+        'topic_grade': single_grade_number(page.get('grade_badge') or ''),
         # The same topic in the grades before and after (data/spiral.py).
         'strands': page.get('strands', []),
         # Grade tabs (empty for pages without grade-level items).

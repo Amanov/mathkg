@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "test_maker" %}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="{% static 'css/test-maker.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="test-maker">
+    <h1>Тест түзүү</h1>
+    <p class="test-maker__lead">{{ paper.grade_label }} · {{ paper.test_type_label }} тест · {{ paper.topics_label }}</p>
+    <p class="test-maker__hint">Суроолордун түрү: {{ paper.formats_label }}. Деңгээл: {{ paper.mix_label }}.</p>
+
+    <div class="test-maker__actions">
+        <a class="test-maker__submit" href="{% url 'test_maker_pdf' generated.pk %}">PDF жүктөп алуу</a>
+        <a class="test-maker__secondary" href="{% url 'test_maker' %}">Башка тест түзүү</a>
+    </div>
+
+    {% if not usage.paid %}
+    <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү.</p>
+    {% endif %}
+    {% if paper.borrowed %}
+    <p class="test-maker__hint">Кээ бир деңгээлде суроо жетпей калды. Жетишпеген орун башка деңгээлден толду.</p>
+    {% endif %}
+    {% if paper.sample_only %}
+    <p class="test-maker__hint">Бул суроолор үлгү катары белгиленген.</p>
+    {% endif %}
+
+    {% for variant in paper.variants %}
+    <article class="test-sheet">
+        <h2>Вариант {{ variant.number }}</h2>
+        <p class="test-sheet__meta">Аты-жөнү ______________________ &nbsp; Класс __________</p>
+        <ol class="test-sheet__questions">
+            {% for question in variant.questions %}
+            <li>
+                <div class="test-sheet__qhead">
+                    <p>{{ question.text }}</p>
+                    <span>{{ question.points }} балл</span>
+                </div>
+                {% if question.format == 'written' %}
+                <div class="test-sheet__lines" aria-hidden="true"></div>
+                {% elif question.format == 'matching' %}
+                <div class="test-sheet__match">
+                    <ul>
+                        {% for item in question.left %}
+                        <li><strong>{{ item.n }})</strong> {{ item.text }}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul>
+                        {% for item in question.right %}
+                        <li><strong>{{ item.letter }})</strong> {{ item.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% elif question.options %}
+                <ul>
+                    {% for option in question.options %}
+                    <li><strong>{{ option.letter }})</strong> {{ option.text }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="test-sheet__line">Жооп: ______________________________</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+        <p class="test-sheet__total">Жалпы: {{ variant.points }} балл</p>
+    </article>
+    {% endfor %}
+
+    <article class="test-sheet">
+        <h2>Жооп ачкычы жана баалоо схемасы</h2>
+        <p>{{ paper.marking_note }}</p>
+        <div class="test-sheet__table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Вариант</th>
+                        <th>№</th>
+                        <th>Түрү</th>
+                        <th>Жооп</th>
+                        <th>Балл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variant in paper.variants %}
+                        {% for question in variant.questions %}
+                        <tr>
+                            <td>{{ variant.number }}</td>
+                            <td>{{ question.number }}</td>
+                            <td>{{ question.type_label }}</td>
+                            <td>{{ question.answer }}{% if question.solution %}<br>{{ question.solution }}{% endif %}</td>
+                            <td>{{ question.points }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>{{ variant.number }}</td>
+                            <td colspan="3">Жалпы</td>
+                            <td>{{ variant.points }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+</div>
+{% endblock %}
