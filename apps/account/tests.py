@@ -101,6 +101,20 @@ class RegistrationAndActivationTests(TestCase):
         self.assertIn('сандан гана турбашы керек', body)
         self.assertNotIn('This password', body)
 
+    def test_registration_rejects_email_that_differs_only_by_case(self):
+        Account.objects.create_user(
+            email='taken@example.com', username='takenname', password='SuperSecret123!',
+        )
+        response = self.client.post(reverse('register'), {
+            'email': 'Taken@example.com',
+            'username': 'othername',
+            'password1': 'SuperSecret123!',
+            'password2': 'SuperSecret123!',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Бул электрондук почта мурунтан катталган.')
+        self.assertFalse(Account.objects.filter(username='othername').exists())
+
     def test_activation_link_activates_the_account(self):
         self._register()
         user = Account.objects.get(email='newuser@example.com')
@@ -210,6 +224,25 @@ class ResendActivationTests(TestCase):
         self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
         self.assertNotIn('railway.app', mail.outbox[0].body)
 
+    def test_resend_finds_an_address_typed_with_capitals(self):
+        # Registration keeps the address as typed. The resend form used
+        # to lowercase it and then look up an exact match, so this
+        # account never received a new link.
+        self.user.email = 'Pending@example.com'
+        self.user.save(update_fields=['email'])
+        response = self.client.post(reverse('resend_activation'), {'email': 'Pending@example.com'})
+        self.assertRedirects(response, reverse('login'))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['Pending@example.com'])
+        self.assertIn('/activate/', mail.outbox[0].body)
+
+    def test_resend_matches_a_different_capitalization(self):
+        self.user.email = 'Pending@example.com'
+        self.user.save(update_fields=['email'])
+        self.client.post(reverse('resend_activation'), {'email': 'pending@EXAMPLE.com'})
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ['Pending@example.com'])
+
     def test_resend_shows_the_same_message_for_an_unknown_email(self):
         response = self.client.post(
             reverse('resend_activation'), {'email': 'nobody@example.com'}, follow=True,
@@ -258,6 +291,18 @@ class AccountUpdateTests(TestCase):
         )
         response = self.client.post(reverse('account'), {
             'email': 'taken@example.com',
+            'username': 'updateuser',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.email, 'update@example.com')
+
+    def test_duplicate_email_with_different_case_is_rejected(self):
+        Account.objects.create_user(
+            email='taken@example.com', username='someoneelse', password='x'
+        )
+        response = self.client.post(reverse('account'), {
+            'email': 'Taken@example.com',
             'username': 'updateuser',
         })
         self.assertEqual(response.status_code, 200)
