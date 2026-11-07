@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}{{ page.title }}{% endblock %}
+{% load seo_tags %}
+{% block seo %}{% seo_topic page.title page.grade_badge %}{% endblock %}
 
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +17,7 @@
   {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
   <h1 class="topic-page__title">{{ page.title }}</h1>
   {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
+  {% include "snippets/topic_test_button.html" with topic_slug=page.topic_slug topic_grade=page.topic_grade %}
 
   {% for strand in page.strands %}
   <details class="spiral"{% if forloop.first %} open{% endif %}>
@@ -74,7 +76,7 @@
     <div class="teacher-guide__body">
       {% if page.standard %}
       <div class="teacher-guide__std">
-        <h3>Кыргыз Республикасынын программасы менен байланыш</h3>
+        <h2>Кыргыз Республикасынын программасы менен байланыш</h2>
         <ul>
           <li>{{ page.standard.document }}</li>
           <li>{{ page.standard.grade }}</li>
@@ -84,7 +86,7 @@
       {% endif %}
       <div class="teacher-guide__cols">
         <div>
-          <h3>{{ page.stages_label }}</h3>
+          <h2>{{ page.stages_label }}</h2>
           <dl class="guide-list">
             {% for section in page.sections %}
             <dt><span class="stage-tag">{{ section.stage }}</span> {{ section.title }}</dt>
@@ -93,7 +95,7 @@
           </dl>
         </div>
         <div>
-          <h3>Блумдун деңгээлдери</h3>
+          <h2>Блумдун деңгээлдери</h2>
           <dl class="guide-list">
             {% for level, text in page.bloom_guide %}
             <dt>{{ level }}</dt>
@@ -104,7 +106,7 @@
       </div>
       {% if page.teacher_resources %}
       <div class="teacher-guide__extra">
-        <h3>Класстык ыкмалар боюнча көмөкчү материал</h3>
+        <h2>Класстык ыкмалар боюнча көмөкчү материал</h2>
         {% for res in page.teacher_resources %}
         <div class="teacher-guide__extra-item"{% if page.grades %} data-grade="{{ res.grade }}"{% endif %}>
           <div>

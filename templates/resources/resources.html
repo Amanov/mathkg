@@ -1,8 +1,27 @@
 {% extends 'base/base.html' %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "resources" %}{% endblock %}
 
 {% block content %}
 
-<h2>Ресурстар</h2>
+<style>
+/* Match the previous h2, and skip the site-wide h1 bars. */
+h1.resources-title {
+    display: block;
+    font-size: calc(1.325rem + 0.9vw);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+h1.resources-title::before,
+h1.resources-title::after {
+    content: none;
+}
+</style>
+
+<h1 class="resources-title">Ресурстар</h1>
 
 <!-- Category filter buttons -->
 <div>
@@ -20,7 +39,7 @@
         <img src="{{ resource.image.url }}" alt="{{ resource.title }}" width="150">
       {% endif %}
 
-      <h3>{{ resource.title }}</h3>
+      <h2 class="h3">{{ resource.title }}</h2>
       <p>{{ resource.description }}</p>
       <span>{{ resource.get_category_display }}</span>
       <span>Жүктөлгөн саны: {{ resource.download_count }}</span>

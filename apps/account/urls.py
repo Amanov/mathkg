@@ -14,10 +14,12 @@ from apps.account.views import (
     activation_view,
     resend_activation_view,
     subscribe_request_view,
+    check_email_view,
 )
 
 urlpatterns = [
     path('register/', registration_view, name='register'),
+    path('register/check-email/', check_email_view, name='check_email'),
     path('logout/', logout_view, name='logout'),
     path('login/', login_view, name='login'),
     path('activate/<uidb64>/<token>/', activation_view, name='activate'),

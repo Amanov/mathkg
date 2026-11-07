@@ -898,7 +898,7 @@ GROUPS = [
     # Pages that span two neighbouring packs (2026-10-31).
     _group('figuralar_2_3', 'Фигуралар, бурчтар жана терминдер', 'Геометрия › Классификациялоо жана терминология',
            ['figuralar', 'geometriya3'], []),
-    _group('tekst_maseleler', 'Текст маселелер: тилке модели менен', 'Сандар › Бүтүн сандар › Турмуштук маселелер',
+    _group('tekst_maseleler', 'Тексттик маселелер: тилке модели менен', 'Сандар › Бүтүн сандар › Турмуштук маселелер',
            ['mamycha', 'kop_kb'], ['integers-real-life-calculator', 'integers-real-life-non-calculator']),
     _group('ayant_tort', 'Төрт бурчтуктардын периметри жана аянты', 'Геометрия › Аянт жана периметр',
            ['perimetr', 'uch_burchtuk'], []),

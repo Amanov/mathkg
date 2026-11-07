@@ -128,7 +128,7 @@
     border-radius: 8px;
     padding: 14px 16px 12px;
   }
-  .chart-card h3 {
+  .chart-card h2 {
     font-size: 13px;
     font-weight: 600;
     color: var(--ink-primary);
@@ -186,12 +186,180 @@
   @media (max-width: 900px) {
     .two-col { grid-template-columns: 1fr; }
   }
+
+  /* Count-from-today controls. Colors are set on the elements themselves
+     so the banner stays readable on the light dashboard cards and when
+     the admin chrome is in dark mode. */
+  .stats-controls {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 0 0 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .stats-banner {
+    flex: 1 0 100%;
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #e7f1fb;
+    color: #0c2340;
+    border: 1px solid #b9d0e8;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .stats-banner-note {
+    display: block;
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 12px;
+    color: #23415f;
+  }
+  .stats-controls form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+  .stats-controls label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-secondary);
+  }
+  .stats-controls input[type="date"] {
+    font: inherit;
+    font-size: 13px;
+    color: #0b0b0b;
+    background: #fff;
+    border: 1px solid rgba(11, 11, 11, 0.22);
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+  .stats-btn {
+    appearance: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    background: #0f3c58;
+    border: 1px solid #0c3048;
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .stats-btn:hover { background: #0c3048; color: #fff; }
+  .stats-btn:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+  }
+  .stats-btn.secondary {
+    color: #0f3c58;
+    background: #fff;
+    border-color: #0f3c58;
+  }
+  .stats-btn.secondary:hover { background: #f3f6f8; color: #0f3c58; }
+</style>
+<style>
+  html[data-theme="dark"] .dash .stats-controls {
+    background: #1b1b1b;
+    border-color: #353535;
+  }
+  html[data-theme="dark"] .dash .stats-banner {
+    background: #163044;
+    color: #e7f3fb;
+    border-color: #3d6a8a;
+  }
+  html[data-theme="dark"] .dash .stats-banner-note { color: #c5dced; }
+  html[data-theme="dark"] .dash .stats-controls label { color: #e0e0e0; }
+  html[data-theme="dark"] .dash .stats-controls input[type="date"] {
+    color: #f2f2f2;
+    background: #121212;
+    border-color: #4a4a4a;
+    color-scheme: dark;
+  }
+  html[data-theme="dark"] .dash .stats-btn.secondary {
+    color: #e7f3fb;
+    background: #1c1c1c;
+    border-color: #8eb4cc;
+  }
+  html[data-theme="dark"] .dash .stats-btn.secondary:hover {
+    background: #243240;
+    color: #e7f3fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] .dash .stats-controls {
+      background: #1b1b1b;
+      border-color: #353535;
+    }
+    html[data-theme="auto"] .dash .stats-banner {
+      background: #163044;
+      color: #e7f3fb;
+      border-color: #3d6a8a;
+    }
+    html[data-theme="auto"] .dash .stats-banner-note { color: #c5dced; }
+    html[data-theme="auto"] .dash .stats-controls label { color: #e0e0e0; }
+    html[data-theme="auto"] .dash .stats-controls input[type="date"] {
+      color: #f2f2f2;
+      background: #121212;
+      border-color: #4a4a4a;
+      color-scheme: dark;
+    }
+    html[data-theme="auto"] .dash .stats-btn.secondary {
+      color: #e7f3fb;
+      background: #1c1c1c;
+      border-color: #8eb4cc;
+    }
+    html[data-theme="auto"] .dash .stats-btn.secondary:hover {
+      background: #243240;
+      color: #e7f3fb;
+    }
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="dash">
   <p class="subtitle">Traffic, downloads, logins and policy watch — last updated on page load.</p>
+
+  <div class="stats-controls">
+    {% if stats_since_banner %}
+    <p class="stats-banner" role="status">
+      {{ stats_since_banner }}
+      {% if stats_since_temporary %}
+      <span class="stats-banner-note">Бул көрүнүш сакталган жок. Сакталган эсеп өзгөрбөйт.</span>
+      {% endif %}
+    </p>
+    {% endif %}
+    <form method="get" action="{% url 'analytics_dashboard' %}">
+      <label for="stats-since">Ушул күндөн көрүү</label>
+      <input id="stats-since" type="date" name="since" value="{{ stats_since_input }}">
+      <button class="stats-btn secondary" type="submit">Көрсөтүү</button>
+      {% if stats_since_temporary %}
+      <a class="stats-btn secondary" href="{% url 'analytics_dashboard' %}">Сакталган эсепке кайтуу</a>
+      {% endif %}
+    </form>
+    {% if request.user.is_superuser %}
+    <form method="post" action="{% url 'analytics_dashboard' %}">
+      {% csrf_token %}
+      <button class="stats-btn" type="submit" name="action" value="since_now"
+        onclick="return confirm('Статистика ушул мөмөттөн баштап эсептелет. Эски жазуулар өчпөйт.');">
+        Бүгүндөн баштап эсептөө
+      </button>
+      <button class="stats-btn secondary" type="submit" name="action" value="clear"
+        onclick="return confirm('Баардык убакыттагы статистика кайра көрсөтүлөт. Эч кандай жазуу өчпөйт.');">
+        Баардык убакытта
+      </button>
+    </form>
+    {% endif %}
+  </div>
 
   <div class="section section-warn">
     <div class="section-header">
@@ -253,12 +421,12 @@
       <div class="kpi-card accent-blue">
         <div class="kpi-label">Total visits</div>
         <div class="kpi-value">{{ total_visits }}</div>
-        <div class="kpi-sub">all time</div>
+        <div class="kpi-sub">{% if stats_limited %}in this window{% else %}all time{% endif %}</div>
       </div>
       <div class="kpi-card accent-blue">
         <div class="kpi-label">Unique visitors</div>
         <div class="kpi-value">{{ unique_visitors }}</div>
-        <div class="kpi-sub">all time</div>
+        <div class="kpi-sub">{% if stats_limited %}in this window{% else %}all time{% endif %}</div>
       </div>
       <div class="kpi-card accent-blue">
         <div class="kpi-label">Repeat visitors</div>
@@ -279,6 +447,59 @@
   </div>
 
   <div class="kpi-group">
+    <div class="kpi-group-label">Page reactions</div>
+    <div class="kpi-row">
+      <div class="kpi-card accent-green">
+        <div class="kpi-label">😊 Жакты</div>
+        <div class="kpi-value">{{ reaction_happy }}</div>
+      </div>
+      <div class="kpi-card accent-navy">
+        <div class="kpi-label">😐 Жаман эмес</div>
+        <div class="kpi-value">{{ reaction_ok }}</div>
+      </div>
+      <div class="kpi-card accent-amber">
+        <div class="kpi-label">🙁 Жаккан жок</div>
+        <div class="kpi-value">{{ reaction_sad }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="section">
+      <div class="section-header">Top pages by 😊</div>
+      <table>
+        <thead><tr><th>Page</th><th>😊</th></tr></thead>
+        <tbody>
+          {% for row in reaction_top_happy %}
+          <tr>
+            <td>{{ row.material|default:row.path }}<div style="color: var(--ink-muted); font-size: 12px;">{{ row.path }}</div></td>
+            <td>{{ row.happy_count }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: var(--ink-muted)">No reactions yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <div class="section-header">Top pages by 🙁</div>
+      <table>
+        <thead><tr><th>Page</th><th>🙁</th></tr></thead>
+        <tbody>
+          {% for row in reaction_top_sad %}
+          <tr>
+            <td>{{ row.material|default:row.path }}<div style="color: var(--ink-muted); font-size: 12px;">{{ row.path }}</div></td>
+            <td>{{ row.sad_count }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="2" style="color: var(--ink-muted)">No reactions yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="kpi-group">
     <div class="kpi-group-label">Engagement</div>
     <div class="kpi-row">
       <div class="kpi-card accent-navy">
@@ -294,7 +515,7 @@
       <div class="kpi-card accent-navy">
         <div class="kpi-label">Button clicks</div>
         <div class="kpi-value">{{ total_clicks }}</div>
-        <div class="kpi-sub">all time</div>
+        <div class="kpi-sub">{% if stats_limited %}in this window{% else %}all time{% endif %}</div>
       </div>
     </div>
   </div>
@@ -305,7 +526,7 @@
       <div class="kpi-card accent-green">
         <div class="kpi-label">Total downloads</div>
         <div class="kpi-value">{{ total_downloads }}</div>
-        <div class="kpi-sub">all time</div>
+        <div class="kpi-sub">{% if stats_limited %}in this window{% else %}all time{% endif %}</div>
       </div>
       <div class="kpi-card accent-green">
         <div class="kpi-label">Unique users</div>
@@ -332,7 +553,7 @@
       <div class="kpi-card accent-amber">
         <div class="kpi-label">Total logins</div>
         <div class="kpi-value">{{ total_logins }}</div>
-        <div class="kpi-sub">all time</div>
+        <div class="kpi-sub">{% if stats_limited %}in this window{% else %}all time{% endif %}</div>
       </div>
       <div class="kpi-card accent-amber">
         <div class="kpi-label">This week</div>
@@ -347,8 +568,8 @@
 
   <div class="charts-grid">
     <div class="chart-card">
-      <h3>Traffic &amp; logins</h3>
-      <p class="chart-caption">Last 30 days</p>
+      <h2>Traffic &amp; logins</h2>
+      <p class="chart-caption">Last 30 days{% if stats_limited %}, not before the reset{% endif %}</p>
       <div class="chart-wrap"><canvas id="chart-traffic"></canvas></div>
       <details class="view-data">
         <summary>View data</summary>
@@ -363,8 +584,8 @@
       </details>
     </div>
     <div class="chart-card">
-      <h3>Downloads</h3>
-      <p class="chart-caption">Last 30 days</p>
+      <h2>Downloads</h2>
+      <p class="chart-caption">Last 30 days{% if stats_limited %}, not before the reset{% endif %}</p>
       <div class="chart-wrap"><canvas id="chart-downloads"></canvas></div>
       <details class="view-data">
         <summary>View data</summary>
@@ -379,8 +600,8 @@
       </details>
     </div>
     <div class="chart-card">
-      <h3>Downloads by folder</h3>
-      <p class="chart-caption">Grouped by topic, all time</p>
+      <h2>Downloads by folder</h2>
+      <p class="chart-caption">Grouped by topic, {% if stats_limited %}in this window{% else %}all time{% endif %}</p>
       <div class="chart-wrap"><canvas id="chart-folders"></canvas></div>
       <details class="view-data">
         <summary>View data</summary>
@@ -395,8 +616,8 @@
       </details>
     </div>
     <div class="chart-card">
-      <h3>Most clicked buttons</h3>
-      <p class="chart-caption">All time</p>
+      <h2>Most clicked buttons</h2>
+      <p class="chart-caption">{% if stats_limited %}In this window{% else %}All time{% endif %}</p>
       <div class="chart-wrap"><canvas id="chart-buttons"></canvas></div>
       <details class="view-data">
         <summary>View data</summary>
@@ -411,8 +632,8 @@
       </details>
     </div>
     <div class="chart-card">
-      <h3>Top search queries</h3>
-      <p class="chart-caption">All time · {{ total_searches }} total searches</p>
+      <h2>Top search queries</h2>
+      <p class="chart-caption">{% if stats_limited %}In this window{% else %}All time{% endif %} · {{ total_searches }} total searches</p>
       <div class="chart-wrap"><canvas id="chart-queries"></canvas></div>
       <details class="view-data">
         <summary>View data</summary>

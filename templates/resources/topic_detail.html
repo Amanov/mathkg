@@ -1,10 +1,9 @@
 {% extends 'base/base.html' %}
 
 {% load static %}
+{% load seo_tags %}
 
-{% block title %}
-{{ topic.title }}
-{% endblock %}
+{% block seo %}{% seo_topic topic.title grade_badge %}{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
@@ -38,13 +37,14 @@
             {{ topic.title }}
         </h1>
         {% if grade_badge %}<p class="topic-page__grade"><span>{{ grade_badge }}</span></p>{% endif %}
+        {% include "snippets/topic_test_button.html" with topic_slug=topic.slug topic_grade=test_grade %}
     </div>
 
     <div class="row">
         {% for subtopic in subtopics %}
             <div class="col-md-6">
                 <a class="topic-subtopic-card" href="{% url 'subtopic_detail' topic.slug subtopic.slug %}">
-                    <h4>{{ subtopic.title }}</h4>
+                    <h2 class="h4">{{ subtopic.title }}</h2>
                 </a>
             </div>
         {% empty %}

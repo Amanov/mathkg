@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}{{ page.title }}{% endblock %}
+{% load seo_tags %}
+{% block seo %}{% seo_topic page.title page.grade_badge %}{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
 <link rel="stylesheet" href="{% static 'css/lesson-set.css' %}">

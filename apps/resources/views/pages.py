@@ -1,9 +1,20 @@
+from urllib.parse import urlencode
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, NoReverseMatch
 from django_ratelimit.decorators import ratelimit
 
 from apps.account.models import SubscriptionRequest, DAILY_DOWNLOAD_LIMITS
+from apps.resources.grade_search import (
+    catalog_index,
+    grade_counts,
+    norm_url,
+    pages_for_search,
+    parse_grade_query,
+    preview_results,
+    section_sort_key,
+)
 from apps.resources.utils.request_helpers import get_client_ip
 
 from ..models import MenuItem, NewsPost, Resource, SearchQuery
@@ -18,6 +29,23 @@ MIN_SEARCH_QUERY_LENGTH = 2
 
 def _search_ratelimit_key(group, request):
     return get_client_ip(request)
+
+
+def menu_fragment_view(request):
+    """The full topic menu, loaded after the first screen.
+
+    The home page only sends the top row. This response is the same
+    markup the menu used to inline, so opening it looks the same.
+    It is cacheable and is not a page view.
+    """
+    from apps.resources.views.context_processors import root_menu
+
+    response = render(request, 'partials/menu_fragment.html', {
+        'menu_items': root_menu(full=True),
+    })
+    response['Cache-Control'] = 'public, max-age=3600'
+    response['X-Robots-Tag'] = 'noindex'
+    return response
 
 
 def news_list_view(request):
@@ -148,10 +176,9 @@ def _topic_search_results(query_lower, limit):
 
 
 def _grouped_topic_results(results):
-    """Group flat topic matches by their top-level menu category (Сандар,
-    Пропорция, ...), in the same order as the main nav / /topics/ page,
-    so the full results page reads as a page of topics - sectioned by
-    category - rather than one undifferentiated list."""
+    """Group flat topic matches by their top-level section (Сандар,
+    Пропорция, Алгебра, Геометрия, Дата, Ыктымалдуулук), then any other
+    menu root, so the page reads as topics sectioned by category."""
     root_order = {
         item.title: item.order
         for item in MenuItem.objects.filter(parent__isnull=True)
@@ -160,7 +187,95 @@ def _grouped_topic_results(results):
     for result in results:
         category = result['breadcrumb'][0] if result['breadcrumb'] else 'Башка'
         groups.setdefault(category, []).append(result)
-    return sorted(groups.items(), key=lambda pair: root_order.get(pair[0], 9999))
+    return sorted(
+        groups.items(),
+        key=lambda pair: section_sort_key(pair[0], root_order),
+    )
+
+
+def _attach_grades(results):
+    index = catalog_index()
+    for result in results:
+        page = index.get(norm_url(result['url']))
+        if page:
+            result['grade'] = page['label']
+    return results
+
+
+def _topic_results_for(text, grade):
+    """Topic pages for a text query, or for a class named in the query."""
+    if grade is None:
+        if len(text) < MIN_SEARCH_QUERY_LENGTH:
+            return []
+        return _attach_grades(_topic_search_results(text, limit=300))
+
+    results = pages_for_search(grade, text)
+    if not text:
+        return results
+
+    seen = {row['url'] for row in results}
+    index = catalog_index()
+    for row in _topic_search_results(text.lower(), limit=300):
+        url = norm_url(row['url'])
+        if url in seen:
+            continue
+        page = index.get(url)
+        if page and grade in page['grades']:
+            row['url'] = url
+            row['grade'] = page['label']
+            results.append(row)
+            seen.add(url)
+    results.sort(key=lambda row: (
+        section_sort_key(row['breadcrumb'][0] if row['breadcrumb'] else ''),
+        row['title'],
+    ))
+    return results
+
+
+def _search_grade(query, explicit):
+    """The class to filter by, the words besides that class, and whether
+    the class was written in the search box (so a chip can rewrite it)."""
+    grade_from_text, remainder = parse_grade_query(query)
+    grade = grade_from_text
+    if explicit.isdigit():
+        number = int(explicit)
+        if 1 <= number <= 12:
+            grade = number
+    text = remainder if grade_from_text else query
+    if len(text) < MIN_SEARCH_QUERY_LENGTH:
+        text = ''
+    return grade, text, grade_from_text, remainder
+
+
+def _grade_chips(query, text, grade, grade_from_text, remainder):
+    counts = grade_counts(text)
+    if len(counts) < 2:
+        return [], ''
+    base = reverse('search')
+
+    def href(params):
+        return base + ('?' + urlencode(params) if params else '')
+
+    chips = []
+    for number in sorted(counts):
+        if grade_from_text or not query:
+            chip_query = f'{number}-класс'
+            if remainder:
+                chip_query = f'{chip_query} {remainder}'
+            link = href({'q': chip_query})
+        else:
+            link = href({'q': query, 'grade': number})
+        chips.append({
+            'num': number,
+            'label': f'{number}-класс',
+            'count': counts[number],
+            'href': link,
+        })
+    if grade_from_text:
+        clear_params = {'q': remainder} if remainder else {}
+    else:
+        clear_params = {'q': query} if query else {}
+    return chips, href(clear_params)
 
 
 @ratelimit(key=_search_ratelimit_key, rate='30/m', method='GET', block=True)
@@ -170,9 +285,14 @@ def search_suggest_view(request):
     page itself never reloads. The full /search/ page (below) still does
     the complete, all-content-types search for when they submit the form."""
     query = request.GET.get('q', '').strip()
-    query_lower = query.lower()
+    grade, text, _from_text, _remainder = _search_grade(query, '')
 
-    results = _topic_search_results(query_lower, limit=8) if len(query_lower) >= MIN_SEARCH_QUERY_LENGTH else []
+    if grade is not None:
+        results = preview_results(_topic_results_for(text, grade), limit=8)
+    elif len(query) >= MIN_SEARCH_QUERY_LENGTH:
+        results = _topic_results_for(query.lower(), None)[:8]
+    else:
+        results = []
 
     return JsonResponse({
         'query': query,
@@ -188,22 +308,42 @@ def search_view(request):
     content, so it's deliberately left out of search."""
     query = request.GET.get('q', '').strip()
     query_lower = query.lower()
+    grade, text, grade_from_text, remainder = _search_grade(
+        query, request.GET.get('grade', '').strip(),
+    )
 
     grouped_topic_results = []
     resource_results = []
+    grade_chips = []
+    grade_clear_href = ''
 
-    if len(query_lower) >= MIN_SEARCH_QUERY_LENGTH:
-        topic_results = _topic_search_results(query_lower, limit=300)
+    if grade is not None or len(query_lower) >= MIN_SEARCH_QUERY_LENGTH:
+        topic_text = text if grade is not None else query_lower
+        topic_results = _topic_results_for(topic_text, grade)
         grouped_topic_results = _grouped_topic_results(topic_results)
 
-        resource_matches = [
-            resource for resource in Resource.objects.filter(
-                is_active=True
-            ).select_related('topic', 'subtopic', 'subsubtopic')
-            if query_lower in resource.title.lower()
-            or query_lower in resource.description.lower()
-        ]
-        resource_matches.sort(key=lambda resource: resource.title)
+        resource_matches = []
+        # A pure class query ("7-класс") has no words to match against a
+        # file title. Resource rows also have no class of their own, so a
+        # class filter keeps only files that sit on a matching topic page.
+        if len(text if grade is not None else query_lower) >= MIN_SEARCH_QUERY_LENGTH:
+            needle = (text if grade is not None else query_lower).lower()
+            resource_matches = [
+                resource for resource in Resource.objects.filter(
+                    is_active=True
+                ).select_related('topic', 'subtopic', 'subsubtopic')
+                if needle in resource.title.lower()
+                or needle in resource.description.lower()
+            ]
+            if grade is not None:
+                index = catalog_index()
+                kept = []
+                for resource in resource_matches:
+                    page = index.get(norm_url(_resource_resolved_url(resource) or ''))
+                    if page and grade in page['grades']:
+                        kept.append(resource)
+                resource_matches = kept
+            resource_matches.sort(key=lambda resource: resource.title)
 
         for resource in resource_matches[:40]:
             resource_results.append({
@@ -211,13 +351,17 @@ def search_view(request):
                 'url': _resource_resolved_url(resource),
             })
 
+        grade_chips, grade_clear_href = _grade_chips(
+            query, text, grade, grade_from_text, remainder,
+        )
+
         # Logged only for a submitted search (not search_suggest_view's
         # per-keystroke dropdown, which would flood this table with
         # partial, non-deliberate queries).
         if not request.session.session_key:
             request.session.save()
         SearchQuery.objects.create(
-            query=query,
+            query=query or f'{grade}-класс',
             results_count=len(topic_results) + len(resource_matches),
             session_key=request.session.session_key or '',
             user=request.user if request.user.is_authenticated else None,
@@ -229,5 +373,8 @@ def search_view(request):
         'grouped_topic_results': grouped_topic_results,
         'resource_results': resource_results,
         'has_results': bool(grouped_topic_results or resource_results),
+        'grade_chips': grade_chips,
+        'active_grade': grade,
+        'grade_clear_href': grade_clear_href,
     }
     return render(request, 'resources/search_results.html', context)

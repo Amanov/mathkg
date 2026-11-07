@@ -1,253 +1,17 @@
 {% extends 'base/base.html' %}
-
-{% block title %} Башкы бет {%endblock%}
-
 {% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "home" %}{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/illustrations.css' %}">
 <link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}">
-<style>
-  
-.mainshadow{
-    box-shadow: 0 0 20px rgb(13, 167, 255);   
-  }
-  h1, h2.section-heading {
-  display: flex;
-  align-items: center;
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  margin-bottom: 2rem;
-}
-/* Section headings below were <h1> (six of them on one page - a real
-   accessibility/SEO issue, a page should have one). Demoted to <h2> with
-   this local class so they keep the exact same decorative-bar look that
-   main.css's global h1::before/after already gives real <h1>s, without
-   extending that global rule to every <h2> on every other page. */
-h2.section-heading::before,
-h2.section-heading::after {
-  content: '';
-  flex: 1;
-  height: 8px;
-  background-color: rgb(13, 167, 255);
-}
-h2.section-heading::before {
-  margin-right: 1.5rem;
-}
-h2.section-heading::after {
-  margin-left: 1.5rem;
-}
-.zoom {
-   padding: 5px; 
-  /* background-color: green; */
-  transition: transform  .3s; /* Animation */
-   /* width: 200px;
-  height: 200px;  */
-  margin: 0 auto;
-}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 
-.zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-h3{
-  display: inline-block !important;
-  font-size: clamp(1.1rem, 2vw, 1.75rem);
-}
-.custom_border{
-  border: 3px solid rgb(34, 133 , 195);
-  border-radius: 10px; 
-  padding:10px;
-  box-sizing: border-box;
- 
-}
-.custom_border h1 {
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-.overflow-wrap {
-  overflow-wrap: break-word;
-}
-hr{
-  margin:20px; 
-  visibility: hidden;
-}
-
-.custom-card {
-    max-width: 80%;
-    padding: 5px;
-    /* box-sizing: border-box; */
-    display:inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    }
-   
-  .custom-card h2 {
-    margin: 0;
-  }
-
-  /* here I want to target all the screens */
-
-/* X-Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px){
-  body ,.container{
-    /* width: 100%; Remove any padding that might affect the full width  */ 
-    padding: 0;
-    margin: 0;
-  }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-/* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) { 
-  body ,.container{
-     /* width: 100%; Remove any padding that might affect the full width  */
-    padding: 0;
-    margin: 0;
-  }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-
-/* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) { 
-  body ,.container{
-      /*Remove any padding that might affect the full width  */  
-    padding: 0;
-    margin: 1%;
-  }
-.col-auto.col-md-3 {
-       display:block;  /*<!---Here how to show the menu from side--> */
-    }
-
-    /* Show the hamburger menu container */
-    .col-auto.d-md-none {
-      display: block;
-    }  
-   
-/* Hide the entire navigation section */
-
-  .hamburger-menu {
-    display: block; /* Show the hamburger icon */
-    transform: translateY(-65px);
-    border: 3px solid rgb(15,60,88);
-    border-radius: 10px ;
-    padding-left:  10px;
-   
-  }
-
-  .sidebar{
-    /* display: none !important; */
-    transform: translateX(-100%);
-    z-index: 1;
-    display: block;
-    position:fixed;
-         
-  }
-  .sidebar.show{
-    transform: translateX(0);
-    z-index: 2;
-    
-    
-  }
-  .sidebar a {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    /* color: #333; */
-   
-}
-}
-/* // Large devices (desktops, less than 1200px) */
-
-
-
-
-
-</style>
 
 <div class="container ">
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
-    <!-- <h1>Математика мугалимдери үчүн даяр материалдар</h1>  -->
     <h1>Мугалимдер үчүн заманбап математикалык ресурстар</h1>
 
     <hr>
@@ -255,7 +19,6 @@ hr{
       <div class="col-md-10">
         <div class="h-100 rounded-1">                
           <div class="d-flex flex-column text-center overflow-wrap">
-            <!-- <h1 ></h1>  -->
           </div>
         </div>
       </div>
@@ -263,10 +26,10 @@ hr{
       <div class=" col-md-12 col-lg-6 ">
         <div class="h-100 p-5 " >
           <!-- <h2 class="fw-bold text-center overflow-wrap">6500дөн ашык ресурстар…</h2> -->
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Миңдеген материалдар...</h2>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Миңдеген материалдар...</p>
 
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>6 жүздөн ашык темалар…</h2>            
-            <h2> <span style="color: green; font-size: 48px;">+</span>Жаңы ресурстар менен тынымсыз толукталууда ...</h2>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>6 жүздөн ашык темалар…</p>            
+            <p class="home-point"> <span style="color: green; font-size: 48px;">+</span>Жаңы ресурстар менен тынымсыз толукталууда ...</p>
         </div>
       </div>
 
@@ -274,7 +37,10 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">                
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/intro.png' %}" alt="Даяр материалдардын китепканасы">
+              <picture>
+                <source srcset="{% static 'img/home/intro.webp' %}" type="image/webp">
+                <img class="mk-zoom" tabindex="0" src="{% static 'img/home/intro.png' %}" width="1068" height="851" alt="Даяр материалдардын китепканасы" decoding="async">
+              </picture>
             </div>
           </div>
       </div>
@@ -312,18 +78,21 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/presentations.png' %}" alt="Слайддагы диаграмма">
+            <picture>
+              <source srcset="{% static 'img/home/presentations.webp' %}" type="image/webp">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/presentations.png' %}" width="1182" height="850" alt="Слайддагы диаграмма" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="h-100 p-5 " >
-            <h2 class="fw-bold text-left overflow-wrap">Жүз уккандан бир көргөн артык.</h2>
-            <h3> <span style="color: green; font-size: 48px;">&#10003;</span>Дароо колдонууга даяр сапаттуу презентациялар</h3>
-            <h3><span style="color: green; font-size: 48px;">&#10003;</span>
-              Калыптандыруучу баалоо (AFL) менен байытылган</h3>
-            <h3> <span style="color: green; font-size: 48px;">&#10003;</span>Ар бир мугалимдин муктаждыгына ылайык оңой ыңгайлашат</h3>
+            <p class="home-point fw-bold text-left overflow-wrap">Жүз уккандан бир көргөн артык.</p>
+            <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>Дароо колдонууга даяр сапаттуу презентациялар</p>
+            <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>
+              Калыптандыруучу баалоо (AFL) менен байытылган</p>
+            <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>Ар бир мугалимдин муктаждыгына ылайык оңой ыңгайлашат</p>
          </div>
       </div>
      
@@ -334,18 +103,21 @@ hr{
       
       <div class="col-lg-6 ">
         <div class="h-100 p-5  text-center overflow-wrap">
-          <h2 class="fw-bold text-center overflow-wrap">Кеңешип кескен бармак оорубайт</h2>
+          <p class="home-point fw-bold text-center overflow-wrap">Кеңешип кескен бармак оорубайт</p>
           <!-- here we have to add some tick icons -->
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Жеке жана топтук иштер үчүн даяр тапшырмалар</h2>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Жеке жана топтук иштер үчүн даяр тапшырмалар</p>
            <!-- <h2><span style="color: green; font-size: 48px;">&#10003;</span>Математикалык талкуу жана аргументацияны өнүктүрөт</h2> -->
-           <h2><span style="color: green; font-size: 48px;">&#10003;</span>Басып чыгарууга жана колдонууга даяр</h2>
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>Бардык деңгээлдеги окуучулар үчүн варианттар</h2>
+           <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Басып чыгарууга жана колдонууга даяр</p>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Бардык деңгээлдеги окуучулар үчүн варианттар</p>
         </div>
       </div>
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/worksheets.png' %}" alt="Иш барак жана калем">
+              <picture>
+                <source srcset="{% static 'img/home/worksheets.webp' %}" type="image/webp">
+                <img class="mk-zoom" tabindex="0" src="{% static 'img/home/worksheets.png' %}" width="962" height="850" alt="Иш барак жана калем" loading="lazy" decoding="async">
+              </picture>
             </div>
           </div>
       </div>
@@ -360,16 +132,19 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/activities.png' %}" alt="Оюн зарлары">
+            <picture>
+              <source srcset="{% static 'img/home/activities.webp' %}" type="image/webp">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/activities.png' %}" width="962" height="850" alt="Оюн зарлары" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
       
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-center overflow-wrap">✓ Кыймылдуу оюндар</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Топтук кызматташуу көндүмдөр</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери бар көндүмдөр</h2>
+          <p class="home-point fw-bold text-center overflow-wrap">✓ Кыймылдуу оюндар</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Топтук кызматташуу көндүмдөр</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Атаандаштык элементтери бар көндүмдөр</p>
         </div>
       </div>    
             
@@ -382,10 +157,10 @@ hr{
       
       <div class="col-md-6">
         <div class="h-100 p-5 "">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир багытта ой жүгүртүү</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Бүт класс үчүн кыска жана натыйжалуу тапшырмалар</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Түшүнүүнү дароо текшерүү мүмкүнчүлүгү.</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Ар бир окуучунун катышуусун камсыздoo</h2>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap">Бир суроо. Бир класс. Бир багытта ой жүгүртүү</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Бүт класс үчүн кыска жана натыйжалуу тапшырмалар</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Түшүнүүнү дароо текшерүү мүмкүнчүлүгү.</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Ар бир окуучунун катышуусун камсыздoo</p>
         </div>
       </div>
 
@@ -393,7 +168,10 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/teacher-led.png' %}" alt="Класс менен талкуу">
+              <picture>
+                <source srcset="{% static 'img/home/teacher-led.webp' %}" type="image/webp">
+                <img class="mk-zoom" tabindex="0" src="{% static 'img/home/teacher-led.png' %}" width="962" height="850" alt="Класс менен талкуу" loading="lazy" decoding="async">
+              </picture>
             </div>
           </div>
       </div>
@@ -406,20 +184,23 @@ hr{
       <div class="col-md-6">
         <div class="h-100 rounded-1">
           <div class="illustration-card">
-            <img class="mk-zoom" tabindex="0" src="{% static 'img/home/exam.png' %}" alt="Убакыттуу экзамен суроолору">
+            <picture>
+              <source srcset="{% static 'img/home/exam.webp' %}" type="image/webp">
+              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/exam.png' %}" width="1172" height="851" alt="Убакыттуу экзамен суроолору" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
       
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap"> ЖРТ </h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Күбөлүк</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Аттестат</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>PISA</h2>
-          <h3><span style="color: green; font-size: 48px;">&#10003;</span>Чыгарылган көндүмдөр</h3>
-          <h3> <span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</h3><br>
-          <h3><span style="color: green; font-size: 48px;">&#10003;</span>2 өлчөмдө</h3>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap"> ЖРТ </p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Күбөлүк</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Аттестат</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>PISA</p>
+          <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>Чыгарылган көндүмдөр</p>
+          <p class="home-point-sm"> <span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</p><br>
+          <p class="home-point-sm"><span style="color: green; font-size: 48px;">&#10003;</span>2 өлчөмдө</p>
         </div>
       </div>
 
@@ -433,11 +214,11 @@ hr{
      
       <div class="col-md-6 ">
         <div class="h-100 p-5 ">
-          <h2 class="fw-bold text-uppercase text-center overflow-wrap">Максаттуу практика көндүмдөрү</h2>
-          <h2><span style="color: green; font-size: 48px;">&#10003;</span>Сан сабаттуулугу</h2>
+          <p class="home-point fw-bold text-uppercase text-center overflow-wrap">Максаттуу практика көндүмдөрү</p>
+          <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>Сан сабаттуулугу</p>
 
-           <h2><span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</h2> <br>
-            <h2><span style="color: green; font-size: 48px;">&#10003;</span>бир канча өлчөмдө</h2>
+           <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>PDF & PPT</p> <br>
+            <p class="home-point"><span style="color: green; font-size: 48px;">&#10003;</span>бир канча өлчөмдө</p>
         </div>
       </div>
 
@@ -445,7 +226,10 @@ hr{
       <div class="col-md-6">
           <div class="h-100 rounded-1">
             <div class="illustration-card">
-              <img class="mk-zoom" tabindex="0" src="{% static 'img/home/revision.png' %}" alt="Кайталап көнүгүү">
+              <picture>
+                <source srcset="{% static 'img/home/revision.webp' %}" type="image/webp">
+                <img class="mk-zoom" tabindex="0" src="{% static 'img/home/revision.png' %}" width="1212" height="850" alt="Кайталап көнүгүү" loading="lazy" decoding="async">
+              </picture>
             </div>
           </div>
       </div>

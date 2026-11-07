@@ -593,7 +593,7 @@
       "pattern": "admin/account/account/<path:object_id>/delete/",
       "name": "account_account_delete",
       "defaults": {},
-      "callback": "django.contrib.admin.options.ModelAdmin.delete_view"
+      "callback": "apps.account.admin.AccountAdmin.delete_view"
     },
     {
       "namespace": "admin",
@@ -727,6 +727,13 @@
       "name": "register",
       "defaults": {},
       "callback": "apps.account.views.registration_view"
+    },
+    {
+      "namespace": "",
+      "pattern": "register/check-email/",
+      "name": "check_email",
+      "defaults": {},
+      "callback": "apps.account.views.check_email_view"
     },
     {
       "namespace": "",
@@ -7322,6 +7329,13 @@
     },
     {
       "namespace": "",
+      "pattern": "statistika-ortocho/",
+      "name": "statistika_ortocho",
+      "defaults": {},
+      "callback": "apps.resources.views.lesson_set.statistics_lesson_view"
+    },
+    {
+      "namespace": "",
       "pattern": "data-analysing-median/",
       "name": "data_analysing_median",
       "defaults": {
@@ -8753,6 +8767,11 @@
       "name": "register",
       "kwargs": {},
       "path": "/register/"
+    },
+    {
+      "name": "check_email",
+      "kwargs": {},
+      "path": "/register/check-email/"
     },
     {
       "name": "logout",
@@ -12468,6 +12487,11 @@
       "name": "geometry_construction_bisectors_mixed",
       "kwargs": {},
       "path": "/geometry-construction-bisectors-mixed/"
+    },
+    {
+      "name": "statistika_ortocho",
+      "kwargs": {},
+      "path": "/statistika-ortocho/"
     },
     {
       "name": "data_analysing_median",

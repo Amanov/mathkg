@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Sitemap templates. django.contrib.sites stays uninstalled: a Site
+    # row would publish example.com until it was edited, and would then
+    # ignore SITE_URL. Absolute URLs use SITE_URL instead.
+    'django.contrib.sitemaps',
     # third party extensions
     'crispy_forms',
     'crispy_bootstrap5',
@@ -61,8 +65,17 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5' #added by me
 
 MIDDLEWARE = [
+    # Before SecurityMiddleware so www and the Railway host go straight
+    # to https://mathkg.com. Scheme upgrades stay in SecurityMiddleware,
+    # which honors SECURE_PROXY_SSL_HEADER and does not loop behind
+    # Railway's proxy. See config/middleware.py.
+    'config.middleware.CanonicalHostMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add here
+    # After WhiteNoise so already-compressed static files are not
+    # gzipped a second time. Dynamic HTML, including the home page,
+    # is compressed here.
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,12 +98,16 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
                 # 'apps.resources.views.context_processors.topic_menu',
                 'apps.resources.views.context_processors.menu_items',
+                'apps.resources.views.context_processors.reaction_state',
+                'apps.resources.seo.seo_context',
                 'apps.account.context_processors.active_qr_code',
+                'apps.account.context_processors.tour_flags',
                 # "apps.resources.views.context_processors.main_menu",
                 # 'apps.resources.context_processors.nav_topics',
 
@@ -105,27 +122,68 @@ AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Email: defaults to printing to the console (safe, never crashes) unless
-# real SMTP credentials are provided via the environment, in which case
-# actual sending is enabled. Set EMAIL_HOST/EMAIL_HOST_USER/
-# EMAIL_HOST_PASSWORD (and optionally EMAIL_PORT/EMAIL_USE_TLS) on the
-# host to turn on real activation/password-reset emails.
+def sender_settings_from_env(environ=None):
+    """From-address for every site email.
+
+    ``DEFAULT_FROM_EMAIL`` in the environment, when set, is the whole
+    header (``Name <email>`` or a bare address) and wins. Otherwise the
+    header is ``{BREVO_SENDER_NAME} <{BREVO_SENDER_EMAIL}>``. Both
+    default so Railway can change the sender without a code change.
+    The domain default is ``MathKG <no-reply@mathkg.com>``.
+    """
+    env = os.environ if environ is None else environ
+    name = (env.get('BREVO_SENDER_NAME') or 'MathKG').strip() or 'MathKG'
+    email = (env.get('BREVO_SENDER_EMAIL') or 'no-reply@mathkg.com').strip() or 'no-reply@mathkg.com'
+    explicit = (env.get('DEFAULT_FROM_EMAIL') or '').strip()
+    header = explicit or f'{name} <{email}>'
+    return {'name': name, 'email': email, 'header': header}
+
+
+_SENDER = sender_settings_from_env()
+
+# Email: Brevo's HTTP API when BREVO_API_KEY is set. Railway blocks
+# outbound SMTP, and a blocked SMTP connection hangs until the worker
+# is killed, which turns registration into a 500. The Brevo backend
+# (apps.account.email_backends) POSTs to
+# https://api.brevo.com/v3/smtp/email with a 10-second timeout, logs
+# failures, and never raises — registration still succeeds.
+# Without the key, mail is printed to the console. EMAIL_HOST is only
+# used when Brevo is not configured (local SMTP); do not rely on it
+# on Railway.
+#
+# The From address stays on the authenticated mathkg.com domain.
+# BREVO_SENDER is the same header as DEFAULT_FROM_EMAIL; the backend
+# reads DEFAULT_FROM_EMAIL first. Do not replace it with a hardcoded
+# address when the API key is present — that used to pin every message
+# to mathematicskgz@gmail.com and ignore the environment.
+BREVO_API_KEY = os.environ.get('BREVO_API_KEY', '')
+BREVO_SENDER_NAME = _SENDER['name']
+BREVO_SENDER_EMAIL = _SENDER['email']
+DEFAULT_FROM_EMAIL = _SENDER['header']
+BREVO_SENDER = DEFAULT_FROM_EMAIL
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@mathkg.com')
 
-# Where operational notifications go (a new SubscriptionRequest, etc.) -
-# the site owner's own inbox, already shown as the public contact address
-# throughout the site's templates. Overridable via env var for the same
-# reason DEFAULT_FROM_EMAIL is.
-ADMIN_NOTIFICATION_EMAIL = os.environ.get('ADMIN_NOTIFICATION_EMAIL', 'mathematicskgz@gmail.com')
-
-if os.environ.get('EMAIL_HOST'):
+if BREVO_API_KEY:
+    EMAIL_BACKEND = 'apps.account.email_backends.BrevoEmailBackend'
+elif os.environ.get('EMAIL_HOST'):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = os.environ['EMAIL_HOST']
     EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
     EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'true').lower() == 'true'
+
+# Where operational notifications go (a new SubscriptionRequest, etc.).
+# This inbox is also the public contact address on the site, and the
+# Reply-To on mail sent to teachers: no-reply@mathkg.com has no mailbox.
+# Overridable via env var for the same reason DEFAULT_FROM_EMAIL is.
+ADMIN_NOTIFICATION_EMAIL = (
+    os.environ.get('ADMIN_NOTIFICATION_EMAIL') or 'mathematicskgz@gmail.com'
+).strip()
+DEFAULT_REPLY_TO_EMAIL = (
+    os.environ.get('DEFAULT_REPLY_TO_EMAIL') or ADMIN_NOTIFICATION_EMAIL
+).strip()
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -162,7 +220,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# Kyrgyzstan. USE_TZ stays on, so rows in the database remain UTC.
+# This setting is what localdate(), template dates, admin timestamps,
+# and date lookups (the analytics windows, "downloaded today") follow.
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -189,6 +250,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #### Modifying static
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Hashed filenames are not used, so a week is as long as a CSS change
+# can wait. Images and fonts are the files a phone on a slow network
+# should not download again on the next visit.
+WHITENOISE_MAX_AGE = 60 * 60 * 24 * 7
 
 # Media files setup
 MEDIA_URL = '/media/'
@@ -205,4 +270,41 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/home'  #added by me
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+def _env_site_url():
+    """Canonical origin. ``SITE_URL=https://mathkg.com`` on Railway overrides it."""
+    raw = os.environ.get('SITE_URL', '').strip().rstrip('/')
+    if not raw:
+        raw = 'https://mathkg.com'
+    elif '://' not in raw:
+        raw = 'https://' + raw
+    return raw
+
+
+def csv_env(name):
+    """Comma-separated env value, blanks dropped."""
+    return [
+        piece.strip()
+        for piece in os.environ.get(name, '').split(',')
+        if piece.strip()
+    ]
+
+
+# Public hosts. production.py adds ``.railway.app`` and any EXTRA_* hosts.
+# healthcheck.railway.app is Railway's deploy-probe Host header. No
+# healthcheck path is configured (nixpacks.json only, no railway.toml),
+# so nothing is probed today. The host is allowed, and it is not in
+# CANONICAL_REDIRECT_HOSTS, so a future probe is not a 400 or a 301.
+CANONICAL_HOST = 'mathkg.com'
+WWW_HOST = 'www.mathkg.com'
+RAILWAY_HOST = 'mathkg-production.up.railway.app'
+HEALTHCHECK_HOST = 'healthcheck.railway.app'
+PUBLIC_HOSTS = [CANONICAL_HOST, WWW_HOST, RAILWAY_HOST, HEALTHCHECK_HOST]
+CANONICAL_REDIRECT_HOSTS = [RAILWAY_HOST, WWW_HOST]
+
+SITE_URL = _env_site_url()
+
+ALLOWED_HOSTS = [
+    *PUBLIC_HOSTS,
+    'localhost',
+    '127.0.0.1',
+]

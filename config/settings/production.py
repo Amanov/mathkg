@@ -15,17 +15,29 @@ if not SECRET_KEY:
         'The SECRET_KEY environment variable must be set in production.'
     )
 
-ALLOWED_HOSTS = [
-    'mathkg-production.up.railway.app',
+# Defaults are the apex, www, and the Railway host. ``.railway.app`` covers
+# healthcheck.railway.app and other Railway hostnames. Extra hosts come
+# from the environment (hostname only for ALLOWED_HOSTS; CSRF values need
+# a scheme). ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS, when set, are added
+# to the defaults. They do not replace mathkg.com.
+# Absolute public URLs use SITE_URL (https://mathkg.com), not the request host.
+ALLOWED_HOSTS = list(dict.fromkeys([
+    *PUBLIC_HOSTS,
     '.railway.app',
     'localhost',
     '127.0.0.1',
-]
+    *csv_env('ALLOWED_HOSTS'),
+    *csv_env('EXTRA_ALLOWED_HOSTS'),
+]))
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://mathkg-production.up.railway.app',
+CSRF_TRUSTED_ORIGINS = list(dict.fromkeys([
+    f'https://{CANONICAL_HOST}',
+    f'https://{WWW_HOST}',
+    f'https://{RAILWAY_HOST}',
     'https://*.up.railway.app',
-]
+    *csv_env('CSRF_TRUSTED_ORIGINS'),
+    *csv_env('EXTRA_CSRF_TRUSTED_ORIGINS'),
+]))
 
 # The app sits behind Railway's TLS-terminating proxy, so trust its
 # forwarded-proto header and enforce HTTPS/secure cookies accordingly.

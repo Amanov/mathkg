@@ -57,6 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const title = document.createElement('span');
                 title.className = 'search-suggest-title';
                 title.textContent = result.title;
+                if (result.grade) {
+                    const grade = document.createElement('span');
+                    grade.className = 'search-suggest-grade';
+                    grade.textContent = result.grade;
+                    title.appendChild(document.createTextNode(' '));
+                    title.appendChild(grade);
+                }
                 link.appendChild(title);
 
                 panel.appendChild(link);

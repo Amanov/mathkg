@@ -1,9 +1,10 @@
-"""Resource rows for three grade 10–11 packs: functions, trigonometric functions, derivative and integral (see data/pack_pages.py)."""
+"""Resource rows for five grade 8–10 packs: probability, statistics, compound percentages, volume and surface area of solids, motion graphs (see data/pack_pages.py)."""
 
 from django.db import migrations
 
 PREFIXES = [
-    '10-klass-funkciyalar-', '10-klass-trig-funkciyalar-', '11-klass-tuundu-integral-',
+    '9-klass-yktymaldu-', '9-klass-statistika-', '8-klass-tatal-payyz-',
+    '10-klass-kolom-bet-ayanty-', '9-klass-kyymyl-grafikteri-',
 ]
 SUFFIXES = [
     'sabak.pptx', 'oyun-1234.pptx', 'oyun-atyshuu.pptx', 'ish-barak.pdf', 'katany-tap.pdf', 'labirint.pdf',
@@ -39,7 +40,7 @@ def backward(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('personal', '0064_wave14_packs'),
+        ('personal', '0073_tour_seen'),
     ]
 
     operations = [

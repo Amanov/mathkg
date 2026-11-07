@@ -125,7 +125,7 @@ class DownloadRouteTests(TestCase):
         )
         user.is_active = True
         user.current_plan = SubscriptionRequest.PLAN_ONE_YEAR
-        user.subscription_end = timezone.now().date() + timedelta(days=30)
+        user.subscription_end = timezone.localdate() + timedelta(days=30)
         user.save(update_fields=['is_active', 'current_plan', 'subscription_end'])
         self.client.login(email='subscriber@example.com', password='SuperSecret123!')
 

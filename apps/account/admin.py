@@ -36,15 +36,69 @@ def delete_selected_honestly(modeladmin, request, queryset):
 # Register your models here.
 
 
+class AccountActiveFilter(admin.SimpleListFilter):
+    # Django's built-in boolean filter says Yes/No/All in English.
+    # The account list is used by the site owner, so the labels are Kyrgyz.
+    title = 'активдүү'
+    parameter_name = 'is_active'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('yes', 'Активдүү'),
+            ('no', 'Активдүү эмес'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'yes':
+            return queryset.filter(is_active=True)
+        if self.value() == 'no':
+            return queryset.filter(is_active=False)
+        return queryset
+
+    def choices(self, changelist):
+        yield {
+            'selected': self.value() is None,
+            'query_string': changelist.get_query_string(remove=[self.parameter_name]),
+            'display': 'Бардыгы',
+        }
+        for lookup, title in self.lookup_choices:
+            yield {
+                'selected': self.value() == str(lookup),
+                'query_string': changelist.get_query_string({self.parameter_name: lookup}),
+                'display': title,
+            }
+
+
 class AccountAdmin(UserAdmin):
-    list_display = ('email','username','date_joined','last_login','is_admin','is_staff')
+    list_display = (
+        'email', 'username', 'date_joined', 'last_login',
+        'is_active_column', 'is_admin', 'is_staff',
+    )
     search_fields = ('email','username')
     readonly_fields = ('date_joined','last_login')
 
     filter_horizontal =()
-    list_filter = ()
+    list_filter = (AccountActiveFilter,)
     fieldsets = ()
-    actions = ['end_subscription_for_violation']
+    actions = ['end_subscription_for_violation', 'activate_selected_accounts']
+
+    @admin.display(boolean=True, ordering='is_active', description='Активдүү')
+    def is_active_column(self, obj):
+        return obj.is_active
+
+    @admin.action(description='Тандалгандарды активдештирүү')
+    def activate_selected_accounts(self, request, queryset):
+        count = 0
+        for account in queryset:
+            account.is_active = True
+            account.save(update_fields=['is_active'])
+            self.log_change(request, account, 'Аккаунт активдештирилди.')
+            count += 1
+        self.message_user(
+            request,
+            f'{count} колдонуучу активдештирилди.',
+            level=messages.SUCCESS,
+        )
 
     def get_actions(self, request):
         actions = super().get_actions(request)
@@ -201,7 +255,9 @@ class SubscriptionRequestAdmin(admin.ModelAdmin):
         if obj.status != SubscriptionRequest.STATUS_CONFIRMED:
             return "—"
         if obj.activated_at:
-            return obj.activated_at.strftime('%Y-%m-%d %H:%M')
+            # strftime on the stored value prints UTC. The admin should
+            # show the same Asia/Bishkek clock as the rest of the site.
+            return timezone.localtime(obj.activated_at).strftime('%Y-%m-%d %H:%M')
         return "ЖОК - колдонуучу али активдештирилген эмес"
 
     @admin.action(description='Тандалган: төлөмдү ырастоо жана жазылууну активдештирүү')

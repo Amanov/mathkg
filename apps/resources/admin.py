@@ -1,4 +1,7 @@
+import csv
+
 from django.contrib import admin
+from django.http import HttpResponse
 
 from .models import (
     Topic,
@@ -13,12 +16,17 @@ from .models import (
     MenuItem,
     NewsPost,
     PageFreeDownload,
+    PageReaction,
+    PageReactionCount,
+    WrittenFeedback,
+    Question,
 )
 
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ("title", "slug")
+    list_display = ("title", "title_ru", "slug")
+    search_fields = ("title", "title_ru", "slug")
     prepopulated_fields = {"slug": ("title",)}
 
 
@@ -32,8 +40,10 @@ class SubtopicAdmin(admin.ModelAdmin):
 
     list_display = (
         "title",
+        "title_ru",
         "topic",
     )
+    search_fields = ("title", "title_ru")
 
     list_filter = (
         "topic",
@@ -353,3 +363,168 @@ class NewsPostAdmin(admin.ModelAdmin):
     list_editable = ("published_date",)
     search_fields = ("title", "body")
     ordering = ("-published_date",)
+
+
+@admin.register(PageReaction)
+class PageReactionAdmin(admin.ModelAdmin):
+    list_display = ("face", "path", "material", "created_at")
+    list_filter = ("face", "created_at")
+    search_fields = ("path", "material")
+    date_hierarchy = "created_at"
+    ordering = ("-created_at",)
+    list_per_page = 50
+    readonly_fields = (
+        "path",
+        "face",
+        "material",
+        "topic",
+        "subtopic",
+        "subsubtopic",
+        "visitor_key",
+        "created_at",
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+
+@admin.register(PageReactionCount)
+class PageReactionCountAdmin(admin.ModelAdmin):
+    """One row per page, sorted by most 🙁 first."""
+
+    list_display = (
+        "path",
+        "material",
+        "happy_count",
+        "ok_count",
+        "sad_count",
+        "updated_at",
+    )
+    search_fields = ("path", "material")
+    ordering = ("-sad_count", "-ok_count", "-happy_count", "path")
+    list_per_page = 50
+    readonly_fields = (
+        "path",
+        "material",
+        "happy_count",
+        "ok_count",
+        "sad_count",
+        "updated_at",
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+
+def export_feedback_csv(modeladmin, request, queryset):
+    response = HttpResponse(content_type="text/csv; charset=utf-8")
+    response["Content-Disposition"] = 'attachment; filename="feedback.csv"'
+    response.write("\ufeff")
+    writer = csv.writer(response)
+    writer.writerow([
+        "created_at",
+        "type",
+        "message",
+        "name",
+        "email",
+        "about_page",
+        "read",
+        "show_on_site",
+    ])
+    for note in queryset.order_by("-created_at"):
+        writer.writerow([
+            note.created_at.isoformat(sep=" ", timespec="seconds"),
+            note.get_kind_display(),
+            note.message,
+            note.name,
+            note.email,
+            note.about_page,
+            "yes" if note.is_read else "no",
+            "yes" if note.show_on_site else "no",
+        ])
+    return response
+
+
+export_feedback_csv.short_description = "Export CSV"
+
+
+@admin.action(description="Show on site")
+def publish_feedback(modeladmin, request, queryset):
+    queryset.update(show_on_site=True)
+
+
+@admin.action(description="Hide on site")
+def unpublish_feedback(modeladmin, request, queryset):
+    queryset.update(show_on_site=False)
+
+
+@admin.action(description="Mark as read")
+def mark_feedback_read(modeladmin, request, queryset):
+    queryset.update(is_read=True)
+
+
+@admin.register(WrittenFeedback)
+class WrittenFeedbackAdmin(admin.ModelAdmin):
+    list_display = (
+        "kind",
+        "message_preview",
+        "name",
+        "email",
+        "about_page",
+        "is_read",
+        "show_on_site",
+        "created_at",
+    )
+    list_filter = ("kind", "is_read", "show_on_site", "created_at")
+    list_editable = ("is_read", "show_on_site")
+    search_fields = ("message", "name", "email", "about_page")
+    date_hierarchy = "created_at"
+    ordering = ("-created_at",)
+    list_per_page = 50
+    actions = (
+        publish_feedback,
+        unpublish_feedback,
+        mark_feedback_read,
+        export_feedback_csv,
+    )
+
+    @admin.display(description="Message")
+    def message_preview(self, obj):
+        text = " ".join(obj.message.split())
+        if len(text) > 80:
+            return text[:80] + "…"
+        return text
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = (
+        'short_text',
+        'grade',
+        'topic',
+        'difficulty',
+        'question_format',
+        'question_type',
+        'points',
+        'is_published',
+        'is_sample',
+    )
+    list_filter = (
+        'grade',
+        'topic',
+        'difficulty',
+        'question_format',
+        'question_type',
+        'is_published',
+        'is_sample',
+    )
+    search_fields = ('text', 'answer', 'topic__title')
+    list_editable = ('is_published',)
+    ordering = ('grade', 'topic', 'difficulty')
+
+    @admin.display(description='Суроо')
+    def short_text(self, obj):
+        text = ' '.join(obj.text.split())
+        if len(text) > 80:
+            return text[:80] + '…'
+        return text

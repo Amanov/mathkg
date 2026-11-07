@@ -25,7 +25,7 @@ html {
 
 /* Second row (category menu + brand). Used to be Bootstrap's bare .bg-light,
    which never adapted to dark mode - the row stayed white while the text
-   above it followed --text to light, so the "MathKGZ" brand went
+   above it followed --text to light, so the "MathKG" brand went
    white-on-white and read as blank. */
 .category-navbar {
     background: var(--surface);
@@ -53,6 +53,7 @@ html {
    in line with the category nav's timing/radius.
 ════════════════════════════════════════════ */
 #searchForm .form-control {
+    width: 11.5rem;
     border-radius: var(--radius-sm);
     border: none;
 }
@@ -129,6 +130,9 @@ html {
     background: #fff;
     color: #3761c2;
     border-color: #fff;
+}
+.header-test-link {
+    white-space: nowrap;
 }
 .header-action-btn--primary:hover,
 .header-action-btn--primary:focus-visible {

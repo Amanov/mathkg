@@ -1,0 +1,395 @@
+"""Sample grade 5–6 questions for the test maker.
+
+Pure Kyrgyz. Decimals use a comma. Thousands use a space. Word problems
+say «маселени чыгар» and «окуучу». Each answer is checked in
+apps/resources/test_assessment.py.
+
+The seed prefers an existing topic titled «Бөлчөктөр» or «Ондуктар».
+If that row is missing, it creates a topic marked «(үлгү)».
+"""
+
+NBSP = '\u00a0'
+
+FALLBACK_TOPIC_SLUGS = ('ulgu-bolchoktor', 'ulgu-onduktar')
+
+TOPIC_SPECS = (
+    {
+        'key': 'bolchok',
+        'match_title': 'Бөлчөктөр',
+        'fallback_slug': 'ulgu-bolchoktor',
+        'fallback_title': 'Бөлчөктөр (үлгү)',
+    },
+    {
+        'key': 'onduk',
+        'match_title': 'Ондуктар',
+        'fallback_slug': 'ulgu-onduktar',
+        'fallback_title': 'Ондуктар (үлгү)',
+    },
+)
+
+SAMPLE_QUESTIONS = (
+    {
+        'sample_key': 'ulgu-f-half-quarter',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'text': '1/2 + 1/4 канчага барабар?',
+        'options': {'А': '1/4', 'Б': '3/4', 'В': '2/6', 'Г': '2/4'},
+        'answer': 'Б',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-f-same-den',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'short_answer',
+        'text': '2/7 + 3/7 канчага барабар?',
+        'options': {},
+        'answer': '5/7',
+        'solution': '2/7 + 3/7 = 5/7.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-f-of-whole',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'multiple_choice',
+        'text': '20 санынын 3/5 бөлүгү канча?',
+        'options': {'А': '10', 'Б': '12', 'В': '15', 'Г': '8'},
+        'answer': 'Б',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-f-subtract',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'hard',
+        'question_type': 'short_answer',
+        'text': '5/6 − 1/2 канчага барабар? Жоопту жөнөкөй түрүндө жаз.',
+        'options': {},
+        'answer': '1/3',
+        'solution': '1/2 = 3/6. 5/6 − 3/6 = 2/6 = 1/3.',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-f-cloth',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'word_problem',
+        'text': (
+            f'Маселени чыгар. {1}{NBSP}000 м кездеменин 1/4 бөлүгү кесилди. '
+            'Канча метр калды?'
+        ),
+        'options': {},
+        'answer': '750',
+        'solution': f'1{NBSP}000нүн 1/4 бөлүгү 250 м. 1{NBSP}000 − 250 = 750.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-f-divide',
+        'topic_key': 'bolchok',
+        'grade': 6,
+        'difficulty': 'hard',
+        'question_type': 'multiple_choice',
+        'text': '2/3 : 1/6 канчага барабар?',
+        'options': {'А': '1/9', 'Б': '4', 'В': '1/4', 'Г': '3'},
+        'answer': 'Б',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-f-equal',
+        'topic_key': 'bolchok',
+        'grade': 6,
+        'difficulty': 'medium',
+        'question_type': 'multiple_choice',
+        'text': '1/2, 0,5 жана 3/6 салыштыр. Кайсысы туура?',
+        'options': {
+            'А': '1/2 башкаларынан чоң',
+            'Б': '0,5 башкаларынан кичине',
+            'В': 'үчөө тең барабар',
+            'Г': '3/6 башкаларынан чоң',
+        },
+        'answer': 'В',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-add',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'text': '0,3 + 0,4 канчага барабар?',
+        'options': {'А': '0,7', 'Б': '0,34', 'В': '0,07', 'Г': '7'},
+        'answer': 'А',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-d-mul',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'text': '2,5 × 4 канчага барабар?',
+        'options': {},
+        'answer': '10',
+        'solution': '2,5 × 4 = 10.',
+        'question_format': 'calculation',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-apples',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'word_problem',
+        'text': (
+            'Маселени чыгар. 1 кг алма 80 сом. Окуучу 2,5 кг алма сатып алды. '
+            'Канча сом төлөйт?'
+        ),
+        'options': {},
+        'answer': '200',
+        'solution': '2,5 × 80 = 200. Окуучу 200 сом төлөйт.',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-d-to-fraction',
+        'topic_key': 'onduk',
+        'grade': 6,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'text': '0,75ти жөнөкөй бөлчөккө айландырып жаз.',
+        'options': {},
+        'answer': '3/4',
+        'solution': '0,75 = 75/100 = 3/4.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-area',
+        'topic_key': 'onduk',
+        'grade': 6,
+        'difficulty': 'hard',
+        'question_type': 'word_problem',
+        'text': (
+            'Маселени чыгар. Тик бурчтуктун узундугу 3,5 м, кеңдиги 2 м. '
+            'Аянты канча квадрат метр?'
+        ),
+        'options': {},
+        'answer': '7',
+        'solution': '3,5 × 2 = 7.',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-tf-half',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'question_format': 'true_false',
+        'text': '0,5 жана 1/2 өз ара барабар.',
+        'options': {'А': 'Туура', 'Б': 'Туура эмес'},
+        'answer': 'А',
+        'solution': '0,5 = 1/2, ошондуктан бул туура.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-tf-quarter',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'multiple_choice',
+        'question_format': 'true_false',
+        'text': '1/4 саны 1/2ден чоң.',
+        'options': {'А': 'Туура', 'Б': 'Туура эмес'},
+        'answer': 'Б',
+        'solution': '1/4 < 1/2, ошондуктан бул туура эмес.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-match-fdp',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'matching',
+        'text': 'Ар бир бөлчөктү өзүнүн ондук түрү менен дал келтириңиз.',
+        'options': {
+            'left': {'1': '1/2', '2': '1/4', '3': '3/4'},
+            'right': {'А': '0,25', 'Б': '0,75', 'В': '0,5'},
+        },
+        'answer': '1–В, 2–А, 3–Б',
+        'solution': '1/2 = 0,5 (В). 1/4 = 0,25 (А). 3/4 = 0,75 (Б).',
+        'points': 3,
+    },
+    {
+        'sample_key': 'ulgu-blank-half',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'easy',
+        'question_type': 'short_answer',
+        'question_format': 'fill_blank',
+        'text': '0,5 = ____ / 2',
+        'options': {},
+        'answer': '1',
+        'solution': '0,5 = 1/2, ошондуктан боштукка 1 жазылат.',
+        'points': 1,
+    },
+    {
+        'sample_key': 'ulgu-blank-sixth',
+        'topic_key': 'bolchok',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'fill_blank',
+        'text': '3/6 = ____ / 2',
+        'options': {},
+        'answer': '1',
+        'solution': '3/6 = 1/2, ошондуктан боштукка 1 жазылат.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-times-six',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'calculation',
+        'text': '2,5 × 6 канчага барабар?',
+        'options': {},
+        'answer': '15',
+        'solution': '2,5 × 6 = 15.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-diagram',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'medium',
+        'question_type': 'short_answer',
+        'question_format': 'diagram',
+        'text': (
+            'Сүрөттөгү тик бурчтуктун узундугу 4 см, туурасы 2 см. '
+            'Аянты канча квадрат сантиметр?'
+        ),
+        'options': {},
+        'answer': '8',
+        'solution': '4 × 2 = 8.',
+        'points': 2,
+    },
+    {
+        'sample_key': 'ulgu-d-very-hard',
+        'topic_key': 'onduk',
+        'grade': 5,
+        'difficulty': 'very_hard',
+        'question_type': 'word_problem',
+        'question_format': 'extended',
+        'text': (
+            'Маселени чыгар. 2,5 кг алманын баасы 1 кг үчүн 80 сом. '
+            'Окуучу ошол алманын 1/2 бөлүгүн сатып алды. Канча сом төлөйт?'
+        ),
+        'options': {},
+        'answer': '100',
+        'solution': '2,5 × 80 = 200. 200дүн 1/2 бөлүгү 100 сом.',
+        'points': 4,
+    },
+)
+
+
+def estimate_minutes(question_format, difficulty):
+    """A sensible default when a question has no stored time of its own."""
+    base = {
+        'choice': 1,
+        'true_false': 1,
+        'fill_blank': 2,
+        'short_response': 2,
+        'matching': 3,
+        'calculation': 3,
+        'diagram': 4,
+        'extended': 5,
+        'written': 4,
+    }
+    extra = {'easy': 0, 'medium': 1, 'hard': 2, 'very_hard': 3}
+    return max(1, base.get(question_format, 2) + extra.get(difficulty, 1))
+
+
+def stored_format(row):
+    explicit = row.get('question_format')
+    if explicit in (None, 'written'):
+        if row['question_type'] == 'word_problem':
+            return 'extended'
+        if row['question_type'] == 'short_answer':
+            return 'short_response'
+        return 'choice'
+    return explicit
+
+
+def _topic_for(Topic, spec):
+    real = (
+        Topic.objects.filter(title__iexact=spec['match_title'])
+        .exclude(slug=spec['fallback_slug'])
+        .order_by('pk')
+        .first()
+    )
+    if real is not None:
+        return real, False
+    topic, created = Topic.objects.get_or_create(
+        slug=spec['fallback_slug'],
+        defaults={'title': spec['fallback_title'], 'order': 900},
+    )
+    if topic.title != spec['fallback_title']:
+        topic.title = spec['fallback_title']
+        topic.save(update_fields=['title'])
+    return topic, created
+
+
+def seed_sample_questions(Question, Topic):
+    """Insert or refresh the sample bank. Safe to run more than once."""
+    topics = {}
+    topics_created = 0
+    for spec in TOPIC_SPECS:
+        topic, created = _topic_for(Topic, spec)
+        topics[spec['key']] = topic
+        topics_created += int(created)
+
+    created_q = 0
+    updated_q = 0
+    for row in SAMPLE_QUESTIONS:
+        defaults = {
+            'topic': topics[row['topic_key']],
+            'grade': row['grade'],
+            'difficulty': row['difficulty'],
+            'question_type': row['question_type'],
+            'text': row['text'],
+            'options': row['options'],
+            'answer': row['answer'],
+            'points': row['points'],
+            'is_sample': True,
+            'is_published': True,
+        }
+        # Migration 0070 seeds before these columns exist. Later runs set them.
+        field_names = {field.name for field in Question._meta.get_fields()}
+        fmt = stored_format(row)
+        if 'question_format' in field_names:
+            defaults['question_format'] = fmt
+        if 'solution' in field_names:
+            defaults['solution'] = row.get('solution', '')
+        if 'estimated_minutes' in field_names:
+            defaults['estimated_minutes'] = row.get('estimated_minutes') or estimate_minutes(
+                fmt, row['difficulty'],
+            )
+        _, was_created = Question.objects.update_or_create(
+            sample_key=row['sample_key'],
+            defaults=defaults,
+        )
+        if was_created:
+            created_q += 1
+        else:
+            updated_q += 1
+    return {
+        'topics_created': topics_created,
+        'created': created_q,
+        'updated': updated_q,
+    }

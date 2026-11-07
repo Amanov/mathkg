@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+{% block seo %}{% seo_page "check_email" %}{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Почтаңызды текшериңиз</h1>
+    <p class="auth-lead">Катталганыңыз үчүн рахмат. Аккаунтуңузду тастыктоо үчүн электрондук почтаңызга шилтеме жибердик.</p>
+    <p class="auth-lead">Шилтемени баскандан кийин материалдарды 7 күн акысыз колдоно аласыз.</p>
+    <p class="auth-lead">Кат келбесе, керек эмес каттар папкасын текшериңиз же шилтемени кайра сураңыз.</p>
+    <div class="auth-switch">
+      <a href="{% url 'resend_activation' %}">Шилтемени кайра жөнөтүү</a>
+    </div>
+    <div class="auth-switch">
+      <a href="{% url 'login' %}">Кирүү бетине өтүү</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

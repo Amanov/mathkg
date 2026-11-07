@@ -1,20 +1,26 @@
-from datetime import timedelta
+from datetime import datetime, time, timedelta
 
-from django.shortcuts import render
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Count, Value
+from django.db.models import Count, Max, Q, Value
 from django.db.models.functions import Coalesce, TruncDate
+from django.http import HttpResponseForbidden
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import timezone
+from django.views.decorators.http import require_http_methods
 
 from apps.resources.models import (
+    AnalyticsWindow,
+    KYRGYZ_MONTHS,
     Resource,
     ResourceDownload,
     SiteVisit,
     ButtonClick,
     SearchQuery,
     LoginEvent,
+    PageReaction,
+    PageReactionCount,
 )
 
 # Thresholds for the "policy watch" panel - flags patterns worth a human
@@ -39,10 +45,141 @@ SESSION_GAP_MINUTES = 30
 SESSION_WINDOW_DAYS = 30
 
 
-@staff_member_required(login_url='login')
-def analytics_dashboard_view(request):
+def format_stats_since(since):
+    """Kyrgyz banner instant, in the active timezone.
 
-    today = timezone.now().date()
+    «Статистика 4-ноябрь 2026, 11:00 баштап эсептелүүдө»
+    """
+    local = timezone.localtime(since)
+    month = KYRGYZ_MONTHS[local.month - 1]
+    return (
+        f'Статистика {local.day}-{month} {local.year}, '
+        f'{local:%H:%M} баштап эсептелүүдө'
+    )
+
+
+def parse_since_param(raw):
+    """Temporary ?since=YYYY-MM-DD view, as local midnight. Invalid values are ignored."""
+    if not raw:
+        return None
+    try:
+        day = datetime.strptime(str(raw).strip(), '%Y-%m-%d').date()
+    except ValueError:
+        return None
+    midnight = datetime.combine(day, time.min)
+    return timezone.make_aware(midnight, timezone.get_current_timezone())
+
+
+def resolve_dashboard_since(request):
+    """Effective cutoff, whether this request is only previewing it, and the date-input value.
+
+    A valid ?since= date overrides the stored cutoff for this response
+    and is not written. The stored value is what the reset buttons change.
+    """
+    stored = AnalyticsWindow.stored_since()
+    raw = str(request.GET.get('since') or '').strip()
+    temporary = parse_since_param(raw)
+    if temporary is not None:
+        return temporary, True, raw
+    return stored, False, ''
+
+
+def _start_of_day(day):
+    midnight = datetime.combine(day, time.min)
+    return timezone.make_aware(midnight, timezone.get_current_timezone())
+
+
+def _apply_since(qs, field, since):
+    if since is None:
+        return qs
+    return qs.filter(**{f'{field}__gte': since})
+
+
+def _apply_window(qs, field, window_start, since):
+    """Start a 7-day or 30-day window at max(window start, since).
+
+    Date windows keep the original __date lookup when the cutoff is not
+    later than that window, so an all-time dashboard matches the
+    previous counts. A cutoff part-way through the window uses a
+    datetime bound so earlier rows on that calendar day stay out.
+    """
+    if isinstance(window_start, datetime):
+        start = window_start
+        if timezone.is_naive(start):
+            start = timezone.make_aware(start, timezone.get_current_timezone())
+        if since is not None and since > start:
+            start = since
+        return qs.filter(**{f'{field}__gte': start})
+
+    if since is not None and since > _start_of_day(window_start):
+        return qs.filter(**{f'{field}__gte': since})
+    return qs.filter(**{f'{field}__date__gte': window_start})
+
+
+def _download_count(since):
+    if since is None:
+        return Count('downloads')
+    return Count('downloads', filter=Q(downloads__downloaded_at__gte=since))
+
+
+def _reaction_summary(since):
+    """Face totals, then the pages with the most happy and sad faces.
+
+    With no cutoff, the ranked lists stay on PageReactionCount (the
+    all-time admin totals). With a cutoff, both the totals and the
+    ranked lists are counted from PageReaction rows in the window.
+    """
+    if since is None:
+        faces_qs = PageReaction.objects.all()
+        top_happy = list(
+            PageReactionCount.objects.filter(happy_count__gt=0)
+            .order_by('-happy_count', 'path')[:8]
+        )
+        top_sad = list(
+            PageReactionCount.objects.filter(sad_count__gt=0)
+            .order_by('-sad_count', 'path')[:8]
+        )
+    else:
+        faces_qs = PageReaction.objects.filter(created_at__gte=since)
+        top_happy = list(
+            faces_qs.filter(face=PageReaction.FACE_HAPPY)
+            .values('path')
+            .annotate(happy_count=Count('id'), material=Max('material'))
+            .order_by('-happy_count', 'path')[:8]
+        )
+        top_sad = list(
+            faces_qs.filter(face=PageReaction.FACE_SAD)
+            .values('path')
+            .annotate(sad_count=Count('id'), material=Max('material'))
+            .order_by('-sad_count', 'path')[:8]
+        )
+    faces = {
+        row['face']: row['total']
+        for row in faces_qs.values('face').annotate(total=Count('id'))
+    }
+    return faces, top_happy, top_sad
+
+
+@staff_member_required(login_url='login')
+@require_http_methods(['GET', 'HEAD', 'POST'])
+def analytics_dashboard_view(request):
+    if request.method == 'POST':
+        if not request.user.is_superuser:
+            return HttpResponseForbidden('Бул аракет суперколдонуучуга гана.')
+        action = request.POST.get('action')
+        if action == 'since_now':
+            # timezone.now() is an absolute instant. The banner renders
+            # it in TIME_ZONE (Asia/Bishkek).
+            AnalyticsWindow.set_since(timezone.now())
+        elif action == 'clear':
+            AnalyticsWindow.set_since(None)
+        return redirect('analytics_dashboard')
+
+    since, stats_since_temporary, stats_since_input = resolve_dashboard_since(request)
+
+    # Calendar day in Asia/Bishkek. timezone.now().date() is the UTC day,
+    # which is still yesterday here from 00:00–06:00.
+    today = timezone.localdate()
 
     week_ago = today - timedelta(days=7)
     month_ago = today - timedelta(days=30)
@@ -56,10 +193,12 @@ def analytics_dashboard_view(request):
         is_active=True
     ).count()
 
-    total_downloads = ResourceDownload.objects.count()
+    total_downloads = _apply_since(
+        ResourceDownload.objects, 'downloaded_at', since
+    ).count()
 
     unique_users = (
-        ResourceDownload.objects
+        _apply_since(ResourceDownload.objects, 'downloaded_at', since)
         .filter(user__isnull=False)
         .values('user')
         .distinct()
@@ -70,45 +209,39 @@ def analytics_dashboard_view(request):
     # Site Traffic (page views logged by SiteVisitMiddleware)
     # =========================
 
-    total_visits = SiteVisit.objects.count()
+    total_visits = _apply_since(SiteVisit.objects, 'visited_at', since).count()
 
     unique_visitors = (
-        SiteVisit.objects
+        _apply_since(SiteVisit.objects, 'visited_at', since)
         .values('session_key')
         .distinct()
         .count()
     )
 
-    visits_this_week = (
-        SiteVisit.objects
-        .filter(visited_at__date__gte=week_ago)
-        .count()
-    )
+    visits_this_week = _apply_window(
+        SiteVisit.objects, 'visited_at', week_ago, since
+    ).count()
 
     unique_visitors_this_week = (
-        SiteVisit.objects
-        .filter(visited_at__date__gte=week_ago)
+        _apply_window(SiteVisit.objects, 'visited_at', week_ago, since)
         .values('session_key')
         .distinct()
         .count()
     )
 
-    visits_this_month = (
-        SiteVisit.objects
-        .filter(visited_at__date__gte=month_ago)
-        .count()
-    )
+    visits_this_month = _apply_window(
+        SiteVisit.objects, 'visited_at', month_ago, since
+    ).count()
 
     unique_visitors_this_month = (
-        SiteVisit.objects
-        .filter(visited_at__date__gte=month_ago)
+        _apply_window(SiteVisit.objects, 'visited_at', month_ago, since)
         .values('session_key')
         .distinct()
         .count()
     )
 
     top_pages = (
-        SiteVisit.objects
+        _apply_since(SiteVisit.objects, 'visited_at', since)
         .values('path')
         .annotate(views=Count('id'))
         .order_by('-views')[:10]
@@ -117,8 +250,7 @@ def analytics_dashboard_view(request):
     visit_counts_by_day = {}
     visitor_counts_by_day = {}
     for row in (
-        SiteVisit.objects
-        .filter(visited_at__date__gte=thirty_days_ago)
+        _apply_window(SiteVisit.objects, 'visited_at', thirty_days_ago, since)
         .annotate(day=TruncDate('visited_at'))
         .values('day')
         .annotate(
@@ -148,7 +280,7 @@ def analytics_dashboard_view(request):
     # requiring login.
 
     sessions_by_day_count = (
-        SiteVisit.objects
+        _apply_since(SiteVisit.objects, 'visited_at', since)
         .values('session_key')
         .annotate(days_active=Count('visited_at__date', distinct=True))
     )
@@ -179,8 +311,7 @@ def analytics_dashboard_view(request):
     current_session_key = None
 
     recent_visits = (
-        SiteVisit.objects
-        .filter(visited_at__gte=session_window_start)
+        _apply_window(SiteVisit.objects, 'visited_at', session_window_start, since)
         .order_by('session_key', 'visited_at')
         .values_list('session_key', 'visited_at')
     )
@@ -215,16 +346,19 @@ def analytics_dashboard_view(request):
     # Logins
     # =========================
 
-    total_logins = LoginEvent.objects.count()
+    total_logins = _apply_since(LoginEvent.objects, 'logged_in_at', since).count()
 
-    logins_this_week = LoginEvent.objects.filter(logged_in_at__date__gte=week_ago).count()
-    logins_this_month = LoginEvent.objects.filter(logged_in_at__date__gte=month_ago).count()
+    logins_this_week = _apply_window(
+        LoginEvent.objects, 'logged_in_at', week_ago, since
+    ).count()
+    logins_this_month = _apply_window(
+        LoginEvent.objects, 'logged_in_at', month_ago, since
+    ).count()
 
     login_counts_by_day = {
         row['day']: row['count']
         for row in (
-            LoginEvent.objects
-            .filter(logged_in_at__date__gte=thirty_days_ago)
+            _apply_window(LoginEvent.objects, 'logged_in_at', thirty_days_ago, since)
             .annotate(day=TruncDate('logged_in_at'))
             .values('day')
             .annotate(count=Count('id'))
@@ -237,7 +371,7 @@ def analytics_dashboard_view(request):
     ]
 
     top_login_users = (
-        LoginEvent.objects
+        _apply_since(LoginEvent.objects, 'logged_in_at', since)
         .values('user__username', 'user__email')
         .annotate(login_count=Count('id'))
         .order_by('-login_count')[:10]
@@ -247,10 +381,10 @@ def analytics_dashboard_view(request):
     # Most Clicked Buttons
     # =========================
 
-    total_clicks = ButtonClick.objects.count()
+    total_clicks = _apply_since(ButtonClick.objects, 'clicked_at', since).count()
 
     top_buttons = (
-        ButtonClick.objects
+        _apply_since(ButtonClick.objects, 'clicked_at', since)
         .values('label')
         .annotate(clicks=Count('id'))
         .order_by('-clicks')[:15]
@@ -260,10 +394,10 @@ def analytics_dashboard_view(request):
     # Search Queries
     # =========================
 
-    total_searches = SearchQuery.objects.count()
+    total_searches = _apply_since(SearchQuery.objects, 'searched_at', since).count()
 
     top_queries = (
-        SearchQuery.objects
+        _apply_since(SearchQuery.objects, 'searched_at', since)
         .values('query')
         .annotate(searches=Count('id'))
         .order_by('-searches')[:15]
@@ -273,7 +407,7 @@ def analytics_dashboard_view(request):
     # of content gaps (what teachers are looking for but the site doesn't
     # have yet), not just a usage stat.
     zero_result_queries = (
-        SearchQuery.objects
+        _apply_since(SearchQuery.objects, 'searched_at', since)
         .filter(results_count=0)
         .values('query')
         .annotate(searches=Count('id'))
@@ -284,6 +418,8 @@ def analytics_dashboard_view(request):
     # Policy Watch - possible ToS violations
     # =========================
 
+    # Rolling windows from an aware instant, not a calendar date, so a
+    # "24 hours" or "7 days" cutoff is the same length in Bishkek as in UTC.
     shared_ip_cutoff = timezone.now() - timedelta(hours=SHARED_IP_WINDOW_HOURS)
 
     flagged_shared_ip_accounts = (
@@ -372,17 +508,13 @@ def analytics_dashboard_view(request):
     # Downloads
     # =========================
 
-    downloads_this_week = (
-        ResourceDownload.objects
-        .filter(downloaded_at__date__gte=week_ago)
-        .count()
-    )
+    downloads_this_week = _apply_window(
+        ResourceDownload.objects, 'downloaded_at', week_ago, since
+    ).count()
 
-    downloads_this_month = (
-        ResourceDownload.objects
-        .filter(downloaded_at__date__gte=month_ago)
-        .count()
-    )
+    downloads_this_month = _apply_window(
+        ResourceDownload.objects, 'downloaded_at', month_ago, since
+    ).count()
 
     # =========================
     # Top Downloaded Resources
@@ -391,7 +523,7 @@ def analytics_dashboard_view(request):
     top_resources = (
         Resource.objects
         .annotate(
-            dl_count=Count('downloads')
+            dl_count=_download_count(since)
         )
         .order_by('-dl_count')[:10]
     )
@@ -401,7 +533,7 @@ def analytics_dashboard_view(request):
     # =========================
 
     top_users = (
-        ResourceDownload.objects
+        _apply_since(ResourceDownload.objects, 'downloaded_at', since)
         .filter(user__isnull=False)
         .values(
             'user__username',
@@ -421,7 +553,7 @@ def analytics_dashboard_view(request):
         Resource.objects
         .values('category')
         .annotate(
-            total_downloads=Count('downloads')
+            total_downloads=_download_count(since)
         )
         .order_by('-total_downloads')
     )
@@ -431,7 +563,7 @@ def analytics_dashboard_view(request):
     # =========================
 
     downloads_by_folder = (
-        ResourceDownload.objects
+        _apply_since(ResourceDownload.objects, 'downloaded_at', since)
         .annotate(folder=Coalesce('resource__topic__title', Value('Башка')))
         .values('folder')
         .annotate(total=Count('id'))
@@ -443,7 +575,7 @@ def analytics_dashboard_view(request):
     # =========================
 
     recent_downloads = (
-        ResourceDownload.objects
+        _apply_since(ResourceDownload.objects, 'downloaded_at', since)
         .select_related(
             'resource',
             'user'
@@ -458,8 +590,9 @@ def analytics_dashboard_view(request):
     counts_by_day = {
         row['day']: row['count']
         for row in (
-            ResourceDownload.objects
-            .filter(downloaded_at__date__gte=thirty_days_ago)
+            _apply_window(
+                ResourceDownload.objects, 'downloaded_at', thirty_days_ago, since
+            )
             .annotate(day=TruncDate('downloaded_at'))
             .values('day')
             .annotate(count=Count('id'))
@@ -503,6 +636,8 @@ def analytics_dashboard_view(request):
     chart_folder_counts = [d['total'] for d in downloads_by_folder]
     chart_query_labels = [q['query'] for q in top_queries]
     chart_query_counts = [q['searches'] for q in top_queries]
+
+    reaction_faces, reaction_top_happy, reaction_top_sad = _reaction_summary(since)
 
     # =========================
     # Context
@@ -586,6 +721,17 @@ def analytics_dashboard_view(request):
         'chart_folder_counts': chart_folder_counts,
         'chart_query_labels': chart_query_labels,
         'chart_query_counts': chart_query_counts,
+
+        'reaction_happy': reaction_faces.get(PageReaction.FACE_HAPPY, 0),
+        'reaction_ok': reaction_faces.get(PageReaction.FACE_OK, 0),
+        'reaction_sad': reaction_faces.get(PageReaction.FACE_SAD, 0),
+        'reaction_top_happy': reaction_top_happy,
+        'reaction_top_sad': reaction_top_sad,
+
+        'stats_limited': since is not None,
+        'stats_since_banner': format_stats_since(since) if since else '',
+        'stats_since_temporary': stats_since_temporary,
+        'stats_since_input': stats_since_input,
     }
 
     return render(

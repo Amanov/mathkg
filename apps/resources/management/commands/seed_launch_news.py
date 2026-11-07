@@ -6,6 +6,157 @@ from apps.resources.models import NewsPost
 
 NEWS_ITEMS = [
     {
+        'published_date': date(2026, 11, 5),
+        'title': 'Тесттин PDF файлы кайра жүктөлөт',
+        'body': (
+            'Түзүлгөн тестти PDF кылып жүктөө кайра иштейт. '
+            'Мурда «PDF жүктөп алуу» басканда ката барагы ачылчу.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 5),
+        'title': 'Тест түзүү формасы жаңыланды',
+        'body': (
+            'Тест түзүүдө суроонун түрүн жана деңгээлин белгилеп, '
+            'убакытты сыдырма менен тандайсыз. Суроолор ошол убакытка '
+            'жакын чыгат. Кааласаңыз, убакыт PDF барагында көрүнөт.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 5),
+        'title': 'Тест түзүү барагы ачылды',
+        'body': (
+            'Мугалим класс, тема жана деңгээлди тандап, тест түзө алат. '
+            'Бирден төрткө чейин вариант, жооп ачкычы жана баалоо схемасы PDF болуп чыгат. '
+            'Акысыз жана сыноо аккаунттары айына 3 тест түзөт. Жазылган мугалим чексиз. '
+            'Азырынча 5 жана 6-класстын бөлчөк жана ондук темалары боюнча үлгү суроолор бар.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 4),
+        'title': 'Каттар no-reply@mathkg.com дарегинен келет',
+        'body': (
+            'Каттоо, сырсөздү калыбына келтирүү жана башка каттар эми '
+            'no-reply@mathkg.com дарегинен, «MathKG» аты менен жөнөтүлөт. '
+            'Жооп жазсаңыз, кат mathematicskgz@gmail.com почтасына келет.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 4),
+        'title': 'Күнүмдүк жүктөө Бишкек убактысы менен эсептелет',
+        'body': (
+            'Бир күндүк жүктөө чеги эми түн ортосунда, Бишкек убактысы '
+            'боюнча, жаңыланат. Аккаунт барагындагы катталган күн да '
+            'ошол эле убакытты колдонот.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 4),
+        'title': 'Сайт mathkg.com дарегинде ачылат',
+        'body': (
+            'MathKG эми mathkg.com дарегинде ачылат. '
+            'Эски шилтеме жана www.mathkg.com ошол эле баракка өтөт. '
+            'Каттоо жана сырсөз каттарындагы шилтемелер да жаңы даректи колдонот.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 3),
+        'title': 'Пикир калтыруу барагы ачылды',
+        'body': (
+            'Ар бир барактын астында «Бул бет сизге жактыбы?» деген суроо пайда болду. '
+            'Жакты, жаман эмес же жаккан жок деп белгилесеңиз болот. '
+            'Узунураак пикир, сунуш же мактоо үчүн «Пикир калтыруу» барагы ачылды. '
+            'Ал барактын төмөнкү бөлүгүнөн ачылат.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Менюнун ички тизмеси кайра ачылат',
+        'body': (
+            'Темалар менюсунда «›» белгиси бар ички тизмелер кайра ачылат. '
+            'Сандар → Амалдардын тартиби → Төрт амал, Геометрия жана башка бөлүмдөр '
+            'мурункудай тандалат. Меню ачылганда жүктөлөт.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Башкы беттин сүрөттөрү алкагын толтурат',
+        'body': (
+            'Башкы беттеги сүрөттөрдүн айланасындагы бош ак тилке алынды. '
+            'Сүрөт эми өз алкагын толук ээлейт, компьютерде да, телефондо да.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Башкы бет телефондо тезирээк ачылат',
+        'body': (
+            'Башкы беттин сүрөттөрү жеңилдеди. Темалар менюсу биринчи экран менен '
+            'кошо түшпөйт: менюну ачканда жүктөлөт. Көрүнүшү мурункудай.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Айрым темалардын аталышы кыргызча такталды',
+        'body': (
+            'Тегерек теоремасынын аталышы «Толуктоочу сегмент» болду. «коньюгатасыз» эми «түйүндөшсүз», '
+            'тексттик маселелер бирдей жазылат, 1000ге көбөйтүү «ге» менен жазылат. '
+            'Англисче BIDMAS, Big 4, IGCSE жана GCSE аталыштар кыргызчага алмашты. '
+            'Барактардын шилтемеси өзгөргөн жок.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Лабиринттин жолу ар бир баракта башка',
+        'body': (
+            'Туурабы? Лабиринт барактарында туура жол эми ар темада башкача: '
+            'БАШТАдан МААРАга чейин бир гана жол бар. '
+            'Калган «МАРЕ» жазуулары «МААРА» болуп оңдолду.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Издөө класс боюнча темаларды табат',
+        'body': (
+            'Издөө сабына «7-класс», «7 класс» же «класс 7» деп жазсаңыз, '
+            'ошол класстын тема барактары бөлүмдөр боюнча чыгат. '
+            'Жыйынтык бетинде башка классты тандасаңыз болот.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Башкы бетте бир гана аталыш калды',
+        'body': (
+            'Башкы беттин негизги аталышы эми «Мугалимдер үчүн заманбап математикалык ресурстар». '
+            'Анын үстүндөгү кайталанган «Математика мугалимдери үчүн даяр материалдар» сабы алынды.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Сайттын аталышы MathKG болду',
+        'body': (
+            'Сайт эми MathKG деп аталат. Логотип, барактын төмөнкү бөлүгү, '
+            '«Жөнүндө» барагы жана электрондук каттар ушул аталышты көрсөтөт.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Башкы беттин баш аталышы такталды',
+        'body': (
+            'Башкы беттин негизги аталышы «Математика мугалимдери үчүн даяр материалдар». '
+            '«Мугалимдер үчүн заманбап математикалык ресурстар» сабы ошол эле көрүнүштө анын астында турат.'
+        ),
+    },
+    {
+        'published_date': date(2026, 11, 2),
+        'title': 'Катталуу жана телефондогу башкы бет оңдолду',
+        'body': (
+            '«Катталуу» баскычы түз катталуу бетине ачат. Катталгандан кийин '
+            'почтаңызды текшерүү бети чыгат, тастыктоо каты кыргызча келет. '
+            'Туулган күн милдеттүү эмес. Баалар терезесинде «7 күн акысыз баштоо» '
+            'карточкасы бар. Башкы бет телефондо чоңураак текст жана толук сүрөт менен ачылат.'
+        ),
+    },
+    {
         'published_date': date(2026, 10, 28),
         'title': 'Тема барактарында класс белгиси көрүнөт',
         'body': (
@@ -398,7 +549,7 @@ NEWS_ITEMS = [
         'title': 'Баш менюнун жана төмөнкү билдирүүнүн дизайны жаңырды',
         'body': (
             'Коюу темада менюнун экинчи катары (темалар менюсу жана '
-            '"MathKGZ" логотиби) ак бойдон калып, көрүнбөй калчу - бул '
+            '"MathKG" логотиби) ак бойдон калып, көрүнбөй калчу - бул '
             'оңдолду. Телефондо эми эки өзүнчө "гамбургер" баскычынын '
             'ордуна бирөө гана калды, ал эми "Кирүү" жана "Катталуу" '
             'баскычтары жөнөкөйлөштүрүлдү. Баракчанын төмөнкү бөлүгү '
@@ -1308,10 +1459,10 @@ NEWS_ITEMS = [
     },
     {
         'published_date': date(2026, 9, 22),
-        'title': 'Жаңылыктар жана "MathKGZ жөнүндө" барактары ачылды',
+        'title': 'Жаңылыктар жана "MathKG жөнүндө" барактары ачылды',
         'body': (
             'Платформага болгон өзгөрүүлөрдү ушул жерден таба аласыз. '
-            'Ошондой эле MathKGZ жөнүндө жалпы маалымат камтылган "Жөнүндө" '
+            'Ошондой эле MathKG жөнүндө жалпы маалымат камтылган "Жөнүндө" '
             'барагы кошулду.'
         ),
     },
@@ -1472,7 +1623,7 @@ NEWS_ITEMS = [
         ),
     },
     {
-        'published_date': date(2026, 11, 1),
+        'published_date': date(2026, 11, 7),
         'title': '8–10-класс: статистика, ыктымалдуулук, пайыз жана көлөм',
         'body': (
             'Дагы беш пакет кошулду: ыктымалдуулук жана комбинаторика, статистика (квартилдер жана куту '
@@ -1482,7 +1633,7 @@ NEWS_ITEMS = [
         ),
     },
     {
-        'published_date': date(2026, 11, 2),
+        'published_date': date(2026, 11, 7),
         'title': '10–11-класс: функциялар, тригонометрия, туунду жана интеграл',
         'body': (
             'Жогорку класстар үчүн үч пакет кошулду: функциялар (f(g(x)) жана f⁻¹(x)), тригонометриялык '
@@ -1491,6 +1642,61 @@ NEWS_ITEMS = [
         ),
     },
 ]
+
+
+# Titles seeded before the site name changed from MathKGZ to MathKG.
+# --undo still removes a row that was stored under the old title.
+_LEGACY_TITLES = (
+    'Жаңылыктар жана "MathKGZ жөнүндө" барактары ачылды',
+)
+
+_BRAND_REPLACEMENTS = (
+    ('MathKGZ', 'MathKG'),
+    ('MathKgz', 'MathKG'),
+    ('MATHKGZ', 'MATHKG'),
+    ('mathkgz', 'mathkg'),
+)
+
+
+def _replace_brand(text):
+    for old, new in _BRAND_REPLACEMENTS:
+        text = text.replace(old, new)
+    return text
+
+
+def _rebrand_existing_posts():
+    """Rewrite MathKGZ inside news rows already stored in the database.
+
+    get_or_create will not edit a row that was seeded under the old
+    name, and a changed title would insert a second post. Replacing the
+    brand on existing rows keeps one post per story and needs no migration.
+    """
+    updated = 0
+    for post in list(NewsPost.objects.all()):
+        new_title = _replace_brand(post.title)
+        new_body = _replace_brand(post.body)
+        if new_title == post.title and new_body == post.body:
+            continue
+        clash = (
+            NewsPost.objects.filter(
+                title=new_title,
+                published_date=post.published_date,
+            )
+            .exclude(pk=post.pk)
+            .first()
+        )
+        if clash is not None:
+            clash_body = _replace_brand(clash.body)
+            if clash_body != clash.body:
+                clash.body = clash_body
+                clash.save(update_fields=['body'])
+            post.delete()
+        else:
+            post.title = new_title
+            post.body = new_body
+            post.save(update_fields=['title', 'body'])
+        updated += 1
+    return updated
 
 
 class Command(BaseCommand):
@@ -1506,10 +1712,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['undo']:
             titles = [item['title'] for item in NEWS_ITEMS]
+            titles.extend(_LEGACY_TITLES)
             deleted, _ = NewsPost.objects.filter(title__in=titles).delete()
             self.stdout.write(self.style.SUCCESS(f'Removed {deleted} news post(s).'))
             return
 
+        updated = _rebrand_existing_posts()
         created_count = 0
         for item in NEWS_ITEMS:
             _, created = NewsPost.objects.get_or_create(
@@ -1521,5 +1729,7 @@ class Command(BaseCommand):
                 created_count += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f'Created {created_count} news post(s), {len(NEWS_ITEMS) - created_count} already existed.'
+            f'Created {created_count} news post(s), '
+            f'{len(NEWS_ITEMS) - created_count} already existed, '
+            f'{updated} renamed to MathKG.'
         ))

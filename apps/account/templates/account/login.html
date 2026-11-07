@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
-{% block title %} КИРУУ {%endblock%}
-
 {% load static %}
+{% load seo_tags %}
+{% block seo %}{% seo_page "login" %}{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -13,9 +13,7 @@
 
     <div class="auth-tabs">
       <a href="{% url 'login' %}" class="active"><i class="fa fa-fw fa-right-to-bracket"></i> Кирүү</a>
-      {# A plain link to /register/ here would skip the plan picker the header's own #}
-      {# "Катталуу" button opens - same modal trigger keeps both entry points consistent. #}
-      <button type="button" data-bs-toggle="modal" data-bs-target="#subscribeModal"><i class="fa fa-fw fa-user-plus"></i> Катталуу</button>
+      <a href="{% url 'register' %}"><i class="fa fa-fw fa-user-plus"></i> Катталуу</a>
     </div>
 
     <h1>Кайра кош келиңиз</h1>

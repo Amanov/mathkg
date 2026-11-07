@@ -5,12 +5,129 @@ belong in code comments but shouldn't get lost between sessions either.
 
 ## Custom domain
 
-Not set up yet — the site runs on Railway's default
-`mathkg-production.up.railway.app`. No action needed until you want one.
+`mathkg.com` and `www.mathkg.com` are attached in Railway, and DNS/TLS
+are in place. The app allows those hosts plus
+`mathkg-production.up.railway.app` by default. Requests to `www` or the
+Railway hostname 301 to `https://mathkg.com` with the same path and
+query.
 
-When you do: Railway supports custom domains on the **Trial plan**, no
-upgrade required — you just need to own the domain and point its DNS at
-Railway (Settings → Networking → Custom Domain on the app service).
+No new Railway variables are required for that. Optional overrides
+(Variables tab), if you ever need them:
+
+```
+SITE_URL=https://mathkg.com
+EXTRA_ALLOWED_HOSTS=another.example
+EXTRA_CSRF_TRUSTED_ORIGINS=https://another.example
+```
+
+`SITE_URL` is the origin used in canonical tags, the sitemap, robots.txt,
+and email links. `EXTRA_ALLOWED_HOSTS` is a hostname with no scheme.
+`EXTRA_CSRF_TRUSTED_ORIGINS` needs `https://`. Setting `ALLOWED_HOSTS`
+or `CSRF_TRUSTED_ORIGINS` adds to the defaults; it does not remove
+`mathkg.com`.
+
+`django.contrib.sites` is not installed, so there is no Site row and no
+data migration. `nixpacks.json` does not set a healthcheck path, and
+there is no `railway.toml`. Railway's probe hostname, when you add a
+path later, is `healthcheck.railway.app`. That host is allowed and is
+not redirected (a 301 would fail the deploy).
+
+After this ships, run `python manage.py seed_launch_news` in production
+so the news page mentions the new address. See the search-engines
+section below.
+
+## PDF downloads (WeasyPrint)
+
+Test PDFs (`/test-tuzuu/<id>/pdf/`) and the Big 4 worksheet PDF are
+rendered by WeasyPrint when the request arrives. That import loads
+Pango, GObject, HarfBuzz, and fontconfig with `dlopen`. Nix packages
+in the old `nixpacks.json` `pkgs` list land in `/nix/store` and are not
+on that search path, so production raised:
+
+```
+OSError: cannot load library 'libgobject-2.0-0': libgobject-2.0-0:
+cannot open shared object file: No such file or directory
+```
+
+Django turned that into the plain “Server Error (500)” page. The same
+code returns a PDF on a machine where those `.so` files are in the
+system library path.
+
+Railway’s current builder is Railpack, which does not read
+`nixpacks.json`. Runtime packages belong in `railpack.json` under
+`deploy.aptPackages` (keep the `"..."` entry so Railpack’s own packages
+stay). `nixpacks.json` lists the same apt packages for an older
+Nixpacks build. Do not switch them back to Nix `pkgs` names: cffi will
+not find those libraries, and every PDF download will 500 again.
+`fonts-dejavu-core` is the Kyrgyz-capable font the test PDF already
+looks up at `/usr/share/fonts/truetype/dejavu/`.
+
+No migration. No new Railway variable.
+
+## Search engines (robots.txt and sitemap.xml)
+
+`/robots.txt` and `/sitemap.xml` are Django views, not files under
+`static/`. WhiteNoise and `collectstatic` do not serve them, and there
+is no migration. They work on a fresh Railway container.
+
+The sitemap lists:
+
+- every public lesson page registered in the URL conf, including bridge
+  pages generated from `apps/resources/data/bridge/pages/`
+- every `Topic`, `Subtopic`, and `SubSubtopic` page
+  (`/resources/topic/...`), via `get_absolute_url()`
+
+It does not list `/login/`, `/register/`, `/resources/download/`,
+account and password pages, or the staff dashboard. Resource files do
+not have their own public HTML page; they appear on those topic pages.
+The download URLs stay out of the sitemap.
+
+Absolute URLs use ``SITE_URL`` (`https://mathkg.com`), including when the
+file is fetched from another allowed host. `django.contrib.sites` is
+**not** installed. Leave it off.
+
+The live hosts are in `ALLOWED_HOSTS` (`config/settings/production.py`).
+Production must keep `DJANGO_SETTINGS_MODULE=config.settings.production`
+(that is what makes `DATABASE_URL` apply).
+
+Submit this sitemap in Google Search Console and Yandex Webmaster:
+
+```
+https://mathkg.com/sitemap.xml
+```
+
+## Activation email (Brevo)
+
+Railway blocks outbound SMTP, so `EMAIL_HOST` cannot deliver the
+registration email (the request used to die with a 500). Mail now goes
+through Brevo's HTTP API when this variable is set on the app service:
+
+```
+BREVO_API_KEY=<key from Brevo → SMTP & API → API keys>
+```
+
+Sender defaults to `MathKG <no-reply@mathkg.com>` (the mathkg.com domain
+is authenticated in Brevo). Optional overrides, unset unless you need
+them:
+
+```
+BREVO_SENDER_EMAIL=no-reply@mathkg.com
+BREVO_SENDER_NAME=MathKG
+DEFAULT_FROM_EMAIL=MathKG <no-reply@mathkg.com>
+DEFAULT_REPLY_TO_EMAIL=mathematicskgz@gmail.com
+```
+
+`DEFAULT_FROM_EMAIL`, when set, is the whole From header and wins over
+`BREVO_SENDER_EMAIL`. Reply-To defaults to the admin inbox
+(`ADMIN_NOTIFICATION_EMAIL`, otherwise `mathematicskgz@gmail.com`)
+because `no-reply@mathkg.com` has no mailbox. A failed or missing key
+is logged; registration still succeeds. There is no migration for this.
+
+If an older `DEFAULT_FROM_EMAIL` is still set to the Gmail address or
+to `noreply@mathkg.com` (no hyphen), remove it or set it to
+`MathKG <no-reply@mathkg.com>`. Before this change that variable was
+ignored whenever `BREVO_API_KEY` was set, so a stale value would start
+to take effect on the next deploy.
 
 ## Resource thumbnails auto-convert to WebP (2026-10-08)
 

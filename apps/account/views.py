@@ -1,12 +1,15 @@
 from logging import getLogger
+from urllib.parse import urlsplit
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.template import loader
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
@@ -14,8 +17,12 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 
+from config.absolute_url import absolute_url
+
 from apps.resources.models import LoginEvent
 from apps.resources.utils.request_helpers import get_client_ip
+
+from apps.account.email_backends import default_reply_to_list
 
 from .models import Account, SubscriptionRequest
 from .forms import (
@@ -39,27 +46,47 @@ def ratelimit_key(group, request):
     return get_client_ip(request)
 
 
+ACTIVATION_EMAIL_SUBJECT = 'MathKG: каттоону тастыктаңыз'
+
+
+def activation_email_body(activation_link):
+    return (
+        'Саламатсызбы,\n\n'
+        'MathKG сайтына катталганыңыз үчүн рахмат.\n\n'
+        'Каттоону тастыктоо үчүн төмөнкү шилтемени басыңыз:\n'
+        f'{activation_link}\n\n'
+        'Тастыктагандан кийин материалдарды 7 күн акысыз колдоно аласыз.\n\n'
+        'Урматтоо менен,\n'
+        'MathKG командасы\n'
+    )
+
+
 def send_activation_email(request, user):
     # Shared by registration (first send) and resend_activation_view (a
     # fresh link after the first one expired or never arrived) - one
     # place to generate the token and send the email, so the two can
-    # never drift into sending different message text.
+    # never drift into sending different message text. The link uses
+    # SITE_URL, not the request host: Railway's proxy host must not
+    # land in the message. ``request`` stays in the signature because
+    # both callers pass it.
+    # A failed send is logged and must not fail the request: Railway
+    # blocks SMTP, and the Brevo backend already swallows its own
+    # errors. This catch stays so a different backend cannot turn
+    # registration into a 500 either.
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
-    domain = get_current_site(request).domain
-    activation_link = f"https://{domain}/activate/{uidb64}/{token}/"
-    message = f"Dear {user.username},\n\nActivate: {activation_link}"
+    activation_link = absolute_url(f'/activate/{uidb64}/{token}/')
 
     try:
-        send_mail(
-            'Account Activation',
-            message,
-            None,  # uses settings.DEFAULT_FROM_EMAIL
+        EmailMessage(
+            ACTIVATION_EMAIL_SUBJECT,
+            activation_email_body(activation_link),
+            settings.DEFAULT_FROM_EMAIL,
             [user.email],
-            fail_silently=False
-        )
-    except Exception as e:
-        logger.error(f"Failed to send activation email to {user.email}: {e}")
+            reply_to=default_reply_to_list(),
+        ).send(fail_silently=False)
+    except Exception:
+        logger.exception('Failed to send activation email to %s', user.email)
 
 
 # NOTE: with no CACHES setting configured, Django's implicit default is
@@ -88,18 +115,7 @@ def registration_view(request):
                 SubscriptionRequest.objects.create(user=user, plan=plan)
 
             send_activation_email(request, user)
-
-            messages.success(
-                request,
-                "Каттоо ийгиликтүү аяктады!\n"
-                "Аккаунтуңузду активдештирүү үчүн электрондук почтаңызга жиберилген "
-                "шилтемени басыңыз, андан кийин кызматты пайдаланып, сабактардан "
-                "ырахат ала аласыз.\n"
-                "QR код аркылуу төлөм жасаган болсоңуз, төлөм текшерилгенден кийин "
-                "жазылууңуз өзү активдештирилет - кошумча аракет талап кылынбайт.\n"
-                "Кирүү менен көйгөй чыкса, бизге жазыңыз: mathematicskgz@gmail.com",
-            )
-            return redirect('login')
+            return redirect('check_email')
     else:
         form = RegistrationForm()
 
@@ -276,9 +292,9 @@ def activation_view(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save(update_fields=['is_active'])
-        messages.success(request, 'Your account has been activated successfully.')
+        messages.success(request, 'Аккаунтуңуз ийгиликтүү активдештирилди. Эми кире аласыз.')
     else:
-        messages.error(request, 'Invalid activation link.')
+        messages.error(request, 'Активдештирүү шилтемеси жараксыз. Жаңы шилтеме сураңыз.')
 
     return redirect('login')
 
@@ -308,6 +324,43 @@ def resend_activation_view(request):
     return render(request, 'account/resend_activation.html')
 
 
+def check_email_view(request):
+    return render(request, 'account/check_email.html')
+
+
+class SitePasswordResetForm(PasswordResetForm):
+    """Password-reset mail, with Reply-To set to the real inbox.
+
+    Django's form sends from DEFAULT_FROM_EMAIL and does not set
+    Reply-To. no-reply@mathkg.com has no mailbox, so a teacher who
+    answers the reset message needs to reach mathematicskgz@gmail.com.
+    """
+
+    def send_mail(
+        self,
+        subject_template_name,
+        email_template_name,
+        context,
+        from_email,
+        to_email,
+        html_email_template_name=None,
+    ):
+        subject = loader.render_to_string(subject_template_name, context)
+        subject = ''.join(subject.splitlines())
+        body = loader.render_to_string(email_template_name, context)
+        email_message = EmailMultiAlternatives(
+            subject,
+            body,
+            from_email,
+            [to_email],
+            reply_to=default_reply_to_list(),
+        )
+        if html_email_template_name is not None:
+            html_email = loader.render_to_string(html_email_template_name, context)
+            email_message.attach_alternative(html_email, 'text/html')
+        email_message.send()
+
+
 @method_decorator(
     ratelimit(key=ratelimit_key, rate='5/h', method='POST', block=True),
     name='dispatch',
@@ -319,6 +372,19 @@ class RateLimitedPasswordResetView(auth_views.PasswordResetView):
     rate-limit it the same way as login/registration, since a plain
     function decorator can't be applied to a class-based view's
     as_view() the same way.
+
+    The reset link uses SITE_URL. Django would otherwise put the request
+    host in the message, which behind Railway is the proxy host.
     """
+
+    form_class = SitePasswordResetForm
+
+    def form_valid(self, form):
+        parts = urlsplit(settings.SITE_URL)
+        self.extra_email_context = {
+            'protocol': parts.scheme or 'https',
+            'domain': parts.netloc,
+        }
+        return super().form_valid(form)
 
 

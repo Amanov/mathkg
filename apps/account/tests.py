@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta, timezone as dt_timezone
 from io import StringIO
 from unittest.mock import patch
 
+from django.conf import settings
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.management import call_command
@@ -11,6 +12,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
+from apps.account.email_backends import default_reply_to_list
 from apps.resources.models import Resource, ResourceDownload
 
 from .models import Account, SubscriptionRequest, add_months, local_calendar_date
@@ -27,11 +29,77 @@ class RegistrationAndActivationTests(TestCase):
         })
 
     def test_registration_creates_inactive_user_and_sends_activation_email(self):
-        self._register()
+        response = self._register()
+        self.assertRedirects(response, reverse('check_email'))
         user = Account.objects.get(email='newuser@example.com')
         self.assertFalse(user.is_active)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertIn('/activate/', mail.outbox[0].body)
+        self.assertEqual(mail.outbox[0].subject, 'MathKG: каттоону тастыктаңыз')
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(list(mail.outbox[0].reply_to), default_reply_to_list())
+        self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
+        self.assertNotIn('railway.app', mail.outbox[0].body)
+        self.assertNotIn('testserver', mail.outbox[0].body)
+        self.assertIn('катталганыңыз үчүн рахмат', mail.outbox[0].body)
+        self.assertIn('7 күн акысыз', mail.outbox[0].body)
+        self.assertIn('MathKG командасы', mail.outbox[0].body)
+        page = self.client.get(reverse('check_email'))
+        self.assertContains(page, 'Почтаңызды текшериңиз')
+
+    def test_registration_without_date_of_birth_succeeds(self):
+        response = self.client.post(reverse('register'), {
+            'email': 'nodob@example.com',
+            'username': 'nodob',
+            'password1': 'SuperSecret123!',
+            'password2': 'SuperSecret123!',
+        })
+        self.assertRedirects(response, reverse('check_email'))
+        self.assertTrue(Account.objects.filter(email='nodob@example.com', is_active=False).exists())
+
+    def test_registration_succeeds_when_activation_email_raises(self):
+        with patch('apps.account.views.EmailMessage.send', side_effect=OSError('smtp blocked')):
+            response = self._register()
+        self.assertRedirects(response, reverse('check_email'))
+        self.assertTrue(Account.objects.filter(email='newuser@example.com').exists())
+
+    def test_register_page_labels_are_kyrgyz(self):
+        response = self.client.get(reverse('register'))
+        self.assertContains(response, 'Туулган күнүңүз')
+        self.assertContains(response, 'Милдеттүү эмес')
+        self.assertContains(response, 'Сырсөздү тастыктаңыз')
+        self.assertNotContains(response, 'Туулган жылыңыз')
+        self.assertNotContains(response, 'Туулга кунунуз')
+        self.assertNotContains(response, 'парол')
+
+    def test_register_form_errors_are_kyrgyz(self):
+        Account.objects.create_user(
+            email='taken@example.com', username='takenname', password='SuperSecret123!',
+        )
+        response = self.client.post(reverse('register'), {
+            'email': 'taken@example.com',
+            'username': 'takenname',
+            'password1': '12345678',
+            'password2': '87654321',
+        })
+        self.assertEqual(response.status_code, 200)
+        body = response.content.decode()
+        self.assertIn('Бул электрондук почта мурунтан катталган.', body)
+        self.assertIn('Бул колдонуучунун аты мурунтан катталган.', body)
+        self.assertIn('Эки сырсөз дал келген жок.', body)
+        self.assertNotIn('This field is required', body)
+        self.assertNotIn('already exists', body)
+        self.assertNotIn('didn’t match', body)
+        self.assertNotIn("didn't match", body)
+
+        response = self.client.post(reverse('register'), {
+            'email': 'short@example.com',
+            'username': 'shortuser',
+            'password1': '12345678',
+            'password2': '12345678',
+        })
+        body = response.content.decode()
+        self.assertIn('сандан гана турбашы керек', body)
+        self.assertNotIn('This password', body)
 
     def test_activation_link_activates_the_account(self):
         self._register()
@@ -39,10 +107,12 @@ class RegistrationAndActivationTests(TestCase):
         match = re.search(r'/activate/([^/]+)/([^/]+)/', mail.outbox[0].body)
         uidb64, token = match.group(1), match.group(2)
 
-        self.client.get(f'/activate/{uidb64}/{token}/')
+        response = self.client.get(f'/activate/{uidb64}/{token}/', follow=True)
 
         user.refresh_from_db()
         self.assertTrue(user.is_active)
+        self.assertContains(response, 'ийгиликтүү активдештирилди')
+        self.assertNotContains(response, 'successfully')
 
     def test_invalid_activation_token_does_not_activate(self):
         self._register()
@@ -50,10 +120,12 @@ class RegistrationAndActivationTests(TestCase):
         match = re.search(r'/activate/([^/]+)/([^/]+)/', mail.outbox[0].body)
         uidb64 = match.group(1)
 
-        self.client.get(f'/activate/{uidb64}/not-a-real-token/')
+        response = self.client.get(f'/activate/{uidb64}/not-a-real-token/', follow=True)
 
         user.refresh_from_db()
         self.assertFalse(user.is_active)
+        self.assertContains(response, 'жараксыз')
+        self.assertNotContains(response, 'Invalid activation')
 
 
 class LoginTests(TestCase):
@@ -63,6 +135,13 @@ class LoginTests(TestCase):
         )
         self.user.is_active = True
         self.user.save(update_fields=['is_active'])
+
+    def test_login_page_password_help_is_kyrgyz(self):
+        response = self.client.get(reverse('login'))
+        help_text = response.context['form'].fields['password'].help_text
+        self.assertIn('сырсөзүңүз', help_text)
+        self.assertNotIn('парол', help_text)
+        self.assertNotContains(response, 'парол')
 
     def test_login_with_correct_credentials_succeeds(self):
         # Regression test: AccountAuthenticationForm used to be a ModelForm
@@ -128,7 +207,8 @@ class ResendActivationTests(TestCase):
         response = self.client.post(reverse('resend_activation'), {'email': 'pending@example.com'})
         self.assertRedirects(response, reverse('login'))
         self.assertEqual(len(mail.outbox), 1)
-        self.assertIn('/activate/', mail.outbox[0].body)
+        self.assertIn('https://mathkg.com/activate/', mail.outbox[0].body)
+        self.assertNotIn('railway.app', mail.outbox[0].body)
 
     def test_resend_shows_the_same_message_for_an_unknown_email(self):
         response = self.client.post(
@@ -268,7 +348,7 @@ class DownloadLimitTests(TestCase):
         self.assertEqual(self.user.subscription_end_date, expected)
 
     def test_explicit_subscription_end_overrides_trial(self):
-        self.user.subscription_end = timezone.now().date() - timedelta(days=1)
+        self.user.subscription_end = timezone.localdate() - timedelta(days=1)
         self.assertEqual(self.user.subscription_end_date, self.user.subscription_end)
 
 
@@ -284,8 +364,15 @@ class SubscriptionRequestNotificationTests(TestCase):
         SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn('payer@example.com', mail.outbox[0].body)
+        self.assertIn(
+            'https://mathkg.com/admin/account/subscriptionrequest/',
+            mail.outbox[0].body,
+        )
+        self.assertNotIn('railway.app', mail.outbox[0].body)
         from django.conf import settings
         self.assertEqual(mail.outbox[0].to, [settings.ADMIN_NOTIFICATION_EMAIL])
+        self.assertEqual(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(list(mail.outbox[0].reply_to), ['payer@example.com'])
 
     def test_activating_an_existing_request_does_not_send_a_second_notification(self):
         request = SubscriptionRequest.objects.create(user=self.user, plan=SubscriptionRequest.PLAN_SIX_MONTHS)
@@ -561,10 +648,9 @@ class SubscriptionCalendarTests(TestCase):
         self.assertEqual(response.context['days_left'], 142)
 
     def test_registration_date_and_trial_use_the_active_timezone(self):
-        # 18.09.2026 19:30 UTC is still the 18th in UTC, and already
-        # 19.09.2026 02:30 in Asia/Bangkok. The card and the trial must
-        # agree on that local day. TIME_ZONE in settings is UTC, so this
-        # only shows up when the active timezone is not UTC.
+        # 18.09.2026 19:30 UTC is already 19.09.2026 in Asia/Bishkek
+        # (01:30) and in Asia/Bangkok (02:30). The card and the trial
+        # must agree on that local day, not the stored UTC day.
         self.user.date_joined = datetime(2026, 9, 18, 19, 30, tzinfo=dt_timezone.utc)
         self.user.subscription_end = None
         self.user.trial_days = 7

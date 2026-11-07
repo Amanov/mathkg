@@ -1,7 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load seo_tags %}
 
-{% block title %}{% if query %}«{{ query }}» боюнча издөө{% else %}Издөө{% endif %}{% endblock %}
+{% block seo %}{% seo_search query %}{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/search-results.css' %}">
@@ -27,6 +28,19 @@
         {% endif %}
     </div>
 
+    {% if grade_chips %}
+    <nav class="search-grade-chips" aria-label="Класс">
+        {% if active_grade %}
+        <a class="search-grade-chip" href="{{ grade_clear_href }}">Баары</a>
+        {% endif %}
+        {% for chip in grade_chips %}
+        <a class="search-grade-chip{% if chip.num == active_grade %} is-active{% endif %}" href="{{ chip.href }}"{% if chip.num == active_grade %} aria-current="page"{% endif %}>
+            {{ chip.label }}<span class="search-grade-chip__count">{{ chip.count }}</span>
+        </a>
+        {% endfor %}
+    </nav>
+    {% endif %}
+
     {% if query and not has_results %}
         <div class="alert alert-warning">
             «{{ query }}» боюнча эч нерсе табылган жок. Башка сөз менен издеп көрүңүз.
@@ -47,7 +61,7 @@
                         {{ result.breadcrumb|slice:"1:"|join:' › ' }}
                     </div>
                     {% endif %}
-                    <div class="search-result-title">{{ result.title }}</div>
+                    <div class="search-result-title">{{ result.title }}{% if result.grade %} <span class="search-result-grade">{{ result.grade }}</span>{% endif %}</div>
                 </a>
                 {% endfor %}
             </div>

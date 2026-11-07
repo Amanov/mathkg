@@ -7,8 +7,11 @@ from django.db import connections, models, router, transaction
 from django.db.utils import OperationalError, ProgrammingError
 # Create your models here.
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from django.urls import reverse
 from django.utils import timezone
+
+from config.absolute_url import absolute_url
 
 logger = getLogger(__name__)
 
@@ -164,6 +167,14 @@ class Account(AbstractBaseUser):
         help_text="Акысыз сыноо мөөнөтү (күн). Катталган күндөн тартып "
                    "эсептелет (subscription_end коюлбаса).",
     )
+    tour_seen = models.BooleanField(
+        default=False,
+        help_text="Сайт боюнча биринчи көрсөтмө көрүлдү.",
+    )
+    test_tour_seen = models.BooleanField(
+        default=False,
+        help_text="Тест түзүү көрсөтмөсү көрүлдү.",
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]  #'first_name' we can add a list
@@ -195,11 +206,10 @@ class Account(AbstractBaseUser):
         # any access-gating check agree on the same date.
         #
         # The trial starts on the same calendar day the account page
-        # shows for date_joined (the active timezone). date_joined.date()
-        # is the UTC day and ignores TIME_ZONE, so the two would drift
-        # as soon as TIME_ZONE is not UTC. Settings keep TIME_ZONE at
-        # UTC, so both are currently the UTC day — one day behind
-        # Asia/Bishkek from 00:00–06:00 and Asia/Bangkok from 00:00–07:00.
+        # shows for date_joined. That page uses the active timezone
+        # (Asia/Bishkek). date_joined.date() is the stored UTC day, which
+        # is still yesterday in Bishkek from 00:00–06:00, so the trial
+        # uses local_calendar_date instead.
         return self.subscription_end or (
             local_calendar_date(self.date_joined) + timedelta(days=self.trial_days)
         )
@@ -238,9 +248,8 @@ def local_calendar_date(value):
 
     A date is already a calendar day and is returned unchanged. An aware
     datetime is converted with localtime() first. .date() on the stored
-    UTC value ignores TIME_ZONE; this follows it. With TIME_ZONE='UTC'
-    the two days match. They differ in Asia/Bishkek from 00:00–06:00
-    and in Asia/Bangkok from 00:00–07:00, where UTC is still yesterday.
+    UTC value ignores TIME_ZONE. With TIME_ZONE='Asia/Bishkek' that UTC
+    day is still yesterday from 00:00–06:00 local time.
     """
     if isinstance(value, datetime):
         if timezone.is_aware(value):
@@ -379,14 +388,20 @@ class SubscriptionRequest(models.Model):
         # Best-effort: a failed notification email must never block the
         # request itself from being created.
         try:
-            send_mail(
+            admin_link = absolute_url(
+                reverse('admin:account_subscriptionrequest_changelist')
+            )
+            # Reply goes to the teacher who asked to subscribe, so the
+            # inbox can answer them. The From address stays the site sender.
+            EmailMessage(
                 'Жаңы жазылуу суранычы',
                 f'{self.user.email} колдонуучусу "{self.get_plan_display()}" '
-                'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.',
-                None,  # uses settings.DEFAULT_FROM_EMAIL
+                'планына жазылууну суранды. Ырастоо үчүн админ панелге өтүңүз.\n'
+                f'{admin_link}',
+                settings.DEFAULT_FROM_EMAIL,
                 [settings.ADMIN_NOTIFICATION_EMAIL],
-                fail_silently=False,
-            )
+                reply_to=[self.user.email] if self.user.email else None,
+            ).send(fail_silently=False)
         except Exception as e:
             logger.error(f"Failed to send subscription-request notification: {e}")
 

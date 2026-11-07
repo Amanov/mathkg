@@ -20,7 +20,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'multiplying-1-2-digit': 'Көбөйтүү — 1 жана 2 орундук сандар',
     'dividing-1-2-digit': 'Бөлүү — 1 жана 2 орундук сандар',
     'multiplying-dividing-1-2-digit': 'Көбөйтүү жана бөлүү — 1 жана 2 орундук сандар',
-    'multiplying-dividing-10-100-1000': '10, 100, 1000гө көбөйтүү жана бөлүү',
+    'multiplying-dividing-10-100-1000': '10, 100, 1000ге көбөйтүү жана бөлүү',
     'mixed-1-2-digit': 'Аралаш эсептөөлөр — 1 жана 2 орундук сандар',
 
     # Ондуктар > Эсептөөлөр: бүтүн сандар менен - none of these 8 have a
@@ -55,7 +55,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'adding-subtracting-directed': 'Кошуу жана кемитүү',
     'multiplying-dividing-directed': 'Көбөйтүү жана бөлүү',
     'mixed-directed': 'Аралаш эсептөөлөр',
-    'with-bidmas-directed': 'BIDMAS менен',
+    'with-bidmas-directed': 'Амалдардын тартиби менен',
     'complex-directed': 'Татаал эсептөөлөр',
 
     # Сандар > Эквиваленттүүлүк (top-level topic) > Бөлчөктөрдү айландыруу
@@ -209,7 +209,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'surds-multiplying-dividing': 'Көбөйтүү жана бөлүү',
     'surds-adding-subtracting': 'Кошуу жана кемитүү',
     'surds-expanding-brackets': 'Кашаны ачуу',
-    'surds-rationalising-without-conjugates': 'Рационалдаштыруу: коньюгатасыз',
+    'surds-rationalising-without-conjugates': 'Рационалдаштыруу: түйүндөшсүз',
     'surds-rationalising-denominators': 'Бөлүүчүнү рационалдаштыруу',
     'surds-mixed': 'Аралаш',
     'surds-with-pythagoras': 'Пифагор менен',
@@ -222,7 +222,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'integers-multiplying-1-2-digit': 'Көбөйтүү',
     'integers-dividing-1-2-digit': 'Бөлүү',
     'integers-multiplying-dividing-1-2-digit': 'Көбөйтүү жана бөлүү',
-    'integers-multiplying-dividing-10-100-1000': '10, 100, 1000гө көбөйтүү жана бөлүү',
+    'integers-multiplying-dividing-10-100-1000': '10, 100, 1000ге көбөйтүү жана бөлүү',
     'integers-mixed-1-2-digit': 'Аралаш',
 
     # Бүтүн сандар > Эсептөөлөр: 2 жана 3 орундук - none of these 7 have
@@ -573,7 +573,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-simultaneous-linear-non-linear-graphically': 'Графикалык жол менен',
 
     # Функциялар - the reference slot is "IGCSE". It is not the ЖРТ exam.
-    'algebra-functions-igcse': 'IGCSE',
+    'algebra-functions-igcse': 'Аралаш функциялар',
 
     # Функциялар > Түзүү - all 7 slots, none with a real page yet.
     'algebra-functions-forming-expressions': 'Туюнтмалар',
@@ -729,8 +729,8 @@ OPERATION_PLACEHOLDER_TITLES = {
 
     # Графиктер: абстракттуу > Өзгөртүүлөр - both slots, none with a
     # real page yet.
-    'algebra-graphs-abstract-transformations-gcse': 'GCSE',
-    'algebra-graphs-abstract-transformations-igcse': 'IGCSE',
+    'algebra-graphs-abstract-transformations-gcse': 'Жылдыруу жана чагылдыруу',
+    'algebra-graphs-abstract-transformations-igcse': 'Графикти чоюу',
 
     # Графиктер: турмуштук > Айландыруу графиктери - 2 confirmed slots
     # (reference screenshot was cut off after these, flagged to the
@@ -864,7 +864,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'algebra-sequences-linear-introduction': 'Киришүү',
     'algebra-sequences-linear-evaluating-terms': 'Мүчөлөрдү эсептөө',
     'algebra-sequences-linear-from-2-terms': '2 мүчөдөн',
-    'algebra-sequences-linear-summing': 'Суммалоо (IGCSE)',
+    'algebra-sequences-linear-summing': 'Суммалоо',
 
     # Өзгөртүп түзүү > Туюнтмаларды жөнөкөйлөтүү - all 13 slots, none
     # with a real page yet.
@@ -901,7 +901,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     # Геометрия > Бурчтар > Тегерек теоремалары - 10 slots, none with a
     # real page yet.
     'geometry-angles-circle-theorems-vocabulary': 'Терминология',
-    'geometry-angles-circle-theorems-alternate-segment': 'Алмашма сегмент',
+    'geometry-angles-circle-theorems-alternate-segment': 'Толуктоочу сегмент',
     'geometry-angles-circle-theorems-at-circumference': 'Тегеректин четинде',
     'geometry-angles-circle-theorems-cyclic-quadrilaterals': 'Циклдик төрт бурчтуктар',
     'geometry-angles-circle-theorems-tangents-chords': 'Жанамалар жана хордалар',
@@ -909,7 +909,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'geometry-angles-circle-theorems-mixed': 'Аралаш',
     'geometry-angles-circle-theorems-with-pythagoras': 'Пифагор менен',
     'geometry-angles-circle-theorems-with-trigonometry': 'Тригонометрия менен',
-    'geometry-angles-circle-theorems-intersecting-chords': 'Кесилишкен хордалар (IGCSE)',
+    'geometry-angles-circle-theorems-intersecting-chords': 'Кесилишкен хордалар',
 
     # Геометрия > Бурчтар > Параллель сызыктар - 2 known slots
     # (screenshot was cut off), none with a real page yet.
@@ -1326,7 +1326,7 @@ OPERATION_PLACEHOLDER_TITLES = {
     'data-representing-venn-diagrams-creating-reading': 'Түзүү жана окуу',
     'data-representing-venn-diagrams-with-probability': 'Ыктымалдуулук менен',
     'data-representing-venn-diagrams-sets-with-notation': 'Жыйындар белгилөө менен',
-    'data-representing-venn-diagrams-sets-with-notation-igcse': 'Жыйындар белгилөө менен (IGCSE)',
+    'data-representing-venn-diagrams-sets-with-notation-igcse': 'Жыйындар белгилөө менен: татаал',
     'data-representing-venn-diagrams-notation-probability': 'Белгилөө жана ыктымалдуулук',
 
     # Ыктымалдуулук > Бир окуя - 7 flat slots, none with a real page

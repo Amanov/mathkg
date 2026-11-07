@@ -52,7 +52,7 @@ def _title_slide(prs, title_lines, subtitle):
                  subtitle, size=16, bold=False, color=RGBColor(0xBF, 0xD6, 0xE8),
                  align=PP_ALIGN.CENTER)
     _add_textbox(slide, Emu(600000), SLIDE_H - Emu(700000), SLIDE_W - Emu(1200000), Emu(400000),
-                 "MathKGZ", size=14, bold=True, color=BLUE, align=PP_ALIGN.CENTER)
+                 "MathKG", size=14, bold=True, color=BLUE, align=PP_ALIGN.CENTER)
     return slide
 
 
