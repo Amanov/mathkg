@@ -700,6 +700,9 @@ class FreeDownloadTests(TestCase):
             'speed_distance_time_converting_speeds': '9-klass-kyymyl-grafikteri-sabak.webp',
             'algebra_functions_forming_composite_quadratics': '10-klass-funkciyalar-sabak.webp',
             'geometry_trigonometry_graphs': '10-klass-trig-funkciyalar-sabak.webp',
+            'systems_of_measurement_imperial': '7-klass-olchoo-sistemalary-sabak.webp',
+            'hire_purchase': '7-klass-nasyya-esepter-sabak.webp',
+            'compound_rates_of_pay': '6-klass-payyz-chen-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
@@ -708,7 +711,7 @@ class FreeDownloadTests(TestCase):
             self.assertIn(badge, html, name)
         for name in ('compound_pressure_force_area', 'data_collecting_capture_recapture',
                      'graphs_depth_time', 'ratio_quantities_reverse',
-                     'rounding_significant_figures', 'systems_of_measurement_imperial',
+                     'rounding_significant_figures', 'indices_fractional',
                      'scale_drawings_areas'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 

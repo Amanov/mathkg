@@ -416,6 +416,42 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели: туунду, жанама жана нормаль, эң чоң жана эң кичине маани, аныкталган интеграл; жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: функция жана анын туундусу.',
     },
+    'payyz_chen': {
+        'prefix': '6-klass-payyz-chen-', 'grade': 6, 'subtopic': 'Пайыз колдонмолору жана чен',
+        'sabak': '26 слайд: «Баетовдогу мектеп дүкөнү» окуясы, 10 × 10 тордо буурчак, баа белгилери, телефон менен убакытты өлчөп 1 л бөтөлкөнү толтуруу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: арзандатуу, КНС, жөнөкөй пайыз, бирдик чен, эң пайдалуу сатып алуу; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: баасы көбөйдү, азайды же өзгөргөн жок.',
+    },
+    'grafik4': {
+        'prefix': '4-klass-tablica-grafik-', 'grade': 4, 'subtopic': 'Таблицалар жана сызыктуу графиктер',
+        'sabak': '26 слайд: «Массыдагы көлөкө саат» окуясы, таякчанын көлөкөсүн ченөө, дубалдагы чакмак кагазга жип жана стикер менен график.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: таблица, эки тараптуу таблица, сызыктуу графикти окуу жана тургузуу, шкала; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: өстү, азайды же өзгөргөн жок.',
+    },
+    'jayylma': {
+        'prefix': '4-klass-izometriya-jayylma-', 'grade': 4, 'subtopic': 'Мейкиндик фигуралар: изометриялык чийме жана жайылмалар',
+        'sabak': '26 слайд: «Шамалды-Сайдагы шаар макети» окуясы, кант кубиктери, чай кутусун жаюу, чекиттүү кагазга чийүү, үч көрүнүш.',
+        'ish-barak': '18 тапшырма, 6 тилке модели жана сүрөттүү барак: жак, кыр, чоку, куб жайылмасы, кубиктерди саноо, көрүнүштөр; жооп ачкычы менен.',
+        'karta-sorttoo': '12 жайылма сүрөтү: куб, параллелепипед, призма же пирамида.',
+    },
+    'uch_burchtary': {
+        'prefix': '6-klass-uch-burchtuk-burchtary-', 'grade': 6, 'subtopic': 'Үч бурчтуктун жана төрт бурчтуктун бурчтары',
+        'sabak': '26 слайд: «Кызыл-Суудагы батпырактар» окуясы, кагаз үч бурчтуктун бурчтарын айрып түз сызыкка коюу, бүктөө, саманча фигуралар.',
+        'ish-barak': '18 тапшырма жана 6 сүрөттүү маселе: 180° жана 360°, тең капталдуу үч бурчтук, тышкы бурч, параллелограмм, трапеция; жооп ачкычы менен.',
+        'karta-sorttoo': '12 фигура: x = 40°, 55° же 70°.',
+    },
+    'nasyya': {
+        'prefix': '7-klass-nasyya-esepter-', 'grade': 7, 'subtopic': 'Үй-бүлөлүк каржы: насыя, коммуналдык эсептер жана көчүрмөлөр',
+        'sabak': '26 слайд: «Бакай-Атадагы үй бюджети» окуясы, конверттердеги оюн акча, картон эсептегич, ойдон чыгарылган эсептер жана чек.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: бөлүп төлөө, эки баскычтуу тариф, эсептегич көрсөткүчү, карта көчүрмөсү, чек; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: калдык оң, нөл же терс.',
+    },
+    'olchoo': {
+        'prefix': '7-klass-olchoo-sistemalary-', 'grade': 7, 'subtopic': 'Өлчөө системалары: метрикалык жана империялык бирдиктер',
+        'sabak': '26 слайд: «Бакай-Атадагы видеочалуу» окуясы, дюйм жана см белгиленген сантиметр тасма, 1 м² гезит, 10 см куб = 1 л.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: дюйм, фут, миля, фунт, галлон; м² жана см², гектар жана сотых, м³ жана литр; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: узундук × k, аянт × k² же көлөм × k³.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -717,7 +753,6 @@ GROUPS = [
     _group('maalymat', 'Маалымат, диаграмма жана орто маани', 'Дата', ['maalymat'], [
         'data-representing-bar-charts-single',
         'data-representing-bar-charts-calculating-averages',
-        'data-representing-line-graphs-time-series',
         'data-representing-mixed-foundation',
         'data-analysing-mean-from-a-list',
         'data-analysing-median',
@@ -729,7 +764,6 @@ GROUPS = [
     _group('kolom', 'Тик бурчтуу параллелепипеддин көлөмү жана бет аянты', 'Геометрия › Көлөм жана бет аянты', ['kolom'], [
         'geometry-volume-surface-area-introduction-to-volume',
         'geometry-volume-surface-area-vocabulary',
-        'geometry-volume-surface-area-nets',
         'geometry-volume-surface-area-cuboid-volume',
         'geometry-volume-surface-area-cuboid-surface-area',
         'geometry-volume-surface-area-cuboid-mixed-foundation',
@@ -1076,13 +1110,9 @@ GROUPS = [
         'algebra-functions-evaluating-equations-sequences',
     ]),
     _group('parallel', 'Бурчтар: параллель түз сызыктар жана көп бурчтуктар', 'Геометрия › Бурчтар', ['parallel'], [
-        'geometry-angles-angle-facts-triangles',
         'geometry-angles-angle-facts-mixed',
         'geometry-angles-parallel-lines-introduction',
         'geometry-angles-parallel-lines-solving-equations',
-        'geometry-angles-polygons-triangles',
-        'geometry-angles-polygons-quadrilaterals',
-        'geometry-angles-polygons-special-quadrilaterals',
         'geometry-angles-polygons-regular',
         'geometry-angles-polygons-irregular',
         'geometry-angles-polygons-mixed-without-circle-theorems',
@@ -1323,6 +1353,28 @@ GROUPS = [
         'geometry-trigonometry-graphs',
     ]),
     _group('tuundu', 'Туунду жана интеграл', 'Алгебра › Дифференциалдоо', ['tuundu'], []),
+    _group('payyz_chen', 'Пайыз колдонмолору жана чен', 'Пропорция › Чен', ['payyz_chen'], [
+        'rates-of-pay', 'measures-money-rates-of-pay', 'compound-rates-of-pay', 'compound-work-hours',
+        'compound-population-density', 'compound-density-mass-volume',
+    ]),
+    _group('grafik4', 'Таблицалар жана сызыктуу графиктер', 'Дата › Көрсөтүү', ['grafik4', 'maalymat'], [
+        'data-representing-line-graphs-time-series',
+    ], '4–6 кл.'),
+    _group('jayylma', 'Мейкиндик фигуралар: изометриялык чийме жана жайылмалар', 'Геометрия › Фигуралар', ['jayylma', 'kolom'], [
+        'geometry-volume-surface-area-nets',
+    ], '4–5 кл.'),
+    _group('uch_burchtary', 'Үч бурчтуктун жана төрт бурчтуктун бурчтары', 'Геометрия › Бурчтар', ['uch_burchtary', 'parallel'], [
+        'geometry-angles-angle-facts-triangles',
+        'geometry-angles-polygons-triangles',
+        'geometry-angles-polygons-quadrilaterals',
+        'geometry-angles-polygons-special-quadrilaterals',
+    ], '6–8 кл.'),
+    _group('nasyya', 'Үй-бүлөлүк каржы: насыя, коммуналдык эсептер жана көчүрмөлөр', 'Сандар › Акча', ['nasyya'], [
+        'hire-purchase', 'measures-money-hire-purchase', 'bills-and-statements', 'measures-money-bills-statements',
+    ]),
+    _group('olchoo', 'Өлчөө системалары: метрикалык жана империялык бирдиктер', 'Өлчөмдөр', ['olchoo'], [
+        'systems-of-measurement-imperial', 'compound-area-volume-conversion',
+    ]),
     _group('katysh_all', 'Катыш: бөлүү, 1 : n түрү жана бириктирүү', 'Пропорция › Катыш', ['katysh', 'katysh_1n'], []),
 ]
 
@@ -1397,7 +1449,7 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'transformations', 'reflection'), 'simmetriya'),
     (('geometry', 'transformations', 'translation'), 'simmetriya'),
     (('geometry', 'transformations', 'line-symmetry'), 'simmetriya'),
-    (('geometry', 'construction', 'nets'), 'kolom'),
+    (('geometry', 'construction', 'nets'), 'jayylma'),
     (('number', 'estimating-rounding', 'scale-drawings-estimation'), 'masshtab'),
     (('number', 'estimating-rounding', 'approximating-calculations'), 'tegerektoo'),
     (('number', 'fractions', 'mixed-fraction-questions'), 'bolchok_kk'),
@@ -1516,6 +1568,11 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('proportion', 'conversion-graphs'), 'turmushtuk'),
     (('number', 'bagytt-local', 'ordering'), 'butun_kk'),
     (('number', 'bagytt-local', 'esep-local'), 'bagyttalgan'),
+    # 2026-11-07: Singapore-gap packs and the last curriculum-gap packs.
+    (('geometry', 'construction', 'isometric-grids'), 'jayylma'),
+    (('geometry', 'construction', 'plans-elevations'), 'jayylma'),
+    (('geometry', 'similarity', 'area-volume-conversion'), 'olchoo'),
+    (('number', 'measures', 'area-volume-conversion'), 'olchoo'),
 ]}
 
 NEW_FILES = [
@@ -1582,11 +1639,11 @@ SPLIT_BADGES = {
     'scale-drawings-with-bearings': '8-класс',
     'geometry-angles-polygons-regular': '8-класс',
     'geometry-angles-polygons-irregular': '8-класс',
-    'geometry-angles-polygons-quadrilaterals': '8-класс',
-    'geometry-angles-polygons-special-quadrilaterals': '8-класс',
+    'geometry-angles-polygons-quadrilaterals': '6–8 кл.',
+    'geometry-angles-polygons-special-quadrilaterals': '6–8 кл.',
     'geometry-angles-parallel-lines-introduction': '7-класс',
     'geometry-angles-parallel-lines-solving-equations': '7-класс',
-    'geometry-angles-angle-facts-triangles': '7-класс',
+    'geometry-angles-angle-facts-triangles': '6–7 кл.',
     'geometry-pythagoras-3d': '9-класс',
     'geometry-similarity-length-area-volume-scale-factors': '9-класс',
     'geometry-similarity-length-area-volume-scale-factors-length-area': '9-класс',
