@@ -1352,6 +1352,19 @@ for _group_spec in GROUPS:
 FDP = next(g['spec'] for g in GROUPS if g['spec']['page_key'] == 'pack_fdp')
 FDPR = next(g['spec'] for g in GROUPS if g['spec']['page_key'] == 'pack_fdpr')
 
+# 2026-11-07 menu audit: empty menu pages that an existing pack already teaches.
+_MENU_EXTRA = {
+    'syzyktuu': ['algebra-linear-var-both-sides-graphical-intersections', 'algebra-linear-var-both-sides-parallel-lines'],
+    'alg_bolchok': ['algebra-linear-rational', 'algebra-intro-manipulating-formulae'],
+    'daraja': ['algebra-linear-unknown-indices'],
+    'kvadrattyk': ['algebra-quadratic-trial-improvement'],
+    'funkciya': ['algebra-quadratic-iteration'],
+    'tuz_teskeri': ['direct-inverse-identifying-graphs'],
+    'tegerektoo': ['rounding-mixed'],
+}
+for _group_spec in GROUPS:
+    _group_spec['slugs'] = _group_spec['slugs'] + _MENU_EXTRA.get(_group_spec['spec']['page_key'][len('pack_'):], [])
+
 SLUG_PAGES = {slug: group['spec'] for group in GROUPS for slug in group['slugs']}
 
 # Database-driven pages (/resources/topic/<topic>/<subtopic>/[<subsubtopic>/])
@@ -1486,6 +1499,23 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('algebra', 'functions', 'forming'), 'funkciya'),
     (('algebra', 'functions', 'evaluating'), 'funkciya'),
     (('algebra', 'graphs-abstract', 'graphs-abstract-differentiation'), 'tuundu'),
+    # 2026-11-07 menu audit: empty menu pages that an existing pack already teaches.
+    (('probability', 'single-event'), 'yktymal'),
+    (('probability', 'multiple-event'), 'yktymal'),
+    (('probability', 'mixed'), 'yktymal'),
+    (('probability', 'frequency-tree-diagrams'), 'yktymal'),
+    (('probability', 'probability-tree-diagrams'), 'yktymal'),
+    (('number', 'systematic-listing'), 'yktymal'),
+    (('number', 'product-rule-for-counting'), 'yktymal'),
+    (('algebra', 'graphs-real-life', 'graphs-real-life-distance-time-variable'), 'kyymyl'),
+    (('geometry', 'area-perimeter', 'compound-polygonal'), 'perimetr'),
+    (('geometry', 'area-perimeter', 'compound-with-circles'), 'aylana'),
+    (('geometry', 'transformations', 'rotational-symmetry'), 'simmetriya'),
+    (('geometry', 'transformations', 'tessellation'), 'simmetriya'),
+    (('statistics', 'representing', 'two-way-tables'), 'anketa'),
+    (('proportion', 'conversion-graphs'), 'turmushtuk'),
+    (('number', 'bagytt-local', 'ordering'), 'butun_kk'),
+    (('number', 'bagytt-local', 'esep-local'), 'bagyttalgan'),
 ]}
 
 NEW_FILES = [
