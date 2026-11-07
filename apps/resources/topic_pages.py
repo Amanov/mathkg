@@ -637,7 +637,7 @@ def _drop_old_general_items(page):
 _drop_old_general_items(FOUR_BASIC_OPERATIONS)
 
 # Tab labels for pages whose items carry a grade; 0 = materials for any grade.
-GRADE_LABELS = {0: 'Жалпы', 1: '1-класс', 2: '2-класс', 3: '3-класс', 4: '4-класс', 5: '5-класс', 6: '6-класс'}
+GRADE_LABELS = {0: 'Жалпы', **{g: f'{g}-класс' for g in range(1, 12)}}
 
 
 CALCULATOR_FRACTIONS = {
