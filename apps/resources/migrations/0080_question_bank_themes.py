@@ -1,14 +1,9 @@
 from django.db import migrations, models
 
 
-def load(apps, schema_editor):
-    from apps.resources.question_bank import load_question_bank
-
-    load_question_bank(apps.get_model('personal', 'Question'), apps.get_model('personal', 'Topic'))
-
-
-def unload(apps, schema_editor):
-    apps.get_model('personal', 'Question').objects.filter(sample_key__startswith='bank-').delete()
+# Schema only. The rows are loaded in 0081: on PostgreSQL the new index on
+# theme_slug cannot be built in the same transaction as the inserted rows
+# («cannot CREATE INDEX … because it has pending trigger events»).
 
 
 class Migration(migrations.Migration):
@@ -28,5 +23,4 @@ class Migration(migrations.Migration):
             name='theme_slug',
             field=models.SlugField(blank=True, max_length=120, verbose_name='Бөлүмдүн ачкычы'),
         ),
-        migrations.RunPython(load, unload),
     ]
