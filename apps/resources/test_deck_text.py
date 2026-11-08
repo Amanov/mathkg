@@ -225,6 +225,9 @@ class DeckManifestTests(SimpleTestCase):
         kyrgyz_path = root / 'apps' / 'resources' / 'data' / 'deck_kyrgyz_manifest.json'
         kyrgyz = json.loads(kyrgyz_path.read_text(encoding='utf-8')) if kyrgyz_path.is_file() else {}
         for relative, entry in manifest.items():
+            if 'oyun-atyshuu' in relative:
+                # Renamed to *-oyun-jydymay.pptx with a new title slide (0082).
+                continue
             copies = []
             media = root / 'media' / relative
             bundled = root / 'apps' / 'resources' / 'bundled_files' / Path(relative).name

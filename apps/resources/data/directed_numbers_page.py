@@ -42,7 +42,7 @@ def _pack_items(prefix, grade, subtopic, notes):
         one('Байланыштыруу', 'Домино', '12 карта: мисал менен жообу чынжыр түзөт.', 'Талдоо', 'domino'),
         one('Байланыштыруу', 'Карта сорттоо', notes['karta-sorttoo'], 'Талдоо', 'karta-sorttoo'),
         one('Кызматташуу', '1234 оюну', 'Командалар менен, 9 слайд.', 'Колдонуу', 'oyun-1234', 'PPT'),
-        one('Кызматташуу', 'Атышуу', 'Эки команда, 25 слайд, ылдамдыксыз упай.', 'Колдонуу', 'oyun-atyshuu', 'PPT'),
+        one('Кызматташуу', 'Жыдымай', 'Эки команда, 25 слайд, ылдамдыксыз упай.', 'Колдонуу', 'oyun-jydymay', 'PPT'),
     ]
 
 
@@ -64,7 +64,7 @@ DIRECTED_NUMBERS = _page('Багытталган сандар менен ама�
 NEW_FILES = [
     prefix + suffix
     for prefix, _, _, _ in PACKS
-    for suffix in ('sabak.pptx', 'oyun-1234.pptx', 'oyun-atyshuu.pptx', 'ish-barak.pdf', 'katany-tap.pdf',
+    for suffix in ('sabak.pptx', 'oyun-1234.pptx', 'oyun-jydymay.pptx', 'ish-barak.pdf', 'katany-tap.pdf',
                    'labirint.pdf', 'domino.pdf', 'karta-sorttoo.pdf', 'cifra-tabyshmagy.pdf',
                    'klassta-koldonuu.pdf', 'mugalim-kartasy.pdf')
 ]
