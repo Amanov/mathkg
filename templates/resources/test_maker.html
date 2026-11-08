@@ -6,7 +6,7 @@
 
 {% block extra_head %}
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="{% static 'css/test-maker.css' %}?v=20261108c">
+<link rel="stylesheet" href="{% static 'css/test-maker.css' %}?v=20261108d">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,9 @@
     </div>
     <p class="test-maker__sub">Суроонун түрүн, деңгээлин жана убакытты тандаңыз.</p>
 
-    {% if usage.paid %}
+    {% if usage.staff %}
+    <p class="test-maker__quota">Администратор катары тест түзүү чексиз.</p>
+    {% elif usage.paid %}
     <p class="test-maker__quota">Жазылууңуз бар. Тест түзүү чексиз.</p>
     {% else %}
     <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү. Акысыз жана сыноо аккаунттары айына {{ usage.limit }} тест түзө алат.</p>
@@ -143,9 +145,12 @@
 
         <div class="test-maker__bar">
             <a class="test-maker__back" href="{% url 'topics_tree' %}">Темаларга кайтуу</a>
+            {% if not usage.allowed %}
+            <p class="test-maker__limit">Бул айдагы {{ usage.limit }} акысыз тест бүттү. <a href="{% url 'pricing' %}">Жазылуу</a></p>
+            {% endif %}
             <button class="test-maker__submit" type="submit" data-tour="pdf"{% if not usage.allowed %} disabled{% endif %}>PDF түзүү</button>
         </div>
     </form>
 </div>
-<script src="{% static 'js/test-maker.js' %}?v=20261108c"></script>
+<script src="{% static 'js/test-maker.js' %}?v=20261108d"></script>
 {% endblock %}

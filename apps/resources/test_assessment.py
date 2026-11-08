@@ -269,6 +269,7 @@ class TestMakerPageTests(TestCase):
         blocked = self._post(duration_minutes=15, variant_count=1)
         self.assertEqual(blocked.status_code, 200)
         self.assertContains(blocked, 'айына 3 тест')
+        self.assertContains(blocked, 'акысыз тест бүттү')
         self.assertEqual(GeneratedTest.objects.filter(user=self.user).count(), 3)
 
         GeneratedTest.objects.filter(user=self.user).update(
@@ -290,6 +291,16 @@ class TestMakerPageTests(TestCase):
         self.assertEqual(GeneratedTest.objects.filter(user=paid).count(), 4)
         home = self.client.get(reverse('test_maker'))
         self.assertContains(home, 'чексиз')
+
+    def test_admins_are_not_held_to_the_free_limit(self):
+        admin = _user('admin@example.com', 'adminuser', is_staff=True)
+        self.client.force_login(admin)
+        for _ in range(4):
+            response = self._post(duration_minutes=15, variant_count=1)
+            self.assertEqual(response.status_code, 302)
+        page = self.client.get(reverse('test_maker'))
+        self.assertContains(page, 'Администратор катары тест түзүү чексиз.')
+        self.assertNotContains(page, 'disabled>PDF')
 
     def test_expired_plan_falls_back_to_the_free_limit(self):
         expired = _user(
