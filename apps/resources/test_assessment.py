@@ -379,7 +379,7 @@ class TestMakerPageTests(TestCase):
         key = _key_html(mixed_paper)
         self.assertIn('1/2 = 0,5', key)
         self.assertIn('Туура', key)
-        self.assertIn('<table>', _variant_html(mixed_paper, mixed_paper['variants'][0]))
+        self.assertIn('<table class="match">', _variant_html(mixed_paper, mixed_paper['variants'][0]))
 
     def test_links_on_home_menu_and_topic_page(self):
         home = self.client.get(reverse('home'))
@@ -423,6 +423,7 @@ class PdfFontTests(TestCase):
                     'text': 'Маселени чыгар. Кеңдиги 2,5 м болсо, бөлүгү канча?',
                     'type': 'word_problem',
                     'type_label': 'Тексттик маселе',
+                    'format': 'extended',
                     'options': [],
                     'answer': '750',
                     'points': 2,
@@ -446,6 +447,12 @@ class PdfFontTests(TestCase):
         self.assertNotIn('750', question_page)
         self.assertIn('Жооп ачкычы', key_page)
         self.assertIn('750', key_page)
+        # Cambridge-style page: rules block, faint squared working space, marks in [ ].
+        self.assertIn('АДЕГЕНДЕ УШУЛАРДЫ ОКУ', question_page)
+        self.assertIn('[2]', question_page)
+        self.assertIn('ТЕСТТИН АЯГЫ', question_page)
+        grid_lines = [d for d in doc[0].get_drawings() if d.get('color') and d['color'][2] > 0.9]
+        self.assertGreater(len(grid_lines), 0)
         font_names = [font[3] for font in doc[0].get_fonts()]
         self.assertTrue(
             any('Inter' in name for name in font_names),
