@@ -20,6 +20,8 @@ from pathlib import Path
 
 import pymupdf
 
+from apps.resources.watermark import site_address
+
 # Inter without its GSUB table: its contextual alternates turn «-», «(» and
 # «)» into glyphs with no Unicode value, so copied or searched PDF text broke.
 FONT_DIR = Path(__file__).resolve().parent / 'generators' / 'fonts' / 'test-pdf'
@@ -254,8 +256,9 @@ def _draw_grid(page, rect):
 def _stamp_footer(pdf_bytes, grids=()):
     doc = pymupdf.open(stream=pdf_bytes, filetype='pdf')
     font = pymupdf.Font(fontfile=str(FONT_DIR / 'Inter-Regular.ttf'))
+    host, _ = site_address()
     for index, page in enumerate(doc, start=1):
-        text = f'MathKG · {index} / {doc.page_count}'
+        text = f'MathKG · {host} · {index} / {doc.page_count}'
         width = font.text_length(text, fontsize=8.5)
         # The Story content leaves its own coordinate transform open; wrap it
         # so the footer and the grids are drawn in plain page coordinates.

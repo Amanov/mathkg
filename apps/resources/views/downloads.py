@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.contrib import messages
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import get_object_or_404, redirect
@@ -12,6 +14,7 @@ from apps.resources.models import (
 )
 from apps.resources.resource_files import open_resource_file
 from apps.resources.utils.request_helpers import get_client_ip
+from apps.resources.watermark import owner_line, stamped_download
 
 
 def download_resource_view(request, pk):
@@ -84,4 +87,9 @@ def download_resource_view(request, pk):
 
     resource.increment_download()
 
-    return FileResponse(file_handle, as_attachment=True)
+    # Every printed PDF carries the MathKG advert band and a QR code, and a
+    # signed-in teacher's copy names who downloaded it.
+    name = Path(getattr(file_handle, 'name', '') or resource.file.name or '').name
+    return FileResponse(stamped_download(
+        file_handle, name, owner_line(request.user, timezone.localdate()),
+    ), as_attachment=True, filename=name)
