@@ -83,19 +83,66 @@ def monthly_usage(user):
     }
 
 
+TOPIC_KEY_PREFIX = 'tema-'
+# Same order as the site menu.
+AREA_ORDER = ('number', 'proportion', 'algebra', 'geometry', 'probability', 'statistics')
+
+
+def theme_key(question):
+    """The choice a teacher ticks: the pack («Бөлүм») or, for older rows, the topic."""
+    return question.theme_slug or TOPIC_KEY_PREFIX + question.topic.slug
+
+
+def theme_title(question):
+    return question.theme or question.topic.title
+
+
+class ThemeStats(dict):
+    """theme key -> {grade: published question count}.
+
+    ``info[key]`` keeps the title, the area topic and its order.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.info = {}
+
+
 def published_topic_stats():
-    """topic id -> {grade: published question count}."""
-    stats = {}
-    rows = Question.objects.filter(is_published=True).values_list('topic_id', 'grade')
-    for topic_id, grade in rows:
-        bucket = stats.setdefault(topic_id, {})
+    stats = ThemeStats()
+    rows = Question.objects.filter(is_published=True).values_list(
+        'theme_slug', 'theme', 'topic_id', 'topic__slug', 'topic__title', 'topic__order', 'grade',
+    )
+    for slug, title, topic_id, topic_slug, topic_title, topic_order, grade in rows:
+        key = slug or TOPIC_KEY_PREFIX + topic_slug
+        bucket = stats.setdefault(key, {})
         bucket[grade] = bucket.get(grade, 0) + 1
+        if key not in stats.info:
+            stats.info[key] = {
+                'title': title or topic_title,
+                'topic_id': topic_id,
+                'area': topic_slug,
+                'area_title': topic_title,
+                'order': (
+                    topic_order,
+                    AREA_ORDER.index(topic_slug) if topic_slug in AREA_ORDER else len(AREA_ORDER),
+                    title or topic_title,
+                ),
+            }
     return stats
 
 
 def available_grades(stats):
     grades = {grade for counts in stats.values() for grade in counts}
     return sorted(grades) or [5, 6]
+
+
+def _theme_filter(keys):
+    from django.db.models import Q
+
+    themes = [key for key in keys if not key.startswith(TOPIC_KEY_PREFIX)]
+    topics = [key[len(TOPIC_KEY_PREFIX):] for key in keys if key.startswith(TOPIC_KEY_PREFIX)]
+    return Q(theme_slug__in=themes) | Q(theme_slug='', topic__slug__in=topics)
 
 
 def difficulty_quotas(count, mix):
@@ -270,7 +317,7 @@ def _question_payload(question, number):
         'minutes': question.estimated_minutes or 1,
         'difficulty': question.difficulty,
         'difficulty_label': question.get_difficulty_display(),
-        'topic': question.topic.title,
+        'topic': theme_title(question),
         'is_sample': question.is_sample,
     }
 
@@ -354,8 +401,8 @@ def build_payload(
         })
     topic_titles = []
     for question in questions:
-        if question.topic.title not in topic_titles:
-            topic_titles.append(question.topic.title)
+        if theme_title(question) not in topic_titles:
+            topic_titles.append(theme_title(question))
     flat = [item for variant in packed for item in variant['questions']]
     return {
         'grade': grade,
@@ -385,12 +432,12 @@ def build_payload(
     }
 
 
-def questions_for(grade, topics, formats, levels):
+def questions_for(grade, themes, formats, levels):
     return list(
         Question.objects.filter(
+            _theme_filter(themes),
             is_published=True,
             grade=grade,
-            topic__in=topics,
             question_format__in=formats,
             difficulty__in=levels,
         ).select_related('topic')
@@ -433,7 +480,7 @@ def create_generated_test(user, cleaned, rng=None):
             title=(cleaned.get('title') or '').strip(),
             payload=payload,
         )
-        generated.topics.set(cleaned['topics'])
+        generated.topics.set({question.topic_id for question in questions})
     return generated
 
 
@@ -453,12 +500,11 @@ class TopicCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
         option = super().create_option(
             name, value, label, selected, index, subindex=subindex, attrs=attrs,
         )
-        pk = getattr(value, 'value', value)
-        try:
-            pk = int(pk)
-        except (TypeError, ValueError):
-            pk = None
-        counts = self.topic_stats.get(pk, {})
+        key = str(getattr(value, 'value', value))
+        counts = self.topic_stats.get(key, {})
+        info = getattr(self.topic_stats, 'info', {}).get(key)
+        if info:
+            option['attrs']['data-area'] = info['area_title']
         option['attrs']['data-counts'] = ','.join(
             f'{grade}:{count}' for grade, count in sorted(counts.items())
         )
@@ -473,8 +519,8 @@ class TestMakerForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-select'}),
         error_messages={'required': 'Класс тандаңыз.'},
     )
-    topics = forms.ModelMultipleChoiceField(
-        queryset=Topic.objects.none(),
+    topics = forms.MultipleChoiceField(
+        choices=(),
         label='Темалар',
         widget=forms.CheckboxSelectMultiple,
         error_messages={'required': 'Кеминде бир теманы белгилеңиз.'},
@@ -535,9 +581,9 @@ class TestMakerForm(forms.Form):
         super().__init__(*args, **kwargs)
         grades = available_grades(self.topic_stats)
         self.fields['grade'].choices = [(grade, f'{grade}-класс') for grade in grades]
-        self.fields['topics'].queryset = Topic.objects.filter(
-            pk__in=self.topic_stats,
-        ).order_by('order', 'title')
+        info = getattr(self.topic_stats, 'info', {})
+        keys = sorted(self.topic_stats, key=lambda key: info.get(key, {}).get('order', (0, 0, key)))
+        self.fields['topics'].choices = [(key, info.get(key, {}).get('title', key)) for key in keys]
         # Replacing the widget after ChoiceField.__init__ drops the choices
         # the field already copied onto the previous widget.
         widget = TopicCheckboxSelectMultiple(topic_stats=self.topic_stats)
@@ -549,9 +595,10 @@ class TestMakerForm(forms.Form):
         grade = cleaned.get('grade')
         topics = cleaned.get('topics')
         if grade and topics:
+            info = getattr(self.topic_stats, 'info', {})
             missing = [
-                topic.title for topic in topics
-                if grade not in self.topic_stats.get(topic.pk, {})
+                info.get(key, {}).get('title', key) for key in topics
+                if grade not in self.topic_stats.get(key, {})
             ]
             if missing:
                 self.add_error(
@@ -570,7 +617,16 @@ def initial_from_query(request, topic_stats):
     slugs = request.GET.getlist('tema')
     if not slugs and request.GET.get('tema'):
         slugs = [request.GET.get('tema')]
-    topics = list(Topic.objects.filter(slug__in=slugs, pk__in=topic_stats))
+    info = getattr(topic_stats, 'info', {})
+    topics = []
+    for slug in slugs:
+        if slug in topic_stats:
+            topics.append(slug)
+        elif TOPIC_KEY_PREFIX + slug in topic_stats:
+            topics.append(TOPIC_KEY_PREFIX + slug)
+        else:
+            # An area link («Сандар») ticks every pack of that area.
+            topics.extend(key for key in topic_stats if info.get(key, {}).get('area') == slug)
     raw_grade = request.GET.get('klass') or request.GET.get('grade')
     try:
         grade = int(raw_grade)
@@ -581,7 +637,7 @@ def initial_from_query(request, topic_stats):
     if grade is None and topics:
         covered = set()
         for topic in topics:
-            covered.update(topic_stats.get(topic.pk, {}))
+            covered.update(topic_stats.get(topic, {}))
         for preferred in (5, 6):
             if preferred in covered and preferred in grades:
                 grade = preferred
@@ -592,7 +648,7 @@ def initial_from_query(request, topic_stats):
         grade = 5 if 5 in grades else grades[0]
     topics = [
         topic for topic in topics
-        if grade in topic_stats.get(topic.pk, {})
+        if grade in topic_stats.get(topic, {})
     ]
     return {
         'grade': grade,

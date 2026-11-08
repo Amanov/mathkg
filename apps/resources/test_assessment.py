@@ -161,7 +161,7 @@ class TestMakerPageTests(TestCase):
     def _post(self, follow=False, **overrides):
         data = {
             'grade': 5,
-            'topics': [self.fractions.pk, self.decimals.pk],
+            'topics': ['tema-' + self.fractions.slug, 'tema-' + self.decimals.slug],
             'test_type': GeneratedTest.TYPE_FORMATIVE,
             'formats': ['choice', 'short_response', 'extended', 'true_false', 'matching', 'fill_blank'],
             'levels': ['easy', 'medium', 'hard'],
@@ -186,7 +186,7 @@ class TestMakerPageTests(TestCase):
         tags = re.findall(r'<input\b[^>]*>', html)
         tag = next(
             item for item in tags
-            if f'value="{self.fractions.pk}"' in item and 'name="topics"' in item
+            if f'value="tema-{self.fractions.slug}"' in item and 'name="topics"' in item
         )
         self.assertIn('checked', tag)
         self.assertIn('Бул айда 0 / 3', html)
@@ -484,7 +484,7 @@ class TourTests(TestCase):
         self.assertTrue(user.tour_seen)
         response = self.client.post(reverse('test_maker'), {
             'grade': 5,
-            'topics': [Topic.objects.get(slug='ulgu-bolchoktor').pk],
+            'topics': ['tema-ulgu-bolchoktor'],
             'test_type': 'formative',
             'formats': ['choice'],
             'levels': ['easy'],
