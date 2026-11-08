@@ -452,6 +452,42 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели: дюйм, фут, миля, фунт, галлон; м² жана см², гектар жана сотых, м³ жана литр; жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: узундук × k, аянт × k² же көлөм × k³.',
     },
+    'tegerektoo_kata': {
+        'prefix': '8-klass-tegerektoo-kata-', 'grade': 8, 'subtopic': 'Жакындатып эсептөө: маанилүү цифралар, ката аралыктары жана калькулятор',
+        'sabak': '26 слайд: «Кадамжайдагы китеп текчелери» окуясы, сызгыч жана ар 10 смде түйүнү бар жип, сан огундагы чектер, калькулятордун баскычтары.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: маанилүү цифралар, тегеректөө жана кесүү аралыктары, жогорку жана төмөнкү чектер, калькулятордо бөлчөк; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: «эң көп же эң аз» үчүн кайсы чектер алынат.',
+    },
+    'daraja_mezgil': {
+        'prefix': '9-klass-daraja-mezgilduu-', 'grade': 9, 'subtopic': 'Бөлчөк жана терс даражалар, мезгилдүү ондуктар',
+        'sabak': '26 слайд: «Дароот-Коргондогу гирлянда» окуясы, кайра-кайра бүктөлгөн кагаз тилке (2⁻ⁿ), мамыча бөлүү жана 10x − x ыкмасы.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: бөлчөк жана терс бөлчөк даража, даражалуу теңдемелер, мезгилдүү ондуктарды ирээттөө жана бөлчөккө айландыруу; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: мааниси 4, 1/4 же 2 (1,(9) жана 0,24(9) да бар).',
+    },
+    'kuruluu_azimut': {
+        'prefix': '8-klass-kuruluu-azimut-', 'grade': 8, 'subtopic': 'Циркуль жана сызгыч менен курулуштар, геометриялык орундар жана азимут',
+        'sabak': '26 слайд: «Сүлүктүдөгү мектеп короосу» окуясы, 1 : 500 масштабдагы короонун планы, циркуль жана сызгыч менен курулуш, транспортир менен азимут.',
+        'ish-barak': '18 тапшырма жана 6 сүрөттүү маселе: бисектриса жана орто перпендикуляр, геометриялык орундар, азимут жана тескери азимут, масштабдагы аянт k²; жооп ачкычы менен.',
+        'karta-sorttoo': '12 шарт: геометриялык орун айланабы, түз сызыкпы же аймакпы.',
+    },
+    'tegerek_sistema': {
+        'prefix': '9-klass-tegerek-sistema-', 'grade': 9, 'subtopic': 'Тегеректин теңдемеси жана сызыктуу/сызыктуу эмес теңдемелер системасы',
+        'sabak': '26 слайд: «Ак-Суудагы байланыш мунарасы» окуясы, төөнөгүч, жип жана карандаш менен чакмак кагазга тегерек тартуу, сызгычты тегерекке үч абалда коюу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: x² + y² = r², чекит ичиндеби же сыртындабы, түз сызык менен тегерек же парабола системасы, жаныма; жооп ачкычы менен.',
+        'karta-sorttoo': '12 система: 2 чекит, 1 чекит (жанышат) же 0 чекит.',
+    },
+    'katysh_basym': {
+        'prefix': '7-klass-katysh-basym-', 'grade': 7, 'subtopic': 'Катыштан чоңдукту табуу жана басым',
+        'sabak': '26 слайд: «Барскоондогу кар жана кыш» окуясы, кумга басылган кыш, чакмак кагазда бут кийимдин таманы, тилке модели.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: айырма же бир бөлүк боюнча катыш, жалпы сан өзгөргөндө, басым p = F ÷ S, см² жана м²; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: эмне белгисиз, басымбы, күчпү же аянтпы.',
+    },
+    'rim': {
+        'prefix': '4-klass-rim-sandary-', 'grade': 4, 'subtopic': 'Рим сандарын окуу жана жазуу',
+        'sabak': '26 слайд: «Исфанадагы мектеп музейи» окуясы, ширеңке таякчалар менен Рим сандары, кагаз табактан саат, разряд таблицасы.',
+        'ish-barak': '18 тапшырма жана 6 сүрөттүү маселе: I, V, X, L, C, D, M; саат, китептин бөлүмдөрү жана кылымдар; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: кошуу гана, кемитүү гана же экөө тең.',
+    },
     # Packs made earlier (2026-10-18/19) for the book topics; the first three
     # keep their «-v2» file names.
     'k100': {
@@ -1375,6 +1411,22 @@ GROUPS = [
     _group('olchoo', 'Өлчөө системалары: метрикалык жана империялык бирдиктер', 'Өлчөмдөр', ['olchoo'], [
         'systems-of-measurement-imperial', 'compound-area-volume-conversion',
     ]),
+    _group('tegerektoo_kata', 'Жакындатып эсептөө: маанилүү цифралар, ката аралыктары жана калькулятор', 'Сандар › Болжолдоо жана тегеректөө', ['tegerektoo_kata'], [
+        'rounding-significant-figures', 'error-intervals-truncation', 'error-intervals-decimal-significant',
+        'error-intervals-calculations', 'calculator-fractions',
+    ]),
+    _group('daraja_mezgil', 'Бөлчөк жана терс даражалар, мезгилдүү ондуктар', 'Сандар › Даражалар жана тамырлар', ['daraja_mezgil'], [
+        'indices-fractional', 'indices-negative-fractional', 'indices-equations',
+        'recurring-decimals-ordering', 'recurring-decimals-to-fractions',
+    ]),
+    _group('kuruluu_azimut', 'Курулуштар, геометриялык орундар жана азимут', 'Геометрия › Курулуштар', ['kuruluu_azimut'], [
+        'scale-drawings-areas',
+    ]),
+    _group('tegerek_sistema', 'Тегеректин теңдемеси жана теңдемелер системасы', 'Алгебра › Графиктер', ['tegerek_sistema'], []),
+    _group('katysh_basym', 'Катыштан чоңдукту табуу жана басым', 'Пропорция › Катыш', ['katysh_basym'], [
+        'ratio-quantities-reverse', 'compound-pressure-force-area',
+    ]),
+    _group('rim', 'Рим сандарын окуу жана жазуу', 'Сандар › Бүтүн сандар', ['rim'], []),
     _group('katysh_all', 'Катыш: бөлүү, 1 : n түрү жана бириктирүү', 'Пропорция › Катыш', ['katysh', 'katysh_1n'], []),
 ]
 
@@ -1573,6 +1625,14 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('geometry', 'construction', 'plans-elevations'), 'jayylma'),
     (('geometry', 'similarity', 'area-volume-conversion'), 'olchoo'),
     (('number', 'measures', 'area-volume-conversion'), 'olchoo'),
+    # 2026-11-08: the last empty menu pages.
+    (('number', 'using-a-calculator', 'basic-skills'), 'tegerektoo_kata'),
+    (('geometry', 'bearings'), 'kuruluu_azimut'),
+    (('geometry', 'construction', 'bisectors-loci'), 'kuruluu_azimut'),
+    (('geometry', 'construction', 'loci'), 'kuruluu_azimut'),
+    (('algebra', 'graphs-abstract', 'graphs-abstract-circles'), 'tegerek_sistema'),
+    (('algebra', 'equations-simultaneous', 'linear-non-linear'), 'tegerek_sistema'),
+    (('number', 'integers', 'roman-numerals'), 'rim'),
 ]}
 
 NEW_FILES = [
