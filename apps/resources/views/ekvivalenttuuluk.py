@@ -5,7 +5,7 @@ from django.shortcuts import render
 from apps.resources.data.pack_pages import FDP, FDPR
 from apps.resources.topic_pages import build_topic_page
 from apps.resources.utils.resource_helpers import get_active_resources
-from apps.resources.views.onduktar_placeholders import placeholder_page
+from apps.resources.views.onduktar_placeholders import pack_or_placeholder
 
 # The pages under Ондуктар > Эквиваленттүүлүк. Their old files were built on
 # goteachmaths templates, so the owner had them taken off the site
@@ -36,7 +36,7 @@ def to_both_view(request):
 
 
 def recurring_decimals_to_fractions_view(request):
-    return placeholder_page(request, 'Кайталануучу ондуктарды бөлчөккө айландыруу')
+    return pack_or_placeholder(request, 'recurring-decimals-to-fractions', 'Кайталануучу ондуктарды бөлчөккө айландыруу')
 
 
 def with_fractions_view(request):

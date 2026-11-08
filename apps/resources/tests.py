@@ -462,8 +462,7 @@ class FreeDownloadTests(TestCase):
         self.assertContains(resp, '6-klass-bolchok-ondu-procent-sabak.webp')
         self.assertNotContains(resp, 'BingoOyunu')
         resp = self.client.get(reverse('recurring_decimals_to_fractions'))
-        self.assertContains(resp, 'даярдалууда')
-        self.assertContains(resp, 'topic-page__grade"><span>9–10 кл.</span>')
+        self.assertContains(resp, '9-klass-daraja-mezgilduu-sabak.webp')
         self.assertContains(resp, 'topic-page__title')
         arith = self.client.get(reverse('onedigitarithmetics'))
         self.assertEqual(arith.status_code, 200)
@@ -703,16 +702,20 @@ class FreeDownloadTests(TestCase):
             'systems_of_measurement_imperial': '7-klass-olchoo-sistemalary-sabak.webp',
             'hire_purchase': '7-klass-nasyya-esepter-sabak.webp',
             'compound_rates_of_pay': '6-klass-payyz-chen-sabak.webp',
+            'compound_pressure_force_area': '7-klass-katysh-basym-sabak.webp',
+            'ratio_quantities_reverse': '7-klass-katysh-basym-sabak.webp',
+            'rounding_significant_figures': '8-klass-tegerektoo-kata-sabak.webp',
+            'calculator_fractions': '8-klass-tegerektoo-kata-sabak.webp',
+            'indices_fractional': '9-klass-daraja-mezgilduu-sabak.webp',
+            'recurring_decimals_to_fractions': '9-klass-daraja-mezgilduu-sabak.webp',
+            'scale_drawings_areas': '8-klass-kuruluu-azimut-sabak.webp',
         }
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)
             badge = {'10-klass-kolom-bet-ayanty-sabak.webp': '9–11 кл.'}.get(deck, deck.split('-')[0] + '-класс')
             self.assertIn(badge, html, name)
-        for name in ('compound_pressure_force_area', 'data_collecting_capture_recapture',
-                     'graphs_depth_time', 'ratio_quantities_reverse',
-                     'rounding_significant_figures', 'indices_fractional',
-                     'scale_drawings_areas'):
+        for name in ('data_collecting_capture_recapture', 'graphs_depth_time'):
             self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
 
     def test_repeated_pages_share_one_pack_and_show_the_grade_strand(self):
@@ -743,7 +746,8 @@ class FreeDownloadTests(TestCase):
         # Menu grade chips: the pack's grade where a pack fills the page,
         # the audit grade elsewhere.
         self.assertEqual(grade_for_url('/unit-fractions-adding/'), '5-кл.')
-        self.assertEqual(grade_for_url('/resources/topic/geometry/bearings/'), '7–9 кл.')
+        self.assertEqual(grade_for_url('/resources/topic/geometry/bearings/'), '8-кл.')
+        self.assertEqual(grade_for_url('/graphs-depth-time/'), '7–9 кл.')
         self.assertEqual(grade_for_url('/no-such-page/'), '')
 
     def test_empty_database_page_shows_its_pack_until_it_has_files(self):
