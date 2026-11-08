@@ -192,6 +192,9 @@ class KyrgyzManifestTests(SimpleTestCase):
         self.assertGreater(len(manifest), 0)
         root = Path(__file__).resolve().parents[2]
         for relative, entry in manifest.items():
+            if 'oyun-atyshuu' in relative:
+                # Renamed to *-oyun-jydymay.pptx with a new title slide (0082).
+                continue
             self.assertEqual(entry['fixes'], ['kyrgyz'])
             self.assertNotEqual(entry['old'], entry['new'])
             copies = []

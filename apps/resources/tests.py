@@ -553,7 +553,7 @@ class FreeDownloadTests(TestCase):
         html = self.client.get(reverse('hcf_lcm_prime_factorisation_mixed')).content.decode()
         self.assertIn('topic-page__grade"><span>7-класс</span>', html)
         self.assertIn('6-класс: класста колдонуу', html)
-        self.assertIn('Атышуу', html)
+        self.assertIn('Жыдымай', html)
 
     def test_twelve_year_badges_and_igcse_titles(self):
         from apps.resources.models import SubSubtopic, Subtopic, Topic
@@ -620,7 +620,7 @@ class FreeDownloadTests(TestCase):
             self.assertIn(label, html)
         self.assertNotIn('>Жалпы<', html)
         self.assertNotIn('Бинго', html)
-        self.assertIn('Атышуу', html)
+        self.assertIn('Жыдымай', html)
 
     def test_pack_pages_fill_only_the_pages_they_teach(self):
         from pathlib import Path

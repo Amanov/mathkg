@@ -124,7 +124,7 @@ HCF_LCM_PRIME_FACTORISATION = _page(
         _six('Байланыштыруу', 'Домино', '12 карта: мисал менен жообу чынжыр түзөт.', 'Талдоо', 'domino'),
         _six('Байланыштыруу', 'Карта сорттоо', '12 карта: жөнөкөй жана курама сандар.', 'Талдоо', 'karta-sorttoo'),
         _six('Кызматташуу', '1234 оюну', 'Командалар менен, 9 слайд.', 'Колдонуу', 'oyun-1234', 'PPT'),
-        _six('Кызматташуу', 'Атышуу', 'Эки команда, 25 слайд, ылдамдыксыз упай.', 'Колдонуу', 'oyun-atyshuu', 'PPT'),
+        _six('Кызматташуу', 'Жыдымай', 'Эки команда, 25 слайд, ылдамдыксыз упай.', 'Колдонуу', 'oyun-jydymay', 'PPT'),
     ], teacher=[
         {'title': '6-класс: класста колдонуу', 'note': TEACHER_NOTE,
          'files': [('PDF', P6 + 'klassta-koldonuu.pdf')], 'grade': 6},
@@ -155,6 +155,6 @@ NEW_FILES = [
     'integers-adding-subtracting-1-2-digit-LessonDeck.pptx',
     '2-klass-100-ichinde-klassta-koldonuu-v2.pdf',
 ] + [P6 + s for s in (
-    'sabak.pptx', 'oyun-1234.pptx', 'oyun-atyshuu.pptx', 'ish-barak.pdf', 'katany-tap.pdf', 'labirint.pdf',
+    'sabak.pptx', 'oyun-1234.pptx', 'oyun-jydymay.pptx', 'ish-barak.pdf', 'katany-tap.pdf', 'labirint.pdf',
     'domino.pdf', 'karta-sorttoo.pdf', 'cifra-tabyshmagy.pdf', 'klassta-koldonuu.pdf', 'mugalim-kartasy.pdf',
 )]
