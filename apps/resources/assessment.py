@@ -65,6 +65,16 @@ def monthly_usage(user):
         user=user,
         created_at__gte=month_start(),
     ).count()
+    if user.is_staff or user.is_superuser:
+        # Site admins test the maker often; the free limit is for teachers.
+        return {
+            'paid': True,
+            'staff': True,
+            'limit': None,
+            'used': used,
+            'remaining': None,
+            'allowed': True,
+        }
     if user_is_paid(user):
         return {
             'paid': True,

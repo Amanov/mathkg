@@ -437,3 +437,15 @@
         transition: none;
     }
 }
+
+.test-maker__limit {
+    margin: 0 0 0 auto;
+    align-self: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.test-maker__limit a {
+    color: inherit;
+    text-decoration: underline;
+}
