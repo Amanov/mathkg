@@ -583,7 +583,11 @@ def _pack_items(pack):
     def one(section, title, note, level, suffix, label='PDF A4'):
         ext = '.pptx' if label == 'PPT' else '.pdf'
         name = prefix + suffix + pack.get('tail', '')
-        return _item(section, grade, title, note, level, [(label, name + ext)],
+        files = [(label, name + ext)]
+        if label != 'PPT':
+            # Paper-saving copies of the pupil pages: 2 or 4 on one A4 sheet.
+            files += [('PDF A5', name + '-a5.pdf'), ('PDF A6', name + '-a6.pdf')]
+        return _item(section, grade, title, note, level, files,
                      IMAGE_DIR + name + '.webp', subtopic=subtopic)
 
     return [

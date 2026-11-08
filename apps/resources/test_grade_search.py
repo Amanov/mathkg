@@ -95,7 +95,7 @@ class GradeSearchViewTests(TestCase):
         self.assertTrue(response.context['has_results'])
         self.assertContains(response, 'Эч нерсе табылган жок', count=0)
         groups = self._urls(response)
-        self.assertIn('/recurring-decimals-ordering/', groups['Сандар'])
+        self.assertIn('/compound-pressure-force-area/', groups['Сандар'])
         self.assertIn('/balance-method/', groups['Алгебра'])
         self.assertIn('/algebra-tiles/', groups['Алгебра'])
         self.assertIn('/statistika-ortocho/', groups['Дата'])
