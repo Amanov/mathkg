@@ -502,6 +502,7 @@ class QuestionAdmin(admin.ModelAdmin):
         'short_text',
         'grade',
         'topic',
+        'theme',
         'difficulty',
         'question_format',
         'question_type',
@@ -518,7 +519,7 @@ class QuestionAdmin(admin.ModelAdmin):
         'is_published',
         'is_sample',
     )
-    search_fields = ('text', 'answer', 'topic__title')
+    search_fields = ('text', 'answer', 'topic__title', 'theme')
     list_editable = ('is_published',)
     ordering = ('grade', 'topic', 'difficulty')
 

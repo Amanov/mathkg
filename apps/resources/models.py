@@ -967,6 +967,19 @@ class Question(models.Model):
         default=2,
         help_text='Бул суроого кете турган болжолдуу убакыт.',
     )
+    theme = models.CharField(
+        'Бөлүм',
+        max_length=200,
+        blank=True,
+        help_text='Сайттагы пакеттин аты, мисалы «Ондук бөлчөктөрдү кошуу жана кемитүү». '
+                  'Мугалим тест түзгөндө ушул аталышты тандайт.',
+    )
+    theme_slug = models.SlugField(
+        'Бөлүмдүн ачкычы',
+        max_length=120,
+        blank=True,
+        db_index=True,
+    )
     is_published = models.BooleanField('Жарыяланган', default=True)
     is_sample = models.BooleanField(
         'Үлгү',

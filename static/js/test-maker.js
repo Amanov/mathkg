@@ -4,6 +4,17 @@
     var hint = document.getElementById('test-available');
     if (grade && list) {
         var boxes = list.querySelectorAll('input[type="checkbox"]');
+        // Show which area each pack belongs to («Сандар», «Геометрия»…).
+        boxes.forEach(function (box) {
+            var area = box.getAttribute('data-area');
+            var label = box.closest('label');
+            if (area && label && !label.querySelector('.test-topics__area')) {
+                var tag = document.createElement('span');
+                tag.className = 'test-topics__area';
+                tag.textContent = area;
+                label.appendChild(tag);
+            }
+        });
 
         function parseCounts(value) {
             var map = {};

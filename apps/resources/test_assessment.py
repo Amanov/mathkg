@@ -161,7 +161,7 @@ class TestMakerPageTests(TestCase):
     def _post(self, follow=False, **overrides):
         data = {
             'grade': 5,
-            'topics': [self.fractions.pk, self.decimals.pk],
+            'topics': ['tema-' + self.fractions.slug, 'tema-' + self.decimals.slug],
             'test_type': GeneratedTest.TYPE_FORMATIVE,
             'formats': ['choice', 'short_response', 'extended', 'true_false', 'matching', 'fill_blank'],
             'levels': ['easy', 'medium', 'hard'],
@@ -186,7 +186,7 @@ class TestMakerPageTests(TestCase):
         tags = re.findall(r'<input\b[^>]*>', html)
         tag = next(
             item for item in tags
-            if f'value="{self.fractions.pk}"' in item and 'name="topics"' in item
+            if f'value="tema-{self.fractions.slug}"' in item and 'name="topics"' in item
         )
         self.assertIn('checked', tag)
         self.assertIn('Бул айда 0 / 3', html)
@@ -379,7 +379,7 @@ class TestMakerPageTests(TestCase):
         key = _key_html(mixed_paper)
         self.assertIn('1/2 = 0,5', key)
         self.assertIn('Туура', key)
-        self.assertIn('<table>', _variant_html(mixed_paper, mixed_paper['variants'][0]))
+        self.assertIn('<table class="match">', _variant_html(mixed_paper, mixed_paper['variants'][0]))
 
     def test_links_on_home_menu_and_topic_page(self):
         home = self.client.get(reverse('home'))
@@ -423,6 +423,7 @@ class PdfFontTests(TestCase):
                     'text': 'Маселени чыгар. Кеңдиги 2,5 м болсо, бөлүгү канча?',
                     'type': 'word_problem',
                     'type_label': 'Тексттик маселе',
+                    'format': 'extended',
                     'options': [],
                     'answer': '750',
                     'points': 2,
@@ -446,6 +447,12 @@ class PdfFontTests(TestCase):
         self.assertNotIn('750', question_page)
         self.assertIn('Жооп ачкычы', key_page)
         self.assertIn('750', key_page)
+        # Cambridge-style page: rules block, faint squared working space, marks in [ ].
+        self.assertIn('АДЕГЕНДЕ УШУЛАРДЫ ОКУ', question_page)
+        self.assertIn('[2]', question_page)
+        self.assertIn('ТЕСТТИН АЯГЫ', question_page)
+        grid_lines = [d for d in doc[0].get_drawings() if d.get('color') and d['color'][2] > 0.9]
+        self.assertGreater(len(grid_lines), 0)
         font_names = [font[3] for font in doc[0].get_fonts()]
         self.assertTrue(
             any('Inter' in name for name in font_names),
@@ -484,7 +491,7 @@ class TourTests(TestCase):
         self.assertTrue(user.tour_seen)
         response = self.client.post(reverse('test_maker'), {
             'grade': 5,
-            'topics': [Topic.objects.get(slug='ulgu-bolchoktor').pk],
+            'topics': ['tema-ulgu-bolchoktor'],
             'test_type': 'formative',
             'formats': ['choice'],
             'levels': ['easy'],
