@@ -285,7 +285,15 @@
     border-top: 1px solid var(--border-subtle);
 }
 
+.test-maker__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0 10px;
+}
+
 .test-maker__back,
+.test-maker__secondary,
 .test-maker__submit {
     display: inline-flex;
     align-items: center;
@@ -298,13 +306,16 @@
     cursor: pointer;
 }
 
-.test-maker__back {
+.test-maker__back,
+.test-maker__secondary {
     background: #e8f1fb;
     color: #3761c2;
 }
 
 .test-maker__back:hover,
-.test-maker__back:focus-visible {
+.test-maker__back:focus-visible,
+.test-maker__secondary:hover,
+.test-maker__secondary:focus-visible {
     color: #3761c2;
     filter: brightness(0.97);
 }
@@ -327,6 +338,7 @@
 }
 
 .test-maker__back:focus-visible,
+.test-maker__secondary:focus-visible,
 .test-maker__submit:focus-visible {
     outline: 2px solid #3761c2;
     outline-offset: 2px;

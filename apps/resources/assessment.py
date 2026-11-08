@@ -5,12 +5,9 @@ Questions are never invented here. Every item is a published Question.
 
 import random
 import re
-from pathlib import Path
 
 from django import forms
-from django.conf import settings
 from django.db import transaction
-from django.template.loader import render_to_string
 from django.utils import timezone
 
 from apps.account.models import PLAN_ONE_YEAR, PLAN_SIX_MONTHS, PLAN_THREE_MONTHS
@@ -19,8 +16,6 @@ from apps.resources.models import GeneratedTest, Question, Topic
 FREE_MONTHLY_LIMIT = 3
 PAID_PLANS = {PLAN_THREE_MONTHS, PLAN_SIX_MONTHS, PLAN_ONE_YEAR}
 
-_DEJAVU = Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
-_DEJAVU_BOLD = Path('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')
 _MIX_WEIGHTS = {
     GeneratedTest.MIX_EQUAL: (1, 1, 1),
     GeneratedTest.MIX_MOSTLY_EASY: (6, 3, 1),
@@ -442,26 +437,11 @@ def create_generated_test(user, cleaned, rng=None):
     return generated
 
 
-def kyrgyz_font_uris():
-    regular = _DEJAVU
-    bold = _DEJAVU_BOLD
-    if not regular.is_file():
-        fonts = Path(__file__).resolve().parent / 'generators' / 'fonts'
-        regular = fonts / 'Inter-Regular.ttf'
-        bold = fonts / 'Inter-Bold.ttf'
-    return regular.resolve().as_uri(), bold.resolve().as_uri()
-
-
 def render_test_pdf(payload):
-    from weasyprint import HTML
+    """PDF bytes for a paper; see test_pdf.py (PyMuPDF, no system libraries)."""
+    from apps.resources.test_pdf import render_test_pdf as render
 
-    regular, bold = kyrgyz_font_uris()
-    html = render_to_string('resources/test_maker_pdf.html', {
-        'test': payload,
-        'font_regular': regular,
-        'font_bold': bold,
-    })
-    return HTML(string=html, base_url=str(settings.BASE_DIR)).write_pdf()
+    return render(payload)
 
 
 class TopicCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
