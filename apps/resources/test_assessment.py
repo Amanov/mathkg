@@ -358,13 +358,9 @@ class TestMakerPageTests(TestCase):
         self.assertTrue(all(item['format'] in {'extended', 'short_response'} for item in items))
         self.assertTrue(any(item['solution'] for item in items))
         self.assertTrue(paper['show_timer'])
-        from django.template.loader import render_to_string
-        html = render_to_string('resources/test_maker_pdf.html', {
-            'test': paper,
-            'font_regular': 'about:blank',
-            'font_bold': 'about:blank',
-        })
-        self.assertIn('write-line', html)
+        from apps.resources.test_pdf import WRITE_LINE, _key_html, _variant_html
+        html = _variant_html(paper, paper['variants'][0])
+        self.assertIn(WRITE_LINE, html)
         self.assertIn('Деңгээл:', html)
         self.assertIn('Убакыт:', html)
 
@@ -380,14 +376,10 @@ class TestMakerPageTests(TestCase):
         mixed_paper = GeneratedTest.objects.get(user=self.user).payload
         formats = {item['format'] for item in mixed_paper['variants'][0]['questions']}
         self.assertTrue({'choice', 'true_false', 'matching', 'fill_blank', 'calculation'} <= formats)
-        key = render_to_string('resources/test_maker_pdf.html', {
-            'test': mixed_paper,
-            'font_regular': 'about:blank',
-            'font_bold': 'about:blank',
-        })
+        key = _key_html(mixed_paper)
         self.assertIn('1/2 = 0,5', key)
         self.assertIn('Туура', key)
-        self.assertIn('class="match"', key)
+        self.assertIn('<table>', _variant_html(mixed_paper, mixed_paper['variants'][0]))
 
     def test_links_on_home_menu_and_topic_page(self):
         home = self.client.get(reverse('home'))
@@ -456,7 +448,7 @@ class PdfFontTests(TestCase):
         self.assertIn('750', key_page)
         font_names = [font[3] for font in doc[0].get_fonts()]
         self.assertTrue(
-            any('MathKG-Kyrgyz' in name or 'DejaVu' in name for name in font_names),
+            any('Inter' in name for name in font_names),
             font_names,
         )
 
