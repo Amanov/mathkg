@@ -1,4 +1,5 @@
 import tempfile
+from pathlib import Path
 from datetime import date, timedelta
 from io import StringIO
 
@@ -710,6 +711,14 @@ class FreeDownloadTests(TestCase):
             'recurring_decimals_to_fractions': '9-klass-daraja-mezgilduu-sabak.webp',
             'scale_drawings_areas': '8-klass-kuruluu-azimut-sabak.webp',
         }
+        # Pupil print sheets also come as A5 and A6 copies (2026-11-08).
+        from apps.resources.data.pack_pages import PACKS
+        bundled = Path(__file__).resolve().parent / 'bundled_files'
+        for pack in PACKS.values():
+            for suffix in ('ish-barak', 'katany-tap', 'labirint', 'cifra-tabyshmagy', 'domino', 'karta-sorttoo'):
+                for size in ('a5', 'a6'):
+                    name = f"{pack['prefix']}{suffix}{pack.get('tail', '')}-{size}.pdf"
+                    self.assertTrue((bundled / name).exists(), name)
         for name, deck in filled.items():
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(deck, html, name)

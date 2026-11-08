@@ -39,6 +39,9 @@ def maze_pdfs(root: Path | None = None) -> list[Path]:
             continue
         if path.suffix.lower() != '.pdf':
             continue
+        if lowered.endswith(('-a5.pdf', '-a6.pdf')):
+            # A5/A6 print copies repeat the A4 maze two or four times.
+            continue
         if path.name.startswith('stat-Labirint-2bet'):
             continue
         found.append(path)
