@@ -207,7 +207,17 @@
     font-weight: 600;
     line-height: 1.35;
 }
-.topic-row__files .file-pill { width: auto; min-width: 120px; }
+.topic-row__files .file-pill { display: block; box-sizing: border-box; width: 136px; min-width: 0; text-align: center; }
+/* Every button in the column has the same width and lines up; the «Акысыз»
+   tag hangs to the right of its button instead of pushing it aside. */
+.topic-row__files .free-download { position: relative; display: block; }
+.topic-row__files .free-badge {
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
 .file-pill {
     font-size: 14px;
     font-weight: 500;
