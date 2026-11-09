@@ -82,6 +82,18 @@
     align-items: center;
     gap: 12px;
     color: rgba(255, 255, 255, .78);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a.footer-contact-item:hover,
+a.footer-contact-item:focus-visible {
+    color: #fff;
+}
+
+a.footer-contact-item:hover span,
+a.footer-contact-item:focus-visible span {
+    text-decoration: underline;
 }
 
 .footer-contact-item i {
@@ -191,6 +203,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .footer-links a,
+    .footer-contact-item,
     .footer-social a {
         transition: none;
     }

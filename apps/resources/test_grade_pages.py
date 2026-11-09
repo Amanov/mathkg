@@ -40,6 +40,11 @@ class GradePageTests(TestCase):
         for number in range(1, 12):
             self.assertIn(f'href="/{number}-klass/"', page)
 
+    def test_the_footer_contacts_are_links(self):
+        page = self.client.get('/about/').content.decode()
+        self.assertIn('href="mailto:mathematicskgz@gmail.com"', page)
+        self.assertIn('class="footer-contact-item" href="https://mathkg.com/"', page)
+
 
 class SitemapTests(TestCase):
     def test_class_pages_are_listed_and_home_is_not(self):
