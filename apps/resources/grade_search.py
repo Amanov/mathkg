@@ -170,11 +170,11 @@ def grade_counts(text):
 
 
 # The school classes that get a page of their own at /N-klass/.
-GRADE_PAGE_RANGE = range(1, 12)
+GRADE_PAGE_RANGE = range(1, 13)
 
 
 def grade_page_numbers():
-    """Classes 1 to 11 that have at least one topic page, in order."""
+    """Classes 1 to 12 that have at least one topic page, in order."""
     counts = grade_counts('')
     return [number for number in GRADE_PAGE_RANGE if counts.get(number)]
 

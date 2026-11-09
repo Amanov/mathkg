@@ -141,17 +141,37 @@ a.footer-contact-item:focus-visible span {
 }
 
 /* Class pages (/1-klass/ ... /11-klass/): a small grid of numbered tiles. */
+.footer-col-grades {
+    display: flex;
+    justify-content: center;
+}
+
+/* On wide screens the four columns take their own width and share the
+   free space equally, so «Класстар» has the same gap on both sides. */
+@media (min-width: 1200px) {
+    .footer-row {
+        justify-content: space-between;
+    }
+    .footer-row > [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .footer-row .footer-description {
+        max-width: 340px;
+    }
+}
+
 .footer-grades {
     display: grid;
-    grid-template-columns: repeat(4, 40px);
-    gap: 8px;
+    grid-template-columns: repeat(3, 44px);
+    gap: 10px;
 }
 
 .footer-grades a {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    height: 44px;
     border: 1px solid rgba(255, 255, 255, .35);
     border-radius: var(--radius-sm);
     color: #fff;
