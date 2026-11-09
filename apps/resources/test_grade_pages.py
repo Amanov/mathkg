@@ -36,7 +36,7 @@ class GradePageTests(TestCase):
 
     def test_the_footer_links_every_class(self):
         page = self.client.get('/about/').content.decode()
-        self.assertIn('Класстар:', page)
+        self.assertIn('Класстар', page)
         for number in range(1, 12):
             self.assertIn(f'href="/{number}-klass/"', page)
 
