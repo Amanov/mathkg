@@ -6,7 +6,7 @@
 
 {% block extra_head %}
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="{% static 'css/test-maker.css' %}?v=20261108d">
+<link rel="stylesheet" href="{% static 'css/test-maker.css' %}?v=20261109a">
 {% endblock %}
 
 {% block content %}
@@ -21,6 +21,12 @@
         <a class="test-maker__submit" href="{% url 'test_maker_pdf' generated.pk %}">PDF жүктөп алуу</a>
         <a class="test-maker__secondary" href="{% url 'test_maker' %}">Башка тест түзүү</a>
     </div>
+
+    {% if paper.topic_links %}
+    <p class="test-maker__hint test-maker__topics">Теманын материалдары:
+        {% for topic in paper.topic_links %}<a href="{{ topic.url }}">{{ topic.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+    </p>
+    {% endif %}
 
     {% if not usage.paid %}
     <p class="test-maker__quota">Бул айда {{ usage.used }} / {{ usage.limit }} тест түзүлдү.</p>

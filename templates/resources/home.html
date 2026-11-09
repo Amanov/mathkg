@@ -14,6 +14,18 @@
   <div class="position-relative p-5 text-center"  style="margin-top: 10%">
     <h1>Мугалимдер үчүн заманбап математикалык ресурстар</h1>
 
+    {% grade_page_links as home_grades %}
+    {% if home_grades %}
+    <nav class="home-grades" aria-label="Класс боюнча темалар">
+      <p class="home-grades__label">Классыңызды тандаңыз</p>
+      <ul class="home-grades__list">
+        {% for number in home_grades %}
+        <li><a href="{% url 'grade_page' number %}" data-track="Башкы бет: Класс">{{ number }}-класс</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
     <hr>
     <div class="row align-items-md-stretch "  >
       <div class="col-md-10">

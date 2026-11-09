@@ -5,6 +5,16 @@ from apps.resources.filenames import canonical_filename, resource_for_title
 from apps.resources.models import Resource, SubSubtopic, Subtopic, Topic
 
 
+
+def badge_pattern(badge):
+    """The grade badge under a topic title: plain, or linked to its class
+    page on pack pages (data/pack_links.py)."""
+    import re
+    return (
+        r'topic-page__grade">(<span>|<a href="/\d+-klass/"[^>]*>)'
+        + re.escape(badge) + r'</(span|a)>'
+    )
+
 class FilenameAliasTests(TestCase):
     def test_three_spellings_only(self):
         self.assertEqual(
@@ -44,5 +54,5 @@ class MissingContinuumPageTests(TestCase):
             url = reverse('subsubtopic_detail', args=[topic, sub, leaf])
             resp = self.client.get(url)
             self.assertEqual(resp.status_code, 200, url)
-            self.assertContains(resp, f'topic-page__grade"><span>{badge}</span>')
+            self.assertRegex(resp.content.decode(), badge_pattern(badge))
             self.assertContains(resp, 'даярдалууда')

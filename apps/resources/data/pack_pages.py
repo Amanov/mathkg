@@ -1777,4 +1777,9 @@ def page_for(slug, page_title):
         spec['grade_badge'] = override
     from apps.resources.data.spiral import strands_for
     spec['strands'] = strands_for(spec['page_key'])
+    from apps.resources.data import pack_links
+    spec['canonical_path'] = pack_links.main_path(spec['page_key'])
+    spec['breadcrumb'] = pack_links.breadcrumb(spec, page_title)
+    spec['grade_number'] = pack_links.page_grade(spec)
+    spec['grade_topics'] = pack_links.same_grade_topics(spec['page_key'], spec['grade_number'])
     return spec

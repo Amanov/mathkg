@@ -409,10 +409,15 @@ def build_payload(
             'points': sum(item['points'] for item in items),
             'minutes': sum(item['minutes'] for item in items),
         })
+    from apps.resources.data.pack_links import theme_url
     topic_titles = []
+    topic_links = []
     for question in questions:
         if theme_title(question) not in topic_titles:
             topic_titles.append(theme_title(question))
+            url = theme_url(getattr(question, 'theme_slug', ''))
+            if url:
+                topic_links.append({'title': theme_title(question), 'url': url})
     flat = [item for variant in packed for item in variant['questions']]
     return {
         'grade': grade,
@@ -422,6 +427,8 @@ def build_payload(
         'mix_label': levels_label(levels),
         'formats_label': formats_label(formats),
         'topics_label': ', '.join(topic_titles),
+        # Back to each pack page the questions came from.
+        'topic_links': topic_links,
         'created_label': timezone.localdate().strftime('%d.%m.%Y'),
         'duration_minutes': duration_minutes,
         'planned_minutes': planned,

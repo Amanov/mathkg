@@ -19,6 +19,16 @@ from apps.resources.free_download import choose_free_resource
 from apps.resources.models import NewsPost, PageFreeDownload, Resource, ResourceDownload, SearchQuery
 
 
+
+def badge_pattern(badge):
+    """The grade badge under a topic title: plain, or linked to its class
+    page on pack pages (data/pack_links.py)."""
+    import re
+    return (
+        r'topic-page__grade">(<span>|<a href="/\d+-klass/"[^>]*>)'
+        + re.escape(badge) + r'</(span|a)>'
+    )
+
 class PagesTests(TestCase):
 
     def test_news_list_orders_newest_first(self):
@@ -546,12 +556,12 @@ class FreeDownloadTests(TestCase):
             for image in spec['images'].values():
                 self.assertIsNotNone(finders.find(image), image)
         html = self.client.get(reverse('koshuu_1_digit')).content.decode()
-        self.assertIn('topic-page__grade"><span>4-класс</span>', html)
+        self.assertRegex(html, badge_pattern('4-класс'))
         html = self.client.get(reverse('integers_adding_subtracting_1_2_digit')).content.decode()
         self.assertIn('>1-класс<span class="grade-tab__count">', html)
         self.assertIn('>2-класс<span class="grade-tab__count">', html)
         html = self.client.get(reverse('hcf_lcm_prime_factorisation_mixed')).content.decode()
-        self.assertIn('topic-page__grade"><span>7-класс</span>', html)
+        self.assertRegex(html, badge_pattern('7-класс'))
         self.assertIn('6-класс: класста колдонуу', html)
         self.assertIn('Жыдымай', html)
 
@@ -578,7 +588,7 @@ class FreeDownloadTests(TestCase):
         }
         for name, badge in badges.items():
             html = self.client.get(reverse(name)).content.decode()
-            self.assertIn(f'topic-page__grade"><span>{badge}</span>', html, name)
+            self.assertRegex(html, badge_pattern(badge), name)
 
         frames = self.client.get(reverse('on_kozonoktuu_ramka')).content.decode()
         self.assertIn('саноо', frames)
@@ -595,7 +605,7 @@ class FreeDownloadTests(TestCase):
         sub = Subtopic.objects.create(title='Өзгөртүүлөр', slug='transformations', topic=topic)
         SubSubtopic.objects.create(title='Чагылдыруу', slug='reflection', subtopic=sub)
         html = self.client.get(reverse('subsubtopic_detail', args=['geometry', 'transformations', 'reflection'])).content.decode()
-        self.assertIn('topic-page__grade"><span>7–9 кл.</span>', html)
+        self.assertRegex(html, badge_pattern('7–9 кл.'))
 
     def test_directed_numbers_page_has_grade_packs_and_no_template_based_files(self):
         from pathlib import Path

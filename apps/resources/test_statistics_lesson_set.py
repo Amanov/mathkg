@@ -7,6 +7,16 @@ from apps.resources.data.statistics_lesson_set import NAMES
 from apps.resources.models import Resource
 
 
+
+def badge_pattern(badge):
+    """The grade badge under a topic title: plain, or linked to its class
+    page on pack pages (data/pack_links.py)."""
+    import re
+    return (
+        r'topic-page__grade">(<span>|<a href="/\d+-klass/"[^>]*>)'
+        + re.escape(badge) + r'</(span|a)>'
+    )
+
 class StatisticsLessonSetTests(TestCase):
     def test_page_lists_every_pack_file_in_kyrgyz_sections(self):
         bundled = Path(__file__).resolve().parent / 'bundled_files'
@@ -24,7 +34,7 @@ class StatisticsLessonSetTests(TestCase):
             'Иш-аракеттер', 'Мугалим жетектеген', 'Мугалим',
         ):
             self.assertIn(heading, html)
-        self.assertIn('topic-page__grade"><span>6–7 кл.</span>', html)
+        self.assertRegex(html, badge_pattern('6–7 кл.'))
         self.assertIn('Кайсы команда жакшыраак?', html)
         self.assertIn('thumb-deck-01.png', html)
         self.assertNotIn('Presentations', html)

@@ -1,11 +1,11 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% load seo_tags %}
-{% block seo %}{% seo_topic page.title page.grade_badge %}{% endblock %}
+{% block seo %}{% seo_topic page.title page.grade_badge page.canonical_path page.breadcrumb %}{% endblock %}
 
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261108a">
+<link rel="stylesheet" href="{% static 'css/topic-page.css' %}?v=20261109a">
 {% if page.uses_mk_zoom %}
 <link rel="stylesheet" href="{% static 'css/mk-zoom.css' %}?v=20261019c">
 {% endif %}
@@ -14,9 +14,17 @@
 {% block content %}
 {# Layout and data: apps/resources/topic_pages.py. Thumbnails: templates/svg/topic/. #}
 <main class="topic-page">
-  {% if page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
+  {% if page.breadcrumb %}
+  <nav class="topic-page__crumb" aria-label="Барактын жолу">
+    <ol class="crumb-trail">
+      {% for name, path in page.breadcrumb %}
+      <li>{% if path and not forloop.last %}<a href="{{ path }}">{{ name }}</a>{% else %}<span aria-current="page">{{ name }}</span>{% endif %}</li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% elif page.crumb %}<p class="topic-page__crumb">{{ page.crumb }}</p>{% endif %}
   <h1 class="topic-page__title">{{ page.title }}</h1>
-  {% if page.grade_badge %}<p class="topic-page__grade"><span>{{ page.grade_badge }}</span></p>{% endif %}
+  {% if page.grade_badge %}<p class="topic-page__grade">{% if page.grade_number %}<a href="{% url 'grade_page' page.grade_number %}" title="{{ page.grade_number }}-класстын бардык темалары">{{ page.grade_badge }}</a>{% else %}<span>{{ page.grade_badge }}</span>{% endif %}</p>{% endif %}
   {% include "snippets/topic_test_button.html" with topic_slug=page.topic_slug topic_grade=page.topic_grade %}
 
   {% for strand in page.strands %}
@@ -205,6 +213,18 @@
   </section>
   {% endfor %}
   </div>
+
+  {% if page.grade_topics %}
+  <section class="grade-topics" aria-labelledby="grade-topics-title">
+    <h2 id="grade-topics-title" class="grade-topics__title">{{ page.grade_number }}-класстын башка темалары</h2>
+    <ul class="grade-topics__list">
+      {% for topic in page.grade_topics %}
+      <li><a href="{{ topic.url }}">{{ topic.title }}</a></li>
+      {% endfor %}
+    </ul>
+    <p class="grade-topics__all"><a href="{% url 'grade_page' page.grade_number %}">{{ page.grade_number }}-класстын бардык барактары →</a></p>
+  </section>
+  {% endif %}
 </main>
   {% endif %}
 <script>
