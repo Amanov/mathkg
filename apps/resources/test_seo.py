@@ -110,7 +110,8 @@ class RobotsAndSitemapTests(TestCase):
         self.assertIsNone(response.get('X-Robots-Tag'))
         paths = sitemap_paths(response)
         self.assertIn('/about/', paths)
-        self.assertIn('/home/', paths)
+        self.assertNotIn('/home/', paths)
+        self.assertIn('/4-klass/', paths)
         self.assertIn('/', paths)
         body = response.content.decode()
         self.assertNotIn('/login/', body)
@@ -136,7 +137,8 @@ class RobotsAndSitemapTests(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         generated = set(sitemap_paths(response))
-        missing = sorted(set(crawled) - generated)
+        # /home/ is the same page as "/", so only "/" is listed.
+        missing = sorted(set(crawled) - generated - {'/home/'})
         extra = sorted(generated - set(crawled))
         self.assertEqual(
             missing,

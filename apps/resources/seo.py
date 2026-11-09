@@ -278,6 +278,32 @@ def topic_meta_description(name, grade=''):
     return with_russian_phrase(topic_kyrgyz_sentence(name, grade))
 
 
+def grade_page_title(grade):
+    return f'{grade}-класс математика: презентация, иш барак, тапшырмалар | MathKG'
+
+
+def grade_page_sentence(grade):
+    return (
+        f'{grade}-класстын математика темалары: даяр презентация, '
+        'иш барак жана тапшырмалар мугалимдер үчүн.'
+    )
+
+
+def grade_page_description(grade):
+    return with_russian_phrase(grade_page_sentence(grade))
+
+
+def grade_page_keywords(grade):
+    """Hidden search words, the way teachers type them into Google."""
+    return ', '.join((
+        f'математика {grade} класс',
+        f'презентация {grade} класс',
+        f'рабочие листы {grade} класс',
+        f'{grade}-класс математика',
+        RU_PHRASE.rstrip('.'),
+    ))
+
+
 def search_document_title(query):
     query = clean(query)
     if not query:
@@ -462,6 +488,16 @@ def apply_seo(context, title, description, kind, name='', grade=''):
     if kind == 'home':
         jsonld = home_jsonld_with_logo(canonical, image)
         keywords = HOME_KEYWORDS
+    elif kind == 'grade':
+        jsonld = learning_resource_jsonld(
+            canonical,
+            f'{grade}-класс математика',
+            grade_page_sentence(grade),
+            f'{grade}-класс',
+            image,
+            alternate_name=f'Математика {grade} класс',
+        )
+        keywords = grade_page_keywords(grade)
     elif kind == 'topic':
         kyrgyz_name = name or title
         russian = russian_name(kyrgyz_name)

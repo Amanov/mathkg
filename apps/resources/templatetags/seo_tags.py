@@ -3,6 +3,8 @@ from django import template
 from apps.resources.seo import (
     PAGES,
     apply_seo,
+    grade_page_description,
+    grade_page_title,
     grade_for_request,
     search_document_title,
     search_meta_description,
@@ -55,3 +57,19 @@ def seo_search(context, query=''):
     title = search_document_title(query)
     description = search_meta_description(query)
     return apply_seo(context, title, description, 'page')
+
+
+@register.simple_tag(takes_context=True)
+def seo_grade(context, grade):
+    """A class page such as /4-klass/."""
+    return apply_seo(
+        context, grade_page_title(grade), grade_page_description(grade),
+        'grade', grade=grade,
+    )
+
+
+@register.simple_tag
+def grade_page_links():
+    """Class numbers that have a /N-klass/ page, for the footer."""
+    from apps.resources.grade_search import grade_page_numbers
+    return grade_page_numbers()

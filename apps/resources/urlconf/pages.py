@@ -14,6 +14,7 @@ from apps.resources.views import (
     menu_fragment_view,
     search_view,
     search_suggest_view,
+    grade_page_view,
     pricing_view,
     feedback_view,
     teacher_comments_view,
@@ -42,6 +43,8 @@ urlpatterns = [
     path('pricing/', pricing_view, name='pricing'),
     path('search/', search_view, name='search'),
     path('search/suggest/', search_suggest_view, name='search_suggest'),
+    # One page per class, linked from the footer (not the menu).
+    path('<int:grade>-klass/', grade_page_view, name='grade_page'),
 
     path('tour-seen/', tour_seen_view, name='tour_seen'),
     path('test-tuzuu/', test_maker_view, name='test_maker'),

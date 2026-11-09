@@ -58,7 +58,7 @@ from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detai
 
 from .pages import (
     news_list_view, about_view, topics_tree_view, menu_fragment_view,
-    search_view, search_suggest_view, pricing_view,
+    search_view, search_suggest_view, pricing_view, grade_page_view,
 )
 
 from .feedback import feedback_view, teacher_comments_view, page_reaction_view

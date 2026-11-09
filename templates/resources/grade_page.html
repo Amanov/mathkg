@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_grade grade %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/search-results.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 search-results-page grade-page">
+
+    <div class="mb-4">
+        <h1 class="display-6 fw-bold mb-2">{{ grade }}-класс математика: презентациялар жана иш барактар</h1>
+        <p class="text-muted mb-0">
+            {{ grade }}-класстын программасына туура келген {{ topic_count }} тема.
+            Ар бир темада даяр презентация, иш барак жана тапшырмалар бар.
+        </p>
+    </div>
+
+    <nav class="search-grade-chips" aria-label="Класс">
+        {% for number in grades %}
+        <a class="search-grade-chip{% if number == grade %} is-active{% endif %}" href="{% url 'grade_page' number %}"{% if number == grade %} aria-current="page"{% endif %}>{{ number }}-класс</a>
+        {% endfor %}
+    </nav>
+
+    <p class="grade-page-cta">
+        Ушул класс боюнча текшерүү иши керекпи?
+        <a href="{% url 'test_maker' %}">Тест түзүү</a>
+    </p>
+
+    <section class="search-section">
+        <h2 class="search-section-title">Темалар</h2>
+        {% for category, results in grouped_topic_results %}
+        <div class="search-category-group">
+            <h3 class="search-category-heading">{{ category }}</h3>
+            <div class="search-result-list">
+                {% for result in results %}
+                <a class="search-result-row" href="{{ result.url }}" data-track="Класс бети: Тема">
+                    {% if result.breadcrumb|length > 1 %}
+                    <div class="search-result-breadcrumb">{{ result.breadcrumb|slice:"1:"|join:' › ' }}</div>
+                    {% endif %}
+                    <div class="search-result-title">{{ result.title }}{% if result.grade %} <span class="search-result-grade">{{ result.grade }}</span>{% endif %}</div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+</div>
+{% endblock %}

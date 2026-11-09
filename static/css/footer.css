@@ -128,6 +128,42 @@
     text-align: center;
 }
 
+/* One row of class pages (/1-klass/ ... /11-klass/), above the copyright. */
+.footer-grades {
+    margin-top: 48px;
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    padding: 18px 0;
+}
+
+.footer-grades nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 16px;
+    font-size: 0.95rem;
+}
+
+.footer-grades__label {
+    font-weight: 700;
+}
+
+.footer-grades a {
+    color: rgba(255, 255, 255, .78);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-grades a:hover,
+.footer-grades a:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-grades + .footer-bottom {
+    margin-top: 0;
+}
+
 .footer-bottom p {
     margin: 0;
     color: rgba(255, 255, 255, .65);
