@@ -3,6 +3,7 @@ import csv
 from django.contrib import admin
 from django.http import HttpResponse
 
+from .ip_info import country_label, is_robot
 from .models import (
     Topic,
     Subtopic,
@@ -107,14 +108,47 @@ class ResourceAdmin(admin.ModelAdmin):
     )
 
 
+class CountryColumn:
+    """Adds the country of ``ip_address`` next to it (offline lookup)."""
+
+    @admin.display(description='Өлкө')
+    def country(self, obj):
+        return country_label(obj.ip_address)
+
+
+class VisitorKindFilter(admin.SimpleListFilter):
+    title = 'Ким жүктөдү'
+    parameter_name = 'kind'
+
+    def lookups(self, request, model_admin):
+        return (('human', 'Адам'), ('robot', 'Робот'))
+
+    def queryset(self, request, queryset):
+        if self.value() not in ('human', 'robot'):
+            return queryset
+        robots = [
+            pk for pk, ip, agent in queryset.values_list('pk', 'ip_address', 'user_agent')
+            if is_robot(ip, agent)
+        ]
+        if self.value() == 'robot':
+            return queryset.filter(pk__in=robots)
+        return queryset.exclude(pk__in=robots)
+
+
 @admin.register(ResourceDownload)
-class ResourceDownloadAdmin(admin.ModelAdmin):
+class ResourceDownloadAdmin(CountryColumn, admin.ModelAdmin):
 
     list_display = (
         "resource",
         "user",
         "ip_address",
+        "country",
+        "kind",
         "downloaded_at",
+    )
+
+    list_filter = (
+        VisitorKindFilter,
     )
 
     search_fields = (
@@ -127,9 +161,17 @@ class ResourceDownloadAdmin(admin.ModelAdmin):
         "resource",
         "user",
         "ip_address",
+        "country",
+        "kind",
         "downloaded_at",
         "user_agent",
     )
+
+    @admin.display(description='Ким')
+    def kind(self, obj):
+        if obj.user_id:
+            return 'Мүчө'
+        return 'Робот' if is_robot(obj.ip_address, obj.user_agent) else 'Адам (каттоосуз)'
 
     ordering = (
         "-downloaded_at",
@@ -142,12 +184,13 @@ class ResourceDownloadAdmin(admin.ModelAdmin):
 
 
 @admin.register(SiteVisit)
-class SiteVisitAdmin(admin.ModelAdmin):
+class SiteVisitAdmin(CountryColumn, admin.ModelAdmin):
 
     list_display = (
         "path",
         "user",
         "ip_address",
+        "country",
         "visited_at",
     )
 
@@ -183,13 +226,14 @@ class SiteVisitAdmin(admin.ModelAdmin):
 
 
 @admin.register(ButtonClick)
-class ButtonClickAdmin(admin.ModelAdmin):
+class ButtonClickAdmin(CountryColumn, admin.ModelAdmin):
 
     list_display = (
         "label",
         "path",
         "user",
         "ip_address",
+        "country",
         "clicked_at",
     )
 
@@ -226,13 +270,14 @@ class ButtonClickAdmin(admin.ModelAdmin):
 
 
 @admin.register(SearchQuery)
-class SearchQueryAdmin(admin.ModelAdmin):
+class SearchQueryAdmin(CountryColumn, admin.ModelAdmin):
 
     list_display = (
         "query",
         "results_count",
         "user",
         "ip_address",
+        "country",
         "searched_at",
     )
 
@@ -268,11 +313,12 @@ class SearchQueryAdmin(admin.ModelAdmin):
 
 
 @admin.register(LoginEvent)
-class LoginEventAdmin(admin.ModelAdmin):
+class LoginEventAdmin(CountryColumn, admin.ModelAdmin):
 
     list_display = (
         "user",
         "ip_address",
+        "country",
         "logged_in_at",
     )
 
