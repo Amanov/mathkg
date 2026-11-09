@@ -1,6 +1,6 @@
 from urllib.parse import urlencode
 
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, NoReverseMatch
 from django_ratelimit.decorators import ratelimit
@@ -8,6 +8,7 @@ from django_ratelimit.decorators import ratelimit
 from apps.account.models import SubscriptionRequest, DAILY_DOWNLOAD_LIMITS
 from apps.resources.grade_search import (
     catalog_index,
+    grade_page_numbers,
     grade_counts,
     norm_url,
     pages_for_search,
@@ -276,6 +277,24 @@ def _grade_chips(query, text, grade, grade_from_text, remainder):
     else:
         clear_params = {'q': query} if query else {}
     return chips, href(clear_params)
+
+
+def grade_page_view(request, grade):
+    """Every topic page of one class, grouped by section.
+
+    A plain list page for search engines and for a teacher who types
+    "4 класс математика". It is linked from the footer, not the menu.
+    """
+    grades = grade_page_numbers()
+    if grade not in grades:
+        raise Http404('No such class')
+    grouped = _grouped_topic_results(pages_for_search(grade, ''))
+    return render(request, 'resources/grade_page.html', {
+        'grade': grade,
+        'grades': grades,
+        'grouped_topic_results': grouped,
+        'topic_count': sum(len(rows) for _section, rows in grouped),
+    })
 
 
 @ratelimit(key=_search_ratelimit_key, rate='30/m', method='GET', block=True)

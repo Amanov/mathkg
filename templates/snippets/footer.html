@@ -1,4 +1,5 @@
 {% load static %}
+{% load seo_tags %}
 <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 {# Font Awesome is already loaded once in base.html's <head> - don't duplicate it here. #}
 
@@ -94,6 +95,20 @@
 
     </div>
   </div>
+
+  {% grade_page_links as footer_grades %}
+  {% if footer_grades %}
+  <div class="footer-grades">
+    <div class="container">
+      <nav aria-label="Класстар">
+        <span class="footer-grades__label">Класстар:</span>
+        {% for number in footer_grades %}
+        <a href="{% url 'grade_page' number %}">{{ number }}-класс</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+  {% endif %}
 
   <div class="footer-bottom">
     <div class="container">

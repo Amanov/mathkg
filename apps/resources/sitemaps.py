@@ -6,9 +6,10 @@ there is no Site row to migrate.
 """
 
 from django.contrib.sitemaps import Sitemap
+from django.db.models import Max, Q
 
 from config.absolute_url import canonical_netloc, canonical_scheme
-from django.urls import URLResolver, get_resolver
+from django.urls import URLResolver, get_resolver, reverse
 from django.urls.resolvers import RoutePattern
 
 from apps.resources.models import SubSubtopic, Subtopic, Topic
@@ -45,6 +46,9 @@ EXCLUDED_PATHS = {
     # Login-only test maker. The result and PDF routes take an id.
     '/test-tuzuu/',
     '/tour-seen/',
+    # The same page as "/". Its canonical tag already points there, so
+    # only "/" is listed.
+    '/home/',
 }
 
 EXCLUDED_PREFIXES = (
@@ -141,42 +145,74 @@ class StaticPageSitemap(_NonEmptySitemap):
         return item
 
     def priority(self, item):
-        if item in ('/', '/home/'):
+        if item == '/':
             return 1.0
         return 0.6
 
 
-class TopicSitemap(_NonEmptySitemap):
+class GradePageSitemap(_NonEmptySitemap):
+    """/1-klass/ ... /11-klass/: one list page per class."""
+    changefreq = 'weekly'
+    priority = 0.9
+
+    def items(self):
+        from apps.resources.grade_search import grade_page_numbers
+        return grade_page_numbers()
+
+    def location(self, item):
+        return reverse('grade_page', args=[item])
+
+
+# The newest active file on a topic page is when that page last changed
+# for a visitor. A page with no files gets no <lastmod>.
+_LATEST_FILE = Max('resources__created_at', filter=Q(resources__is_active=True))
+
+
+class _LatestFileSitemap(_NonEmptySitemap):
+    def lastmod(self, item):
+        return item.latest_file
+
+
+class TopicSitemap(_LatestFileSitemap):
     changefreq = 'weekly'
     priority = 0.7
 
     def items(self):
         from apps.resources.sample_questions import FALLBACK_TOPIC_SLUGS
-        return Topic.objects.exclude(slug__in=FALLBACK_TOPIC_SLUGS).order_by('slug')
-
-
-class SubtopicSitemap(_NonEmptySitemap):
-    changefreq = 'weekly'
-    priority = 0.8
-
-    def items(self):
-        return Subtopic.objects.select_related('topic').order_by(
-            'topic__slug', 'slug',
+        return (
+            Topic.objects.exclude(slug__in=FALLBACK_TOPIC_SLUGS)
+            .annotate(latest_file=_LATEST_FILE)
+            .order_by('slug')
         )
 
 
-class SubSubtopicSitemap(_NonEmptySitemap):
+class SubtopicSitemap(_LatestFileSitemap):
     changefreq = 'weekly'
     priority = 0.8
 
     def items(self):
-        return SubSubtopic.objects.select_related('subtopic__topic').order_by(
-            'subtopic__topic__slug', 'subtopic__slug', 'slug',
+        return (
+            Subtopic.objects.select_related('topic')
+            .annotate(latest_file=_LATEST_FILE)
+            .order_by('topic__slug', 'slug')
+        )
+
+
+class SubSubtopicSitemap(_LatestFileSitemap):
+    changefreq = 'weekly'
+    priority = 0.8
+
+    def items(self):
+        return (
+            SubSubtopic.objects.select_related('subtopic__topic')
+            .annotate(latest_file=_LATEST_FILE)
+            .order_by('subtopic__topic__slug', 'subtopic__slug', 'slug')
         )
 
 
 SITEMAPS = {
     'static': StaticPageSitemap,
+    'grades': GradePageSitemap,
     'topics': TopicSitemap,
     'subtopics': SubtopicSitemap,
     'subsubtopics': SubSubtopicSitemap,

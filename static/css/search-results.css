@@ -139,3 +139,14 @@
         transition: none;
     }
 }
+
+/* Class pages (/4-klass/): one line pointing to the test maker. */
+.grade-page-cta {
+    margin: 0 0 28px;
+    color: var(--text-muted, #475569);
+}
+
+.grade-page-cta a {
+    font-weight: 600;
+    color: var(--color-navy, #0f3c58);
+}
