@@ -1,15 +1,15 @@
 {% load static %}
 {% load seo_tags %}
-<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}?v=20261109d">
 {# Font Awesome is already loaded once in base.html's <head> - don't duplicate it here. #}
 
 <footer class="site-footer">
   <div class="container py-5">
 
-    <div class="row gy-5">
+    <div class="row gy-5 footer-row">
 
       <!-- Brand -->
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="footer-logo">
           <span class="accent">Math</span>KG
         </div>
@@ -23,7 +23,7 @@
       </div>
 
       <!-- Quick Links -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-4">
         <h2 class="footer-heading">Навигация</h2>
         <ul class="footer-links">
           <li>
@@ -71,8 +71,23 @@
         </ul>
       </div>
 
+      <!-- Classes: one page per class, /1-klass/ ... /11-klass/ -->
+      {% grade_page_links as footer_grades %}
+      {% if footer_grades %}
+      <div class="col-lg-3 col-md-4 footer-col-grades">
+        <div class="footer-grades-block">
+          <h2 class="footer-heading">Класстар</h2>
+          <nav class="footer-grades" aria-label="Класстар">
+            {% for number in footer_grades %}
+            <a href="{% url 'grade_page' number %}" title="{{ number }}-класс" aria-label="{{ number }}-класс">{{ number }}</a>
+            {% endfor %}
+          </nav>
+        </div>
+      </div>
+      {% endif %}
+
       <!-- Contact -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-4">
         <h2 class="footer-heading">Байланыш</h2>
         <div class="footer-contact-list">
           <a class="footer-contact-item" href="mailto:mathematicskgz@gmail.com">
@@ -95,20 +110,6 @@
 
     </div>
   </div>
-
-  {% grade_page_links as footer_grades %}
-  {% if footer_grades %}
-  <div class="footer-grades">
-    <div class="container">
-      <nav aria-label="Класстар">
-        <span class="footer-grades__label">Класстар:</span>
-        {% for number in footer_grades %}
-        <a href="{% url 'grade_page' number %}">{{ number }}-класс</a>
-        {% endfor %}
-      </nav>
-    </div>
-  </div>
-  {% endif %}
 
   <div class="footer-bottom">
     <div class="container">

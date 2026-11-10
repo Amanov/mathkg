@@ -151,7 +151,7 @@ class StaticPageSitemap(_NonEmptySitemap):
 
 
 class GradePageSitemap(_NonEmptySitemap):
-    """/1-klass/ ... /11-klass/: one list page per class."""
+    """/1-klass/ ... /12-klass/: one list page per class."""
     changefreq = 'weekly'
     priority = 0.9
 

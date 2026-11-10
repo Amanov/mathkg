@@ -31,13 +31,13 @@ class GradePageTests(TestCase):
         self.assertIn('"educationalLevel":"7-класс"', page)
 
     def test_unknown_classes_are_not_found(self):
-        for path in ('/0-klass/', '/12-klass/', '/99-klass/'):
+        for path in ('/0-klass/', '/13-klass/', '/99-klass/'):
             self.assertEqual(self.client.get(path).status_code, 404, path)
 
     def test_the_footer_links_every_class(self):
         page = self.client.get('/about/').content.decode()
-        self.assertIn('Класстар:', page)
-        for number in range(1, 12):
+        self.assertIn('Класстар', page)
+        for number in range(1, 13):
             self.assertIn(f'href="/{number}-klass/"', page)
 
     def test_the_footer_contacts_are_links(self):
@@ -50,8 +50,8 @@ class SitemapTests(TestCase):
     def test_class_pages_are_listed_and_home_is_not(self):
         body = self.client.get('/sitemap.xml', **SITEMAP_HOST).content.decode()
         self.assertIn('https://mathkg.com/1-klass/', body)
-        self.assertIn('https://mathkg.com/11-klass/', body)
-        self.assertNotIn('https://mathkg.com/12-klass/', body)
+        self.assertIn('https://mathkg.com/12-klass/', body)
+        self.assertNotIn('https://mathkg.com/13-klass/', body)
         self.assertNotIn('https://mathkg.com/home/', body)
         self.assertIn('<loc>https://mathkg.com/</loc>', body)
 

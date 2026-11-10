@@ -140,40 +140,50 @@ a.footer-contact-item:focus-visible span {
     text-align: center;
 }
 
-/* One row of class pages (/1-klass/ ... /11-klass/), above the copyright. */
-.footer-grades {
-    margin-top: 48px;
-    border-top: 1px solid rgba(255, 255, 255, .15);
-    padding: 18px 0;
-}
-
-.footer-grades nav {
+/* Class pages (/1-klass/ ... /11-klass/): a small grid of numbered tiles. */
+.footer-col-grades {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 6px 16px;
-    font-size: 0.95rem;
 }
 
-.footer-grades__label {
-    font-weight: 700;
+/* On wide screens the four columns take their own width and share the
+   free space equally, so «Класстар» has the same gap on both sides. */
+@media (min-width: 1200px) {
+    .footer-row {
+        justify-content: space-between;
+    }
+    .footer-row > [class*="col-"] {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .footer-row .footer-description {
+        max-width: 340px;
+    }
+}
+
+.footer-grades {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    gap: 10px;
 }
 
 .footer-grades a {
-    color: rgba(255, 255, 255, .78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-weight: 700;
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .footer-grades a:hover,
 .footer-grades a:focus-visible {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.footer-grades + .footer-bottom {
-    margin-top: 0;
+    background: #fff;
+    color: #3761c2;
 }
 
 .footer-bottom p {
@@ -199,11 +209,15 @@ a.footer-contact-item:focus-visible span {
     .footer-social {
         justify-content: center;
     }
+    .footer-grades {
+        justify-content: center;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .footer-links a,
     .footer-contact-item,
+    .footer-grades a,
     .footer-social a {
         transition: none;
     }
