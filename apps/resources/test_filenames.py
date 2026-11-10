@@ -37,7 +37,6 @@ class FilenameAliasTests(TestCase):
 class MissingContinuumPageTests(TestCase):
     def test_two_continuum_paths_open_with_a_grade_badge(self):
         cases = (
-            ('proportion', 'percentages-non-calculator', 'mixed', '6–7 кл.'),
             ('algebra', 'manipulation', 'manipulation-proofs', '8–9 кл.'),
         )
         for topic, sub, leaf, badge in cases:

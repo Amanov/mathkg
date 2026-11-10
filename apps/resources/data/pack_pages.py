@@ -1463,12 +1463,39 @@ FDPR = next(g['spec'] for g in GROUPS if g['spec']['page_key'] == 'pack_fdpr')
 # 2026-11-07 menu audit: empty menu pages that an existing pack already teaches.
 _MENU_EXTRA = {
     'syzyktuu': ['algebra-linear-var-both-sides-graphical-intersections', 'algebra-linear-var-both-sides-parallel-lines'],
-    'alg_bolchok': ['algebra-linear-rational', 'algebra-intro-manipulating-formulae'],
+    'alg_bolchok': ['algebra-linear-rational', 'algebra-intro-manipulating-formulae',
+                    'algebra-linear-var1side-noncalc-rational',
+                    'algebra-manipulation-expressions-rational-with-factorisation',
+                    'algebra-manipulation-notation-rational-with-factorisation',
+                    'algebra-manipulation-expressions-rational-difference-squares',
+                    'algebra-manipulation-notation-rational-difference-squares'],
     'daraja': ['algebra-linear-unknown-indices'],
     'kvadrattyk': ['algebra-quadratic-trial-improvement'],
     'funkciya': ['algebra-quadratic-iteration'],
-    'tuz_teskeri': ['direct-inverse-identifying-graphs'],
+    'tuz_teskeri': ['direct-inverse-identifying-graphs', 'graphs-identifying-proportional'],
     'tegerektoo': ['rounding-mixed'],
+    # 2026-11-10 link audit: empty class-page topics an existing pack teaches.
+    'daraja_mezgil': ['algebra-manipulation-notation-negative-fractional-indices',
+                      'algebra-manipulation-expressions-negative-fractional-indices'],
+    'tamga_kb': ['algebra-manipulation-notation-multiplying', 'algebra-manipulation-expressions-dividing',
+                 'algebra-manipulation-notation-squared-cubed', 'algebra-manipulation-expressions-squared-cubed',
+                 'algebra-manipulation-notation-mixed', 'algebra-manipulation-notation-mixed-all',
+                 'algebra-manipulation-expressions-mixed-all'],
+    'okshosh': ['algebra-manipulation-mixed-foundation'],
+    'kashaa': ['algebra-manipulation-mixed-higher', 'algebra-forming-expr-quadratic',
+               'algebra-manipulation-forming-quadratic'],
+    'eki_tarap': ['algebra-linear-var1side-noncalc-3step', 'algebra-linear-var1side-calc-mixed'],
+    'maani_eseptoo': ['algebra-substitution-with-calculator', 'algebra-substitution-with-indices-negative'],
+    'tegerek_sistema': ['algebra-graphs-abstract-circles-equation', 'algebra-graphs-abstract-circles-tangent',
+                        'algebra-simultaneous-linear-non-linear', 'algebra-simultaneous-linear-non-linear-algebraically',
+                        'algebra-simultaneous-linear-non-linear-graphically'],
+    'statistika': ['data-frequency-tables-grouped-data', 'data-frequency-tables-grouped-data-calculating-averages',
+                   'data-frequency-tables-grouped-data-creating-reading', 'data-representing-mixed-higher'],
+    'maalymat': ['data-representing-bar-charts-vertical-line-charts'],
+    'anketa': ['data-representing-bar-charts-dual', 'data-representing-bar-charts-with-two-way-tables'],
+    'venn': ['data-representing-venn-diagrams-sets-with-notation-igcse'],
+    'olchoo': ['area-volume-conversion-area', 'area-volume-conversion-volume', 'area-volume-conversion-mixed'],
+    'okshoshtuk': ['area-volume-conversion-scale-areas'],
 }
 for _group_spec in GROUPS:
     _group_spec['slugs'] = _group_spec['slugs'] + _MENU_EXTRA.get(_group_spec['spec']['page_key'][len('pack_'):], [])
@@ -1637,6 +1664,20 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('algebra', 'graphs-abstract', 'graphs-abstract-circles'), 'tegerek_sistema'),
     (('algebra', 'equations-simultaneous', 'linear-non-linear'), 'tegerek_sistema'),
     (('number', 'integers', 'roman-numerals'), 'rim'),
+    # 2026-11-10 link audit: empty class-page topics an existing pack teaches.
+    (('geometry', 'transformations', '2d-transformations'), 'vektor'),
+    (('geometry', 'vectors', 'vector-arithmetic'), 'vektor'),
+    (('geometry', 'vectors', 'vector-geometry'), 'vektor'),
+    (('probability', 'basic-probability', 'single-events'), 'yktymal'),
+    (('probability', 'combined-events', 'diagrams'), 'yktymal'),
+    (('probability', 'combined-events', 'tree-diagrams'), 'yktymal'),
+    (('statistics', 'averages-and-spread', 'basic-averages'), 'maalymat'),
+    (('statistics', 'averages-and-spread', 'frequency-tables'), 'anketa'),
+    (('statistics', 'data-representation', 'charts-and-graphs'), 'maalymat'),
+    (('statistics', 'data-representation', 'advanced-data-representation'), 'statistika'),
+    (('proportion', 'percentages-non-calculator', 'mixed'), 'payyz'),
+    (('number', 'fractions', 'fractions-calculator'), 'tegerektoo_kata'),
+    (('number', 'using-a-calculator', 'fractions'), 'tegerektoo_kata'),
 ]}
 
 NEW_FILES = [

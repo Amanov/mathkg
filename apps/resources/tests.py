@@ -585,7 +585,7 @@ class FreeDownloadTests(TestCase):
         self.assertNotIn('санау', frames)
 
         for name, heading in (
-            ('data_representing_venn_diagrams_sets_with_notation_igcse', '>Жыйындар белгилөө менен: татаал</h1>'),
+            ('data_representing_venn_diagrams_sets_with_notation_igcse', 'Жыйындар белгилөө менен: татаал'),
         ):
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(heading, html, name)
