@@ -1,0 +1,103 @@
+# Build context for Railway Nixpacks. Nixpacks honours this file, and the
+# generated image copies the context twice (`COPY . /app/.` and `COPY . /app`).
+#
+# Kept on purpose (do not exclude):
+#   manage.py, requirements.txt, runtime.txt, nixpacks.json
+#   config/                          settings, urls, wsgi
+#   apps/                            code, migrations, management commands,
+#                                    bundled_files/, generators/
+#   templates/                       rendered pages
+#   static/                          collectstatic input (STATICFILES_DIRS)
+#   media/resources/files/           downloadable pptx/pdf/xlsx
+#   media/resources/images/          public thumbnails
+#   media/payment_qr/, media/downloads/   uploaded media, when present
+
+# --- version control (not read at runtime; copy_missing_resource_files
+# clones the repo when the image has no .git) ---
+.git
+.gitattributes
+.gitignore
+
+# --- Python / test caches and local virtualenvs ---
+__pycache__
+*.py[cod]
+*$py.class
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.hypothesis
+.tox
+htmlcov
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.cache
+# Root and nested virtualenvs. Anchored names so a source file called env is kept.
+/venv
+/.venv
+/env
+/ENV
+**/venv
+**/.venv
+# Windows venv scripts committed at the repo root (python.exe, pip.exe, …)
+/Scripts
+
+# --- Node. The live Tarsia builder is Python in apps/resources/generators.
+# node_modules is only a local install for tools/tarsia. ---
+node_modules
+
+# --- editor, OS, agent tooling, secrets, logs ---
+.vscode
+.idea
+.DS_Store
+.DS_Store*
+*.swp
+*~
+Thumbs.db
+.agents
+.claude
+skills-lock.json
+.env
+.env.*
+*.log
+
+# --- local databases (production uses DATABASE_URL) ---
+db.sqlite3
+*.sqlite3
+*.sqlite
+*.sqlite3-journal
+
+# --- archives ---
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+
+# --- not used by the running site ---
+# static_cdn/ is an old collectstatic dump (admin, DRF, and a second copy of
+# media/). STATIC_ROOT is staticfiles/, rebuilt on start from static/ plus
+# installed apps. media_cdn/ is the same kind of leftover.
+/static_cdn
+/media_cdn
+# collectstatic output, produced by the start command
+/staticfiles
+
+# Repo notes and the offline Tarsia build scripts. Runtime code lives in
+# apps/resources/generators, not tools/.
+/docs
+/tools
+/CLAUDE.md
+/README.md
+
+# Original worksheet folders from before files were imported into the
+# resource library. Downloads open media/resources/files/ (and
+# apps/resources/bundled_files/). Public /media/ only serves
+# resources/images/ and payment_qr/. Nothing in settings, views,
+# migrations, or templates reads these directories.
+/media/sandar
+/media/resources/EkiOrunduuOnduktar
+/media/resources/BirOrunduuOnduktar
+/media/resources/BanktikEseptoolor
