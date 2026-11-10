@@ -44,4 +44,6 @@ class MissingContinuumPageTests(TestCase):
             resp = self.client.get(url)
             self.assertEqual(resp.status_code, 200, url)
             self.assertContains(resp, f'topic-page__grade"><span>{badge}</span>')
-            self.assertContains(resp, 'даярдалууда')
+            # The algebra-proof pack fills it now (it used to say «даярдалууда»).
+            self.assertNotContains(resp, 'даярдалууда')
+            self.assertContains(resp, '8-klass-algebra-dalildoo-ish-barak.webp')

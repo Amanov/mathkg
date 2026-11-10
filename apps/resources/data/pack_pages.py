@@ -452,6 +452,30 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели: дюйм, фут, миля, фунт, галлон; м² жана см², гектар жана сотых, м³ жана литр; жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: узундук × k, аянт × k² же көлөм × k³.',
     },
+    'koordinat': {
+        'prefix': '9-klass-koordinattar-metodu-', 'grade': 9, 'subtopic': 'Координаттар методу: перпендикуляр жана катыш',
+        'sabak': '26 слайд: «Сүлүктүдөгү мектеп паркы» окуясы, чакмак кагазга жип жана кнопка, жипти үчкө бүктөө, бурчтук менен перпендикуляр.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: аралык, ортоңку чекит, кесиндини катышта бөлүү, жантаюу, параллель жана перпендикуляр түз сызыктар; жооп ачкычы менен.',
+        'karta-sorttoo': '12 жуп түз сызык: параллель, перпендикуляр, жөн эле кесилишет же бир эле түз сызык.',
+    },
+    'toltuu': {
+        'prefix': '8-klass-toltuu-grafikteri-', 'grade': 8, 'subtopic': 'Толтуруу графиктери: көлөм-убакыт жана тереңдик-убакыт',
+        'sabak': '26 слайд: «Сары-Таштагы суу чогултуу» окуясы, кесилген бөтөлкөгө сызгыч, 100 мл ден куюу, ичине тар стакан коюу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: V–t жана h–t графиктери, литр ÷ аянт, эки бөлүктүү бак, ийри идиштер, агып кетүү; жооп ачкычы менен.',
+        'karta-sorttoo': '12 идиш: түз сызык, ийри жатыгыраак, ийри тигирээк же сынык сызык.',
+    },
+    'tandoo': {
+        'prefix': '7-klass-maalymat-tandoo-', 'grade': 7, 'subtopic': 'Маалымат: түрлөрү, тандоо жана курама диаграммалар',
+        'sabak': '26 слайд: «Таш-Көмүрдөгү ашкана» окуясы, стикерлерден курама тилке, класс журналынан ар бир 3-окуучуну тандоо.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: сапаттык жана сандык маалымат, тандоодон болжол, курама тилкелүү диаграмма, пайыз менен салыштыруу; жооп ачкычы менен.',
+        'karta-sorttoo': '12 тандоо: жакшы, өтө кичине, бир жактуу же бүт калк.',
+    },
+    'alg_dalil': {
+        'prefix': '8-klass-algebra-dalildoo-', 'grade': 8, 'subtopic': 'Алгебра: үч кашаа, далилдөө, сынап-тактоо',
+        'sabak': '26 слайд: «Нарындагы куту цехи» окуясы, картон плиткалардан тик бурчтук, таштар менен далил, кутунун көлөмүн сынап-тактоо.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: эки жана үч кашаа, x = 10 менен текшерүү, жуп жана так сандар менен далил, сынап-тактоо; жооп ачкычы менен.',
+        'karta-sorttoo': '12 туюнтма: дайыма жуп, дайыма так, кээде жуп же дайыма 3кө эселүү.',
+    },
     'tegerektoo_kata': {
         'prefix': '8-klass-tegerektoo-kata-', 'grade': 8, 'subtopic': 'Жакындатып эсептөө: маанилүү цифралар, ката аралыктары жана калькулятор',
         'sabak': '26 слайд: «Кадамжайдагы китеп текчелери» окуясы, сызгыч жана ар 10 смде түйүнү бар жип, сан огундагы чектер, калькулятордун баскычтары.',
@@ -1431,6 +1455,20 @@ GROUPS = [
         'ratio-quantities-reverse', 'compound-pressure-force-area',
     ]),
     _group('rim', 'Рим сандарын окуу жана жазуу', 'Сандар › Бүтүн сандар', ['rim'], []),
+    _group('koordinat', 'Координаттар методу: перпендикуляр жана катыш', 'Алгебра › Графиктер', ['koordinat'], [
+        'algebra-graphs-abstract-coordinates-segments-ratio', 'algebra-graphs-abstract-linear-calc-parallel-perpendicular',
+        'algebra-graphs-abstract-linear-calc-perpendicular', 'geometry-coordinates-line-segments-ratio',
+    ]),
+    _group('toltuu', 'Толтуруу графиктери: көлөм-убакыт жана тереңдик-убакыт', 'Алгебра › Турмуштук графиктер', ['toltuu'], [
+        'algebra-graphs-real-life-volume-time', 'algebra-graphs-real-life-depth-time', 'algebra-graphs-real-life-mixed',
+        'graphs-volume-time', 'graphs-depth-time', 'graphs-mixed',
+    ]),
+    _group('tandoo', 'Маалымат: түрлөрү, тандоо жана курама диаграммалар', 'Дата', ['tandoo'], [
+        'data-collecting-types-of-data', 'data-representing-bar-charts-composite',
+    ]),
+    _group('alg_dalil', 'Алгебра: үч кашаа, далилдөө, сынап-тактоо', 'Алгебра › Өзгөртүп түзүү', ['alg_dalil'], [
+        'algebra-manipulation-expand-double-triple-triple', 'algebra-inequalities-trial-improvement',
+    ]),
     _group('katysh_all', 'Катыш: бөлүү, 1 : n түрү жана бириктирүү', 'Пропорция › Катыш', ['katysh', 'katysh_1n'], []),
 ]
 
@@ -1664,6 +1702,9 @@ PATH_PAGES = {path: _BY_KEY[key] for path, key in [
     (('algebra', 'graphs-abstract', 'graphs-abstract-circles'), 'tegerek_sistema'),
     (('algebra', 'equations-simultaneous', 'linear-non-linear'), 'tegerek_sistema'),
     (('number', 'integers', 'roman-numerals'), 'rim'),
+    # 2026-11-10: four new packs for the last empty class-page topics.
+    (('algebra', 'manipulation', 'manipulation-proofs'), 'alg_dalil'),
+    (('statistics', 'data-collection', 'sampling'), 'tandoo'),
     # 2026-11-10 link audit: empty class-page topics an existing pack teaches.
     (('geometry', 'transformations', '2d-transformations'), 'vektor'),
     (('geometry', 'vectors', 'vector-arithmetic'), 'vektor'),
@@ -1799,6 +1840,7 @@ SPLIT_BADGES = {
     ('geometry', 'volume-surface-area', 'prism'): '7–10 кл.',
     ('statistics', 'representing', 'cumulative-frequency-graphs'): '9-класс',
     ('statistics', 'frequency-tables', 'grouped-data'): '8–9 кл.',
+    ('algebra', 'manipulation', 'manipulation-proofs'): '8–9 кл.',
     'algebra-functions-evaluating-iteration': '11-класс',
     ('algebra', 'graphs-abstract', 'graphs-abstract-differentiation'): '10–11 кл.',
 }
