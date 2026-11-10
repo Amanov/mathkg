@@ -12,10 +12,12 @@ class EmptyPagesTests(TestCase):
         cache.delete(EMPTY_CACHE_KEY)
 
     def test_a_placeholder_page_without_a_pack_is_left_out(self):
-        # /algebra-forming-expr-quadratic/ only says «даярдалууда».
-        self.assertIn('/algebra-forming-expr-quadratic/', empty_page_urls())
+        # Every menu page now has a pack, so check that no empty page reaches the search.
+        empty = empty_page_urls()
         urls = {row['url'] for grade in range(1, 13) for row in pages_for_search(grade, '')}
-        self.assertNotIn('/algebra-forming-expr-quadratic/', urls)
+        self.assertFalse(urls & empty)
+        # /graphs-depth-time/ used to say «даярдалууда»; the filling-graphs pack fills it now.
+        self.assertNotIn('/graphs-depth-time/', empty)
         # A page a pack fills stays.
         self.assertIn('/subtracting-1-digit/', urls)
 

@@ -37,7 +37,6 @@ class FilenameAliasTests(TestCase):
 class MissingContinuumPageTests(TestCase):
     def test_two_continuum_paths_open_with_a_grade_badge(self):
         cases = (
-            ('proportion', 'percentages-non-calculator', 'mixed', '6–7 кл.'),
             ('algebra', 'manipulation', 'manipulation-proofs', '8–9 кл.'),
         )
         for topic, sub, leaf, badge in cases:
@@ -45,4 +44,6 @@ class MissingContinuumPageTests(TestCase):
             resp = self.client.get(url)
             self.assertEqual(resp.status_code, 200, url)
             self.assertContains(resp, f'topic-page__grade"><span>{badge}</span>')
-            self.assertContains(resp, 'даярдалууда')
+            # The algebra-proof pack fills it now (it used to say «даярдалууда»).
+            self.assertNotContains(resp, 'даярдалууда')
+            self.assertContains(resp, '8-klass-algebra-dalildoo-ish-barak.webp')

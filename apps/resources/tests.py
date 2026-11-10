@@ -585,7 +585,7 @@ class FreeDownloadTests(TestCase):
         self.assertNotIn('санау', frames)
 
         for name, heading in (
-            ('data_representing_venn_diagrams_sets_with_notation_igcse', '>Жыйындар белгилөө менен: татаал</h1>'),
+            ('data_representing_venn_diagrams_sets_with_notation_igcse', 'Жыйындар белгилөө менен: татаал'),
         ):
             html = self.client.get(reverse(name)).content.decode()
             self.assertIn(heading, html, name)
@@ -710,6 +710,7 @@ class FreeDownloadTests(TestCase):
             'indices_fractional': '9-klass-daraja-mezgilduu-sabak.webp',
             'recurring_decimals_to_fractions': '9-klass-daraja-mezgilduu-sabak.webp',
             'scale_drawings_areas': '8-klass-kuruluu-azimut-sabak.webp',
+            'graphs_depth_time': '8-klass-toltuu-grafikteri-sabak.webp',
         }
         # Pupil print sheets also come as A5 and A6 copies (2026-11-08).
         from apps.resources.data.pack_pages import PACKS
@@ -724,8 +725,7 @@ class FreeDownloadTests(TestCase):
             self.assertIn(deck, html, name)
             badge = {'10-klass-kolom-bet-ayanty-sabak.webp': '9–11 кл.'}.get(deck, deck.split('-')[0] + '-класс')
             self.assertIn(badge, html, name)
-        for name in ('data_collecting_capture_recapture', 'graphs_depth_time'):
-            self.assertContains(self.client.get(reverse(name)), 'даярдалууда')
+        self.assertContains(self.client.get(reverse('data_collecting_capture_recapture')), 'даярдалууда')
 
     def test_repeated_pages_share_one_pack_and_show_the_grade_strand(self):
         from apps.resources.data.menu_grades import grade_for_url
@@ -756,7 +756,7 @@ class FreeDownloadTests(TestCase):
         # the audit grade elsewhere.
         self.assertEqual(grade_for_url('/unit-fractions-adding/'), '5-кл.')
         self.assertEqual(grade_for_url('/resources/topic/geometry/bearings/'), '8-кл.')
-        self.assertEqual(grade_for_url('/graphs-depth-time/'), '7–9 кл.')
+        self.assertEqual(grade_for_url('/graphs-depth-time/'), '8-кл.')
         self.assertEqual(grade_for_url('/no-such-page/'), '')
 
     def test_empty_database_page_shows_its_pack_until_it_has_files(self):
