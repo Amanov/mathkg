@@ -86,6 +86,25 @@ def topic_detail(request, topic_slug):
     })
 
 
+def _section_children(request):
+    """A menu section with no materials of its own (e.g. «Теңдемелер:
+    сызыктуу») lists the topics under it, so a link to it never lands on
+    an empty «даярдалууда» page."""
+    from apps.resources.models import MenuItem
+    from apps.resources.views.pages import _menu_item_resolved_url
+    for item in MenuItem.objects.filter(children__isnull=False).distinct():
+        if _menu_item_resolved_url(item) != request.path:
+            continue
+        links = []
+        for child in item.children.all().order_by('order'):
+            url = _menu_item_resolved_url(child)
+            if url and url != request.path:
+                links.append({'title': child.title, 'url': url})
+        if links:
+            return links
+    return []
+
+
 def _pack_page(request, key, title, sections):
     """An empty database page that a grade pack teaches shows that pack in
     the topic layout (see data/pack_pages.py PATH_PAGES)."""
@@ -114,6 +133,7 @@ def subtopic_detail(request, topic_slug, subtopic_slug):
         'subtopic': subtopic,
         'sections': sections,
         'grade_badge': grade_badge,
+        'section_children': [] if sections else _section_children(request),
         'test_grade': single_grade_number(grade_badge),
     })
 
@@ -140,5 +160,6 @@ def subsubtopic_detail(request, topic_slug, subtopic_slug, subsubtopic_slug):
         'subsubtopic': subsubtopic,
         'sections': sections,
         'grade_badge': grade_badge,
+        'section_children': [] if sections else _section_children(request),
         'test_grade': single_grade_number(grade_badge),
     })

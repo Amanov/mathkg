@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="{% static 'css/topic-page.css' %}">
 
 <style>
+.section-children__title{ font-size:1.35rem; font-weight:700; margin:0 0 14px; }
+.section-children__list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; }
+.section-children__list a{ display:block; padding:12px 16px; background:var(--surface, #fff); border:1px solid var(--border-subtle, #ddd); border-radius:var(--radius-md, 10px); color:var(--text, #1f2937); font-weight:600; text-decoration:none; transition:border-color .15s; }
+.section-children__list a:hover, .section-children__list a:focus-visible{ border-color:var(--color-border-accent, #2285c3); }
 
 .mainshadow{
     box-shadow:0 0 20px rgb(13,167,255);
@@ -213,7 +217,18 @@
 
         {% empty %}
 
+            {% if section_children %}
+            <div class="section-children">
+                <h2 class="section-children__title">Бул бөлүмдөгү темалар</h2>
+                <ul class="section-children__list">
+                    {% for link in section_children %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% else %}
             {% include 'components/content_placeholder.html' with placeholder_intro='Бул бөлүм үчүн материалдар даярдалууда.' %}
+            {% endif %}
 
         {% endfor %}
 
