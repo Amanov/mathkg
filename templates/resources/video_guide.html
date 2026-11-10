@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load seo_tags %}
+
+{% block seo %}{% seo_page "video_guide" %}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/video-guide.css' %}">
+<div class="video-page">
+  <h1 class="text-center">Сайтты 2 мүнөттө үйрөнүңүз</h1>
+  <p class="video-page__lead">
+    Видеодо MathKG сайтында катталуудан тест түзүүгө чейинки бардык кадамдар көрсөтүлгөн.
+  </p>
+
+  {% include 'snippets/video_guide_player.html' %}
+
+  <div class="video-page__below">
+    {% include 'snippets/video_guide_steps.html' %}
+    <div class="video-page__actions">
+      {% if not user.is_authenticated %}
+      <a class="btn btn-primary" href="{% url 'register' %}">Катталуу: алгачкы 7 күн акысыз</a>
+      {% endif %}
+      <a class="video-guide__link" href="{% static 'video/mathkg-onboarding.mp4' %}" download>Видеону жүктөп алуу (MP4, 5 МБ)</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

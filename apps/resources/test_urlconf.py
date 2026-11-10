@@ -35,6 +35,7 @@ SEO_ROUTES = {
     ('', 'test-tuzuu/<int:pk>/pdf/', 'test_maker_pdf'),
     ('', 'test-tuzuu/<int:pk>/', 'test_maker_result'),
     ('', '<int:grade>-klass/', 'grade_page'),
+    ('', 'video-koldonmo/', 'video_guide'),
 }
 
 # Admin changelist routes for models registered after the snapshot.

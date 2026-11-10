@@ -66,6 +66,12 @@
     line-height: 1.45;
 }
 
+.tour-tip__link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 .tour-tip__row {
     display: flex;
     align-items: center;

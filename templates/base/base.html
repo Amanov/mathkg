@@ -61,8 +61,8 @@
     {# ── Your site-wide CSS ──────────────────────────────────────────────── #}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {# Tour tips are built by tour.js later: not needed for the first paint. #}
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{% static 'css/tour.css' %}">
-    <noscript><link rel="stylesheet" href="{% static 'css/tour.css' %}"></noscript>
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{% static 'css/tour.css' %}?v=20261110a">
+    <noscript><link rel="stylesheet" href="{% static 'css/tour.css' %}?v=20261110a"></noscript>
     <meta name="csrf-token" content="{{ csrf_token }}">
     <link rel="stylesheet" href="{% static 'css/page-reaction.css' %}?v=20261103a">
     <!-- <link rel="stylesheet" href="{% static 'css/navbar.css' %}"> -->
@@ -169,7 +169,7 @@
     {#   <script>/* your page code */</script>                              #}
     {# {% endblock %}                                                        #}
     {% block extra_scripts %}
-    <script src="{% static 'js/tour.js' %}" defer></script>
+    <script src="{% static 'js/tour.js' %}?v=20261110a" defer></script>
     <script src="{% static 'js/header.js' %}?v=20261102a" defer></script>
     <script src="{% static 'js/page-reaction.js' %}?v=20261103a" defer></script>
     <script src="{% static 'js/click-tracking.js' %}" defer></script>

@@ -58,6 +58,10 @@ def about_view(request):
     return render(request, 'resources/about.html')
 
 
+def video_guide_view(request):
+    return render(request, 'resources/video_guide.html')
+
+
 def pricing_view(request):
     plan_names = {
         SubscriptionRequest.PLAN_THREE_MONTHS: '3 ай',
