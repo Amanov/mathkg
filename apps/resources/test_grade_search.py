@@ -51,7 +51,7 @@ class ParseGradeQueryTests(SimpleTestCase):
         self.assertEqual(grades_from_label('1–5 кл.'), frozenset({1, 2, 3, 4, 5}))
 
 
-class GradeCatalogTests(SimpleTestCase):
+class GradeCatalogTests(TestCase):
     def test_most_topic_pages_already_have_a_grade(self):
         pages = catalog()
         self.assertGreater(len(pages), 500)
