@@ -37,8 +37,13 @@
     {# ── Google Fonts ───────────────────────────────────────────────────── #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Monda&family=Russo+One&display=swap"
-          rel="stylesheet">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    {# Loaded without blocking the first paint: text shows in a system font, #}
+    {# then swaps (display=swap). #}
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Monda&family=Russo+One&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Monda&family=Russo+One&display=swap"></noscript>
 
     {# ── Bootstrap CSS — ONE version, ONE time, here in head ────────────── #}
     {# We use 5.3.3 everywhere. Remove the Bootstrap CSS from header.html.  #}
@@ -50,9 +55,11 @@
 
     {# ── Font Awesome — ONE version, ONE time ────────────────────────────── #}
     {# Remove ALL Font Awesome imports from header.html after adding this.  #}
-    <link rel="stylesheet"
+    {# Icons only: loaded without blocking the first paint. #}
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           crossorigin="anonymous">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous"></noscript>
 
     {# ── Your site-wide CSS ──────────────────────────────────────────────── #}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
