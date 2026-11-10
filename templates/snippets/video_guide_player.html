@@ -1,0 +1,12 @@
+{% load static %}
+{# The 2-minute site guide. preload="none": nothing is downloaded until the #}
+{# teacher presses play, so the page stays light on slow connections.      #}
+<div class="video-guide__frame">
+  <video class="video-guide__video" controls preload="none" playsinline
+         width="1280" height="720"
+         poster="{% static 'video/mathkg-onboarding-poster.jpg' %}"
+         aria-label="MathKG сайтын колдонуу боюнча видео колдонмо">
+    <source src="{% static 'video/mathkg-onboarding.mp4' %}" type="video/mp4">
+    <a href="{% static 'video/mathkg-onboarding.mp4' %}">Видеону жүктөп алуу</a>
+  </video>
+</div>

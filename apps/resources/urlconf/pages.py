@@ -10,6 +10,7 @@ from apps.resources.views import (
     track_click_view,
     news_list_view,
     about_view,
+    video_guide_view,
     topics_tree_view,
     menu_fragment_view,
     search_view,
@@ -38,6 +39,7 @@ urlpatterns = [
     # Pages
     path('news/', news_list_view, name='news_list'),
     path('about/', about_view, name='about'),
+    path('video-koldonmo/', video_guide_view, name='video_guide'),
     path('topics/', topics_tree_view, name='topics_tree'),
     path('menu/', menu_fragment_view, name='menu_fragment'),
     path('pricing/', pricing_view, name='pricing'),

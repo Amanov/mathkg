@@ -30,6 +30,11 @@
                 selector: '[data-tour="feedback"]',
                 title: 'Пикир',
                 body: 'Барактын астындагы жүздөр менен баа калтырыңыз.'
+            },
+            {
+                title: 'Видео колдонмо',
+                body: 'Сайттын бардык кадамдарын 2 мүнөттүк видеодон көрүңүз.',
+                link: {href: '/video-koldonmo/', text: 'Видеону көрүү'}
             }
         ],
         test: [
@@ -186,7 +191,16 @@
         var node = ensureTip();
         var step = state.steps[state.index];
         node.querySelector('.tour-tip__title').textContent = step.title;
-        node.querySelector('.tour-tip__body').textContent = step.body;
+        var bodyNode = node.querySelector('.tour-tip__body');
+        bodyNode.textContent = step.body;
+        if (step.link) {
+            var a = document.createElement('a');
+            a.className = 'tour-tip__link';
+            a.href = step.link.href;
+            a.textContent = step.link.text;
+            bodyNode.appendChild(document.createTextNode(' '));
+            bodyNode.appendChild(a);
+        }
         node.querySelector('.tour-tip__count').textContent = (state.index + 1) + ' / ' + state.steps.length;
         var back = node.querySelector('.tour-tip__back');
         back.hidden = state.index === 0;

@@ -57,7 +57,7 @@ from .tarsia_builder import tarsia_builder_view, tarsia_builder_export_view
 from .topics import topic_view, topic_detail, subtopic_detail, subsubtopic_detail
 
 from .pages import (
-    news_list_view, about_view, topics_tree_view, menu_fragment_view,
+    news_list_view, about_view, video_guide_view, topics_tree_view, menu_fragment_view,
     search_view, search_suggest_view, pricing_view, grade_page_view,
 )
 
