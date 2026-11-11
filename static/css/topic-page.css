@@ -208,6 +208,9 @@
     line-height: 1.35;
 }
 .topic-row__files .file-pill { display: block; box-sizing: border-box; width: 136px; min-width: 0; text-align: center; }
+/* Longer labels («Жазылууну жаңыртуу») grow the button instead of spilling
+   out of it; they wrap only if even the column is too narrow. */
+.topic-row__files > .file-pill { width: auto; min-width: 136px; max-width: 100%; white-space: normal; }
 /* Every button in the column has the same width and lines up; the «Акысыз»
    tag hangs to the right of its button instead of pushing it aside. */
 .topic-row__files .free-download { position: relative; display: block; }

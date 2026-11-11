@@ -147,7 +147,10 @@ def pages_for_search(grade, text):
     section, or path contains ``text`` (empty text keeps every match)."""
     needle = (text or '').strip().lower()
     rows = []
+    empty = empty_page_urls()
     for page in catalog():
+        if page['url'] in empty:
+            continue
         if grade is not None and grade not in page['grades']:
             continue
         if needle and needle not in page['haystack']:
@@ -157,11 +160,95 @@ def pages_for_search(grade, text):
     return rows
 
 
+EMPTY_CACHE_KEY = 'grade_search:empty_page_urls'
+EMPTY_CACHE_SECONDS = 600
+
+
+def empty_page_urls():
+    """Catalog pages that would only show «материалдар даярдалууда» (or a
+    404), so class pages and search never link to them.
+
+    A flat lesson page is empty when no grade pack fills it. A database
+    topic page is empty when it has no active resource, no pack and is not
+    a menu section (a section lists its topics instead). Cached for ten
+    minutes: a file uploaded in the admin shows up after that.
+    """
+    from django.core.cache import cache
+
+    urls = cache.get(EMPTY_CACHE_KEY)
+    if urls is None:
+        urls = _find_empty_pages()
+        cache.set(EMPTY_CACHE_KEY, urls, EMPTY_CACHE_SECONDS)
+    return urls
+
+
+def _find_empty_pages():
+    from django.urls import Resolver404, resolve
+
+    from apps.resources.data.pack_pages import PATH_PAGES, page_for
+    from apps.resources.models import MenuItem, Resource, SubSubtopic, Subtopic
+    from apps.resources.views.onduktar_placeholders import (
+        OPERATION_PLACEHOLDER_TITLES,
+        operation_placeholder_view,
+    )
+    from apps.resources.views.pages import _menu_item_resolved_url
+
+    filled = set()
+    for topic, subtopic, subsub in Resource.objects.filter(
+        is_active=True, subtopic__isnull=False,
+    ).values_list('topic__slug', 'subtopic__slug', 'subsubtopic__slug').distinct():
+        parts = [topic, subtopic] + ([subsub] if subsub else [])
+        filled.add('/resources/topic/' + '/'.join(parts) + '/')
+    existing = {
+        f'/resources/topic/{topic}/{subtopic}/'
+        for topic, subtopic in Subtopic.objects.values_list('topic__slug', 'slug')
+    } | {
+        f'/resources/topic/{topic}/{subtopic}/{subsub}/'
+        for topic, subtopic, subsub in SubSubtopic.objects.values_list(
+            'subtopic__topic__slug', 'subtopic__slug', 'slug',
+        )
+    }
+    sections = {
+        norm_url(_menu_item_resolved_url(item))
+        for item in MenuItem.objects.filter(children__isnull=False).distinct()
+    }
+
+    empty = set()
+    for page in catalog():
+        url = page['url']
+        if url.startswith('/resources/topic/'):
+            parts = url.strip('/').split('/')[2:]
+            if len(parts) < 2:
+                continue
+            if url not in existing:
+                empty.add(url)
+                continue
+            if url in filled or url in sections:
+                continue
+            if tuple(parts) in PATH_PAGES:
+                continue
+            empty.add(url)
+            continue
+        try:
+            match = resolve(url)
+        except Resolver404:
+            empty.add(url)
+            continue
+        if match.func is operation_placeholder_view:
+            slug = match.kwargs.get('operation_slug', '')
+            if page_for(slug, OPERATION_PLACEHOLDER_TITLES.get(slug, '')) is None:
+                empty.add(url)
+    return frozenset(empty)
+
+
 def grade_counts(text):
     """How many catalog pages each class has, optionally filtered by text."""
     needle = (text or '').strip().lower()
     counts = defaultdict(int)
+    empty = empty_page_urls()
     for page in catalog():
+        if page['url'] in empty:
+            continue
         if needle and needle not in page['haystack']:
             continue
         for number in page['grades']:
@@ -170,11 +257,11 @@ def grade_counts(text):
 
 
 # The school classes that get a page of their own at /N-klass/.
-GRADE_PAGE_RANGE = range(1, 12)
+GRADE_PAGE_RANGE = range(1, 13)
 
 
 def grade_page_numbers():
-    """Classes 1 to 11 that have at least one topic page, in order."""
+    """Classes 1 to 12 that have at least one topic page, in order."""
     counts = grade_counts('')
     return [number for number in GRADE_PAGE_RANGE if counts.get(number)]
 
