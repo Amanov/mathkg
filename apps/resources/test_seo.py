@@ -138,7 +138,13 @@ class RobotsAndSitemapTests(TestCase):
         self.assertEqual(response.status_code, 200)
         generated = set(sitemap_paths(response))
         # /home/ is the same page as "/", so only "/" is listed.
-        missing = sorted(set(crawled) - generated - {'/home/'})
+        # A copy of a pack page names the pack's main page as canonical,
+        # so only the main page is listed (data/pack_links.py).
+        from apps.resources.sitemaps import _pack_copy
+        missing = sorted(
+            path for path in set(crawled) - generated - {'/home/'}
+            if not _pack_copy(path)
+        )
         extra = sorted(generated - set(crawled))
         self.assertEqual(
             missing,
@@ -152,7 +158,9 @@ class RobotsAndSitemapTests(TestCase):
             80,
             'Sitemap grew past the crawled public set:\n' + '\n'.join(extra),
         )
-        self.assertGreater(len(generated), 1000)
+        # About 700 crawled URLs are copies of a pack's main page, so the
+        # sitemap is much shorter than the crawl.
+        self.assertGreater(len(generated), 250)
         self.assertIn('/resources/topic/algebra/equations-linear/', generated)
         self.assertIn(
             '/resources/topic/algebra/equations-linear/forming/',

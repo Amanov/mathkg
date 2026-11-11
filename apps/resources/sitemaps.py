@@ -135,11 +135,27 @@ class _NonEmptySitemap(Sitemap):
         return super().get_urls(page=page, site=site, protocol=protocol)
 
 
+def _pack_copy(path, latest_file=None):
+    """A menu page that shows a pack whose main page is another URL. Its
+    canonical tag names that page, so only the main page is listed
+    (data/pack_links.py). A database page with files of its own is not a
+    pack copy."""
+    from apps.resources.data.pack_links import duplicate_paths, main_path
+    from apps.resources.data.pack_pages import PATH_PAGES
+    if path in duplicate_paths():
+        return True
+    if latest_file is not None:
+        return False
+    key = tuple(part for part in path.split('/') if part)[2:]
+    spec = PATH_PAGES.get(key)
+    return spec is not None and main_path(spec['page_key']) != path
+
+
 class StaticPageSitemap(_NonEmptySitemap):
     changefreq = 'weekly'
 
     def items(self):
-        return list(iter_public_static_paths())
+        return [path for path in iter_public_static_paths() if not _pack_copy(path)]
 
     def location(self, item):
         return item
@@ -191,11 +207,12 @@ class SubtopicSitemap(_LatestFileSitemap):
     priority = 0.8
 
     def items(self):
-        return (
+        rows = (
             Subtopic.objects.select_related('topic')
             .annotate(latest_file=_LATEST_FILE)
             .order_by('topic__slug', 'slug')
         )
+        return [row for row in rows if not _pack_copy(row.get_absolute_url(), row.latest_file)]
 
 
 class SubSubtopicSitemap(_LatestFileSitemap):
@@ -203,11 +220,12 @@ class SubSubtopicSitemap(_LatestFileSitemap):
     priority = 0.8
 
     def items(self):
-        return (
+        rows = (
             SubSubtopic.objects.select_related('subtopic__topic')
             .annotate(latest_file=_LATEST_FILE)
             .order_by('subtopic__topic__slug', 'subtopic__slug', 'slug')
         )
+        return [row for row in rows if not _pack_copy(row.get_absolute_url(), row.latest_file)]
 
 
 SITEMAPS = {

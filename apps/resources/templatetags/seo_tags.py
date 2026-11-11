@@ -30,13 +30,15 @@ def seo_page(context, key):
 
 
 @register.simple_tag(takes_context=True)
-def seo_topic(context, name, grade=''):
-    """A lesson or topic page. Grade is the stored badge, or the continuum."""
+def seo_topic(context, name, grade='', canonical_path='', breadcrumb=None):
+    """A lesson or topic page. Grade is the stored badge, or the continuum.
+    Pack pages also pass their main URL and their linked path."""
     grade = grade_for_request(context.get('request'), grade)
     title = topic_document_title(name, grade)
     description = topic_meta_description(name, grade)
     return apply_seo(
         context, title, description, 'topic', name=name or title, grade=grade,
+        canonical_path=canonical_path, breadcrumb=breadcrumb,
     )
 
 

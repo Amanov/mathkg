@@ -484,9 +484,31 @@ def head_tags(title, description, canonical, image, jsonld, keywords=''):
     )
 
 
-def apply_seo(context, title, description, kind, name='', grade=''):
+def breadcrumb_jsonld(trail, current_url):
+    """BreadcrumbList for [(name, path or '')]; the last step is this page."""
+    items = []
+    for position, (name, path) in enumerate(trail, start=1):
+        url = absolute_url(path) if path else current_url
+        items.append({
+            '@type': 'ListItem',
+            'position': position,
+            'name': clean(name),
+            'item': url,
+        })
+    return json_ld({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': items,
+    })
+
+
+def apply_seo(context, title, description, kind, name='', grade='',
+              canonical_path='', breadcrumb=None):
+    """``canonical_path`` names the main copy of a page shown on several
+    URLs (pack pages, see data/pack_links.py). ``breadcrumb`` adds a
+    BreadcrumbList next to the page's own JSON-LD."""
     request = context['request']
-    canonical = canonical_url(request)
+    canonical = absolute_url(canonical_path) if canonical_path else canonical_url(request)
     image = absolute_url(static('img/logo.jpg'))
     keywords = ''
     if kind == 'home':
@@ -516,4 +538,6 @@ def apply_seo(context, title, description, kind, name='', grade=''):
         keywords = topic_keywords(kyrgyz_name)
     else:
         jsonld = ''
+    if breadcrumb:
+        jsonld = mark_safe(jsonld + '\n' + breadcrumb_jsonld(breadcrumb, absolute_url(request.path)))
     return head_tags(title, description, canonical, image, jsonld, keywords)

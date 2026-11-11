@@ -824,6 +824,12 @@ def build_topic_page(page, resources, user):
         'topic_grade': single_grade_number(page.get('grade_badge') or ''),
         # The same topic in the grades before and after (data/spiral.py).
         'strands': page.get('strands', []),
+        # Pack pages: main URL, linked path above the title, and the other
+        # topics of the same class (data/pack_links.py).
+        'canonical_path': page.get('canonical_path', ''),
+        'breadcrumb': page.get('breadcrumb', []),
+        'grade_topics': page.get('grade_topics', []),
+        'grade_number': page.get('grade_number'),
         # Grade tabs (empty for pages without grade-level items).
         'grades': grades,
         'model_label': page.get('model_label', '5E + 3C жана Блум'),
