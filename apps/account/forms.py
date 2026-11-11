@@ -117,8 +117,11 @@ class RegistrationForm(UserCreationForm):
         fields = ('email', 'username', 'password1', 'password2', 'date_of_birth')
 
     def clean_email(self):
+        # Case-insensitive, same as the mail host: Aida@gmail.com and
+        # aida@gmail.com are one inbox. An exact match let the second
+        # spelling register another account.
         email = self.cleaned_data['email']
-        if Account.objects.filter(email=email).exists():
+        if Account.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError('Бул электрондук почта мурунтан катталган.')
         return email
 
@@ -221,7 +224,7 @@ class AccountUpdateForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if Account.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+        if Account.objects.exclude(pk=self.instance.pk).filter(email__iexact=email).exists():
             raise forms.ValidationError('Электрондук почта "%s" башка бирөө тарабынан колдонулуп жатат.' % email)
         return email
 
