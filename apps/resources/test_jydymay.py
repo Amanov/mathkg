@@ -20,7 +20,7 @@ class JydymayFilesTests(SimpleTestCase):
 
     def test_every_game_deck_says_jydymay(self):
         decks = sorted(BUNDLED.glob('*-oyun-jydymay*.pptx'))
-        self.assertEqual(len(decks), 95)
+        self.assertEqual(len(decks), 99)
         for deck in decks:
             with zipfile.ZipFile(deck) as archive:
                 text = b''.join(

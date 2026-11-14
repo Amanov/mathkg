@@ -452,6 +452,30 @@ PACKS = {
         'ish-barak': '18 тапшырма жана 6 тилке модели: дюйм, фут, миля, фунт, галлон; м² жана см², гектар жана сотых, м³ жана литр; жооп ачкычы менен.',
         'karta-sorttoo': '12 карта: узундук × k, аянт × k² же көлөм × k³.',
     },
+    'sandar20': {
+        'prefix': '1-klass-20-ichindegi-sandar-', 'grade': 1, 'subtopic': '20 ичиндеги сандар',
+        'sabak': '26 слайд: «Апанын тоокканасы» окуясы, жумуртка кутусу жана таш менен ондук жана бирдик, сан огу.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: 11–20 сандарын окуу, жазуу, салыштыруу, алдындагы жана кийинки сан; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: бир эле сандын ар кандай жазылышын 13, 16 же 19 деп топтошот.',
+    },
+    'koshuu20': {
+        'prefix': '1-klass-20-ichinde-koshuu-kemituu-', 'grade': 1, 'subtopic': '20 ичинде кошуу жана кемитүү',
+        'sabak': '26 слайд: «Нооруз мончогу» окуясы, эки он-кадр жана таш менен 10го толуктап кошуу, 10 аркылуу кемитүү.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: 10дон өтүп кошуу жана кемитүү, кош сандар, сан үй-бүлөсү; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: мисалдарды жообу 12, 14 же 16 деп топтошот.',
+    },
+    'akcha_som': {
+        'prefix': '2-klass-akcha-som-', 'grade': 2, 'subtopic': 'Акча: сом жана кайтарым',
+        'sabak': '26 слайд: «Мектеп жарманкеси» окуясы, кагаз акча жана монета менен «дүкөн» оюну, кайтарымды кошуп ойлоо.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: монета жана кагаз акчанын суммасы, кайтарым, көп кадамдуу маселе; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: суммаларды 20, 50 же 100 сом деп топтошот.',
+    },
+    'kob510': {
+        'prefix': '2-klass-5ke-10go-kobotuu-', 'grade': 2, 'subtopic': '5ке жана 10го көбөйтүү',
+        'sabak': '26 слайд: «Мектеп бакчасы» окуясы, таш массиви, 5тен жана 10дон секирип саноо, 10дун жарымы.',
+        'ish-barak': '18 тапшырма жана 6 тилке модели: 5ке жана 10го көбөйтүү, массив, бөлүү; жооп ачкычы менен.',
+        'karta-sorttoo': '12 карта: мисалдарды жообу 20, 30 же 40 деп топтошот.',
+    },
     'koordinat': {
         'prefix': '9-klass-koordinattar-metodu-', 'grade': 9, 'subtopic': 'Координаттар методу: перпендикуляр жана катыш',
         'sabak': '26 слайд: «Сүлүктүдөгү мектеп паркы» окуясы, чакмак кагазга жип жана кнопка, жипти үчкө бүктөө, бурчтук менен перпендикуляр.',
@@ -725,9 +749,9 @@ GROUPS = [
         'non-unit-fractions-multiplying', 'non-unit-fractions-dividing', 'non-unit-fractions-multiplying-dividing',
         'non-unit-fractions-with-cancelling', 'non-unit-fractions-with-integers',
     ], badge='5–6 кл.'),
-    _group('akcha', 'Акча: сатып алуу, кайтарым, эң пайдалуу баа', 'Өлчөмдөр › Акча', ['akcha'], [
+    _group('akcha', 'Акча: сатып алуу, кайтарым, эң пайдалуу баа', 'Өлчөмдөр › Акча', ['akcha_som', 'akcha'], [
         'measures-money-purchasing-non-calculator',
-    ], badge='3–4 кл.'),
+    ]),
     _group('ondu_kk', 'Ондук бөлчөктөрдү кошуу жана кемитүү', 'Сандар › Ондуктар › Эсептөөлөр', ['ondu_kk'], [
         'subtracting-1-digit', 'adding-subtracting-1-digit',
         'adding-1-2-digit', 'subtracting-1-2-digit', 'adding-subtracting-1-2-digit',
@@ -749,20 +773,20 @@ GROUPS = [
         'indices-introduction', 'indices-square-numbers', 'indices-cube-numbers',
         'evaluating-roots-square', 'evaluating-roots-square-cube',
     ], badge='7-класс'),
-    _group('k100', '100 ичинде кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['k100'], [
+    _group('k100', '20 жана 100 ичинде кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['koshuu20', 'k100'], [
         'integers-adding-1-2-digit',
-    ], badge='1–2 кл.'),
+    ]),
     _group('kemituu', 'Кемитүү: 10 жана 100 ичинде', 'Сандар › Бүтүн сандар', ['kemituu10', 'k100'], [
         'integers-subtracting-1-2-digit',
     ]),
     _group('mamycha', 'Мамыча менен кошуу жана кемитүү', 'Сандар › Бүтүн сандар', ['mamycha'], [
         'integers-adding-2-3-digit', 'integers-subtracting-2-3-digit', 'integers-adding-subtracting-2-3-digit',
     ], badge='2–3 кл.'),
-    _group('kob_jadybal', 'Көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kob234', 'jadybal'], [
+    _group('kob_jadybal', 'Көбөйтүү жана бөлүү', 'Сандар › Бүтүн сандар', ['kob234', 'kob510', 'jadybal'], [
         'integers-multiplying-1-2-digit', 'integers-dividing-1-2-digit', 'integers-multiplying-dividing-1-2-digit',
     ]),
     _group('sandyn_bolugu', 'Сандын бөлүгү', 'Сандар › Бөлчөктөр', ['sandyn_bolugu'], [], badge='4-класс'),
-    _group('million', 'Миллион ичиндеги сандар', 'Сандар › Бүтүн сандар', ['million'], [], badge='5-класс'),
+    _group('million', 'Сандар: 20дан миллионго чейин', 'Сандар › Бүтүн сандар', ['sandar20', 'million'], []),
     _group('tegerektoo', 'Тегеректөө жана болжолдоо', 'Сандар › Болжолдоо жана тегеректөө', ['tegerektoo', 'million'], [
         'rounding-whole-numbers',
     ]),
