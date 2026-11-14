@@ -3108,6 +3108,766 @@
 ]
 },
 {
+"slug": "1-klass-20-ichinde-koshuu-kemituu",
+"title": "20 ичинде кошуу жана кемитүү",
+"grade": 1,
+"area": "number",
+"pack": "koshuu20",
+"questions": [
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-1",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "9 + 4 = 9 + 1 + ___ = ___",
+"options": {},
+"answer": "3; 13",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-2",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "7 + 6 = ___",
+"options": {},
+"answer": "13",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-3",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "6 + 6 = ___",
+"options": {},
+"answer": "12",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-4",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "13 − 3 = ___",
+"options": {},
+"answer": "10",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-5",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "15 − 7 = ___",
+"options": {},
+"answer": "8",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws1-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Тыйында 8 мончок, Помпон дагы 5 берди. Канча болду?",
+"options": {},
+"answer": "8 + 5 = 13",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-1",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "8 + ___ = 15",
+"options": {},
+"answer": "7",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-2",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "___ − 6 = 9",
+"options": {},
+"answer": "15 (9 + 6)",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-3",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "12 − 5 = 12 − 2 − ___ = ___",
+"options": {},
+"answer": "3; 7",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-4",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой (>, < же =): 7 + 8 ○ 16",
+"options": {},
+"answer": "15 < 16",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-5",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "6, 8, 14 сандары менен сан үй-бүлөсүн жаз.",
+"options": {},
+"answer": "6+8=14, 8+6=14, 14−6=8, 14−8=6",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws2-6",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Помпондо 16 мончок бар эле. 9 мончокту билерикке тизди. Канчасы калды?",
+"options": {},
+"answer": "16 − 9 = 7",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-1",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйын 7 кызыл жана 6 көк мончок тизди. Помпон андан 2 мончокко аз тизди. Помпон канча тизди?",
+"options": {},
+"answer": "7 + 6 = 13; 13 − 2 = 11",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-2",
+"difficulty": "hard",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Ким туура? Тыйын: «8 + 5 = 12». Помпон: «8 + 5 = 13». 10 менен текшер.",
+"options": {},
+"answer": "Помпон: 8 + 2 + 3 = 13",
+"solution": "",
+"points": 3,
+"estimated_minutes": 3
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-3",
+"difficulty": "hard",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант жана эрежесин айт: 20, 17, 14, ___, ___",
+"options": {},
+"answer": "11, 8 (3төн кемийт)",
+"solution": "",
+"points": 3,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-4",
+"difficulty": "hard",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "□ + □ = 14. Бир орундуу сандар менен бардык жолдорду жаз.",
+"options": {},
+"answer": "5+9, 6+8, 7+7, 8+6, 9+5",
+"solution": "",
+"points": 3,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-5",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпондо 9 мончок. Ага дагы канча мончок керек, 17 болушу үчүн?",
+"options": {},
+"answer": "17 − 9 = 8",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-ws3-6",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Жообу 12 боло турган мончок маселесин түз (10дон өтүп).",
+"options": {},
+"answer": "Мис.: 7 + 5 = 12",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-1",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "9 + 4",
+"options": {},
+"answer": "13",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-2",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "7 + 8",
+"options": {},
+"answer": "15",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-3",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "6 + 7",
+"options": {},
+"answer": "13",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-4",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "15 − 6",
+"options": {},
+"answer": "9",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-5",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "12 − 5",
+"options": {},
+"answer": "7",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-pr-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Тыйында 13 мончок, 8ин берди. Канча калды?",
+"options": {},
+"answer": "5",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-wk-1",
+"difficulty": "medium",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпон 9 кызыл жана 7 ак мончок тизди. Баары канча?",
+"options": {},
+"answer": "16 мончок",
+"solution": "9 + 1 = 10 (10го толуктадык); 7 = 1 + 6; 10 + 6 = 16",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-wk-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйында 13 мончок бар эле. 5ин Помпонго берди. Канча калды?",
+"options": {},
+"answer": "8 мончок",
+"solution": "13 − 3 = 10 (адегенде 3); 5 = 3 + 2; 10 − 2 = 8 (текшерүү: 8 + 5 = 13 ✓)",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-hinge-1",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "Тыйында 8 мончок бар. Помпон дагы 5ти берди. Канча болду?",
+"options": {
+"А": "10",
+"Б": "12",
+"В": "13",
+"Г": "3"
+},
+"answer": "В",
+"solution": "Туура жооп: 13. Башка жооптор көп кездешкен каталардан чыгат.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-exit-1",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "9 + 5 = ?",
+"options": {},
+"answer": "14",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-exit-2",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "13 − 7 = ?",
+"options": {},
+"answer": "6",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-exit-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Помпондо 7 мончок, Тыйында 6 мончокко көп. Тыйында канча?",
+"options": {},
+"answer": "7 + 6 = 13",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-1",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "8 + 5 = 13",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-2",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "9 + 7 = 16",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-3",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "6 + 6 = 12",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-4",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "7 + 8 = 15",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-5",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "8 + 5 = 12",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-6",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "7 + 6 = 14",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-7",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "14 − 6 = 12",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-tf-8",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "9 + 4 = 10",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-match-1",
+"difficulty": "easy",
+"question_format": "matching",
+"question_type": "short_answer",
+"text": "Ар бир мисалды өзүнүн жообу менен дал келтир.",
+"options": {
+"left": {
+"1": "13 − 8",
+"2": "12 − 6",
+"3": "15 − 8",
+"4": "17 − 9"
+},
+"right": {
+"А": "7",
+"Б": "8",
+"В": "5",
+"Г": "6"
+}
+},
+"answer": "1–В, 2–Г, 3–А, 4–Б",
+"solution": "13 − 8 = 5; 12 − 6 = 6; 15 − 8 = 7; 17 − 9 = 8",
+"points": 4,
+"estimated_minutes": 3
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-mcq-1",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "8 + 5 = ?",
+"options": {
+"А": "12",
+"Б": "14",
+"В": "13",
+"Г": "11"
+},
+"answer": "В",
+"solution": "8 + 5 = 13",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-mcq-3",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "8 + 7 = ?",
+"options": {
+"А": "16",
+"Б": "14",
+"В": "15",
+"Г": "13"
+},
+"answer": "В",
+"solution": "8 + 7 = 15",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-mcq-4",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "9 + 7 = ?",
+"options": {
+"А": "15",
+"Б": "13",
+"В": "16",
+"Г": "14"
+},
+"answer": "В",
+"solution": "9 + 7 = 16",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-mcq-5",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "13 − 8 = ?",
+"options": {
+"А": "6",
+"Б": "8",
+"В": "7",
+"Г": "5"
+},
+"answer": "Г",
+"solution": "13 − 8 = 5",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-mcq-6",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "12 − 6 = ?",
+"options": {
+"А": "6",
+"Б": "8",
+"В": "5",
+"Г": "7"
+},
+"answer": "А",
+"solution": "12 − 6 = 6",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-1",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйын 9 кызыл жана 6 сары мончок тизди. Баары канча мончок? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "9 + 6 = 15 мончок",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-2",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпондо 14 мончок бар эле. 8ин билерикке тизди. Канчасы калды? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "14 − 8 = 6 мончок",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-3",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйындын билериги 17 мончок, Помпондуку 9 мончок. Тыйындыкы канчага көп? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "17 − 9 = 8 мончокко",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-4",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпон 8 мончок тизди. Тыйын андан 5 мончокко көп тизди. Тыйын канча тизди? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "8 + 5 = 13 мончок",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-5",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Кутуда 20 мончок бар эле. Тыйын 7, Помпон 6 мончок алды. Кутуда канча калды? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "20 − 7 − 6 = 7 мончок",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-bar-6",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Бир билерикке 9 мончок керек. Помпондо 6 мончок бар. Эки билерик жасаш үчүн дагы канча керек? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "9 + 9 = 18; 18 − 6 = 12 мончок",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айсулуу «8 + 5 = ?» тапшырмасын мындай аткарды: 8 + 2 = 10; Жообу: 10. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "5 = 2 + 3. 10го 2ни коштук, дагы 3 калды: 10 + 3 = 13. Калганын унутту (М1).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-2",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Бекжан «9 + 6 = ?» тапшырмасын мындай аткарды: 9 + 1 = 10; 6 = 1 + 5; 10 + 5 = 15. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: 10го толуктап, калганын кошту.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-3",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Нурай «14 − 6 = ?» тапшырмасын мындай аткарды: 6 − 4 = 2; Жообу: 12. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "4төн 6 кемибейт. 14 − 4 = 10, 10 − 2 = 8. Бирдиктерди тескери кемитти (М3).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-4",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Эрмек «7 + 6 = ?» тапшырмасын мындай аткарды: 7, 8, 9, 10, 11, 12; Жообу: 12. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "7ден баштап санабайбыз: 8, 9, 10, 11, 12, 13 – 6 секирик. Жообу 13 (М5).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-5",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айбийке «Помпондо 15 мончок, 7ин берди. Канча калды?» тапшырмасын мындай аткарды: 15 + 7 = 22. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "«Берди» – азаят: 15 − 7 = 8. Кошуп койду (М4).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-spot-6",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тилек «6 + 7 = ?» тапшырмасын мындай аткарды: 6 + 6 = 12; дагы 1; 6 + 7 = 13. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: кош сандан (6 + 6) жакын кошту.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichinde-koshuu-kemituu-kim-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тыйын: «8 + 5 = 12». Помпон: «8 + 5 = 13». Тыйын: 8ден санадым:; 8, 9, 10, 11, 12; Жообу: 12. Помпон: 8 + 2 = 10; 5тен дагы 3 калды; 10 + 3 = 13. Ким туура? Түшүндүр.",
+"options": {},
+"answer": "Помпон",
+"solution": "Помпон: 8 + 5 = 13. Тыйын 8ди да санап алды (М5).",
+"points": 4,
+"estimated_minutes": 5
+}
+]
+},
+{
 "slug": "1-klass-10-ichinde-kemituu",
 "title": "10 ичинде кемитүү",
 "grade": 1,
@@ -3879,6 +4639,754 @@
 "options": {},
 "answer": "Помпон",
 "solution": "Помпон: 9 таштан 3үн алсак, 6 калат. Тыйын 9ду да санап алды (М1).",
+"points": 4,
+"estimated_minutes": 5
+}
+]
+},
+{
+"slug": "1-klass-20-ichindegi-sandar",
+"title": "20 ичиндеги сандар",
+"grade": 1,
+"area": "number",
+"pack": "sandar20",
+"questions": [
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-1",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "1 ондук жана 4 бирдик = ___",
+"options": {},
+"answer": "14",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-2",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "«Он жети» санын цифра менен жаз.",
+"options": {},
+"answer": "17",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-3",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "15тен кийинки сан: ___",
+"options": {},
+"answer": "16",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-4",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "18дин алдындагы сан: ___",
+"options": {},
+"answer": "17",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-5",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой (>, < же =): 13 ○ 16",
+"options": {},
+"answer": "13 < 16",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws1-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Кутуда 10 жумуртка жана жанында 2 жумуртка. Баары канча?",
+"options": {},
+"answer": "10 + 2 = 12",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-1",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "19 = ___ ондук ___ бирдик",
+"options": {},
+"answer": "1 ондук 9 бирдик",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-2",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант: 11, 12, 13, ___, ___",
+"options": {},
+"answer": "14, 15",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Кичинесинен чоңуна жаз: 17, 11, 20, 14",
+"options": {},
+"answer": "11, 14, 17, 20",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-4",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой (>, < же =): 10 + 6 ○ 15",
+"options": {},
+"answer": "16 > 15",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-5",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "12 менен 15тин ортосундагы сандарды жаз.",
+"options": {},
+"answer": "13, 14",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws2-6",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Помпон 14 жумуртка терди. Тыйын андан 1ге көп терди. Тыйын канча терди?",
+"options": {},
+"answer": "14 + 1 = 15",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws3-1",
+"difficulty": "hard",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант жана эрежесин айт: 20, 18, 16, ___, ___",
+"options": {},
+"answer": "14, 12 (2ден кемийт)",
+"solution": "",
+"points": 3,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws3-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Ким туура? Тыйын: «он алты = 106». Помпон: «он алты = 16». Ондук жана бирдик менен текшер.",
+"options": {},
+"answer": "Помпон: 1 ондук 6 бирдик = 16",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws3-3",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "1, 6, 9 цифраларынын экөөнөн 20дан кичине канча эки орундуу сан түзөсүң? Баарын жаз.",
+"options": {},
+"answer": "16, 19 (2 сан)",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws3-5",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйында 1 толук кути (10) жана 7 жумуртка. Помпондо 18 жумуртка. Кимде көп? Канчага?",
+"options": {},
+"answer": "Помпондо: 18 > 17, 1ге көп",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-ws3-6",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Жообу 13 боло турган «кути жана жумуртка» маселесин түз.",
+"options": {},
+"answer": "Мис.: 1 кути (10) жана 3 жумуртка",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-1",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "1 ондук 6 бирдик",
+"options": {},
+"answer": "16",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-2",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "он тогуз",
+"options": {},
+"answer": "19",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-3",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "13төн кийинки",
+"options": {},
+"answer": "14",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-4",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "20нын алдындагы",
+"options": {},
+"answer": "19",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-5",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги: 17 ○ 11",
+"options": {},
+"answer": "17 > 11",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-pr-6",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "10 + 9",
+"options": {},
+"answer": "19",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-wk-1",
+"difficulty": "medium",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпон 1 толук кути жана 7 жумуртка терди. Канча жумуртка терди? Кантип жазабыз?",
+"options": {},
+"answer": "17 жумуртка",
+"solution": "1 ондук 7 бирдик (кути + 7); = 10 + 7; = 17 (он жети)",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-wk-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйында 16 жаңгак, Помпондо 19 жаңгак. Кимде көп?",
+"options": {},
+"answer": "Помпондо көп",
+"solution": "16 = 1 ондук 6; 19 = 1 ондук 9 (ондуктар бирдей); 9 > 6, демек 19 > 16",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-hinge-1",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "Тыйында 1 толук кути (10 жумуртка) жана 4 жумуртка бар. Тыйында канча жумуртка?",
+"options": {
+"А": "41",
+"Б": "104",
+"В": "14",
+"Г": "5"
+},
+"answer": "В",
+"solution": "Туура жооп: 14. Башка жооптор көп кездешкен каталардан чыгат.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-exit-1",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "1 ондук 8 бирдик = ?",
+"options": {},
+"answer": "18",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-exit-2",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой: 15 ○ 12",
+"options": {},
+"answer": "15 > 12",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-exit-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "19дан кийинки сан жана 11дин алдындагы сан",
+"options": {},
+"answer": "20 жана 10",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-1",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "1 ондук 3 бирдик = 13",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-2",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "15 > 12",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-3",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "он сегиз = 18",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-4",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "19дан кийин 20",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-5",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "1 ондук 5 бирдик = 6",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-6",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "17 < 14",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-7",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "он төрт = 41",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-tf-8",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "12ден кийин 11",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-match-1",
+"difficulty": "easy",
+"question_format": "matching",
+"question_type": "short_answer",
+"text": "Ар бир мисалды өзүнүн жообу менен дал келтир.",
+"options": {
+"left": {
+"1": "8ден кийинки сан",
+"2": "5 + 5",
+"3": "он бир",
+"4": "1 ондук 2 бирдик"
+},
+"right": {
+"А": "9",
+"Б": "12",
+"В": "11",
+"Г": "10"
+}
+},
+"answer": "1–А, 2–Г, 3–В, 4–Б",
+"solution": "8ден кийинки сан = 9; 5 + 5 = 10; он бир = 11; 1 ондук 2 бирдик = 12",
+"points": 4,
+"estimated_minutes": 3
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-mcq-1",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "10 + 7 = ?",
+"options": {
+"А": "15",
+"Б": "18",
+"В": "16",
+"Г": "17"
+},
+"answer": "Г",
+"solution": "10 + 7 = 17",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-mcq-2",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "19дан 1 кем = ?",
+"options": {
+"А": "18",
+"Б": "19",
+"В": "17",
+"Г": "16"
+},
+"answer": "А",
+"solution": "19дан 1 кем = 18",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-mcq-4",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "2 ондук = ?",
+"options": {
+"А": "20",
+"Б": "19",
+"В": "17",
+"Г": "18"
+},
+"answer": "А",
+"solution": "2 ондук = 20",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-mcq-5",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "8ден кийинки сан = ?",
+"options": {
+"А": "10",
+"Б": "9",
+"В": "12",
+"Г": "11"
+},
+"answer": "Б",
+"solution": "8ден кийинки сан = 9",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-mcq-6",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "5 + 5 = ?",
+"options": {
+"А": "10",
+"Б": "12",
+"В": "9",
+"Г": "11"
+},
+"answer": "А",
+"solution": "5 + 5 = 10",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-1",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйын 1 толук кутуга 10 жумуртка салды. Дагы 6 жумуртка калды. Баары канча? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "10 + 6 = 16 жумуртка",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-2",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпондо 18 мончок бар. 10у кызыл, калганы көк. Канча көк мончок? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "18 = 10 + 8, 8 көк",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-3",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйында 13 жаңгак, Помпондо 15 жаңгак. Кимде көп? Канчага көп? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "Помпондо: 15 − 13 = 2ге көп",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-4",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тоокканада 17 тоок бар. Өрдөк андан 1ге аз. Канча өрдөк бар? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "17тен 1 кем: 16 өрдөк",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-5",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Эртең менен 10 жумуртка, түштө 4 жумуртка, кечинде 3 жумуртка терилди. Баары канча? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "10 + 4 + 3 = 17 жумуртка",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-bar-6",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпондо 2 толук кути (ар биринде 10) бар. Ал 1 жумуртканы сындырып алды. Канча бүтүн жумуртка калды? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "20 − 1 = 19 жумуртка",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айсулуу ««Он жети» санын жаз.» тапшырмасын мындай аткарды: Он – 10, жети – 7; Жаздым: 107. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "17 = 1 ондук 7 бирдик: эки цифра гана. 10 менен 7ни жанаша жазып койду (М2).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-2",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Бекжан «1 ондук 5 бирдик = ?» тапшырмасын мындай аткарды: 1 кути – 10; 10 + 5 = 15. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: 1 ондук = 10, андан 5 бирдик кошулат.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-3",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Нурай «Белги кой: 18 ○ 14» тапшырмасын мындай аткарды: 18 < 14. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "18 чоң, «ооз» чоң санды карайт: 18 > 14. Белгини тескери койду (М3).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-4",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Эрмек «16нын алдындагы сан?» тапшырмасын мындай аткарды: 16дан кийин 17; Жообу: 17. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "«Алдындагы» – бир кем: 15. Кийинкисин жазды (М5).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-5",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айбийке «12 = ___ ондук ___ бирдик» тапшырмасын мындай аткарды: 2 ондук 1 бирдик. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "12де 1 ондук (10) жана 2 бирдик бар. Ондук менен бирдиктин ордун алмаштырды (М1).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-spot-6",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тилек «Кичинесинен чоңуна: 15, 11, 19» тапшырмасын мындай аткарды: Ондуктары бирдей: 1; Бирдиктер: 1 < 5 < 9; 11, 15, 19. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: ондуктары бирдей болгондо бирдиктерди салыштырды.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-1-klass-20-ichindegi-sandar-kim-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тыйын: «Он жети деп мындай жазам: 107». Помпон: «Мындай жазам: 17». Тыйын: Он – 10; жети – 7; Жазам: 107. Помпон: 1 кути – 1 ондук; 7 жумуртка – 7 бирдик; Жазам: 17. Ким туура? Түшүндүр.",
+"options": {},
+"answer": "Помпон",
+"solution": "Помпон: он жети = 1 ондук 7 бирдик = 17. Тыйын 10 менен 7ни жанаша жазды (М2).",
 "points": 4,
 "estimated_minutes": 5
 }
@@ -4662,6 +6170,771 @@
 ]
 },
 {
+"slug": "2-klass-akcha-som",
+"title": "Акча: сом жана кайтарым",
+"grade": 2,
+"area": "number",
+"pack": "akcha_som",
+"questions": [
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-1",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "10 + 10 + 5 = ___ сом",
+"options": {},
+"answer": "25 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-2",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "20 + 20 + 10 = ___ сом",
+"options": {},
+"answer": "50 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-3",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "5 + 5 + 5 + 5 = ___ сом",
+"options": {},
+"answer": "20 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-4",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Дептер 30 сом, калем 15 сом. Баары канча?",
+"options": {},
+"answer": "30 + 15 = 45 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-5",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "50 − 20 = ___ сом",
+"options": {},
+"answer": "30 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws1-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Тыйында 40 сом бар эле. 10 сомдук алма алды. Канча калды?",
+"options": {},
+"answer": "40 − 10 = 30 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-1",
+"difficulty": "medium",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "35 сомду эки башка жол менен төлө.",
+"options": {},
+"answer": "Мис.: 20 + 10 + 5; 10 + 10 + 10 + 5",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-2",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "50 − 35 = ___ сом",
+"options": {},
+"answer": "15 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой (>, < же =): 20 + 5 + 5 ○ 10 + 10 + 10",
+"options": {},
+"answer": "30 = 30",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-4",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Китеп 64 сом. Помпондо 50 сом бар. Дагы канча керек?",
+"options": {},
+"answer": "64 − 50 = 14 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-5",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "100 сом берди, 70 сомдук топ алды. Кайтарым канча?",
+"options": {},
+"answer": "100 − 70 = 30 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws2-6",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Тыйын 26 сомдук жана 18 сомдук нерсе алды. Канча төлөдү?",
+"options": {},
+"answer": "26 + 18 = 44 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-1",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпондо 20, 10, 5, 3 жана 1 сомдук бир-бирден бар. 28 сомду кантип так төлөйт?",
+"options": {},
+"answer": "20 + 5 + 3 = 28",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Ким туура? Тыйын: «50 − 35 = 25». Помпон: «50 − 35 = 15». Кошуу менен текшер.",
+"options": {},
+"answer": "Помпон: 35 + 15 = 50",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-3",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "75 сомду эң аз монета жана кагаз акча менен төлө.",
+"options": {},
+"answer": "50 + 20 + 5 (3 даана)",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-4",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпондо 60 сом бар. Ал 2 калем алды, ар бири 18 сом. Канча калды?",
+"options": {},
+"answer": "18 + 18 = 36; 60 − 36 = 24 сом",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-5",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйын 100 сом берип, 45 сомдук жана 30 сомдук нерсе алды. Кайтарым канча?",
+"options": {},
+"answer": "45 + 30 = 75; 100 − 75 = 25 сом",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-ws3-6",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Кайтарымы 15 сом боло турган жарманке маселесин түз.",
+"options": {},
+"answer": "Мис.: 50 сом берди, 35 сомдук алды",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-1",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "20 + 20 + 5",
+"options": {},
+"answer": "45",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-2",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "10 + 5 + 3",
+"options": {},
+"answer": "18",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-3",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "50 − 15",
+"options": {},
+"answer": "35",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-4",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "100 − 60",
+"options": {},
+"answer": "40",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-5",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "60 − 25",
+"options": {},
+"answer": "35",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-pr-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Помпон 50 сом берди, 28 сомдук алды. Кайтарым?",
+"options": {},
+"answer": "22",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-wk-1",
+"difficulty": "medium",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпон 20, 10 жана 5 сомдук менен төлөдү. Канча төлөдү?",
+"options": {},
+"answer": "35 сом",
+"solution": "20 (чоңунан баштайбыз); 20 + 10 = 30; 30 + 5 = 35",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-wk-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйын 100 сом берип, 65 сомдук топ алды. Кайтарым канча?",
+"options": {},
+"answer": "35 сом",
+"solution": "65 + 5 = 70 (толук ондукка); 70 + 30 = 100; 5 + 30 = 35 (текшерүү: 65 + 35 = 100 ✓)",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-hinge-1",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "Тыйында 50 сом бар. 35 сомдук китеп алды. Канча калды?",
+"options": {
+"А": "85",
+"Б": "25",
+"В": "15",
+"Г": "20"
+},
+"answer": "В",
+"solution": "Туура жооп: 15. Башка жооптор көп кездешкен каталардан чыгат.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-exit-1",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "20 + 20 + 5 = ? сом",
+"options": {},
+"answer": "45 сом",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-exit-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "word_problem",
+"text": "Помпон 50 сом берди, 32 сомдук суу алды. Кайтарым канча?",
+"options": {},
+"answer": "50 − 32 = 18 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-1",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "20 + 20 + 5 = 45",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-2",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "50 − 15 = 35",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-3",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "10 + 10 + 10 = 30",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-4",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "100 − 40 = 60",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-5",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "50 − 35 = 25",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-6",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "10 + 10 + 5 = 3",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-7",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "20 + 20 = 30",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-tf-8",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "100 − 30 = 80",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-match-1",
+"difficulty": "easy",
+"question_format": "matching",
+"question_type": "short_answer",
+"text": "Ар бир мисалды өзүнүн жообу менен дал келтир.",
+"options": {
+"left": {
+"1": "5 + 5 + 3",
+"2": "20 + 1",
+"3": "20 + 5",
+"4": "10 + 10 + 10"
+},
+"right": {
+"А": "21",
+"Б": "13",
+"В": "25",
+"Г": "30"
+}
+},
+"answer": "1–Б, 2–А, 3–В, 4–Г",
+"solution": "5 + 5 + 3 = 13; 20 + 1 = 21; 20 + 5 = 25; 10 + 10 + 10 = 30",
+"points": 4,
+"estimated_minutes": 3
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-1",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "70 − 10 = ?",
+"options": {
+"А": "45",
+"Б": "55",
+"В": "70",
+"Г": "60"
+},
+"answer": "Г",
+"solution": "70 − 10 = 60",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-2",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "50 + 20 = ?",
+"options": {
+"А": "70",
+"Б": "55",
+"В": "80",
+"Г": "60"
+},
+"answer": "А",
+"solution": "50 + 20 = 70",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-3",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "100 − 20 = ?",
+"options": {
+"А": "90",
+"Б": "60",
+"В": "80",
+"Г": "70"
+},
+"answer": "В",
+"solution": "100 − 20 = 80",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-4",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "50 + 20 + 20 = ?",
+"options": {
+"А": "80",
+"Б": "60",
+"В": "70",
+"Г": "90"
+},
+"answer": "Г",
+"solution": "50 + 20 + 20 = 90",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-5",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "5 + 5 + 3 = ?",
+"options": {
+"А": "13",
+"Б": "21",
+"В": "25",
+"Г": "30"
+},
+"answer": "А",
+"solution": "5 + 5 + 3 = 13",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-mcq-6",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "20 + 1 = ?",
+"options": {
+"А": "25",
+"Б": "13",
+"В": "30",
+"Г": "21"
+},
+"answer": "Г",
+"solution": "20 + 1 = 21",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-1",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйын 30 сомдук дептер жана 15 сомдук калем алды. Баары канча төлөдү? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "30 + 15 = 45 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-2",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпондо 50 сом бар эле. 35 сомдук китеп алды. Канча калды? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "50 − 35 = 15 сом",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-3",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Топ 70 сом, шар 40 сом. Топ шардан канчага кымбат? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "70 − 40 = 30 сомго",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-4",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Калем 25 сом. Дептер калемден 18 сомго кымбат. Дептер канча турат? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "25 + 18 = 43 сом",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-5",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйында 100 сом бар эле. 45 сомдук жана 30 сомдук нерсе алды. Канча калды? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "100 − 45 − 30 = 25 сом",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-bar-6",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпон 20 сомдон 2 балмуздак жана 15 сомдук суу алды. 100 сом берди. Кайтарым канча? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "20 + 20 + 15 = 55; 100 − 55 = 45 сом",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айсулуу «10 + 10 + 5 сом = ?» тапшырмасын мындай аткарды: 3 монета; Жообу: 3 сом. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "Монетанын санын эмес, наркын кошобуз: 10 + 10 + 5 = 25 сом (М1).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-2",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Бекжан «50 − 35 = ?» тапшырмасын мындай аткарды: 35 + 5 = 40; 40 + 10 = 50; 5 + 10 = 15. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: кошуу менен ойлоп, 35тен 50гө чейин санады.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-3",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Нурай «50 − 35 = ?» тапшырмасын мындай аткарды: 5 − 0 = 5; 5 − 3 = 2; Жообу: 25. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "0дөн 5 кемибейт. 50 − 30 = 20, 20 − 5 = 15. Бирдиктерди тескери кемитти (М3).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-4",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Эрмек «100 сом берди, 70 сомдук топ алды. Кайтарым?» тапшырмасын мындай аткарды: 100 + 70 = 170. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "Кайтарым – калган акча: 100 − 70 = 30 сом. Кошуп койду (М2).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-5",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айбийке «26 + 18 = ?» тапшырмасын мындай аткарды: 20 + 10 = 30; Жообу: 30. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "Бирдиктерди унутту: 6 + 8 = 14, 30 + 14 = 44 (М4).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-spot-6",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тилек «75 сомду эң аз акча менен төлө.» тапшырмасын мындай аткарды: 50 + 20 + 5; 3 даана. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: эң чоңунан баштады.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-akcha-som-kim-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тыйын: «50 − 35 = 25». Помпон: «50 − 35 = 15». Тыйын: 5 − 0 = 5; 5 − 3 = 2; Жообу: 25. Помпон: 35 + 5 = 40; 40 + 10 = 50; 5 + 10 = 15. Ким туура? Түшүндүр.",
+"options": {},
+"answer": "Помпон",
+"solution": "Помпон: 50 − 35 = 15. Тыйын бирдиктерди тескери кемитти (М3).",
+"points": 4,
+"estimated_minutes": 5
+}
+]
+},
+{
 "slug": "2-klass-figuralar",
 "title": "Тегиз жана көлөмдүү фигуралар",
 "grade": 2,
@@ -5424,6 +7697,732 @@
 "options": {},
 "answer": "Айбек",
 "solution": "Айбек: кубдун 6 бети бар; Нуриза сүрөттө көрүнгөнүн гана санады (М3).",
+"points": 4,
+"estimated_minutes": 5
+}
+]
+},
+{
+"slug": "2-klass-5ke-10go-kobotuu",
+"title": "5ке жана 10го көбөйтүү",
+"grade": 2,
+"area": "number",
+"pack": "kob510",
+"questions": [
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-1",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "5 + 5 + 5 = ___ × 5 = ___",
+"options": {},
+"answer": "3; 15",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-2",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "4 × 5 = ___",
+"options": {},
+"answer": "20",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-3",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "6 × 10 = ___",
+"options": {},
+"answer": "60",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-4",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант: 5, 10, 15, ___, ___",
+"options": {},
+"answer": "20, 25",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-5",
+"difficulty": "easy",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант: 10, 20, 30, ___, ___",
+"options": {},
+"answer": "40, 50",
+"solution": "",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws1-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "3 катар көчөт, ар бир катарда 5. Баары канча?",
+"options": {},
+"answer": "3 × 5 = 15",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-1",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "___ × 5 = 35",
+"options": {},
+"answer": "7",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-2",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "___ × 10 = 90",
+"options": {},
+"answer": "9",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "Белги кой (>, < же =): 6 × 5 ○ 3 × 10",
+"options": {},
+"answer": "30 = 30",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-4",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "40 ÷ 5 = ___",
+"options": {},
+"answer": "8",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-5",
+"difficulty": "medium",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "8 × 5ти 10 аркылуу тап: 8 × 10 = ___, анын жарымы ___",
+"options": {},
+"answer": "80; 40",
+"solution": "",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws2-6",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "70 урукту 10дон пакетке салды. Канча пакет?",
+"options": {},
+"answer": "70 ÷ 10 = 7",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-1",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйын 4 катарга 5тен, Помпон 3 катарга 10дон көчөт отургузду. Ким көп? Канчага?",
+"options": {},
+"answer": "20 жана 30; Помпон 10го көп",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Ким туура? Тыйын: «6 × 5 = 60». Помпон: «6 × 5 = 30». Массив менен текшер.",
+"options": {},
+"answer": "Помпон: 6 топ 5тен = 30",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-3",
+"difficulty": "hard",
+"question_format": "fill_blank",
+"question_type": "short_answer",
+"text": "Улант жана эрежесин айт: 45, 40, 35, ___, ___",
+"options": {},
+"answer": "30, 25 (5тен кемийт)",
+"solution": "",
+"points": 3,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-4",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Бакчада 9 катар, ар биринде 5 көчөт. 10 көчөт куурап калды. Канча калды?",
+"options": {},
+"answer": "9 × 5 = 45; 45 − 10 = 35",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-5",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "30 көчөттү тең катарларга отургуз. 5тен же 10дон: канча катар болот?",
+"options": {},
+"answer": "5тен – 6 катар; 10дон – 3 катар",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-ws3-6",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Жообу 40 боло турган бакча маселесин түз (5ке же 10го көбөйтүү).",
+"options": {},
+"answer": "Мис.: 8 катар, 5тен",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-1",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "3 × 5",
+"options": {},
+"answer": "15",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-2",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "9 × 5",
+"options": {},
+"answer": "45",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-3",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "4 × 10",
+"options": {},
+"answer": "40",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-4",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "8 × 10",
+"options": {},
+"answer": "80",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-5",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "35 ÷ 5",
+"options": {},
+"answer": "7",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-pr-6",
+"difficulty": "easy",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "50 урукту 10дон пакетке. Канча пакет?",
+"options": {},
+"answer": "5",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-wk-1",
+"difficulty": "medium",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Помпон 7 катар көчөт отургузду, ар бир катарда 5тен. Баары канча?",
+"options": {},
+"answer": "35 көчөт",
+"solution": "5, 10, 15, 20 (секирип санайбыз); 25, 30, 35; 7 × 5 = 35",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-wk-2",
+"difficulty": "hard",
+"question_format": "extended",
+"question_type": "word_problem",
+"text": "Тыйында 60 урук бар. 10дон пакетке салды. Канча пакет?",
+"options": {},
+"answer": "6 пакет",
+"solution": "10, 20, 30 (10дон санайбыз); 40, 50, 60; 6 секирик (текшерүү: 6 × 10 = 60 ✓)",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-hinge-1",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "Помпон 6 катар көчөт отургузду. Ар бир катарда 5 көчөт. Баары канча?",
+"options": {
+"А": "11",
+"Б": "60",
+"В": "30",
+"Г": "35"
+},
+"answer": "В",
+"solution": "Туура жооп: 30. Башка жооптор көп кездешкен каталардан чыгат.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-exit-1",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "7 × 5 = ?",
+"options": {},
+"answer": "35",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-exit-2",
+"difficulty": "easy",
+"question_format": "calculation",
+"question_type": "short_answer",
+"text": "6 × 10 = ?",
+"options": {},
+"answer": "60",
+"solution": "",
+"points": 1,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-exit-3",
+"difficulty": "medium",
+"question_format": "short_response",
+"question_type": "short_answer",
+"text": "8 катар, ар биринде 5 көчөт. Баары канча?",
+"options": {},
+"answer": "8 × 5 = 40",
+"solution": "",
+"points": 2,
+"estimated_minutes": 2
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-1",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "3 × 5 = 15",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-2",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "7 × 10 = 70",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-3",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "6 × 5 = 30",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-4",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "10 × 4 = 40",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "А",
+"solution": "Туура.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-5",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "4 × 5 = 9",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-6",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "6 × 5 = 60",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-7",
+"difficulty": "easy",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "7 × 5 = 30",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-tf-8",
+"difficulty": "medium",
+"question_format": "true_false",
+"question_type": "multiple_choice",
+"text": "3 × 10 = 13",
+"options": {
+"А": "Туура",
+"Б": "Туура эмес"
+},
+"answer": "Б",
+"solution": "Туура эмес.",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-match-1",
+"difficulty": "easy",
+"question_format": "matching",
+"question_type": "short_answer",
+"text": "Ар бир мисалды өзүнүн жообу менен дал келтир.",
+"options": {
+"left": {
+"1": "1 × 5",
+"2": "2 × 5",
+"3": "3 × 5",
+"4": "4 × 5"
+},
+"right": {
+"А": "10",
+"Б": "20",
+"В": "15",
+"Г": "5"
+}
+},
+"answer": "1–Г, 2–А, 3–В, 4–Б",
+"solution": "1 × 5 = 5; 2 × 5 = 10; 3 × 5 = 15; 4 × 5 = 20",
+"points": 4,
+"estimated_minutes": 3
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-mcq-3",
+"difficulty": "easy",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "7 × 10 = ?",
+"options": {
+"А": "70",
+"Б": "60",
+"В": "45",
+"Г": "80"
+},
+"answer": "А",
+"solution": "7 × 10 = 70",
+"points": 1,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-mcq-5",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "1 × 5 = ?",
+"options": {
+"А": "20",
+"Б": "5",
+"В": "10",
+"Г": "15"
+},
+"answer": "Б",
+"solution": "1 × 5 = 5",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-mcq-6",
+"difficulty": "medium",
+"question_format": "choice",
+"question_type": "multiple_choice",
+"text": "2 × 5 = ?",
+"options": {
+"А": "15",
+"Б": "5",
+"В": "10",
+"Г": "20"
+},
+"answer": "В",
+"solution": "2 × 5 = 10",
+"points": 2,
+"estimated_minutes": 1
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-1",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйын 4 катар көчөт отургузду, ар бир катарда 5тен. Баары канча? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "4 × 5 = 20 көчөт",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-2",
+"difficulty": "easy",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Помпон 3 пакет урук алды, ар биринде 10 урук. Баары канча? Тилкеге сандарды жаз.",
+"options": {},
+"answer": "3 × 10 = 30 урук",
+"solution": "",
+"points": 2,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-3",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "25 көчөттү 5 катарга тең отургузду. Ар бир катарда канча? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "25 ÷ 5 = 5 көчөт",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-4",
+"difficulty": "medium",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйын 2 катарга 5тен, Помпон 2 катарга 10дон отургузду. Помпон канчага көп? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "20 − 10 = 10 көчөткө",
+"solution": "",
+"points": 3,
+"estimated_minutes": 4
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-5",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Бакчада 6 катар, ар биринде 5 көчөт. Дагы 10 көчөт отургузушту. Баары канча? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "6 × 5 = 30; 30 + 10 = 40 көчөт",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-bar-6",
+"difficulty": "hard",
+"question_format": "diagram",
+"question_type": "word_problem",
+"text": "Тыйында 50 урук бар. 10дон 3 пакетке салды. Канча урук калды? Тилке моделин же сүрөтүн чий, анан чыгар.",
+"options": {},
+"answer": "3 × 10 = 30; 50 − 30 = 20 урук",
+"solution": "",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айсулуу «4 × 5 = ?» тапшырмасын мындай аткарды: 4 + 5 = 9; Жообу: 9. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "× – бирдей топтор: 4 топ 5тен. 5 + 5 + 5 + 5 = 20. Кошуп койду (М1).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-2",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Бекжан «6 × 5 = ?» тапшырмасын мындай аткарды: 5, 10, 15,; 20, 25, 30; Жообу: 30. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: 6 жолу 5тен секирди.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-3",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Нурай «6 × 5 = ?» тапшырмасын мындай аткарды: 6 × 10 = 60; 5ке да 0 кошом; Жообу: 60. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "0 кошуу 10го гана туура. 6 × 5 – 60тын жарымы: 30 (М6).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-4",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Эрмек «7 × 10 = ?» тапшырмасын мындай аткарды: 7 жана 10; Жообу: 710. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "7 он – 70. Сандарды жанаша жазды (М4).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-5",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Айбийке «20 көчөттү 5тен катарга. Канча катар?» тапшырмасын мындай аткарды: 20 − 5 = 15; Жообу: 15. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура эмес.",
+"solution": "5тен бөлөбүз: 5, 10, 15, 20 – 4 катар. 20 ÷ 5 = 4 (М5).",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-spot-6",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тилек «8 × 5 = ?» тапшырмасын мындай аткарды: 8 × 10 = 80; 80дин жарымы; Жообу: 40. Туура аткардыбы? Ката болсо, тап жана туура чыгар.",
+"options": {},
+"answer": "Туура.",
+"solution": "Туура: 10го көбөйтүп, жарымын алды.",
+"points": 4,
+"estimated_minutes": 5
+},
+{
+"sample_key": "bank-2-klass-5ke-10go-kobotuu-kim-1",
+"difficulty": "very_hard",
+"question_format": "extended",
+"question_type": "short_answer",
+"text": "Тыйын: «6 × 5 = 60». Помпон: «6 × 5 = 30». Тыйын: 6 × 10 = 60; 5ке да 0 кошом; Жообу: 60. Помпон: 5, 10, 15,; 20, 25, 30; Жообу: 30. Ким туура? Түшүндүр.",
+"options": {},
+"answer": "Помпон",
+"solution": "Помпон: 6 × 5 = 30. Тыйын 10дун эрежесин 5ке колдонду (М6).",
 "points": 4,
 "estimated_minutes": 5
 }
